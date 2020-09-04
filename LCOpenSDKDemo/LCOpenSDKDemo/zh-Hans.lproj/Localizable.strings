@@ -1,0 +1,102 @@
+/* 
+  Localization.strings
+  LCOpenSDKDemo
+
+  Created by bzy on 4/25/17.
+  Copyright © 2017 lechange. All rights reserved.
+*/
+"LANGUAGE" = "zh";
+"SECOND" = "秒";
+"NETWORK_TIMEOUT" = "网络超时，请重试";
+"REST_LINK_FAILED" = "rest交互失败";
+
+/*HintView*/
+"HINT_TITLE" = "首页";
+
+/*Download*/
+"CANCEL_DOWNLOAD" = "取消下载";
+"DOWNLOADING" = "下载中，请稍等";
+"DOWNLOAD_SUCCESS" = "下载成功";
+"DOWNLOAD_FAILED" = "下载失败";
+
+/*StartView*/
+"CONFIG_TIP" = "提示：当前demo中未正确配置appId和appSecret，请登录开放平台门户站点，创建应用（应用创建后会得到App ID和App Secret），并且根据开发中心>开发指南中的提示，在demo的源码中的相应代码中填写appId和appSecret，设置后再次编译此demo，进行真机调试。";
+
+/*AdminModelView*/
+"ADMIN_TITLE" = "管理员模拟登陆";
+"ADMIN_PHONE_TIP" = "请输入您的帐号";
+"ADMIN_PHONE_HINT" = "帐号为空";
+"ACCESSTOKEN_TIP"  = "该号码不是开发者账号的手机号码，开发者创建应用后，可在开放平台网站>开发中心>应用详情页中找到管理员账号。";
+"ENTER_DEVICE_LIST" = "进入设备列表";
+
+/* UserModelView */
+"USER_TITLE" = "用户模拟登陆";
+"ACCOUNT_TIP" = "请输入您的账号";
+"BIND_USER" = "用户绑定";
+"ENTER_DEVICELIST" = "进入设备列表";
+"ACCOUNT_BIND_TIP" = "当前手机号未与您的应用绑定，请点击用户绑定按钮进行用户绑定操作";
+"WRONG_ACCOUNT" = "该号码为空";
+"BIND_SUCCEED" = "绑定成功";
+"BIND_TIMEOUT" = "绑定超时，请重试";
+"BIND_FAILED" = "绑定失败";
+"ACCOUNT_NOTICE_TIP" = "请输入有效的账号";
+
+/*DeviceView*/
+"DEVICE_TITLE" = "设备列表";
+"ENTER_ENCRYPTED_KEY" = "输入设备密钥";
+
+/*AddDeviceView*/
+"ADD_DEVICE_TITLE" = "添加设备";
+"DEVICE_ID_LABEL" = "设备S/N";
+"DEVICE_KEY_LABEL" = "设备密码";
+"DEVICE_ID_TIP" = "请输入设备序列号";
+"DEVICE_KEY_TIP" = "请输入设备密钥";
+"WIFI_PASSWORD_TIP" = "请输入WiFi密码";
+"READY_BIND" = "准备绑定";
+"BIND_SUCCESS" = "绑定成功";
+"INSTRUCTION_TIP" = "请根据说明书开启设备配对键";
+"START_LINK_NETWORK" = "开始无线配网";
+"WAIT_TIME" = "等待时间";
+"DEVICE_OFFLINE" = "设备未上线";
+
+/*DeviceOperationView*/
+"DEVICE_OPERATE_TITLE" = "设备操作";
+"ALARM_PLAN" = "动检计划";
+"CLOUD_STORAGE" = "云存储";
+"PASSWORD" = "设备密码";
+"DEVICE_PROGRAME" = "设备程序";
+
+"MODIFY" = "修改";
+"UPGRADE" = "升级";
+
+/*LiveVideoView*/
+"LIVE_VIDEO_TITLE" = "实时预览";
+"RECORD_SAVE_SUCCESS" = "保存录像成功";
+"RECORD_SAVE_FAILED" = "保存录像失败";
+"PLAY_LOCAL_FILE" = "保存成功，去播放？";
+
+/*MessageView*/
+"MESSAGE_TITLE" = "报警消息列表";
+"ALARM_TIME" = "报警时间";
+
+/*RecordView*/
+"LOCAL_RECORD_TITLE" = "本地录像";
+"NET_RECORD_TITLE" = "云存储录像";
+"DATE_CANCEL" = "取消";
+"DATE_QUERY" = "查询";
+"DATE_TIP" = "请选择录像查询日期";
+
+/*RecordPlayView*/
+"RECORD_PLAY_TITLE" = "录像播放";
+/*LocalPlayView*/
+"Local_PLAY_TITLE" = "文件播放";
+
+/*SoftAPConnectView*/
+"SOFTAP_CONNECT" = "软AP配网";
+"BIND_DEVICE" = "绑定设备";
+"OPEN_DEVICE_HOTSPOT" = "1.打开设备热点";
+"CONNECT_DEVICE_HOTSPOT" = "2.手机连接设备热点";
+"START_SOFTAP_CONNECT" = "3.点击按钮开始软AP配网";
+"INPUT_POPWIN_INFO" = "4.输入弹窗信息";
+"CHANGE_WIFI_IF_CONNECT_SUCCEED" = "5.设备配网成功后手机切换至可用wifi";
+"START_BIND_DEVICE" = "6.点击按钮绑定设备";
