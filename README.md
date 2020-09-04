@@ -1,16 +1,19 @@
-### Hi there 👋
+LCOpenSDK is a tripartite library provided by Imou Open Platform to third-party developers. Developers can use the SDK to develop iOS applications. The APIs it includes are mainly the binding of Imou and Dahua devices, real-time preview, video playback, etc.
+  
+#### Installation with CocoaPods
 
-<!--
-**LCOpenSDK/LCOpenSDK** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+To integrate LCOpenSDK into your Xcode project using CocoaPods, specify it in your Podfile:
 
-Here are some ideas to get you started:
+pod 'LCOpenSDK', '~> 3.10.0'
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+#### Use configuration
+You need to add configuration information before use, otherwise an error will occur.   
+•Path：Build Setting->Search Paths->Framework  Search Paths    
+ Add：   
+ $(PROJECT_DIR)/Pods/LCOpenSDK/Framework.  
+•Path：Build Setting->Search Paths->Header Search Paths.  
+ Add：   
+$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers
+$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenSDK
+$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenNetSDK
+$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenApi
