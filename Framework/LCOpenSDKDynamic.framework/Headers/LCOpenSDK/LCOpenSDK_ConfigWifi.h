@@ -20,6 +20,16 @@ typedef NS_ENUM(NSInteger, LC_ConfigWifi_Event)
 
 typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* userData);
 @interface LCOpenSDK_ConfigWIfi : NSObject
+
+/**
+*  设置波形发送方式
+*
+*  @param fskMode   波形发送方式(0--新的fsk发送方式，1--老的fsk发送方式，2--新的和老的fsk波形发送方式)
+*
+*  @return  0, 接口调用成功
+*          -1, 接口调用失败
+*/
+- (void)setFskMode:(NSInteger)fskMode;
 /**
  *  开始Wifi配网
  *
