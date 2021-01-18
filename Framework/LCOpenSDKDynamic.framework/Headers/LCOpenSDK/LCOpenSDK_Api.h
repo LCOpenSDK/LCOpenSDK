@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
  *
  *  @return LCOpenSDK_Api指针
  */
-- (id _Nonnull)initOpenApi:(ProcotolType)procotol addr:(NSString *_Nonnull)addr port:(NSInteger)port CA_PATH:(NSString *_Nonnull)caPath DEPRECATED_MSG_ATTRIBUTE("use initOpenApi: instead");;
+- (id _Nonnull)initOpenApi:(ProcotolType)procotol addr:(NSString *_Nonnull)addr port:(NSInteger)port CA_PATH:(NSString *_Nonnull)caPath DEPRECATED_MSG_ATTRIBUTE("use initOpenApi: instead");
 
 /**
 *  初始化LCOpenSDK_Api

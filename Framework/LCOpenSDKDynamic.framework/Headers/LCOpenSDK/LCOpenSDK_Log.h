@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
 + (instancetype)shareInstance;
 
 /*
- 设置日志信息，设置后自动打开，打印设置等级以上的日志，包含设置等级，不设置默认LogLevelTypeDebug
+ 设置日志信息，设置后自动打开，打印设置等级以上的日志，包含设置等级，不设置默认LogLevelTypeFatal
  */
 
 - (void)setLogInfo:(LCOpenSDK_LogInfo *)logInfo;

@@ -17,7 +17,7 @@
                       deviceId:(NSString*)deviceId
                      devicePwd:(NSString*)devicePwd
                           isSC:(BOOL)isSC;
-;
+
 
 @end
 #endif /* LCOpenSDK_SoftAP_h */

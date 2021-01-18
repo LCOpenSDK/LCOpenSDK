@@ -37,7 +37,7 @@
     
     UISwitch *switchBtn = [[UISwitch alloc] init];
     switchBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 60,[UIScreen mainScreen].bounds.size.height - 40 , 50, 35);
-    switchBtn.on = YES;
+    switchBtn.on = NO;
     [switchBtn addTarget:self action:@selector(switchBtnDidTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:switchBtn];
     
