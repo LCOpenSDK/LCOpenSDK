@@ -130,7 +130,7 @@ typedef NS_ENUM(NSInteger, LC_OUTPUT_STREAM_FORMAT)
 
 - (NSInteger) playDeviceRecordByFileName:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk fileName:(NSString*)fileName offsetTime:(double)offsetTime optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playDeviceRecordByFileName: instead");
 
-- (NSInteger) playDeviceRecordByUtcTime:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk channel:(NSInteger)chn begin:(long)beginTime end:(long)endTime definition:(NSInteger)defiMode optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playDeviceRecordByFileName: instead");
+- (NSInteger) playDeviceRecordByUtcTime:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk channel:(NSInteger)chn begin:(long)beginTime end:(long)endTime definition:(NSInteger)defiMode optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playDeviceRecordByUtcTime: instead");
 
 /**
 *  开始设备录像按文件名回放
