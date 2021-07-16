@@ -79,6 +79,7 @@ typedef NS_ENUM(NSInteger, HLS_STATE)
     STATE_HLS_RESUME_DONE,
     STATE_HLS_KEY_MISMATCH = 11,     //密钥不正确
     STATE_HLS_EXTRACT_FAILED = 13,   //抽帧失败需要app设置播放速度为1
+    STATE_HLS_DEVICE_PASSWORD_MISMATCH = 14,  // 设备登陆密码错误
 };
 
 #pragma mark -  when type == OC_RESULT_PROTO_TYPE_NETSDK, code enum

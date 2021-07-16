@@ -29,16 +29,21 @@ namespace LCOpenApi{
 			~DeleteAlarmMessageRequestData();
 			
 		public:
-			/** 授权token(userToken或accessToken) */
-			string token;
-		public:
-			/** [cstr]deleteAlarmMessage */
-			#define _STATIC_DeleteAlarmMessageRequestData_method "deleteAlarmMessage"
-			string method;
-		public:
-			/** [long]报警消息ID */
-			int64 indexId;
-
+            /** [cstr]deleteAlarmMessage */
+            #define _STATIC_DeleteAlarmMessageRequestData_method "deleteAlarmMessage"
+            string method;
+        public:
+            /** [String][必传]设备ID */
+            string deviceId;
+        public:
+            /** [String][必传]通道号 */
+            string channelId;
+        public:
+            /** 授权token(userToken或accessToken) */
+            string token;
+        public:
+            /** [long]报警消息ID */
+            int64 indexId;
 		};
 	public:
 		DeleteAlarmMessageRequest();
