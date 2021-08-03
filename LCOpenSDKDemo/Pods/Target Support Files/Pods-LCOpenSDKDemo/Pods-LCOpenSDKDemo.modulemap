@@ -1,6 +1,0 @@
-framework module Pods_LCOpenSDKDemo {
-  umbrella header "Pods-LCOpenSDKDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
