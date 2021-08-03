@@ -1,0 +1,9 @@
+${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/DoraemonKit/DoraemonKit.bundle
+${PODS_ROOT}/LBXScan/LBXScan/UI/CodeScan.bundle
+${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle
+${PODS_ROOT}/ZBarSDK/iphone/res/zbar-back.png
+${PODS_ROOT}/ZBarSDK/iphone/res/zbar-help.html
+${PODS_ROOT}/ZBarSDK/iphone/res/zbar-helpicons.png
+${PODS_ROOT}/ZBarSDK/iphone/res/zbar-samples.png

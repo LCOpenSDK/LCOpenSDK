@@ -1,0 +1,32 @@
+//
+//  Copyright © 2019 dahua. All rights reserved.
+//
+
+#ifndef LCPrefixHeader_pch
+#define LCPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Masonry/Masonry.h>
+#import <MJExtension/MJExtension.h>
+#import <SDWebImage/SDWebImage.h>
+#import <KVOController/KVOController.h>
+
+#import "LCToolKit.h"
+#import "LCUIKit.h"
+
+#import <LCBaseModule/UIView+LeChange.h>
+
+//LCBaseModule
+#import <LCBaseModule/LCBaseModule.h>
+#import <LCBaseModule/LCError.h>
+#import <LCBaseModule/NSString+Dahua.h>
+#import <LCBaseModule/NSString+Verify.h>
+//LCNetworkModule
+#import <LCNetworkModule/LCNetworkModule.h>
+//LCAddDeviceModule
+#import <LCAddDeviceModule/LCAddDeviceModule.h>
+
+
+
+#endif /* LCPrefixHeader_pch */

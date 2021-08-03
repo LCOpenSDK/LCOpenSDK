@@ -1,0 +1,11 @@
+framework module DHScanner {
+  umbrella header "DHScanner.h"
+
+  export *
+  module * { export * }
+}
+
+module DHScanner.Swift {
+    header "DHScanner-Swift.h"
+    requires objc
+}

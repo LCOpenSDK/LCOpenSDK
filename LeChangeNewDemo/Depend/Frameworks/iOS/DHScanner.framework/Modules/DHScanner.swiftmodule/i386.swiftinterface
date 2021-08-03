@@ -1,0 +1,209 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target i386-apple-ios8.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DHScanner
+import AVFoundation
+@_exported import DHScanner
+import Swift
+import UIKit
+@objc public protocol DHScannerViewContainerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func scanResult(text: Swift.String, outputImage: UIKit.UIImage?)
+}
+@objc public class DHScannerViewContainer : ObjectiveC.NSObject {
+  @objc public var viewStyle: DHScanner.DHScannerViewStyle
+  @objc public var scannerType: DHScanner.DHScannerWrapperType
+  @objc public var useInterestArea: Swift.Bool
+  @objc weak public var delegate: DHScanner.DHScannerViewContainerDelegate?
+  @objc public var torchOn: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var scanningArea: CoreGraphics.CGRect {
+    @objc get
+  }
+  @objc public var lastScannedImage: UIKit.UIImage? {
+    @objc get
+  }
+  @objc public init(containerView: UIKit.UIView)
+  @objc public func setup()
+  @objc public func startScanning()
+  @objc public func stopScanning()
+  @objc public func pauseScanning()
+  @objc public func resumeScanning()
+  @objc open func scanResult(text: Swift.String, image: UIKit.UIImage?)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class DHScannerWrapperZXing : ObjectiveC.NSObject, DHScanner.DHScannerWrapperProtocol, DHScanner.DHScannerZXingCaptureDelegate {
+  @objc public var isScanning: Swift.Bool {
+    @objc get
+  }
+  @objc public var sessionPreset: AVFoundation.AVCaptureSession.Preset {
+    @objc get
+    @objc set
+  }
+  @objc public var pureQRCode: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var torchOn: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public init()
+  @objc required public init(withPreview preview: UIKit.UIView, output: @escaping DHScanner.DHScannerOutputHandler)
+  @objc public func setScanArea(scanArea: CoreGraphics.CGRect)
+  @objc public func start()
+  @objc public func stop()
+  @objc public func pause()
+  @objc public func resume()
+  @objc public func onTorch(on: Swift.Bool)
+  @objc public func captureResult(_ capture: DHScanner.DHScannerZXingCapture!, text: Swift.String!, image: UIKit.UIImage!)
+  @objc deinit
+}
+@objc public enum DHScannerCodeFormat : Swift.Int {
+  case unknown = -1
+  case aztec
+  case codabar
+  case code39
+  case code93
+  case code128
+  case dataMatrix
+  case ean8
+  case ean13
+  case itf
+  case maxiCode
+  case pdf417
+  case qrCode
+  case rss14
+  case rssExpanded
+  case upca
+  case upce
+  case upceanExtension
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class DHScannerUtils : ObjectiveC.NSObject {
+  @objc public static func decodeImage(image: UIKit.UIImage) -> Swift.String?
+  @objc public static func decodeImage(image: UIKit.UIImage, result: @escaping (Swift.String?, DHScanner.DHScannerCodeFormat) -> (Swift.Void))
+  @objc public static func createQRCode(withString string: Swift.String, size: CoreGraphics.CGSize) -> UIKit.UIImage?
+  @objc public static func createQRCodeWithoutMargin(string: Swift.String, size: CoreGraphics.CGSize) -> UIKit.UIImage?
+  @objc public static func createBarCode(withString string: Swift.String, size: CoreGraphics.CGSize) -> UIKit.UIImage?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum DHScannerAnimationViewType : Swift.Int {
+  case line
+  case net
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class DHScannerViewStyle : ObjectiveC.NSObject {
+  @objc public var showRectangleBorder: Swift.Bool
+  @objc public var rectangleTop: CoreGraphics.CGFloat
+  @objc public var rectangleLeft: CoreGraphics.CGFloat
+  @objc public var rectangeRatio: CoreGraphics.CGFloat
+  @objc public var animationViewType: DHScanner.DHScannerAnimationViewType
+  @objc public var scanningImage: UIKit.UIImage?
+  @objc public var cornerLineWith: CoreGraphics.CGFloat
+  @objc public var cornerWidth: CoreGraphics.CGFloat
+  @objc public var cornerHeight: CoreGraphics.CGFloat
+  @objc public var cornerLineColor: UIKit.UIColor
+  @objc public var backgroundColor: UIKit.UIColor
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias DHScannerOutputHandler = (Swift.String, UIKit.UIImage?) -> (Swift.Void)
+@objc public enum DHScannerWrapperType : Swift.Int {
+  case zxing
+  case system
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol DHScannerWrapperProtocol : ObjectiveC.NSObjectProtocol {
+  @objc var isScanning: Swift.Bool { get }
+  @objc var sessionPreset: AVFoundation.AVCaptureSession.Preset { get set }
+  @objc var pureQRCode: Swift.Bool { get set }
+  @objc var torchOn: Swift.Bool { get set }
+  @objc init(withPreview preview: UIKit.UIView, output: @escaping DHScanner.DHScannerOutputHandler)
+  @objc func start()
+  @objc func stop()
+  @objc func pause()
+  @objc func resume()
+  @objc func setScanArea(scanArea: CoreGraphics.CGRect)
+  @objc func onTorch(on: Swift.Bool)
+}
+@objc public class DHScannerWrapperSystem : ObjectiveC.NSObject, DHScanner.DHScannerWrapperProtocol, AVFoundation.AVCaptureMetadataOutputObjectsDelegate {
+  @objc public var isScanning: Swift.Bool {
+    @objc get
+  }
+  @objc public var sessionPreset: AVFoundation.AVCaptureSession.Preset {
+    @objc get
+    @objc set
+  }
+  @objc public var pureQRCode: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var torchOn: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public init()
+  @objc required public init(withPreview preview: UIKit.UIView, output: @escaping DHScanner.DHScannerOutputHandler)
+  @objc public func setScanArea(scanArea: CoreGraphics.CGRect)
+  @objc public func start()
+  @objc public func stop()
+  @objc public func pause()
+  @objc public func resume()
+  @objc public func onTorch(on: Swift.Bool)
+  @objc public func metadataOutput(_ output: AVFoundation.AVCaptureMetadataOutput, didOutput metadataObjects: [AVFoundation.AVMetadataObject], from connection: AVFoundation.AVCaptureConnection)
+  @objc deinit
+}
+@objc public protocol DHScannerViewControllerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func scanResult(text: Swift.String, outputImage: UIKit.UIImage?)
+}
+@objc open class DHScannerViewController : UIKit.UIViewController {
+  @objc public var viewStyle: DHScanner.DHScannerViewStyle
+  @objc public var scannerType: DHScanner.DHScannerWrapperType
+  @objc public var useInterestArea: Swift.Bool
+  @objc public var pureQRCode: Swift.Bool
+  @objc weak public var delegate: DHScanner.DHScannerViewControllerDelegate?
+  @objc public var torchOn: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var scanningArea: CoreGraphics.CGRect {
+    @objc get
+  }
+  @objc public var lastScannedImage: UIKit.UIImage? {
+    @objc get
+  }
+  @objc override dynamic open func viewDidLoad()
+  @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @objc public func startScanning()
+  @objc public func stopScanning()
+  @objc public func pauseScanning()
+  @objc public func resumeScanning()
+  @objc open func scanResult(text: Swift.String, image: UIKit.UIImage?)
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension DHScanner.DHScannerCodeFormat : Swift.Equatable {}
+extension DHScanner.DHScannerCodeFormat : Swift.Hashable {}
+extension DHScanner.DHScannerCodeFormat : Swift.RawRepresentable {}
+extension DHScanner.DHScannerAnimationViewType : Swift.Equatable {}
+extension DHScanner.DHScannerAnimationViewType : Swift.Hashable {}
+extension DHScanner.DHScannerAnimationViewType : Swift.RawRepresentable {}
+extension DHScanner.DHScannerWrapperType : Swift.Hashable {}
+extension DHScanner.DHScannerWrapperType : Swift.RawRepresentable {}

@@ -1,0 +1,11 @@
+1. 设备接入使能接口如下，在头文件 netsdkEx.h 中
+	CLIENT_NET_API BOOL CALL_METHOD CLIENT_SetNetAccess(const NET_IN_NETACCESS* pNetAccessIn, NET_OUT_NETACCESS* pNetAccessOut, DWORD dwWaitTime, char* szLocalIp)
+2. 入参 pNetAccessIn中各参数见头文件中说明，其中dwSize填结构体大小 sizeof(NET_IN_NETACCESS)
+3. 出参 pNetAccessOut 中dwSize填结构体大小: sizeof(NET_OUT_NETACCESS)
+4. dwWaitTime 为超时时间， szLocalIp 一般情况下填 NULL
+5. 接口错误码 ： NET_ILLEGAL_PARAM，表示参数不合法；NET_NETWORK_ERROR，表示网络超时；NET_ERROR_DESERIALIZE_ERROR，表示数据反序列化错误；NET_ERROR_ENCRYPT，表示加密数据失败；
+	NET_ERROR_SECURITY_CODE，表示安全码错误
+	
+
+CLIENT_ModifyDevice接口错误码：NET_ERROR_SECURITY_CODE_TIMEOUT，表示安全码超出有效期，应该在设备联网10分钟内进行操作；NET_ILLEGAL_PARAM，表示参数不合法；NET_NETWORK_ERROR，表示网络超时
+	

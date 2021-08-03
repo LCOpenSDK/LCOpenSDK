@@ -1,0 +1,1592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D8BAFF24E53EC0002F3076 /* DHScanner.framework */; };
+		0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D4632508C0F400CE4528 /* LCNetworkModule.framework */; };
+		0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419D4672508C51500CE4528 /* AddDevice.storyboard */; };
+		10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 10026F4E23056F0000F95836 /* LCAddDeviceModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E17234D243438E3004F68FC /* DHDeviceUnsupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17234C243438E3004F68FC /* DHDeviceUnsupportViewController.swift */; };
+		4E4510F5242B75F000AF8AF6 /* DHNetSDKInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103B242B75ED00AF8AF6 /* DHNetSDKInterface.mm */; };
+		4E4510F6242B75F000AF8AF6 /* DHDeviceInfoLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103C242B75ED00AF8AF6 /* DHDeviceInfoLogModel.m */; };
+		4E4510F7242B75F000AF8AF6 /* LCSmartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */; };
+		4E4510F8242B75F000AF8AF6 /* LanDeviceBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45103E242B75ED00AF8AF6 /* LanDeviceBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510F9242B75F000AF8AF6 /* DHDeviceNetInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103F242B75ED00AF8AF6 /* DHDeviceNetInfo.mm */; };
+		4E4510FA242B75F000AF8AF6 /* DHNetSDKInitialManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451040242B75ED00AF8AF6 /* DHNetSDKInitialManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FB242B75F000AF8AF6 /* DHDevicePWDResetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451041242B75ED00AF8AF6 /* DHDevicePWDResetInfo.m */; };
+		4E4510FC242B75F000AF8AF6 /* DHDeviceResetPWDInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451042242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.m */; };
+		4E4510FD242B75F000AF8AF6 /* DHNetSDKHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451043242B75ED00AF8AF6 /* DHNetSDKHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FE242B75F000AF8AF6 /* DHNetSDKSearchManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451044242B75ED00AF8AF6 /* DHNetSDKSearchManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FF242B75F000AF8AF6 /* DHDeviceInfoLogModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451045242B75ED00AF8AF6 /* DHDeviceInfoLogModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451100242B75F000AF8AF6 /* DHDeviceResetPWDInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451046242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451101242B75F000AF8AF6 /* DHNetSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451047242B75ED00AF8AF6 /* DHNetSDKHelper.m */; };
+		4E451102242B75F000AF8AF6 /* DHDevicePWDResetInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451048242B75ED00AF8AF6 /* DHDevicePWDResetInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451103242B75F000AF8AF6 /* DHNetSDKInitialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451049242B75ED00AF8AF6 /* DHNetSDKInitialManager.m */; };
+		4E451104242B75F000AF8AF6 /* ISearchDeviceNetInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451105242B75F000AF8AF6 /* LanDeviceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45104B242B75ED00AF8AF6 /* LanDeviceBridge.m */; };
+		4E451106242B75F000AF8AF6 /* LCSmartConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451107242B75F000AF8AF6 /* DHDeviceNetInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104D242B75ED00AF8AF6 /* DHDeviceNetInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451108242B75F000AF8AF6 /* DHNetSDKInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104E242B75ED00AF8AF6 /* DHNetSDKInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451109242B75F000AF8AF6 /* DHNetSDKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45104F242B75ED00AF8AF6 /* DHNetSDKSearchManager.m */; };
+		4E451111242B75F000AF8AF6 /* DHIdentifyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45105D242B75ED00AF8AF6 /* DHIdentifyPresenter.swift */; };
+		4E451112242B75F000AF8AF6 /* DHSelectModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45105F242B75ED00AF8AF6 /* DHSelectModelViewController.swift */; };
+		4E451113242B75F000AF8AF6 /* DHBindByOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451060242B75ED00AF8AF6 /* DHBindByOtherViewController.swift */; };
+		4E451114242B75F000AF8AF6 /* DHInputSNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451061242B75ED00AF8AF6 /* DHInputSNViewController.swift */; };
+		4E451115242B75F000AF8AF6 /* DHQRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451062242B75ED00AF8AF6 /* DHQRScanViewController.swift */; };
+		4E451116242B75F000AF8AF6 /* DHScanMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451064242B75ED00AF8AF6 /* DHScanMenuCell.swift */; };
+		4E451117242B75F000AF8AF6 /* DHQRScanMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451065242B75ED00AF8AF6 /* DHQRScanMenuView.swift */; };
+		4E45111C242B75F000AF8AF6 /* DHLocalNetGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45106D242B75ED00AF8AF6 /* DHLocalNetGuideViewController.swift */; };
+		4E45111D242B75F000AF8AF6 /* DHBindPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451070242B75EE00AF8AF6 /* DHBindPresenter.swift */; };
+		4E451122242B75F000AF8AF6 /* DHBindSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451076242B75EE00AF8AF6 /* DHBindSuccessViewController.swift */; };
+		4E451127242B75F000AF8AF6 /* DHAuthPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45107E242B75EE00AF8AF6 /* DHAuthPasswordPresenter.swift */; };
+		4E451128242B75F000AF8AF6 /* DHAuthPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451080242B75EE00AF8AF6 /* DHAuthPasswordViewController.swift */; };
+		4E451129242B75F000AF8AF6 /* DHDeviceLockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451081242B75EE00AF8AF6 /* DHDeviceLockViewController.swift */; };
+		4E45112A242B75F000AF8AF6 /* DHAuthRegCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451082242B75EE00AF8AF6 /* DHAuthRegCodeViewController.swift */; };
+		4E45112B242B75F000AF8AF6 /* DHInitializeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451085242B75EE00AF8AF6 /* DHInitializeSearchViewController.swift */; };
+		4E45112C242B75F000AF8AF6 /* DHInitializePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451086242B75EE00AF8AF6 /* DHInitializePasswordViewController.swift */; };
+		4E45112D242B75F000AF8AF6 /* LCAddDeviceModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451088242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.m */; };
+		4E45112E242B75F000AF8AF6 /* LCAddDeviceModule-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E45112F242B75F000AF8AF6 /* LCAddDeviceModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */; };
+		4E451130242B75F000AF8AF6 /* LCAddDeviceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */; };
+		4E451131242B75F000AF8AF6 /* LCAddDeviceModuleBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45108C242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451132242B75F000AF8AF6 /* DHAddByQRCodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108F242B75EE00AF8AF6 /* DHAddByQRCodePresenter.swift */; };
+		4E451133242B75F000AF8AF6 /* DHAddByQRCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451091242B75EE00AF8AF6 /* DHAddByQRCodeProtocol.swift */; };
+		4E451134242B75F000AF8AF6 /* DHAddByQRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451093242B75EE00AF8AF6 /* DHAddByQRCodeVC.swift */; };
+		4E451136242B75F000AF8AF6 /* DHApAuthPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451098242B75EE00AF8AF6 /* DHApAuthPasswordPresenter.swift */; };
+		4E451137242B75F000AF8AF6 /* DHApWifiPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451099242B75EE00AF8AF6 /* DHApWifiPasswordPresenter.swift */; };
+		4E451138242B75F000AF8AF6 /* DHApWifiSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109B242B75EE00AF8AF6 /* DHApWifiSelectViewController.swift */; };
+		4E451139242B75F000AF8AF6 /* DHApGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109C242B75EE00AF8AF6 /* DHApGuideViewController.swift */; };
+		4E45113A242B75F000AF8AF6 /* DHApWifiCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109D242B75EE00AF8AF6 /* DHApWifiCheckViewController.swift */; };
+		4E45113B242B75F000AF8AF6 /* DHApP2PTypeDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109E242B75EE00AF8AF6 /* DHApP2PTypeDoneViewController.swift */; };
+		4E45113C242B75F000AF8AF6 /* DHApWifiInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E4510A0242B75EE00AF8AF6 /* DHApWifiInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E45113D242B75F000AF8AF6 /* DHApWifiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A1242B75EE00AF8AF6 /* DHApWifiInfo.m */; };
+		4E45113F242B75F000AF8AF6 /* DHApWifiHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A4242B75EE00AF8AF6 /* DHApWifiHeaderView.swift */; };
+		4E451140242B75F000AF8AF6 /* LCApWifiHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */; };
+		4E451141242B75F000AF8AF6 /* DHWifiPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A8242B75EF00AF8AF6 /* DHWifiPasswordPresenter.swift */; };
+		4E451142242B75F000AF8AF6 /* DHWifiPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AA242B75EF00AF8AF6 /* DHWifiPasswordViewController.swift */; };
+		4E451143242B75F000AF8AF6 /* DHLightDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AB242B75EF00AF8AF6 /* DHLightDetailViewController.swift */; };
+		4E451144242B75F000AF8AF6 /* DHWiFiUnsupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AC242B75EF00AF8AF6 /* DHWiFiUnsupportVC.swift */; };
+		4E451145242B75F000AF8AF6 /* DHWifiConnectFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AD242B75EF00AF8AF6 /* DHWifiConnectFailureViewController.swift */; };
+		4E451146242B75F000AF8AF6 /* DHPhoneVolumeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AE242B75EF00AF8AF6 /* DHPhoneVolumeCheckViewController.swift */; };
+		4E451147242B75F000AF8AF6 /* DHDeviceLightCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AF242B75EF00AF8AF6 /* DHDeviceLightCheckViewController.swift */; };
+		4E451148242B75F000AF8AF6 /* LCWifiInfoExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */; };
+		4E451149242B75F000AF8AF6 /* DHWifiConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B1242B75EF00AF8AF6 /* DHWifiConnectViewController.swift */; };
+		4E45114A242B75F000AF8AF6 /* DHWifiCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B2242B75EF00AF8AF6 /* DHWifiCheckViewController.swift */; };
+		4E45114B242B75F000AF8AF6 /* DHWifiUnsupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B3242B75EF00AF8AF6 /* DHWifiUnsupportViewController.swift */; };
+		4E45114C242B75F000AF8AF6 /* DHResetDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B4242B75EF00AF8AF6 /* DHResetDeviceViewController.swift */; };
+		4E45114D242B75F000AF8AF6 /* DH5GWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B6242B75EF00AF8AF6 /* DH5GWifiDetailView.swift */; };
+		4E45114E242B75F000AF8AF6 /* DHBlurViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B7242B75EF00AF8AF6 /* DHBlurViewContainer.swift */; };
+		4E451150242B75F000AF8AF6 /* DHBindFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BB242B75EF00AF8AF6 /* DHBindFailureViewController.swift */; };
+		4E451151242B75F000AF8AF6 /* DHConnectCloudTimeoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BC242B75EF00AF8AF6 /* DHConnectCloudTimeoutViewController.swift */; };
+		4E451152242B75F000AF8AF6 /* DHConnectCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BD242B75EF00AF8AF6 /* DHConnectCloudViewController.swift */; };
+		4E451153242B75F000AF8AF6 /* DHAuthPassworHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BF242B75EF00AF8AF6 /* DHAuthPassworHelper.swift */; };
+		4E451154242B75F000AF8AF6 /* DHHotSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C1242B75EF00AF8AF6 /* DHHotSpotViewController.swift */; };
+		4E451155242B75F000AF8AF6 /* DHAddFAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C2242B75EF00AF8AF6 /* DHAddFAQViewController.swift */; };
+		4E451156242B75F000AF8AF6 /* DHOfflineWifiConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C4242B75EF00AF8AF6 /* DHOfflineWifiConfigProtocol.swift */; };
+		4E451157242B75F000AF8AF6 /* DHOfflineWifiConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C5242B75EF00AF8AF6 /* DHOfflineWifiConfigHelper.swift */; };
+		4E451158242B75F000AF8AF6 /* DHModuleConfig+AddDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C7242B75EF00AF8AF6 /* DHModuleConfig+AddDevice.swift */; };
+		4E45115A242B75F000AF8AF6 /* DHSameNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CB242B75EF00AF8AF6 /* DHSameNetworkViewController.swift */; };
+		4E45115B242B75F000AF8AF6 /* DHSIMCardGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CC242B75EF00AF8AF6 /* DHSIMCardGuideViewController.swift */; };
+		4E45115C242B75F000AF8AF6 /* DHPowerGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CD242B75EF00AF8AF6 /* DHPowerGuideViewController.swift */; };
+		4E45115D242B75F000AF8AF6 /* DHPlugNetGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CE242B75EF00AF8AF6 /* DHPlugNetGuideViewController.swift */; };
+		4E45115E242B75F000AF8AF6 /* DHGuideBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D2242B75F000AF8AF6 /* DHGuideBaseVCProtocol.swift */; };
+		4E45115F242B75F000AF8AF6 /* DHAddBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D3242B75F000AF8AF6 /* DHAddBaseVCProtocol.swift */; };
+		4E451160242B75F000AF8AF6 /* DHErrorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D4242B75F000AF8AF6 /* DHErrorBaseViewController.swift */; };
+		4E451161242B75F000AF8AF6 /* DHErrorBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D5242B75F000AF8AF6 /* DHErrorBaseVCProtocol.swift */; };
+		4E451162242B75F000AF8AF6 /* DHAddBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D6242B75F000AF8AF6 /* DHAddBaseViewController.swift */; };
+		4E451163242B75F000AF8AF6 /* DHGuideBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D7242B75F000AF8AF6 /* DHGuideBaseViewController.swift */; };
+		4E451164242B75F000AF8AF6 /* DHOMSConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D9242B75F000AF8AF6 /* DHOMSConfigManager.swift */; };
+		4E451165242B75F000AF8AF6 /* DHAddDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DA242B75F000AF8AF6 /* DHAddDeviceManager.swift */; };
+		4E451167242B75F000AF8AF6 /* DHIntroductionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DD242B75F000AF8AF6 /* DHIntroductionDefaults.swift */; };
+		4E451168242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */; };
+		4E45116A242B75F000AF8AF6 /* DHIntroductionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E0242B75F000AF8AF6 /* DHIntroductionParser.swift */; };
+		4E45116B242B75F000AF8AF6 /* DHAddDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E1242B75F000AF8AF6 /* DHAddDeviceTest.swift */; };
+		4E45116C242B75F000AF8AF6 /* DHConnectFailureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E2242B75F000AF8AF6 /* DHConnectFailureType.swift */; };
+		4E45116E242B75F000AF8AF6 /* UILabel+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */; };
+		4E45116F242B75F000AF8AF6 /* LCAddBoxGudieView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E4510E6242B75F000AF8AF6 /* LCAddBoxGudieView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451170242B75F000AF8AF6 /* DHCycleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E7242B75F000AF8AF6 /* DHCycleTimerView.swift */; };
+		4E451172242B75F000AF8AF6 /* LCAddDeviceHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E9242B75F000AF8AF6 /* LCAddDeviceHelpView.swift */; };
+		4E451173242B75F000AF8AF6 /* DHLightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EA242B75F000AF8AF6 /* DHLightButton.swift */; };
+		4E451174242B75F000AF8AF6 /* DHAutoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EB242B75F000AF8AF6 /* DHAutoKeyboardView.swift */; };
+		4E451175242B75F000AF8AF6 /* DHAddGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EC242B75F000AF8AF6 /* DHAddGuideView.swift */; };
+		4E451176242B75F000AF8AF6 /* UITextView+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */; };
+		4E451177242B75F000AF8AF6 /* LCAddBoxGudieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EE242B75F000AF8AF6 /* LCAddBoxGudieView.m */; };
+		4E451179242B75F000AF8AF6 /* DHCommonErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F0242B75F000AF8AF6 /* DHCommonErrorView.swift */; };
+		4E45117A242B75F000AF8AF6 /* DHNetConnectFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F1242B75F000AF8AF6 /* DHNetConnectFailureView.swift */; };
+		4E45117B242B75F000AF8AF6 /* DHInputIMEIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F3242B75F000AF8AF6 /* DHInputIMEIViewController.swift */; };
+		4E45117C242B75F000AF8AF6 /* DHNBCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F4242B75F000AF8AF6 /* DHNBCheckViewController.swift */; };
+		4E45119C242B7F9500AF8AF6 /* DHAddDeviceLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45119B242B7F9500AF8AF6 /* DHAddDeviceLogManager.swift */; };
+		4E45119E242B7FB000AF8AF6 /* DHAddDeviceLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45119D242B7FB000AF8AF6 /* DHAddDeviceLogModel.swift */; };
+		4E4511AD242B95E000AF8AF6 /* MMTimeZoneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4511A9242B95E000AF8AF6 /* MMTimeZoneModel.m */; };
+		4E4511AF242B95E000AF8AF6 /* MMTimeZoneModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E4511AB242B95E000AF8AF6 /* MMTimeZoneModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4511BA242C331800AF8AF6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4511B9242C331800AF8AF6 /* CoreLocation.framework */; };
+		4E4511CC242C460D00AF8AF6 /* Bundle+AddDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */; };
+		4E4511E2242C577200AF8AF6 /* DHNetConnectFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510E4242B75F000AF8AF6 /* DHNetConnectFailureView.xib */; };
+		4E4511E3242C577300AF8AF6 /* DHCommonErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510E8242B75F000AF8AF6 /* DHCommonErrorView.xib */; };
+		4E4511E4242C577600AF8AF6 /* DHAddGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510EF242B75F000AF8AF6 /* DHAddGuideView.xib */; };
+		4E4511E5242C577700AF8AF6 /* DHApWifiHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510A3242B75EE00AF8AF6 /* DHApWifiHeaderView.xib */; };
+		4E4511E6242C577900AF8AF6 /* DH5GWifiDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510B8242B75EF00AF8AF6 /* DH5GWifiDetailView.xib */; };
+		4E4511ED242C7CE800AF8AF6 /* DHAutoKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4511EB242C7CB700AF8AF6 /* DHAutoKeyboardView.xib */; };
+		4E7250C7245802F7000769F6 /* LCDeviceAddErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7250C6245802F7000769F6 /* LCDeviceAddErrorController.swift */; };
+		8F6B004F244D677400EAE734 /* DHWiFiConfigPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0042244D677400EAE734 /* DHWiFiConfigPresenter.swift */; };
+		8F6B0050244D677400EAE734 /* DHWiFiConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0044244D677400EAE734 /* DHWiFiConfigProtocol.swift */; };
+		8F6B0051244D677400EAE734 /* DHWiFiConfigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0046244D677400EAE734 /* DHWiFiConfigVC.swift */; };
+		8F6B0052244D677400EAE734 /* DHWiFiConfigListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0047244D677400EAE734 /* DHWiFiConfigListCell.swift */; };
+		8F6B0053244D677400EAE734 /* DHWiFiConfigHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0048244D677400EAE734 /* DHWiFiConfigHeader.swift */; };
+		8F6B0054244D677400EAE734 /* LCAddOtherWifiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */; };
+		8F6B0066244DA2CE00EAE734 /* DHWiFiConnectOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0060244DA2CD00EAE734 /* DHWiFiConnectOnlinePresenter.swift */; };
+		8F6B0067244DA2CE00EAE734 /* DHWiFiConnectOnlineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0062244DA2CD00EAE734 /* DHWiFiConnectOnlineProtocol.swift */; };
+		8F6B0068244DA2CE00EAE734 /* DHWifiConnectOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0064244DA2CD00EAE734 /* DHWifiConnectOnlineVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E8464D32474D8F300758260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10026F4223056F0000F95836 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10A6613B2306B803004DCB22;
+			remoteInfo = DHAddDeviceModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0401AF5C250A3D2F00F8E1D6 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCAddDeviceModule.framework; path = ../Frameworks/iOS/LCAddDeviceModule.framework; sourceTree = "<group>"; };
+		0419D4632508C0F400CE4528 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0419D4652508C10900CE4528 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0419D4672508C51500CE4528 /* AddDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDevice.storyboard; sourceTree = "<group>"; };
+		04D8BAFF24E53EC0002F3076 /* DHScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DHScanner.framework; path = ../Frameworks/iOS/DHScanner.framework; sourceTree = "<group>"; };
+		10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCAddDeviceModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10026F4E23056F0000F95836 /* LCAddDeviceModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAddDeviceModule.h; sourceTree = "<group>"; };
+		10026F4F23056F0000F95836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCAddDeviceModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A6613E2306B804004DCB22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E17234C243438E3004F68FC /* DHDeviceUnsupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHDeviceUnsupportViewController.swift; sourceTree = "<group>"; };
+		4E45103B242B75ED00AF8AF6 /* DHNetSDKInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DHNetSDKInterface.mm; sourceTree = "<group>"; };
+		4E45103C242B75ED00AF8AF6 /* DHDeviceInfoLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDeviceInfoLogModel.m; sourceTree = "<group>"; };
+		4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSmartConfig.m; sourceTree = "<group>"; };
+		4E45103E242B75ED00AF8AF6 /* LanDeviceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanDeviceBridge.h; sourceTree = "<group>"; };
+		4E45103F242B75ED00AF8AF6 /* DHDeviceNetInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DHDeviceNetInfo.mm; sourceTree = "<group>"; };
+		4E451040242B75ED00AF8AF6 /* DHNetSDKInitialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHNetSDKInitialManager.h; sourceTree = "<group>"; };
+		4E451041242B75ED00AF8AF6 /* DHDevicePWDResetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDevicePWDResetInfo.m; sourceTree = "<group>"; };
+		4E451042242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDeviceResetPWDInfo.m; sourceTree = "<group>"; };
+		4E451043242B75ED00AF8AF6 /* DHNetSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHNetSDKHelper.h; sourceTree = "<group>"; };
+		4E451044242B75ED00AF8AF6 /* DHNetSDKSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHNetSDKSearchManager.h; sourceTree = "<group>"; };
+		4E451045242B75ED00AF8AF6 /* DHDeviceInfoLogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDeviceInfoLogModel.h; sourceTree = "<group>"; };
+		4E451046242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDeviceResetPWDInfo.h; sourceTree = "<group>"; };
+		4E451047242B75ED00AF8AF6 /* DHNetSDKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHNetSDKHelper.m; sourceTree = "<group>"; };
+		4E451048242B75ED00AF8AF6 /* DHDevicePWDResetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDevicePWDResetInfo.h; sourceTree = "<group>"; };
+		4E451049242B75ED00AF8AF6 /* DHNetSDKInitialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHNetSDKInitialManager.m; sourceTree = "<group>"; };
+		4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISearchDeviceNetInfo.h; sourceTree = "<group>"; };
+		4E45104B242B75ED00AF8AF6 /* LanDeviceBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanDeviceBridge.m; sourceTree = "<group>"; };
+		4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSmartConfig.h; sourceTree = "<group>"; };
+		4E45104D242B75ED00AF8AF6 /* DHDeviceNetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDeviceNetInfo.h; sourceTree = "<group>"; };
+		4E45104E242B75ED00AF8AF6 /* DHNetSDKInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHNetSDKInterface.h; sourceTree = "<group>"; };
+		4E45104F242B75ED00AF8AF6 /* DHNetSDKSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHNetSDKSearchManager.m; sourceTree = "<group>"; };
+		4E45105D242B75ED00AF8AF6 /* DHIdentifyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHIdentifyPresenter.swift; sourceTree = "<group>"; };
+		4E45105F242B75ED00AF8AF6 /* DHSelectModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHSelectModelViewController.swift; sourceTree = "<group>"; };
+		4E451060242B75ED00AF8AF6 /* DHBindByOtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHBindByOtherViewController.swift; sourceTree = "<group>"; };
+		4E451061242B75ED00AF8AF6 /* DHInputSNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHInputSNViewController.swift; sourceTree = "<group>"; };
+		4E451062242B75ED00AF8AF6 /* DHQRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHQRScanViewController.swift; sourceTree = "<group>"; };
+		4E451064242B75ED00AF8AF6 /* DHScanMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHScanMenuCell.swift; sourceTree = "<group>"; };
+		4E451065242B75ED00AF8AF6 /* DHQRScanMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHQRScanMenuView.swift; sourceTree = "<group>"; };
+		4E45106D242B75ED00AF8AF6 /* DHLocalNetGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHLocalNetGuideViewController.swift; sourceTree = "<group>"; };
+		4E451070242B75EE00AF8AF6 /* DHBindPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHBindPresenter.swift; sourceTree = "<group>"; };
+		4E451076242B75EE00AF8AF6 /* DHBindSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHBindSuccessViewController.swift; sourceTree = "<group>"; };
+		4E45107E242B75EE00AF8AF6 /* DHAuthPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAuthPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E451080242B75EE00AF8AF6 /* DHAuthPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAuthPasswordViewController.swift; sourceTree = "<group>"; };
+		4E451081242B75EE00AF8AF6 /* DHDeviceLockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHDeviceLockViewController.swift; sourceTree = "<group>"; };
+		4E451082242B75EE00AF8AF6 /* DHAuthRegCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAuthRegCodeViewController.swift; sourceTree = "<group>"; };
+		4E451085242B75EE00AF8AF6 /* DHInitializeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHInitializeSearchViewController.swift; sourceTree = "<group>"; };
+		4E451086242B75EE00AF8AF6 /* DHInitializePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHInitializePasswordViewController.swift; sourceTree = "<group>"; };
+		4E451088242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCAddDeviceModuleBridge.m; sourceTree = "<group>"; };
+		4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCAddDeviceModule-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceModuleProtocol.swift; sourceTree = "<group>"; };
+		4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceModule.swift; sourceTree = "<group>"; };
+		4E45108C242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAddDeviceModuleBridge.h; sourceTree = "<group>"; };
+		4E45108F242B75EE00AF8AF6 /* DHAddByQRCodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddByQRCodePresenter.swift; sourceTree = "<group>"; };
+		4E451091242B75EE00AF8AF6 /* DHAddByQRCodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddByQRCodeProtocol.swift; sourceTree = "<group>"; };
+		4E451093242B75EE00AF8AF6 /* DHAddByQRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddByQRCodeVC.swift; sourceTree = "<group>"; };
+		4E451098242B75EE00AF8AF6 /* DHApAuthPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApAuthPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E451099242B75EE00AF8AF6 /* DHApWifiPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApWifiPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E45109B242B75EE00AF8AF6 /* DHApWifiSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApWifiSelectViewController.swift; sourceTree = "<group>"; };
+		4E45109C242B75EE00AF8AF6 /* DHApGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApGuideViewController.swift; sourceTree = "<group>"; };
+		4E45109D242B75EE00AF8AF6 /* DHApWifiCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApWifiCheckViewController.swift; sourceTree = "<group>"; };
+		4E45109E242B75EE00AF8AF6 /* DHApP2PTypeDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApP2PTypeDoneViewController.swift; sourceTree = "<group>"; };
+		4E4510A0242B75EE00AF8AF6 /* DHApWifiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHApWifiInfo.h; sourceTree = "<group>"; };
+		4E4510A1242B75EE00AF8AF6 /* DHApWifiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHApWifiInfo.m; sourceTree = "<group>"; };
+		4E4510A3242B75EE00AF8AF6 /* DHApWifiHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DHApWifiHeaderView.xib; sourceTree = "<group>"; };
+		4E4510A4242B75EE00AF8AF6 /* DHApWifiHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHApWifiHeaderView.swift; sourceTree = "<group>"; };
+		4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApWifiHeaderView.swift; sourceTree = "<group>"; };
+		4E4510A8242B75EF00AF8AF6 /* DHWifiPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E4510AA242B75EF00AF8AF6 /* DHWifiPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiPasswordViewController.swift; sourceTree = "<group>"; };
+		4E4510AB242B75EF00AF8AF6 /* DHLightDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHLightDetailViewController.swift; sourceTree = "<group>"; };
+		4E4510AC242B75EF00AF8AF6 /* DHWiFiUnsupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiUnsupportVC.swift; sourceTree = "<group>"; };
+		4E4510AD242B75EF00AF8AF6 /* DHWifiConnectFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiConnectFailureViewController.swift; sourceTree = "<group>"; };
+		4E4510AE242B75EF00AF8AF6 /* DHPhoneVolumeCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHPhoneVolumeCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510AF242B75EF00AF8AF6 /* DHDeviceLightCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHDeviceLightCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiInfoExplainController.swift; sourceTree = "<group>"; };
+		4E4510B1242B75EF00AF8AF6 /* DHWifiConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiConnectViewController.swift; sourceTree = "<group>"; };
+		4E4510B2242B75EF00AF8AF6 /* DHWifiCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510B3242B75EF00AF8AF6 /* DHWifiUnsupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiUnsupportViewController.swift; sourceTree = "<group>"; };
+		4E4510B4242B75EF00AF8AF6 /* DHResetDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHResetDeviceViewController.swift; sourceTree = "<group>"; };
+		4E4510B6242B75EF00AF8AF6 /* DH5GWifiDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DH5GWifiDetailView.swift; sourceTree = "<group>"; };
+		4E4510B7242B75EF00AF8AF6 /* DHBlurViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHBlurViewContainer.swift; sourceTree = "<group>"; };
+		4E4510B8242B75EF00AF8AF6 /* DH5GWifiDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DH5GWifiDetailView.xib; sourceTree = "<group>"; };
+		4E4510BB242B75EF00AF8AF6 /* DHBindFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHBindFailureViewController.swift; sourceTree = "<group>"; };
+		4E4510BC242B75EF00AF8AF6 /* DHConnectCloudTimeoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHConnectCloudTimeoutViewController.swift; sourceTree = "<group>"; };
+		4E4510BD242B75EF00AF8AF6 /* DHConnectCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHConnectCloudViewController.swift; sourceTree = "<group>"; };
+		4E4510BF242B75EF00AF8AF6 /* DHAuthPassworHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAuthPassworHelper.swift; sourceTree = "<group>"; };
+		4E4510C1242B75EF00AF8AF6 /* DHHotSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHHotSpotViewController.swift; sourceTree = "<group>"; };
+		4E4510C2242B75EF00AF8AF6 /* DHAddFAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddFAQViewController.swift; sourceTree = "<group>"; };
+		4E4510C4242B75EF00AF8AF6 /* DHOfflineWifiConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHOfflineWifiConfigProtocol.swift; sourceTree = "<group>"; };
+		4E4510C5242B75EF00AF8AF6 /* DHOfflineWifiConfigHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHOfflineWifiConfigHelper.swift; sourceTree = "<group>"; };
+		4E4510C7242B75EF00AF8AF6 /* DHModuleConfig+AddDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DHModuleConfig+AddDevice.swift"; sourceTree = "<group>"; };
+		4E4510CB242B75EF00AF8AF6 /* DHSameNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHSameNetworkViewController.swift; sourceTree = "<group>"; };
+		4E4510CC242B75EF00AF8AF6 /* DHSIMCardGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHSIMCardGuideViewController.swift; sourceTree = "<group>"; };
+		4E4510CD242B75EF00AF8AF6 /* DHPowerGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHPowerGuideViewController.swift; sourceTree = "<group>"; };
+		4E4510CE242B75EF00AF8AF6 /* DHPlugNetGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHPlugNetGuideViewController.swift; sourceTree = "<group>"; };
+		4E4510D2242B75F000AF8AF6 /* DHGuideBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHGuideBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D3242B75F000AF8AF6 /* DHAddBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D4242B75F000AF8AF6 /* DHErrorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHErrorBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510D5242B75F000AF8AF6 /* DHErrorBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHErrorBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D6242B75F000AF8AF6 /* DHAddBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510D7242B75F000AF8AF6 /* DHGuideBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHGuideBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510D9242B75F000AF8AF6 /* DHOMSConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHOMSConfigManager.swift; sourceTree = "<group>"; };
+		4E4510DA242B75F000AF8AF6 /* DHAddDeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddDeviceManager.swift; sourceTree = "<group>"; };
+		4E4510DD242B75F000AF8AF6 /* DHIntroductionDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHIntroductionDefaults.swift; sourceTree = "<group>"; };
+		4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LCUserDeviceBindInfo+Extesion.swift"; sourceTree = "<group>"; };
+		4E4510E0242B75F000AF8AF6 /* DHIntroductionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHIntroductionParser.swift; sourceTree = "<group>"; };
+		4E4510E1242B75F000AF8AF6 /* DHAddDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddDeviceTest.swift; sourceTree = "<group>"; };
+		4E4510E2242B75F000AF8AF6 /* DHConnectFailureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHConnectFailureType.swift; sourceTree = "<group>"; };
+		4E4510E4242B75F000AF8AF6 /* DHNetConnectFailureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DHNetConnectFailureView.xib; sourceTree = "<group>"; };
+		4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Multiline.swift"; sourceTree = "<group>"; };
+		4E4510E6242B75F000AF8AF6 /* LCAddBoxGudieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAddBoxGudieView.h; sourceTree = "<group>"; };
+		4E4510E7242B75F000AF8AF6 /* DHCycleTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHCycleTimerView.swift; sourceTree = "<group>"; };
+		4E4510E8242B75F000AF8AF6 /* DHCommonErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DHCommonErrorView.xib; sourceTree = "<group>"; };
+		4E4510E9242B75F000AF8AF6 /* LCAddDeviceHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceHelpView.swift; sourceTree = "<group>"; };
+		4E4510EA242B75F000AF8AF6 /* DHLightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHLightButton.swift; sourceTree = "<group>"; };
+		4E4510EB242B75F000AF8AF6 /* DHAutoKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAutoKeyboardView.swift; sourceTree = "<group>"; };
+		4E4510EC242B75F000AF8AF6 /* DHAddGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddGuideView.swift; sourceTree = "<group>"; };
+		4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Multiline.swift"; sourceTree = "<group>"; };
+		4E4510EE242B75F000AF8AF6 /* LCAddBoxGudieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCAddBoxGudieView.m; sourceTree = "<group>"; };
+		4E4510EF242B75F000AF8AF6 /* DHAddGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DHAddGuideView.xib; sourceTree = "<group>"; };
+		4E4510F0242B75F000AF8AF6 /* DHCommonErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHCommonErrorView.swift; sourceTree = "<group>"; };
+		4E4510F1242B75F000AF8AF6 /* DHNetConnectFailureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHNetConnectFailureView.swift; sourceTree = "<group>"; };
+		4E4510F3242B75F000AF8AF6 /* DHInputIMEIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHInputIMEIViewController.swift; sourceTree = "<group>"; };
+		4E4510F4242B75F000AF8AF6 /* DHNBCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHNBCheckViewController.swift; sourceTree = "<group>"; };
+		4E451184242B78DD00AF8AF6 /* Categories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Categories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E45119B242B7F9500AF8AF6 /* DHAddDeviceLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddDeviceLogManager.swift; sourceTree = "<group>"; };
+		4E45119D242B7FB000AF8AF6 /* DHAddDeviceLogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAddDeviceLogModel.swift; sourceTree = "<group>"; };
+		4E4511A9242B95E000AF8AF6 /* MMTimeZoneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTimeZoneModel.m; sourceTree = "<group>"; };
+		4E4511AB242B95E000AF8AF6 /* MMTimeZoneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTimeZoneModel.h; sourceTree = "<group>"; };
+		4E4511B9242C331800AF8AF6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		4E4511C3242C366F00AF8AF6 /* DHDateFormatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DHDateFormatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AddDevice.swift"; sourceTree = "<group>"; };
+		4E4511EB242C7CB700AF8AF6 /* DHAutoKeyboardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DHAutoKeyboardView.xib; sourceTree = "<group>"; };
+		4E7250C6245802F7000769F6 /* LCDeviceAddErrorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceAddErrorController.swift; sourceTree = "<group>"; };
+		8F6B0042244D677400EAE734 /* DHWiFiConfigPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConfigPresenter.swift; sourceTree = "<group>"; };
+		8F6B0044244D677400EAE734 /* DHWiFiConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConfigProtocol.swift; sourceTree = "<group>"; };
+		8F6B0046244D677400EAE734 /* DHWiFiConfigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConfigVC.swift; sourceTree = "<group>"; };
+		8F6B0047244D677400EAE734 /* DHWiFiConfigListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConfigListCell.swift; sourceTree = "<group>"; };
+		8F6B0048244D677400EAE734 /* DHWiFiConfigHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConfigHeader.swift; sourceTree = "<group>"; };
+		8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddOtherWifiController.swift; sourceTree = "<group>"; };
+		8F6B0060244DA2CD00EAE734 /* DHWiFiConnectOnlinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConnectOnlinePresenter.swift; sourceTree = "<group>"; };
+		8F6B0062244DA2CD00EAE734 /* DHWiFiConnectOnlineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWiFiConnectOnlineProtocol.swift; sourceTree = "<group>"; };
+		8F6B0064244DA2CD00EAE734 /* DHWifiConnectOnlineVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHWifiConnectOnlineVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10026F4823056F0000F95836 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */,
+				04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */,
+				4E4511BA242C331800AF8AF6 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A661392306B803004DCB22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10026F4123056F0000F95836 = {
+			isa = PBXGroup;
+			children = (
+				10026F4D23056F0000F95836 /* LCAddDeviceModule */,
+				10A6613D2306B803004DCB22 /* LCAddDeviceModuleBundle */,
+				10026F4C23056F0000F95836 /* Products */,
+				10026F7123056FD800F95836 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10026F4C23056F0000F95836 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */,
+				10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10026F4D23056F0000F95836 /* LCAddDeviceModule */ = {
+			isa = PBXGroup;
+			children = (
+				4EAB4060242C9A75005A0768 /* Resources */,
+				4E451183242B781500AF8AF6 /* AddDevice */,
+				4E451087242B75EE00AF8AF6 /* Module */,
+				10545D0A230583030082E367 /* Support Files */,
+			);
+			path = LCAddDeviceModule;
+			sourceTree = "<group>";
+		};
+		10026F7123056FD800F95836 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0401AF5C250A3D2F00F8E1D6 /* LCAddDeviceModule.framework */,
+				0419D4652508C10900CE4528 /* LCBaseModule.framework */,
+				0419D4632508C0F400CE4528 /* LCNetworkModule.framework */,
+				04D8BAFF24E53EC0002F3076 /* DHScanner.framework */,
+				4E4511C3242C366F00AF8AF6 /* DHDateFormatter.framework */,
+				4E4511B9242C331800AF8AF6 /* CoreLocation.framework */,
+				4E451184242B78DD00AF8AF6 /* Categories.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		10545D0A230583030082E367 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				10026F4E23056F0000F95836 /* LCAddDeviceModule.h */,
+				4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */,
+				10026F4F23056F0000F95836 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		10A6613D2306B803004DCB22 /* LCAddDeviceModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				10A6613E2306B804004DCB22 /* Info.plist */,
+			);
+			path = LCAddDeviceModuleBundle;
+			sourceTree = "<group>";
+		};
+		4E45103A242B75ED00AF8AF6 /* NetSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4E45103B242B75ED00AF8AF6 /* DHNetSDKInterface.mm */,
+				4E45103C242B75ED00AF8AF6 /* DHDeviceInfoLogModel.m */,
+				4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */,
+				4E45103E242B75ED00AF8AF6 /* LanDeviceBridge.h */,
+				4E45103F242B75ED00AF8AF6 /* DHDeviceNetInfo.mm */,
+				4E451040242B75ED00AF8AF6 /* DHNetSDKInitialManager.h */,
+				4E451041242B75ED00AF8AF6 /* DHDevicePWDResetInfo.m */,
+				4E451042242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.m */,
+				4E451043242B75ED00AF8AF6 /* DHNetSDKHelper.h */,
+				4E451044242B75ED00AF8AF6 /* DHNetSDKSearchManager.h */,
+				4E451045242B75ED00AF8AF6 /* DHDeviceInfoLogModel.h */,
+				4E451046242B75ED00AF8AF6 /* DHDeviceResetPWDInfo.h */,
+				4E451047242B75ED00AF8AF6 /* DHNetSDKHelper.m */,
+				4E451048242B75ED00AF8AF6 /* DHDevicePWDResetInfo.h */,
+				4E451049242B75ED00AF8AF6 /* DHNetSDKInitialManager.m */,
+				4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */,
+				4E45104B242B75ED00AF8AF6 /* LanDeviceBridge.m */,
+				4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */,
+				4E45104D242B75ED00AF8AF6 /* DHDeviceNetInfo.h */,
+				4E45104E242B75ED00AF8AF6 /* DHNetSDKInterface.h */,
+				4E45104F242B75ED00AF8AF6 /* DHNetSDKSearchManager.m */,
+			);
+			path = NetSDK;
+			sourceTree = "<group>";
+		};
+		4E45105B242B75ED00AF8AF6 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105E242B75ED00AF8AF6 /* Controller */,
+				4E4511BB242C341800AF8AF6 /* Model */,
+				4E45105C242B75ED00AF8AF6 /* Presenter */,
+				4E451063242B75ED00AF8AF6 /* View */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		4E45105C242B75ED00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105D242B75ED00AF8AF6 /* DHIdentifyPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E45105E242B75ED00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105F242B75ED00AF8AF6 /* DHSelectModelViewController.swift */,
+				4E451060242B75ED00AF8AF6 /* DHBindByOtherViewController.swift */,
+				4E451061242B75ED00AF8AF6 /* DHInputSNViewController.swift */,
+				4E451062242B75ED00AF8AF6 /* DHQRScanViewController.swift */,
+				4E17234C243438E3004F68FC /* DHDeviceUnsupportViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451063242B75ED00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E451064242B75ED00AF8AF6 /* DHScanMenuCell.swift */,
+				4E451065242B75ED00AF8AF6 /* DHQRScanMenuView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E45106C242B75ED00AF8AF6 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				4E45106D242B75ED00AF8AF6 /* DHLocalNetGuideViewController.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		4E45106E242B75EE00AF8AF6 /* BindAndTimeZone */ = {
+			isa = PBXGroup;
+			children = (
+				4E45106F242B75EE00AF8AF6 /* Presenter */,
+				4E451071242B75EE00AF8AF6 /* Controller */,
+				4E451077242B75EE00AF8AF6 /* Model */,
+			);
+			path = BindAndTimeZone;
+			sourceTree = "<group>";
+		};
+		4E45106F242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E451070242B75EE00AF8AF6 /* DHBindPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E451071242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451076242B75EE00AF8AF6 /* DHBindSuccessViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451077242B75EE00AF8AF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E4511AB242B95E000AF8AF6 /* MMTimeZoneModel.h */,
+				4E4511A9242B95E000AF8AF6 /* MMTimeZoneModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E45107C242B75EE00AF8AF6 /* AuthDevicePassword */ = {
+			isa = PBXGroup;
+			children = (
+				4E45107D242B75EE00AF8AF6 /* Preseneter */,
+				4E45107F242B75EE00AF8AF6 /* Controller */,
+			);
+			path = AuthDevicePassword;
+			sourceTree = "<group>";
+		};
+		4E45107D242B75EE00AF8AF6 /* Preseneter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45107E242B75EE00AF8AF6 /* DHAuthPasswordPresenter.swift */,
+			);
+			path = Preseneter;
+			sourceTree = "<group>";
+		};
+		4E45107F242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451080242B75EE00AF8AF6 /* DHAuthPasswordViewController.swift */,
+				4E451081242B75EE00AF8AF6 /* DHDeviceLockViewController.swift */,
+				4E451082242B75EE00AF8AF6 /* DHAuthRegCodeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451083242B75EE00AF8AF6 /* Initialize */ = {
+			isa = PBXGroup;
+			children = (
+				4E451084242B75EE00AF8AF6 /* Controller */,
+			);
+			path = Initialize;
+			sourceTree = "<group>";
+		};
+		4E451084242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451085242B75EE00AF8AF6 /* DHInitializeSearchViewController.swift */,
+				4E451086242B75EE00AF8AF6 /* DHInitializePasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451087242B75EE00AF8AF6 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				4E451088242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.m */,
+				4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */,
+				4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */,
+				4E45108C242B75EE00AF8AF6 /* LCAddDeviceModuleBridge.h */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		4E45108D242B75EE00AF8AF6 /* QRCodeWay */ = {
+			isa = PBXGroup;
+			children = (
+				4E45108E242B75EE00AF8AF6 /* Presenter */,
+				4E451090242B75EE00AF8AF6 /* Protocol */,
+				4E451092242B75EE00AF8AF6 /* Controller */,
+				4E451094242B75EE00AF8AF6 /* View */,
+			);
+			path = QRCodeWay;
+			sourceTree = "<group>";
+		};
+		4E45108E242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45108F242B75EE00AF8AF6 /* DHAddByQRCodePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E451090242B75EE00AF8AF6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4E451091242B75EE00AF8AF6 /* DHAddByQRCodeProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4E451092242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451093242B75EE00AF8AF6 /* DHAddByQRCodeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451094242B75EE00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E451096242B75EE00AF8AF6 /* SoftAp */ = {
+			isa = PBXGroup;
+			children = (
+				4E451097242B75EE00AF8AF6 /* Presenter */,
+				4E45109A242B75EE00AF8AF6 /* Controller */,
+				4E45109F242B75EE00AF8AF6 /* Model */,
+				4E4510A2242B75EE00AF8AF6 /* View */,
+			);
+			path = SoftAp;
+			sourceTree = "<group>";
+		};
+		4E451097242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E451098242B75EE00AF8AF6 /* DHApAuthPasswordPresenter.swift */,
+				4E451099242B75EE00AF8AF6 /* DHApWifiPasswordPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E45109A242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E45109B242B75EE00AF8AF6 /* DHApWifiSelectViewController.swift */,
+				4E45109C242B75EE00AF8AF6 /* DHApGuideViewController.swift */,
+				4E45109D242B75EE00AF8AF6 /* DHApWifiCheckViewController.swift */,
+				4E45109E242B75EE00AF8AF6 /* DHApP2PTypeDoneViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E45109F242B75EE00AF8AF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A0242B75EE00AF8AF6 /* DHApWifiInfo.h */,
+				4E4510A1242B75EE00AF8AF6 /* DHApWifiInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E4510A2242B75EE00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A4242B75EE00AF8AF6 /* DHApWifiHeaderView.swift */,
+				4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E4510A6242B75EF00AF8AF6 /* Wifi */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A7242B75EF00AF8AF6 /* Presenter */,
+				4E4510A9242B75EF00AF8AF6 /* Controller */,
+				4E4510B5242B75EF00AF8AF6 /* View */,
+			);
+			path = Wifi;
+			sourceTree = "<group>";
+		};
+		4E4510A7242B75EF00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A8242B75EF00AF8AF6 /* DHWifiPasswordPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E4510A9242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510AA242B75EF00AF8AF6 /* DHWifiPasswordViewController.swift */,
+				4E4510AB242B75EF00AF8AF6 /* DHLightDetailViewController.swift */,
+				4E4510AC242B75EF00AF8AF6 /* DHWiFiUnsupportVC.swift */,
+				4E4510AD242B75EF00AF8AF6 /* DHWifiConnectFailureViewController.swift */,
+				4E4510AE242B75EF00AF8AF6 /* DHPhoneVolumeCheckViewController.swift */,
+				4E4510AF242B75EF00AF8AF6 /* DHDeviceLightCheckViewController.swift */,
+				4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */,
+				4E4510B1242B75EF00AF8AF6 /* DHWifiConnectViewController.swift */,
+				4E4510B2242B75EF00AF8AF6 /* DHWifiCheckViewController.swift */,
+				4E4510B3242B75EF00AF8AF6 /* DHWifiUnsupportViewController.swift */,
+				4E4510B4242B75EF00AF8AF6 /* DHResetDeviceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510B5242B75EF00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510B6242B75EF00AF8AF6 /* DH5GWifiDetailView.swift */,
+				4E4510B7242B75EF00AF8AF6 /* DHBlurViewContainer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E4510B9242B75EF00AF8AF6 /* ConnectCloud */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BA242B75EF00AF8AF6 /* Controller */,
+				4E4510BE242B75EF00AF8AF6 /* Manager */,
+			);
+			path = ConnectCloud;
+			sourceTree = "<group>";
+		};
+		4E4510BA242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BB242B75EF00AF8AF6 /* DHBindFailureViewController.swift */,
+				4E4510BC242B75EF00AF8AF6 /* DHConnectCloudTimeoutViewController.swift */,
+				4E4510BD242B75EF00AF8AF6 /* DHConnectCloudViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510BE242B75EF00AF8AF6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BF242B75EF00AF8AF6 /* DHAuthPassworHelper.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		4E4510C0242B75EF00AF8AF6 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510C1242B75EF00AF8AF6 /* DHHotSpotViewController.swift */,
+				4E4510C2242B75EF00AF8AF6 /* DHAddFAQViewController.swift */,
+			);
+			path = FAQ;
+			sourceTree = "<group>";
+		};
+		4E4510C3242B75EF00AF8AF6 /* OfflineWifiConfig */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510C4242B75EF00AF8AF6 /* DHOfflineWifiConfigProtocol.swift */,
+				4E4510C5242B75EF00AF8AF6 /* DHOfflineWifiConfigHelper.swift */,
+			);
+			path = OfflineWifiConfig;
+			sourceTree = "<group>";
+		};
+		4E4510C6242B75EF00AF8AF6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510C7242B75EF00AF8AF6 /* DHModuleConfig+AddDevice.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		4E4510C9242B75EF00AF8AF6 /* WiredAndSim */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510CA242B75EF00AF8AF6 /* Controller */,
+			);
+			path = WiredAndSim;
+			sourceTree = "<group>";
+		};
+		4E4510CA242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510CB242B75EF00AF8AF6 /* DHSameNetworkViewController.swift */,
+				4E4510CC242B75EF00AF8AF6 /* DHSIMCardGuideViewController.swift */,
+				4E4510CD242B75EF00AF8AF6 /* DHPowerGuideViewController.swift */,
+				4E4510CE242B75EF00AF8AF6 /* DHPlugNetGuideViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510CF242B75F000AF8AF6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510D0242B75F000AF8AF6 /* Protocol */,
+				4E4510D1242B75F000AF8AF6 /* Controller */,
+				4E4510D8242B75F000AF8AF6 /* Manager */,
+				4E4510DC242B75F000AF8AF6 /* Model */,
+				4E4510E3242B75F000AF8AF6 /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4E4510D0242B75F000AF8AF6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4E4510D1242B75F000AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510D3242B75F000AF8AF6 /* DHAddBaseVCProtocol.swift */,
+				4E4510D6242B75F000AF8AF6 /* DHAddBaseViewController.swift */,
+				4E4510D5242B75F000AF8AF6 /* DHErrorBaseVCProtocol.swift */,
+				4E4510D4242B75F000AF8AF6 /* DHErrorBaseViewController.swift */,
+				4E4510D2242B75F000AF8AF6 /* DHGuideBaseVCProtocol.swift */,
+				4E4510D7242B75F000AF8AF6 /* DHGuideBaseViewController.swift */,
+				4E7250C6245802F7000769F6 /* LCDeviceAddErrorController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510D8242B75F000AF8AF6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4E45119B242B7F9500AF8AF6 /* DHAddDeviceLogManager.swift */,
+				4E4510D9242B75F000AF8AF6 /* DHOMSConfigManager.swift */,
+				4E4510DA242B75F000AF8AF6 /* DHAddDeviceManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		4E4510DC242B75F000AF8AF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E45119D242B7FB000AF8AF6 /* DHAddDeviceLogModel.swift */,
+				4E4510DD242B75F000AF8AF6 /* DHIntroductionDefaults.swift */,
+				4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */,
+				4E4510E0242B75F000AF8AF6 /* DHIntroductionParser.swift */,
+				4E4510E1242B75F000AF8AF6 /* DHAddDeviceTest.swift */,
+				4E4510E2242B75F000AF8AF6 /* DHConnectFailureType.swift */,
+				4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E4510E3242B75F000AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */,
+				4E4510E6242B75F000AF8AF6 /* LCAddBoxGudieView.h */,
+				4E4510E7242B75F000AF8AF6 /* DHCycleTimerView.swift */,
+				4E4510E9242B75F000AF8AF6 /* LCAddDeviceHelpView.swift */,
+				4E4510EA242B75F000AF8AF6 /* DHLightButton.swift */,
+				4E4510EB242B75F000AF8AF6 /* DHAutoKeyboardView.swift */,
+				4E4510EC242B75F000AF8AF6 /* DHAddGuideView.swift */,
+				4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */,
+				4E4510EE242B75F000AF8AF6 /* LCAddBoxGudieView.m */,
+				4E4510F0242B75F000AF8AF6 /* DHCommonErrorView.swift */,
+				4E4510F1242B75F000AF8AF6 /* DHNetConnectFailureView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E4510F2242B75F000AF8AF6 /* NBIoT */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510F3242B75F000AF8AF6 /* DHInputIMEIViewController.swift */,
+				4E4510F4242B75F000AF8AF6 /* DHNBCheckViewController.swift */,
+			);
+			path = NBIoT;
+			sourceTree = "<group>";
+		};
+		4E451183242B781500AF8AF6 /* AddDevice */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0036244D677400EAE734 /* WifiConfig */,
+				4E45107C242B75EE00AF8AF6 /* AuthDevicePassword */,
+				4E4510CF242B75F000AF8AF6 /* Base */,
+				4E45106E242B75EE00AF8AF6 /* BindAndTimeZone */,
+				4E4510C6242B75EF00AF8AF6 /* Config */,
+				4E4510B9242B75EF00AF8AF6 /* ConnectCloud */,
+				4E4510C0242B75EF00AF8AF6 /* FAQ */,
+				4E451083242B75EE00AF8AF6 /* Initialize */,
+				4E45106C242B75ED00AF8AF6 /* Local */,
+				4E4510F2242B75F000AF8AF6 /* NBIoT */,
+				4E45103A242B75ED00AF8AF6 /* NetSDK */,
+				4E4510C3242B75EF00AF8AF6 /* OfflineWifiConfig */,
+				4E45108D242B75EE00AF8AF6 /* QRCodeWay */,
+				4E45105B242B75ED00AF8AF6 /* Scan */,
+				4E451096242B75EE00AF8AF6 /* SoftAp */,
+				4E4510A6242B75EF00AF8AF6 /* Wifi */,
+				4E4510C9242B75EF00AF8AF6 /* WiredAndSim */,
+			);
+			path = AddDevice;
+			sourceTree = "<group>";
+		};
+		4E4511BB242C341800AF8AF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4EAB4060242C9A75005A0768 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510E8242B75F000AF8AF6 /* DHCommonErrorView.xib */,
+				4E4510A3242B75EE00AF8AF6 /* DHApWifiHeaderView.xib */,
+				4E4510E4242B75F000AF8AF6 /* DHNetConnectFailureView.xib */,
+				4E4511EB242C7CB700AF8AF6 /* DHAutoKeyboardView.xib */,
+				4E4510B8242B75EF00AF8AF6 /* DH5GWifiDetailView.xib */,
+				4E4510EF242B75F000AF8AF6 /* DHAddGuideView.xib */,
+				0419D4672508C51500CE4528 /* AddDevice.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8F6B0036244D677400EAE734 /* WifiConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B005E244DA2CD00EAE734 /* WiFiConnect */,
+				8F6B0040244D677400EAE734 /* WiFiList */,
+			);
+			path = WifiConfig;
+			sourceTree = "<group>";
+		};
+		8F6B0040244D677400EAE734 /* WiFiList */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0041244D677400EAE734 /* Presenter */,
+				8F6B0043244D677400EAE734 /* Protocol */,
+				8F6B0045244D677400EAE734 /* View */,
+			);
+			path = WiFiList;
+			sourceTree = "<group>";
+		};
+		8F6B0041244D677400EAE734 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0042244D677400EAE734 /* DHWiFiConfigPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8F6B0043244D677400EAE734 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0044244D677400EAE734 /* DHWiFiConfigProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8F6B0045244D677400EAE734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0046244D677400EAE734 /* DHWiFiConfigVC.swift */,
+				8F6B0047244D677400EAE734 /* DHWiFiConfigListCell.swift */,
+				8F6B0048244D677400EAE734 /* DHWiFiConfigHeader.swift */,
+				8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F6B005E244DA2CD00EAE734 /* WiFiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B005F244DA2CD00EAE734 /* Presenter */,
+				8F6B0061244DA2CD00EAE734 /* Protocol */,
+				8F6B0063244DA2CD00EAE734 /* View */,
+			);
+			path = WiFiConnect;
+			sourceTree = "<group>";
+		};
+		8F6B005F244DA2CD00EAE734 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0060244DA2CD00EAE734 /* DHWiFiConnectOnlinePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8F6B0061244DA2CD00EAE734 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0062244DA2CD00EAE734 /* DHWiFiConnectOnlineProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8F6B0063244DA2CD00EAE734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0064244DA2CD00EAE734 /* DHWifiConnectOnlineVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		10026F4623056F0000F95836 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */,
+				4E451131242B75F000AF8AF6 /* LCAddDeviceModuleBridge.h in Headers */,
+				4E4510FA242B75F000AF8AF6 /* DHNetSDKInitialManager.h in Headers */,
+				4E451102242B75F000AF8AF6 /* DHDevicePWDResetInfo.h in Headers */,
+				4E4510F8242B75F000AF8AF6 /* LanDeviceBridge.h in Headers */,
+				4E4510FD242B75F000AF8AF6 /* DHNetSDKHelper.h in Headers */,
+				4E451106242B75F000AF8AF6 /* LCSmartConfig.h in Headers */,
+				4E45113C242B75F000AF8AF6 /* DHApWifiInfo.h in Headers */,
+				4E451104242B75F000AF8AF6 /* ISearchDeviceNetInfo.h in Headers */,
+				4E45112E242B75F000AF8AF6 /* LCAddDeviceModule-Bridging-Header.h in Headers */,
+				4E451108242B75F000AF8AF6 /* DHNetSDKInterface.h in Headers */,
+				4E451107242B75F000AF8AF6 /* DHDeviceNetInfo.h in Headers */,
+				4E45116F242B75F000AF8AF6 /* LCAddBoxGudieView.h in Headers */,
+				4E4510FE242B75F000AF8AF6 /* DHNetSDKSearchManager.h in Headers */,
+				4E4511AF242B95E000AF8AF6 /* MMTimeZoneModel.h in Headers */,
+				4E451100242B75F000AF8AF6 /* DHDeviceResetPWDInfo.h in Headers */,
+				4E4510FF242B75F000AF8AF6 /* DHDeviceInfoLogModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		10026F4A23056F0000F95836 /* LCAddDeviceModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10026F5323056F0000F95836 /* Build configuration list for PBXNativeTarget "LCAddDeviceModule" */;
+			buildPhases = (
+				10026F4623056F0000F95836 /* Headers */,
+				10026F4723056F0000F95836 /* Sources */,
+				10026F4823056F0000F95836 /* Frameworks */,
+				10026F4923056F0000F95836 /* Resources */,
+				4EAB406A242CA0D0005A0768 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E8464D42474D8F300758260 /* PBXTargetDependency */,
+			);
+			name = LCAddDeviceModule;
+			productName = DHOEMModule;
+			productReference = 10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10A661412306B804004DCB22 /* Build configuration list for PBXNativeTarget "LCAddDeviceModuleBundle" */;
+			buildPhases = (
+				10A661382306B803004DCB22 /* Sources */,
+				10A661392306B803004DCB22 /* Frameworks */,
+				10A6613A2306B803004DCB22 /* Resources */,
+				10A6615A230A46F6004DCB22 /* Remove Executable File */,
+				4EAB406B242CA152005A0768 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCAddDeviceModuleBundle;
+			productName = DHOEMModuleBundle;
+			productReference = 10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10026F4223056F0000F95836 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = dahua;
+				TargetAttributes = {
+					10026F4A23056F0000F95836 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					10A6613B2306B803004DCB22 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 10026F4523056F0000F95836 /* Build configuration list for PBXProject "LCAddDeviceModule" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 10026F4123056F0000F95836;
+			productRefGroup = 10026F4C23056F0000F95836 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10026F4A23056F0000F95836 /* LCAddDeviceModule */,
+				10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10026F4923056F0000F95836 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A6613A2306B803004DCB22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */,
+				4E4511ED242C7CE800AF8AF6 /* DHAutoKeyboardView.xib in Resources */,
+				4E4511E6242C577900AF8AF6 /* DH5GWifiDetailView.xib in Resources */,
+				4E4511E2242C577200AF8AF6 /* DHNetConnectFailureView.xib in Resources */,
+				4E4511E3242C577300AF8AF6 /* DHCommonErrorView.xib in Resources */,
+				4E4511E4242C577600AF8AF6 /* DHAddGuideView.xib in Resources */,
+				4E4511E5242C577700AF8AF6 /* DHApWifiHeaderView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10A6615A230A46F6004DCB22 /* Remove Executable File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Executable File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Remove execute file in bundle: ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME\"\nrm -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/${PRODUCT_NAME}\n";
+		};
+		4EAB406A242CA0D0005A0768 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n\techo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\ncp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		4EAB406B242CA152005A0768 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n\t#先删除旧的\n\trm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n\techo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n\tcp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10026F4723056F0000F95836 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E451144242B75F000AF8AF6 /* DHWiFiUnsupportVC.swift in Sources */,
+				4E451136242B75F000AF8AF6 /* DHApAuthPasswordPresenter.swift in Sources */,
+				4E451115242B75F000AF8AF6 /* DHQRScanViewController.swift in Sources */,
+				4E45111C242B75F000AF8AF6 /* DHLocalNetGuideViewController.swift in Sources */,
+				4E45113F242B75F000AF8AF6 /* DHApWifiHeaderView.swift in Sources */,
+				4E17234D243438E3004F68FC /* DHDeviceUnsupportViewController.swift in Sources */,
+				4E451158242B75F000AF8AF6 /* DHModuleConfig+AddDevice.swift in Sources */,
+				8F6B0053244D677400EAE734 /* DHWiFiConfigHeader.swift in Sources */,
+				4E451129242B75F000AF8AF6 /* DHDeviceLockViewController.swift in Sources */,
+				4E45115F242B75F000AF8AF6 /* DHAddBaseVCProtocol.swift in Sources */,
+				4E451112242B75F000AF8AF6 /* DHSelectModelViewController.swift in Sources */,
+				8F6B0066244DA2CE00EAE734 /* DHWiFiConnectOnlinePresenter.swift in Sources */,
+				4E451151242B75F000AF8AF6 /* DHConnectCloudTimeoutViewController.swift in Sources */,
+				4E451165242B75F000AF8AF6 /* DHAddDeviceManager.swift in Sources */,
+				4E45114B242B75F000AF8AF6 /* DHWifiUnsupportViewController.swift in Sources */,
+				4E45119E242B7FB000AF8AF6 /* DHAddDeviceLogModel.swift in Sources */,
+				4E451149242B75F000AF8AF6 /* DHWifiConnectViewController.swift in Sources */,
+				4E45112D242B75F000AF8AF6 /* LCAddDeviceModuleBridge.m in Sources */,
+				8F6B0054244D677400EAE734 /* LCAddOtherWifiController.swift in Sources */,
+				4E451134242B75F000AF8AF6 /* DHAddByQRCodeVC.swift in Sources */,
+				4E451156242B75F000AF8AF6 /* DHOfflineWifiConfigProtocol.swift in Sources */,
+				8F6B0068244DA2CE00EAE734 /* DHWifiConnectOnlineVC.swift in Sources */,
+				4E451122242B75F000AF8AF6 /* DHBindSuccessViewController.swift in Sources */,
+				4E451127242B75F000AF8AF6 /* DHAuthPasswordPresenter.swift in Sources */,
+				4E4510FB242B75F000AF8AF6 /* DHDevicePWDResetInfo.m in Sources */,
+				4E45113B242B75F000AF8AF6 /* DHApP2PTypeDoneViewController.swift in Sources */,
+				4E4510F7242B75F000AF8AF6 /* LCSmartConfig.m in Sources */,
+				4E451163242B75F000AF8AF6 /* DHGuideBaseViewController.swift in Sources */,
+				4E451155242B75F000AF8AF6 /* DHAddFAQViewController.swift in Sources */,
+				4E451117242B75F000AF8AF6 /* DHQRScanMenuView.swift in Sources */,
+				8F6B0050244D677400EAE734 /* DHWiFiConfigProtocol.swift in Sources */,
+				4E451176242B75F000AF8AF6 /* UITextView+Multiline.swift in Sources */,
+				4E451179242B75F000AF8AF6 /* DHCommonErrorView.swift in Sources */,
+				4E451152242B75F000AF8AF6 /* DHConnectCloudViewController.swift in Sources */,
+				4E45115B242B75F000AF8AF6 /* DHSIMCardGuideViewController.swift in Sources */,
+				8F6B0051244D677400EAE734 /* DHWiFiConfigVC.swift in Sources */,
+				4E451128242B75F000AF8AF6 /* DHAuthPasswordViewController.swift in Sources */,
+				8F6B0067244DA2CE00EAE734 /* DHWiFiConnectOnlineProtocol.swift in Sources */,
+				4E7250C7245802F7000769F6 /* LCDeviceAddErrorController.swift in Sources */,
+				4E4510F9242B75F000AF8AF6 /* DHDeviceNetInfo.mm in Sources */,
+				4E451167242B75F000AF8AF6 /* DHIntroductionDefaults.swift in Sources */,
+				4E451146242B75F000AF8AF6 /* DHPhoneVolumeCheckViewController.swift in Sources */,
+				4E45113D242B75F000AF8AF6 /* DHApWifiInfo.m in Sources */,
+				4E45114D242B75F000AF8AF6 /* DH5GWifiDetailView.swift in Sources */,
+				4E451161242B75F000AF8AF6 /* DHErrorBaseVCProtocol.swift in Sources */,
+				4E451143242B75F000AF8AF6 /* DHLightDetailViewController.swift in Sources */,
+				4E45114E242B75F000AF8AF6 /* DHBlurViewContainer.swift in Sources */,
+				4E451114242B75F000AF8AF6 /* DHInputSNViewController.swift in Sources */,
+				8F6B0052244D677400EAE734 /* DHWiFiConfigListCell.swift in Sources */,
+				4E451145242B75F000AF8AF6 /* DHWifiConnectFailureViewController.swift in Sources */,
+				4E45117C242B75F000AF8AF6 /* DHNBCheckViewController.swift in Sources */,
+				4E45112F242B75F000AF8AF6 /* LCAddDeviceModuleProtocol.swift in Sources */,
+				4E45114A242B75F000AF8AF6 /* DHWifiCheckViewController.swift in Sources */,
+				4E45112B242B75F000AF8AF6 /* DHInitializeSearchViewController.swift in Sources */,
+				4E451141242B75F000AF8AF6 /* DHWifiPasswordPresenter.swift in Sources */,
+				4E451113242B75F000AF8AF6 /* DHBindByOtherViewController.swift in Sources */,
+				4E451172242B75F000AF8AF6 /* LCAddDeviceHelpView.swift in Sources */,
+				4E451154242B75F000AF8AF6 /* DHHotSpotViewController.swift in Sources */,
+				4E451174242B75F000AF8AF6 /* DHAutoKeyboardView.swift in Sources */,
+				4E45113A242B75F000AF8AF6 /* DHApWifiCheckViewController.swift in Sources */,
+				4E451142242B75F000AF8AF6 /* DHWifiPasswordViewController.swift in Sources */,
+				4E451175242B75F000AF8AF6 /* DHAddGuideView.swift in Sources */,
+				4E45117A242B75F000AF8AF6 /* DHNetConnectFailureView.swift in Sources */,
+				4E451153242B75F000AF8AF6 /* DHAuthPassworHelper.swift in Sources */,
+				4E451111242B75F000AF8AF6 /* DHIdentifyPresenter.swift in Sources */,
+				4E451140242B75F000AF8AF6 /* LCApWifiHeaderView.swift in Sources */,
+				4E451139242B75F000AF8AF6 /* DHApGuideViewController.swift in Sources */,
+				4E45116B242B75F000AF8AF6 /* DHAddDeviceTest.swift in Sources */,
+				4E451157242B75F000AF8AF6 /* DHOfflineWifiConfigHelper.swift in Sources */,
+				4E4510F6242B75F000AF8AF6 /* DHDeviceInfoLogModel.m in Sources */,
+				4E45116A242B75F000AF8AF6 /* DHIntroductionParser.swift in Sources */,
+				4E4511AD242B95E000AF8AF6 /* MMTimeZoneModel.m in Sources */,
+				8F6B004F244D677400EAE734 /* DHWiFiConfigPresenter.swift in Sources */,
+				4E451173242B75F000AF8AF6 /* DHLightButton.swift in Sources */,
+				4E451168242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift in Sources */,
+				4E451138242B75F000AF8AF6 /* DHApWifiSelectViewController.swift in Sources */,
+				4E45112C242B75F000AF8AF6 /* DHInitializePasswordViewController.swift in Sources */,
+				4E45115A242B75F000AF8AF6 /* DHSameNetworkViewController.swift in Sources */,
+				4E45111D242B75F000AF8AF6 /* DHBindPresenter.swift in Sources */,
+				4E45117B242B75F000AF8AF6 /* DHInputIMEIViewController.swift in Sources */,
+				4E45115D242B75F000AF8AF6 /* DHPlugNetGuideViewController.swift in Sources */,
+				4E451116242B75F000AF8AF6 /* DHScanMenuCell.swift in Sources */,
+				4E45115E242B75F000AF8AF6 /* DHGuideBaseVCProtocol.swift in Sources */,
+				4E451150242B75F000AF8AF6 /* DHBindFailureViewController.swift in Sources */,
+				4E451130242B75F000AF8AF6 /* LCAddDeviceModule.swift in Sources */,
+				4E451147242B75F000AF8AF6 /* DHDeviceLightCheckViewController.swift in Sources */,
+				4E451109242B75F000AF8AF6 /* DHNetSDKSearchManager.m in Sources */,
+				4E4510F5242B75F000AF8AF6 /* DHNetSDKInterface.mm in Sources */,
+				4E451132242B75F000AF8AF6 /* DHAddByQRCodePresenter.swift in Sources */,
+				4E45116E242B75F000AF8AF6 /* UILabel+Multiline.swift in Sources */,
+				4E451170242B75F000AF8AF6 /* DHCycleTimerView.swift in Sources */,
+				4E4511CC242C460D00AF8AF6 /* Bundle+AddDevice.swift in Sources */,
+				4E451103242B75F000AF8AF6 /* DHNetSDKInitialManager.m in Sources */,
+				4E45115C242B75F000AF8AF6 /* DHPowerGuideViewController.swift in Sources */,
+				4E451177242B75F000AF8AF6 /* LCAddBoxGudieView.m in Sources */,
+				4E45114C242B75F000AF8AF6 /* DHResetDeviceViewController.swift in Sources */,
+				4E451137242B75F000AF8AF6 /* DHApWifiPasswordPresenter.swift in Sources */,
+				4E451148242B75F000AF8AF6 /* LCWifiInfoExplainController.swift in Sources */,
+				4E451164242B75F000AF8AF6 /* DHOMSConfigManager.swift in Sources */,
+				4E451101242B75F000AF8AF6 /* DHNetSDKHelper.m in Sources */,
+				4E4510FC242B75F000AF8AF6 /* DHDeviceResetPWDInfo.m in Sources */,
+				4E451105242B75F000AF8AF6 /* LanDeviceBridge.m in Sources */,
+				4E45116C242B75F000AF8AF6 /* DHConnectFailureType.swift in Sources */,
+				4E451133242B75F000AF8AF6 /* DHAddByQRCodeProtocol.swift in Sources */,
+				4E45112A242B75F000AF8AF6 /* DHAuthRegCodeViewController.swift in Sources */,
+				4E45119C242B7F9500AF8AF6 /* DHAddDeviceLogManager.swift in Sources */,
+				4E451162242B75F000AF8AF6 /* DHAddBaseViewController.swift in Sources */,
+				4E451160242B75F000AF8AF6 /* DHErrorBaseViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A661382306B803004DCB22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E8464D42474D8F300758260 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */;
+			targetProxy = 4E8464D32474D8F300758260 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10026F5123056F0000F95836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		10026F5223056F0000F95836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		10026F5423056F0000F95836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/ZXingObjC",
+					"$(SRCROOT)/../Frameworks/iOS",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Include",
+					"$(SRCROOT)/../LCAddDeviceModule/LCAddDeviceModule/AddDevice/Depend/header",
+					"\"$(SRCROOT)/Depend/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+				);
+				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Lib",
+					"$(PROJECT_DIR)/LCAddDeviceModule/AddDevice/Depend/DHSmartConfig",
+				);
+				MACH_O_TYPE = staticlib;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "\"-D\" \"DEBUG\"";
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhuatech.-LCAddDeviceModule";
+				PRODUCT_NAME = LCAddDeviceModule;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64e armv7 armv7s arm64";
+				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
+			};
+			name = Debug;
+		};
+		10026F5523056F0000F95836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/ZXingObjC",
+					"$(SRCROOT)/../Frameworks/iOS",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Include",
+					"$(SRCROOT)/../LCAddDeviceModule/LCAddDeviceModule/AddDevice/Depend/header",
+					"\"$(SRCROOT)/Depend/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+				);
+				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Lib",
+					"$(PROJECT_DIR)/LCAddDeviceModule/AddDevice/Depend/DHSmartConfig",
+				);
+				MACH_O_TYPE = staticlib;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = "";
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhuatech.-LCAddDeviceModule";
+				PRODUCT_NAME = LCAddDeviceModule;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64e armv7 armv7s arm64";
+				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
+			};
+			name = Release;
+		};
+		10A6613F2306B804004DCB22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = NO;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = LCAddDeviceModuleBundle/Info.plist;
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCAddDeviceModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		10A661402306B804004DCB22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = LCAddDeviceModuleBundle/Info.plist;
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCAddDeviceModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10026F4523056F0000F95836 /* Build configuration list for PBXProject "LCAddDeviceModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10026F5123056F0000F95836 /* Debug */,
+				10026F5223056F0000F95836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10026F5323056F0000F95836 /* Build configuration list for PBXNativeTarget "LCAddDeviceModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10026F5423056F0000F95836 /* Debug */,
+				10026F5523056F0000F95836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10A661412306B804004DCB22 /* Build configuration list for PBXNativeTarget "LCAddDeviceModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A6613F2306B804004DCB22 /* Debug */,
+				10A661402306B804004DCB22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10026F4223056F0000F95836 /* Project object */;
+}

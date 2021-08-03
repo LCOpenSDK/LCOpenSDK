@@ -1,0 +1,11 @@
+framework module LCBaseModule {
+  umbrella header "LCBaseModule.h"
+
+  export *
+  module * { export * }
+}
+
+module LCBaseModule.Swift {
+    header "LCBaseModule-Swift.h"
+    requires objc
+}

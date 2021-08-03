@@ -1,0 +1,11 @@
+framework module LCAddDeviceModule {
+  umbrella header "LCAddDeviceModule.h"
+
+  export *
+  module * { export * }
+}
+
+module LCAddDeviceModule.Swift {
+    header "LCAddDeviceModule-Swift.h"
+    requires objc
+}

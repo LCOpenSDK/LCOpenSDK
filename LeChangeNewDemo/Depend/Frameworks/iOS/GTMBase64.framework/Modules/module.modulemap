@@ -1,0 +1,6 @@
+framework module GTMBase64 {
+  umbrella header "GTMBase64-umbrella.h"
+
+  export *
+  module * { export * }
+}

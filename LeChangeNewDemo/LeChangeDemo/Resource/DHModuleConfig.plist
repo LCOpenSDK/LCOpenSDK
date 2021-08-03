@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MaskView</key>
+	<dict>
+		<key>isShowMoveArea</key>
+		<false/>
+		<key>isShowLinkage</key>
+		<false/>
+		<key>isShowWeather</key>
+		<false/>
+		<key>isShowDialog</key>
+		<false/>
+		<key>isShowAllRecord</key>
+		<true/>
+		<key>isShowCollection</key>
+		<false/>
+	</dict>
+	<key>Color</key>
+	<dict>
+		<key>ThemeColor</key>
+		<string>f18d00</string>
+		<key>ThemeSecondColor</key>
+		<string>f18d00</string>
+		<key>LiveMonitorDateBarColor</key>
+		<string>808080</string>
+		<key>PlayOperateBgColor</key>
+		<string>ffffff</string>
+		<key>NavigationBarColor</key>
+		<string>FFFFFF</string>
+		<key>NavigationTextColor</key>
+		<string>372F2D</string>
+	</dict>
+	<key>ShareSheetType</key>
+	<dict>
+		<key>separateLineColor</key>
+		<string>FFFFFF</string>
+		<key>containerBgColor</key>
+		<string>FFFFFF</string>
+		<key>buttonBgColor</key>
+		<string>f18d00</string>
+		<key>cancleTitleColor</key>
+		<string>E14123</string>
+		<key>paddingBetwennCancleAndOther</key>
+		<integer>5</integer>
+		<key>showButtonBackground</key>
+		<true/>
+	</dict>
+	<key>PTZPanelStyle</key>
+	<integer>1</integer>
+	<key>CommonButtonConfig</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>f18d00</string>
+		<key>cornerRadius</key>
+		<real>22.5</real>
+		<key>height</key>
+		<integer>45</integer>
+	</dict>
+	<key>PreloadIntroductionModels</key>
+	<array>
+		<string>LOOC</string>
+		<string>Base Station Pro</string>
+		<string>Doorbell</string>
+		<string>Chime</string>
+		<string>Scout Door Contact</string>
+		<string>Cue</string>
+		<string>Cue 1080P</string>
+		<string>Ranger</string>
+		<string>Ranger 1080P</string>
+		<string>Ranger IQ</string>
+		<string>Ranger Pro </string>
+		<string>Ranger Pro G</string>
+		<string>Ranger Pro G 4MP</string>
+		<string>Ranger Pro Z</string>
+		<string>Ranger Pro Z 4MP</string>
+		<string>Bullet</string>
+		<string>Doorbell Wired</string>
+		<string>Base Station</string>
+		<string>Scout Siren</string>
+		<string>Scout Motion Detector</string>
+		<string>Scout Curtain Detector</string>
+		<string>IPC Other</string>
+	</array>
+</dict>
+</plist>
