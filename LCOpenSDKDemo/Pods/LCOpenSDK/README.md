@@ -1,3 +1,0 @@
-# LCOpenSDK
-
-test

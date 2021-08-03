@@ -1,7 +1,0 @@
-platform :ios, '10.0'
-inhibit_all_warnings!
-use_frameworks!
-
-target 'LCOpenSDKDemo' do
-  pod 'LCOpenSDK', '~> 3.10.0'
-end
