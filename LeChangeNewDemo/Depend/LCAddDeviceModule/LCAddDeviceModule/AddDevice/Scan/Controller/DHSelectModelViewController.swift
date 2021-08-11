@@ -117,7 +117,7 @@ class DHSelectModelViewController: DHAddBaseViewController,DHIdentifyContainerPr
         }
         let secStr = NSMutableAttributedString(string: "add_device_dahua_tip".lc_T, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
         secStr.addAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: NSMakeRange(0, 17))
-        secStr.addAttributes([NSAttributedStringKey.paragraphStyle:style], range: NSMakeRange(0, str.length))
+        secStr.addAttributes([NSAttributedStringKey.paragraphStyle:style], range: NSMakeRange(0, secStr.length))
         self.secTipLabel.attributedText = secStr
         
         self.imageTipLabel = UILabel.init()
