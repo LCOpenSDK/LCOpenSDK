@@ -71,5 +71,10 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
  */
 - (void)uninitOpenApi;
 
+/**
+ *  获取SDK版本号信息
+ */
+- ( NSString * _Nonnull)sdkVersion;
+
 @end
 #endif

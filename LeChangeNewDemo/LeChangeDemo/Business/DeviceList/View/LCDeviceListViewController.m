@@ -21,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.presenter initSDK];
     [self.presenter initSDKLog];
+    [self.presenter initSDK];
     [self setupDeviceListView];
     [self addObserver];
     [LCProgressHUD showHudOnView:nil];

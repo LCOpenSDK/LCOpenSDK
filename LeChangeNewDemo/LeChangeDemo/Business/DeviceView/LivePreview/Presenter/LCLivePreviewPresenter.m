@@ -79,6 +79,7 @@
 - (LCButton *)getItemWithType:(LCLivePreviewControlType)type {
     weakSelf(self);
     LCButton *item = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    __weak typeof(LCButton) *weakItem = item;
     item.tag = type;
     switch (type) {
         case LCLivePreviewControlPlay: {
@@ -91,9 +92,9 @@
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //暂停
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_pause") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_pause") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_play") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_play") forState:UIControlStateNormal];
                 }
             }];
         };
@@ -108,17 +109,17 @@
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if (![change[@"new"] boolValue]) {
                     //高清
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
                 }
             }];
             
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 } else {
-                    item.enabled = NO;
+                    weakItem.enabled = NO;
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -133,17 +134,17 @@
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSoundOn" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开声音
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_sound_on") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_sound_on") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_sound_off") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_sound_off") forState:UIControlStateNormal];
                 }
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                    item.enabled = NO;
+                weakItem.enabled = NO;
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 }
             }];
             //监听是否开启对讲，开启对讲后声音为disable
@@ -153,9 +154,9 @@
                 }
                 if ([change[@"new"] boolValue]) {
                     //对讲开启
-                    item.enabled = NO;
+                    weakItem.enabled = NO;
                 } else {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -188,17 +189,17 @@
             }
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 } else {
-                    item.enabled = NO;
+                    weakItem.enabled = NO;
                 }
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开声音
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage_on") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage_on") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -212,11 +213,11 @@
             item.enabled = NO;
             //监听管理者状态
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                item.enabled = NO;
+                weakItem.enabled = NO;
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -243,17 +244,17 @@
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isOpenAudioTalk" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开声音
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_speak_on") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak_on") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
                 }
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                item.enabled = NO;
+                weakItem.enabled = NO;
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -273,17 +274,17 @@
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isOpenRecoding" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开声音
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_video_on") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_video_on") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_video") forState:UIControlStateNormal];
+                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_video") forState:UIControlStateNormal];
                 }
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                item.enabled = NO;
+                weakItem.enabled = NO;
             }];
             [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    item.enabled = YES;
+                    weakItem.enabled = YES;
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -345,12 +346,15 @@
         }
     };
 
+    __weak typeof(LCVideoHistoryView) *weakHistoryView = videoHistoryView;
     [videoHistoryView.KVOController observe:self keyPath:@"videotapeList" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        [videoHistoryView reloadData:change[@"new"]];
+        [weakHistoryView reloadData:change[@"new"]];
     }];
+    
     [videoHistoryView.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        videoHistoryView.hidden = [change[@"new"] boolValue];
+        weakHistoryView.hidden = [change[@"new"] boolValue];
     }];
+    
     [weakself loadCloudVideotape];
     return videoHistoryView;
 }
@@ -365,6 +369,9 @@
         [_playWindow setSurfaceBGColor:[UIColor blackColor]];
         [self loadStatusView];
         [_playWindow setWindowListener:self];
+    
+        //开启降噪
+        [self.playWindow setSEnhanceMode:LCOpenSDK_EnhanceMode_Level5];
     }
     return _playWindow;
 }
@@ -382,16 +389,17 @@
     
     [defaultImageView lc_setThumbImageWithURL:[LCDeviceVideoManager manager].currentChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCDeviceVideoManager manager].currentDevice.deviceId ChannelId:[LCDeviceVideoManager manager].currentChannelInfo.channelId];
 
+    __weak typeof(UIImageView) *weakImageView = defaultImageView;
     [defaultImageView.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         if ([change[@"new"] integerValue] != 1001) return;
         dispatch_async(dispatch_get_main_queue(), ^{
-            defaultImageView.hidden = YES;//状态改变时隐藏默认图，成功时会播放，不成功时会展示重试按钮
+            weakImageView.hidden = YES;//状态改变时隐藏默认图，成功时会播放，不成功时会展示重试按钮
         });
     }];
 
     [defaultImageView.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            defaultImageView.hidden = NO;//只要切换开关就展示默认图，开启时，会根据播放状态改变默认图设定
+            weakImageView.hidden = NO;//只要切换开关就展示默认图，开启时，会根据播放状态改变默认图设定
         });
     }];
 

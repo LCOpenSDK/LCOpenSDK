@@ -295,5 +295,12 @@ typedef NS_ENUM(NSInteger, LC_OUTPUT_STREAM_FORMAT)
  */
 - (void)doTranslateX:(CGFloat)x Y:(CGFloat)y;
 
+//MARK: - 扩展功能
+/**
+ * 设置去噪模式等级
+ */
+- (void)setSEnhanceMode:(LCOpenSDK_EnhanceMode)mode;
+
 @end
 #endif
+

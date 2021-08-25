@@ -32,6 +32,24 @@ typedef NS_ENUM(NSInteger, RECORD_TYPE) {
     RECORD_TYPE_TIMING = 2000
 };
 
+/**
+ 音频降噪等级
+ LCOpenSDK_EnhanceMode_Close 关闭
+ LCOpenSDK_EnhanceMode_Level1 降噪1级，最差
+ LCOpenSDK_EnhanceMode_Level2 降噪2级
+ LCOpenSDK_EnhanceMode_Level3 降噪3级
+ LCOpenSDK_EnhanceMode_Level4 降噪4级
+ LCOpenSDK_EnhanceMode_Level5 降噪5级，最优
+*/
+typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
+    LCOpenSDK_EnhanceMode_Close = -1,
+    LCOpenSDK_EnhanceMode_Level1 = 0,
+    LCOpenSDK_EnhanceMode_Level2 = 1,
+    LCOpenSDK_EnhanceMode_Level3 = 2,
+    LCOpenSDK_EnhanceMode_Level4 = 3,
+    LCOpenSDK_EnhanceMode_Level5 = 4
+};
+
 @interface LCOpenSDK_Param : NSObject
 
 @property (nonatomic, copy, nonnull) NSString  *accessToken; /** 管理员token/用户token */

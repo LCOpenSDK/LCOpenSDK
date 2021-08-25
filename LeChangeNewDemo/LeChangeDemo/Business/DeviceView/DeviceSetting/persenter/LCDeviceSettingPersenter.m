@@ -32,7 +32,7 @@
         //多通道设备通道:设备信息、布防设置。
         //多通道设备:设备信息、云升级、网络配置(根据WLAN能力集处理）。
         //其他设备:设备信息，云升级，布防设置，网络配置
-        if ([self isMultipleCahannels]) {
+        if ([self isMultipleChannels]) {
             return 2;
         } else if ([self isMultipleDevice]) {
 //            if ([self.manager.currentDevice.status isEqualToString:@"online"] &&
@@ -70,7 +70,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.style == LCDeviceSettingStyleMainPage) {
         if (section == 0) {
-            return [self isMultipleCahannels] ? 1 : 2;
+            return [self isMultipleChannels] ? 1 : 2;
         } else {
             return 1;
         }
@@ -79,7 +79,7 @@
         return 1;
     }
     if (self.style == LCDeviceSettingStyleDeviceDetailInfo) {
-        if ([self isMultipleCahannels]) {
+        if ([self isMultipleChannels]) {
             return 1;
         }
         return 3;
@@ -152,8 +152,8 @@
     weakSelf(self);
     if (indexPath.section == 0 && indexPath.row == 0) {
         LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell"];
-        cell.title = [self isMultipleCahannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
-        if ([self isMultipleCahannels]) {
+        cell.title = [self isMultipleChannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
+        if ([self isMultipleChannels]) {
             [cell loadImage:self.manager.currentChannelInfo.picUrl DeviceId:self.manager.currentDevice.deviceId ChannelId:[NSString stringWithFormat:@"%ld",(long)self.manager.currentChannelIndex]];
         } else {
             [cell loadImage:self.manager.currentChannelInfo.picUrl DeviceId:self.manager.currentDevice.deviceId ChannelId:@"0"];
@@ -204,7 +204,7 @@
     if (indexPath.row == 0) {
         LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell"];
         cell.title = @"setting_device_device_name".lc_T;
-        cell.subtitle = [self isMultipleCahannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
+        cell.subtitle = [self isMultipleChannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
         cell.block = ^(NSInteger index) {
             [weakself.container.navigationController pushToDeviceSettingEditName];
         };
@@ -403,12 +403,12 @@
         self.deviceName = result;
     }];
     textField.delegate = self;
-    self.deviceName = [self isMultipleCahannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
+    self.deviceName = [self isMultipleChannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
     [textField.KVOController observe:self keyPath:@"endEdit" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         [textField endEditing:YES];
     }];
     textField.placeholder = @"setting_device_edit_name_placeholder".lc_T;
-    textField.text = [self isMultipleCahannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
+    textField.text = [self isMultipleChannels] ? self.manager.currentChannelInfo.channelName : self.manager.currentDevice.name;
     textField.clearButtonMode = UITextFieldViewModeAlways;
     [cell.contentView addSubview:textField];
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -466,20 +466,22 @@
 }
 
 //多通设备的通道
-- (BOOL)isMultipleCahannels {
+- (BOOL)isMultipleChannels {
     //多通道且下标大于-1
-    if (self.manager.currentDevice.channels.count > 1 && self.manager.currentChannelIndex > -1) {
+    if (self.manager.currentDevice.lc_isMultiChannelDevice && self.manager.currentChannelIndex > -1) {
         return YES;
     }
+    
     return NO;
 }
 
-//多通道设备
+//多通道设备本身
 - (BOOL)isMultipleDevice {
     //多通道且下标等于-1
-    if ((self.manager.currentDevice.channels.count > 1 || [self.manager.currentDevice.catalog isEqualToString:@"NVR"]) && self.manager.currentChannelIndex == -1) {
+    if (self.manager.currentDevice.lc_isMultiChannelDevice && self.manager.currentChannelIndex == -1) {
         return YES;
     }
+    
     return NO;
 }
 
@@ -593,11 +595,11 @@
     [LCDeviceManagerInterface modifyDeviceForDevice:self.manager.currentDevice.deviceId Channel:channelId NewName:self.deviceName.vaildDeviceName success:^{
         
         //单通道
-        if (weakself.manager.currentDevice.channels.count == 1) {
+        if (channelNum == 1) {
             weakself.manager.currentDevice.name = self.deviceName;
             weakself.manager.currentDevice.channels[0].channelName = self.deviceName;
         } else {
-            if ([self isMultipleCahannels]) {
+            if ([self isMultipleChannels]) {
                 weakself.manager.currentChannelInfo.channelName = self.deviceName;
             } else {
                 weakself.manager.currentDevice.name = self.deviceName;

@@ -9,7 +9,6 @@
 #import "LCLandscapeControlView.h"
 #import "LCLivePreviewPresenter+LandscapeControlView.h"
 #import "UIImageView+Surface.h"
-#import "LCVideoHistoryView.h"
 #import "LCDeviceVideotapePlayManager.h"
 
 

@@ -10,6 +10,7 @@
 #import "LCLivePreviewViewController.h"
 #import "UIDevice+LeChange.h"
 #import "LCDeviceVideoManager.h"
+#import "LCVideoHistoryView.h"
 
 
 
@@ -91,6 +92,8 @@ typedef enum : NSUInteger {
 
 /// defaultImageView
 @property (strong, nonatomic) UIImageView *defaultImageView;
+
+@property (weak, nonatomic) LCVideoHistoryView *historyView;
 
 
 //MARK: - Public Methods

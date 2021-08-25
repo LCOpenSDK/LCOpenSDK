@@ -10,10 +10,21 @@
 @implementation LCDeviceManagerInterface
 
 + (void)unBindDeviceWithDevice:(NSString *)deviceId success:(void (^)(void))success failure:(void (^)(LCError *_Nonnull))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/deleteDevicePermission" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_ID: deviceId, @"openid" : [LCApplicationDataManager openId]} success:^(id _Nonnull objc) {
-        if (success) {
-            success();
-        }
+    NSDictionary *param = @{KEY_TOKEN: [LCApplicationDataManager managerToken],
+                            KEY_DEVICE_ID: deviceId,
+                            @"openid" : [LCApplicationDataManager openId]};
+    //1、删除子账号设备权限
+    //2、解绑设备
+    [[LCNetworkRequestManager manager] lc_POST:@"/deleteDevicePermission" parameters:param success:^(id _Nonnull objc) {
+        [[LCNetworkRequestManager manager] lc_POST:@"/unBindDevice" parameters:param success:^(id _Nonnull objc) {
+            if (success) {
+                success();
+            }
+        } failure:^(LCError *_Nonnull error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
     } failure:^(LCError *_Nonnull error) {
         if (failure) {
             failure(error);
@@ -46,9 +57,15 @@
         [tempInfos enumerateObjectsUsingBlock:^(LCDeviceInfo * _Nonnull device, NSUInteger idx, BOOL * _Nonnull stop) {
             [device.channels enumerateObjectsUsingBlock:^(LCChannelInfo * _Nonnull channel, NSUInteger idx, BOOL * _Nonnull stop) {
                 channel.deviceId = device.deviceId;
+//#if DEBUG
+//                channel.status = @"online";
+//#endif
             }];
+//#if DEBUG
+//            device.status = @"online";
+//#endif
         }];
-        
+
         if (success) {
             success(tempInfos);
         }

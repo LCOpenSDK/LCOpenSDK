@@ -60,9 +60,7 @@
     [self.cloudBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
     self.cloudBtn.titleLabel.font = [UIFont lcFont_t4];
     [self.cloudBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
-    [self.cloudBtn.KVOController observe:self keyPath:@"isCurrentCloud" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
-        self.cloudBtn.selected = [change[@"new"] boolValue];
-    }];
+    
     self.isCurrentCloud = YES;
     self.cloudBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
         weakself.isCurrentCloud = YES;
@@ -84,9 +82,7 @@
     [self.localBtn setImage:LC_IMAGENAMED(@"timeline_icon_localvideo_selected") forState:UIControlStateSelected];
     [self.localBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
     [self.localBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
-    [self.localBtn.KVOController observe:self keyPath:@"isCurrentCloud" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
-        weakself.localBtn.selected = ![change[@"new"] boolValue];
-    }];
+    
     self.localBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
         weakself.isCurrentCloud = NO;
         if (weakself.dataSourceChange) {
@@ -208,4 +204,16 @@
     }
     return _loadingView;
 }
+
+#pragma mark - Properties
+- (void)setIsCurrentCloud:(BOOL)isCurrentCloud {
+    _isCurrentCloud = isCurrentCloud;
+    self.cloudBtn.selected = isCurrentCloud;
+    self.localBtn.selected  = !isCurrentCloud;
+}
+
+- (void)dealloc {
+    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+}
+
 @end

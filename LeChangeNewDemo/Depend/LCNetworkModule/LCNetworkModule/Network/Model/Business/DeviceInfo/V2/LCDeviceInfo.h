@@ -83,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 通道个数
 @property (copy, nonatomic) NSString *channelNum;
 
+/// 扩展字段：是否为多通道设备
+@property (assign, nonatomic, readonly) BOOL lc_isMultiChannelDevice;
 
 @end
 
