@@ -1167,6 +1167,7 @@
 				101311C22398F6EE000E1FB7 /* Sources */,
 				101311C32398F6EE000E1FB7 /* Frameworks */,
 				101311C42398F6EE000E1FB7 /* Resources */,
+				8603187426D62EDD00FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */,
 				10DD303D240DF93300A73815 /* Embed Frameworks */,
 				93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */,
 				04CC84682518A631009EB27E /* CopyFiles */,
@@ -1320,6 +1321,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8603187426D62EDD00FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CHMOD] Embed Pods Frameworks Shell";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 解决部分系统下，无权限执行Pods-LeChangeDemo-frameworks.sh的问题\nchmod +x \"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh\"\n";
 		};
 		93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
