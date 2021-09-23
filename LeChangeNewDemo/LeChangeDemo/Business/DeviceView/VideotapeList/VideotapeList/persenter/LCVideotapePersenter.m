@@ -47,7 +47,17 @@
         [weakself.cloudVideoArray removeAllObjects];
         weakself.cloudVideoArray = videos;
         weakself.groupCloudVideos = [self groupVideoListWith:weakself.cloudVideoArray];
-        [weakself.videoListPage.cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:videos.count==0?@"video_module_none_record".lc_T:@""];
+        
+        if (videos.count == 0) {
+            if ([self.videoManager.currentChannelInfo.storageStrategyStatus isEqualToString:@"notExist"]) {
+                 [weakself.videoListPage.cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"device_manager_no_cloud_storage".lc_T];
+            } else {
+                [weakself.videoListPage.cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lc_T];
+            }
+        } else {
+            [weakself.videoListPage.cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@""];
+        }
+        
         [weakself didChangeValueForKey:@"cloudVideoArray"];
         
         [LCProgressHUD hideAllHuds:nil];

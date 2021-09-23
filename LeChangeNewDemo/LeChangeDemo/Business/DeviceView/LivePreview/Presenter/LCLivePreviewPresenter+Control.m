@@ -197,7 +197,8 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         
         param.accessToken = LCApplicationDataManager.token;
         param.deviceID = self.videoManager.currentDevice.deviceId;
-        param.channel = (self.videoManager.currentDevice.channels.count > 1 || [self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) ? [self.videoManager.currentChannelInfo.channelId intValue] : -1;
+        
+        param.channel = self.videoManager.currentDevice.lc_isMultiChannelDevice ? [self.videoManager.currentChannelInfo.channelId intValue] : -1;
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
         

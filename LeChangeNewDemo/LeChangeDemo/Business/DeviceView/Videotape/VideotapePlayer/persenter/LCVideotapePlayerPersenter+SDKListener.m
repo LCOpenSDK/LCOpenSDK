@@ -160,69 +160,75 @@
         });
         return;
     }
-
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself showVideoLoadImage];
+    });
 }
 
 #pragma mark - 设备录像播放回调
 - (void)onPlayDeviceRecordResult:(NSString *)code Type:(NSInteger)type {
-    weakSelf(self);
-    [self hideVideoLoadImage];
-    //组帧失败
-    if (code.intValue == STATE_PACKET_FRAME_ERROR) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-        return;
-    }
-    //连接断开
-    if (code.intValue == STATE_RTSP_TEARDOWN_ERROR) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-        return;
-    }
-    //RTSP鉴权失败，错误状态
-    if (code.intValue == STATE_RTSP_AUTHORIZATION_FAIL) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-        return;
-    }
-    //与设备连接成功
-    if (code.intValue == STATE_RTSP_PLAY_READY) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-        });
-        return;
-    }
-    //录像文件播放结束，建议通过（onPlayFinished方法监听）
-    if (code.intValue == STATE_RTSP_FILE_PLAY_OVER) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-        });
-        return;
-    }
-    //录像解密密钥错误
-    if (code.intValue == STATE_RTSP_KEY_MISMATCH) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-    }
-    //收到录像pause响应
-    if (code.intValue == STATE_RTSP_PAUSE_READY) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-    }
-    //基于503错误码的连接最大数错误，错误状态
-    if (code.intValue == STATE_RTSP_SERVICE_UNAVAILABLE) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
-    }
-    //用户信息起始码，服务端上层传过来的信息码会在该起始码基础上累加，错误状态
-    if (code.intValue == STATE_RTSP_USER_INFO_BASE_START) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself showErrorBtn];
-        });
+    
+    if (type == RESULT_PROTO_TYPE_RTSP) {
+        weakSelf(self);
+        [self hideVideoLoadImage];
+        
+        //组帧失败
+        if (code.intValue == STATE_PACKET_FRAME_ERROR) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+            return;
+        }
+        //连接断开
+        if (code.intValue == STATE_RTSP_TEARDOWN_ERROR) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+            return;
+        }
+        //RTSP鉴权失败，错误状态
+        if (code.intValue == STATE_RTSP_AUTHORIZATION_FAIL) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+            return;
+        }
+        //与设备连接成功
+        if (code.intValue == STATE_RTSP_PLAY_READY) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
+            return;
+        }
+        //录像文件播放结束，建议通过（onPlayFinished方法监听）
+        if (code.intValue == STATE_RTSP_FILE_PLAY_OVER) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
+            return;
+        }
+        //录像解密密钥错误
+        if (code.intValue == STATE_RTSP_KEY_MISMATCH) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+        }
+        //收到录像pause响应
+        if (code.intValue == STATE_RTSP_PAUSE_READY) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+        }
+        //基于503错误码的连接最大数错误，错误状态
+        if (code.intValue == STATE_RTSP_SERVICE_UNAVAILABLE) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+        }
+        //用户信息起始码，服务端上层传过来的信息码会在该起始码基础上累加，错误状态
+        if (code.intValue == STATE_RTSP_USER_INFO_BASE_START) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself showErrorBtn];
+            });
+        }
     }
 }
 

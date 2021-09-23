@@ -144,8 +144,10 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         let softApWifiName = manager.getIntroductionParser()?.softApGuideInfo.wifiName ?? DHOMSSoftApGuideDefault.wifiname
         var predicateWifiName = softApWifiName
         var prefix = manager.deviceModel
+        print("🍎🍎🍎 \(#function):: softApWifiName: \(softApWifiName)")
         if let index = softApWifiName.lastIndex(of: "-") { //避免出现 Ring-V2-XXXX的情况
             prefix = String(softApWifiName.prefix(upTo: index))
+            print("🍎🍎🍎 \(#function):: prefix: \(prefix)")
         }
         
         if manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion?.lowercased() == "v1" {
@@ -156,14 +158,15 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
                 predicateWifiName = prefix + "-" + manager.deviceId.uppercased()
             }
             return predicateWifiName
-        } else if manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion?.lowercased() == "v2"{
-            //国内：设备型号-deviceId后4位； 海外：设备型号-deviceId，
+        } else if manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion?.lowercased() == "v2" {
+            //国内、海外：统一，设备型号-deviceId
             predicateWifiName = prefix + "-" + manager.deviceId.uppercased()
             return predicateWifiName
-        } else {
-            return "DAP-" + manager.deviceId
+        } else if DHModuleConfig.shareInstance().isLeChange {
+            return "DAP" + "-" + manager.deviceId.uppercased()
         }
         
+        return prefix + "-" + manager.deviceId.uppercased()
     }
 
 	@objc private func checkWifi() {
@@ -258,7 +261,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         guideView.topTipLabel.text = "add_device_wait_to_connect_wifi".lc_T
         guideView.detailButton.isHidden = true
         //SC设备软AP配网
-        let predicateWifiName = DHModuleConfig.shareInstance().isLeChange ? getApWifiName() : DHAddDeviceManager.sharedInstance.deviceId.uppercased()
+        let predicateWifiName = getApWifiName()
         LCProgressHUD.show(on: self.view)
         DHAddDeviceManager.sharedInstance.autoConnectHotSpot(wifiName: predicateWifiName, password: DHAddDeviceManager.sharedInstance.initialPassword, completion: { (success) in
             

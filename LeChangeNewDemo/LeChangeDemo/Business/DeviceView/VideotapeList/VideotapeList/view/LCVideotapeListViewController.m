@@ -95,16 +95,12 @@
         }];
         [_cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lc_T];
         [_cloudVideoList registerNib:[UINib nibWithNibName:@"LCVideotapeListCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"LCVideotapeListCell"];
-//        if (![self.persenter.videoManager.currentChannelInfo.storageStrategyStatus isEqualToString:@"using"]) {
-//             [_cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"device_manager_no_cloud_storage".lc_T];
-//        }else{
-//            _cloudVideoList.mj_header = [LCRefreshHeader headerWithRefreshingBlock:^{
-//                [weakself.persenter refreshCloudVideoListWithDate:weakself.dateControl.nowDate];
-//            }];
-//            _cloudVideoList.mj_footer = [LCRefreshFooter footerWithRefreshingBlock:^{
-//                [weakself.persenter loadMoreCloudVideoListWithDate:weakself.dateControl.nowDate];
-//            }];
-//        }
+       
+        //云存储过期或未开通
+        if (![self.persenter.videoManager.currentChannelInfo.storageStrategyStatus isEqualToString:@"using"]) {
+             [_cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"device_manager_no_cloud_storage".lc_T];
+        }
+        
         _cloudVideoList.mj_header = [LCRefreshHeader headerWithRefreshingBlock:^{
             [weakself.persenter refreshCloudVideoListWithDate:weakself.dateControl.nowDate];
         }];
