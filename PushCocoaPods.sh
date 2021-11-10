@@ -26,5 +26,5 @@ fi
 
 #提交podspec文件至远端仓库
 echo "***开始Push到远端仓库 ***"
-pod trunk push ${PODSPEC_FILE} --allow-warnings --verbose --sources=https://github.com/CocoaPods/Specs.git 
+pod trunk push ${PODSPEC_FILE} --allow-warnings --verbose #--sources=https://github.com/CocoaPods/Specs.git 
 echo "*** 结束 ***"

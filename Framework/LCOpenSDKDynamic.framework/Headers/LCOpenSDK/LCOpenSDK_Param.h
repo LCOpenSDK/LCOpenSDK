@@ -67,6 +67,8 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 
 @property (nonatomic) DEFINITION_MODE  defiMode; /** 流媒体HD/SD模式 */
 @property (nonatomic) BOOL             isOpt; /** 是否使用长链接优化 */
+/// 码流分辨率
+@property (nonatomic , assign) NSInteger imageSize;
 
 @end
 
@@ -111,6 +113,9 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @interface LCOpenSDK_ParamTalk : LCOpenSDK_Param
 
 @property (nonatomic) BOOL             isOpt; /** 是否使用长链接优化 */
+
+/// 请求类型，talk对讲，call呼叫，如果不传，默认为talk
+@property (nonatomic, copy) NSString *talkType;
 
 @end
 
