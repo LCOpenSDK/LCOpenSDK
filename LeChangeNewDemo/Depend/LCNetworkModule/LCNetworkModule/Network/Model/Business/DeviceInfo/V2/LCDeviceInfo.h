@@ -6,6 +6,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface LCCIResolutions : NSObject
+/// 可选，客户端界面展示的分辨率名称
+@property (nonatomic, copy) NSString *name;
+/// 分辨率枚举
+@property (nonatomic, assign) NSInteger imageSize;
+/// 码流类型,0:主码流,1:辅码流
+@property (nonatomic, copy) NSString *streamType;
+
+@end
+
 @interface LCChannelInfo : NSObject
 
 /// 通道号
@@ -39,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 被共享和授权的权限功能列表（逗号隔开）
 @property (strong, nonatomic) NSString *shareFunctions;
+
+@property (nonatomic, strong) NSArray<LCCIResolutions *> *resolutions;
 
 @end
 

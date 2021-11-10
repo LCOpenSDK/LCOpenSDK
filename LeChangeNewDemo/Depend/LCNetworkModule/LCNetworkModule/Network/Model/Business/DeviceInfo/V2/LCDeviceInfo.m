@@ -37,7 +37,17 @@
     
 }
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{ @"resolutions" : [LCCIResolutions class]};
+}
+
 @end
 
+@implementation LCCIResolutions
 
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+}
+
+@end
 
