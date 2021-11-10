@@ -67,24 +67,47 @@
         };
             break;
         case LCLivePreviewControlClarity: {
-            //清晰度
-            BOOL isSD = self.videoManager.isSD;
-            NSString *imagename = isSD ? @"live_video_icon_h_sd" : @"live_video_icon_h_hd";
-            [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
             
-            //监听管理者状态
-            [item.KVOController observe:self.videoManager keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+            if ([self.videoManager.currentChannelInfo.resolutions count] > 0) {
                 
-                if (![change[@"new"] boolValue]) {
-                    //高清
-                    NSString *imagename = @"live_video_icon_h_hd";
-                    [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
-                } else {
-                    NSString *imagename = @"live_video_icon_h_sd";
-                    [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
+                LCCIResolutions *currentRlution = self.videoManager.currentResolution;
+                if (!currentRlution) {
+                    currentRlution = [self.videoManager.currentChannelInfo.resolutions firstObject];
                 }
-            }];
-            
+                
+                [item setTitle:currentRlution.name forState:UIControlStateNormal];
+                
+                [item.KVOController observe:self.videoManager keyPath:@"currentResolution" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                    if (change[@"new"]) {
+                        
+                        LCCIResolutions *NResolution = (LCCIResolutions *)change[@"new"];
+                        [item setTitle:NResolution.name forState:UIControlStateNormal];
+                    }
+                }];
+                
+                [item setTouchUpInsideblock:^(LCButton * _Nonnull btn) {
+                    
+                    [weakself landscapeQualitySelect:btn];
+                }];
+            }else{
+                
+                BOOL isSD = self.videoManager.isSD;
+                NSString *imagename = isSD ? @"live_video_icon_sd" : @"live_video_icon_hd";
+                [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
+                
+                //监听管理者状态
+                [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                    if (![change[@"new"] boolValue]) {
+                        //高清
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
+                    } else {
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
+                    }
+                }];
+                item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+                    [weakself onQuality:btn];
+                };
+            }
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
                     item.enabled = YES;
@@ -92,9 +115,6 @@
                     item.enabled = NO;
                 }
             }];
-            item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-                [weakself onQuality:btn];
-            };
         }
         break;
         case LCLivePreviewControlVoice: {

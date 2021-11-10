@@ -46,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 //点击清晰度
 - (void)onQuality:(LCButton *)btn;
 
+-(void)qualitySelect:(LCButton *)btn;
+
+-(void)landscapeQualitySelect:(LCButton *)btn;
+
 - (void)stopPlay;
 
 - (void)startPlay;

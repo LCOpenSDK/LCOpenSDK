@@ -237,6 +237,7 @@
 "play_module_video_media_start_record" = "Start recording";
 "play_module_media_play_record_failed" = "Failed to record";
 "device_manager_no_cloud_storage" = "Cloud storage service is not opened.";
+"video_module_none_record" = "No Record Today";
 
 //设定页面
 "setting_device_version" = "Device Firmware Version";

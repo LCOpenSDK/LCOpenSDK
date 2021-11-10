@@ -4,16 +4,14 @@ LCOpenSDK is a tripartite library provided by Imou Open Platform to third-party 
 
 To integrate LCOpenSDK into your Xcode project using CocoaPods, specify it in your Podfile:
 
-pod 'LCOpenSDK', '~> 3.11.0'
+pod 'LCOpenSDK', '~> 3.11.5'
 
 #### Use configuration
 You need to add configuration information before use, otherwise an error will occur.   
-•Path：Build Setting->Search Paths->Framework  Search Paths    
- Add：   
- $(PROJECT_DIR)/Pods/LCOpenSDK/Framework.  
-•Path：Build Setting->Search Paths->Header Search Paths.  
- Add：   
-$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers
-$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenSDK
-$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenNetSDK
-$(PROJECT_DIR)/Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework/Headers/LCOpenApi
+
+ * LCAddDeviceModule.xcodeproj
+ * LCBaseModule.xcodeproj
+
+Build Settings -> Framework Search Paths
+
+Add value "$(SRCROOT)/../../Pods/LCOpenSDK/Framework"

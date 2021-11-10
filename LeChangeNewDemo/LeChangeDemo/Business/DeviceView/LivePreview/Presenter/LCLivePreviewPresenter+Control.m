@@ -23,6 +23,9 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 - (void)onFullScreen:(LCButton *)btn {
     self.videoManager.isFullScreen = !self.videoManager.isFullScreen;
     self.videoManager.isLockFullScreen = NO;
+    self.qualityView.hidden = YES;
+    self.LandScapeQualityView.hidden = YES;
+    self.videoManager.currentResolution = self.videoManager.currentResolution;
     [UIDevice lc_setRotateToSatusBarOrientation];
 }
 
@@ -62,25 +65,36 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     self.videoManager.isSoundOn = YES;
     [self.talker stopTalk];
     self.videoManager.isOpenAudioTalk = NO;
-    [self.playWindow stopRtspReal:NO];
+    [self.playWindow stopRtspReal:YES];
     [self.playWindow stopAudio];
 }
 
 - (void)startPlay {
     [self showVideoLoadImage];
     [self hidePlayBtn];
-    [self.playWindow stopRtspReal:NO];
+    [self.playWindow stopRtspReal:YES];
     [self.playWindow stopAudio];
-    
     LCOpenSDK_ParamReal *param = [[LCOpenSDK_ParamReal alloc]init];
-    //使用保存的模式播放
-    param.defiMode = self.videoManager.isSD ? DEFINITION_MODE_SD : DEFINITION_MODE_HG;  //DEFINITION_MODE_HG;
     param.isOpt = YES;
     param.accessToken = [LCApplicationDataManager token];
     param.deviceID = self.videoManager.currentDevice.deviceId;
     param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
+    if ([self.videoManager.currentChannelInfo.resolutions count] >0) {
+        
+        LCCIResolutions *resolutions = self.videoManager.currentResolution;
+        if (!resolutions) {
+            
+            resolutions = [self.videoManager.currentChannelInfo.resolutions firstObject];
+            self.videoManager.currentResolution = resolutions;
+        }
+        param.defiMode = [resolutions.streamType integerValue];
+        param.imageSize = resolutions.imageSize;
+    }else{
+        //使用保存的模式播放
+        param.defiMode = self.videoManager.isSD ? DEFINITION_MODE_SD : DEFINITION_MODE_HG;  //DEFINITION_MODE_HG;
+    }
     
     NSInteger inde = [self.playWindow playRtspReal:param];
     if (inde != 0) {
@@ -90,8 +104,100 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     self.videoManager.isPlay = YES;
 }
 
+-(void)qualitySelect:(LCButton *)btn{
+    
+    [btn setTitle:@"" forState:UIControlStateNormal];
+    if (!self.qualityView) {
+        
+        NSInteger btnCount = self.videoManager.currentChannelInfo.resolutions.count;
+        self.qualityView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, btn.superview.frame.origin.y + 30 - 30*btnCount, 30, 30 *btnCount)];
+        
+        for (int i =0; i<btnCount; i++) {
+            
+            LCCIResolutions *NResolution = self.videoManager.currentChannelInfo.resolutions[i];
+            LCButton *qualityBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+            [qualityBtn setFrame:CGRectMake(0, 30 * i, 30, 30)];
+            [qualityBtn setTitle:NResolution.name forState:UIControlStateNormal];
+            [qualityBtn setTag:(100 + i)];
+            [qualityBtn addTarget:self action:@selector(qualityBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [self.qualityView addSubview:qualityBtn];
+        }
+        [self.container.view addSubview:self.qualityView];
+    }
+    self.qualityView.hidden = NO;
+}
+
+-(void)landscapeQualitySelect:(LCButton *)btn{
+    
+    [btn setTitle:@"" forState:UIControlStateNormal];
+    if (!self.LandScapeQualityView) {
+        
+        NSInteger btnCount = self.videoManager.currentChannelInfo.resolutions.count;
+        self.LandScapeQualityView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, btn.superview.frame.origin.y + 30 - 30*btnCount, 30, 30 *btnCount)];
+        
+        for (int i =0; i<btnCount; i++) {
+            
+            LCCIResolutions *NResolution = self.videoManager.currentChannelInfo.resolutions[i];
+            LCButton *qualityBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+            [qualityBtn setFrame:CGRectMake(0, 30 * i, 30, 30)];
+            [qualityBtn setTitle:NResolution.name forState:UIControlStateNormal];
+            [qualityBtn setTag:(100 + i)];
+            [qualityBtn addTarget:self action:@selector(qualityBtnLandscape:) forControlEvents:UIControlEventTouchUpInside];
+            [self.LandScapeQualityView addSubview:qualityBtn];
+        }
+        [self.container.view addSubview:self.LandScapeQualityView];
+    }
+    self.LandScapeQualityView.hidden = NO;
+}
+
+-(void)qualityBtn:(LCButton *)sender{
+    
+    self.qualityView.hidden = YES;
+    [self qualitySelectFunc:sender];
+}
+
+-(void)qualityBtnLandscape:(LCButton *)sender{
+    
+    self.LandScapeQualityView.hidden = YES;
+    [self qualitySelectFunc:sender];
+}
+
+-(void)qualitySelectFunc:(LCButton *)sender{
+    
+    if (!sender) {
+        self.videoManager.currentResolution = self.videoManager.currentResolution;
+        return;
+    }
+    LCCIResolutions *NResolution = self.videoManager.currentChannelInfo.resolutions[sender.tag - 100];
+    LCCIResolutions *oldResolution = self.videoManager.currentResolution;
+    
+    self.videoManager.currentResolution = NResolution;
+    if ([NResolution.name isEqualToString:oldResolution.name]) {
+        return;
+    }
+    
+    [self.playWindow stopRtspReal:YES];
+    [self.playWindow stopAudio];
+    [self hideVideoLoadImage];
+    [self showVideoLoadImage];
+    
+    LCOpenSDK_ParamReal *param = [[LCOpenSDK_ParamReal alloc]init];
+    param.defiMode = [NResolution.streamType integerValue];
+    param.isOpt = YES;
+    param.accessToken = LCApplicationDataManager.token;
+    param.deviceID = self.videoManager.currentDevice.deviceId;
+    param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
+    param.psk = self.videoManager.currentPsk;
+    param.playToken = self.videoManager.currentDevice.playToken;
+    param.imageSize = NResolution.imageSize;
+    
+    [self.playWindow playRtspReal:param];
+}
+
 - (void)onQuality:(LCButton *)btn {
-    [self.playWindow stopRtspReal:NO];
+    
+    [self.playWindow stopRtspReal:YES];
+    [self.playWindow stopAudio];
     [self hideVideoLoadImage];
     NSInteger definition = 0;
     if (self.videoManager.isSD) {
@@ -201,6 +307,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.channel = self.videoManager.currentDevice.lc_isMultiChannelDevice ? [self.videoManager.currentChannelInfo.channelId intValue] : -1;
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
+        param.talkType = @"talk";
         
         NSInteger result = [self.talker playTalk:param];
         if (result != 0) {

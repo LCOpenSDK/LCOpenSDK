@@ -204,23 +204,23 @@
         }
     }];
 
-    LCButton *rightBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
-    [rightBtn setTitle:@"More_MyFamily_EditBtnTitle_Edit".lc_T forState:UIControlStateNormal];
-    [rightBtn setTitle:@"common_done".lc_T forState:UIControlStateSelected];
-    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
-    [self.view addSubview:rightBtn];
-    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).offset(-15);
-        make.centerY.mas_equalTo(segment.mas_centerY);
-    }];
-    rightBtn.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-        weakself.persenter.isEdit = !btn.isSelected;
-        btn.selected = !btn.isSelected;
-    };
-    [rightBtn.KVOController observe:self.persenter keyPath:@"isCloudMode" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        rightBtn.hidden = ![change[@"new"] boolValue];
-    }];
+//    LCButton *rightBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+//    [rightBtn setTitle:@"More_MyFamily_EditBtnTitle_Edit".lc_T forState:UIControlStateNormal];
+//    [rightBtn setTitle:@"common_done".lc_T forState:UIControlStateSelected];
+//    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
+//    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
+//    [self.view addSubview:rightBtn];
+//    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+//        make.centerY.mas_equalTo(segment.mas_centerY);
+//    }];
+//    rightBtn.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+//        weakself.persenter.isEdit = !btn.isSelected;
+//        btn.selected = !btn.isSelected;
+//    };
+//    [rightBtn.KVOController observe:self.persenter keyPath:@"isCloudMode" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+//        rightBtn.hidden = ![change[@"new"] boolValue];
+//    }];
 }
 
 - (LCButton *)deleteBtn {

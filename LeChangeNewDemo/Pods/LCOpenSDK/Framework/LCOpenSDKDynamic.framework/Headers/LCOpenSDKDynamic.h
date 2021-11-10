@@ -19,7 +19,7 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenNetSDK/LCOpenSDK_NetsdkLogin.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Api.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_AudioTalk.h>
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_ConfigWIfi.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_ConfigWifi.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DeviceInit.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Download.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DownloadListener.h>

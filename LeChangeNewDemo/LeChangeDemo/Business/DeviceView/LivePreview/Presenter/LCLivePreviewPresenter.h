@@ -95,6 +95,9 @@ typedef enum : NSUInteger {
 
 @property (weak, nonatomic) LCVideoHistoryView *historyView;
 
+@property (nonatomic, strong) UIView *qualityView;
+
+@property (nonatomic, strong) UIView *LandScapeQualityView;
 
 //MARK: - Public Methods
 

@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前解密密钥
 @property (strong,nonatomic) NSString * currentPsk;
 
+/// 当前播放码流，与设备能力相关
+@property (nonatomic, strong) LCCIResolutions *currentResolution;
+
 @end
 
 NS_ASSUME_NONNULL_END

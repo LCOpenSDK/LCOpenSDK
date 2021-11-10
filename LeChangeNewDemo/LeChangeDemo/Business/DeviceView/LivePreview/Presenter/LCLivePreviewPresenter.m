@@ -100,21 +100,48 @@
         };
             break;
         case LCLivePreviewControlClarity: {
-            //清晰度
-            BOOL isSD = self.videoManager.isSD;
-            NSString *imagename = isSD ? @"live_video_icon_sd" : @"live_video_icon_hd";
-            [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
             
-            //监听管理者状态
-            [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if (![change[@"new"] boolValue]) {
-                    //高清
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
-                } else {
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
+            if ([self.videoManager.currentChannelInfo.resolutions count] > 0) {
+                
+                LCCIResolutions *currentRlution = self.videoManager.currentResolution;
+                if (!currentRlution) {
+                    currentRlution = [self.videoManager.currentChannelInfo.resolutions firstObject];
                 }
-            }];
-            
+                
+                [item setTitle:currentRlution.name forState:UIControlStateNormal];
+                
+                [item.KVOController observe:self.videoManager keyPath:@"currentResolution" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                    
+                    if (change[@"new"]) {
+                        
+                        LCCIResolutions *NResolution = (LCCIResolutions *)change[@"new"];
+                        [weakItem setTitle:NResolution.name forState:UIControlStateNormal];
+                    }
+                }];
+                
+                [item setTouchUpInsideblock:^(LCButton * _Nonnull btn) {
+                    
+                    [weakself qualitySelect:btn];
+                }];
+            }else{
+                
+                BOOL isSD = self.videoManager.isSD;
+                NSString *imagename = isSD ? @"live_video_icon_sd" : @"live_video_icon_hd";
+                [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
+                
+                //监听管理者状态
+                [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                    if (![change[@"new"] boolValue]) {
+                        //高清
+                        [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
+                    } else {
+                        [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
+                    }
+                }];
+                item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+                    [weakself onQuality:btn];
+                };
+            }
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
                     weakItem.enabled = YES;
@@ -122,9 +149,6 @@
                     weakItem.enabled = NO;
                 }
             }];
-            item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-                [weakself onQuality:btn];
-            };
         }
         break;
         case LCLivePreviewControlVoice: {
@@ -399,7 +423,7 @@
 
     [defaultImageView.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            weakImageView.hidden = NO;//只要切换开关就展示默认图，开启时，会根据播放状态改变默认图设定
+//            weakImageView.hidden = NO;//只要切换开关就展示默认图，开启时，会根据播放状态改变默认图设定
         });
     }];
 
