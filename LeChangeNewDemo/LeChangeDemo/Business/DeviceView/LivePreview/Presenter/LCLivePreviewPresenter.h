@@ -2,7 +2,6 @@
 //  Copyright © 2019 dahua. All rights reserved.
 //
 
-
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayWindow.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_AudioTalk.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_EventListener.h>
@@ -11,10 +10,6 @@
 #import "UIDevice+LeChange.h"
 #import "LCDeviceVideoManager.h"
 #import "LCVideoHistoryView.h"
-
-
-
-NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^ItemHandle)(LCButton * btn);
 
@@ -30,6 +25,13 @@ typedef enum : NSUInteger {
     LCLivePreviewControlAlarm,///警笛
     LCLivePreviewControlLight///白光灯
 } LCLivePreviewControlType;
+
+typedef enum : NSUInteger {
+    BorderViewLeft,// 左
+    BorderViewRight,// 右
+    BorderViewTop,// 上
+    BorderViewBottom// 下
+} BorderViewDirection;
 
 @interface LCLivePreviewControlItem : NSObject
 
@@ -99,6 +101,16 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) UIView *LandScapeQualityView;
 
+@property (nonatomic, strong) UILabel *videoTypeLabel;
+/// 边界警告视图，上
+@property (nonatomic, strong) UIImageView *borderIVTop;
+/// 边界警告视图，下
+@property (nonatomic, strong) UIImageView *borderIVBottom;
+/// 边界警告视图，左
+@property (nonatomic, strong) UIImageView *borderIVLeft;
+/// 边界警告视图，右
+@property (nonatomic, strong) UIImageView *borderIVRight;
+
 //MARK: - Public Methods
 
 /**
@@ -164,6 +176,13 @@ typedef enum : NSUInteger {
 
 -(void)configBigPlay;
 
-@end
+/// 设置拉流方式
+-(void)setVideoType;
 
-NS_ASSUME_NONNULL_END
+/// 显示边界警告红线视图
+/// @param direction 视图显示方向
+-(void)showBorderView:(BorderViewDirection )direction;
+/// 隐藏边界警告红线视图
+-(void)hideBorderView;
+
+@end

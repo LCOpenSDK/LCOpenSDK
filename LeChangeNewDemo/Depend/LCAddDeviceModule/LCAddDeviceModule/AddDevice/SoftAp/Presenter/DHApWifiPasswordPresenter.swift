@@ -66,14 +66,17 @@ class DHApWifiPasswordPresenter: NSObject, DHWifiPasswordPresenterProtocol {
         LCProgressHUD.show(on: self.container?.view)
         
         if true == DHAddDeviceManager.sharedInstance.isSupportSC && false == self.scDeviceIsInited {
-            if let pwd = wifiPassword {
-                DHNetSDKHelper.scDeviceApConnectWifi(wifiSSID, password: pwd, ip: device!.deviceIP, port: Int(device!.port), encryptionAuthority: Int32(self.encryptionAuthority)) { (error) in
-                        LCProgressHUD.hideAllHuds(self.container?.view)
-                        self.devicePassword = DHAddDeviceManager.sharedInstance.initialPassword
-                        self.connectWifiSuccessProcess()
-                    }
-                }
             
+            DHNetSDKHelper.scDeviceSoftAPConnectWifi(wifiSSID, wiFiPsw: wifiPassword, deviceId: deviceId, devicePsw: DHAddDeviceManager.sharedInstance.regCode, isSC: DHAddDeviceManager.sharedInstance.isSupportSC) { result in
+
+                LCProgressHUD.hideAllHuds(self.container?.view)
+                if result {
+                    self.devicePassword = DHAddDeviceManager.sharedInstance.initialPassword
+                    self.connectWifiSuccessProcess()
+                }else{
+                    LCProgressHUD.showMsg("配网失败，请重试")
+                }
+            };
         } else {
             DHNetSDKHelper.loginWithHighLevelSecurity(byIp: device!.deviceIP, port: Int(device!.port), username: "admin", password: devicePassword, success: { (handle) in
                 let ssid = wifiSSID

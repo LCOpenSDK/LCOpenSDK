@@ -56,6 +56,11 @@ typedef enum : NSUInteger {
 +(NSString *)SDKHost;
 ///SDK连接时的Port
 +(NSInteger)SDKPort;
+/// 设置debug配置
+/// @param debugFlag debugFlag description
++(void)setDebugFlag:(BOOL )debugFlag;
+/// debug配置与否
++(BOOL)getDebugFlag;
 
 ///保存子账号
 + (void)setSubAccount:(NSString *)account;

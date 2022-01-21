@@ -6963,7 +6963,7 @@ typedef enum tagNET_ACCESSCTLCARD_TYPE
     NET_ACCESSCTLCARD_TYPE_CORCE,                       // Ð²ÆÈ¿¨
 	NET_ACCESSCTLCARD_TYPE_POLLING,                     // Ñ²¼ì¿¨
 	NET_ACCESSCTLCARD_TYPE_GB_CUSTOM1,                  // ¹ú±ê×Ô¶¨Òå1¿¨,ÉÏº£ÐÂµØ±ê¶¨ÖÆ£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
-    NET_ACCESSCTLCARD_TYPE_GB_CUSTOM2,                  // ¹ú±ê×Ô¶¨Òå2¿¨,ÉÏº£ÐÂµØ±ê¶¨Öenum enum Æ£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
+	NET_ACCESSCTLCARD_TYPE_GB_CUSTOM2,                  // ¹ú±ê×Ô¶¨Òå2¿¨,ÉÏº£ÐÂµØ±ê¶¨ÖÆ£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
 	NET_ACCESSCTLCARD_TYPE_TEMPORARY_PERSON = 0x09,		// ÁÙÊ±ÈËÔ±£¬¶¨ÖÆÏîÄ¿£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
 	NET_ACCESSCTLCARD_TYPE_INVENTORY_PERSON,			// Çå·ÖÈËÔ±£¬¶¨ÖÆÏîÄ¿£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
 	NET_ACCESSCTLCARD_TYPE_INVENTORY_DIRECTOR,			// Çå·ÖÖ÷¹Ü£¬¶¨ÖÆÏîÄ¿£¬²»Ö§³ÖÅäÌ×£¬ÆäËûÏîÄ¿½ûÓÃ
@@ -10622,7 +10622,10 @@ typedef struct
                                                                 // 0-Éè±¸Ê¹ÓÃµÄÊÇÀÏ·½°¸µÄÃÜÂëÖØÖÃ°æ±¾;1-Ö§³ÖÔ¤ÁôÁªÏµ·½Ê½½øÐÐÃÜÂëÖØÖÃ²Ù×÷;
                                                                 // 2-Ö§³Ö¸ü»»ÁªÏµ·½Ê½½øÐÐÃÜÂëÖØÖÃ²Ù×÷;
     char                szDeviceID[DH_DEV_CUSTOM_DEVICEID_LEN]; // ¶¨ÖÆ×Ö¶Î, ²»×÷ÎªÍ¨ÓÃÐ­Òé£¬²»¶Ô½ÓÍ¨ÓÃ¿Í»§¶Ë
-    DWORD               dwUnLoginFuncMask;                      // Î´µÇÂ½¹¦ÄÜÑÚÂë, Bit0 WifiÁÐ±íÉ¨Ãè¼°WLanÉèÖÃ
+    DWORD               dwUnLoginFuncMask;                      // ¹¦ÄÜÑÚÂë(°üÀ¨Î´µÇÂ¼¹¦ÄÜºÍÐèÒªÌáÇ°Òýµ¼µÄ¹¦ÄÜ)
+																// Bit0 - WifiÁÐ±íÉ¨Ãè¼°WLanÉèÖÃ£¨Î´µÇÂ¼¹¦ÄÜ£©
+																// Bit1 - Éè±¸ËÑË÷Ö§³Ö»á»°ÍâÐÞ¸Ä¹ýÆÚÃÜÂë
+																// Bit2 - Éè±¸ÊÇ·ñÖ§³Ö´®¿ÚÈÕÖ¾ÖØ¶¨Ïò£¨ÌáÇ°Òýµ¼¹¦ÄÜ£©
     char                cReserved[12];                          // À©Õ¹×Ö¶Î
 }DEVICE_NET_INFO_EX;
 
@@ -11020,6 +11023,7 @@ typedef struct
                                                             // 7-11ÊÇ»ìºÏÄ£Ê½,Ñ¡ÔñÆäÖÐÈÎºÎÒ»ÖÖ¶¼¿ÉÒÔ½øÐÐÁ¬½Ó 
                                                             // 7:WPA-PSK | WPA2-PSK; 8:WPA | WPA2; 9:WPA | WPA-PSK;
                                                             // 10:WPA2 | WPA2-PSK; 11:WPA | WPA-PSK |WPA2 |WPA2-PSK //12: UnKnown
+															// 13:WPA3-SAE; 14:WPA3-SAE/PSK
     BYTE                byEncrAlgr;                         // ¼ÓÃÜÄ£Ê½0:off; 2:WEP64bit; 3:WEP128bit; 4:WEP; 5:TKIP; 6:AES(CCMP)
                                                             // 7: TKIP+AES(»ìºÏÄ£Ê½) 8: UnKnown
     BYTE                byLinkQuality;                      // Á¬½ÓÇ¿¶È 0~100(%)
@@ -13469,14 +13473,14 @@ typedef enum tagEM_GLASSES_TYPE
 	EM_GLASSES_GLASS,		// ÆÕÍ¨ÑÛ¾µ
 } EM_GLASSES_TYPE;
 
-// ÖÖ×åÀàÐÍ
+// ·ôÉ«ÀàÐÍ
 typedef enum tagEM_RACE_TYPE
 {
-	EM_RACE_UNKNOWN,			// Î´Öª
-	EM_RACE_NODISTI,			// Î´Ê¶±ð
-	EM_RACE_YELLOW,				// »ÆÖÖÈË
-	EM_RACE_BLACK,				// ºÚÈË
-	EM_RACE_WHITE,				// °×ÈË
+	EM_RACE_UNKNOWN,			
+	EM_RACE_NODISTI,			
+	EM_RACE_YELLOW,				
+	EM_RACE_BLACK,				
+	EM_RACE_WHITE,				
 } EM_RACE_TYPE;
 
 // ÑÛ¾¦×´Ì¬
@@ -13598,7 +13602,7 @@ typedef struct tagFACERECOGNITION_PERSON_INFOEX
     EM_DEV_EVENT_FACEDETECT_FEATURE_TYPE    emEmotion;                          // ±íÇé
     char                        szHomeAddress[DH_COMMON_STRING_128];            // ×¢²áÈËÔ±¼ÒÍ¥µØÖ·
     EM_GLASSES_TYPE             emGlassesType;                                  // ÑÛ¾µÀàÐÍ
-    EM_RACE_TYPE                emRace;                                         // ÖÖ×å
+    EM_RACE_TYPE                emRace;                                         // 
     EM_EYE_STATE_TYPE           emEye;                                          // ÑÛ¾¦×´Ì¬
     EM_MOUTH_STATE_TYPE         emMouth;                                        // ×ì°Í×´Ì¬
     EM_MASK_STATE_TYPE          emMask;                                         // ¿ÚÕÖ×´Ì¬
@@ -14993,14 +14997,6 @@ typedef enum tagEM_DEV_EVENT_FACEDETECT_SEX_TYPE
 }EM_DEV_EVENT_FACEDETECT_SEX_TYPE;
 
 
-//Ãñ×å
-typedef enum tagEM_NATION_TYPE
-{
-	EM_NATION_TYPE_UNKNOWN,                                             // Î´Öª
-	EM_NATION_TYPE_UYGUR,                                               // Î¬×å(ÐÂ½®)	
-	EM_NATION_TYPE_OTHER,                                               // ÆäËû
-	EM_NATION_TYPE_UNIDENTIFIED,                                        // Éè±¸Î´Ê¶±ð	
-}EM_NATION_TYPE;
 
 // ×ËÌ¬½ÇÊý¾Ý
 typedef struct tagNET_EULER_ANGLE
@@ -15017,13 +15013,13 @@ typedef struct tagNET_FACE_DATA
 	int        								nAge;						// ÄêÁä,-1±íÊ¾¸Ã×Ö¶ÎÊý¾ÝÎÞÐ§
     unsigned int        					nFeatureValidNum;           // ÈËÁ³ÌØÕ÷Êý×éÓÐÐ§¸öÊý,Óë emFeature ½áºÏÊ¹ÓÃ
     EM_DEV_EVENT_FACEDETECT_FEATURE_TYPE    emFeature[DH_MAX_FACEDETECT_FEATURE_NUM];   // ÈËÁ³ÌØÕ÷Êý×é,Óë nFeatureValidNum ½áºÏÊ¹ÓÃ
-	EM_RACE_TYPE							emRace;						// ÖÖ×å
+	EM_RACE_TYPE							emRace;						// 
 	EM_EYE_STATE_TYPE						emEye;						// ÑÛ¾¦×´Ì¬
 	EM_MOUTH_STATE_TYPE						emMouth;					// ×ì°Í×´Ì¬
 	EM_MASK_STATE_TYPE 						emMask;						// ¿ÚÕÖ×´Ì¬
 	EM_BEARD_STATE_TYPE						emBeard;					// ºú×Ó×´Ì¬
 	int										nAttractive;				// ÷ÈÁ¦Öµ, -1±íÊ¾ÎÞÐ§, 0Î´Ê¶±ð£¬Ê¶±ðÊ±·¶Î§1-100,µÃ·Ö¸ß÷ÈÁ¦¸ß
-	EM_NATION_TYPE                          emNation;                   // Ãñ×å
+	BYTE                					bReserved1[4];              // ±£Áô×Ö½Ú
 	NET_EULER_ANGLE							stuFaceCaptureAngle;		// ÈËÁ³ÔÚ×¥ÅÄÍ¼Æ¬ÖÐµÄ½Ç¶ÈÐÅÏ¢, nPitch:Ì§Í·µÍÍ·µÄ¸©Ñö½Ç, nYaw×óÓÒ×ªÍ·µÄÆ«º½½Ç, nRollÍ·ÔÚÆ½ÃæÄÚ×óÆ«ÓÒÆ«µÄ·­¹ö½Ç
 																		// ½Ç¶ÈÖµÈ¡Öµ·¶Î§[-90,90], Èý¸ö½Ç¶ÈÖµ¶¼Îª999±íÊ¾´Ë½Ç¶ÈÐÅÏ¢ÎÞÐ§
 	UINT									nFaceQuality;				// ÈËÁ³×¥ÅÄÖÊÁ¿·ÖÊý
@@ -15667,7 +15663,7 @@ typedef struct tagNET_FACE_ATTRIBUTE_EX
 	EM_HAS_GLASS							emGlass;					// ÑÛ¾µ
 	EM_EMOTION_TYPE							emEmotion;					// ±íÇé
 	DH_RECT									stuBoundingBox;				// °üÎ§ºÐ(8192×ø±êÏµ)
-	EM_NATION_TYPE							emNation;					// Ãñ×å
+	BYTE                					bReserved1[4];              // Reserved
 	EM_STRABISMUS_TYPE						emStrabismus;				// Ð±ÊÓ×´Ì¬
 	BYTE                					byReserved[64];             // ±£Áô×Ö½Ú,Áô´ýÀ©Õ¹.
 } NET_FACE_ATTRIBUTE_EX;
@@ -16607,14 +16603,14 @@ typedef struct tagDEV_EVENT_FACEDETECT_INFO
     int                 nFacesNum;                                  // Ö¸Ê¾stuFacesÓÐÐ§ÊýÁ¿
     NET_FACE_INFO       stuFaces[10];                               // ¶àÕÅÈËÁ³Ê±Ê¹ÓÃ,´ËÊ±Ã»ÓÐObject
 	EVENT_INTELLI_COMM_INFO     stuIntelliCommInfo;                 // ÖÇÄÜÊÂ¼þ¹«¹²ÐÅÏ¢
-	EM_RACE_TYPE				emRace;								// ÖÖ×å
+	EM_RACE_TYPE				emRace;								// 
 	EM_EYE_STATE_TYPE			emEye;								// ÑÛ¾¦×´Ì¬
 	EM_MOUTH_STATE_TYPE			emMouth;							// ×ì°Í×´Ì¬
 	EM_MASK_STATE_TYPE 			emMask;								// ¿ÚÕÖ×´Ì¬
 	EM_BEARD_STATE_TYPE			emBeard;							// ºú×Ó×´Ì¬
 	int							nAttractive;						// ÷ÈÁ¦Öµ, -1±íÊ¾ÎÞÐ§, 0Î´Ê¶±ð£¬Ê¶±ðÊ±·¶Î§1-100,µÃ·Ö¸ß÷ÈÁ¦¸ß
 	char						szUID[DH_COMMON_STRING_32];			// ×¥ÅÄÈËÔ±Ð´ÈëÊý¾Ý¿âµÄÎ¨Ò»±êÊ¶·û
-	EM_NATION_TYPE              emNation;                           // Ãñ×å
+	BYTE                		bReserved2[4];						// Reserved
 	NET_FEATURE_VECTOR			stuFeatureVector;					// ÌØÕ÷ÖµÐÅÏ¢
 	char						szFeatureVersion[32];				// ÌØÕ÷ÖµËã·¨°æ±¾
 	EM_FACE_DETECT_STATUS       emFaceDetectStatus;                 // ÈËÁ³ÔÚÉãÏñ»ú»­ÃæÖÐµÄ×´Ì¬
@@ -20128,7 +20124,7 @@ typedef struct __MEDIAFILE_FACE_DETECTION_INFO
     INT64               sizeEx;                                     // ÎÄ¼þ³¤¶ÈÀ©Õ¹£¬Ö§³ÖÎÄ¼þ³¤¶È´óÓÚ4G£¬µ¥Î»×Ö½Ú
     EM_MASK_STATE_TYPE          emMask;                             // ÊÇ·ñ´ø¿ÚÕÖ
     EM_BEARD_STATE_TYPE         emBeard;                            // ÊÇ·ñÓÐºú×Ó
-    EM_RACE_TYPE                emRace;                             // ÖÖ×å
+    EM_RACE_TYPE                emRace;                             // 
     EM_EYE_STATE_TYPE           emEye;                              // ÑÛ¾¦×´Ì¬
     EM_MOUTH_STATE_TYPE         emMouth;                            // ×ì°Í×´Ì¬
     int                         nAttractive;                        // ÷ÈÁ¦Öµ
@@ -23707,7 +23703,7 @@ typedef struct tagNET_HISTORY_PERSON_INFO
     EM_DEV_EVENT_FACEDETECT_FEATURE_TYPE	emEmotion;							// ±íÇé
     EM_GLASSES_STATE            emGlassesState;                                 // ÑÛ¾µ×´Ì¬
     EM_GLASSES_TYPE             emGlassesType;                                  // ÑÛ¾µÀàÐÍ
-    EM_RACE_TYPE                emRace;                                         // ÖÖ×å
+    EM_RACE_TYPE                emRace;                                         // 
     EM_EYE_STATE_TYPE			emEye;											// ÑÛ¾¦×´Ì¬
     EM_MOUTH_STATE_TYPE			emMouth;										// ×ì°Í×´Ì¬
 	EM_MASK_STATE_TYPE 			emMask;											// ¿ÚÕÖ×´Ì¬
@@ -29296,6 +29292,33 @@ typedef struct tagNET_OUT_MONITORWALL_UPDATE_SOURCE_URL
 /************************************************************************/
 /*                              UÅÌ×¥°ü                                    */
 /************************************************************************/
+// ¹ýÂËÐ­ÒéÀàÐÍ
+typedef enum tagEM_SNIFFER_FILTER_PROTOCOL
+{
+    EM_SNIFFER_FILTER_PROTOCOL_UNKNOWN,       // Î´Öª
+    EM_SNIFFER_FILTER_PROTOCOL_TCP,           // TCP
+    EM_SNIFFER_FILTER_PROTOCOL_UDP,           // UDP
+}EM_SNIFFER_FILTER_PROTOCOL;
+
+// ×¥°ü¹ýÂËÔªËØ
+typedef struct tagNET_SNIFFER_FILTER_ELEMENT
+{
+    char            szSrcIP[64];              // Ô´µØÖ·
+    char            szDstIP[64];              // Ä¿µÄµØÖ·
+    int             nSrcPort;                 // Ô´¶Ë¿Ú
+    int             nDstPort;                 // Ä¿µÄ¶Ë¿Ú
+    EM_SNIFFER_FILTER_PROTOCOL emProtocol;    // Ð­ÒéÀàÐÍ
+    BYTE            byReserved[60];           // ±£Áô×Ö¶Î
+}NET_SNIFFER_FILTER_ELEMENT;
+
+// ×¥°ü¹ýÂË¹æÔò
+typedef struct tagNET_SNIFFER_FILTER
+{
+    int                 nMaxElemet;          // ÓÐÐ§µÄstElemetsge¸öÊý
+    NET_SNIFFER_FILTER_ELEMENT stuElemets[8]; // ¹ýÂËÎåÔª×éµÄÊý×é
+    int                 nFilterType;         // 0: È¡ÉÏÊöÈ«²¿ÎåÔª×éµÄ»ò¼¯×÷Îª¹ýÂËÌõ¼þ; 1: È¡ÉÏÊöÎåÔª×é»ò·Ç×÷Îª¹ýÂËÌõ¼þ¡£
+    BYTE                byReserved[256];     // ±£Áô×Ö¶Î
+}NET_SNIFFER_FILTER;
 
 // CLIENT_StartSniffer ½Ó¿ÚÊäÈë²ÎÊý
 typedef struct tagDH_IN_START_SNIFFER 
@@ -29305,6 +29328,10 @@ typedef struct tagDH_IN_START_SNIFFER
     const char*     pszPath;                    // ×¥°ü´æ´¢ÎÄ¼þÃû, ¿Õ±íÊ¾±£´æµ½Ä¬ÈÏÂ·¾¶
     int             nSaveType;                  // ÎÄ¼þÀàÐÍ, 0-Wireshark/Tcpdump
     const char*     pszFilter;                  // ¹ýÂËÌõ¼þ, Èç"host 172.9.88.200 and port 8080 and tcp"
+    int             nCaptureTime;               // ×¥°ü³¬Ê±Ê±¼ä£¬µ¥Î»£ºÃë, 0 ÔòÄ¬ÈÏ²»³¬Ê±.
+    unsigned int    nCurrentFileSize;           // Ö¸¶¨´Ë´Î×¥°üµÄ×î´ó´óÐ¡, µ¥Î»kb
+    BOOL            bFilterEx;                  // ¸ßÓÅÏÈ¼¶¹æÔòÊ¹ÄÜ£¬ÈôÎªÕæ£¬Ôò²»²ÉÓÃpszFilterÀïµÄ¹ýÂË¹æÔò
+    NET_SNIFFER_FILTER stuFilterEx;             // ¸ßÓÅÏÈ¼¶µÄ¹ýÂË¹æÔò
 } DH_IN_START_SNIFFER;
 
 // CLIENT_StartSniffer ½Ó¿ÚÊä³ö²ÎÊý
@@ -29318,6 +29345,10 @@ typedef struct tagDH_SNIFFER_INFO
 {
     DWORD           dwSize;
     DWORD           nSnifferID;                 // ×¥°üID
+    char            szPath[256];                // ×¥°ü´æ´¢ÎÄ¼þÃû¡£Èôµ±Ç°Íø¿¨ÎÞÕýÔÚ½øÐÐµÄ×¥°üÈÎÎñ£¬ÔòÎª¿Õ 
+    char            szPathEx[10][256];          // Ä¬ÈÏÂ·¾¶¼°startÂ·¾¶´«ÈëÏÂµÄ×¥°üÎÄ¼þ¡£°´Ê±¼ä´ÓÐÂµ½¾ÉÅÅÐò¡£
+    int             nRetPathEx;                 // Êµ¼Ê·µ»ØµÄszPathExÓÐÐ§¸öÊý
+    UINT            nFileSize[10];              // szPathExÔªËØ¶ÔÓ¦ÎÄ¼þ´óÐ¡, µ¥Î»×Ö½Ú
 } DH_SNIFFER_INFO;
 
 // CLIENT_GetSnifferInfo ½Ó¿ÚÊäÈë²ÎÊý
@@ -29335,6 +29366,35 @@ typedef struct tagDH_OUT_GET_SNIFFER_INFO
     int                 nMaxSnifferCount;       // ×¥°üÐÅÏ¢Êý×é´óÐ¡, ÓÃ»§ÌîÐ´
     int                 nRetSnifferCount;       // ·µ»ØµÄ×¥°üÐÅÏ¢ÊýÁ¿
 } DH_OUT_GET_SNIFFER_INFO;
+// µ÷ÊÔÈÕÖ¾»Øµ÷º¯Êý
+typedef void (CALLBACK *fAttachSniffer)(LLONG lAttchHandle, BYTE *pBuffer, DWORD dwBufSize, LDWORD dwUser);
+
+// CLIENT_AttachSniffer ½Ó¿ÚÈë²Î
+typedef struct tagNET_IN_ATTACH_SNIFFER
+{
+    DWORD               dwSize;
+    fAttachSniffer      cbSniffer;           // »Øµ÷º¯Êý
+    LDWORD              dwUser;              // ÓÃ»§ÐÅÏ¢
+}NET_IN_ATTACH_SNIFFER;
+
+// CLIENT_AttachSniffer ½Ó¿Ú³ö²Î
+typedef struct tagNET_OUT_ATTACH_SNIFFER
+{
+    DWORD               dwSize;
+}NET_OUT_ATTACH_SNIFFER;
+
+// CLIENT_GetSnifferCaps ½Ó¿ÚÈë²Î
+typedef struct tagNET_IN_GET_SNIFFER_CAP
+{
+    DWORD               dwSize;
+}NET_IN_GET_SNIFFER_CAP;
+
+// CLIENT_GetSnifferCaps ½Ó¿Ú³ö²Î
+typedef struct tagNET_OUT_GET_SNIFFER_CAP
+{
+    DWORD               dwSize;
+    BOOL                bRemoteCap;             // ÊÇ·ñÖ§³ÖÔ¶³ÌÁ÷Ê½×¥°ü
+}NET_OUT_GET_SNIFFER_CAP;
 
 /************************************************************************/
 /*                              ÎÄ¼þ¹ÜÀí                                */
@@ -45646,6 +45706,12 @@ typedef struct tagNET_CFG_LIFTCONTROL_OPTION
 	DWORD										dwSize;			// ½á¹¹Ìå´óÐ¡
 	BOOL										bEnable;		// Ê¹ÄÜÇé¿ö£¬TRUE£ºÊ¹ÄÜ£»FALSE£ºÎ´Ê¹ÄÜ
 }NET_CFG_LIFTCONTROL_OPTION;
+// ´®¿ÚÈÕÖ¾ÖØ¶¨ÏòÅäÖÃ
+typedef struct tagNET_CFG_DEBUGINFO_REDIR_INFO
+{
+    DWORD									dwSize;					// ½á¹¹Ìå´óÐ¡£¬¸³ÖµÎªsizeof(NET_CFG_DEBUGINFO_REDIR_INFO)
+    BOOL                                    bEnable;                // ÊÇ·ñÊ¹ÄÜÖØ¶¨Ïò
+}NET_CFG_DEBUGINFO_REDIR_INFO;
 
 // ÅäÖÃ²Ù×÷ÀàÐÍ
 typedef enum tagNET_EM_CFG_OPERATE_TYPE
@@ -45666,6 +45732,7 @@ typedef enum tagNET_EM_CFG_OPERATE_TYPE
 	NET_EM_CFG_PRESET_SNAP_PICTURE_NUM,		// Ô¤ÖÃµã×¥ÅÄÍ¼Æ¬ÊýÁ¿ÅäÖÃ,¶ÔÓ¦½á¹¹Ìå NET_CFG_PRESET_SNAP_PICTURE_NUM
 	NET_EM_CFG_DOWNLOAD_ENCRYPT,			// ÏÂÔØÊý¾Ý¼ÓÃÜÅäÖÃ, ¶ÔÓ¦½á¹¹Ìå NET_DOWNLOAD_ENCRYPT_INFO,ÓëÍ¨µÀ²»Ïà¹Ø,Í¨µÀºÅÐèÒªÌî³É-1
 	NET_EM_CFG_LIFT_CONTROL_OPTION,			// ÌÝ¿Ø¹¦ÄÜÈ«¾ÖÅäÖÃ£¬¶ÔÓ¦½á¹¹Ìå NET_CFG_LIFTCONTROL_OPTION,ÓëÍ¨µÀ²»Ïà¹Ø,Í¨µÀºÅÐèÒªÌî³É-1
+    NET_EM_CFG_DEBUGINFO_REDIR = 21,             // ´®¿ÚÈÕÖ¾ÖØ¶¨ÏòÅäÖÃ, ¶ÔÓ¦½á¹¹Ìå NET_CFG_DEBUGINFO_REDIR_INFO
 
 	/*********OSDµþ¼ÓÏà¹ØÅäÖÃ*************************************************************************************************/
 	NET_EM_CFG_CHANNELTITLE = 1000,         // µþ¼ÓÍ¨µÀ±êÌâÊôÐÔÅäÖÃ£¬¶ÔÓ¦½á¹¹Ìå NET_OSD_CHANNEL_TITLE,ÆäÖÐ½á¹¹ÌåÖÐµÄemOsdBlendTypeÎª±ØÌî²ÎÊý
@@ -50371,6 +50438,15 @@ CLIENT_NET_API BOOL CALL_METHOD CLIENT_StopSniffer(LLONG lLoginID, LLONG lSniffe
 
 // »ñÈ¡×¥°ü×´Ì¬,pInParamÓëpOutParamÄÚ´æÓÉÓÃ»§ÉêÇëÊÍ·Å
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetSnifferInfo(LLONG lLoginID, const DH_IN_GET_SNIFFER_INFO* pInParam, DH_OUT_GET_SNIFFER_INFO* pOutParam, int nWaitTime = 1000);
+
+// ¶©ÔÄ×¥°üÊý¾Ý,pInParamÓëpOutParamÄÚ´æÓÉÓÃ»§ÉêÇëÊÍ·Å
+CLIENT_NET_API LLONG CALL_METHOD CLIENT_AttachSniffer(LLONG lLoginID, const NET_IN_ATTACH_SNIFFER* pInParam, NET_OUT_ATTACH_SNIFFER* pOutParam, int nWaitTime);
+
+// ÍË¶©×¥°üÊý¾Ý
+CLIENT_NET_API BOOL CALL_METHOD CLIENT_DetachSniffer(LLONG lAttachHandle);
+
+// »ñÈ¡×¥°üÄÜÁ¦,pInParamÓëpOutParamÄÚ´æÓÉÓÃ»§ÉêÇëÊÍ·Å
+CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetSnifferCaps(LLONG lLoginID, const NET_IN_GET_SNIFFER_CAP* pInParam, NET_OUT_GET_SNIFFER_CAP* pOutParam, int nWaitTime);
 
 //////////////////////////////// ²¥·Å¿âÏà¹Ø½Ó¿Ú /////////////////////////////////
 
@@ -64247,7 +64323,7 @@ typedef enum tagNET_EM_FACEFEATURE_TYPE
 	NET_EM_FACEFEATURE_AGE,				// ÄêÁä
 	NET_EM_FACEFEATURE_EMOTION,			// ±íÇé
 	NET_EM_FACEFEATURE_GLASSES,			// ÑÛ¾µ×´Ì¬
-	NET_EM_FACEFEATURE_RACE,			// ÈËÖÖ
+	NET_EM_FACEFEATURE_RACE,			// 
 	NET_EM_FACEFEATURE_EYE,				// ÑÛ¾¦×´Ì¬
 	NET_EM_FACEFEATURE_MOUTH,			// ×ì°Í×´Ì¬
 	NET_EM_FACEFEATURE_MASK,			// ¿ÚÕÖ×´Ì¬

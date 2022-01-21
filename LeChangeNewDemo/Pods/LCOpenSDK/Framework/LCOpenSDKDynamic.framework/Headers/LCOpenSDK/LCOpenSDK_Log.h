@@ -12,11 +12,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    LogLevelTypeFatal = 1,
-    LogLevelTypeError,
-    LogLevelTypeWarning,
-    LogLevelTypeInfo,
-    LogLevelTypeDebug
+    LogLevelTypeFatal = 1,// 重大错误
+    LogLevelTypeError,// 错误信息
+    LogLevelTypeWarning,// 警告信息
+    LogLevelTypeInfo,// 主要用于生产环境中输出程序运行的一些重要信息
+    LogLevelTypeDebug// 运行调试信息
 } LogLevelType;
 
 @interface LCOpenSDK_LogInfo : NSObject

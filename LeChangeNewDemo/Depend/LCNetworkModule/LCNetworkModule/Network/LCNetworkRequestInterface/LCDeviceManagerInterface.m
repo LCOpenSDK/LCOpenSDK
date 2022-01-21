@@ -200,6 +200,9 @@
         for (LCChannelInfo * channel in info.channels) {
             channels = [channels stringByAppendingString:[NSString stringWithFormat:@"%@,",channel.channelId]];
         }
+        if (channels.length>0) {
+            channels = [channels substringToIndex:channels.length-1];
+        }
         [requestList addObject:@{KEY_DEVICE_ID:info.deviceId,KEY_CHANNELS:channels,KEY_APLIST:@""}];
         index++;
     }

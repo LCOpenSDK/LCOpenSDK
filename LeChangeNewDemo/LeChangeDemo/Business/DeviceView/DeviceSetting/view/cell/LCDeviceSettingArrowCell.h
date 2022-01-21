@@ -15,6 +15,8 @@ typedef void (^LCDeviceSettingArrowCellClickBlock)(NSInteger index);
 /// subtitle
 @property (strong, nonatomic) NSString *subtitle;
 
+@property (nonatomic, assign) BOOL deviceSnapHidden;
+
 /// block
 @property (copy, nonatomic) LCDeviceSettingArrowCellClickBlock block;
 

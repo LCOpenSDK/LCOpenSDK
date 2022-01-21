@@ -138,6 +138,12 @@
     }];
     //竖屏云台操作回调
     ptzControlView.panel.resultBlock = ^(VPDirection direction, double scale, NSTimeInterval timeInterval) {
+        if (direction == VPDirectionUnknown) {
+            [self.persenter hideBorderView];
+            self.persenter.videoManager.directionTouch = NO;
+        }else{
+            self.persenter.videoManager.directionTouch = YES;
+        }
         [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
     };
 
@@ -168,9 +174,14 @@
     
     //横屏云台操作回调
     landscapePtz.resultBlock = ^(VPDirection direction, double scale, NSTimeInterval timeInterval) {
-         [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
+        if (direction == VPDirectionUnknown) {
+            [self.persenter hideBorderView];
+            self.persenter.videoManager.directionTouch = NO;
+        }else{
+            self.persenter.videoManager.directionTouch = YES;
+        }
+        [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
     };
-
     
     UIView * videoHistoryView = [self.persenter getVideotapeView];
     [self.view addSubview:videoHistoryView];

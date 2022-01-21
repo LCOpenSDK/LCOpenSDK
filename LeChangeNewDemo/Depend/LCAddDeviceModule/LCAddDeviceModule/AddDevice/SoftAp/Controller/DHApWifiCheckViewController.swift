@@ -236,6 +236,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
                             timer.cancel()
                             LCProgressHUD.hideAllHuds(self.view)
                             print("⚠️⚠️⚠️\(NSStringFromClass(self.classForCoder))...获取设备信息失败，")
+                            self.isWifiChecked = false
                             return
                         }
                         if let device = DHAddDeviceManager.sharedInstance.getLocalDevice() {

@@ -18,6 +18,7 @@
 #define EXPIRETIME        @"GLOBAL_AUTH_EXPIRE_TIME"
 #define CURRENTMODE       @"GLOBAL_JOINT_CURRENT_MODE"
 #define SUBACCOUNT        @"GLOBAL_SUBACCOUNT"
+#define DebugFlag         @"GLOBAL_DEBUGFLAG"
 
 ///默认请求基地址
 //#define DEFAULTHOSTAPICHN @"https://funcopenapi.lechange.cn:443/openapi" //中国大陆(测试)
@@ -139,6 +140,18 @@ static NSMutableDictionary *deviceInfosPool;
     NSTextCheckingResult *result = resultArray[0];
     NSString *textStr = [[host substringWithRange:result.range] substringFromIndex:1];
     return [textStr integerValue];
+}
+
++(void)setDebugFlag:(BOOL)debugFlag{
+    
+    [[NSUserDefaults standardUserDefaults] setBool:debugFlag forKey:DebugFlag];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
++(BOOL)getDebugFlag{
+    
+    BOOL debugFlagValue = [[NSUserDefaults standardUserDefaults] boolForKey:DebugFlag];
+    return debugFlagValue;
 }
 
 ///当前是否管理员模式

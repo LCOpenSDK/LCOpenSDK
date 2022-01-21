@@ -22,5 +22,5 @@ target 'LeChangeDemo' do
   pod 'SnapKit'
   
   # Pods for LeChangeDemo
-  pod 'LCOpenSDK', '~> 3.11.7'
+  pod 'LCOpenSDK', '~> 3.11.9'
 end

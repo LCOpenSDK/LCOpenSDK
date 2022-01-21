@@ -265,7 +265,7 @@
 "More_Device_Shoot" = "Snapshot";
 "setting_device_alarm_alert" = "7*24 reminder enabled by default.";
 "setting_device_alarm_alert_close" = "You will no longer receive device alarm message and video after motion detection is disabled.";
-"setting_device_update_alert" = "升级过程持续几分钟，升级时请务必保证设备不断电";
+"setting_device_update_alert" = "The upgrade process lasts for several minutes. Please ensure that the equipment is not powered off during the upgrade";
 "add_device_password_too_simple" = "Password too simple";
 "add_device_please_input_RCCode" = "Please enter the correct security verification code";
 

@@ -27,6 +27,11 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 }
 
 - (void)onAudio:(LCButton *)btn {
+    
+    if (self.videoManager.playSpeed>1) {
+        return;
+    }
+    
     if (self.videoManager.isSoundOn) {
         //关闭声音
         [self.playWindow stopAudio];
@@ -50,7 +55,8 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         }
     } else {
         //位移超出或等于结束日期->处于正常播放结束状态
-        if ([self.videoManager.currentPlayOffest timeIntervalSinceDate:self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.endDate : self.videoManager.localVideotapeInfo.endDate] >= 0 || self.videoManager.playStatus == STATE_RTSP_FILE_PLAY_OVER) {
+        if ([self.videoManager.currentPlayOffest timeIntervalSinceDate:self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.endDate : self.videoManager.localVideotapeInfo.endDate]>= 0 ||
+            self.videoManager.playStatus == STATE_RTSP_FILE_PLAY_OVER) {
             [self startPlay:0];
         } else {
             if ([self.videoManager.currentPlayOffest timeIntervalSinceDate:self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.beginDate : self.videoManager.localVideotapeInfo.beginDate] > 0) {
@@ -60,30 +66,17 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
                 [self startPlay:0];
             }
         }
-        
-        
-        CGFloat speedTime = 1.0;
-        if (self.videoManager.playSpeed == 1) {
-            speedTime = 1.0;
-        } else if (self.videoManager.playSpeed == 2) {
-            speedTime = 4.0;
-        } else if (self.videoManager.playSpeed == 3) {
-            speedTime = 8.0;
-        } else if (self.videoManager.playSpeed == 4) {
-            speedTime = 16.0;
-        } else if (self.videoManager.playSpeed == 5) {
-            speedTime = 32.0;
-        }
-        [self.playWindow setPlaySpeed:speedTime];
     }
     NSLog(@"%@", [NSThread currentThread]);
 }
 
 - (void)onSpeed:(LCButton *)btn {
-    if (self.videoManager.playSpeed == 5) {
+    if (self.videoManager.playSpeed == 6) {
         self.videoManager.playSpeed = 1;
+        self.videoManager.isSoundOn = YES;
     } else {
         self.videoManager.playSpeed ++;
+        self.videoManager.isSoundOn = NO;
     }
 }
 
@@ -100,6 +93,8 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 
 //开始播放
 - (void)startPlay:(NSInteger)offsetTime {
+    
+    [self loadPlaySpeed];
     [self hidePlayBtn];
     [self hideErrorBtn];
     [self.playWindow stopCloud:YES];
@@ -182,14 +177,11 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 }
 
 - (void)onSnap:(LCButton *)btn {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
-                                                         NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask, YES);
     NSString *libraryDirectory = [paths objectAtIndex:0];
 
-    NSString *myDirectory =
-        [libraryDirectory stringByAppendingPathComponent:@"lechange"];
-    NSString *picDirectory =
-        [myDirectory stringByAppendingPathComponent:@"picture"];
+    NSString *myDirectory = [libraryDirectory stringByAppendingPathComponent:@"lechange"];
+    NSString *picDirectory = [myDirectory stringByAppendingPathComponent:@"picture"];
 
     NSDateFormatter *dataFormat = [[NSDateFormatter alloc] init];
     [dataFormat setDateFormat:@"yyyyMMddHHmmss"];
@@ -221,21 +213,22 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     [PHAsset deleteFormCameraRoll:imgURL success:^{
     } failure:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-                       });
+        });
     }];
 
     [PHAsset saveImageToCameraRoll:image url:imgURL success:^(void) {
         dispatch_async(dispatch_get_main_queue(), ^{
-                           [LCProgressHUD showMsg:@"livepreview_localization_success".lc_T];
-                       });
+            [LCProgressHUD showMsg:@"livepreview_localization_success".lc_T];
+        });
     } failure:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-                           [LCProgressHUD showMsg:@"livepreview_localization_fail".lc_T];
-                       });
+            [LCProgressHUD showMsg:@"livepreview_localization_fail".lc_T];
+        });
     }];
 }
 
 - (void)onLockFullScreen:(LCButton *)btn {
+    
     self.videoManager.isLockFullScreen = !self.videoManager.isLockFullScreen;
 }
 
@@ -286,12 +279,13 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
                 }];
                 [PHAsset saveVideoAtURL:davURL success:^(void) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                                       [LCProgressHUD showMsg:@"livepreview_localization_success".lc_T];
-                                   });
+                        
+                        [LCProgressHUD showMsg:@"livepreview_localization_success".lc_T];
+                    });
                 } failure:^(NSError *error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                                       [LCProgressHUD showMsg:@"livepreview_localization_fail".lc_T];
-                                   });
+                        [LCProgressHUD showMsg:@"livepreview_localization_fail".lc_T];
+                    });
                 }];
             } else {
                 [LCProgressHUD showMsg:@"livepreview_localization_fail".lc_T];
@@ -302,6 +296,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 }
 
 - (void)onDownload:(LCButton *)btn {
+    
     [LCProgressHUD showHudOnView:nil];
 }
 
@@ -312,6 +307,25 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 
 - (void)setSavePath:(NSString *)savePath {
     objc_setAssociatedObject(self, kLCLivePreviewPresenterSavePath, savePath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(void)loadPlaySpeed{
+    
+    CGFloat speedTime = 1.0;
+    if (self.videoManager.playSpeed == 1) {
+        speedTime = 1.0;
+    } else if (self.videoManager.playSpeed == 2) {
+        speedTime = 2.0;
+    } else if (self.videoManager.playSpeed == 3) {
+        speedTime = 4.0;
+    } else if (self.videoManager.playSpeed == 4) {
+        speedTime = 8.0;
+    } else if (self.videoManager.playSpeed == 5) {
+        speedTime = 16.0;
+    } else if (self.videoManager.playSpeed == 6) {
+        speedTime = 32.0;
+    }
+    [self.playWindow setPlaySpeed:speedTime];
 }
 
 @end

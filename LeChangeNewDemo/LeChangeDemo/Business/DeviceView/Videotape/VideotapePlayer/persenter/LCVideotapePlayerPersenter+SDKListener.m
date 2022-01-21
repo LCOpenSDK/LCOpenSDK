@@ -86,10 +86,12 @@
 - (void)onPlayBegan:(NSInteger)index {
     weakSelf(self);
     dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself loadPlaySpeed];
         [weakself hideVideoLoadImage];
-        [self hideErrorBtn];
+        [weakself hideErrorBtn];
         weakself.videoManager.isPlay = YES; //暂停时直接拖动进度条也会触发播放
         weakself.videoManager.playStatus = 1001;
+        [weakself setVideoType];
     });
 }
 
@@ -156,8 +158,11 @@
                 [weakself showPSKAlert:[code integerValue] == HLS_PASSWORD_ERROR isPlay:YES];
                 [weakself stopPlay];
             }
-            
         });
+        return;
+    }
+    
+    if ([code integerValue] == HLS_DOWNLOAD_BEGIN && type == RESULT_PROTO_TYPE_HLS) {
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{

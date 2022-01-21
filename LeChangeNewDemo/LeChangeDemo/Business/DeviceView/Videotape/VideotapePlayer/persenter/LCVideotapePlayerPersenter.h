@@ -52,6 +52,8 @@ typedef enum : NSUInteger {
 ///errorLab
 @property (strong, nonatomic) UILabel * errorMsgLab;
 
+@property (nonatomic, strong) UILabel *videoTypeLabel;
+
 /**
  获取中间控制视图的子模块
  
@@ -110,6 +112,8 @@ typedef enum : NSUInteger {
 
 -(void)loadStatusView;
 
+/// 设置拉流方式
+-(void)setVideoType;
 
 @end
 

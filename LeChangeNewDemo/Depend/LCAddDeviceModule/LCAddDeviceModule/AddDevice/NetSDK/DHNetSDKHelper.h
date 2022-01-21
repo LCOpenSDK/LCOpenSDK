@@ -69,7 +69,7 @@
 + (void)logoutDevice:(long)loginHandle completion:(dispatch_block_t)completion;
 
 /**
- SC设备设置连接Wi-Fi
+ SC设备设置连接Wi-Fi 老方法，通过netSDK实现
  
  @param mSSIDmSSID IP地址
  @param password 端口号
@@ -81,6 +81,21 @@
                            ip:(NSString *)deviceIP
                          port:(NSInteger)port
           encryptionAuthority:(int)encryptionAuthority complete:(void (^)(NSInteger error))complete;
+
+/// SC设备softAPConfig方法连接Wi-Fi，通过OpenSDK方法配网
+/// @param wifiName WiFi名称
+/// @param wiFiPsw WiFi密码
+/// @param deviceId 设备id
+/// @param devicePsw 设备密码
+/// @param isSC 是否SC设备
+/// @param complete 回调函数
++(void)scDeviceSoftAPConnectWifi:(NSString *)wifiName wiFiPsw:(NSString *)wiFiPsw deviceId:(NSString *)deviceId devicePsw:(NSString *)devicePsw isSC:(BOOL )isSC complete:(void(^)(BOOL))complete;
+
+/// 搜索设备初始化信息
+/// @param deviceId 设备Id
+/// @param timeOut 超时时间
+/// @param success 搜索到的设备初始化信息
++(void)searchDeviceInitInfo:(NSString *)deviceId timeOut:(int)timeOut callBack:(void (^)(NSDictionary *deviceInfo))callBack;
 
 /**
  获取sc设备WIFI列表

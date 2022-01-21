@@ -629,4 +629,128 @@
     NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
 }
 
+-(void)setVideoType{
+    
+    if (![LCApplicationDataManager getDebugFlag]) {
+        return;
+    }
+    NSObject *currentPlayer = [self.playWindow valueForKey:@"mPlayer"];
+    id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+    NSString *streamTypeString = @"";
+    if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+        streamTypeString = @"P2P";
+    }else{
+        streamTypeString = @"MTS";
+    }
+    
+    self.videoTypeLabel.text = [@"当前拉流模式:" stringByAppendingString:streamTypeString];
+    _videoTypeLabel.hidden = NO;
+}
+
+-(UILabel *)videoTypeLabel{
+    
+    if (!_videoTypeLabel) {
+        _videoTypeLabel = [UILabel new];
+        _videoTypeLabel.textColor = [UIColor whiteColor];
+        _videoTypeLabel.font = [UIFont dhFont_t8];
+        _videoTypeLabel.textAlignment = NSTextAlignmentRight;
+        [[self.playWindow getWindowView] addSubview:_videoTypeLabel];
+        _videoTypeLabel.hidden = YES;
+        [_videoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.height.mas_equalTo(30);
+            make.right.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    
+    _videoTypeLabel.hidden = YES;
+    
+    return _videoTypeLabel;
+}
+
+-(void)showBorderView:(BorderViewDirection)direction{
+    
+    if (!self.videoManager.directionTouch) {
+        return;
+    }
+    
+    if (direction == BorderViewTop) {
+        self.borderIVTop.hidden = NO;
+        self.borderIVBottom.hidden = YES;
+        self.borderIVLeft.hidden = YES;
+        self.borderIVRight.hidden = YES;
+    }else if (direction == BorderViewBottom){
+        self.borderIVTop.hidden = YES;
+        self.borderIVBottom.hidden = NO;
+        self.borderIVLeft.hidden = YES;
+        self.borderIVRight.hidden = YES;
+    }else if (direction == BorderViewLeft){
+        self.borderIVTop.hidden = YES;
+        self.borderIVBottom.hidden = YES;
+        self.borderIVLeft.hidden = NO;
+        self.borderIVRight.hidden = YES;
+    }else if (direction == BorderViewRight){
+        self.borderIVTop.hidden = YES;
+        self.borderIVBottom.hidden = YES;
+        self.borderIVLeft.hidden = YES;
+        self.borderIVRight.hidden = NO;
+    }
+}
+
+-(void)hideBorderView{
+    
+    self.borderIVTop.hidden = YES;
+    self.borderIVBottom.hidden = YES;
+    self.borderIVLeft.hidden = YES;
+    self.borderIVRight.hidden = YES;
+}
+
+-(UIImageView *)borderIVTop{
+    
+    if (!_borderIVTop) {
+        _borderIVTop = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewTop"]];
+        [[self.playWindow getWindowView] addSubview:_borderIVTop];
+        [_borderIVTop mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.top.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    return _borderIVTop;
+}
+
+-(UIImageView *)borderIVBottom{
+    
+    if (!_borderIVBottom) {
+        _borderIVBottom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewBottom"]];
+        [[self.playWindow getWindowView] addSubview:_borderIVBottom];
+        [_borderIVBottom mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.bottom.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    return _borderIVBottom;
+}
+
+-(UIImageView *)borderIVLeft{
+    
+    if (!_borderIVLeft) {
+        _borderIVLeft = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewLeft"]];
+        [[self.playWindow getWindowView] addSubview:_borderIVLeft];
+        [_borderIVLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.left.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    return _borderIVLeft;
+}
+
+-(UIImageView *)borderIVRight{
+    
+    if (!_borderIVRight) {
+        _borderIVRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewRight"]];
+        [[self.playWindow getWindowView] addSubview:_borderIVRight];
+        [_borderIVRight mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.right.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    return _borderIVRight;
+}
+
 @end

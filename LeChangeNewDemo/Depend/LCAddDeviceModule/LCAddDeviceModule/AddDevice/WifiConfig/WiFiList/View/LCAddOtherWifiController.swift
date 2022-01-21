@@ -158,9 +158,15 @@ class LCAddOtherWifiController: DHBaseViewController {
                     return
                 }
                 if device?.deviceInitStatus == .unInit {
-                    DHNetSDKHelper.scDeviceApConnectWifi(ssid, password: pwd, ip: device!.deviceIP, port: Int(device!.port), encryptionAuthority: 12) { (error) in
+                    
+                    DHNetSDKHelper.scDeviceSoftAPConnectWifi(ssid, wiFiPsw: pwd, deviceId: DHAddDeviceManager.sharedInstance.deviceId, devicePsw: DHAddDeviceManager.sharedInstance.regCode, isSC: DHAddDeviceManager.sharedInstance.isSupportSC) { result in
+                        
                         LCProgressHUD.hideAllHuds(self.view)
-                        self.pushToConnectCloud()
+                        if result {
+                            self.pushToConnectCloud()
+                        }else{
+                            LCProgressHUD.showMsg("配网失败，请重试")
+                        }
                     }
                 } else {
                     connectWifi()
@@ -169,7 +175,6 @@ class LCAddOtherWifiController: DHBaseViewController {
                 connectWifi()
             }
         }
-        
     }
     
     private func connectWifi() {

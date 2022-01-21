@@ -23,6 +23,7 @@ static LCDeviceVideoManager * manager = nil;
         manager.isOpenRecoding = NO;
         manager.isLockFullScreen = NO;
         manager.playSpeed = 1;
+        manager.directionTouch = NO;
     });
     return manager;
 }

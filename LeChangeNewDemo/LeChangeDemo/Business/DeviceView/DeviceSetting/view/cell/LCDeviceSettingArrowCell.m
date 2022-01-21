@@ -52,6 +52,10 @@
     [self.deviceSnap lc_setThumbImageWithURL:imageUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:deviceId ChannelId:channelId];
 }
 
+-(void)setDeviceSnapHidden:(BOOL)deviceSnapHidden{
+    
+    self.deviceSnap.hidden = deviceSnapHidden;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

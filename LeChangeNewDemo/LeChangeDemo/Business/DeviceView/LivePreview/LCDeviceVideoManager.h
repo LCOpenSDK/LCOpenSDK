@@ -69,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前播放码流，与设备能力相关
 @property (nonatomic, strong) LCCIResolutions *currentResolution;
 
+/// 转变方向按钮是否在拖动中
+@property (nonatomic, assign) BOOL directionTouch;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -89,15 +89,18 @@
                     speedTime = 1.0;
                     [item setImage:LC_IMAGENAMED(@"video_1x") forState:UIControlStateNormal];
                 } else if (speed == 2) {
+                    speedTime = 2.0;
+                    [item setImage:LC_IMAGENAMED(@"video_2x") forState:UIControlStateNormal];
+                } else if (speed == 3) {
                     speedTime = 4.0;
                     [item setImage:LC_IMAGENAMED(@"video_4x") forState:UIControlStateNormal];
-                } else if (speed == 3) {
+                } else if (speed == 4) {
                     speedTime = 8.0;
                     [item setImage:LC_IMAGENAMED(@"video_8x") forState:UIControlStateNormal];
-                } else if (speed == 4) {
+                } else if (speed == 5) {
                     speedTime = 16.0;
                     [item setImage:LC_IMAGENAMED(@"video_16x") forState:UIControlStateNormal];
-                } else if (speed == 5) {
+                } else if (speed == 6) {
                     speedTime = 32.0;
                     [item setImage:LC_IMAGENAMED(@"video_32x") forState:UIControlStateNormal];
                 }
@@ -318,11 +321,14 @@
 }
 
 - (void)onResignActive:(id)sender {
-    if (self.playWindow) {
-        [self.playWindow stopRtspReal:YES];
-        self.videoManager.isPlay = NO;
-        [self.playWindow stopAudio];
+    if (self.videoManager.isPlay) {
+        [self pausePlay];
     }
+//    if (self.playWindow) {
+//        [self.playWindow stopRtspReal:YES];
+//        self.videoManager.isPlay = NO;
+//        [self.playWindow stopAudio];
+//    }
 }
 
 - (void)checkDownloadStatus:(LCButton *)btn DonwloadStatus:(LCVideotapeDownloadState)status {
@@ -482,6 +488,46 @@
 
 - (void)onSlipEnd:(Direction)dir dx:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index {
     
+}
+
+-(void)setVideoType{
+    
+    if (![LCApplicationDataManager getDebugFlag]) {
+        return;
+    }
+    NSObject *currentPlayer = [self.playWindow valueForKey:@"mPlayer"];
+    id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+    NSString *streamTypeString = @"";
+    
+    if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+        streamTypeString = @"P2P";
+    }else{
+        streamTypeString = @"MTS";
+    }
+    
+    self.videoTypeLabel.text = [@"当前拉流模式:" stringByAppendingString:streamTypeString];
+    _videoTypeLabel.hidden = NO;
+}
+
+-(UILabel *)videoTypeLabel{
+    
+    if (!_videoTypeLabel) {
+        _videoTypeLabel = [UILabel new];
+        _videoTypeLabel.textColor = [UIColor whiteColor];
+        _videoTypeLabel.font = [UIFont dhFont_t8];
+        _videoTypeLabel.textAlignment = NSTextAlignmentRight;
+        [[self.playWindow getWindowView] addSubview:_videoTypeLabel];
+        _videoTypeLabel.hidden = YES;
+        [_videoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.height.mas_equalTo(30);
+            make.right.equalTo([self.playWindow getWindowView]);
+        }];
+    }
+    
+    _videoTypeLabel.hidden = YES;
+    
+    return _videoTypeLabel;
 }
 
 @end

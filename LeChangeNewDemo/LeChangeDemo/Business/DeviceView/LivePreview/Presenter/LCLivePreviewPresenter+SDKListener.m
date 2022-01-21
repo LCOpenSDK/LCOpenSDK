@@ -77,11 +77,51 @@
     return;
 }
 
+-(void)onIVSInfo:(NSString *)pIVSBuf nIVSType:(long)nIVSType nIVSBufLen:(long)nIVSBufLen nFrameSeq:(long)nFrameSeq{
+    
+    if ([pIVSBuf isKindOfClass:[NSString class]] && pIVSBuf.length>0) {
+        
+        if ([pIVSBuf containsString:@"PtzLimitStatus"]) {
+            NSDictionary *dic = [self jsonToObject:[pIVSBuf substringWithRange:NSMakeRange(0, pIVSBuf.length - 5)]];
+            if ([[dic allKeys] containsObject:@"Ptz"]) {
+                NSDictionary *PtzDic = [dic objectForKey:@"Ptz"];
+                NSArray *PtzLimitStatusArr = [PtzDic objectForKey:@"PtzLimitStatus"];
+                NSLog(@"PtzLimitStatusArr-----%@",PtzLimitStatusArr);
+                if ([[PtzLimitStatusArr lastObject] intValue] == -1) {//最上边
+                    
+                    [self showBorderView:BorderViewTop];
+                }else if ([[PtzLimitStatusArr lastObject] intValue] == 1){//最下边
+                    
+                    [self showBorderView:BorderViewBottom];
+                }else if([[PtzLimitStatusArr firstObject] intValue] == -1){//最右边
+                    
+                    [self showBorderView:BorderViewRight];
+                }else if([[PtzLimitStatusArr firstObject] intValue] == 1){//最左边
+                    
+                    [self showBorderView:BorderViewLeft];
+                }else{
+                    if (!self.videoManager.directionTouch) {
+                        [self hideBorderView];
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+- (id)jsonToObject:(NSString *)json{
+    NSData * jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    id  obj = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    return obj;
+}
+
 - (void)onPlayBegan:(NSInteger)index {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.videoManager.playStatus = 1001;
         [self saveThumbImage];
         [self hideVideoLoadImage];
+        [self setVideoType];
     });
 }
 

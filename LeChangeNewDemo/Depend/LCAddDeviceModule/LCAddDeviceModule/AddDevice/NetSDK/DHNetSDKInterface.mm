@@ -9,6 +9,7 @@
 #import <LCBaseModule/NSString+Dahua.h>
 #import <LCBaseModule/NSObject+JSON.h>
 #import <LCOpenSDKDynamic/LCOpenNetSDK/configsdk.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_SearchDevices.h>
 
 /// 网卡类型
 typedef enum : NSUInteger {
@@ -195,19 +196,16 @@ int netSDKLogCallBack(const char* szLogBuffer, unsigned int nLogSize, LDWORD dwU
 	if (self.searchCallback == nil) {
 		self.searchCallback = callback;
 	}
+    
+    LCOpenSDK_SearchDevices *searchDevice = [LCOpenSDK_SearchDevices shareSearchDevices];
+    long result = [searchDevice startSearchDevices:^(DEVICE_NET_INFO_EX *deviceInfo) {
+
+        DHDeviceNetInfo *netInfo = [[DHDeviceNetInfo alloc] initWithNetInfo: deviceInfo];
+        netInfo.isVaild = YES;
+        self.searchCallback(netInfo);
+    } byLocalIp:localIp];
 	
-	NET_IN_STARTSERACH_DEVICE inSearch = {0};
-	inSearch.dwSize = sizeof(NET_IN_STARTSERACH_DEVICE);
-	inSearch.cbSearchDevices = netSearchResultEx;
-	
-	if (localIp) {
-		memcpy(inSearch.szLocalIp, [localIp UTF8String], localIp.length);
-	}
-	
-	NET_OUT_STARTSERACH_DEVICE outSearch = {0};
-	outSearch.dwSize = sizeof(NET_OUT_STARTSERACH_DEVICE);
-	
-	return CLIENT_StartSearchDevicesEx(&inSearch, &outSearch);
+	return result;
 }
 
 - (long)startSearchDevices:(DHNetSDKSearchDeviceCallback)callback {
@@ -215,26 +213,21 @@ int netSDKLogCallBack(const char* szLogBuffer, unsigned int nLogSize, LDWORD dwU
 		self.searchCallback = callback;
 	}
 	
-	NET_IN_STARTSERACH_DEVICE inSearch = {0};
-	inSearch.dwSize = sizeof(NET_IN_STARTSERACH_DEVICE);
-	inSearch.cbSearchDevices = netSearchResultEx;
-	
-	//DTS000308350 填了手机IP，会导致搜索到的内容变少
-//	NSString *ipAddr = UIDevice.lc_getIPAddress;
-//	memcpy(inSearch.szLocalIp, [ipAddr UTF8String], ipAddr.length);
-	
-	//默认使用广播+组播方式
-//	inSearch.emSendType = EM_SEND_SEARCH_TYPE_MULTICAST;
+    LCOpenSDK_SearchDevices *searchDevice = [LCOpenSDK_SearchDevices shareSearchDevices];
+    long result = [searchDevice startSearchDevices:^(DEVICE_NET_INFO_EX *deviceInfo) {
 
-	NET_OUT_STARTSERACH_DEVICE outSearch = {0};
-	outSearch.dwSize = sizeof(NET_OUT_STARTSERACH_DEVICE);
-
-	return CLIENT_StartSearchDevicesEx(&inSearch, &outSearch);
+        DHDeviceNetInfo *netInfo = [[DHDeviceNetInfo alloc] initWithNetInfo: deviceInfo];
+        netInfo.isVaild = YES;
+        self.searchCallback(netInfo);
+    } byLocalIp:@""];
+    
+    return result;
 }
 
 - (void)stopSearchDevices:(long)handle {
 	self.searchCallback = nil;
-	CLIENT_StopSearchDevices(handle);
+    LCOpenSDK_SearchDevices *searchDevice = [LCOpenSDK_SearchDevices shareSearchDevices];
+    [searchDevice stopSearchDevices:handle];
 }
 
 + (DHNetLoginDeviceInfo *)loginWithHighLevelSecurityByIP:(NSString *)devIP port:(NSInteger)port username:(NSString *)username password:(NSString *)password errorCode:(unsigned int *)errorCode {
@@ -1304,9 +1297,9 @@ int netSDKLogCallBack(const char* szLogBuffer, unsigned int nLogSize, LDWORD dwU
     return strError;
 }
 
-
 + (unsigned int)getLastError {
-	return CLIENT_GetLastError();
+    
+    return [LCOpenSDK_SearchDevices getLastError];
 }
 
 #pragma mark - Production
@@ -1511,35 +1504,6 @@ int netSDKLogCallBack(const char* szLogBuffer, unsigned int nLogSize, LDWORD dwU
 	}
 	
 	return [NSString stringWithUTF8String:utf8];
-}
-
-//MARK: Callback
-void CALLBACK netSearchResultEx(LLONG lSearchHandle, DEVICE_NET_INFO_EX2 *pDevNetInfo, void *pUserData)
-{
-	DHDeviceNetInfo *netInfo = [[DHDeviceNetInfo alloc] initWithNetInfo: &(pDevNetInfo->stuDevInfo)];
-	netInfo.isVaild = YES;
-	//NSLog(@"28614-find device: %@ - %@ - %d- %@ ", netInfo.deviceType, netInfo.serialNo, netInfo.ipVersion, netInfo.ip);
-	if(netInfo.ipVersion != 4 ){
-		return ;
-	}
-
-	if ([DHNetSDKInterface sharedInstance].searchCallback) {
-		[DHNetSDKInterface sharedInstance].searchCallback(netInfo);
-	}
-}
-
-void CALLBACK netSearchResult(DEVICE_NET_INFO_EX *pDevNetInfo, void *pUserData)
-{
-	DHDeviceNetInfo *netInfo = [[DHDeviceNetInfo alloc] initWithNetInfo:pDevNetInfo];
-	netInfo.isVaild = YES;
-	//NSLog(@"28614-find device: %@ - %@", netInfo.deviceType, netInfo.serialNo);
-	if(netInfo.ipVersion != 4 ){
-		return ;
-	}
-
-	if ([DHNetSDKInterface sharedInstance].searchCallback) {
-		[DHNetSDKInterface sharedInstance].searchCallback(netInfo);
-	}
 }
 
 void CALLBACK fDisconnect(LLONG lLoginID, char *pchDVRIP, LONG nDVRPort, LDWORD dwUser) {

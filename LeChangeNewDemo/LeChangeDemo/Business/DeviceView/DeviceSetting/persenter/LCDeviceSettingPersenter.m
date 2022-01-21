@@ -162,6 +162,7 @@
         cell.block = ^(NSInteger index) {
             [weakself.container.navigationController pushToDeviceSettingDeviceDetail];
         };
+        cell.deviceSnapHidden = NO;
         return cell;
     } else if (indexPath.section == 0 && indexPath.row == 1) {
         LCDeviceSettingSubtitleCell *tempCell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell" forIndexPath:indexPath];
@@ -179,6 +180,7 @@
             cell.block = ^(NSInteger index) {
                 [weakself.container.navigationController pushToWifiSettings:self.manager.currentDevice.deviceId];
             };
+            cell.deviceSnapHidden = YES;
             return cell;
         } else {
             LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell"];
@@ -186,6 +188,7 @@
             cell.block = ^(NSInteger index) {
                 [weakself.container.navigationController pushToDeviceSettingDeploy];
             };
+            cell.deviceSnapHidden = YES;
             return cell;
         }
     } else {
@@ -194,6 +197,7 @@
         cell.block = ^(NSInteger index) {
             [weakself.container.navigationController pushToWifiSettings:self.manager.currentDevice.deviceId];
         };
+        cell.deviceSnapHidden = YES;
         return cell;
     }
     return nil;
@@ -208,6 +212,7 @@
         cell.block = ^(NSInteger index) {
             [weakself.container.navigationController pushToDeviceSettingEditName];
         };
+        cell.deviceSnapHidden = YES;
         return cell;
     } else if (indexPath.row == 1) {
         LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell"];
@@ -226,6 +231,7 @@
                 [LCProgressHUD showMsg:@"setting_device_had_paste".lc_T];
             }
         };
+        cell.deviceSnapHidden = YES;
         return cell;
     }
 }

@@ -31,6 +31,8 @@
 
 /// bottomBtn
 @property (strong, nonatomic) UIButton *bottomBtn;
+@property (nonatomic, strong) UIView *debugView;
+@property (nonatomic, strong) UISwitch *debugSwitch;
 
 @end
 
@@ -102,6 +104,10 @@
         make.top.mas_equalTo(kNavBarAndStatusBarHeight + 15);
     }];
     self.titleLab = titleLab;
+    self.titleLab.userInteractionEnabled = YES;
+    UITapGestureRecognizer *titleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(titleTapAction:)];
+    titleTap.numberOfTapsRequired = 2;
+    [self.titleLab addGestureRecognizer:titleTap];
     
     LCInputTextField *apiHost = [LCInputTextField creatTextFieldWithResult:^(NSString * _Nonnull result) {
         
@@ -180,6 +186,59 @@
         make.right.mas_equalTo(self.view).offset(-15);
     }];
     
+    if ([LCApplicationDataManager getDebugFlag]) {
+        [self setSwitchStatus:YES];
+    }
+}
+
+-(void)titleTapAction:(UITapGestureRecognizer *)sender{
+    
+    [self setSwitchStatus:YES];
+}
+
+-(void)setSwitchStatus:(BOOL)status{
+    
+    self.debugView.hidden = !status;
+    _debugSwitch.on = status;
+    [LCApplicationDataManager setDebugFlag:status];
+}
+
+-(void)DebugStatus{
+    
+    [self setSwitchStatus:NO];
+}
+
+- (UIView *)debugView{
+    
+    if (!_debugView) {
+        _debugView = [UIView new];
+        [self.view addSubview:_debugView];
+        [_debugView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.bottom.equalTo(self.titleLab);
+            make.left.equalTo(self.titleLab.mas_right).mas_offset(5);
+            make.right.equalTo(self.view);
+        }];
+        
+        _debugSwitch = [UISwitch new];
+        [_debugView addSubview:_debugSwitch];
+        [_debugSwitch addTarget:self action:@selector(DebugStatus) forControlEvents:UIControlEventTouchUpInside];
+        [_debugSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.centerY.left.equalTo(self.debugView);
+        }];
+        
+        UILabel *debugLabel = [UILabel new];
+        debugLabel.text = @"Debug模式开启";
+        debugLabel.adjustsFontSizeToFitWidth = YES;
+        [_debugView addSubview:debugLabel];
+        [debugLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.centerY.right.equalTo(self.debugView);
+            make.left.equalTo(self.debugSwitch.mas_right).mas_offset(5);
+        }];
+    }
+    return _debugView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
