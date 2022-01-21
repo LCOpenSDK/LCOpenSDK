@@ -21,37 +21,23 @@ typedef NS_ENUM(NSInteger, LC_ConfigWifi_Event)
 typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* userData);
 @interface LCOpenSDK_ConfigWIfi : NSObject
 
-/**
-*  设置波形发送方式
-*
-*  @param fskMode   波形发送方式(0--新的fsk发送方式，1--老的fsk发送方式，2--新的和老的fsk波形发送方式)
-*
-*  @return  0, 接口调用成功
-*          -1, 接口调用失败
-*/
+/// 设置波形发送方式
+/// @param fskMode 波形发送方式(0--新的fsk发送方式，1--老的fsk发送方式，2--新的和老的fsk波形发送方式)
 - (void)setFskMode:(NSInteger)fskMode;
-/**
- *  开始Wifi配网
- *
- *  @param devId    设备ID
- *  @param ssid     Wifi的SSID
- *  @param pwd      Wifi密码
- *  @param security (选填，默认@"")
- *  @param voiceFreq (声波频率，需要根据设备类型区分。例如：普通11000，TP7C 17000)
- *  @param funcPtr  事件回调函数
- *  @param userData 回调时的用户数据
- *  @param timeout  接口调用超时时间
- *
- *  @return  0, 接口调用成功
- *          -1, 接口调用失败
- */
+
+/// 开始smartConfig配网
+/// @param devId 设备ID
+/// @param ssid Wifi的SSID
+/// @param pwd Wifi密码
+/// @param security (选填，默认@"")
+/// @param voiceFreq (声波频率，需要根据设备类型区分。例如：普通11000，TP7C 17000)
+//  @return  0, 接口调用成功
+//          -1, 接口调用失败
 - (NSInteger)configWifiStart:(NSString*)devId ssid:(NSString*)ssid password:(NSString*)pwd secure:(NSString*)security voiceFreq:(NSInteger)voiceFreq;
-/**
- *  停止Wifi配网
- *
- *  @return  0, 接口调用成功
- *          -1, 接口调用失败
- */
+
+/// 停止Wifi配网
+/// @return  0, 接口调用成功
+///         -1, 接口调用失败
 - (NSInteger)configWifiStop;
 
 @end

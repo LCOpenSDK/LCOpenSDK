@@ -2306,7 +2306,7 @@ typedef enum tagEM_FACEFEATURE_TYPE
 	EM_FACEFEATURE_AGE,				// 年龄
 	EM_FACEFEATURE_EMOTION,			// 表情
 	EM_FACEFEATURE_GLASSES,			// 眼镜状态
-	EM_FACEFEATURE_RACE,			// 人种
+	EM_FACEFEATURE_RACE,			// 
 	EM_FACEFEATURE_EYE,				// 眼睛状态
 	EM_FACEFEATURE_MOUTH,			// 嘴巴状态
 	EM_FACEFEATURE_MASK,			// 口罩状态
@@ -10924,6 +10924,61 @@ typedef struct tagCFG_PTZ_MEASURE_DISTANCE
 	int					nDisplayMax;						// 图像测距信息的最大显示时长, 单位秒
 } CFG_PTZ_MEASURE_DISTANCE;
 
+// 支持的云台动作类型
+typedef struct tagCFG_PTZ_ACTION_CAPS
+{
+	BOOL				bSupportPan;					// 是否支持水平移动
+	BOOL				bSupportTile;					// 是否支持垂直移动
+	BOOL				bSupportZoom;					// 是否支持变倍
+	BYTE				byReserved[116];				// 预留
+}CFG_PTZ_ACTION_CAPS;
+
+// 支持的云台精确定位方式类型
+typedef struct tagCFG_PTZ_ABSOLUTELY_CAPS
+{
+	BOOL				bSupportNormal;					// 是否支持归一化定位
+	BOOL				bSupportReal;					// 是否支持实际参数值定位
+	BYTE				byReserved[120];				// 预留
+}CFG_PTZ_ABSOLUTELY_CAPS;
+
+// 绝对控制云台能力
+typedef struct tagCFG_PTZ_MOVE_ABSOLUTELY_CAP
+{
+	CFG_PTZ_ACTION_CAPS			stuPTZ;					// 支持的云台动作类型
+	CFG_PTZ_ABSOLUTELY_CAPS		stuType;				// 支持的云台精确定位方式类型
+	BYTE						byReserved[768];		// 预留
+}CFG_PTZ_MOVE_ABSOLUTELY_CAP;
+
+// 连续移动方式类型
+typedef struct tagCFG_PTZ_CONTINUOUSLY_TYPE
+{
+	BOOL						bSupportNormal;			// 是否支持归一化值定位
+	BOOL						bSupportExtra;			// 是否支持非归一化值定位
+	BYTE						byReserved[120];		// 预留
+}CFG_PTZ_CONTINUOUSLY_TYPE;
+
+// 云台连续运动能力
+typedef struct tagCFG_PTZ_MOVE_CONTINUOUSLY_CAPS
+{
+	CFG_PTZ_ACTION_CAPS			stuPTZ;					// 支持的PTZ动作
+	CFG_PTZ_CONTINUOUSLY_TYPE	stuType;				// 连续移动方式类型
+	BYTE						byReserved[1024];		// 预留
+}CFG_PTZ_MOVE_CONTINUOUSLY_CAPS;
+
+// 云台不支持的转动方向
+typedef enum tagEM_PTZ_UNSUPPORT_DIRECTION
+{
+	EM_PTZ_UNSUPPORT_DIRECTION_UNKNOWN,			// 未知
+	EM_PTZ_UNSUPPORT_DIRECTION_UP,				// 上
+	EM_PTZ_UNSUPPORT_DIRECTION_DOWN,			// 下
+	EM_PTZ_UNSUPPORT_DIRECTION_LEFT,			// 左
+	EM_PTZ_UNSUPPORT_DIRECTION_RIGHT,			// 右
+	EM_PTZ_UNSUPPORT_DIRECTION_LEFTUP,			// 左上
+	EM_PTZ_UNSUPPORT_DIRECTION_RIGHTUP,			// 右上
+	EM_PTZ_UNSUPPORT_DIRECTION_LEFTDOWN,		// 左下
+	EM_PTZ_UNSUPPORT_DIRECTION_RIGHTDOWN,		// 右下
+} EM_PTZ_UNSUPPORT_DIRECTION;
+
 //获取云台能力集信息
 typedef struct tagCFG_PTZ_PROTOCOL_CAPS_INFO
 {
@@ -11001,6 +11056,11 @@ typedef struct tagCFG_PTZ_PROTOCOL_CAPS_INFO
 	BOOL				bDirectionDisplay;			// 是否支持云台方向状态显示
 	DWORD				dwZoomMax;					// 变倍最大值
 	DWORD				dwZoomMin;					// 变倍最小值
+	CFG_PTZ_MOVE_ABSOLUTELY_CAP		stuMoveAbsolutely;		// 绝对控制云台能力，bMoveAbsolutely==TRUE 时有效
+	BOOL							bMoveContinuously;		// stuMoveContinuously 字段是否有效
+	CFG_PTZ_MOVE_CONTINUOUSLY_CAPS	stuMoveContinuously;	// 云台连续运动能力
+	int								nUnSupportDirections;		// 云台不支持的转动方向个数
+	EM_PTZ_UNSUPPORT_DIRECTION		emUnSupportDirections[10];	// 云台不支持的转动方向
 }CFG_PTZ_PROTOCOL_CAPS_INFO;
 
 //串口支持的云台协议
@@ -14497,7 +14557,10 @@ typedef struct tagCFG_WLAN_INFO
                                                                                                                 WPA-PSK                 TKIP+AES( mix Mode)         "WPA-PSK-TKIP"或者"WPA-PSK-AES"
                                                                                                                 WPA2                    TKIP+AES( mix Mode)         "WPA2-TKIP"或者"WPA2-AES"
                                                                                                                 WPA2-PSK                TKIP+AES( mix Mode)         "WPA2-PSK-TKIP"或者"WPA2-PSK-AES"
-                                                                                                                */
+																												WPA2-PSK                TKIP+AES( mix Mode)         "WPA2-PSK-TKIP"或者"WPA2-PSK-AES"		
+																												WPA3-SAE				AES(CCMP)					"WPA3-SAE-CCMP"						
+																												WPA3-SAE/PSK			AES(CCMP)					"WPA3-SAE/PSK-CCMP"兼容模式		
+																												*/
     EM_CFG_WIRELESS_AUTHENTICATION emAuthentication;            // 认证方式,  暂时没用
     EM_CFG_WIRELESS_DATA_ENCRYPT   emDataEncryption;            // 数据加密方式, 暂时没用
     int                     nKeyType;                           // 密码类型, 0: Hex, 1: ASCII
