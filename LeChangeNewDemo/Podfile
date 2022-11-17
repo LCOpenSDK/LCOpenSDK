@@ -25,7 +25,6 @@ target 'LeChangeDemo' do
   pod 'MBProgressHUD', '1.0.0'
   pod 'ObjectMapper', '~> 3.5.3'
   # Pods for LeChangeDemo
-#  pod 'LCOpenSDK', '~> 3.12.00'
-  pod 'LCOpenSDK', :path => '../'
+  pod 'LCOpenSDK', '~> 3.12.00'
 
 end

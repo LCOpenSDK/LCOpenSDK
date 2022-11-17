@@ -14,4 +14,5 @@ You need to add configuration information before use, otherwise an error will oc
 
 Build Settings -> Framework Search Paths
 
-Add value "$(SRCROOT)/../../Pods/LCOpenSDK/Framework"
+Add value "$(PODS_ROOT)/LCOpenSDK/Framework"
+

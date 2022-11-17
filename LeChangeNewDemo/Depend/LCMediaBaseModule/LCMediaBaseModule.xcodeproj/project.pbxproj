@@ -475,6 +475,7 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "";
@@ -515,6 +516,7 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "";

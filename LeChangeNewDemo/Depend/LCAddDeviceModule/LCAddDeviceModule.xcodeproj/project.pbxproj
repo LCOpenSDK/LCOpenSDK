@@ -1532,6 +1532,7 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/ObjectMapper",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",
@@ -1592,6 +1593,7 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/ObjectMapper",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",

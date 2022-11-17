@@ -92,7 +92,7 @@
         NSAssert(self.count>1,@"views to distribute need to bigger than one");
         return;
     }
-
+    
     MAS_VIEW *tempSuperView = [self mas_commonSuperviewOfViews];
     if (axisType == MASAxisTypeHorizontal) {
         MAS_VIEW *prev;

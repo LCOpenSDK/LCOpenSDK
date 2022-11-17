@@ -1105,8 +1105,8 @@
 				101311C42398F6EE000E1FB7 /* Resources */,
 				10DD303D240DF93300A73815 /* Embed Frameworks */,
 				8603187026D5E82700FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */,
-				93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */,
 				04CC84682518A631009EB27E /* CopyFiles */,
+				9BB1E56CB60388692028F183 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1364,7 +1364,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 解决部分系统下，无权限执行Pods-LeChangeDemo-frameworks.sh的问题\nchmod +x \"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh\"\n";
 		};
-		93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */ = {
+		9BB1E56CB60388692028F183 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

@@ -31,7 +31,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - KVOController (~> 1.2.0)
-  - LCOpenSDK (from `../`)
+  - LCOpenSDK (~> 3.12.00)
   - Masonry
   - MBProgressHUD (= 1.0.0)
   - MJRefresh (~> 3.7.5)
@@ -44,6 +44,7 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - KVOController
+    - LCOpenSDK
     - Masonry
     - MBProgressHUD
     - MJRefresh
@@ -51,10 +52,6 @@ SPEC REPOS:
     - SDWebImage
     - SnapKit
     - ZXingObjC
-
-EXTERNAL SOURCES:
-  LCOpenSDK:
-    :path: "../"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -68,6 +65,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
-PODFILE CHECKSUM: c22828f7c3e12490fcd255979ea33da3911cb3d9
+PODFILE CHECKSUM: eaccf2db40f608caeb9c7eafe358e90416db696e
 
 COCOAPODS: 1.11.3
