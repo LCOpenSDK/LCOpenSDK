@@ -1,0 +1,773 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		032664B32903E2870082EAC9 /* LCDeviceSettingArrowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ABE07A28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib */; };
+		032664B92903E2CA0082EAC9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0309D37129025F900088B9D5 /* Info.plist */; };
+		03ABE02928F5614C00BCE307 /* LCDeviceDetailModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE03D28F561D000BCE307 /* LCDeviceSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE03B28F561D000BCE307 /* LCDeviceSettingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE03E28F561D000BCE307 /* LCDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE03C28F561D000BCE307 /* LCDeviceSettingViewController.m */; };
+		03ABE04228F5637F00BCE307 /* LCDeviceSettingPersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE04028F5637F00BCE307 /* LCDeviceSettingPersenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE04328F5637F00BCE307 /* LCDeviceSettingPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE04128F5637F00BCE307 /* LCDeviceSettingPersenter.m */; };
+		03ABE04828F5645100BCE307 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE04728F5645100BCE307 /* LCBaseModule.framework */; };
+		03ABE05428F5657600BCE307 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE05328F5657600BCE307 /* Masonry.framework */; };
+		03ABE05C28F5671900BCE307 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE05B28F5671900BCE307 /* SnapKit.framework */; };
+		03ABE06528F5682500BCE307 /* LCDeviceDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE06328F5682500BCE307 /* LCDeviceDetailPresenter.swift */; };
+		03ABE06628F5682500BCE307 /* LCMotionDetectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE06428F5682500BCE307 /* LCMotionDetectionPresenter.swift */; };
+		03ABE06D28F5698700BCE307 /* LCDeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */; };
+		03ABE07028F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE06E28F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift */; };
+		03ABE07128F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */; };
+		03ABE07528F569FB00BCE307 /* LCMotionDetectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */; };
+		03ABE07628F569FB00BCE307 /* LCMemoryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE07328F569FB00BCE307 /* LCMemoryManagementView.swift */; };
+		03ABE07728F569FB00BCE307 /* LCFormatCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */; };
+		03ABE07B28F56A0900BCE307 /* LCDeviceSettingArrowCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE07828F56A0900BCE307 /* LCDeviceSettingArrowCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE07C28F56A0900BCE307 /* LCDeviceSettingArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE07928F56A0900BCE307 /* LCDeviceSettingArrowCell.m */; };
+		03ABE07D28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ABE07A28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib */; };
+		03ABE08128F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE07E28F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m */; };
+		03ABE08328F56A1400BCE307 /* LCDeviceSettingSubtitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE08028F56A1400BCE307 /* LCDeviceSettingSubtitleCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE08628F56A2000BCE307 /* LCDeviceSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE08428F56A2000BCE307 /* LCDeviceSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03ABE08728F56A2000BCE307 /* LCDeviceSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08528F56A2000BCE307 /* LCDeviceSwitchCell.m */; };
+		03ABE09028F56A2C00BCE307 /* LCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08828F56A2C00BCE307 /* LCTableViewCell.swift */; };
+		03ABE09128F56A2C00BCE307 /* LCTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08928F56A2C00BCE307 /* LCTableFooterView.swift */; };
+		03ABE09228F56A2C00BCE307 /* LCTableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08A28F56A2C00BCE307 /* LCTableViewSectionModel.swift */; };
+		03ABE09328F56A2C00BCE307 /* LCSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08B28F56A2C00BCE307 /* LCSwitchTableViewCell.swift */; };
+		03ABE09428F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08C28F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift */; };
+		03ABE09528F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08D28F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift */; };
+		03ABE09628F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08E28F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift */; };
+		03ABE09728F56A2C00BCE307 /* LCSubImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE08F28F56A2C00BCE307 /* LCSubImageTableViewCell.swift */; };
+		03ABE09928F56A4A00BCE307 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE09828F56A4A00BCE307 /* LCNetworkModule.framework */; };
+		03ABE09C28F56ABE00BCE307 /* LCMediaBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE09B28F56ABE00BCE307 /* LCMediaBaseModule.framework */; };
+		03ABE0A528F5A56F00BCE307 /* LCFormatCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE0A328F5A56F00BCE307 /* LCFormatCardController.swift */; };
+		03ABE0A628F5A56F00BCE307 /* LCFormatCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE0A428F5A56F00BCE307 /* LCFormatCardModel.swift */; };
+		03ADDC6A28F6607800E385B4 /* LCTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC6928F6607800E385B4 /* LCTableViewAdapter.swift */; };
+		03ADDC8A28F688E500E385B4 /* ILCTimeSetVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC7E28F688E500E385B4 /* ILCTimeSetVCProtocol.swift */; };
+		03ADDC8B28F688E500E385B4 /* LCWeekDayProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC7F28F688E500E385B4 /* LCWeekDayProcessView.swift */; };
+		03ADDC8C28F688E500E385B4 /* LCDefenceTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8028F688E500E385B4 /* LCDefenceTimeSetVC.swift */; };
+		03ADDC8D28F688E500E385B4 /* LCTimeSetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8228F688E500E385B4 /* LCTimeSetPresenter.swift */; };
+		03ADDC8E28F688E500E385B4 /* LCTimePeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8328F688E500E385B4 /* LCTimePeriodView.swift */; };
+		03ADDC8F28F688E500E385B4 /* LCTimeperiodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8428F688E500E385B4 /* LCTimeperiodVC.swift */; };
+		03ADDC9028F688E500E385B4 /* LCSetTimeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8528F688E500E385B4 /* LCSetTimeHeadView.swift */; };
+		03ADDC9128F688E500E385B4 /* LCTimeSetPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8628F688E500E385B4 /* LCTimeSetPickerView.swift */; };
+		03ADDC9228F688E500E385B4 /* LCTimeSlotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8728F688E500E385B4 /* LCTimeSlotHeaderView.swift */; };
+		03ADDC9328F688E500E385B4 /* LCDeviceBasePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8828F688E500E385B4 /* LCDeviceBasePickerView.swift */; };
+		03ADDC9428F688E500E385B4 /* LCTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8928F688E500E385B4 /* LCTimeSlot.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		032664AF2903DF640082EAC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03ABE01C28F5614C00BCE307 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 032664AA2903DF510082EAC9;
+			remoteInfo = LCDeviceDetailModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0309D37129025F900088B9D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		032664AB2903DF510082EAC9 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCDeviceDetailModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE02528F5614C00BCE307 /* LCDeviceDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCDeviceDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCDeviceDetailModule.h; sourceTree = "<group>"; };
+		03ABE03B28F561D000BCE307 /* LCDeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSettingViewController.h; sourceTree = "<group>"; };
+		03ABE03C28F561D000BCE307 /* LCDeviceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceSettingViewController.m; sourceTree = "<group>"; };
+		03ABE04028F5637F00BCE307 /* LCDeviceSettingPersenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSettingPersenter.h; sourceTree = "<group>"; };
+		03ABE04128F5637F00BCE307 /* LCDeviceSettingPersenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceSettingPersenter.m; sourceTree = "<group>"; };
+		03ABE04728F5645100BCE307 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE05328F5657600BCE307 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE05B28F5671900BCE307 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE06328F5682500BCE307 /* LCDeviceDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceDetailPresenter.swift; sourceTree = "<group>"; };
+		03ABE06428F5682500BCE307 /* LCMotionDetectionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCMotionDetectionPresenter.swift; sourceTree = "<group>"; };
+		03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceDetailVC.swift; sourceTree = "<group>"; };
+		03ABE06E28F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceDetailTableViewAdapter.swift; sourceTree = "<group>"; };
+		03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCMotionDetectionTableViewAdapter.swift; sourceTree = "<group>"; };
+		03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCMotionDetectionVC.swift; sourceTree = "<group>"; };
+		03ABE07328F569FB00BCE307 /* LCMemoryManagementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCMemoryManagementView.swift; sourceTree = "<group>"; };
+		03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCFormatCardViewController.swift; sourceTree = "<group>"; };
+		03ABE07828F56A0900BCE307 /* LCDeviceSettingArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSettingArrowCell.h; sourceTree = "<group>"; };
+		03ABE07928F56A0900BCE307 /* LCDeviceSettingArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceSettingArrowCell.m; sourceTree = "<group>"; };
+		03ABE07A28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCDeviceSettingArrowCell.xib; sourceTree = "<group>"; };
+		03ABE07E28F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceSettingSubtitleCell.m; sourceTree = "<group>"; };
+		03ABE08028F56A1400BCE307 /* LCDeviceSettingSubtitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSettingSubtitleCell.h; sourceTree = "<group>"; };
+		03ABE08428F56A2000BCE307 /* LCDeviceSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSwitchCell.h; sourceTree = "<group>"; };
+		03ABE08528F56A2000BCE307 /* LCDeviceSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceSwitchCell.m; sourceTree = "<group>"; };
+		03ABE08828F56A2C00BCE307 /* LCTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTableViewCell.swift; sourceTree = "<group>"; };
+		03ABE08928F56A2C00BCE307 /* LCTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTableFooterView.swift; sourceTree = "<group>"; };
+		03ABE08A28F56A2C00BCE307 /* LCTableViewSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTableViewSectionModel.swift; sourceTree = "<group>"; };
+		03ABE08B28F56A2C00BCE307 /* LCSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		03ABE08C28F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCLocalStorageTableViewCell.swift; sourceTree = "<group>"; };
+		03ABE08D28F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
+		03ABE08E28F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceTopTableViewCell.swift; sourceTree = "<group>"; };
+		03ABE08F28F56A2C00BCE307 /* LCSubImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSubImageTableViewCell.swift; sourceTree = "<group>"; };
+		03ABE09828F56A4A00BCE307 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE09B28F56ABE00BCE307 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE0A328F5A56F00BCE307 /* LCFormatCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCFormatCardController.swift; sourceTree = "<group>"; };
+		03ABE0A428F5A56F00BCE307 /* LCFormatCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCFormatCardModel.swift; sourceTree = "<group>"; };
+		03ADDC6928F6607800E385B4 /* LCTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTableViewAdapter.swift; sourceTree = "<group>"; };
+		03ADDC7E28F688E500E385B4 /* ILCTimeSetVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ILCTimeSetVCProtocol.swift; sourceTree = "<group>"; };
+		03ADDC7F28F688E500E385B4 /* LCWeekDayProcessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWeekDayProcessView.swift; sourceTree = "<group>"; };
+		03ADDC8028F688E500E385B4 /* LCDefenceTimeSetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDefenceTimeSetVC.swift; sourceTree = "<group>"; };
+		03ADDC8228F688E500E385B4 /* LCTimeSetPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSetPresenter.swift; sourceTree = "<group>"; };
+		03ADDC8328F688E500E385B4 /* LCTimePeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimePeriodView.swift; sourceTree = "<group>"; };
+		03ADDC8428F688E500E385B4 /* LCTimeperiodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeperiodVC.swift; sourceTree = "<group>"; };
+		03ADDC8528F688E500E385B4 /* LCSetTimeHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSetTimeHeadView.swift; sourceTree = "<group>"; };
+		03ADDC8628F688E500E385B4 /* LCTimeSetPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSetPickerView.swift; sourceTree = "<group>"; };
+		03ADDC8728F688E500E385B4 /* LCTimeSlotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSlotHeaderView.swift; sourceTree = "<group>"; };
+		03ADDC8828F688E500E385B4 /* LCDeviceBasePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceBasePickerView.swift; sourceTree = "<group>"; };
+		03ADDC8928F688E500E385B4 /* LCTimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSlot.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		032664A82903DF510082EAC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03ABE02228F5614C00BCE307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ABE09928F56A4A00BCE307 /* LCNetworkModule.framework in Frameworks */,
+				03ABE05C28F5671900BCE307 /* SnapKit.framework in Frameworks */,
+				03ABE05428F5657600BCE307 /* Masonry.framework in Frameworks */,
+				03ABE09C28F56ABE00BCE307 /* LCMediaBaseModule.framework in Frameworks */,
+				03ABE04828F5645100BCE307 /* LCBaseModule.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0309D36629025C810088B9D5 /* LCDeviceDetailModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				032664AB2903DF510082EAC9 /* LCDeviceDetailModuleBundle.bundle */,
+				0309D37129025F900088B9D5 /* Info.plist */,
+			);
+			path = LCDeviceDetailModuleBundle;
+			sourceTree = "<group>";
+		};
+		03ABE01B28F5614C00BCE307 = {
+			isa = PBXGroup;
+			children = (
+				03ABE02728F5614C00BCE307 /* LCDeviceDetailModule */,
+				0309D36629025C810088B9D5 /* LCDeviceDetailModuleBundle */,
+				03ABE04628F5645100BCE307 /* Frameworks */,
+				03ABE02628F5614C00BCE307 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03ABE02628F5614C00BCE307 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE02528F5614C00BCE307 /* LCDeviceDetailModule.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03ABE02728F5614C00BCE307 /* LCDeviceDetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE04528F5639D00BCE307 /* Swift */,
+				03ABE04428F5639200BCE307 /* OC */,
+				03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */,
+			);
+			path = LCDeviceDetailModule;
+			sourceTree = "<group>";
+		};
+		03ABE04428F5639200BCE307 /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE08428F56A2000BCE307 /* LCDeviceSwitchCell.h */,
+				03ABE08528F56A2000BCE307 /* LCDeviceSwitchCell.m */,
+				03ABE08028F56A1400BCE307 /* LCDeviceSettingSubtitleCell.h */,
+				03ABE07E28F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m */,
+				03ABE07828F56A0900BCE307 /* LCDeviceSettingArrowCell.h */,
+				03ABE07928F56A0900BCE307 /* LCDeviceSettingArrowCell.m */,
+				03ABE07A28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib */,
+				03ABE04028F5637F00BCE307 /* LCDeviceSettingPersenter.h */,
+				03ABE04128F5637F00BCE307 /* LCDeviceSettingPersenter.m */,
+				03ABE03B28F561D000BCE307 /* LCDeviceSettingViewController.h */,
+				03ABE03C28F561D000BCE307 /* LCDeviceSettingViewController.m */,
+			);
+			path = OC;
+			sourceTree = "<group>";
+		};
+		03ABE04528F5639D00BCE307 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				03ADDC7D28F688E500E385B4 /* LCTimeperiodVC */,
+				03ADDC6928F6607800E385B4 /* LCTableViewAdapter.swift */,
+				03ABE0A328F5A56F00BCE307 /* LCFormatCardController.swift */,
+				03ABE0A428F5A56F00BCE307 /* LCFormatCardModel.swift */,
+				03ABE08E28F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift */,
+				03ABE08C28F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift */,
+				03ABE08F28F56A2C00BCE307 /* LCSubImageTableViewCell.swift */,
+				03ABE08B28F56A2C00BCE307 /* LCSwitchTableViewCell.swift */,
+				03ABE08928F56A2C00BCE307 /* LCTableFooterView.swift */,
+				03ABE08828F56A2C00BCE307 /* LCTableViewCell.swift */,
+				03ABE08D28F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift */,
+				03ABE08A28F56A2C00BCE307 /* LCTableViewSectionModel.swift */,
+				03ABE06E28F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift */,
+				03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */,
+				03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */,
+				03ABE06328F5682500BCE307 /* LCDeviceDetailPresenter.swift */,
+				03ABE06428F5682500BCE307 /* LCMotionDetectionPresenter.swift */,
+				03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */,
+				03ABE07328F569FB00BCE307 /* LCMemoryManagementView.swift */,
+				03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		03ABE04628F5645100BCE307 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE09B28F56ABE00BCE307 /* LCMediaBaseModule.framework */,
+				03ABE09828F56A4A00BCE307 /* LCNetworkModule.framework */,
+				03ABE05B28F5671900BCE307 /* SnapKit.framework */,
+				03ABE05328F5657600BCE307 /* Masonry.framework */,
+				03ABE04728F5645100BCE307 /* LCBaseModule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03ADDC7D28F688E500E385B4 /* LCTimeperiodVC */ = {
+			isa = PBXGroup;
+			children = (
+				03ADDC7E28F688E500E385B4 /* ILCTimeSetVCProtocol.swift */,
+				03ADDC7F28F688E500E385B4 /* LCWeekDayProcessView.swift */,
+				03ADDC8028F688E500E385B4 /* LCDefenceTimeSetVC.swift */,
+				03ADDC8128F688E500E385B4 /* presenter */,
+				03ADDC8328F688E500E385B4 /* LCTimePeriodView.swift */,
+				03ADDC8428F688E500E385B4 /* LCTimeperiodVC.swift */,
+				03ADDC8528F688E500E385B4 /* LCSetTimeHeadView.swift */,
+				03ADDC8628F688E500E385B4 /* LCTimeSetPickerView.swift */,
+				03ADDC8728F688E500E385B4 /* LCTimeSlotHeaderView.swift */,
+				03ADDC8828F688E500E385B4 /* LCDeviceBasePickerView.swift */,
+				03ADDC8928F688E500E385B4 /* LCTimeSlot.swift */,
+			);
+			path = LCTimeperiodVC;
+			sourceTree = "<group>";
+		};
+		03ADDC8128F688E500E385B4 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				03ADDC8228F688E500E385B4 /* LCTimeSetPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		03ABE02028F5614C00BCE307 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ABE07B28F56A0900BCE307 /* LCDeviceSettingArrowCell.h in Headers */,
+				03ABE08328F56A1400BCE307 /* LCDeviceSettingSubtitleCell.h in Headers */,
+				03ABE02928F5614C00BCE307 /* LCDeviceDetailModule.h in Headers */,
+				03ABE03D28F561D000BCE307 /* LCDeviceSettingViewController.h in Headers */,
+				03ABE04228F5637F00BCE307 /* LCDeviceSettingPersenter.h in Headers */,
+				03ABE08628F56A2000BCE307 /* LCDeviceSwitchCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		032664AA2903DF510082EAC9 /* LCDeviceDetailModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 032664AC2903DF510082EAC9 /* Build configuration list for PBXNativeTarget "LCDeviceDetailModuleBundle" */;
+			buildPhases = (
+				032664A72903DF510082EAC9 /* Sources */,
+				032664A82903DF510082EAC9 /* Frameworks */,
+				032664A92903DF510082EAC9 /* Resources */,
+				032664B12903E20E0082EAC9 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCDeviceDetailModuleBundle;
+			productName = LCDeviceDetailModuleBundle;
+			productReference = 032664AB2903DF510082EAC9 /* LCDeviceDetailModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		03ABE02428F5614C00BCE307 /* LCDeviceDetailModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03ABE02C28F5614C00BCE307 /* Build configuration list for PBXNativeTarget "LCDeviceDetailModule" */;
+			buildPhases = (
+				03ABE02028F5614C00BCE307 /* Headers */,
+				03ABE02128F5614C00BCE307 /* Sources */,
+				03ABE02228F5614C00BCE307 /* Frameworks */,
+				03ABE02328F5614C00BCE307 /* Resources */,
+				0309D36929025E340088B9D5 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				032664B02903DF640082EAC9 /* PBXTargetDependency */,
+			);
+			name = LCDeviceDetailModule;
+			productName = LCDeviceDetailModule;
+			productReference = 03ABE02528F5614C00BCE307 /* LCDeviceDetailModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03ABE01C28F5614C00BCE307 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					032664AA2903DF510082EAC9 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					03ABE02428F5614C00BCE307 = {
+						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
+					};
+				};
+			};
+			buildConfigurationList = 03ABE01F28F5614C00BCE307 /* Build configuration list for PBXProject "LCDeviceDetailModule" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 03ABE01B28F5614C00BCE307;
+			productRefGroup = 03ABE01B28F5614C00BCE307;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03ABE02428F5614C00BCE307 /* LCDeviceDetailModule */,
+				032664AA2903DF510082EAC9 /* LCDeviceDetailModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		032664A92903DF510082EAC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				032664B92903E2CA0082EAC9 /* Info.plist in Resources */,
+				032664B32903E2870082EAC9 /* LCDeviceSettingArrowCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03ABE02328F5614C00BCE307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ABE07D28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0309D36929025E340088B9D5 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    echo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		032664B12903E20E0082EAC9 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    #先删除旧的\n    rm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n    echo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		032664A72903DF510082EAC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03ABE02128F5614C00BCE307 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ABE09228F56A2C00BCE307 /* LCTableViewSectionModel.swift in Sources */,
+				03ADDC9228F688E500E385B4 /* LCTimeSlotHeaderView.swift in Sources */,
+				03ABE07728F569FB00BCE307 /* LCFormatCardViewController.swift in Sources */,
+				03ABE09528F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift in Sources */,
+				03ABE0A528F5A56F00BCE307 /* LCFormatCardController.swift in Sources */,
+				03ADDC8E28F688E500E385B4 /* LCTimePeriodView.swift in Sources */,
+				03ADDC8A28F688E500E385B4 /* ILCTimeSetVCProtocol.swift in Sources */,
+				03ABE09328F56A2C00BCE307 /* LCSwitchTableViewCell.swift in Sources */,
+				03ADDC8D28F688E500E385B4 /* LCTimeSetPresenter.swift in Sources */,
+				03ABE04328F5637F00BCE307 /* LCDeviceSettingPersenter.m in Sources */,
+				03ABE09028F56A2C00BCE307 /* LCTableViewCell.swift in Sources */,
+				03ABE09628F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift in Sources */,
+				03ABE07528F569FB00BCE307 /* LCMotionDetectionVC.swift in Sources */,
+				03ABE06528F5682500BCE307 /* LCDeviceDetailPresenter.swift in Sources */,
+				03ABE08728F56A2000BCE307 /* LCDeviceSwitchCell.m in Sources */,
+				03ABE09428F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift in Sources */,
+				03ABE07128F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift in Sources */,
+				03ABE06628F5682500BCE307 /* LCMotionDetectionPresenter.swift in Sources */,
+				03ABE07628F569FB00BCE307 /* LCMemoryManagementView.swift in Sources */,
+				03ABE0A628F5A56F00BCE307 /* LCFormatCardModel.swift in Sources */,
+				03ABE06D28F5698700BCE307 /* LCDeviceDetailVC.swift in Sources */,
+				03ADDC9128F688E500E385B4 /* LCTimeSetPickerView.swift in Sources */,
+				03ADDC9028F688E500E385B4 /* LCSetTimeHeadView.swift in Sources */,
+				03ABE03E28F561D000BCE307 /* LCDeviceSettingViewController.m in Sources */,
+				03ABE09728F56A2C00BCE307 /* LCSubImageTableViewCell.swift in Sources */,
+				03ABE09128F56A2C00BCE307 /* LCTableFooterView.swift in Sources */,
+				03ADDC8B28F688E500E385B4 /* LCWeekDayProcessView.swift in Sources */,
+				03ABE08128F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m in Sources */,
+				03ABE07C28F56A0900BCE307 /* LCDeviceSettingArrowCell.m in Sources */,
+				03ADDC8C28F688E500E385B4 /* LCDefenceTimeSetVC.swift in Sources */,
+				03ADDC9428F688E500E385B4 /* LCTimeSlot.swift in Sources */,
+				03ADDC6A28F6607800E385B4 /* LCTableViewAdapter.swift in Sources */,
+				03ADDC8F28F688E500E385B4 /* LCTimeperiodVC.swift in Sources */,
+				03ABE07028F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift in Sources */,
+				03ADDC9328F688E500E385B4 /* LCDeviceBasePickerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		032664B02903DF640082EAC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 032664AA2903DF510082EAC9 /* LCDeviceDetailModuleBundle */;
+			targetProxy = 032664AF2903DF640082EAC9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		032664AD2903DF510082EAC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NE9RR4AYQ2;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyg.LCBluetoothDemo.LCDeviceDetailModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		032664AE2903DF510082EAC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyg.LCBluetoothDemo.LCDeviceDetailModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		03ABE02A28F5614C00BCE307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		03ABE02B28F5614C00BCE307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		03ABE02D28F5614C00BCE307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NE9RR4AYQ2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Masonry",
+					"${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/KVOController",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyg.LCBluetoothDemo.LCDeviceDetailModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		03ABE02E28F5614C00BCE307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Masonry",
+					"${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/KVOController",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyg.LCBluetoothDemo.LCDeviceDetailModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		032664AC2903DF510082EAC9 /* Build configuration list for PBXNativeTarget "LCDeviceDetailModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				032664AD2903DF510082EAC9 /* Debug */,
+				032664AE2903DF510082EAC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03ABE01F28F5614C00BCE307 /* Build configuration list for PBXProject "LCDeviceDetailModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03ABE02A28F5614C00BCE307 /* Debug */,
+				03ABE02B28F5614C00BCE307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03ABE02C28F5614C00BCE307 /* Build configuration list for PBXNativeTarget "LCDeviceDetailModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03ABE02D28F5614C00BCE307 /* Debug */,
+				03ABE02E28F5614C00BCE307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03ABE01C28F5614C00BCE307 /* Project object */;
+}

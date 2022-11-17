@@ -1,17 +1,17 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import UIKit
 
 public extension UIFont {
     
-    var dh_height: CGFloat {
+    var lc_height: CGFloat {
         
-        return " ".dh_height(font: self, width: 100)
+        return " ".lc_height(font: self, width: 100)
     }
 	
-	var dh_aviailableFont: UIFont {
+	var lc_aviailableFont: UIFont {
 		
 		var aviailableFont: UIFont?
 		
@@ -24,7 +24,7 @@ public extension UIFont {
 		return aviailableFont ?? self
 	}
 	
-	static func dh_fontOfSize(_ size: CGFloat) -> UIFont {
+	static func lc_fontOfSize(_ size: CGFloat) -> UIFont {
 		
 		return UIFont.systemFont(ofSize: size * 1.3)
 	}

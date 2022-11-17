@@ -3,7 +3,7 @@
 //  DHVideoPlayer
 //
 //  Created by luligang on 04/09/2017.
-//  Copyright © 2017 com.dahuatech. All rights reserved.
+//  Copyright © 2017 com.imou. All rights reserved.
 //
 
 #import "LCPTZPanel.h"

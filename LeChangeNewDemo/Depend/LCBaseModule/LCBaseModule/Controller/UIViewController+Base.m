@@ -3,8 +3,9 @@
 //
 
 #import <LCBaseModule/UIViewController+Base.h>
-#import <LCBaseModule/DHModuleConfig.h>
-#import "UINavigationController+dh.h"
+#import <LCBaseModule/LCContainerVC.h>
+#import <LCBaseModule/LCModuleConfig.h>
+#import "UINavigationController+LC.h"
 #import <LCBaseModule/LCBaseModule-Swift.h>
 #import <objc/runtime.h>
 
@@ -12,7 +13,7 @@
 
 - (BOOL)isTopController
 {
-    UIViewController *topController = self.navigationController.dh_topViewController;
+    UIViewController *topController = self.navigationController.lc_topViewController;
     if ([topController isMemberOfClass:[self class]]) {
         return YES;
     }
@@ -55,7 +56,7 @@ static const void *IsRotateLockedKey = &IsRotateLockedKey;
     self.isRotateLocked = NO;
 }
 
-- (BOOL)dh_popToContollerByClass:(Class)cls {
+- (BOOL)lc_popToContollerByClass:(Class)cls {
 	NSArray *statckControllers = self.navigationController.viewControllers;
 	UIViewController *targetVc = nil;
 	for (UIViewController *vc in statckControllers) {
@@ -72,4 +73,28 @@ static const void *IsRotateLockedKey = &IsRotateLockedKey;
 	
 	return NO;
 }
+
++ (UIViewController *)LC_topViewController {
+    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    return [self topCurViewController:rootViewController];
+}
+
++ (UIViewController *)topCurViewController:(UIViewController *)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        return [self topCurViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)rootViewController;
+        return [self topCurViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController *presentedViewController = rootViewController.presentedViewController;
+        return [self topCurViewController:presentedViewController];
+    } else if ([rootViewController isKindOfClass:[LCContainerVC class]]) {
+        LCContainerVC *containVC = (LCContainerVC *)rootViewController;
+        return containVC.contentViewController;
+    } else {
+        return rootViewController;
+    }
+}
+
 @end

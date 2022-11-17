@@ -1,16 +1,13 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	对NETSDK使用的接口进行封装，方便Swift调用
 
 #import <Foundation/Foundation.h>
-#import "DHDeviceNetInfo.h"
-#import "DHApWifiInfo.h"
-#import "DHDeviceResetPWDInfo.h"
-#import "DHDevicePWDResetInfo.h"
+#import "LCDeviceNetInfo.h"
 #import <LCAddDeviceModule/DHDeviceInfoLogModel.h>
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 
-typedef void(^DHNetSDKSearchDeviceCallback)(DHDeviceNetInfo *deviceInfo);
-typedef void(^DHNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteger port);
+typedef void(^DHNetSDKSearchDeviceCallback)(LCDeviceNetInfo *deviceInfo);
 
 @interface DHNetSDKInterface : NSObject
 
@@ -30,62 +27,25 @@ typedef void(^DHNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteg
 
  @param callback 回调block
  */
-- (void)setDisconnectCallback:(DHNetSDKDisconnetCallback)callback;
+- (void)setDisconnectCallback:(LCNetSDKDisconnetCallback)callback;
 
 + (void)logOpen:(NSString *)path;
 	
-+ (DHDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(DHDeviceNetInfo *)deviceNetInfo useIp:(BOOL)useIp;
++ (DHDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(LCDeviceNetInfo *)deviceNetInfo useIp:(BOOL)useIp;
 
 /**
  通过NetSDK进行局域网搜索
  
  @param callback 回调
- @param localIp 手机ip，软ap时传入
- @return 成功返回登录句柄
  */
-- (long)startSearchDevices:(DHNetSDKSearchDeviceCallback)callback byLocalIp:(NSString *)localIp;
+- (void)startSearchDevices:(DHNetSDKSearchDeviceCallback)callback;
 
 /**
- 通过NetSDK进行局域网搜索
+ 停止搜索设备
  
  @param callback 回调
- @return 成功返回登录句柄
  */
-- (long)startSearchDevices:(DHNetSDKSearchDeviceCallback)callback;
-
-- (void)stopSearchDevices:(long)handle;
-
-
-/// 安全模式登陆
-/// @param devIP  IP地址
-/// @param port    端口号
-/// @param username   用户名
-/// @param password   密码
-/// @param errorCode
-+ (DHNetLoginDeviceInfo *)loginWithHighLevelSecurityByIP:(NSString *)devIP port:(NSInteger)port username:(NSString *)username password:(NSString *)password errorCode:(unsigned int *)errorCode;
-
-+ (DHNetLoginDeviceInfo *)loginDeviceByIP:(NSString *)devIP port:(NSInteger)port username:(NSString *)username password:(NSString *)password errorCode:(unsigned int *)errorCode;
-
-/**
- AP配网SC设备获取wifi列表
- 
- @param deviceIP IP地址
- @param port 端口号
- @return 成功返回wifi列表
- */
-+ (NSArray <DHApWifiInfo *>*)scDeviceApLoadWifiList:(NSString *)deviceIP port:(NSInteger)port error:(unsigned int *)errorCode;
-
-/**
- AP配网SC设备连接Wi-Fi
- 
- @param mSSIDmSSID IP地址
- @param password 端口号
- @param encryptionAuthority wifi加密方式
- @return
- */
-+ (BOOL)scDeviceApConnectWifi:(NSString *)mSSID
-                     password:(NSString *)password
-                           ip:(NSString *)deviceIP port:(NSInteger)port encryptionAuthority:(int)encryptionAuthority;
+- (void)stopSearchDevices;
 
 /**
  登出设备
@@ -98,28 +58,12 @@ typedef void(^DHNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteg
 通过NetSDK连接WIFI，软AP配置时使用
 
 @param loginHandle 登录句柄
-@param mSSID  ssid
+@param mssid  ssid
 @return 0成功，非0失败 返回模块
 */
-+ (DHApWifiInfo*)queryWifiByLoginHandle:(long)loginHandle mssId:(NSString *)mssid errorCode:(unsigned int *)errorCode;
++ (LCOpenSDK_WifiInfo*)queryWifiByLoginHandle:(long)loginHandle mssId:(NSString *)mssid errorCode:(unsigned int *)errorCode;
 
-+ (NSArray<DHApWifiInfo*> *)loadWifiListByLoginHandle:(long)loginHandle errorCode:(unsigned int *)errorCode;
 
-/**
- 通过NetSDK连接WIFI，软AP配置时使用
-
- @param loginHandle 登录句柄
- @param mSSID  ssid
- @param password 密码
- @param encryptionAuthority 加密模式
- @param netcardName 网卡名称
- @return 0成功，非0失败
- */
-+ (NSUInteger)connectWIFIByLoginHandle:(long)loginHandle
-                                  ssid:(NSString *)mSSID
-                              password:(NSString *)password
-                   encryptionAuthority:(int)encryptionAuthority
-                           netcardName:(NSString *)netcardName;
 //MARK: Error
 + (NSString *)getErrorDescription:(unsigned int)erroCode;
 
@@ -148,7 +92,7 @@ typedef void(^DHNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteg
  @param phoneIp 手机IP，可以为空
  @return 重置的相关信息，失败返回nil
  */
-+ (DHDeviceResetPWDInfo *)queryPasswordResetType:(DHDeviceNetInfo *)device byPhoneIp:(NSString *)phoneIp;
++ (LCDeviceResetPWDInfo *)queryPasswordResetType:(LCDeviceNetInfo *)device byPhoneIp:(NSString *)phoneIp;
 
 /**
  重置设备密码
@@ -161,8 +105,8 @@ typedef void(^DHNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteg
  @param phoneIp 手机ip
  @return YES/NO
  */
-+ (DHDevicePWDResetInfo *)resetPassword:(NSString *)password
-			   device:(DHDeviceNetInfo *)device
++ (LCDevicePWDResetInfo *)resetPassword:(NSString *)password
+			   device:(LCDeviceNetInfo *)device
 		 securityCode:(NSString *)securityCode
 			  contact:(NSString *)contact
 		  useAsPreset:(BOOL)useAsPreset

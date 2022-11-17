@@ -4,7 +4,7 @@
 
 #import <LCBaseModule/UITextField+LeChange.h>
 #import <objc/runtime.h>
-#import <LCBaseModule/DHModuleConfig.h>
+#import <LCBaseModule/LCModuleConfig.h>
 
 static char customClearKey;
 

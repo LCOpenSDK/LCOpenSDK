@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -41,5 +41,20 @@
 */
 - (void)requestAlwaysLocationPermissions:(BOOL)always completion:(void (^)(BOOL granted))completion;
 
+/**
+ 位置权限,这里只提供一个被拒之后的弹窗, 跳转系统设置
+ */
+
++ (void)showUnPermissionLocationAlert:(NSString *)message;
+
+/**
+ FaceID权限, 这里只提供一个被拒之后的弹窗, 跳转系统设置
+ */
++ (void)showUnPermissionFaceIDAlert;
+
+/// 检查是否开启了推送
+/// @param completion grand为YES时表示有权限，NO表示无权限
+
++ (void)checkCurrentNotificationStatus:(void (^)(BOOL granted))completion;
 
 @end

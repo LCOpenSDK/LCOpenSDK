@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayWindow.h>
@@ -7,7 +7,7 @@
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_EventListener.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_TalkerListener.h>
 #import "LCLivePreviewViewController.h"
-#import "UIDevice+LeChange.h"
+#import <LCMediaBaseModule/UIDevice+MediaBaseModule.h>
 #import "LCDeviceVideoManager.h"
 #import "LCVideoHistoryView.h"
 

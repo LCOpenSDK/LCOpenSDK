@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	密码检验
 //	【*】国内：根据Auth能力集，点下一步时，绑定
 //	【*】海外：登录设备检验密码，如果前面初始化流程传入了密码，则不需要进入，直接在连接云平台绑定设备；
@@ -7,17 +7,17 @@
 import UIKit
 import LCBaseModule
 
-class DHAuthPasswordViewController: DHAddBaseViewController, UITextFieldDelegate, UITextViewDelegate, DHBindContainerProtocol {
+class LCAuthPasswordViewController: LCAddBaseViewController, UITextFieldDelegate, UITextViewDelegate, LCBindContainerProtocol {
 
-	public static func storyboardInstance() -> DHAuthPasswordViewController {
-		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.dh_addDeviceBundle())
-        if let controller = storyboard.instantiateViewController(withIdentifier: "DHAuthPasswordViewController") as? DHAuthPasswordViewController {
+	public static func storyboardInstance() -> LCAuthPasswordViewController {
+		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.lc_addDeviceBundle())
+        if let controller = storyboard.instantiateViewController(withIdentifier: "LCAuthPasswordViewController") as? LCAuthPasswordViewController {
             return controller
         }
-		return DHAuthPasswordViewController()
+		return LCAuthPasswordViewController()
 	}
     
-    public var presenter: DHAuthPasswordPresenterProtocol?
+    public var presenter: LCAuthPasswordPresenterProtocol?
 	
     @IBOutlet weak var inputTipLabel: UILabel!
     @IBOutlet weak var passwordInputView: LCInputView!
@@ -43,26 +43,26 @@ class DHAuthPasswordViewController: DHAddBaseViewController, UITextFieldDelegate
     }
 	
 	private func setupContents() {
-		view.backgroundColor = UIColor.dhcolor_c43()
+		view.backgroundColor = UIColor.lccolor_c43()
         
 		//SMB：色值修改
 		tipLabel.text = "add_device_kindly_reminder".lc_T
-		tipLabel.textColor = UIColor.dhcolor_c0() //UIColor.dhcolor_c2()
+		tipLabel.textColor = UIColor.lccolor_c0() //UIColor.lccolor_c2()
 		nextButton.setTitle("common_next".lc_T, for: .normal)
 		
 		
 		inputTipLabel.text = "add_device_input_device_password".lc_T
-        inputTipLabel.textColor = UIColor.dhcolor_c2()
+        inputTipLabel.textColor = UIColor.lccolor_c2()
 		passwordInputView.textField.placeholder = "add_device_input_device_password".lc_T
-		passwordInputView.backgroundColor = UIColor.dhcolor_c43()
+		passwordInputView.backgroundColor = UIColor.lccolor_c43()
 		
-		nextButton.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
-		nextButton.backgroundColor = DHModuleConfig.shareInstance().commonButtonColor()
-        nextButton.dh_enable = false
-        nextButton.setTitleColor(UIColor.dhcolor_c43(), for: .normal)
+		nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
+		nextButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()
+        nextButton.lc_enable = false
+        nextButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
         
-        topLine.backgroundColor = UIColor.dhcolor_c8()
-        bottomLine.backgroundColor = UIColor.dhcolor_c8()
+        topLine.backgroundColor = UIColor.lccolor_c8()
+        bottomLine.backgroundColor = UIColor.lccolor_c8()
 		
 		//设置TextView，dataDetectorTypes为何无效？？
 		detailTextView.delegate = self
@@ -70,28 +70,28 @@ class DHAuthPasswordViewController: DHAddBaseViewController, UITextFieldDelegate
 		detailTextView.isEditable = false
 		detailTextView.isSelectable = true
 		detailTextView.dataDetectorTypes = .link
-        detailTextView.textColor = UIColor.dhcolor_c5()
+        detailTextView.textColor = UIColor.lccolor_c5()
 		
 		let style = NSMutableParagraphStyle()
 		style.lineBreakMode = NSLineBreakMode.byWordWrapping
 		style.lineSpacing = 5
 		let attr1: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: style,
-													NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c5(),
-													NSAttributedStringKey.font: UIFont.dhFont_t6()]
+													NSAttributedStringKey.foregroundColor: UIColor.lccolor_c5(),
+													NSAttributedStringKey.font: UIFont.lcFont_t6()]
 		
 		let text = "add_device_password_initial_tip".lc_T
 		let rang1 = NSMakeRange(0, text.count)
 		let attrText = NSMutableAttributedString(string: text)
 		attrText.addAttributes(attr1, range: rang1)
 		
-		if DHModuleConfig.shareInstance().isLeChange, DHModuleConfig.shareInstance().addDevice_showServiceCall() {
-			let phoneNumber = DHModuleConfig.shareInstance().serviceCall() ?? ""
+		if LCModuleConfig.shareInstance().isChinaMainland, LCModuleConfig.shareInstance().addDevice_showServiceCall() {
+			let phoneNumber = LCModuleConfig.shareInstance().serviceCall() ?? ""
 			let rang2 = NSMakeRange(0, phoneNumber.count)
 			let attr2: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: style,
 														NSAttributedStringKey.link: "serviceCall",
-														NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c32(),
+														NSAttributedStringKey.foregroundColor: UIColor.lccolor_c32(),
 														//NSAttributedStringKey.underlineStyle: 1,
-														NSAttributedStringKey.font: UIFont.dhFont_t6()]
+														NSAttributedStringKey.font: UIFont.lcFont_t6()]
 			let attrPhone = NSMutableAttributedString(string: phoneNumber)
 			attrPhone.addAttributes(attr2, range: rang2)
 			attrText.append(attrPhone)
@@ -106,29 +106,31 @@ class DHAuthPasswordViewController: DHAddBaseViewController, UITextFieldDelegate
 		textViewHeightConstraint.constant = rect.height + 30
 		
 		//验证密码不需要限制
-        //passwordInputView.textField.lc_setInputRule(withRegEx: "^[A-Za-z0-9]$", andInputLength: UInt32(DH_PASSWORD_MAX_LENGTH))
         passwordInputView.textField.delegate = self
         passwordInputView.textField.keyboardType = .asciiCapable
         passwordInputView.textField.returnKeyType = .done
         passwordInputView.textField.textChanged = { [unowned self] text in
             let password = text ?? ""
-            self.nextButton.dh_enable = password.count > 0
+            self.nextButton.lc_enable = password.count > 0
         }
+        passwordInputView.tfUnSecureImg = UIImage(named: "common_icon_close_small")
+        passwordInputView.tfSecureImg = UIImage(named: "adddevice_common_icon_open_small")
+        passwordInputView.openBtnState = false
 	}
     
 	@IBAction func onNextAction(_ sender: Any) {
 		let password = passwordInputView.textField.text ?? ""
-		let device = DHAddDeviceManager.sharedInstance.getLocalDevice()
+		let device = LCAddDeviceManager.sharedInstance.getLocalDevice()
 		
 		passwordInputView?.textField.resignFirstResponder()
 		
 		//如果是AP是在线的，可能局域网搜索不到，无法用netsdk方式进行检验
-		presenter?.nextStepAction(password: password, device: device, deviceId: DHAddDeviceManager.sharedInstance.deviceId)
+		presenter?.nextStepAction(password: password, device: device, deviceId: LCAddDeviceManager.sharedInstance.deviceId)
 		
     }
 
-	// MARK: DHAddBaseVCProtocol
-	override func leftActionType() -> DHAddBaseLeftAction {
+	// MARK: LCAddBaseVCProtocol
+	override func leftActionType() -> LCAddBaseLeftAction {
 		return .quit
 	}
 	
@@ -136,12 +138,12 @@ class DHAuthPasswordViewController: DHAddBaseViewController, UITextFieldDelegate
 		return true
 	}
 	
-	override func rightActionType() -> [DHAddBaseRightAction] {
+	override func rightActionType() -> [LCAddBaseRightAction] {
 		return [.restart]
 	}
 }
 
-extension DHAuthPasswordViewController {
+extension LCAuthPasswordViewController {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -150,7 +152,7 @@ extension DHAuthPasswordViewController {
 	
 	func textView(_ textView: UITextView, shouldInteractWith txtViewURL: URL, in characterRange: NSRange) -> Bool {
 		if txtViewURL.absoluteString == "serviceCall" {
-			let phone = "telprompt://" + DHModuleConfig.shareInstance().serviceCall()
+			let phone = "telprompt://" + LCModuleConfig.shareInstance().serviceCall()
 			if let url = URL(string: phone) {
 				UIApplication.shared.openURL(url)
 			}
@@ -162,7 +164,7 @@ extension DHAuthPasswordViewController {
 	}
 }
 
-extension DHAuthPasswordViewController {
+extension LCAuthPasswordViewController {
 	
 	func navigationVC() -> UINavigationController? {
 		return self.navigationController

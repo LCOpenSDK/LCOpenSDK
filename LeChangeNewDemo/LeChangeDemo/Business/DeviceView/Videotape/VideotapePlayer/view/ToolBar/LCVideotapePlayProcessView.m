@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePlayProcessView.h"
@@ -35,7 +35,7 @@
 }
 
 -(void)configFullScreenUI{
-     self.backgroundColor = [UIColor dhcolor_c00];
+     self.backgroundColor = [UIColor lccolor_c00];
     [self.startLab setHidden:YES];
     [self.endLab setHidden:YES];
     [self.silder mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -44,7 +44,7 @@
     }];
 }
 -(void)configPortraitScreenUI{
-   self.backgroundColor = [UIColor dhcolor_c50];
+   self.backgroundColor = [UIColor lccolor_c50];
     [self.startLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.mas_equalTo(self);
         make.width.mas_equalTo(45);
@@ -74,12 +74,12 @@
     self.startLab = [UILabel new];
     [self addSubview:self.startLab];
     self.startLab.textAlignment = NSTextAlignmentCenter;
-    self.startLab.textColor = [UIColor dhcolor_c43];
+    self.startLab.textColor = [UIColor lccolor_c43];
     self.startLab.adjustsFontSizeToFitWidth = YES;
     
     self.endLab = [UILabel new];
     self.endLab.textAlignment = NSTextAlignmentCenter;
-    self.endLab.textColor = [UIColor dhcolor_c43];
+    self.endLab.textColor = [UIColor lccolor_c43];
     [self addSubview:self.endLab];
     self.endLab.adjustsFontSizeToFitWidth = YES;
     
@@ -92,7 +92,7 @@
     self.silder.minimumValue = 0;
     [self addSubview:self.silder];
 //    self.silder.continuous = NO;
-    [self.silder setMinimumTrackTintColor:[UIColor dhcolor_c43]];
+    [self.silder setMinimumTrackTintColor:[UIColor lccolor_c43]];
     
 }
 -(void)sliderChangeValue:(UISlider *)slider{

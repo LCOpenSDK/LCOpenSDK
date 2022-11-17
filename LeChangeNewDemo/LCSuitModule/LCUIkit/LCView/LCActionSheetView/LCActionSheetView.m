@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCActionSheetView.h"
@@ -69,7 +69,7 @@ static LCActionSheetView *sheetView = nil;
     self.sheetDisplayView = sheetDisplayView;
     self.sheetDisplayView.frame = CGRectMake(0, self.super_View.frame.size.height, self.super_View.frame.size.width, (self.itemsList.count + 1) * ITEMHEIGHT + CANCLETOPMARGIN + CANCLEBOTTOMMARGIN);
     sheetDisplayView.tag = 7777;
-    sheetDisplayView.backgroundColor = [UIColor dhcolor_c54];
+    sheetDisplayView.backgroundColor = [UIColor lccolor_c54];
     sheetDisplayView.layer.shadowColor = [UIColor blackColor].CGColor;
     sheetDisplayView.layer.shadowOpacity = 0.5;
     sheetDisplayView.layer.shadowOffset = CGSizeMake(3, 0);
@@ -85,7 +85,7 @@ static LCActionSheetView *sheetView = nil;
         [itemBtn addTarget:self action:@selector(sheetViewSelected:) forControlEvents:UIControlEventTouchUpInside];
         [itemBtn setTitleColor:[UIColor lc_colorWithHexString:self.itemColor] forState:UIControlStateNormal];
         itemBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [itemBtn setBackgroundColor:[UIColor dhcolor_c43]];
+        [itemBtn setBackgroundColor:[UIColor lccolor_c43]];
         [itemBtn setFrame:CGRectMake(0, index * ITEMHEIGHT, self.sheetDisplayView.frame.size.width, ITEMHEIGHT)];
         ///底部加横线
         if (index != self.itemsList.count - 1) {
@@ -93,7 +93,7 @@ static LCActionSheetView *sheetView = nil;
             float height1 = itemBtn.frame.size.height - 0.5f;
             float width1 = itemBtn.frame.size.width;
             bottomBorder.frame = CGRectMake(0.0f, height1, width1, 0.5f);
-            bottomBorder.backgroundColor = [UIColor dhcolor_c53].CGColor;
+            bottomBorder.backgroundColor = [UIColor lccolor_c53].CGColor;
             [itemBtn.layer addSublayer:bottomBorder];
         }
 
@@ -106,7 +106,7 @@ static LCActionSheetView *sheetView = nil;
     [cancleBtn addTarget:self action:@selector(sheetViewCancled:) forControlEvents:UIControlEventTouchUpInside];
     [cancleBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     cancleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [cancleBtn setBackgroundColor:[UIColor dhcolor_c43]];
+    [cancleBtn setBackgroundColor:[UIColor lccolor_c43]];
     cancleBtn.frame = CGRectMake(0, self.itemsList.count * ITEMHEIGHT + CANCLETOPMARGIN, self.sheetDisplayView.frame.size.width, ITEMHEIGHT);
     [self showSheetView];
 }

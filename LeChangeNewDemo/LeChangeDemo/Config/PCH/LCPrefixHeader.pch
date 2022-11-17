@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #ifndef LCPrefixHeader_pch
@@ -20,7 +20,7 @@
 //LCBaseModule
 #import <LCBaseModule/LCBaseModule.h>
 #import <LCBaseModule/LCError.h>
-#import <LCBaseModule/NSString+Dahua.h>
+#import <LCBaseModule/NSString+Imou.h>
 #import <LCBaseModule/NSString+Verify.h>
 //LCNetworkModule
 #import <LCNetworkModule/LCNetworkModule.h>

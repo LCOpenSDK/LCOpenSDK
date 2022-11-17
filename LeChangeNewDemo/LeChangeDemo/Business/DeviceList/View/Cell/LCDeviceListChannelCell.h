@@ -1,9 +1,11 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void(^LCDeviceListChannelCellClickBlock)(LCDeviceInfo * info,NSInteger channelIndex);
 
 @interface LCDeviceListChannelCell : UICollectionViewCell
 /// channel
@@ -14,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前index
 @property (nonatomic) NSUInteger index;
+
+@property (copy, nonatomic) LCDeviceListChannelCellClickBlock resultBlock;
 
 @end
 

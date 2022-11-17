@@ -1,18 +1,18 @@
 //
-//  Copyright © 2015 dahua. All rights reserved.
+//  Copyright © 2015 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/UIImageView+LeChange.h>
-#import <LCBaseModule/DHImageLoaderManager.h>
+#import <LCBaseModule/LCImageLoaderManager.h>
 #import <AFNetworking/AFImageDownloader.h>
-#import <LCBaseModule/DHPubDefine.h>
+#import <LCBaseModule/LCPubDefine.h>
 #import <LCBaseModule/NSString+MD5.h>
-#import <LCBaseModule/DHModuleConfig.h>
+#import <LCBaseModule/LCModuleConfig.h>
 #import <LCBaseModule/LCError.h>
 #import <LCBaseModule/LCErrorCode.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Utils.h>
 #import <SDWebImage/SDWebImage.h>
-#import <LCBaseModule/UIImage+DHGIF.h>
+#import <LCBaseModule/UIImage+LCGIF.h>
 
 #import <objc/runtime.h>
 
@@ -63,7 +63,7 @@ static NSString *tokenKey = @"tokenKey";
 
 - (void)lc_storeImageToDisk:(UIImage*)image url:(NSString *)imageUrl {
     //获取缓存路径
-    NSString *baseUrl = [DHImageLoaderManager getImageCacheKey:imageUrl];
+    NSString *baseUrl = [LCImageLoaderManager getImageCacheKey:imageUrl];
     [[SDImageCache sharedImageCache] storeImage:image forKey:baseUrl toDisk:YES completion:nil];
 }
 
@@ -73,53 +73,53 @@ static NSString *tokenKey = @"tokenKey";
 }
 
 - (void)lc_setImageWithUrl:(NSString *)url {
-    [self setImageWithUrl:url placeholderImage:nil aesKey:nil deviceID:nil devicePwd:nil toDisk:NO reload:NO progress:nil success:nil fail:nil];
+    [self setImageWithUrl:url placeholderImage:nil aesKey:nil deviceID:nil productID:nil devicePwd:nil toDisk:NO reload:NO progress:nil success:nil fail:nil];
 }
 
 - (void)lc_setImageWithUrl:(NSString *)url toDisk:(BOOL)toDisk {
-    [self setImageWithUrl:url placeholderImage:nil aesKey:nil deviceID:nil devicePwd:nil toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
+    [self setImageWithUrl:url placeholderImage:nil aesKey:nil deviceID:nil productID:nil devicePwd:nil toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
 }
 
 - (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder {
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:nil deviceID:nil devicePwd:nil toDisk:NO reload:NO progress:nil success:nil fail:nil];
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:nil deviceID:nil productID:nil devicePwd:nil toDisk:NO reload:NO progress:nil success:nil fail:nil];
 }
 
 - (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder  toDisk:(BOOL)toDisk {
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:nil deviceID:nil devicePwd:nil toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:nil deviceID:nil productID:nil devicePwd:nil toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
 }
 
-- (void)lc_setImageWithUrl:(NSString *)url aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk {
-    [self setImageWithUrl:url placeholderImage:nil aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
+- (void)lc_setImageWithUrl:(NSString *)url aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk {
+    [self setImageWithUrl:url placeholderImage:nil aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
 }
 
-- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd {
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:NO reload:NO progress:nil success:nil fail:nil];
+- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd {
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:NO reload:NO progress:nil success:nil fail:nil];
 }
 
-- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk {
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
+- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk {
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:nil fail:nil];
 }
 
-- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:success fail:fail];
+- (void)lc_setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:toDisk reload:NO progress:nil success:success fail:fail];
 }
 
-- (void)lc_setImageFromNetWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
+- (void)lc_setImageFromNetWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
 
-     [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:toDisk reload:YES progress:nil success:success fail:fail];
+     [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:toDisk reload:YES progress:nil success:success fail:fail];
     
 }
 
-- (void)setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk progress:(void (^)(NSProgress *))downloadProgress success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
+- (void)setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk progress:(void (^)(NSProgress *))downloadProgress success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
     
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID devicePwd:devicePwd toDisk:toDisk reload:NO progress:downloadProgress success:success fail:fail];
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:key deviceID:deviceID productID:productID devicePwd:devicePwd toDisk:toDisk reload:NO progress:downloadProgress success:success fail:fail];
 }
 
 
-- (void)setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk reload:(BOOL)relaod progress:(void (^)(NSProgress *))downloadProgress success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
+- (void)setImageWithUrl:(NSString *)url placeholderImage:(NSString *)placeholder aesKey:(NSString *)key deviceID:(NSString *)deviceID productID:(NSString *)productID devicePwd:(NSString *)devicePwd toDisk:(BOOL)toDisk reload:(BOOL)relaod progress:(void (^)(NSProgress *))downloadProgress success:(void (^)(void))success fail:(void (^)(LCError *error))fail {
     
     //由于将gif格式image存储本地会有问题（加载慢、部分存入的是gif格式的image，但是取出的是静态image），故gif格式的存储data，取出也是data
-    BOOL isGIF = [UIImage dh_isGIFFromUrl:url];
+    BOOL isGIF = [UIImage lc_isGIFFromUrl:url];
     
     [self cancelImageDownloadTask];
     
@@ -135,7 +135,7 @@ static NSString *tokenKey = @"tokenKey";
         if (placeholder)
         {
             dispatch_main_async_safe(^{
-                [self setImage:DH_IMAGENAMED(placeholder)];
+                [self setImage:LC_IMAGENAMED(placeholder)];
             });
         }
         return ;
@@ -148,7 +148,7 @@ static NSString *tokenKey = @"tokenKey";
         validUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     }
     
-    __block NSString *baseUrl = isGIF ? [[DHImageLoaderManager getImageCacheKey:validUrl] stringByAppendingString:@"Data"] : [DHImageLoaderManager getImageCacheKey:validUrl];
+    __block NSString *baseUrl = isGIF ? [[LCImageLoaderManager getImageCacheKey:validUrl] stringByAppendingString:@"Data"] : [LCImageLoaderManager getImageCacheKey:validUrl];
     UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromCacheForKey:baseUrl];
     NSData *cacheData = [[SDImageCache sharedImageCache] diskImageDataForKey:baseUrl];
 
@@ -158,7 +158,7 @@ static NSString *tokenKey = @"tokenKey";
             dispatch_main_async_safe(^{
                 //加入cacheImage是gif格式时，但是UIImageView不需要支持gif的判断
                 if (isGIF) {
-                    self.image = [UIImage dh_imageAutoWithData:cacheData];
+                    self.image = [UIImage lc_imageAutoWithData:cacheData];
                 } else {
                     self.image = !self.isNeedSupportGif && cacheImage.sd_isAnimated ? cacheImage.images[0] : cacheImage;
                 }
@@ -166,7 +166,7 @@ static NSString *tokenKey = @"tokenKey";
         } else {
             dispatch_main_async_safe(^{
                 if (placeholder) {
-                    self.image = DH_IMAGENAMED(placeholder);
+                    self.image = LC_IMAGENAMED(placeholder);
                 }
             });
         }
@@ -174,7 +174,7 @@ static NSString *tokenKey = @"tokenKey";
         if (cacheImage != nil) {
             dispatch_main_async_safe(^{
                 if (isGIF) {
-                    self.image = [UIImage dh_imageAutoWithData:cacheData];
+                    self.image = [UIImage lc_imageAutoWithData:cacheData];
                 } else {
                     self.image = !self.isNeedSupportGif && cacheImage.sd_isAnimated ? cacheImage.images[0] : cacheImage;
                 }
@@ -187,7 +187,7 @@ static NSString *tokenKey = @"tokenKey";
         
         dispatch_main_async_safe(^{
             if (placeholder) {
-                self.image = DH_IMAGENAMED(placeholder);
+                self.image = LC_IMAGENAMED(placeholder);
             }
         });
     }
@@ -201,9 +201,9 @@ static NSString *tokenKey = @"tokenKey";
             
             if (cacheImageData != nil) {
                 LCError *encryptError;
-                NSData *imageData = [self deCodeData:cacheImageData key:key deviceID:deviceID devicePWD:devicePwd error:&encryptError];
+                NSData *imageData = [self deCodeData:cacheImageData key:key deviceID:deviceID productId:productID devicePWD:devicePwd error:&encryptError];
                 if (encryptError == nil) {
-                    UIImage *img = [UIImage dh_imageAutoWithData:imageData];
+                    UIImage *img = [UIImage lc_imageAutoWithData:imageData];
                     dispatch_main_async_safe(^{
 						if (img) {
 							self.image = img;
@@ -241,7 +241,7 @@ static NSString *tokenKey = @"tokenKey";
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				//当key不为nil需要解密
 				LCError *encryptError;
-				NSData *imageData = key == nil ? data : [weakSelf deCodeData:data key:key deviceID:deviceID devicePWD:devicePwd error:&encryptError];
+                NSData *imageData = key == nil ? data : [weakSelf deCodeData:data key:key deviceID:deviceID productId:productID devicePWD:devicePwd error:&encryptError];
 				dispatch_async(dispatch_get_main_queue(), ^{
 					if (encryptError != nil) {
 						//解密失败，存储未解密图片
@@ -252,7 +252,7 @@ static NSString *tokenKey = @"tokenKey";
 						}
 					} else {
 						//不需要解密或者解密成功
-						UIImage *img = [UIImage dh_imageAutoWithData:imageData];
+						UIImage *img = [UIImage lc_imageAutoWithData:imageData];
 						if (img != nil) {
 							weakSelf.image = img;
 							
@@ -340,7 +340,7 @@ static NSString *tokenKey = @"tokenKey";
 
 #pragma mark - 图片解密
 
-- (NSData *)deCodeData:(NSData *)data key:(NSString *)key deviceID:(NSString *)deviceId devicePWD:(NSString *)devicePwd error:(LCError **)err
+- (NSData *)deCodeData:(NSData *)data key:(NSString *)key deviceID:(NSString *)deviceId productId:(NSString *)productId  devicePWD:(NSString *)devicePwd error:(LCError **)err
 {
     char header[4] = {0};
     [data getBytes:header length:4];
@@ -352,7 +352,7 @@ static NSString *tokenKey = @"tokenKey";
         /// LCOpenSDK
         //NSInteger result = [[LCOpenSDK_Utils new] decryptPic:data deviceID:deviceId key:key token:self.accessToken bufOut:&imageData];
         // SMB: DTS000869908 TCM设备修改设备密码后云录像缩略图无法解密 外部传进来的key其实为acsKey,为空字符串,此处应该是设备密码
-        NSInteger result = [[LCOpenSDK_Utils new] decryptPic:data deviceID:deviceId key:devicePwd token:self.accessToken bufOut:&imageData];
+        NSInteger result = [[LCOpenSDK_Utils new] decryptPic:data deviceID:deviceId productId:productId key:devicePwd token:self.accessToken bufOut:&imageData];
         
         if (result != 0) { 
             *err = LCError.new;
@@ -377,11 +377,11 @@ static NSString *tokenKey = @"tokenKey";
     return data;    //不需解密
 }
 
-- (void)lc_setEncryptImageWithUrl:(NSString *)url placeholder:(NSString *)placeholder isNewEncrypt:(BOOL)isNewEncrypt customKey:(NSString *)customKey defaultKey:(NSString *)defaultKey deviceID:(NSString *)deviceID toDisk:(BOOL)toDisk {
-    [self lc_setEncryptImageWithUrl:url placeholder:placeholder isNewEncrypt:isNewEncrypt customKey:customKey defaultKey:defaultKey deviceID:deviceID toDisk:toDisk success:nil fail:nil];
+- (void)lc_setEncryptImageWithUrl:(NSString *)url placeholder:(NSString *)placeholder isNewEncrypt:(BOOL)isNewEncrypt customKey:(NSString *)customKey defaultKey:(NSString *)defaultKey deviceID:(NSString *)deviceID productID:(NSString *)productID toDisk:(BOOL)toDisk {
+    [self lc_setEncryptImageWithUrl:url placeholder:placeholder isNewEncrypt:isNewEncrypt customKey:customKey defaultKey:defaultKey deviceID:deviceID productID:productID toDisk:toDisk success:nil fail:nil];
 }
 
-- (void)lc_setEncryptImageWithUrl:(NSString *)url placeholder:(NSString *)placeholder isNewEncrypt:(BOOL)isNewEncrypt customKey:(NSString *)customKey defaultKey:(NSString *)defaultKey deviceID:(NSString *)deviceID toDisk:(BOOL)toDisk success:(void (^)(NSString *correctKey))success fail:(void (^)(LCError *error))fail
+- (void)lc_setEncryptImageWithUrl:(NSString *)url placeholder:(NSString *)placeholder isNewEncrypt:(BOOL)isNewEncrypt customKey:(NSString *)customKey defaultKey:(NSString *)defaultKey deviceID:(NSString *)deviceID productID:(NSString *)productID toDisk:(BOOL)toDisk success:(void (^)(NSString *correctKey))success fail:(void (^)(LCError *error))fail
 {
     //第一次尝试解密：如果customKey存在，则以customKey解密；不存在，则以defaultKey解密
     NSString *firstTryKey = customKey.length ? customKey : defaultKey;
@@ -391,7 +391,7 @@ static NSString *tokenKey = @"tokenKey";
     }
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithUrl:url placeholderImage:placeholder aesKey:isNewEncrypt ? @"" : firstTryKey deviceID:deviceID devicePwd:isNewEncrypt ? firstTryKey : @"" toDisk:toDisk progress:nil success:^{
+    [self setImageWithUrl:url placeholderImage:placeholder aesKey:isNewEncrypt ? @"" : firstTryKey deviceID:deviceID productID:productID devicePwd:isNewEncrypt ? firstTryKey : @"" toDisk:toDisk progress:nil success:^{
         //直接传出成功
         if (success) {
             success(firstTryKey);
@@ -406,7 +406,7 @@ static NSString *tokenKey = @"tokenKey";
         
         //以自定义密码解失败后，再以默认密码去解
         if (defaultKey && ![firstTryKey isEqualToString:defaultKey]) {
-            [weakSelf setImageWithUrl:url placeholderImage:placeholder aesKey:isNewEncrypt ? @"" : defaultKey deviceID:isNewEncrypt ? deviceID : @"" devicePwd:isNewEncrypt ? defaultKey : @"" toDisk:toDisk progress:nil success:^{
+            [weakSelf setImageWithUrl:url placeholderImage:placeholder aesKey:isNewEncrypt ? @"" : defaultKey deviceID:isNewEncrypt ? deviceID : @"" productID:productID devicePwd:isNewEncrypt ? defaultKey : @"" toDisk:toDisk progress:nil success:^{
                 if (success) {
                     success(defaultKey);
                 }
@@ -426,8 +426,9 @@ static NSString *tokenKey = @"tokenKey";
                         customKey:(NSString *)customKey
                        defaultKey:(NSString *)defaultKey
                          deviceID:(NSString *)deviceID
+                        productID:(NSString *)productID
                            toDisk:(BOOL)toDisk {
-    [self lc_setEncryptImageWithUrl:url placeholder:placeholder isNewEncrypt:isNewEncrypt customKey:customKey defaultKey:defaultKey deviceID:deviceID toDisk:toDisk success:nil fail:^(LCError *error) {
+    [self lc_setEncryptImageWithUrl:url placeholder:placeholder isNewEncrypt:isNewEncrypt customKey:customKey defaultKey:defaultKey deviceID:deviceID productID:productID  toDisk:toDisk success:nil fail:^(LCError *error) {
 		if (([error.errorCode integerValue] == EC_IMAGE_ENCRYPT_KEY_WRONG || [error.errorCode integerValue] == EC_IMAGE_ENCRYPT_FAIL) &&
 			errorImage.length) {
 			self.image = [UIImage imageNamed:errorImage];

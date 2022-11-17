@@ -1,9 +1,11 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (lc_IP)
-+ (NSString *)dh_getGatewayIPAddress;
+
++ (NSString *)lc_getGatewayIpForCurrentWiFi;
+
 @end

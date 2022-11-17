@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ enum LCAddOtherWifiControllerStyle {
     case changeWifi
 }
 
-class LCAddOtherWifiController: DHBaseViewController {
+class LCAddOtherWifiController: LCAddBaseViewController {
     
 	/// 设备密码：设备添加过程中获取 
     public var devicePassword: String = "admin"
@@ -23,19 +23,16 @@ class LCAddOtherWifiController: DHBaseViewController {
 	
     // MARK: - life cycle
     
-    convenience init(deviceId: String) {
-        self.init(loginHandle: 0)
-
-        self.deviceId = deviceId
+    init() {
+        super.init(nibName: nil, bundle: nil)
         self.vcStyle = .changeWifi
     }
     
-    init(loginHandle: Int) {
-        self.loginHandle = loginHandle
-        
-        super.init(nibName: nil, bundle: nil)
+    convenience init(deviceId: String) {
+        self.init()
+        self.deviceId = deviceId
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,7 +53,7 @@ class LCAddOtherWifiController: DHBaseViewController {
     // MARK: private method
     
     private func loadSubview() {
-        view.backgroundColor = UIColor.dhcolor_c7()
+        view.backgroundColor = UIColor.lccolor_c7()
         view.addSubview(nameView)
         nameView.snp.makeConstraints { (make) in
             make.left.right.equalTo(view)
@@ -105,7 +102,7 @@ class LCAddOtherWifiController: DHBaseViewController {
             make.right.equalTo(view).offset(-leftPadding24)
             make.width.equalTo(190)
         }
-        descBtn.isHidden = DHAddDeviceManager.sharedInstance.isSupport5GWifi
+        descBtn.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
         view.addSubview(nextBtn)
         nextBtn.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -116,7 +113,7 @@ class LCAddOtherWifiController: DHBaseViewController {
     }
     
     @objc func descBtnClicked() {
-        let supportVc = DHWiFiUnsupportVC()
+        let supportVc = LCWiFiUnsupportVC()
 		supportVc.myTitle = myTitle
         self.navigationController?.pushViewController(supportVc, animated: true)
     }
@@ -148,9 +145,9 @@ class LCAddOtherWifiController: DHBaseViewController {
             }
         default:
             LCProgressHUD.show(on: self.view)
-            if DHAddDeviceManager.sharedInstance.isSupportSC {
-                let dId = DHAddDeviceManager.sharedInstance.deviceId
-                let device = DHNetSDKSearchManager.sharedInstance().getNetInfo(byID: dId)
+            if LCAddDeviceManager.sharedInstance.isSupportSC {
+                let dId = LCAddDeviceManager.sharedInstance.deviceId
+                let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: dId)
 
                 guard device != nil else {
                     LCProgressHUD.hideAllHuds(self.view)
@@ -158,16 +155,14 @@ class LCAddOtherWifiController: DHBaseViewController {
                     return
                 }
                 if device?.deviceInitStatus == .unInit {
-                    
-                    DHNetSDKHelper.scDeviceSoftAPConnectWifi(ssid, wiFiPsw: pwd, deviceId: DHAddDeviceManager.sharedInstance.deviceId, devicePsw: DHAddDeviceManager.sharedInstance.regCode, isSC: DHAddDeviceManager.sharedInstance.isSupportSC) { result in
-                        
+                    LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: 12, netcardName:"" , deviceIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: true, handler: { result in
                         LCProgressHUD.hideAllHuds(self.view)
-                        if result {
+                        if result == 0 {
                             self.pushToConnectCloud()
                         }else{
-                            LCProgressHUD.showMsg("配网失败，请重试")
+                            LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T)
                         }
-                    }
+                    }, timeout: 5000 * 2)
                 } else {
                     connectWifi()
                 }
@@ -180,30 +175,34 @@ class LCAddOtherWifiController: DHBaseViewController {
     private func connectWifi() {
         let ssid = nameTextField.text
         let pwd = passwordInputView.textField.text
-
-        if !DHNetSDKInterface.querySupportWlanConfigV3(loginHandle) {
-            DHNetSDKHelper.connectWIFI(byLoginHandle: loginHandle, ssid: ssid, password: pwd, encryptionAuthority: 12, netcardName: "", complete: { success in
-                LCProgressHUD.hideAllHuds(self.view)
-                self.pushToConnectCloud()
-            })
-        } else {
-            guard let model = DHNetSDKInterface.queryWifi(byLoginHandle: loginHandle, mssId: ssid, errorCode: nil) else {
-                DHNetSDKHelper.connectWIFI(byLoginHandle: loginHandle, ssid: ssid, password: pwd, encryptionAuthority: 12, netcardName: "", complete: { success in
-                    LCProgressHUD.hideAllHuds(self.view)
-                    self.pushToConnectCloud()
-                })
-                return
+        var encryptionAuthority = 12
+        var netcardName = ""
+        
+        
+        
+        LCNetSDKHelper.loginDevice(byIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", port: Int(LCAddDeviceManager.sharedInstance.getLocalDevice()?.port ?? 37777), username: "admin", password: devicePassword) { loginHandle in
+            
+            
+            if !LCNetSDKInterface.querySupportWlanConfigV3(loginHandle) {
+                
+            } else {
+                if let model = LCNetSDKInterface.queryWifi(byLoginHandle: loginHandle, mssId: ssid, errorCode: nil) {
+                    encryptionAuthority = Int(model.encryptionAuthority)
+                    netcardName = model.netcardName ?? ""
+                }
             }
-            DHNetSDKHelper.connectWIFI(byLoginHandle: loginHandle, ssid: ssid, password: pwd, encryptionAuthority:  Int32(model.encryptionAuthority), netcardName: model.netcardName, complete: { success in
+            LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: Int32(encryptionAuthority), netcardName:netcardName , deviceIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: false, handler: { result in
                 LCProgressHUD.hideAllHuds(self.view)
                 self.pushToConnectCloud()
-            })
-    
+            }, timeout: 5000 * 2)
+        } failure: { desc in
+            
         }
+
     }
 	
 	private func pushToConnectCloud() {
-		let controller = DHConnectCloudViewController.storyboardInstance()
+		let controller = LCConnectCloudViewController.storyboardInstance()
 		controller.deviceInitialPassword = devicePassword
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
@@ -212,10 +211,10 @@ class LCAddOtherWifiController: DHBaseViewController {
     
     lazy var nameView: UIView = {
         let nameView = UIView()
-        nameView.backgroundColor = UIColor.dhcolor_c43()
+        nameView.backgroundColor = UIColor.lccolor_c43()
         
         let toplineView = UIView()
-        toplineView.backgroundColor = UIColor.dhcolor_c42()
+        toplineView.backgroundColor = UIColor.lccolor_c42()
         nameView.addSubview(toplineView)
         toplineView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(nameView)
@@ -223,7 +222,7 @@ class LCAddOtherWifiController: DHBaseViewController {
         }
         
         let bottomlineView = UIView()
-        bottomlineView.backgroundColor = UIColor.dhcolor_c42()
+        bottomlineView.backgroundColor = UIColor.lccolor_c42()
         nameView.addSubview(bottomlineView)
         bottomlineView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(nameView)
@@ -244,17 +243,17 @@ class LCAddOtherWifiController: DHBaseViewController {
     lazy var nameTextField: LCTextField = {
         let textField = LCTextField()
         textField.placeholder = "add_device_enter_wifi_password".lc_T
-        textField.font = UIFont.dhFont_t2()
+        textField.font = UIFont.lcFont_t2()
         textField.customClearButton = true
-        textField.textColor = UIColor.dhcolor_c40()
+        textField.textColor = UIColor.lccolor_c40()
         textField.lc_setInputRule(withRegEx: "", andInputLength: 256)
         textField.textChanged = { [weak self] (name) in
             if name?.length == 0 {
                 self?.nextBtn.isEnabled = false
-                self?.nextBtn.backgroundColor = UIColor.dhcolor_c42()
+                self?.nextBtn.backgroundColor = UIColor.lccolor_c42()
             } else {
                 self?.nextBtn.isEnabled = true
-                self?.nextBtn.backgroundColor = UIColor.dhcolor_c10()
+                self?.nextBtn.backgroundColor = UIColor.lccolor_c10()
             }
              
         }
@@ -264,10 +263,10 @@ class LCAddOtherWifiController: DHBaseViewController {
     
     lazy var passwordView: UIView = {
         let passwordView = UIView()
-        passwordView.backgroundColor = UIColor.dhcolor_c43()
+        passwordView.backgroundColor = UIColor.lccolor_c43()
         
         let bottomlineView = UIView()
-        bottomlineView.backgroundColor = UIColor.dhcolor_c42()
+        bottomlineView.backgroundColor = UIColor.lccolor_c42()
         passwordView.addSubview(bottomlineView)
         bottomlineView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(passwordView)
@@ -280,7 +279,7 @@ class LCAddOtherWifiController: DHBaseViewController {
     lazy var passwordLabel: UILabel = {
         let passwordLabel = UILabel()
         // todo: word
-        passwordLabel.text = "密码:".lc_T
+        passwordLabel.text = "password1".lc_T
         
         return passwordLabel
     }()
@@ -294,9 +293,9 @@ class LCAddOtherWifiController: DHBaseViewController {
     
     lazy var descBtn: UIButton = {
         let descBtn = UIButton()
-        descBtn.titleLabel?.font = UIFont.dhFont_t5()
+        descBtn.titleLabel?.font = UIFont.lcFont_t5()
         descBtn.setTitle("add_device_device_not_support_5g".lc_T, for: .normal)
-        descBtn.setTitleColor(UIColor.dhcolor_c42(), for: .normal)
+        descBtn.setTitleColor(UIColor.lccolor_c42(), for: .normal)
         descBtn.setImage(UIImage(named: "adddevice_icon_help"), for: .normal)
         descBtn.addTarget(self, action: #selector(descBtnClicked), for: .touchUpInside)
         descBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 162, 0, 0)
@@ -308,9 +307,9 @@ class LCAddOtherWifiController: DHBaseViewController {
     lazy var nextBtn: UIButton = {
         let nextBtn = UIButton()
         nextBtn.isEnabled = false
-        nextBtn.backgroundColor = UIColor.dhcolor_c42()
+        nextBtn.backgroundColor = UIColor.lccolor_c42()
         nextBtn.setTitle("NextStep".lc_T, for: .normal)
-        nextBtn.setTitleColor(UIColor.dhcolor_c43(), for: .normal)
+        nextBtn.setTitleColor(UIColor.lccolor_c43(), for: .normal)
         nextBtn.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
         
         return nextBtn
@@ -318,7 +317,6 @@ class LCAddOtherWifiController: DHBaseViewController {
 
     // MARK: - private let
     
-    private var loginHandle: Int
     private var vcStyle: LCAddOtherWifiControllerStyle = .newWifi
     private var deviceId: String?
     

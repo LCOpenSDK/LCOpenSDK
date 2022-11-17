@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import UIKit

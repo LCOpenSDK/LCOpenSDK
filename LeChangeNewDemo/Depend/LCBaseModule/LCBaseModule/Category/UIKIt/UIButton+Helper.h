@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2016 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

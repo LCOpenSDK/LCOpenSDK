@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -27,7 +27,7 @@ typedef NS_ENUM(char, iPhoneModel){//0~3
  
  @return mac地址
  */
-+ (NSString *)dh_getMacAddress;
++ (NSString *)lc_getMacAddress;
 
 
 

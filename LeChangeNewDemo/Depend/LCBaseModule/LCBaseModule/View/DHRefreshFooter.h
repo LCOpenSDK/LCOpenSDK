@@ -3,7 +3,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MJRefresh/MJRefreshFooter.h>
 #import <MJRefresh/MJRefresh.h>
 
 @interface DHRefreshFooter : MJRefreshBackStateFooter

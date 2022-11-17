@@ -1,9 +1,12 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "LCModel.h"
+
+@class LCError;
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^requestSuccessBlock)(id objc);

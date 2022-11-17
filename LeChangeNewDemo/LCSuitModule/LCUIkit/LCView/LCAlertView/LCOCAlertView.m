@@ -88,7 +88,7 @@
         make.right.mas_equalTo(-20);
     }];
 
-    LCButton *cancleBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *cancleBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [cancleBtn setTitle:self.cancleTitle forState:UIControlStateNormal];
     [cancleBtn setBorderWithStyle:LC_BORDER_DRAW_TOP | LC_BORDER_DRAW_RIGHT borderColor:[UIColor dhcolor_c59] borderWidth:1];
     [cancleBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
@@ -106,7 +106,7 @@
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
 
-    LCButton *confirmBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *confirmBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [confirmBtn setTitle:self.confirmTitle forState:UIControlStateNormal];
     [confirmBtn setBorderWithStyle:LC_BORDER_DRAW_TOP borderColor:[UIColor dhcolor_c59] borderWidth:1];
     [confirmBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
@@ -148,8 +148,7 @@
     }
 }
 
-+ (void)lc_showTextFieldAlertTextFieldWithTitle:(NSString *)title Detail:(NSString *)detail Placeholder:(NSString *)placeholder
-                                   ConfirmTitle:(NSString *)confirmTitle CancleTitle:(NSString *)cancleTitle Handle:(void (^)(BOOL isConfirmSelected, NSString *inputContent))block {
++ (void)lc_showTextFieldAlertTextFieldWithTitle:(NSString *)title Detail:(NSString *)detail Placeholder:(NSString *)placeholder ConfirmTitle:(NSString *)confirmTitle CancleTitle:(NSString *)cancleTitle Handle:(void (^)(BOOL isConfirmSelected, NSString *inputContent))block {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:detail preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
         if (block) {

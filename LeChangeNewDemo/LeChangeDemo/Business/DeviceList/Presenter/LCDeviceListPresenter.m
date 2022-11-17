@@ -29,11 +29,8 @@
 }
 
 - (void)initSDKLog {
-//    初始化LCOpenSDK_LogInfo实例对象
     LCOpenSDK_LogInfo *info = [LCOpenSDK_LogInfo new];
-//    赋值日志等级字段
     info.levelType = LogLevelTypeDebug;
-//    LCOpenSDK_LogInfo实例配置日志等级
     [[LCOpenSDK_Log shareInstance] setLogInfo:info];
 }
 
@@ -45,36 +42,7 @@
         return;
     }
     self.isRefreshing = YES;
-    if (![LCApplicationDataManager isManagerMode]) {
-        [LCDeviceManagerInterface deviceDetailListFromOpenPlatformWith:-1 Limit:8 Type:@"bindAndShare" NeedApInfo:NO success:^(NSMutableArray<LCDeviceInfo *> *_Nonnull devices) {
-            [weakself.lcDevices removeAllObjects];
-            [weakself.openDevices removeAllObjects];
-            [weakself.infos removeAllObjects];
-      
-            //只显示NVR与通道数大于等于1
-            NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[weakself.openDevices arrayByAddingObjectsFromArray:devices]];
-            [tempArr enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj isKindOfClass:[LCDeviceInfo class]]) {
-                    if (((LCDeviceInfo *)obj).channels.count == 0 && ![((LCDeviceInfo *)obj).catalog isEqualToString:@"NVR"]) {
-                        [tempArr removeObject:obj];
-                    }
-                }
-                *stop = NO;
-            }];
-            weakself.openDevices = tempArr;
-            
-            [LCProgressHUD hideAllHuds:nil];
-            [header endRefreshing];
-            weakself.isRefreshing = NO;
-        } failure:^(LCError *_Nonnull error) {
-            [LCProgressHUD hideAllHuds:nil];
-            [LCProgressHUD showMsg:error.errorMessage];
-            [header endRefreshing];
-            weakself.isRefreshing = NO;
-        }];
-    } else {
-        [LCDeviceManagerInterface subAccountDeviceList:RequestCount page:1 success:^(NSMutableArray<LCDeviceInfo *> * _Nonnull devices) {
-            [weakself.lcDevices removeAllObjects];
+        [LCDeviceManagerInterface queryDeviceDetailPage:1 pageSize:RequestCount success:^(NSMutableArray<LCDeviceInfo *> * _Nonnull devices) {
             [weakself.openDevices removeAllObjects];
             [weakself.infos removeAllObjects];
             //只显示NVR与通道数大于等于1
@@ -97,7 +65,6 @@
             [header endRefreshing];
             weakself.isRefreshing = NO;
         }];
-    }
 }
 
 - (void)loadMoreData:(LCRefreshFooter *)footer {
@@ -107,11 +74,10 @@
         return;
     }
     self.isRefreshing = YES;
-    if ([LCApplicationDataManager isManagerMode] && self.lcDevices.count > 0) {
-        //应该继续从乐橙获取
-        [LCDeviceManagerInterface deviceDetailListFromLeChangeWith:self.lcDevices.lastObject.bindId Limit:8 Type:@"bindAndShare" NeedApInfo:NO success:^(NSMutableArray<LCDeviceInfo *> *_Nonnull devices) {
-            
-            NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[self.lcDevices arrayByAddingObjectsFromArray:devices]];
+    if (self.openDevices.count > 0 && self.openDevices.count % RequestCount == 0) {
+        [LCDeviceManagerInterface queryDeviceDetailPage:self.openDevices.count / RequestCount + 1 pageSize:RequestCount success:^(NSMutableArray<LCDeviceInfo *> * _Nonnull devices) {
+            //只显示NVR与通道数大于等于1
+            NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[self.openDevices arrayByAddingObjectsFromArray:devices]];
             [tempArr enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([obj isKindOfClass:[LCDeviceInfo class]]) {
                     if (((LCDeviceInfo *)obj).channels.count == 0 && ![((LCDeviceInfo *)obj).catalog isEqualToString:@"NVR"]) {
@@ -120,87 +86,24 @@
                 }
                 *stop = NO;
             }];
-            self.lcDevices = tempArr;
+            self.openDevices = tempArr;
             
-            //如果获取数量小于8表示乐橙获取完，再从开放平台获取
-            if (devices.count < 8 && weakself.openDevices.count > 0) {
-                [LCDeviceManagerInterface deviceDetailListFromOpenPlatformWith:weakself.openDevices.lastObject.bindId Limit:8 Type:@"bindAndShare" NeedApInfo:NO success:^(NSMutableArray<LCDeviceInfo *> *_Nonnull devices) {
-        
-                    //只显示NVR与通道数大于0
-                    NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[self.openDevices arrayByAddingObjectsFromArray:devices]];
-                    [tempArr enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if ([obj isKindOfClass:[LCDeviceInfo class]]) {
-                            if (((LCDeviceInfo *)obj).channels.count == 0 && ![((LCDeviceInfo *)obj).catalog isEqualToString:@"NVR"]) {
-                                [tempArr removeObject:obj];
-                            }
-                        }
-                        *stop = NO;
-                    }];
-                    self.openDevices = tempArr;
-                    
-                    [LCProgressHUD hideAllHuds:nil];
-                    weakself.isRefreshing = NO;
-                    [footer endRefreshing];
-                    if (devices.count < 8) {
-                        [footer setState:MJRefreshStateNoMoreData];
-                    }
-                } failure:^(LCError *_Nonnull error) {
-                    [LCProgressHUD hideAllHuds:nil];
-                    weakself.isRefreshing = NO;
-                    [footer endRefreshing];
-                    [LCProgressHUD showMsg:error.errorMessage];
-                }];
-            } else {
-                weakself.isRefreshing = NO;
-                [footer endRefreshing];
-                [LCProgressHUD hideAllHuds:nil];
-            }
-        } failure:^(LCError *_Nonnull error) {
             [LCProgressHUD hideAllHuds:nil];
-            weakself.isRefreshing = NO;
             [footer endRefreshing];
+            self.isRefreshing = NO;
+        } failure:^(LCError * _Nonnull error) {
+            [LCProgressHUD hideAllHuds:nil];
             [LCProgressHUD showMsg:error.errorMessage];
-        }];
-    } else {
-        //直接从开放平台获取
-        if (self.openDevices.count > 0 && self.openDevices.count % RequestCount == 0) {
-            [LCDeviceManagerInterface subAccountDeviceList:RequestCount page:self.openDevices.count / RequestCount + 1 success:^(NSMutableArray<LCDeviceInfo *> * _Nonnull devices) {
-                //只显示NVR与通道数大于等于1
-                NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[self.openDevices arrayByAddingObjectsFromArray:devices]];
-                [tempArr enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ([obj isKindOfClass:[LCDeviceInfo class]]) {
-                        if (((LCDeviceInfo *)obj).channels.count == 0 && ![((LCDeviceInfo *)obj).catalog isEqualToString:@"NVR"]) {
-                            [tempArr removeObject:obj];
-                        }
-                    }
-                    *stop = NO;
-                }];
-                self.openDevices = tempArr;
-                
-                [LCProgressHUD hideAllHuds:nil];
-                [footer endRefreshing];
-                self.isRefreshing = NO;
-            } failure:^(LCError * _Nonnull error) {
-                [LCProgressHUD hideAllHuds:nil];
-                [LCProgressHUD showMsg:error.errorMessage];
-                [footer endRefreshing];
-                self.isRefreshing = NO;
-            }];
-        }else{
             [footer endRefreshing];
-             weakself.isRefreshing = NO;
-        }
+            self.isRefreshing = NO;
+        }];
+    }else{
+        [footer endRefreshing];
+        weakself.isRefreshing = NO;
     }
 }
 
 //MARK: - Private Methods
-
-- (NSMutableArray<LCDeviceInfo *> *)lcDevices {
-    if (!_lcDevices) {
-        _lcDevices = [NSMutableArray array];
-    }
-    return _lcDevices;
-}
 
 - (NSMutableArray<LCDeviceInfo *> *)openDevices {
     if (!_openDevices) {
@@ -211,7 +114,6 @@
 
 - (NSMutableArray<LCDeviceInfo *> *)infos {
     NSMutableArray *infos = [NSMutableArray array];
-    [infos addObjectsFromArray:self.lcDevices];
     [infos addObjectsFromArray:self.openDevices];
     _infos = infos;
     return _infos;
@@ -230,7 +132,6 @@
     cell.presenter = self;
     weakSelf(self);
     cell.resultBlock = ^(LCDeviceInfo *_Nonnull info, NSInteger channelIndex, NSInteger index) {
-        [LCDeviceVideoManager manager].isbindFromLeChange = [self.lcDevices containsObject:info];
         [LCDeviceVideoManager manager].currentDevice = info;
         [LCDeviceVideoManager manager].currentChannelIndex = -1;
         if (index == 0) {
@@ -243,7 +144,7 @@
             }
             [weakself.listContainer.navigationController pushToLivePreview];
         } else if (index == 1) {
-            [weakself.listContainer.navigationController pushToDeviceSettingPage];
+            [weakself.listContainer.navigationController pushToDeviceSettingPage:self.infos[indexPath.row] selectedChannelId:0];
         } else {
             [weakself.listContainer.navigationController pushToCloudService];
         }

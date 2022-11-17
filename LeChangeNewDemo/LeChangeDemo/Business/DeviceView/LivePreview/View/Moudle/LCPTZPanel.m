@@ -1,6 +1,4 @@
-//
-//  Copyright © 2017 com.dahuatech. All rights reserved.
-//
+
 
 #import "LCPTZPanel.h"
 

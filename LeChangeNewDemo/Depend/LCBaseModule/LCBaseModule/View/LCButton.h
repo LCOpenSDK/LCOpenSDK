@@ -1,10 +1,10 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+BorderColor.h"
-#import <Masonry/Masonry.h>
+#import <LCBaseModule/UIView+BorderColor.h>
+//#import <Masonry/Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +29,7 @@ typedef void(^LCButtonTouchUpInsideBlock)(LCButton * btn);
 /// 回调代码块
 @property (copy, nonatomic) LCButtonTouchUpInsideBlock touchUpInsideblock;
 
-+ (instancetype)lcButtonWithType:(LCButtonType)type;
++ (instancetype)createButtonWithType:(LCButtonType)type;
 
 - (void)lcButtonSetType:(LCButtonType)type;
 

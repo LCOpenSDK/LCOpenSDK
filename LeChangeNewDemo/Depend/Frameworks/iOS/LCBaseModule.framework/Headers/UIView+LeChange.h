@@ -1,28 +1,27 @@
 //
-//  Copyright (c) 2015年 dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //  Modified by jiangbin on 2017/9/7
-//  修改：增加dh头
 
 #import <UIKit/UIKit.h>
 
 @interface UIView (LeChange)
 
-@property (nonatomic) CGFloat dh_width;
-@property (nonatomic) CGFloat dh_height;
-@property (nonatomic) CGFloat dh_x;
-@property (nonatomic) CGFloat dh_y;
+@property (nonatomic) CGFloat lc_width;
+@property (nonatomic) CGFloat lc_height;
+@property (nonatomic) CGFloat lc_x;
+@property (nonatomic) CGFloat lc_y;
 
-@property (nonatomic) CGFloat dh_top;
-@property (nonatomic) CGFloat dh_right;
-@property (nonatomic) CGFloat dh_bottom;
-@property (nonatomic) CGFloat dh_left;
+@property (nonatomic) CGFloat lc_top;
+@property (nonatomic) CGFloat lc_right;
+@property (nonatomic) CGFloat lc_bottom;
+@property (nonatomic) CGFloat lc_left;
 
-@property (nonatomic) CGSize dh_size;
+@property (nonatomic) CGSize lc_size;
 
-@property (nonatomic) CGFloat dh_centerX;
-@property (nonatomic) CGFloat dh_centerY;
+@property (nonatomic) CGFloat lc_centerX;
+@property (nonatomic) CGFloat lc_centerY;
 
-@property (nonatomic) CGFloat dh_cornerRadius;
+@property (nonatomic) CGFloat lc_cornerRadius;
 
 /*!
  *  @author peng_kongan, 15-12-11 18:12:25

@@ -4,14 +4,14 @@
 
 import UIKit
 import SnapKit
-class DHNetConnectFailureView: UIView {
+class LCNetConnectFailureView: UIView {
 
 	@IBOutlet weak var imageView: UIImageView!
 	
     var showQrcodeBtn: Bool = false
     
 	/// 失败按钮操作类型【注意循环引用的问题】
-	public var action: ((DHNetConnectFailureType, DHNetConnectFailureOperationType) -> ())?
+	public var action: ((LCNetConnectFailureType, LCNetConnectFailureOperationType) -> ())?
 	
 	/// 帮助
 	public var help: (() -> ())?
@@ -26,9 +26,9 @@ class DHNetConnectFailureView: UIView {
 	private var buttonHeight = CGFloat(45)
 	private var buttonVerticalSpace = CGFloat(10)
 	
-	private var buttonTuples = [DHNetConnectFailureTuple]()
+	private var buttonTuples = [LCNetConnectFailureTuple]()
 	
-	private var failureType: DHNetConnectFailureType = .tp1
+	private var failureType: LCNetConnectFailureType = .tp1
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -40,22 +40,22 @@ class DHNetConnectFailureView: UIView {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-        backgroundColor = UIColor.dhcolor_c43()
+        backgroundColor = UIColor.lccolor_c43()
 		faqContainerView.backgroundColor = UIColor.clear
 		needHelpButton.setTitle("add_device_i_need_help".lc_T, for: .normal)
-        needHelpButton.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+        needHelpButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
 	
 		scollView.bounces = false
         scollView.showsVerticalScrollIndicator = false
-		if dh_isiPhoneX {
+		if lc_isiPhoneX {
 			faqContainerBottomConstraint.constant += 15
 		}
 		
 		imageView.image = UIImage(named: "adddevice_failhrlp_default")
 		contentLabel.text = "add_device_connect_timeout".lc_T
-        contentLabel.textColor = UIColor.dhcolor_c2()
+        contentLabel.textColor = UIColor.lccolor_c2()
 		detailLabel.text = "add_device_operation_by_voice_or_light".lc_T
-        detailLabel.textColor = UIColor.dhcolor_c5()
+        detailLabel.textColor = UIColor.lccolor_c5()
         
         
 		
@@ -68,11 +68,11 @@ class DHNetConnectFailureView: UIView {
 		layoutButtons()
 	}
 	
-	public static func xibInstance() -> DHNetConnectFailureView {
-        if let view = Bundle.dh_addDeviceBundle()?.loadNibNamed("DHNetConnectFailureView", owner: nil, options: nil)!.first as? DHNetConnectFailureView {
+	public static func xibInstance() -> LCNetConnectFailureView {
+        if let view = Bundle.lc_addDeviceBundle()?.loadNibNamed("DHNetConnectFailureView", owner: nil, options: nil)!.first as? LCNetConnectFailureView {
             return view
         }
-		return DHNetConnectFailureView()
+		return LCNetConnectFailureView()
 	}
 	
 	// MARK: Buttons Config
@@ -80,7 +80,7 @@ class DHNetConnectFailureView: UIView {
 	/// 使用定义好的类型设置按钮
 	///
 	/// - Parameter type: 错误类型
-	public func setFailureType(type: DHNetConnectFailureType) {
+	public func setFailureType(type: LCNetConnectFailureType) {
 		failureType = type
 		
 		if failureType == .commonWithWired || failureType == .commonWithoutWired {
@@ -105,7 +105,7 @@ class DHNetConnectFailureView: UIView {
 		var tag = 0
 		for tuple in buttonTuples {
 			tuple.button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-			tuple.button.titleLabel?.font = UIFont.dhFont_t4()
+			tuple.button.titleLabel?.font = UIFont.lcFont_t4()
 			tuple.button.tag = tag
 			tag += 1
 			scollView.addSubview(tuple.button)
@@ -116,8 +116,8 @@ class DHNetConnectFailureView: UIView {
 	///
 	/// - Parameter byTuples: [(按钮标题,操作类型)]
 	/// - Returns: 返回通用按钮，用于外部配置
-	public func setup(byTuples: [(title: String, action: DHNetConnectFailureOperationType)]) -> [UIButton] {
-		let tuples = DHNetConnectFailureType.commonButtons(config: byTuples)
+	public func setup(byTuples: [(title: String, action: LCNetConnectFailureOperationType)]) -> [UIButton] {
+		let tuples = LCNetConnectFailureType.commonButtons(config: byTuples)
 		buttonTuples.removeAll()
 		buttonTuples.append(contentsOf: tuples)
 		
@@ -125,7 +125,7 @@ class DHNetConnectFailureView: UIView {
 		var buttons = [UIButton]()
 		for tuple in buttonTuples {
 			tuple.button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-			tuple.button.titleLabel?.font = UIFont.dhFont_t4()
+			tuple.button.titleLabel?.font = UIFont.lcFont_t4()
 			tuple.button.tag = tag
 			tag += 1
 			buttons.append(tuple.button)

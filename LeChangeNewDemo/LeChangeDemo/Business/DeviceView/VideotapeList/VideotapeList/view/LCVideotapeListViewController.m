@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeListViewController.h"
@@ -107,7 +107,7 @@
         _cloudVideoList.mj_footer = [LCRefreshFooter footerWithRefreshingBlock:^{
             [weakself.persenter loadMoreCloudVideoListWithDate:weakself.dateControl.nowDate];
         }];
-        _cloudVideoList.backgroundColor = [UIColor dhcolor_c54];
+        _cloudVideoList.backgroundColor = [UIColor lccolor_c54];
     }
     return _cloudVideoList;
 }
@@ -130,7 +130,7 @@
         [self.backgroundScrlooView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(weakself.localVideoList.mas_right);
         }];
-        _localVideoList.backgroundColor = [UIColor dhcolor_c54];
+        _localVideoList.backgroundColor = [UIColor lccolor_c54];
         [_localVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lc_T];
         [_localVideoList registerNib:[UINib nibWithNibName:@"LCVideotapeListCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"LCVideotapeListCell"];
         _localVideoList.mj_header = [LCRefreshHeader headerWithRefreshingBlock:^{
@@ -170,12 +170,12 @@
         segment.enable = ![change[@"new"] boolValue];
     }];
 
-    LCButton *leftBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *leftBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self.view addSubview:leftBtn];
-    [leftBtn setTintColor:[UIColor dhcolor_c60]];
-    [leftBtn setImage:LC_IMAGENAMED(@"nav_back") forState:UIControlStateNormal];
-    [leftBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
-    [leftBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
+    [leftBtn setTintColor:[UIColor lccolor_c60]];
+    [leftBtn setImage:LC_IMAGENAMED(@"common_icon_nav_back") forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
+    [leftBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateNormal];
     [leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(segment.mas_centerY);
         make.left.mas_equalTo(weakself.view).offset(15);
@@ -200,15 +200,15 @@
             leftBtn.selected = NO;//完成时，结束全部选中状态
             [leftBtn setTitle:nil forState:UIControlStateNormal];
             [leftBtn setTitle:nil forState:UIControlStateSelected];
-            [leftBtn setImage:LC_IMAGENAMED(@"nav_back") forState:UIControlStateNormal];
+            [leftBtn setImage:LC_IMAGENAMED(@"common_icon_nav_back") forState:UIControlStateNormal];
         }
     }];
 
 //    LCButton *rightBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
 //    [rightBtn setTitle:@"More_MyFamily_EditBtnTitle_Edit".lc_T forState:UIControlStateNormal];
 //    [rightBtn setTitle:@"common_done".lc_T forState:UIControlStateSelected];
-//    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
-//    [rightBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
+//    [rightBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateNormal];
+//    [rightBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
 //    [self.view addSubview:rightBtn];
 //    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.right.mas_equalTo(self.view.mas_right).offset(-15);
@@ -226,7 +226,7 @@
 - (LCButton *)deleteBtn {
     if (!_deleteBtn) {
         weakSelf(self);
-        _deleteBtn = [LCButton lcButtonWithType:LCButtonTypeMinor];
+        _deleteBtn = [LCButton createButtonWithType:LCButtonTypeMinor];
         [_deleteBtn setTitle:@"mobile_common_delete".lc_T forState:UIControlStateNormal];
         [_deleteBtn setImage:LC_IMAGENAMED(@"common_icon_deleteall") forState:UIControlStateNormal];
         [self.view addSubview:_deleteBtn];
@@ -234,8 +234,8 @@
             self->_dateControl.enable = ![change[@"new"] boolValue];
         }];
         _deleteBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
-            [DHAlertController showWithTitle:@"setting_device_delete_alert".lc_T message:@"" cancelButtonTitle:@"common_cancel".lc_T otherButtonTitle:@"common_confirm".lc_T handler:^(NSInteger index) {
-                if (index == 1) {
+            [LCAlertView lc_ShowAlertWithTitle:@"setting_device_delete_alert".lc_T detail:nil confirmString:@"common_confirm".lc_T cancelString:@"common_cancel".lc_T handle:^(BOOL isConfirmSelected) {
+                if (isConfirmSelected == YES) {
                     [weakself.persenter deleteCloudViewotape];
                 }
             }];

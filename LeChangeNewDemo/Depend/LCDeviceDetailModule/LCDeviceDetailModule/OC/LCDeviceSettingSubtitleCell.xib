@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="222" id="KGk-i7-Jjw" customClass="LCDeviceSettingSubtitleCell">
+            <rect key="frame" x="0.0" y="0.0" width="687" height="222"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="687" height="222"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="设备程序版本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRz-Q4-QfB">
+                        <rect key="frame" x="16" y="21" width="98" height="52"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbo-81-GDs">
+                        <rect key="frame" x="16" y="73" width="651" height="128"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gY-Nn-B35">
+                        <rect key="frame" x="571" y="38.5" width="100" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="029-FG-1io"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Kbo-81-GDs" firstAttribute="top" secondItem="DRz-Q4-QfB" secondAttribute="bottom" constant="5" id="0ou-j3-yf9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4gY-Nn-B35" secondAttribute="trailing" id="1xN-dP-TGx"/>
+                    <constraint firstAttribute="trailing" secondItem="Kbo-81-GDs" secondAttribute="trailing" constant="20" id="40v-ri-HbM"/>
+                    <constraint firstItem="DRz-Q4-QfB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="SnL-KD-hAQ"/>
+                    <constraint firstItem="4gY-Nn-B35" firstAttribute="centerY" secondItem="DRz-Q4-QfB" secondAttribute="centerY" id="WV8-Ae-vbU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Kbo-81-GDs" secondAttribute="bottom" id="alr-qH-529"/>
+                    <constraint firstItem="DRz-Q4-QfB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hS3-ya-2nd"/>
+                    <constraint firstItem="Kbo-81-GDs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="rw5-R8-Gor"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="detailLab" destination="Kbo-81-GDs" id="2eT-3d-Qfa"/>
+                <outlet property="subTitleLab" destination="4gY-Nn-B35" id="r8E-5H-k8v"/>
+                <outlet property="titleLab" destination="DRz-Q4-QfB" id="oNn-Ph-K5c"/>
+            </connections>
+            <point key="canvasLocation" x="236" y="18"/>
+        </tableViewCell>
+    </objects>
+</document>

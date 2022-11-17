@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCLandscapeControlView.h"
@@ -12,7 +12,6 @@
 
 @property (strong,nonatomic) UIView * bottomView;
 
-@property (strong,nonatomic) LCButton * lockBtn;
 //底部控制按钮
 @property (strong, nonatomic) NSMutableArray *items;
 
@@ -59,15 +58,16 @@
     }
     return _items;
 }
+
 -(void)setPresenter:(LCLivePreviewPresenter *)presenter{
     _presenter = presenter;
     [self setupView];
 }
+
 -(void)changeAlpha{
     [UIView animateWithDuration:0.3 animations:^{
         self.topView.alpha =  self.topView.alpha==1 ? 0 : 1;
         self.bottomView.alpha =  self.bottomView.alpha==1 ? 0 : 1;
-        self.lockBtn.alpha =  self.lockBtn.alpha==1 ? 0 : 1;
     }];
 }
 -(void)setupView{
@@ -76,16 +76,16 @@
     UIView * topView= [UIView new];
     self.topView = topView;
     [self addSubview:topView];
-    topView.backgroundColor = [UIColor dhcolor_c51];
+    topView.backgroundColor = [UIColor lccolor_c51];
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
         make.height.mas_equalTo(40);
     }];
     //返回按钮
-    LCButton * portrait = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton * portrait = [LCButton createButtonWithType:LCButtonTypeCustom];
     [topView addSubview:portrait];
-    [portrait setTintColor:[UIColor dhcolor_c43]];
-    [portrait setImage:LC_IMAGENAMED(@"nav_back") forState:UIControlStateNormal];
+    [portrait setTintColor:[UIColor lccolor_c43]];
+    [portrait setImage:LC_IMAGENAMED(@"common_icon_nav_back") forState:UIControlStateNormal];
     [portrait mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(topView.mas_left).offset(15);
         make.centerY.mas_equalTo(topView.mas_centerY);
@@ -94,31 +94,10 @@
         [weakself.delegate naviBackClick:btn];
     };
     
-    //锁定全屏按钮
-    LCButton * lockBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
-    self.lockBtn = lockBtn;
-    [self addSubview:lockBtn];
-    [lockBtn setImage:LC_IMAGENAMED(@"live_video_icon_h_lock_off") forState:UIControlStateNormal];
-    
-    [lockBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(-kTopBarSafeHeight);
-        make.centerY.mas_equalTo(self.mas_centerY);
-    }];
-    [lockBtn.KVOController observe:self.presenter.videoManager keyPath:@"isLockFullScreen" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
-        if ([change[@"new"] boolValue]) {
-            [lockBtn setImage:LC_IMAGENAMED(@"live_video_icon_h_lock_on") forState:UIControlStateNormal];
-        }else{
-            [lockBtn setImage:LC_IMAGENAMED(@"live_video_icon_h_lock_off") forState:UIControlStateNormal];
-        }
-    }];
-    lockBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
-        [weakself.delegate lockFullScreen:btn];
-    };
-    
     //序列号显示
     UILabel * titleLab = [UILabel new];
     titleLab.text = [self.delegate currentTitle];
-    titleLab.textColor = [UIColor dhcolor_c43];
+    titleLab.textColor = [UIColor lccolor_c43];
     [topView addSubview:titleLab];
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(topView.mas_centerY);
@@ -129,7 +108,7 @@
     UIView * bottomView= [UIView new];
     self.bottomView = bottomView;
     [self addSubview:bottomView];
-    bottomView.backgroundColor = [UIColor dhcolor_c51];
+    bottomView.backgroundColor = [UIColor lccolor_c51];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(self);
         make.height.mas_equalTo(54);
@@ -139,7 +118,7 @@
     self.startLab.hidden = !self.isNeedProcess;
     [bottomView addSubview:self.startLab];
     self.startLab.textAlignment = NSTextAlignmentCenter;
-    self.startLab.textColor = [UIColor dhcolor_c43];
+    self.startLab.textColor = [UIColor lccolor_c43];
     self.startLab.adjustsFontSizeToFitWidth = YES;
     [self.startLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(bottomView);
@@ -150,7 +129,7 @@
     self.endLab = [UILabel new];
     self.endLab.hidden = !self.isNeedProcess;
     self.endLab.textAlignment = NSTextAlignmentCenter;
-    self.endLab.textColor = [UIColor dhcolor_c43];
+    self.endLab.textColor = [UIColor lccolor_c43];
     [bottomView addSubview:self.endLab];
     self.endLab.adjustsFontSizeToFitWidth = YES;
     [self.endLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -207,21 +186,6 @@
          self.startLab.text = [currentDate stringWithFormat:@"HH:mm:ss"];
     }
 }
-
-//-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-//    CGPoint convertTopPoint = [self.topView convertPoint:point toView:self.topView];
-//    CGPoint convertBottomPoint = [self.bottomView convertPoint:point toView:self.bottomView];
-//    CGPoint convertLockPoint = [self.lockBtn convertPoint:point toView:self.lockBtn];
-//    CGPoint convertProcessViewPoint = [self.processView convertPoint:point toView:self.processView];
-//    if (CGRectContainsPoint(self.topView.frame, convertTopPoint) ||
-//        CGRectContainsPoint(self.bottomView.frame, convertBottomPoint) ||
-//        CGRectContainsPoint(self.lockBtn.frame, convertLockPoint) ||
-//        CGRectContainsPoint(self.processView.frame, convertProcessViewPoint)) {
-//        return [super hitTest:point withEvent:event];
-//    }
-//
-//    return [self.presenter.playWindow.getWindowView hitTest:point withEvent:event];
-//}
 
 - (void)dealloc {
     NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));

@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LCOpenSDK"
-  spec.version      = "3.11.9"
+  spec.version      = "3.12.00"
   spec.summary      = "乐橙云开放平台SDK"
   spec.description  = "乐橙云开放平台SDK,开发者可以用SDK开发APP"
   spec.homepage     = "https://github.com/LCOpenSDK/LCOpenSDK"
@@ -13,5 +13,5 @@ Pod::Spec.new do |spec|
   spec.frameworks   = 'CoreLocation', 'CoreAudio', 'CoreVideo', 'CoreMedia', 'CFNetwork', 'VideoToolbox', 'AudioToolbox', 'AVFoundation','OpenGLES','MediaAccessibility','MediaPlayer'
   spec.libraries    = "z"
   spec.vendored_frameworks = 'Framework/LCOpenSDKDynamic.framework'
-  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'armv7 arm64' }
 end

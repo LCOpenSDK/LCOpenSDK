@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //
 
 #import "LCUserInfo.h"

@@ -1,12 +1,14 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/LCInputView.h>
 #import <LCBaseModule/LCTextField.h>
 #import <LCBaseModule/UITextField+LeChange.h>
 #import <LCBaseModule/UIColor+LeChange.h>
-#import <LCBaseModule/UIFont+Dahua.h>
+#import <LCBaseModule/UIFont+Imou.h>
+#import "NSBundle+AssociatedBundle.h"
+#import <LCBaseModule/LCBaseModule-Swift.h>
 
 /// 右侧按钮尺寸
 #define kRightItemSize 25
@@ -73,12 +75,12 @@
 
 - (void)setup
 {
-    self.backgroundColor = [UIColor dhcolor_c43];
+    self.backgroundColor = [UIColor lccolor_c43];
     _textField = [[LCTextField alloc] init];
     _textField.backgroundColor = [UIColor clearColor];
     //不要在通用控件中修改默认大小和对齐模式，影响其他界面的展示
     _textField.textAlignment = NSTextAlignmentLeft;
-    //_textField.font = [UIFont dhFont_t2];
+    //_textField.font = [UIFont lcFont_t2];
     _textField.keyboardType = UIKeyboardTypeASCIICapable;
     _textField.customClearButton = YES;
     _textField.secureTextEntry = YES;
@@ -95,20 +97,23 @@
     BOOL bShowState = ![_textField isSecureTextEntry];//获取状态
     [_textField setSecureTextEntry:bShowState];//设置状态
     [_textField setEnabled:YES];
-    if (bShowState) {
-        [_rightBtn setImage:[UIImage imageNamed:@"login_icon_closeeye"] forState:UIControlStateNormal];
-        [_rightBtn setImage:[UIImage imageNamed:@"login_icon_closeeye_click"] forState:UIControlStateSelected];
-    } else {
-        [_rightBtn setImage:[UIImage imageNamed:@"login_icon_openeye"] forState:UIControlStateNormal];
-        [_rightBtn setImage:[UIImage imageNamed:@"login_icon_openeye_click"] forState:UIControlStateSelected];
-    }
+    [self updateRightBtnImageWithState:!bShowState];
 }
 
 - (void)setOpenBtnState:(BOOL)openBtnState
 {
     _textField.secureTextEntry = !openBtnState;
-    UIImage *imageNormal = openBtnState ? [UIImage imageNamed:@"login_icon_openeye"] : [UIImage imageNamed:@"login_icon_closeeye"];
-    UIImage *imageSelected = openBtnState ? [UIImage imageNamed:@"login_icon_openeye_click"] : [UIImage imageNamed:@"login_icon_closeeye_click"];
+    [self updateRightBtnImageWithState:openBtnState];
+}
+
+- (void)updateRightBtnImageWithState:(BOOL)openState {
+    UIImage *pwdCloseEyeImg = self.tfSecureImg ? self.tfSecureImg : [UIImage imageNamed:@"login_icon_closeeye"];
+    UIImage *pwdCloseEyeClickImg = self.tfSecureClickImg ? self.tfSecureClickImg : [UIImage imageNamed:@"login_icon_closeeye_click"];
+    UIImage *pwdOpenEyeImg = self.tfUnSecureImg ? self.tfUnSecureImg : [UIImage imageNamed:@"login_icon_openeye"];
+    UIImage *pwdOpenEyeClickImg = self.tfUnSecureClickImg ? self.tfUnSecureClickImg : [UIImage imageNamed:@"login_icon_openeye_click"];
+    
+    UIImage * imageNormal = openState ? pwdOpenEyeImg : pwdCloseEyeImg;
+    UIImage * imageSelected = openState ? pwdOpenEyeClickImg : pwdCloseEyeClickImg;
     [_rightBtn setImage:imageNormal forState:UIControlStateNormal];
     [_rightBtn setImage:imageSelected forState:UIControlStateSelected];
 }

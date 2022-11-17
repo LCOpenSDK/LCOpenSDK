@@ -1,11 +1,11 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideoHistoryView.h"
 #import "LCUIKit.h"
 #import "LCVideotapeHistoryCell.h"
-#import <LCBaseModule/DHActivityIndicatorView.h>
+#import <LCBaseModule/LCActivityIndicatorView.h>
 #import "LCDeviceVideoManager.h"
 
 @interface LCVideoHistoryView ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -29,7 +29,7 @@
 @property (strong,nonatomic)UIView * errorView;
 
 ///错误展示页面
-@property (strong,nonatomic)DHActivityIndicatorView * loadingView;
+@property (strong,nonatomic)LCActivityIndicatorView * loadingView;
 
 @end
 
@@ -45,8 +45,8 @@
 
 -(void)setupView{
     weakSelf(self);
-    self.backgroundColor = [UIColor dhcolor_c43];
-    self.cloudBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.backgroundColor = [UIColor lccolor_c43];
+    self.cloudBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self addSubview:self.cloudBtn];
     self.cloudBtn.selected = YES;
     [self.cloudBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,9 +57,9 @@
     [self.cloudBtn setTitle:@"play_module_cloud_record".lc_T forState:UIControlStateNormal];
     [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_normal") forState:UIControlStateNormal];
     [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_selected") forState:UIControlStateSelected];
-    [self.cloudBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
+    [self.cloudBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
     self.cloudBtn.titleLabel.font = [UIFont lcFont_t4];
-    [self.cloudBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
+    [self.cloudBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
     
     self.isCurrentCloud = YES;
     self.cloudBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
@@ -69,7 +69,7 @@
         }
     };
     
-    self.localBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.localBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self addSubview:self.localBtn];
     [self.localBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(10);
@@ -80,8 +80,8 @@
     [self.localBtn setTitle:@"play_module_device_record".lc_T forState:UIControlStateNormal];
     [self.localBtn setImage:LC_IMAGENAMED(@"timeline_icon_localvideo_normal") forState:UIControlStateNormal];
     [self.localBtn setImage:LC_IMAGENAMED(@"timeline_icon_localvideo_selected") forState:UIControlStateSelected];
-    [self.localBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateSelected];
-    [self.localBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
+    [self.localBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
+    [self.localBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
     
     self.localBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
         weakself.isCurrentCloud = NO;
@@ -100,7 +100,7 @@
     self.videotapeList.delegate = self;
     self.videotapeList.hidden = YES;
     self.videotapeList.showsHorizontalScrollIndicator = NO;
-    self.videotapeList.backgroundColor = [UIColor dhcolor_c43];
+    self.videotapeList.backgroundColor = [UIColor lccolor_c43];
     [self.videotapeList registerNib:[UINib nibWithNibName:@"LCVideotapeHistoryCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"LCVideotapeHistoryCell"];
     [self.videotapeList mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.cloudBtn.mas_bottom).offset(10);
@@ -111,7 +111,7 @@
 }
 -(LCDeviceVideoManager *)manager{
     if (!_manager) {
-        _manager = [LCDeviceVideoManager manager];
+        _manager = [LCDeviceVideoManager shareInstance];
     }
     return _manager;
 }
@@ -130,9 +130,11 @@
         cell.detail = [[NSString stringWithFormat:@"%@",[item valueForKey:@"beginTime"]] componentsSeparatedByString:@" "][1];
         if ([item isKindOfClass:[LCCloudVideotapeInfo class]]) {
             LCCloudVideotapeInfo * info = (LCCloudVideotapeInfo *)item;
-            [cell loadVideotapImage:info.thumbUrl DeviceId:self.manager.currentDevice.deviceId Key:self.manager.currentPsk];
+            NSString *pid = info.productId != nil ? info.productId : @"";
+            [cell loadVideotapImage:info.thumbUrl DeviceId:self.manager.currentDevice.deviceId ProductId:pid  Key:self.manager.currentPsk];
         }else{
-            [cell loadVideotapImage:nil DeviceId:self.manager.currentDevice.deviceId Key:self.manager.currentPsk];
+            NSString *pid = self.manager.currentDevice.productId != nil ? self.manager.currentDevice.productId : @"";
+            [cell loadVideotapImage:nil DeviceId:self.manager.currentDevice.deviceId ProductId:pid Key:self.manager.currentPsk];
         }
     }
    
@@ -192,9 +194,9 @@
     self.loadingView = nil;
 }
 
--(DHActivityIndicatorView *)loadingView{
+-(LCActivityIndicatorView *)loadingView{
     if (!_loadingView) {
-        _loadingView = [[DHActivityIndicatorView alloc] init];
+        _loadingView = [[LCActivityIndicatorView alloc] init];
         [_loadingView startAnimating];
         [self addSubview:_loadingView];
         [_loadingView mas_makeConstraints:^(MASConstraintMaker *make) {

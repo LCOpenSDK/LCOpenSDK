@@ -1,9 +1,10 @@
 //
-//  Copyright © 2016 dahua. All rights reserved.
+//  Copyright © 2016 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+
+@class MBProgressHUD;
 
 @interface LCProgressHUD : UIView
 
@@ -60,10 +61,8 @@
  *
  *  @param view 父视图,为nil时覆盖整个Window
  *  @param tip  提示语
- *
- *  @return MBProgressHUD类
  */
-+ (MBProgressHUD *)showHudOnView:(UIView *)view tip:(NSString*)tip;
++ (void)showHudOnView:(UIView *)view tip:(NSString*)tip;
 
 /**
  *  在view上显示加载视图
@@ -88,9 +87,8 @@
  *
  *  @param view 父视图，view的y从64开始
  *
- *  @return MBProgressHUD类
  */
-+ (MBProgressHUD *)showHudOnView:(UIView *)view;
++ (void)showHudOnView:(UIView *)view;
 
 
 /// 在view上显示加载视图
@@ -123,10 +121,8 @@
  *  在view上显示加载视图,对导航栏做特殊处理
  *
  *  @param view 父视图，view的y从0开始
- *
- *  @return MBProgressHUD类
  */
-+ (MBProgressHUD *)showHudOnLowerView:(UIView *)view;
++ (void)showHudOnLowerView:(UIView *)view;
 
 /**
  *  在view上显示加载视图

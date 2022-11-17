@@ -3,7 +3,7 @@
 //  LeChangeDemo
 //
 //  Created by jiangbin on 2021/7/23.
-//  Copyright © 2021 dahua. All rights reserved.
+//  Copyright © 2021 Imou. All rights reserved.
 //
 
 #import "LCLandscapeControlView+Gesture.h"

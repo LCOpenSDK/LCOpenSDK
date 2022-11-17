@@ -1,12 +1,12 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import Foundation
 
 public extension TimeInterval {
     
-    var dh_secondString: String {
+    var lc_secondString: String {
 		
 		let timeGMT = TimeInterval((Int(self) + TimeZone.current.secondsFromGMT()) % (24 * 3_600))
 		// 小于1970时认为是绝对时间

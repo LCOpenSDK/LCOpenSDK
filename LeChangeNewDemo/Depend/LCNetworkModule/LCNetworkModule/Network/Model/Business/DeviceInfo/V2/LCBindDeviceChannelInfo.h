@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 // 单个设备通道的详细信息获取
 
 #import <Foundation/Foundation.h>

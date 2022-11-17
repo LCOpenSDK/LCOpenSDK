@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #define EMOJI                      @"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"
@@ -9,7 +9,7 @@
 
 #import "LCTextField.h"
 #import "UITextField+LeChange.h"
-#import "UIFont+Dahua.h"
+#import "UIFont+Imou.h"
 
 //抽象私有代理类, 封装UITextFieldDelegate代理方法, 默认返回默认值
 @interface LCTextFieldSupport : NSObject <UITextFieldDelegate>
@@ -438,21 +438,6 @@
     self.font = nil;
     self.font = originFont;
 }
-
-//- (CGRect)placeholderRectForBounds:(CGRect)bounds
-//{
-//	
-//	UIFont *font = self.font ? : [UIFont dhFont_f1];
-//	CGSize size = [self.placeholder sizeWithAttributes: @{NSFontAttributeName: font}];
-//	CGRect placeHolderFrame = [super placeholderRectForBounds:bounds];
-//	
-//	//Placeholder居中显示
-//	if (self.textAlignment == NSTextAlignmentCenter) {
-//		placeHolderFrame = CGRectMake((bounds.size.width - size.width) / 2 + _textOffsetWhenInAlignmentCenter, (bounds.size.height - size.height) / 2, size.width, size.height);
-//	}
-//    
-//    return placeHolderFrame;
-//}
 
 - (CGRect)textRectForBounds:(CGRect)bounds{
 	CGRect inset = [super textRectForBounds:bounds];

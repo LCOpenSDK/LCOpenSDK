@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //  文本有效性验证
 
 #import <Foundation/Foundation.h>

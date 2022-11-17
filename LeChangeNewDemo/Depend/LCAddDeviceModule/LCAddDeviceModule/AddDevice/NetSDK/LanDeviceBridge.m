@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 #import "LanDeviceBridge.h"

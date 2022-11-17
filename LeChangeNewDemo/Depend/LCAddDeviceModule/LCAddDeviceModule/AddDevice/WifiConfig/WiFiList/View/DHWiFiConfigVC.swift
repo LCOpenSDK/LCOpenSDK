@@ -1,24 +1,25 @@
 //
-//  Copyright © 2018 dahua. All rights reserved.
+//  Copyright © 2018 Imou. All rights reserved.
 //
 
 import UIKit
+import LCBaseModule
 
-class DHWiFiConfigVC: DHBaseViewController {
+class LCWiFiConfigVC: LCBasicViewController {
     
     // todo: 修改wifi内容显示
     
-    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    var refreshButton: LCButton?
     @IBOutlet weak var tableView: UITableView!
-    private var presenter: DHWiFiConfigPresenter!
+    private var presenter: LCWiFiConfigPresenter!
     public var deviceId: String = ""
     
     // MARK: - 🍇public method
     
-    public static func storyboardInstance() -> DHWiFiConfigVC {
-        let storyboard = UIStoryboard(name: "DHHomePage", bundle: Bundle.dh_addDeviceBundle())
-        let controller = storyboard.instantiateViewController(withIdentifier: "DHWiFiConfigVC")
-        return controller as! DHWiFiConfigVC
+    public static func storyboardInstance() -> LCWiFiConfigVC {
+        let storyboard = UIStoryboard(name: "DHHomePage", bundle: Bundle.lc_addDeviceBundle())
+        let controller = storyboard.instantiateViewController(withIdentifier: "LCWiFiConfigVC")
+        return controller as! LCWiFiConfigVC
     }
     
     deinit {
@@ -30,23 +31,41 @@ class DHWiFiConfigVC: DHBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //创建返回按钮
+        let backBtn = LCButton.createButton(with: LCButtonTypeCustom)
+        backBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        backBtn.setImage(UIImage(named: "common_icon_nav_back"), for: .normal)
+        backBtn.addTarget(self, action: #selector(navigationBarClick), for: .touchUpInside)
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: backBtn), animated: false)
+        
+        //创建返回按钮
+        self.refreshButton = LCButton.createButton(with: LCButtonTypeCustom)
+        self.refreshButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.refreshButton?.setImage(UIImage(named: "common_image_nav_refresh"), for: .normal)
+        self.refreshButton?.addTarget(self, action: #selector(refreshAction), for: .touchUpInside)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(customView: self.refreshButton!), animated: false)
+        
         title = "mobile_common_network_config".lc_T
-        self.refreshButton.image = UIImage(named: "common_image_nav_refresh")
         //获取数据
-        presenter = DHWiFiConfigPresenter.init(deviceId: self.deviceId)
+        presenter = LCWiFiConfigPresenter.init(deviceId: self.deviceId)
         presenter.setContainer(container: self)
         presenter.loadWiFiList()
         //设置UI
         initTable()
     }
-    // MARK: - 🍎private method
     
+    @objc private func navigationBarClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - 🍎private method
     private func initTable() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorColor = UIColor.dhcolor_c8()
-		tableView.backgroundColor = UIColor.dhcolor_c7()
-        tableView.register(DHWiFiConfigHeader.self, forHeaderFooterViewReuseIdentifier: "DHWiFiConfigHeader")
+        tableView.separatorColor = UIColor.lccolor_c8()
+		tableView.backgroundColor = UIColor.lccolor_c7()
+        tableView.register(LCWiFiConfigHeader.self, forHeaderFooterViewReuseIdentifier: "LCWiFiConfigHeader")
     }
 
     @objc func iconClicked() {
@@ -55,7 +74,7 @@ class DHWiFiConfigVC: DHBaseViewController {
   
     // MARK: - 🍉action
     
-    @IBAction func refreshAction(_ sender: UIBarButtonItem) {
+    @objc private func refreshAction() {
         self.presenter.refresh()
     }
     
@@ -63,7 +82,11 @@ class DHWiFiConfigVC: DHBaseViewController {
 
 // MARK: - 🍑container protocol
 
-extension DHWiFiConfigVC: IDHWiFiConfigContainer {
+extension LCWiFiConfigVC: ILCWiFiConfigContainer {
+    func mainController() -> UIViewController {
+        return self
+    }
+    
     func table() -> UITableView {
         return tableView
     }
@@ -76,21 +99,17 @@ extension DHWiFiConfigVC: IDHWiFiConfigContainer {
         return view
     }
     
-    func mainController() -> UIViewController {
-        return self
-    }
-    
     func refreshEnable(isEnable: Bool) {
         if !isEnable {
-            self.refreshButton.isEnabled = false
+            self.refreshButton?.isEnabled = false
             var img = UIImage(named: "common_image_nav_refresh_disable")
             img = img?.withRenderingMode(.alwaysOriginal)
-            self.refreshButton.image = img
+            self.refreshButton?.setImage(img, for: .normal)
         } else {
-            self.refreshButton.isEnabled = true
+            self.refreshButton?.isEnabled = true
             var img = UIImage(named: "common_image_nav_refresh")
             img = img?.withRenderingMode(.alwaysOriginal)
-            self.refreshButton.image = img
+            self.refreshButton?.setImage(img, for: .normal)
         }
     }
     
@@ -99,7 +118,7 @@ extension DHWiFiConfigVC: IDHWiFiConfigContainer {
 // MARK: - 🍑table view datasource
 
 // todo: 改了之后写得不好，需要修改
-extension DHWiFiConfigVC: UITableViewDataSource {
+extension LCWiFiConfigVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return presenter.sectionNumber()
     }
@@ -110,13 +129,13 @@ extension DHWiFiConfigVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section != (presenter.sectionNumber() - 1) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DHWiFiConfigListCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LCWiFiConfigListCell")
             presenter.configCell(cell: cell!, indexPath: indexPath)
             return cell!
         } else {
             let cell = UITableViewCell()
-            cell.textLabel?.text = "其他..."
-            cell.textLabel?.textColor = UIColor.dhcolor_c0()
+            cell.textLabel?.text = "hidden_wifi_other".lc_T
+            cell.textLabel?.textColor = UIColor.lccolor_c0()
             cell.selectionStyle = .none
             return cell
         }
@@ -125,7 +144,7 @@ extension DHWiFiConfigVC: UITableViewDataSource {
 
 // MARK: - 🍑table view delegate
 
-extension DHWiFiConfigVC: UITableViewDelegate {
+extension LCWiFiConfigVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !presenter.hasConfigedWifi(), indexPath.section == 0, presenter.sectionNumber() != 1 {
             return 0
@@ -134,9 +153,9 @@ extension DHWiFiConfigVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if !presenter.hasConfigedWifi(), section == 0, DHAddDeviceManager.sharedInstance.isSupport5GWifi {
+        if !presenter.hasConfigedWifi(), section == 0, LCAddDeviceManager.sharedInstance.isSupport5GWifi {
             return 0.01
-        } else if !DHAddDeviceManager.sharedInstance.isSupport5GWifi, section == 0 {
+        } else if !LCAddDeviceManager.sharedInstance.isSupport5GWifi, section == 0 {
             return presenter.hasConfigedWifi() ? 186.0 : 156.0
         } else if section != (presenter.sectionNumber() - 1) {
             return 40.0
@@ -150,23 +169,23 @@ extension DHWiFiConfigVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
-        if !DHAddDeviceManager.sharedInstance.isSupport5GWifi, section == 0 {
-            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DHWiFiConfigHeader") as? DHWiFiConfigHeader else {
+        if !LCAddDeviceManager.sharedInstance.isSupport5GWifi, section == 0 {
+            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "LCWiFiConfigHeader") as? LCWiFiConfigHeader else {
                 return nil
             }
             header.delegate = self
-            header.titleImageView.image = DHAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(named: "adddevice_icon_wifipassword") : UIImage(named: "adddevice_icon_wifipassword_nosupport5g")
-            header.titleLabel.isHidden = DHAddDeviceManager.sharedInstance.isSupport5GWifi
-            header.iconImageView.isHidden = DHAddDeviceManager.sharedInstance.isSupport5GWifi
+            header.titleImageView.image = LCAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(named: "adddevice_icon_wifipassword") : UIImage(named: "adddevice_icon_wifipassword_nosupport5g")
+            header.titleLabel.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
+            header.iconImageView.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
             header.descButton.isHidden = !presenter.hasConfigedWifi()
             return header
         } else if !presenter.hasConfigedWifi(), section == 0 {
             return nil
         } else if section != (presenter.sectionNumber() - 1) {
-            let headerview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: dh_screenWidth, height: 40))
+            let headerview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: lc_screenWidth, height: 40))
             let headerLabel = UILabel()
             headerview.clipsToBounds = true
-            headerLabel.font = UIFont.dhFont_t5()
+            headerLabel.font = UIFont.lcFont_t5()
             headerLabel.textAlignment = .left
             headerLabel.text = ((section == 0) ? "device_manager_connected_wifi".lc_T : "device_manager_select_wifi".lc_T)
             headerview.addSubview(headerLabel)
@@ -200,8 +219,8 @@ extension DHWiFiConfigVC: UITableViewDelegate {
     }
 }
 
-extension DHWiFiConfigVC: DHWiFiConfigHeaderDelegate {
-    func iconDidClicked(type: DHWiFiConfigHeaderClickType) {
+extension LCWiFiConfigVC: LCWiFiConfigHeaderDelegate {
+    func iconDidClicked(type: LCWiFiConfigHeaderClickType) {
         presenter.explain5GInfo()
     }
 }

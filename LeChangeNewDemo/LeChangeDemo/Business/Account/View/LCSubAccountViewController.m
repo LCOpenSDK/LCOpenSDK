@@ -3,11 +3,12 @@
 //  LeChangeDemo
 //
 //  Created by 韩燕瑞 on 2021/7/12.
-//  Copyright © 2021 dahua. All rights reserved.
+//  Copyright © 2021 Imou. All rights reserved.
 //
 
 #import "LCSubAccountViewController.h"
 #import "LCAccountPresenter.h"
+#import <LCBaseModule/LCBaseModule-Swift.h>
 
 @interface LCSubAccountViewController ()
 <UITextViewDelegate>
@@ -26,17 +27,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor clearColor] titleColor:[UIColor whiteColor]];
     // 导航栏返回按钮
-    LCButton *backBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *backBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 30, 30);
     [backBtn setImage:[UIImage imageNamed:(@"common_icon_backarrow_white")] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(navigationBarClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [self.navigationItem setLeftBarButtonItem:backItem];
-    // 导航栏返透明处理
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20 ],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationController.navigationBar.translucent = YES;
     if (_isRegist) {
         self.title = @"User_Mode_Login_Register".lc_T;
     }
@@ -70,7 +70,7 @@
     // 账户输入框
     UITextField *textField = [[UITextField alloc] init];
     textField.font = [UIFont fontWithName:@"Pingfang-SC-Medium" size:15.0];
-    textField.textColor = [UIColor dhcolor_c41];
+    textField.textColor = [UIColor lccolor_c41];
     textField.borderStyle = NO;
     textField.delegate = (id)self;
     textField.placeholder = [LCApplicationDataManager isChinaMainland]  ? @"User_Mode_Login_PhoneNumber_Placeholder".lc_T : @"User_Mode_Login_Phone_Placeholder".lc_T;
@@ -89,7 +89,7 @@
   
     // 输入框下划线
     UIView *lineView = [[UIImageView alloc] init];
-    lineView.backgroundColor = [UIColor dhcolor_c59];
+    lineView.backgroundColor = [UIColor lccolor_c59];
     [self.view addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(iconImageView.mas_bottom).offset(11.0);
@@ -99,7 +99,7 @@
     }];
     
     // 账户登录或账户注册按钮
-    LCButton *confirmBtn = [LCButton lcButtonWithType:LCButtonTypePrimary];
+    LCButton *confirmBtn = [LCButton createButtonWithType:LCButtonTypePrimary];
     [confirmBtn setTitle:_isRegist ? @"User_Mode_Account_Regist".lc_T : @"User_Mode_Account_Login".lc_T forState:UIControlStateNormal];
     confirmBtn.tag = _isRegist ? 1005 : 1006;
     [self.view addSubview:confirmBtn];
@@ -112,9 +112,9 @@
     };
     
     // 注册按钮
-    LCButton *registerButton = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *registerButton = [LCButton createButtonWithType:LCButtonTypeCustom];
     [registerButton setTitle: @"User_Mode_Login_Register".lc_T forState:UIControlStateNormal];
-    [registerButton setTitleColor:[UIColor dhcolor_c0] forState:UIControlStateNormal];
+    [registerButton setTitleColor:[UIColor lccolor_c0] forState:UIControlStateNormal];
     registerButton.titleLabel.font = [UIFont fontWithName:@"Pingfang-SC-Medium" size:15.0];
     registerButton.tag = 1007;
     registerButton.titleLabel.textAlignment = NSTextAlignmentLeft;

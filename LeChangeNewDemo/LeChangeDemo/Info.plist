@@ -29,28 +29,24 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>So the app can discover and connect to Bluetooth network devices</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>So the app can discover and connect to Bluetooth network devices</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera Use</string>
+	<string>This lets you scan new products, take a profile picture and more.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Contact</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Face ID</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>请开启本地网络权限，以正常使用搜索局域网设备功能</string>
+	<string>Requesting Access to Address Book</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>need local</string>
+	<string>Your location is needed in the processes of adding devices.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>need local</string>
-	<key>NSLocationUsageDescription</key>
-	<string>need local</string>
+	<string>Your location is needed in the processes of adding devices.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>location</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone Use</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Photo Library Use</string>
+	<string>Your location is needed in the processes of adding devices.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo Library Use</string>
+	<string>This lets you choose photos from your album and save photos.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>App would like to access IDFA for tracking purpose</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -62,7 +58,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarHidden</key>
-	<true/>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

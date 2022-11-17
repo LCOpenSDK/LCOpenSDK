@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //  
 //  UIView的扩展，用于简化转场动画的实现
 

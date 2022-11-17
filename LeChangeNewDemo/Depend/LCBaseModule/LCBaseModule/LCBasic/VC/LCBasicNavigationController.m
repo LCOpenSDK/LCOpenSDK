@@ -1,8 +1,9 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCBasicNavigationController.h"
+#import "UIColor+LeChange.h"
 
 @interface LCBasicNavigationController ()
 
@@ -12,7 +13,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (BOOL)shouldAutorotate {

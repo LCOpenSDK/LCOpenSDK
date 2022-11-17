@@ -1,15 +1,15 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/LCWebViewController.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "DHModule.h"
+#import "LCModule.h"
 #import <MessageUI/MessageUI.h>
-#import <LCBaseModule/DHModuleConfig.h>
-#import <LCBaseModule/DHPubDefine.h>
+#import <LCBaseModule/LCModuleConfig.h>
+#import <LCBaseModule/LCPubDefine.h>
 #import <LCBaseModule/UIColor+LeChange.h>
-#import <LCBaseModule/UIFont+Dahua.h>
+#import <LCBaseModule/UIFont+Imou.h>
 #import <LCBaseModule/UIDevice+LeChange.h>
 #import <LCBaseModule/UINavigationItem+LeChange.h>
 #import <WebViewJavascriptBridge/WKWebViewJavascriptBridge.h>
@@ -117,7 +117,7 @@
 #pragma mark - ViewCycles
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor dhcolor_c43];
+    self.view.backgroundColor = [UIColor lccolor_c43];
     _isShowErrorView = YES;
     
     _playUrl = [_playUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -179,7 +179,7 @@
     self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 1)];
     self.progressView.backgroundColor = [UIColor clearColor];
     self.progressView.trackTintColor = [UIColor clearColor];
-	self.progressView.progressTintColor = [UIColor dhcolor_c0];
+	self.progressView.progressTintColor = [UIColor lccolor_c0];
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
     //self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
     [self.view addSubview:self.progressView];
@@ -231,7 +231,7 @@
         //返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(0, 0, 30, 30);
-        [backButton setImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"common_icon_nav_back"] forState:UIControlStateNormal];
 //        [backButton setImage:[UIImage imageNamed:@"nav_icon_back_click"] forState:UIControlStateHighlighted];
         [backButton addTarget:self action:@selector(onLeftNaviItemClick:) forControlEvents:UIControlEventTouchUpInside];
         //取消按钮
@@ -356,11 +356,11 @@
 - (void)resetNavbarFrame {
     
     CGRect windowFrame = [UIScreen mainScreen].applicationFrame;
-    CGFloat statusBarH = (DH_IS_IPHONEX ? 44.0 : 20.0);
+    CGFloat statusBarH = (LC_IS_IPHONEX ? 44.0 : 20.0);
     CGFloat navBarH = self.navBar.frame.size.height;
     if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
         self.navBar.frame = CGRectMake(0.0, statusBarH, windowFrame.size.width, navBarH);
-        self.view.frame = CGRectMake(0.0, self.navBar.frame.origin.y + self.navBar.frame.size.height, DH_SCREEN_SIZE_WIDTH, DH_SCREEN_SIZE_HEIGHT - statusBarH - navBarH);
+        self.view.frame = CGRectMake(0.0, self.navBar.frame.origin.y + self.navBar.frame.size.height, LC_SCREEN_SIZE_WIDTH, LC_SCREEN_SIZE_HEIGHT - statusBarH - navBarH);
     }
 }
 
@@ -805,9 +805,9 @@
     
     UILabel *wordLbl = [[UILabel alloc]initWithFrame:CGRectZero];
     wordLbl.tag = 100;
-    wordLbl.textColor = [UIColor dhcolor_c2];
+    wordLbl.textColor = [UIColor lccolor_c2];
     wordLbl.textAlignment = NSTextAlignmentCenter;
-    wordLbl.font = [UIFont dhFont_t4];
+    wordLbl.font = [UIFont lcFont_t4];
     wordLbl.numberOfLines = 0;
     wordLbl.lineBreakMode = NSLineBreakByWordWrapping;
     wordLbl.text = title;
@@ -836,7 +836,7 @@
     NSLog(@"28614 : %@", URL);
     
     //【*】缓存策略：由于海外前端的原因，使用NSURLRequestUseProtocolCachePolicy会导致页面加载不正确
-    NSURLRequestCachePolicy cachePolicy = [DHModuleConfig shareInstance].isLeChange ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLRequestCachePolicy cachePolicy = [LCModuleConfig shareInstance].isChinaMainland ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:cachePolicy timeoutInterval:10.0];
     NSLog(@"28614-*-* cachePolicy:%lu",(unsigned long)request.cachePolicy );

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "NSString+Verify.h"
@@ -66,8 +66,8 @@
     NSString *vaildStr = @"";
     vaildStr = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     vaildStr = [self disableSpecialCharInString:vaildStr];
-    if (vaildStr.length > 20) {
-        vaildStr = [vaildStr substringToIndex:20];
+    if (vaildStr.length > 40) {
+        vaildStr = [vaildStr substringToIndex:40];
     }
     return vaildStr;
 }

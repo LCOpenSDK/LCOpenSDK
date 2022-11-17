@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import UIKit
@@ -7,7 +7,7 @@ import UIKit
 public extension UIImage {
     
     // 设置圆角
-    func dh_imageRadius(_ radius: CGFloat) -> UIImage {
+    func lc_imageRadius(_ radius: CGFloat) -> UIImage {
         
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         
@@ -24,7 +24,7 @@ public extension UIImage {
     }
 	
 	/// 二分法压缩图片
-	func dh_compressImage(limitDataSize: Int) -> Data? {
+	func lc_compressImage(limitDataSize: Int) -> Data? {
 		guard var resultData = UIImageJPEGRepresentation(self, 1) else {
 			return nil
 		}

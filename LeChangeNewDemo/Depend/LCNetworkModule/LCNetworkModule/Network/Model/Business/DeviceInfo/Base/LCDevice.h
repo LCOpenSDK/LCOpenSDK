@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -10,21 +10,21 @@
 /**
  通道封面图类型
  */
-typedef NS_ENUM(NSInteger, DHChannelPicType ) {
-    DHChannelPicTypeUnkown,        /**< 未定义 */
-    DHChannelPicTypeAuto,        /**< 自动抓图 */
-    DHChannelPicTypeCustom,        /**< 自定义 */
+typedef NS_ENUM(NSInteger, LCChannelPicType ) {
+    LCChannelPicTypeUnkown,        /**< 未定义 */
+    LCChannelPicTypeAuto,        /**< 自动抓图 */
+    LCChannelPicTypeCustom,        /**< 自定义 */
 };
 
 /**
  设备/通道状态
  */
-typedef NS_ENUM(NSInteger, DHOnlineStatus) {
-    DHOnlineStatusOnline,        /**< 在线 */
-    DHOnlineStatusOffline,        /**< 离线 */
-    DHOnlineStatusSleep,        /**< 睡眼 */
-    DHOnlineStatusClose,        /**< 未配置 */
-    DHOnlineStatusUpgrading,    /**< 升级中 */
+typedef NS_ENUM(NSInteger, LCOnlineStatus) {
+    LCOnlineStatusOnline,        /**< 在线 */
+    LCOnlineStatusOffline,        /**< 离线 */
+    LCOnlineStatusSleep,        /**< 睡眼 */
+    LCOnlineStatusClose,        /**< 未配置 */
+    LCOnlineStatusUpgrading,    /**< 升级中 */
 };
 
 /************* LCBasicDevice *************/
@@ -108,8 +108,8 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 @property (nonatomic, strong) NSMutableArray *zbList;
 //网关布防按钮状态
 @property (nonatomic, assign) int agEnableState; //0未知默认 1开启 2未知开启 3关闭 4未知关闭
-///设备接入是否通过大华pass协议
-@property (nonatomic, assign) int paasFlag; /**< 0通过老的乐橙平台接入， 1通过大华paas协议接入 */
+///设备接入是否通过乐橙pass协议
+@property (nonatomic, assign) int paasFlag; /**< 0通过老的乐橙平台接入， 1通过乐橙paas协议接入 */
 
 @end
 
@@ -162,11 +162,11 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 //摄像头是否被遮罩  0-未遮罩  1-遮罩     为了保存加载状态 添加-1 表示当前设备正在开启遮罩   -2 表示正在取消遮罩
 @property (nonatomic, assign) int isCloseCamera;
 /// 封面图类型
-@property (nonatomic, assign) DHChannelPicType picType;
+@property (nonatomic, assign) LCChannelPicType picType;
 
-/****************** 附加属性，以dh_开头 *****************/
+/****************** 附加属性，以lc_开头 *****************/
 //设备地理位置，不用缓存
-@property (nonatomic, strong) NSMutableDictionary *dh_userInfo;
+@property (nonatomic, strong) NSMutableDictionary *lc_userInfo;
 //是否画面翻转
 @property (nonatomic, assign) BOOL      isFrameReversed;
 // 1表示别人分享给自己的设备，2表示别人授权给自己的设备
@@ -180,8 +180,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 //设备地理位置，不用缓存
 @property (nonatomic, copy)   NSString *lc_region;
 
-/// 转换成DHChannel，兼容融合一期的代码
-- (id)lc_generateDHChannel;
+- (id)lc_generateLCChannel;
 
 /// 解决融合版本数据转换问题【只做数据转换时使用】
 @property (nonatomic, strong) LCDevice *lc_pConvertDevice;
@@ -680,7 +679,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 
 @end
 
-@interface DHQuerySirenStateResultObject : NSObject
+@interface LCQuerySirenStateResultObject : NSObject
 
 @property (nonatomic, assign) int time;
 @property (nonatomic, copy) NSString *whiteLight;
@@ -784,7 +783,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 @end
 
 //警笛时长
-@interface DHSirenTimeInfo: NSObject
+@interface LCSirenTimeInfo: NSObject
 
 @property (nonatomic, copy) NSString *currentIndex;//选中索引
 @property (nonatomic, copy) NSString *index;//时长索引
@@ -793,37 +792,41 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 @end
 
 //MARK: 设备添加融合
-
 /// 设备添加用户获取的设备信息
-@interface DHUserDeviceBindInfo: NSObject
+@interface LCUserDeviceBindInfo: NSObject
 
-@property (nonatomic, copy) NSString *deviceExist; /**< 必须 设备在数据库是否存在，exist，notExist */
-@property (nonatomic, copy) NSString *bindStatus; /**< 可选 bindByMe, bindByOther, unbind */
-@property (nonatomic, copy) NSString *userAccount; /**< 所属账号  */
+/// 如果productId不为空，设备为iot设备
+/// iot设备共用属性
+// 设备在平台是否存在："exist":存在,"notExist":不存在
+@property (nonatomic, copy) NSString *deviceExist;
+// 设备状态：online-在线,offline-在线,upgrading-升级中,sleep-休眠
+@property (nonatomic, copy) NSString *status;
+// 设备绑定情况：unbind, bindByMe, bindByOther
+@property (nonatomic, copy) NSString *bindStatus;
+// 设备所属账号
+@property (nonatomic, copy) NSString *userAccount;
+// 设备SN
+@property (nonatomic, copy) NSString *deviceId;
+
+/// 非iot设备属性
 @property (nonatomic, copy) NSString *wifiConfigMode; /**< 表示支持的配对模式：SmartConfig，SoundWave，SoftAP，LAN，SIMCard   */
 @property (nonatomic) BOOL surpport; /**< 是否支持该设备，true:支持,false:不支持  */
 @property (nonatomic, copy) NSString *wifiTransferMode; /**< 可选 表示无线支持频段的序列，逗号隔开：2.4Ghz,5Ghz  */
-@property (nonatomic, copy) NSString *status; /**< online-在线，offline-在线，upgrading-升级中，sleep-休眠   */
 @property (nonatomic, copy) NSString *deviceModel; /**< 可选 设备型号   */
 @property (nonatomic, copy) NSString *ability; /**<  可选 设备能力项，逗号隔开，如AlarmMD,AudioTalk,AlarmPIR,WLAN,VVP2P; */
 @property (nonatomic, copy) NSString *catalog; /**< 可选 设备大类【NVR/DVR/HCVR/IPC/SD/IHG/ARC】  */
-
-@property (nonatomic) BOOL wifiConfigModeOptional;  //表示可让用户自行选择可用的配网模式
 @property (nonatomic, copy) NSString *accessType; /**< 设备接入类型，PaaS-表示Paas程序接入、Lechange-表示乐橙非PaaS设备、Easy4IP表示Easy4IP程序设备、P2P表示P2P程序设   */
-@property (nonatomic, copy) NSString *brand; /**< 设备品牌信息：国内：lechange-乐橙设备，general-通用设备, 海外：dahua-大华设备，general-通用设备   */
+@property (nonatomic, copy) NSString *brand; /**< 设备品牌信息：国内：lechange-乐橙设备，general-通用设备, 海外：imou-乐橙设备，general-通用设备   */
 @property (nonatomic, copy) NSString *family; /**< 设备系列：'A'、'C'、'K'、'SE'等;服务中没有则返回空''   */
 @property (nonatomic, copy) NSString *modelName; /**< 可选 型号名称（设备外部型号，app展示使用，可选）  */
 @property (nonatomic, copy) NSString *type; /**< 可选 分类：ap，device  */
 @property (nonatomic, copy) NSString *channelNum; /**< 国内使用 视频通道的总数量（包含未接入的通道），网关的通道数可能为0 */
 @property (nonatomic, copy) NSString *watchSetupVideoUrl;//添加设备引导页，查看视频
-@property (nonatomic, copy) NSString *port; /**< 可选 设备私有协议端口,海外使用  */
-@property (nonatomic, copy) NSString *httpPort; /**< 可选 设备Http端口,海外使用  */
-@property (nonatomic, copy) NSString *rtspPort; /**< 可选 设备Rtsp端口,海外使用  */
+@property (nonatomic, copy) NSString *p2pPort;
 @property (nonatomic, copy) NSString *tlsPrivatePort; /**< 可选 设备加密端口,海外使用  */
 @property (nonatomic, copy) NSString *privateMediaPort ; /**< 可选 设备私有拉流协议监听端口  */
-
-- (BOOL)isDeviceExist;
-
+@property (nonatomic, copy) NSString *canBeBind ; /**< 可选 是否可绑定  */    //待处理问题： canBeBind 重复定义 一个定义bool值，一个定义为string 当前处理注释掉 string类型
+@property (copy, nonatomic) NSString *nextStep; // 下个步骤，取值：bind-绑定；networkConfig-配网；bindByMe-被自己绑定； bindByOther-被他人绑定
 /// 设备类别
 @property (strong, nonatomic) NSString *deviceType;
 /// 设备分类
@@ -834,15 +837,26 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 @property (strong, nonatomic) NSString *dtName;
 /// 支持配网方式
 @property (strong, nonatomic) NSString *wifiMode;
-
 // SMB新增属性
 @property (nonatomic, copy) NSString *deviceImageURI ; /**< 可选 设备图片地址  */
+
+/// iot设备属性
+// 产品ID
+@property (nonatomic, copy) NSString *productId;
+// 产品型号
+@property (nonatomic, copy) NSString *productModel;
+// 配网方式：wifi、bluetooth、4G、lan-有线、vlog-热点直连、sim、accessory-配件，多个时逗号隔开
+@property (nonatomic, copy) NSString *networkMode;
+// 默认配网方式
+@property (nonatomic, copy) NSString *defaultWifiConfigMode;
+
+/// iot设备
+- (BOOL)isIotDevice;
 
 @end
 
 
-
-@interface DHBindDeviceInfo: NSObject
+@interface LCBindDeviceInfo: NSObject
 @property (nonatomic, copy) NSString *deviceId; /**< 必须 设备ID */
 @property (nonatomic, copy) NSString *code; /**< 可选 设备验证码，在设备能力集支持时填写 */
 @property (nonatomic, copy) NSString *deviceKey; /**< String 可选 从设备拿到的一串随机字符串（随机密码），用于后续平台对设备的认证,国内使用  */
@@ -854,7 +868,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 @end
 
 
-@interface DHBindDeviceSuccess: NSObject
+@interface LCBindDeviceSuccess: NSObject
 @property (nonatomic, copy) NSString *deviceName; /**< 可选，返回的设备名称 */
 @property (nonatomic, copy) NSString *bindStatus; /**< 可选，绑定状态，bindByMe、bindByOther */
 @property (nonatomic, copy) NSString *userAccount; /**< 可选，所属账户，bindByOther时返回*/
@@ -864,7 +878,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 
 @end
 
-@interface DHDeviceTimeZone: NSObject
+@interface LCDeviceTimeZone: NSObject
 @property (nonatomic, copy) NSString *area; /**< String 必须 APP设置的时区对应索引值，服务保存，给app拉取用 */
 @property (nonatomic, copy) NSString *timeZone; /**< String 必须 设备所在时区 */
 @property (nonatomic, copy) NSString *beginSunTime; /**< String 必须 格式为MM-dd HH:mm:ss夏令时开始时间 */
@@ -877,7 +891,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 
 @end
 
-@interface DHDeviceTimeZoneQueryInfo: NSObject
+@interface LCDeviceTimeZoneQueryInfo: NSObject
 
 /** [O]夏令时结束时间, 可选。表示“某月-该月的第几个星期-该星期的第几天，时分秒 */
 @property (nonatomic, copy) NSString *endWeekSunTime;
@@ -973,7 +987,7 @@ typedef NS_ENUM(NSInteger, DHOnlineStatus) {
 
 @end
 
-@interface DHIntelligentlockNotesInfo: NSObject
+@interface LCIntelligentlockNotesInfo: NSObject
 
 @property (nonatomic, copy) NSString *name;          /** 用户名称  */
 @property (nonatomic, copy) NSString *keyType;       /** 密码类型  */

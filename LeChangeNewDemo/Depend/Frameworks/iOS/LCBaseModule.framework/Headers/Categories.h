@@ -15,8 +15,8 @@
 #import <LCBaseModule/NSArray+LeChange.h>
 #import <LCBaseModule/NSDate+LeChange.h>
 #import <LCBaseModule/UIColor+HexString.h>
-#import <LCBaseModule/UIDevice+DHHardware.h>
 #import <LCBaseModule/UIImage+LeChange.h>
+#import <LCBaseModule/NSString+LeChange.h>
 
 #import <LCBaseModule/UIAlertController+SupportedInterfaceOrientations.h>
 #import <LCBaseModule/UIApplication+LeChange.h>
@@ -25,6 +25,7 @@
 #import <LCBaseModule/UINavigationItem+LeChange.h>
 #import <LCBaseModule/UIScrollView+Empty.h>
 #import <LCBaseModule/UIView+LeChange.h>
-
+#import <LCBaseModule/UIImage+Bundle.h>
+#import <LCBaseModule/NSBundle+AssociatedBundle.h>
 
 #endif /* Categories_h */

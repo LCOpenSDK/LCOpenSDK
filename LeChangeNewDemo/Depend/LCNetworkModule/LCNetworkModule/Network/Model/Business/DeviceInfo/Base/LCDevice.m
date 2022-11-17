@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //
 
 #import "LCDevice.h"
@@ -268,7 +268,7 @@
 - (instancetype)init {
 	
 	if (self = [super init]) {
-		self.dh_userInfo = [NSMutableDictionary new];
+		self.lc_userInfo = [NSMutableDictionary new];
 	}
 	
 	return self;
@@ -299,7 +299,7 @@
     channel.lc_shareState = self.lc_shareState;
     channel.encryptInfo = self.encryptInfo;
     channel.isCloseCamera = self.isCloseCamera;
-	channel.dh_userInfo = self.dh_userInfo;
+	channel.lc_userInfo = self.lc_userInfo;
     return channel;
 }
 
@@ -326,7 +326,7 @@
     [aCoder encodeInt:self.lc_shareState forKey:@"lc_shareState"];
     [aCoder encodeObject:self.encryptInfo forKey:@"encryptInfo"];
     [aCoder encodeInt:self.isCloseCamera forKey:@"isCloseCamera"];
-	[aCoder encodeObject:self.dh_userInfo forKey:@"dh_userInfo"];
+	[aCoder encodeObject:self.lc_userInfo forKey:@"lc_userInfo"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -354,13 +354,13 @@
         self.lc_shareState = [aDecoder decodeIntForKey:@"lc_shareState"];
         self.encryptInfo = [aDecoder decodeObjectForKey:@"encryptInfo"];
         self.isCloseCamera = [aDecoder decodeIntForKey:@"isCloseCamera"];
-		self.dh_userInfo = [aDecoder decodeObjectForKey:@"dh_userInfo"];
+		self.lc_userInfo = [aDecoder decodeObjectForKey:@"lc_userInfo"];
         self.lastOffLineTime = [aDecoder decodeObjectForKey:@"lastOffLineTime"];
     }
     return self;
 }
 
-- (id)lc_generateDHChannel {
+- (id)lc_generateLCChannel {
 	//在上层扩展中实现功能
 	return nil;
 }
@@ -642,7 +642,7 @@
 @implementation LCDeviceMotionDetectInfo
 @end
 
-@implementation DHQuerySirenStateResultObject
+@implementation LCQuerySirenStateResultObject
 @end
 
 @implementation LCDeviceZoomFocusInfo
@@ -663,12 +663,12 @@
 @implementation LCMotionDetectParamInfo
 @end
 
-@implementation DHSirenTimeInfo
+@implementation LCSirenTimeInfo
 @end
 
 //MARK: 设备添加融合
 
-@implementation DHUserDeviceBindInfo
+@implementation LCUserDeviceBindInfo
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -693,25 +693,26 @@
     return self;
 }
 
-- (BOOL)isDeviceExist {
-	return [_deviceExist caseInsensitiveCompare:@"exist"] == NSOrderedSame;
-}
-
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"deviceModel":@"deviceCodeModel",@"surpport":@"support",@"modelName":@"deviceModelName"};
 }
 
-@end
-
-@implementation DHBindDeviceInfo
-
-@end
-
-@implementation DHBindDeviceSuccess
+/// iot设备
+- (BOOL)isIotDevice {
+    return self.productId != nil && self.productId.length > 0;
+}
 
 @end
 
-@implementation DHDeviceTimeZone
+@implementation LCBindDeviceInfo
+
+@end
+
+@implementation LCBindDeviceSuccess
+
+@end
+
+@implementation LCDeviceTimeZone
 
 - (NSInteger)areaIndex {
 	return _area.integerValue;
@@ -727,7 +728,7 @@
 
 @end
 
-@implementation DHDeviceTimeZoneQueryInfo
+@implementation LCDeviceTimeZoneQueryInfo
 
 -(BOOL)isDayModel
 {
@@ -782,34 +783,34 @@
 @implementation LCBellContentModel
 @end
 
-@implementation DHIntelligentlockNotesInfo
+@implementation LCIntelligentlockNotesInfo
 
 - (NSString *)localKeyType {
     if ([self.keyType isEqualToString:@"card"]) {
-        return @"卡";
+        return @"card".lc_T;
     } else if ([self.keyType isEqualToString:@"fingerPrint"]) {
-        return @"指纹";
+        return @"fingerprint".lc_T;
     } else if ([self.keyType isEqualToString:@"password"]) {
-        return @"密码";
+        return @"password".lc_T;
     } else if ([self.keyType isEqualToString:@"face"]) {
-        return @"人脸";
+        return @"face".lc_T;
     }
     return self.keyType;
 }
 
 - (NSString *)localOperateType {
     if ([self.operateType isEqualToString:@"add"]) {
-        return @"用户新增";
+        return @"user_addition".lc_T;
     } else if ([self.operateType isEqualToString:@"delete"]) {
-        return @"用户删除";
+        return @"user_deletion".lc_T;
     } else if ([self.operateType isEqualToString:@"deleteAll"]) {
-        return @"全部删除";
+        return @"delete_all".lc_T;
     } else if ([self.operateType isEqualToString:@"modify"]) {
-        return @"用户修改";
+        return @"user_modification".lc_T;
     } else if ([self.operateType isEqualToString:@"login"]) {
-        return @"登录";
+        return @"User_Mode_Login_Title".lc_T;
     } else {
-        return @"用户新增";
+        return @"user_addition".lc_T;
     }
 }
 

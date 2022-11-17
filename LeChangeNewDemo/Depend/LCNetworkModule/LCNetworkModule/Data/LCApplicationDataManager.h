@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //  模拟服务器的全局配置文件
 
 #import <Foundation/Foundation.h>
@@ -29,8 +29,6 @@ typedef enum : NSUInteger {
 + (void)setHostApiWith:(NSString *)api;
 ///保存管理员模式Token
 +(void)setManagerToken:(NSString *)token;
-///保存用户模式Token
-+(void)setUserToken:(NSString *)token;
 ///保存子账户模式Token
 +(void)setSubAccountToken:(NSString *)token;
 ///保存子账户id
@@ -46,8 +44,6 @@ typedef enum : NSUInteger {
 
 ///子账户Id
 +(NSString *)openId;
-///当前是否管理员模式
-+(BOOL)isManagerMode;
 ///存储当前对接模式
 +(void)setCurrentMode:(LCJointModeType)type;
 ///是否对接国内版本
@@ -67,11 +63,6 @@ typedef enum : NSUInteger {
 
 /// 获取子账号
 + (NSString *)subAccout;
-
-///根据设备序列号获取设备信息
-+(id)getDeviceInfoWithSerialNumber:(NSString *)serialNumber;
-///存储设备信息
-+(void)setDeviceInfoWithInfo:(id)deviceInfo;
 
 //MARK: - 工具方法
 

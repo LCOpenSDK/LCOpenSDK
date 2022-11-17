@@ -1,8 +1,8 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 // 全部录像列表
 
-#import "LCSegmentController.h"
+#import <LCMediaBaseModule/LCSegmentController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -1,14 +1,14 @@
 //
-//  Copyright © 2015 dahua. All rights reserved.
+//  Copyright © 2015 Imou. All rights reserved.
 //
 
 #import "LCRefreshFooter.h"
-#import <LCBaseModule/DHActivityIndicatorView.h>
+#import <LCBaseModule/LCActivityIndicatorView.h>
 
 @interface LCRefreshFooter ()
 
 {
-    DHActivityIndicatorView *actionView;
+    LCActivityIndicatorView *actionView;
 }
 
 @end
@@ -25,7 +25,7 @@
     self.noMoreDataString = @"footer_no_more_data".lc_T;
     self.refreshString = @"footer_refresh".lc_T;
     
-    actionView = [[DHActivityIndicatorView alloc]init];
+    actionView = [[LCActivityIndicatorView alloc]init];
     actionView.frame = CGRectMake((SCREEN_WIDTH / 2 - 100), (self.frame.size.height - 22) / 2, 22, 22);
     [self addSubview:actionView];
     [self setTitle:self.pullString forState:MJRefreshStateIdle];

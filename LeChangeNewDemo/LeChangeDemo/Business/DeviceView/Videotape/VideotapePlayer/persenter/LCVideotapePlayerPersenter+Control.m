@@ -1,13 +1,13 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePlayerPersenter+Control.h"
-#import "LCLivePreviewDefine.h"
+#import <LCMediaBaseModule/VPVideoDefines.h>
 #import "LCVideotapePlayerPersenter.h"
 #import <objc/runtime.h>
-#import "PHAsset+Lechange.h"
-#import "UIImage+LeChange.h"
+#import <LCMediaBaseModule/PHAsset+Lechange.h>
+#import <LCMediaBaseModule/UIImage+MediaBaseModule.h>
 
 static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSavePath";
 
@@ -108,13 +108,14 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.recordRegionID = self.videoManager.cloudVideotapeInfo.recordRegionId;
         param.offsetTime = offsetTime;
         param.recordType = self.videoManager.cloudVideotapeInfo.type;
-        param.timeOut = 60;
+        param.timeOut = 86400;
         
         param.accessToken = LCApplicationDataManager.token;
         param.deviceID = self.videoManager.currentDevice.deviceId;
         param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
+        param.productId = self.videoManager.currentDevice.productId;
         
         NSInteger result = [self.playWindow playCloudRecord:param];
 
@@ -130,10 +131,11 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         
         param.accessToken = LCApplicationDataManager.token;
         param.deviceID = self.videoManager.currentDevice.deviceId;
+        param.productId = self.videoManager.currentDevice.productId;
         param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
-        
+        param.productId = self.videoManager.currentDevice.productId;
         NSInteger result = [self.playWindow playDeviceRecordByFileName:param];
 
         if (result != 0) {
@@ -169,7 +171,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     [self showVideoLoadImage];
     [self hideErrorBtn];
     //播放结束状态，拖动后操作不同
-    if (self.videoManager.isPlay == NO && self.videoManager.playStatus == STATE_RTSP_FILE_PLAY_OVER) {
+    if ((self.videoManager.isPlay == NO && self.videoManager.playStatus == STATE_RTSP_FILE_PLAY_OVER )|| offsetTime==0) {
         [self startPlay:offsetTime];
     } else {
         [self.playWindow seek:offsetTime];

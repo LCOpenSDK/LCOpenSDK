@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 // 封装过后的输入框
 
 #import <UIKit/UIKit.h>
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UILabel *titleLable;
 
 /// input
-@property (strong, nonatomic) DHTextField *textField;
+@property (strong, nonatomic) LCCTextField *textField;
 
 /// input
 @property (strong, nonatomic) LCButton *sendCodeBtn;

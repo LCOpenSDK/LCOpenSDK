@@ -9,9 +9,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCDeviceListPresenter : LCBasicPresenter<UITableViewDelegate,UITableViewDataSource>
 
-/// 乐橙设备
-@property (strong, nonatomic) NSMutableArray<LCDeviceInfo*> *lcDevices;
-
 /// 开发平台设备
 @property (strong, nonatomic) NSMutableArray<LCDeviceInfo*> *openDevices;
 

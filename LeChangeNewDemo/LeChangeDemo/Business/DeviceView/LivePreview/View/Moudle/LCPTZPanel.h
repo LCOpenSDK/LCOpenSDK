@@ -1,9 +1,6 @@
-//
-//  Copyright © 2017 com.dahuatech. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
-#import "VPVideoDefines.h"
+#import <LCMediaBaseModule/VPVideoDefines.h>
 
 //云盘样式 4方向、8方向
 

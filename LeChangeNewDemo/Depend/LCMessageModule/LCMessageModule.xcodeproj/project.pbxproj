@@ -1,0 +1,961 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0309D36B29025EC70088B9D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0309D36A29025EC70088B9D5 /* Info.plist */; };
+		03401B362906FBA300F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */; };
+		0409299028F3FFB9006D861D /* LCMessageModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 0409298F28F3FFB9006D861D /* LCMessageModule.docc */; };
+		0409299128F3FFB9006D861D /* LCMessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 0409298E28F3FFB9006D861D /* LCMessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		040929B028F40422006D861D /* LCMessageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929AF28F40422006D861D /* LCMessageListController.swift */; };
+		040929B228F404EE006D861D /* LCMessageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929B128F404EE006D861D /* LCMessageListPresenter.swift */; };
+		040929B428F405DF006D861D /* ILCMessageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929B328F405DF006D861D /* ILCMessageListController.swift */; };
+		040929B628F405F2006D861D /* ILCMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929B528F405F2006D861D /* ILCMessagePresenter.swift */; };
+		040929CC28F41002006D861D /* LCMessageNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929CB28F41002006D861D /* LCMessageNavBar.swift */; };
+		04092AC728F41CEB006D861D /* UIColor+MessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AC528F41CEB006D861D /* UIColor+MessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04092AC828F41CEB006D861D /* UIColor+MessageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AC628F41CEB006D861D /* UIColor+MessageModule.m */; };
+		04092ADF28F5084B006D861D /* MMCalendarBtnView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AD728F5084B006D861D /* MMCalendarBtnView.h */; };
+		04092AE028F5084B006D861D /* MMMessageCalendarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AD828F5084B006D861D /* MMMessageCalendarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04092AE128F5084B006D861D /* MMCalendarMonthView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AD928F5084B006D861D /* MMCalendarMonthView.h */; };
+		04092AE228F5084B006D861D /* MMCalendarBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092ADA28F5084B006D861D /* MMCalendarBtnView.m */; };
+		04092AE328F5084B006D861D /* MMCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092ADB28F5084B006D861D /* MMCalendarMonthView.m */; };
+		04092AE428F5084B006D861D /* MMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092ADC28F5084B006D861D /* MMCalendarDayView.m */; };
+		04092AE528F5084B006D861D /* MMCalendarDayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092ADD28F5084B006D861D /* MMCalendarDayView.h */; };
+		04092AE628F5084C006D861D /* MMMessageCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092ADE28F5084B006D861D /* MMMessageCalendarView.m */; };
+		04092AE928F50885006D861D /* MMCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AE728F50885006D861D /* MMCalendarCell.m */; };
+		04092AEA28F50885006D861D /* MMCalendarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AE828F50885006D861D /* MMCalendarCell.h */; };
+		04092AEC28F5088F006D861D /* MMCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04092AEB28F5088F006D861D /* MMCalendarCell.xib */; };
+		04092AEF28F50D73006D861D /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04092AEE28F50D73006D861D /* Masonry.framework */; };
+		04092AF228F51095006D861D /* NSString+MessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AF028F51095006D861D /* NSString+MessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04092AF328F51095006D861D /* NSString+MessageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AF128F51095006D861D /* NSString+MessageModule.m */; };
+		04092AF628F51312006D861D /* NSDate+MessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AF428F51312006D861D /* NSDate+MessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04092AF728F51312006D861D /* NSDate+MessageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AF528F51312006D861D /* NSDate+MessageModule.m */; };
+		04092AF928F5145D006D861D /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04092AF828F5145D006D861D /* MBProgressHUD.framework */; };
+		04092AFC28F515BD006D861D /* LCMessageProcessHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AFA28F515BD006D861D /* LCMessageProcessHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04092AFD28F515BD006D861D /* LCMessageProcessHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AFB28F515BD006D861D /* LCMessageProcessHUD.m */; };
+		04092B0528F5244D006D861D /* LCMessageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04092B0428F5244D006D861D /* LCMessageDefine.swift */; };
+		04092B0828F53C07006D861D /* LCMessageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04092B0728F53C07006D861D /* LCMessageRouter.swift */; };
+		0420900A28F6765000800D39 /* LCMessageListController(TableViewDelegate).swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420900928F6764F00800D39 /* LCMessageListController(TableViewDelegate).swift */; };
+		0420900C28F6772600800D39 /* LCMessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420900B28F6772600800D39 /* LCMessageListCell.swift */; };
+		0420903028F6E1D800800D39 /* UIImageView+PicDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420902E28F6E1D800800D39 /* UIImageView+PicDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0420903128F6E1D800800D39 /* UIImageView+PicDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420902F28F6E1D800800D39 /* UIImageView+PicDecoder.m */; };
+		0420903428F6E34E00800D39 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0420903328F6E34E00800D39 /* SDWebImage.framework */; };
+		0420904028F6EA9B00800D39 /* LCMessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420903F28F6EA9B00800D39 /* LCMessageItem.swift */; };
+		0420905A28F7BB8500800D39 /* LCMessageRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420905428F7BB8500800D39 /* LCMessageRefreshHeader.m */; };
+		0420905B28F7BB8500800D39 /* LCMessageActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420905528F7BB8500800D39 /* LCMessageActivityIndicatorView.h */; };
+		0420905C28F7BB8500800D39 /* LCMessageRefreshFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420905628F7BB8500800D39 /* LCMessageRefreshFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0420905D28F7BB8500800D39 /* LCMessageActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420905728F7BB8500800D39 /* LCMessageActivityIndicatorView.m */; };
+		0420905E28F7BB8500800D39 /* LCMessageRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420905828F7BB8500800D39 /* LCMessageRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0420905F28F7BB8500800D39 /* LCMessageRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420905928F7BB8500800D39 /* LCMessageRefreshFooter.m */; };
+		0420906128F7EE5200800D39 /* LCMessagePictureShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420906028F7EE5200800D39 /* LCMessagePictureShowView.swift */; };
+		0420907E28F9096200800D39 /* LCMessageEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420907D28F9096200800D39 /* LCMessageEditController.swift */; };
+		0420908028F9098200800D39 /* LCMessageEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420907F28F9098200800D39 /* LCMessageEditPresenter.swift */; };
+		0420908228F90AF300800D39 /* ILCMessageEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420908128F90AF300800D39 /* ILCMessageEditController.swift */; };
+		0420908428F90B0D00800D39 /* ILCMessageEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420908328F90B0D00800D39 /* ILCMessageEditPresenter.swift */; };
+		0420908728F9174300800D39 /* LCMessageEditNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420908628F9174300800D39 /* LCMessageEditNavBar.swift */; };
+		0420908928F92C1F00800D39 /* LCMessageEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420908828F92C1F00800D39 /* LCMessageEditCell.swift */; };
+		0420908B28F9321A00800D39 /* LCMessageEditController(TableViewDelegate).swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420908A28F9321A00800D39 /* LCMessageEditController(TableViewDelegate).swift */; };
+		0420909428F968BE00800D39 /* LCMessageTavEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420909328F968BE00800D39 /* LCMessageTavEmptyView.swift */; };
+		0420909628FA59CF00800D39 /* LCMessageTavErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420909528FA59CF00800D39 /* LCMessageTavErrorView.swift */; };
+		0485D7CB28FE4AB500835A7F /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0485D7CA28FE4AB500835A7F /* LCNetworkModule.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		040929C628F40A73006D861D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0409298228F3FFB9006D861D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 040929C128F40997006D861D;
+			remoteInfo = LCMessageModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0309D36A29025EC70088B9D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		0409298B28F3FFB9006D861D /* LCMessageModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCMessageModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0409298E28F3FFB9006D861D /* LCMessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageModule.h; sourceTree = "<group>"; };
+		0409298F28F3FFB9006D861D /* LCMessageModule.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LCMessageModule.docc; sourceTree = "<group>"; };
+		040929AF28F40422006D861D /* LCMessageListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageListController.swift; sourceTree = "<group>"; };
+		040929B128F404EE006D861D /* LCMessageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageListPresenter.swift; sourceTree = "<group>"; };
+		040929B328F405DF006D861D /* ILCMessageListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILCMessageListController.swift; sourceTree = "<group>"; };
+		040929B528F405F2006D861D /* ILCMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILCMessagePresenter.swift; sourceTree = "<group>"; };
+		040929C228F40997006D861D /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCMessageModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		040929CB28F41002006D861D /* LCMessageNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageNavBar.swift; sourceTree = "<group>"; };
+		04092AC528F41CEB006D861D /* UIColor+MessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+MessageModule.h"; sourceTree = "<group>"; };
+		04092AC628F41CEB006D861D /* UIColor+MessageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MessageModule.m"; sourceTree = "<group>"; };
+		04092AD728F5084B006D861D /* MMCalendarBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCalendarBtnView.h; sourceTree = "<group>"; };
+		04092AD828F5084B006D861D /* MMMessageCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMessageCalendarView.h; sourceTree = "<group>"; };
+		04092AD928F5084B006D861D /* MMCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCalendarMonthView.h; sourceTree = "<group>"; };
+		04092ADA28F5084B006D861D /* MMCalendarBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCalendarBtnView.m; sourceTree = "<group>"; };
+		04092ADB28F5084B006D861D /* MMCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCalendarMonthView.m; sourceTree = "<group>"; };
+		04092ADC28F5084B006D861D /* MMCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCalendarDayView.m; sourceTree = "<group>"; };
+		04092ADD28F5084B006D861D /* MMCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCalendarDayView.h; sourceTree = "<group>"; };
+		04092ADE28F5084B006D861D /* MMMessageCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMessageCalendarView.m; sourceTree = "<group>"; };
+		04092AE728F50885006D861D /* MMCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCalendarCell.m; sourceTree = "<group>"; };
+		04092AE828F50885006D861D /* MMCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCalendarCell.h; sourceTree = "<group>"; };
+		04092AEB28F5088F006D861D /* MMCalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMCalendarCell.xib; sourceTree = "<group>"; };
+		04092AEE28F50D73006D861D /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../../../Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
+		04092AF028F51095006D861D /* NSString+MessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MessageModule.h"; sourceTree = "<group>"; };
+		04092AF128F51095006D861D /* NSString+MessageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MessageModule.m"; sourceTree = "<group>"; };
+		04092AF428F51312006D861D /* NSDate+MessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+MessageModule.h"; sourceTree = "<group>"; };
+		04092AF528F51312006D861D /* NSDate+MessageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MessageModule.m"; sourceTree = "<group>"; };
+		04092AF828F5145D006D861D /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = ../../../Frameworks/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
+		04092AFA28F515BD006D861D /* LCMessageProcessHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageProcessHUD.h; sourceTree = "<group>"; };
+		04092AFB28F515BD006D861D /* LCMessageProcessHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageProcessHUD.m; sourceTree = "<group>"; };
+		04092B0428F5244D006D861D /* LCMessageDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageDefine.swift; sourceTree = "<group>"; };
+		04092B0728F53C07006D861D /* LCMessageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageRouter.swift; sourceTree = "<group>"; };
+		0420900928F6764F00800D39 /* LCMessageListController(TableViewDelegate).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCMessageListController(TableViewDelegate).swift"; sourceTree = "<group>"; };
+		0420900B28F6772600800D39 /* LCMessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageListCell.swift; sourceTree = "<group>"; };
+		0420902E28F6E1D800800D39 /* UIImageView+PicDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+PicDecoder.h"; sourceTree = "<group>"; };
+		0420902F28F6E1D800800D39 /* UIImageView+PicDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+PicDecoder.m"; sourceTree = "<group>"; };
+		0420903328F6E34E00800D39 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0420903F28F6EA9B00800D39 /* LCMessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageItem.swift; sourceTree = "<group>"; };
+		0420905428F7BB8500800D39 /* LCMessageRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMessageRefreshHeader.m; sourceTree = "<group>"; };
+		0420905528F7BB8500800D39 /* LCMessageActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMessageActivityIndicatorView.h; sourceTree = "<group>"; };
+		0420905628F7BB8500800D39 /* LCMessageRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMessageRefreshFooter.h; sourceTree = "<group>"; };
+		0420905728F7BB8500800D39 /* LCMessageActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMessageActivityIndicatorView.m; sourceTree = "<group>"; };
+		0420905828F7BB8500800D39 /* LCMessageRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMessageRefreshHeader.h; sourceTree = "<group>"; };
+		0420905928F7BB8500800D39 /* LCMessageRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMessageRefreshFooter.m; sourceTree = "<group>"; };
+		0420906028F7EE5200800D39 /* LCMessagePictureShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessagePictureShowView.swift; sourceTree = "<group>"; };
+		0420907D28F9096200800D39 /* LCMessageEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageEditController.swift; sourceTree = "<group>"; };
+		0420907F28F9098200800D39 /* LCMessageEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageEditPresenter.swift; sourceTree = "<group>"; };
+		0420908128F90AF300800D39 /* ILCMessageEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILCMessageEditController.swift; sourceTree = "<group>"; };
+		0420908328F90B0D00800D39 /* ILCMessageEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILCMessageEditPresenter.swift; sourceTree = "<group>"; };
+		0420908628F9174300800D39 /* LCMessageEditNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageEditNavBar.swift; sourceTree = "<group>"; };
+		0420908828F92C1F00800D39 /* LCMessageEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageEditCell.swift; sourceTree = "<group>"; };
+		0420908A28F9321A00800D39 /* LCMessageEditController(TableViewDelegate).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCMessageEditController(TableViewDelegate).swift"; sourceTree = "<group>"; };
+		0420909328F968BE00800D39 /* LCMessageTavEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageTavEmptyView.swift; sourceTree = "<group>"; };
+		0420909528FA59CF00800D39 /* LCMessageTavErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageTavErrorView.swift; sourceTree = "<group>"; };
+		0485D7CA28FE4AB500835A7F /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0409298828F3FFB9006D861D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0485D7CB28FE4AB500835A7F /* LCNetworkModule.framework in Frameworks */,
+				04092AF928F5145D006D861D /* MBProgressHUD.framework in Frameworks */,
+				0420903428F6E34E00800D39 /* SDWebImage.framework in Frameworks */,
+				03401B362906FBA300F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
+				04092AEF28F50D73006D861D /* Masonry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040929BF28F40997006D861D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0409298128F3FFB9006D861D = {
+			isa = PBXGroup;
+			children = (
+				0409298D28F3FFB9006D861D /* LCMessageModule */,
+				04092A4028F411EA006D861D /* LCMessageModuleBundle */,
+				0409298C28F3FFB9006D861D /* Products */,
+				0420903228F6E34E00800D39 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0409298C28F3FFB9006D861D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0409298B28F3FFB9006D861D /* LCMessageModule.framework */,
+				040929C228F40997006D861D /* LCMessageModuleBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0409298D28F3FFB9006D861D /* LCMessageModule */ = {
+			isa = PBXGroup;
+			children = (
+				0409298E28F3FFB9006D861D /* LCMessageModule.h */,
+				0420900D28F6961B00800D39 /* Model */,
+				04092B0628F53BEB006D861D /* Router */,
+				04092AFF28F521FC006D861D /* Define */,
+				04092AD528F507A7006D861D /* View */,
+				04092AC428F41CC2006D861D /* Category */,
+				04092AB828F4126A006D861D /* Extension */,
+				040929AA28F400E2006D861D /* MessageList */,
+				0420907928F9050E00800D39 /* MessageEdit */,
+				04092AED28F50D34006D861D /* Frameworks */,
+				0409298F28F3FFB9006D861D /* LCMessageModule.docc */,
+			);
+			path = LCMessageModule;
+			sourceTree = "<group>";
+		};
+		040929AA28F400E2006D861D /* MessageList */ = {
+			isa = PBXGroup;
+			children = (
+				0420903528F6E44400800D39 /* Model */,
+				040929AE28F40106006D861D /* Controller */,
+				040929AD28F400FD006D861D /* View */,
+				040929AC28F400F4006D861D /* Presenter */,
+				040929AB28F400EB006D861D /* Protocol */,
+			);
+			path = MessageList;
+			sourceTree = "<group>";
+		};
+		040929AB28F400EB006D861D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				040929B328F405DF006D861D /* ILCMessageListController.swift */,
+				040929B528F405F2006D861D /* ILCMessagePresenter.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		040929AC28F400F4006D861D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				040929B128F404EE006D861D /* LCMessageListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		040929AD28F400FD006D861D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040929CB28F41002006D861D /* LCMessageNavBar.swift */,
+				0420900B28F6772600800D39 /* LCMessageListCell.swift */,
+				0420906028F7EE5200800D39 /* LCMessagePictureShowView.swift */,
+				0420909328F968BE00800D39 /* LCMessageTavEmptyView.swift */,
+				0420909528FA59CF00800D39 /* LCMessageTavErrorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040929AE28F40106006D861D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				040929AF28F40422006D861D /* LCMessageListController.swift */,
+				0420900928F6764F00800D39 /* LCMessageListController(TableViewDelegate).swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04092A4028F411EA006D861D /* LCMessageModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				0309D36A29025EC70088B9D5 /* Info.plist */,
+			);
+			path = LCMessageModuleBundle;
+			sourceTree = "<group>";
+		};
+		04092AB828F4126A006D861D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		04092AC428F41CC2006D861D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04092AC528F41CEB006D861D /* UIColor+MessageModule.h */,
+				04092AC628F41CEB006D861D /* UIColor+MessageModule.m */,
+				04092AF028F51095006D861D /* NSString+MessageModule.h */,
+				04092AF128F51095006D861D /* NSString+MessageModule.m */,
+				04092AF428F51312006D861D /* NSDate+MessageModule.h */,
+				04092AF528F51312006D861D /* NSDate+MessageModule.m */,
+				0420902E28F6E1D800800D39 /* UIImageView+PicDecoder.h */,
+				0420902F28F6E1D800800D39 /* UIImageView+PicDecoder.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		04092AD528F507A7006D861D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0420905328F7BB5C00800D39 /* RefreshView */,
+				04092AFE28F515C5006D861D /* ProcessHUD */,
+				04092AD628F507AF006D861D /* CalendarView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04092AD628F507AF006D861D /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				04092AE828F50885006D861D /* MMCalendarCell.h */,
+				04092AE728F50885006D861D /* MMCalendarCell.m */,
+				04092AEB28F5088F006D861D /* MMCalendarCell.xib */,
+				04092AD728F5084B006D861D /* MMCalendarBtnView.h */,
+				04092ADA28F5084B006D861D /* MMCalendarBtnView.m */,
+				04092ADD28F5084B006D861D /* MMCalendarDayView.h */,
+				04092ADC28F5084B006D861D /* MMCalendarDayView.m */,
+				04092AD928F5084B006D861D /* MMCalendarMonthView.h */,
+				04092ADB28F5084B006D861D /* MMCalendarMonthView.m */,
+				04092AD828F5084B006D861D /* MMMessageCalendarView.h */,
+				04092ADE28F5084B006D861D /* MMMessageCalendarView.m */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		04092AED28F50D34006D861D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04092AF828F5145D006D861D /* MBProgressHUD.framework */,
+				04092AEE28F50D73006D861D /* Masonry.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		04092AFE28F515C5006D861D /* ProcessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				04092AFA28F515BD006D861D /* LCMessageProcessHUD.h */,
+				04092AFB28F515BD006D861D /* LCMessageProcessHUD.m */,
+			);
+			path = ProcessHUD;
+			sourceTree = "<group>";
+		};
+		04092AFF28F521FC006D861D /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				04092B0428F5244D006D861D /* LCMessageDefine.swift */,
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		04092B0628F53BEB006D861D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				04092B0728F53C07006D861D /* LCMessageRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		0420900D28F6961B00800D39 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0420903228F6E34E00800D39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */,
+				0485D7CA28FE4AB500835A7F /* LCNetworkModule.framework */,
+				0420903328F6E34E00800D39 /* SDWebImage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0420903528F6E44400800D39 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0420903F28F6EA9B00800D39 /* LCMessageItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0420905328F7BB5C00800D39 /* RefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				0420905528F7BB8500800D39 /* LCMessageActivityIndicatorView.h */,
+				0420905728F7BB8500800D39 /* LCMessageActivityIndicatorView.m */,
+				0420905628F7BB8500800D39 /* LCMessageRefreshFooter.h */,
+				0420905928F7BB8500800D39 /* LCMessageRefreshFooter.m */,
+				0420905828F7BB8500800D39 /* LCMessageRefreshHeader.h */,
+				0420905428F7BB8500800D39 /* LCMessageRefreshHeader.m */,
+			);
+			path = RefreshView;
+			sourceTree = "<group>";
+		};
+		0420907928F9050E00800D39 /* MessageEdit */ = {
+			isa = PBXGroup;
+			children = (
+				0420908528F9170600800D39 /* View */,
+				0420907C28F9053700800D39 /* Protocol */,
+				0420907B28F9052C00800D39 /* Presenter */,
+				0420907A28F9052300800D39 /* Controller */,
+			);
+			path = MessageEdit;
+			sourceTree = "<group>";
+		};
+		0420907A28F9052300800D39 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0420907D28F9096200800D39 /* LCMessageEditController.swift */,
+				0420908A28F9321A00800D39 /* LCMessageEditController(TableViewDelegate).swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0420907B28F9052C00800D39 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0420907F28F9098200800D39 /* LCMessageEditPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0420907C28F9053700800D39 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0420908128F90AF300800D39 /* ILCMessageEditController.swift */,
+				0420908328F90B0D00800D39 /* ILCMessageEditPresenter.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0420908528F9170600800D39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0420908628F9174300800D39 /* LCMessageEditNavBar.swift */,
+				0420908828F92C1F00800D39 /* LCMessageEditCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0409298628F3FFB9006D861D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04092AF228F51095006D861D /* NSString+MessageModule.h in Headers */,
+				04092AF628F51312006D861D /* NSDate+MessageModule.h in Headers */,
+				0420905E28F7BB8500800D39 /* LCMessageRefreshHeader.h in Headers */,
+				0420905C28F7BB8500800D39 /* LCMessageRefreshFooter.h in Headers */,
+				0420903028F6E1D800800D39 /* UIImageView+PicDecoder.h in Headers */,
+				04092AFC28F515BD006D861D /* LCMessageProcessHUD.h in Headers */,
+				04092AE028F5084B006D861D /* MMMessageCalendarView.h in Headers */,
+				04092AE528F5084B006D861D /* MMCalendarDayView.h in Headers */,
+				04092AC728F41CEB006D861D /* UIColor+MessageModule.h in Headers */,
+				0420905B28F7BB8500800D39 /* LCMessageActivityIndicatorView.h in Headers */,
+				04092AE128F5084B006D861D /* MMCalendarMonthView.h in Headers */,
+				04092ADF28F5084B006D861D /* MMCalendarBtnView.h in Headers */,
+				04092AEA28F50885006D861D /* MMCalendarCell.h in Headers */,
+				0409299128F3FFB9006D861D /* LCMessageModule.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0409298A28F3FFB9006D861D /* LCMessageModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0409299428F3FFB9006D861D /* Build configuration list for PBXNativeTarget "LCMessageModule" */;
+			buildPhases = (
+				0409298628F3FFB9006D861D /* Headers */,
+				0409298728F3FFB9006D861D /* Sources */,
+				0409298828F3FFB9006D861D /* Frameworks */,
+				0409298928F3FFB9006D861D /* Resources */,
+				040929C828F40AA4006D861D /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				040929C728F40A73006D861D /* PBXTargetDependency */,
+			);
+			name = LCMessageModule;
+			productName = LCMessageModule;
+			productReference = 0409298B28F3FFB9006D861D /* LCMessageModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		040929C128F40997006D861D /* LCMessageModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 040929C328F40997006D861D /* Build configuration list for PBXNativeTarget "LCMessageModuleBundle" */;
+			buildPhases = (
+				040929BE28F40997006D861D /* Sources */,
+				040929BF28F40997006D861D /* Frameworks */,
+				040929C028F40997006D861D /* Resources */,
+				040929C928F40AD0006D861D /* Remove Executable File */,
+				040929CA28F40AF0006D861D /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCMessageModuleBundle;
+			productName = LCMessageModuleBundle;
+			productReference = 040929C228F40997006D861D /* LCMessageModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0409298228F3FFB9006D861D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					0409298A28F3FFB9006D861D = {
+						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1330;
+					};
+					040929C128F40997006D861D = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 0409298528F3FFB9006D861D /* Build configuration list for PBXProject "LCMessageModule" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0409298128F3FFB9006D861D;
+			productRefGroup = 0409298C28F3FFB9006D861D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0409298A28F3FFB9006D861D /* LCMessageModule */,
+				040929C128F40997006D861D /* LCMessageModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0409298928F3FFB9006D861D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040929C028F40997006D861D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0309D36B29025EC70088B9D5 /* Info.plist in Resources */,
+				04092AEC28F5088F006D861D /* MMCalendarCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		040929C828F40AA4006D861D /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    echo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		040929C928F40AD0006D861D /* Remove Executable File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Executable File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Remove execute file in bundle: ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME\"\nrm -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME}\n";
+		};
+		040929CA28F40AF0006D861D /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    #先删除旧的\n    rm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n    echo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0409298728F3FFB9006D861D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0420903128F6E1D800800D39 /* UIImageView+PicDecoder.m in Sources */,
+				04092AF328F51095006D861D /* NSString+MessageModule.m in Sources */,
+				0420908928F92C1F00800D39 /* LCMessageEditCell.swift in Sources */,
+				0420907E28F9096200800D39 /* LCMessageEditController.swift in Sources */,
+				0420905A28F7BB8500800D39 /* LCMessageRefreshHeader.m in Sources */,
+				040929CC28F41002006D861D /* LCMessageNavBar.swift in Sources */,
+				04092AE228F5084B006D861D /* MMCalendarBtnView.m in Sources */,
+				040929B228F404EE006D861D /* LCMessageListPresenter.swift in Sources */,
+				0420905F28F7BB8500800D39 /* LCMessageRefreshFooter.m in Sources */,
+				0420908428F90B0D00800D39 /* ILCMessageEditPresenter.swift in Sources */,
+				0420905D28F7BB8500800D39 /* LCMessageActivityIndicatorView.m in Sources */,
+				04092AF728F51312006D861D /* NSDate+MessageModule.m in Sources */,
+				0420908028F9098200800D39 /* LCMessageEditPresenter.swift in Sources */,
+				04092AFD28F515BD006D861D /* LCMessageProcessHUD.m in Sources */,
+				04092AE428F5084B006D861D /* MMCalendarDayView.m in Sources */,
+				0420908728F9174300800D39 /* LCMessageEditNavBar.swift in Sources */,
+				0420900C28F6772600800D39 /* LCMessageListCell.swift in Sources */,
+				0420906128F7EE5200800D39 /* LCMessagePictureShowView.swift in Sources */,
+				04092AE328F5084B006D861D /* MMCalendarMonthView.m in Sources */,
+				040929B028F40422006D861D /* LCMessageListController.swift in Sources */,
+				0420909428F968BE00800D39 /* LCMessageTavEmptyView.swift in Sources */,
+				040929B428F405DF006D861D /* ILCMessageListController.swift in Sources */,
+				0420904028F6EA9B00800D39 /* LCMessageItem.swift in Sources */,
+				04092AE928F50885006D861D /* MMCalendarCell.m in Sources */,
+				0420908228F90AF300800D39 /* ILCMessageEditController.swift in Sources */,
+				0420908B28F9321A00800D39 /* LCMessageEditController(TableViewDelegate).swift in Sources */,
+				0420909628FA59CF00800D39 /* LCMessageTavErrorView.swift in Sources */,
+				04092AC828F41CEB006D861D /* UIColor+MessageModule.m in Sources */,
+				04092AE628F5084C006D861D /* MMMessageCalendarView.m in Sources */,
+				04092B0828F53C07006D861D /* LCMessageRouter.swift in Sources */,
+				0409299028F3FFB9006D861D /* LCMessageModule.docc in Sources */,
+				040929B628F405F2006D861D /* ILCMessagePresenter.swift in Sources */,
+				0420900A28F6765000800D39 /* LCMessageListController(TableViewDelegate).swift in Sources */,
+				04092B0528F5244D006D861D /* LCMessageDefine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040929BE28F40997006D861D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		040929C728F40A73006D861D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 040929C128F40997006D861D /* LCMessageModuleBundle */;
+			targetProxy = 040929C628F40A73006D861D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0409299228F3FFB9006D861D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0409299328F3FFB9006D861D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0409299528F3FFB9006D861D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMessageModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0409299628F3FFB9006D861D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMessageModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		040929C428F40997006D861D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMessageModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		040929C528F40997006D861D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMessageModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0409298528F3FFB9006D861D /* Build configuration list for PBXProject "LCMessageModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0409299228F3FFB9006D861D /* Debug */,
+				0409299328F3FFB9006D861D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0409299428F3FFB9006D861D /* Build configuration list for PBXNativeTarget "LCMessageModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0409299528F3FFB9006D861D /* Debug */,
+				0409299628F3FFB9006D861D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		040929C328F40997006D861D /* Build configuration list for PBXNativeTarget "LCMessageModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				040929C428F40997006D861D /* Debug */,
+				040929C528F40997006D861D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0409298228F3FFB9006D861D /* Project object */;
+}

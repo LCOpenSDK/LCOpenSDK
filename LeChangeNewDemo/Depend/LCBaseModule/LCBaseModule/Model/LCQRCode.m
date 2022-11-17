@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import "LCQRCode.h"
@@ -27,6 +27,12 @@
 		self.scCode = [self getValueByKey:@"SC:" validQRCode:vaildString isType:NO];
 		self.ncCode = [self getValueByKey:@"NC:" validQRCode:vaildString isType:NO];
 		self.imeiCode = [self getValueByKey:@"IMEI:" validQRCode:vaildString isType:NO];
+        
+        //iot设备的pid
+        self.iotDeviceType = [self getValueByKey:@"PID:" validQRCode:vaildString isType:NO];
+        self.cidCode = [self getValueByKey:@"CID:" validQRCode:vaildString isType:NO];
+        self.typeCode = [self getValueByKey:@"TYPE:" validQRCode:vaildString isType:NO];
+        self.uidCode = [self getValueByKey:@"UID:" validQRCode:vaildString isType:NO];
 		
 	} else {
 		//序列号:设备类型:验证码 或者 序列号:设备类型 或者 序列号
@@ -43,7 +49,7 @@
 				self.identifyingCode = strarray[2];
 			}
 		} else if ([vaildString rangeOfString:@","].location != NSNotFound) {
-			//DH-IPC-C35P,4K002C6PAJA49A7   兼容错误二维码
+			//IPC-C35P,4K002C6PAJA49A7   兼容错误二维码
 			NSArray<NSString *> *list = [vaildString componentsSeparatedByString:@","];
 			if(list.count >= 2){
 				self.deviceType = list[0];

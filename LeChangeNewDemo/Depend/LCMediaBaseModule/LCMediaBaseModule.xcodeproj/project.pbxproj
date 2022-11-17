@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03401B322906F90700F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */; };
+		03ABE0DE28F5B00600BCE307 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */; };
+		041D7523290170A50081443D /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871BAE28F2796C009E0540 /* LCNetworkModule.framework */; };
+		04257C9328E2C9E50062C0F1 /* LCMediaBaseModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04257C9228E2C9E50062C0F1 /* LCMediaBaseModule.docc */; };
+		04257C9428E2C9E50062C0F1 /* LCMediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257CB128E2CB6C0062C0F1 /* LCOpenSDK_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257CB028E2CB6C0062C0F1 /* LCOpenSDK_Prefix.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257CB928E2CBAB0062C0F1 /* PHAsset+Lechange.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257CB328E2CBAB0062C0F1 /* PHAsset+Lechange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257CBA28E2CBAB0062C0F1 /* PHAsset+Lechange.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257CB428E2CBAB0062C0F1 /* PHAsset+Lechange.m */; };
+		04257CBF28E2CCE60062C0F1 /* VPVideoDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257CBE28E2CCE60062C0F1 /* VPVideoDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257CC328E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257CC128E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257CC428E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257CC228E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.m */; };
+		04257CC928E2D07D0062C0F1 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04257CC828E2D07D0062C0F1 /* SDWebImage.framework */; };
+		04871BAC28F27929009E0540 /* LCNewDeviceVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BAA28F27929009E0540 /* LCNewDeviceVideoManager.m */; };
+		04871BAD28F27929009E0540 /* LCNewDeviceVideoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BAB28F27929009E0540 /* LCNewDeviceVideoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871BC428F29F84009E0540 /* LCSegmentController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BBD28F29F83009E0540 /* LCSegmentController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871BC528F29F84009E0540 /* LCSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BBE28F29F83009E0540 /* LCSegmentController.m */; };
+		04871BC628F29F84009E0540 /* LCMediaRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BC028F29F83009E0540 /* LCMediaRefreshHeader.m */; };
+		04871BC728F29F84009E0540 /* LCMediaRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BC128F29F83009E0540 /* LCMediaRefreshFooter.m */; };
+		04871BC828F29F84009E0540 /* LCMediaRefreshFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BC228F29F83009E0540 /* LCMediaRefreshFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871BC928F29F84009E0540 /* LCMediaRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BC328F29F83009E0540 /* LCMediaRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871BCC28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */; };
+		04871BCD28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BCB28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B72528F119CB00344C5C /* UIDevice+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B72328F119CB00344C5C /* UIDevice+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B72628F119CB00344C5C /* UIDevice+MediaBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B72428F119CB00344C5C /* UIDevice+MediaBaseModule.m */; };
+		04C4B72928F11AE700344C5C /* UIImage+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B72728F11AE700344C5C /* UIImage+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B72A28F11AE700344C5C /* UIImage+MediaBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B72828F11AE700344C5C /* UIImage+MediaBaseModule.m */; };
+		04C4B74528F12EEB00344C5C /* UIColor+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B74328F12EEB00344C5C /* UIColor+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B74628F12EEB00344C5C /* UIColor+MediaBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B74428F12EEB00344C5C /* UIColor+MediaBaseModule.m */; };
+		04C4B74928F1301500344C5C /* UIView+LCDraggable.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B74728F1301500344C5C /* UIView+LCDraggable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B74A28F1301500344C5C /* UIView+LCDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B74828F1301500344C5C /* UIView+LCDraggable.m */; };
+		04C4B74E28F1310700344C5C /* NSString+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B74C28F1310700344C5C /* NSString+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B74F28F1310700344C5C /* NSString+MediaBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B74D28F1310700344C5C /* NSString+MediaBaseModule.m */; };
+		04C4B75128F1481700344C5C /* LCMediaBaseDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B75028F1481700344C5C /* LCMediaBaseDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B75A28F1595000344C5C /* UIImageView+MediaCircle.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B75828F1595000344C5C /* UIImageView+MediaCircle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C4B75B28F1595000344C5C /* UIImageView+MediaCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B75928F1595000344C5C /* UIImageView+MediaCircle.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04257C8E28E2C9E50062C0F1 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMediaBaseModule.h; sourceTree = "<group>"; };
+		04257C9228E2C9E50062C0F1 /* LCMediaBaseModule.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LCMediaBaseModule.docc; sourceTree = "<group>"; };
+		04257CB028E2CB6C0062C0F1 /* LCOpenSDK_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCOpenSDK_Prefix.h; sourceTree = "<group>"; };
+		04257CB328E2CBAB0062C0F1 /* PHAsset+Lechange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Lechange.h"; sourceTree = "<group>"; };
+		04257CB428E2CBAB0062C0F1 /* PHAsset+Lechange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+Lechange.m"; sourceTree = "<group>"; };
+		04257CBE28E2CCE60062C0F1 /* VPVideoDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPVideoDefines.h; sourceTree = "<group>"; };
+		04257CC128E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LCMediaPicDecoder.h"; sourceTree = "<group>"; };
+		04257CC228E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LCMediaPicDecoder.m"; sourceTree = "<group>"; };
+		04257CC828E2D07D0062C0F1 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BAA28F27929009E0540 /* LCNewDeviceVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewDeviceVideoManager.m; sourceTree = "<group>"; };
+		04871BAB28F27929009E0540 /* LCNewDeviceVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewDeviceVideoManager.h; sourceTree = "<group>"; };
+		04871BAE28F2796C009E0540 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BBD28F29F83009E0540 /* LCSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSegmentController.h; sourceTree = "<group>"; };
+		04871BBE28F29F83009E0540 /* LCSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSegmentController.m; sourceTree = "<group>"; };
+		04871BC028F29F83009E0540 /* LCMediaRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMediaRefreshHeader.m; sourceTree = "<group>"; };
+		04871BC128F29F83009E0540 /* LCMediaRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMediaRefreshFooter.m; sourceTree = "<group>"; };
+		04871BC228F29F83009E0540 /* LCMediaRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMediaRefreshFooter.h; sourceTree = "<group>"; };
+		04871BC328F29F83009E0540 /* LCMediaRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMediaRefreshHeader.h; sourceTree = "<group>"; };
+		04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMediaActivityIndicatorView.m; sourceTree = "<group>"; };
+		04871BCB28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMediaActivityIndicatorView.h; sourceTree = "<group>"; };
+		04C4B72328F119CB00344C5C /* UIDevice+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+MediaBaseModule.h"; sourceTree = "<group>"; };
+		04C4B72428F119CB00344C5C /* UIDevice+MediaBaseModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+MediaBaseModule.m"; sourceTree = "<group>"; };
+		04C4B72728F11AE700344C5C /* UIImage+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+MediaBaseModule.h"; sourceTree = "<group>"; };
+		04C4B72828F11AE700344C5C /* UIImage+MediaBaseModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MediaBaseModule.m"; sourceTree = "<group>"; };
+		04C4B74328F12EEB00344C5C /* UIColor+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+MediaBaseModule.h"; sourceTree = "<group>"; };
+		04C4B74428F12EEB00344C5C /* UIColor+MediaBaseModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MediaBaseModule.m"; sourceTree = "<group>"; };
+		04C4B74728F1301500344C5C /* UIView+LCDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LCDraggable.h"; sourceTree = "<group>"; };
+		04C4B74828F1301500344C5C /* UIView+LCDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LCDraggable.m"; sourceTree = "<group>"; };
+		04C4B74C28F1310700344C5C /* NSString+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MediaBaseModule.h"; sourceTree = "<group>"; };
+		04C4B74D28F1310700344C5C /* NSString+MediaBaseModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MediaBaseModule.m"; sourceTree = "<group>"; };
+		04C4B75028F1481700344C5C /* LCMediaBaseDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMediaBaseDefine.h; sourceTree = "<group>"; };
+		04C4B75828F1595000344C5C /* UIImageView+MediaCircle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MediaCircle.h"; sourceTree = "<group>"; };
+		04C4B75928F1595000344C5C /* UIImageView+MediaCircle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MediaCircle.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04257C8B28E2C9E50062C0F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				041D7523290170A50081443D /* LCNetworkModule.framework in Frameworks */,
+				03ABE0DE28F5B00600BCE307 /* AFNetworking.framework in Frameworks */,
+				03401B322906F90700F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
+				04257CC928E2D07D0062C0F1 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04257C8428E2C9E50062C0F1 = {
+			isa = PBXGroup;
+			children = (
+				04257C9028E2C9E50062C0F1 /* LCMediaBaseModule */,
+				04257C8F28E2C9E50062C0F1 /* Products */,
+				04257CC528E2CFC10062C0F1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04257C8F28E2C9E50062C0F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04257C8E28E2C9E50062C0F1 /* LCMediaBaseModule.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04257C9028E2C9E50062C0F1 /* LCMediaBaseModule */ = {
+			isa = PBXGroup;
+			children = (
+				04871BB728F28279009E0540 /* View */,
+				04871BA828F2790B009E0540 /* Manager */,
+				04C4B73628F11FCE00344C5C /* CustomView */,
+				04257CAD28E2CA9F0062C0F1 /* Define */,
+				04257CA028E2CA3C0062C0F1 /* Category */,
+				04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */,
+				04257C9228E2C9E50062C0F1 /* LCMediaBaseModule.docc */,
+			);
+			path = LCMediaBaseModule;
+			sourceTree = "<group>";
+		};
+		04257CA028E2CA3C0062C0F1 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04C4B74728F1301500344C5C /* UIView+LCDraggable.h */,
+				04C4B74828F1301500344C5C /* UIView+LCDraggable.m */,
+				04257CB328E2CBAB0062C0F1 /* PHAsset+Lechange.h */,
+				04257CB428E2CBAB0062C0F1 /* PHAsset+Lechange.m */,
+				04257CC128E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.h */,
+				04257CC228E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.m */,
+				04C4B75828F1595000344C5C /* UIImageView+MediaCircle.h */,
+				04C4B75928F1595000344C5C /* UIImageView+MediaCircle.m */,
+				04C4B72328F119CB00344C5C /* UIDevice+MediaBaseModule.h */,
+				04C4B72428F119CB00344C5C /* UIDevice+MediaBaseModule.m */,
+				04C4B72728F11AE700344C5C /* UIImage+MediaBaseModule.h */,
+				04C4B72828F11AE700344C5C /* UIImage+MediaBaseModule.m */,
+				04C4B74328F12EEB00344C5C /* UIColor+MediaBaseModule.h */,
+				04C4B74428F12EEB00344C5C /* UIColor+MediaBaseModule.m */,
+				04C4B74C28F1310700344C5C /* NSString+MediaBaseModule.h */,
+				04C4B74D28F1310700344C5C /* NSString+MediaBaseModule.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		04257CAD28E2CA9F0062C0F1 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				04257CBE28E2CCE60062C0F1 /* VPVideoDefines.h */,
+				04257CB028E2CB6C0062C0F1 /* LCOpenSDK_Prefix.h */,
+				04C4B75028F1481700344C5C /* LCMediaBaseDefine.h */,
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		04257CC528E2CFC10062C0F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */,
+				03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */,
+				04871BAE28F2796C009E0540 /* LCNetworkModule.framework */,
+				04257CC828E2D07D0062C0F1 /* SDWebImage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04871BA828F2790B009E0540 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				04871BA928F27916009E0540 /* VideoManager */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		04871BA928F27916009E0540 /* VideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				04871BAB28F27929009E0540 /* LCNewDeviceVideoManager.h */,
+				04871BAA28F27929009E0540 /* LCNewDeviceVideoManager.m */,
+			);
+			path = VideoManager;
+			sourceTree = "<group>";
+		};
+		04871BB728F28279009E0540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04871BBF28F29F83009E0540 /* RefreshView */,
+				04871BBC28F29F83009E0540 /* SegmentView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04871BBC28F29F83009E0540 /* SegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				04871BBD28F29F83009E0540 /* LCSegmentController.h */,
+				04871BBE28F29F83009E0540 /* LCSegmentController.m */,
+			);
+			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		04871BBF28F29F83009E0540 /* RefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				04871BC228F29F83009E0540 /* LCMediaRefreshFooter.h */,
+				04871BC128F29F83009E0540 /* LCMediaRefreshFooter.m */,
+				04871BC328F29F83009E0540 /* LCMediaRefreshHeader.h */,
+				04871BC028F29F83009E0540 /* LCMediaRefreshHeader.m */,
+				04871BCB28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h */,
+				04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */,
+			);
+			path = RefreshView;
+			sourceTree = "<group>";
+		};
+		04C4B73628F11FCE00344C5C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		04257C8928E2C9E50062C0F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04871BCD28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h in Headers */,
+				04871BC928F29F84009E0540 /* LCMediaRefreshHeader.h in Headers */,
+				04871BC828F29F84009E0540 /* LCMediaRefreshFooter.h in Headers */,
+				04871BC428F29F84009E0540 /* LCSegmentController.h in Headers */,
+				04871BAD28F27929009E0540 /* LCNewDeviceVideoManager.h in Headers */,
+				04C4B75A28F1595000344C5C /* UIImageView+MediaCircle.h in Headers */,
+				04C4B75128F1481700344C5C /* LCMediaBaseDefine.h in Headers */,
+				04C4B74E28F1310700344C5C /* NSString+MediaBaseModule.h in Headers */,
+				04C4B74928F1301500344C5C /* UIView+LCDraggable.h in Headers */,
+				04C4B74528F12EEB00344C5C /* UIColor+MediaBaseModule.h in Headers */,
+				04C4B72928F11AE700344C5C /* UIImage+MediaBaseModule.h in Headers */,
+				04C4B72528F119CB00344C5C /* UIDevice+MediaBaseModule.h in Headers */,
+				04257CC328E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.h in Headers */,
+				04257CBF28E2CCE60062C0F1 /* VPVideoDefines.h in Headers */,
+				04257CB928E2CBAB0062C0F1 /* PHAsset+Lechange.h in Headers */,
+				04257CB128E2CB6C0062C0F1 /* LCOpenSDK_Prefix.h in Headers */,
+				04257C9428E2C9E50062C0F1 /* LCMediaBaseModule.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04257C8D28E2C9E50062C0F1 /* LCMediaBaseModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04257C9728E2C9E50062C0F1 /* Build configuration list for PBXNativeTarget "LCMediaBaseModule" */;
+			buildPhases = (
+				04257C8928E2C9E50062C0F1 /* Headers */,
+				04257C8A28E2C9E50062C0F1 /* Sources */,
+				04257C8B28E2C9E50062C0F1 /* Frameworks */,
+				04257C8C28E2C9E50062C0F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCMediaBaseModule;
+			productName = LCMediaBaseModule;
+			productReference = 04257C8E28E2C9E50062C0F1 /* LCMediaBaseModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04257C8528E2C9E50062C0F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					04257C8D28E2C9E50062C0F1 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 04257C8828E2C9E50062C0F1 /* Build configuration list for PBXProject "LCMediaBaseModule" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04257C8428E2C9E50062C0F1;
+			productRefGroup = 04257C8F28E2C9E50062C0F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04257C8D28E2C9E50062C0F1 /* LCMediaBaseModule */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04257C8C28E2C9E50062C0F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04257C8A28E2C9E50062C0F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04C4B75B28F1595000344C5C /* UIImageView+MediaCircle.m in Sources */,
+				04257C9328E2C9E50062C0F1 /* LCMediaBaseModule.docc in Sources */,
+				04871BC528F29F84009E0540 /* LCSegmentController.m in Sources */,
+				04C4B74F28F1310700344C5C /* NSString+MediaBaseModule.m in Sources */,
+				04C4B72628F119CB00344C5C /* UIDevice+MediaBaseModule.m in Sources */,
+				04257CC428E2CF4C0062C0F1 /* UIImageView+LCMediaPicDecoder.m in Sources */,
+				04871BC728F29F84009E0540 /* LCMediaRefreshFooter.m in Sources */,
+				04257CBA28E2CBAB0062C0F1 /* PHAsset+Lechange.m in Sources */,
+				04871BC628F29F84009E0540 /* LCMediaRefreshHeader.m in Sources */,
+				04C4B74A28F1301500344C5C /* UIView+LCDraggable.m in Sources */,
+				04C4B72A28F11AE700344C5C /* UIImage+MediaBaseModule.m in Sources */,
+				04C4B74628F12EEB00344C5C /* UIColor+MediaBaseModule.m in Sources */,
+				04871BAC28F27929009E0540 /* LCNewDeviceVideoManager.m in Sources */,
+				04871BCC28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		04257C9528E2C9E50062C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		04257C9628E2C9E50062C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		04257C9828E2C9E50062C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMediaBaseModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04257C9928E2C9E50062C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCMediaBaseModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04257C8828E2C9E50062C0F1 /* Build configuration list for PBXProject "LCMediaBaseModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04257C9528E2C9E50062C0F1 /* Debug */,
+				04257C9628E2C9E50062C0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04257C9728E2C9E50062C0F1 /* Build configuration list for PBXNativeTarget "LCMediaBaseModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04257C9828E2C9E50062C0F1 /* Debug */,
+				04257C9928E2C9E50062C0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04257C8528E2C9E50062C0F1 /* Project object */;
+}

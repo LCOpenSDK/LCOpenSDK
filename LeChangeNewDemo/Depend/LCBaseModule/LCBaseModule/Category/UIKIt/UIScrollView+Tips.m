@@ -1,10 +1,10 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 
 #import <LCBaseModule/UIScrollView+Tips.h>
 #import <LCBaseModule/UIColor+LeChange.h>
-#import <LCBaseModule/UIFont+Dahua.h>
-#import <LCBaseModule/DHModuleConfig.h>
+#import <LCBaseModule/UIFont+Imou.h>
+#import <LCBaseModule/LCModuleConfig.h>
 #import <objc/runtime.h>
 #import <Masonry/Masonry.h>
 #import <LCBaseModule/UIScrollView+Empty.h>
@@ -178,7 +178,7 @@ static char UIScrollViewTipsButtonClickedBlock = '\0';
     
     UILabel *wordLbl = [[UILabel alloc]initWithFrame:CGRectZero];
     wordLbl.tag = 100;
-    wordLbl.textColor = [UIColor dhcolor_c41];
+    wordLbl.textColor = [UIColor lccolor_c41];
     wordLbl.textAlignment = NSTextAlignmentCenter;
     wordLbl.font = [UIFont lcFont_t2];
     wordLbl.numberOfLines = 0;
@@ -254,11 +254,11 @@ static char UIScrollViewTipsButtonClickedBlock = '\0';
     UILabel *titleLabel = (UILabel *)[emptyView viewWithTag:100];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor dhcolor_c0];
+    button.backgroundColor = [UIColor lccolor_c0];
     button.layer.cornerRadius = 20;
-    button.titleLabel.font = UIFont.dhFont_t4;
+    button.titleLabel.font = UIFont.lcFont_t4;
     [button setTitle:buttonTitle forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor dhcolor_c43] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor lccolor_c43] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [emptyView addSubview:button];
     
@@ -282,8 +282,8 @@ static char UIScrollViewTipsButtonClickedBlock = '\0';
     
     UILabel *titleLabel = (UILabel *)[emptyView viewWithTag:100];
     UILabel *desLabel = [[UILabel alloc] init];
-    desLabel.textColor = UIColor.dhcolor_c5;
-    desLabel.font = [UIFont dhFont_t6];
+    desLabel.textColor = UIColor.lccolor_c5;
+    desLabel.font = [UIFont lcFont_t6];
     desLabel.text = description;
     desLabel.textAlignment = NSTextAlignmentCenter;
     desLabel.numberOfLines = 0;

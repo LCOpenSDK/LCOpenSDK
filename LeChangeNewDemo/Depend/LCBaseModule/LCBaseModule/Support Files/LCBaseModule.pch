@@ -8,9 +8,11 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <LCBaseModule/UIView+LeChange.h>
-#import <LCBaseModule/NSString+Dahua.h>
+#import <LCBaseModule/NSString+Imou.h>
 #import <LCBaseModule/UITextField+LeChange.h>
 #import <LCBaseModule/UIViewController+LCNavigationBar.h>
-#import <LCBaseModule/DHPubDefine.h>
+#import <LCBaseModule/LCPubDefine.h>
+#import <LCBaseModule/LCBasicPresenter.h>
+#import <LCBaseModule/LCError.h>
 
 #endif /* LCBaseModule_pch */

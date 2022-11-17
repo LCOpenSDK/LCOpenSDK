@@ -1,12 +1,12 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 #import "LCClientConfigInfo.h"
 
-@implementation DHOMSDeviceModelItem
+@implementation LCOMSDeviceModelItem
 - (id)copyWithZone:(NSZone *)zone {
-	DHOMSDeviceModelItem *item = [DHOMSDeviceModelItem new];
+	LCOMSDeviceModelItem *item = [LCOMSDeviceModelItem new];
 	item.deviceModelName = self.deviceModelName;
 	item.deviceImageURI = self.deviceImageURI;
 	return item;
@@ -29,7 +29,7 @@
 }
 @end
 
-@implementation DHOMSDeviceType
+@implementation LCOMSDeviceType
 - (instancetype)init {
 	if (self = [super init]) {
 		_modelItems = [[NSMutableArray alloc] init];
@@ -39,7 +39,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-	DHOMSDeviceType *info = [DHOMSDeviceType new];
+	LCOMSDeviceType *info = [LCOMSDeviceType new];
 	info.deviceType = self.deviceType;
 	info.modelItems = self.modelItems;
 	return info;
@@ -66,16 +66,16 @@
 }
 
 + (NSDictionary *)mj_objectClassInArray {
-    return @{ @"modelItems" : [DHOMSDeviceModelItem class]};
+    return @{ @"modelItems" : [LCOMSDeviceModelItem class]};
 }
 
 @end
 
 
 
-@implementation DHOMSIntroductionImageItem
+@implementation LCOMSIntroductionImageItem
 - (id)copyWithZone:(NSZone *)zone {
-	DHOMSIntroductionImageItem *item = [DHOMSIntroductionImageItem new];
+	LCOMSIntroductionImageItem *item = [LCOMSIntroductionImageItem new];
 	item.imageName = self.imageName;
 	item.imageURI = self.imageURI;
 	return item;
@@ -104,7 +104,7 @@
 @end
 
 
-@implementation DHOMSIntroductionContentItem
+@implementation LCOMSIntroductionContentItem
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -116,7 +116,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-	DHOMSIntroductionContentItem *item = [DHOMSIntroductionContentItem new];
+	LCOMSIntroductionContentItem *item = [LCOMSIntroductionContentItem new];
 	item.introductionName = self.introductionName;
 	item.introductionContent = self.introductionContent;
 	return item;
@@ -141,7 +141,7 @@
 
 
 
-@implementation DHOMSIntroductionInfo
+@implementation LCOMSIntroductionInfo
 
 - (instancetype)init {
 	if (self = [super init]) {
@@ -153,7 +153,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-	DHOMSIntroductionInfo *info = [DHOMSIntroductionInfo new];
+	LCOMSIntroductionInfo *info = [LCOMSIntroductionInfo new];
 	info.updateTime = self.updateTime;
 	info.images = self.images;
 	info.contens = self.contens;
@@ -181,14 +181,14 @@
 }
 
 + (NSDictionary *)mj_objectClassInArray {
-    return @{ @"images" : [DHOMSIntroductionImageItem class],@"contens" : [DHOMSIntroductionContentItem class]};
+    return @{ @"images" : [LCOMSIntroductionImageItem class],@"contens" : [LCOMSIntroductionContentItem class]};
 }
 
 @end
 
-@implementation DHTabbarIconInfo
+@implementation LCTabbarIconInfo
 - (id)copyWithZone:(NSZone *)zone {
-    DHTabbarIconInfo *info = [DHTabbarIconInfo new];
+    LCTabbarIconInfo *info = [LCTabbarIconInfo new];
     info.iconName = self.iconName;
     info.iconPic = self.iconPic;
     info.iconPicSelected = self.iconPicSelected;
@@ -211,5 +211,10 @@
     }
     return self;
 }
+
+@end
+
+
+@implementation LCIotDeviceAddGuideInfo: NSObject
 
 @end

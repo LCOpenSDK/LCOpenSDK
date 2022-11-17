@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 Dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 
@@ -29,15 +29,15 @@
 /**
  内容加密模式：
  *  none 不加密
- *  dahua: 0x95扩展头加密
+ *  Imou: 0x95扩展头加密
  */
 @property (nonatomic, copy) NSString *encryptionMode;
 
 /**
- 密钥生成算法版本号，仅在encryptMode为"dahua"时有效
+ 密钥生成算法版本号，仅在encryptMode为"Imou"时有效
  *  easy4ip
  *  lechange
- *  dahuapass
+ *  Imoupass
  */
 @property (nonatomic, copy) NSString *ruleVerison;
 

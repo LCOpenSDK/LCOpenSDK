@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -73,5 +73,7 @@
  *  @return NSString
  */
 + (NSString *)lc_getDNSAddress;
+
+unsigned char * getdefaultgateway(in_addr_t * addr);
 
 @end

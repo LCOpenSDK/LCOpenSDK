@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #ifndef TextDefine_h
@@ -81,4 +81,20 @@ static NSString * const KEY_BEGIN_TIME = @"beginTime";
 
 /// 结束时间
 static NSString * const KEY_END_TIME = @"endTime";
+
+/// 产品唯一标识符
+static NSString * const KEY_PRODUCT_ID = @"productId";
+
+/// 语言类型
+static NSString * const KEY_LANGUAGE = @"language";
+
+/// 下一报警Id
+static NSString * const KEY_NEXTALARMID = @"nextAlarmId";
+
+/// 报警消息id
+static NSString * const KEY_ALARMID = @"indexId";
+
+/// 使能类型
+static NSString * const KEY_ENABLETYPE = @"enableType";
+
 #endif /* TextDefine_h */

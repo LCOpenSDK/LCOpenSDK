@@ -1,11 +1,14 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "LCModel.h"
 #import "LCDevice.h"
 #import "LCClientConfigInfo.h"
+
+@class LCIoTDeviceInfoBeforeBind;
+@class LCError;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,8 +22,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param failure 失败回调
 
  */
-+(void)getDeviceIntroductionForDeviceModel:(NSString *)deviceModel success:(void (^)(DHOMSIntroductionInfo * introductions))success
-                          failure:(void (^)(LCError *error))failure;
++(void)getDeviceIntroductionForDeviceModel:(NSString *)deviceModel language:(NSString *)language success:(void (^)(LCOMSIntroductionInfo * introductions))success failure:(void (^)(LCError *error))failure;
+
+/**
+ 获取iot设备配置信息
+ 
+ @param productID iot设备产品ID
+ @param communicate 配网方式（4G，lan等）
+ @param language 语言类型
+ @param success 成功回调
+ @param failure 失败回调
+
+ */
++(void)getIotDeviceIntroductionForProductID:(NSString *)productID communicate:(nullable NSString *)communicate language:(NSString *)language success:(void (^)(NSArray * guideInfos))success failure:(void (^)(LCError *error))failure;
 
 /**
 检查更新OMS配置信息
@@ -38,8 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param success 成功回调
  @param failure 失败回调
  */
-+(void)queryAllProductWithDeviceType:(nullable NSString *)deviceModel Success:(void (^)(NSDictionary *productList))success
-                             failure:(void (^)(LCError *error))failure;
++(void)queryAllProductWithDeviceType:(nullable NSString *)deviceModel Success:(void (^)(NSDictionary *productList))success failure:(void (^)(LCError *error))failure;
 
 /**
  查询设备绑定情况
@@ -48,41 +61,43 @@ NS_ASSUME_NONNULL_BEGIN
  @param success 成功回调（isBind为是否绑定，isMine为是否绑定到本账号上）
  @param failure 失败回调
  */
-+ (void)checkDeviceBindOrNotWithDevice:(NSString *)deviceId success:(void (^)(LCCheckDeviceBindOrNotInfo * info))success
-                               failure:(void (^)(LCError *error))failure;
++ (void)checkDeviceBindOrNotWithDevice:(NSString *)deviceId success:(void (^)(LCCheckDeviceBindOrNotInfo * info))success failure:(void (^)(LCError *error))failure;
 
 /**
  查询未绑定的设备信息
 
  @param deviceId 设备序列号
+ @param productId iot设备产品ID，iot设备必传
  @param deviceModel 设备市场型号
  @param deviceName 设备市场名
  @param success 成功回调（返回设备能力集，用逗号分隔，WLAN：网络连接功能，PT:云台控制等，详细内容参考设备能力集）
  @param failure 失败回调
  */
-+ (void)unBindDeviceInfoForDevice:(NSString *)deviceId DeviceModel:(nullable NSString *)deviceModel DeviceName:(NSString *)deviceName ncCode:(NSString *)ncCode success:(void (^)(DHUserDeviceBindInfo * info))success failure:(void (^)(LCError *error))failure;
++ (void)unBindDeviceInfoForDevice:(NSString *)deviceId productId:(nullable NSString *)productId DeviceModel:(nullable NSString *)deviceModel DeviceName:(NSString *)deviceName ncCode:(NSString *)ncCode success:(void (^)(LCUserDeviceBindInfo * info))success failure:(void (^)(LCError *error))failure;
 
 /**
 获取设备在线状态
 
  @param deviceId 设备序列号
+ @param productId iot设备产品ID，iot设备必传
  @param success 成功回调
  @param failure 失败回调
  */
 
-+ (void)deviceOnlineFor:(nonnull NSString *)deviceId success:(void (^)(LCDeviceOnlineInfo *deviceOnlineInfo))success
++ (void)deviceOnlineFor:(nonnull NSString *)deviceId productId:(nullable NSString *)productId success:(void (^)(LCDeviceOnlineInfo *deviceOnlineInfo))success
                        failure:(void (^)(LCError *error))failure;
 
 /**
  绑定设备
 
  @param deviceId 设备序列号
+ @param productId iot设备产品ID，iot设备必传
  @param code 设备验证码
  @param success 成功回调
  @param failure 失败回调
  */
 
-+ (void)bindDeviceWithDevice:(nonnull NSString *)deviceId Code:(NSString *)code success:(void (^)(void))success
++ (void)bindDeviceWithDevice:(nonnull NSString *)deviceId productId:(nullable NSString *)productId Code:(NSString *)code success:(void (^)(void))success
                      failure:(void (^)(LCError *error))failure;
 
 /**
@@ -115,8 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param endSunTime 夏令时结束时间
 ///@param success 成功回调
 ///@param failure 失败回调
-+ (void)timeZoneConfigByDateWithDevice:(nonnull NSString *)deviceId AreaIndex:(NSInteger)areaIndex TimeZone:(NSInteger)timeZone BeginSunTime:(NSString *)beginSunTime EndSunTime:(NSString *)endSunTime success:(void (^)(void))success
-                     failure:(void (^)(LCError *error))failure;
++ (void)timeZoneConfigByDateWithDevice:(nonnull NSString *)deviceId AreaIndex:(NSInteger)areaIndex TimeZone:(NSInteger)timeZone BeginSunTime:(NSString *)beginSunTime EndSunTime:(NSString *)endSunTime success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
 
 @end
 

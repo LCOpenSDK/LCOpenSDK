@@ -1,5 +1,5 @@
  //
- //  Copyright © 2020 dahua. All rights reserved.
+ //  Copyright © 2020 Imou. All rights reserved.
  //。能力集解析
 
 #import <Foundation/Foundation.h>

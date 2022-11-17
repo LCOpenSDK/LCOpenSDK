@@ -1,14 +1,14 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
-#import <LCBaseModule/DHBaseViewController.h>
+#import <LCBaseModule/LCBaseViewController.h>
 typedef void (^closeWebViewController)(void);
 
 @class WKWebViewJavascriptBridge;
-@interface LCWebViewController : DHBaseViewController<WKNavigationDelegate,WKUIDelegate>
+@interface LCWebViewController : LCBaseViewController<WKNavigationDelegate,WKUIDelegate>
 {
     BOOL            _shouldRotate;
 //    WKWebView*      _webView;

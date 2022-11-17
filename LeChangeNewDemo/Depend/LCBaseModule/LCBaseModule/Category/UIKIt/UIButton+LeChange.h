@@ -1,8 +1,15 @@
 //
-//  Copyright © 2016 dahua. All rights reserved.
+//  Copyright © 2016 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSUInteger, LCButtonEdgeInsetsStyle) {
+    LCButtonEdgeInsetsStyleTop, // image在上，label在下
+    LCButtonEdgeInsetsStyleLeft, // image在左，label在右
+    LCButtonEdgeInsetsStyleBottom, // image在下，label在上
+    LCButtonEdgeInsetsStyleRight // image在右，label在左
+};
 
 @interface UIButton(LeChange)
 
@@ -64,5 +71,8 @@
  *  重制按钮偏移量
  */
 - (void)resetEdgInset;
+
+
+- (void)layoutButtonWithEdgeInsetsStyle:(LCButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
 
 @end

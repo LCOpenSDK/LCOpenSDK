@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/UIDevice+IPhoneModel.h>
@@ -221,7 +221,7 @@ NSString *const Device_Type_Unrecognized = @"?unrecognized?";
     return iPhoneXSeries;
 }
 
-+ (NSString *)dh_getMacAddress {
++ (NSString *)lc_getMacAddress {
     NSArray *array = CFBridgingRelease(CNCopySupportedInterfaces());
     NSDictionary *info = nil;
     for (NSString *interface in array) {

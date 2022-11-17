@@ -1,49 +1,61 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	对LCUserDeviceBindInfo的字段扩展
 
 import Foundation
 
-enum DHDeviceBindStatus {
+enum LCDeviceBindStatus {
 	case unbind
 	case bindBySelf
 	case bindByOther
 }
 
-extension DHUserDeviceBindInfo {
+extension LCUserDeviceBindInfo {
 	
-	func dh_netConfigModes() -> [DHNetConfigMode] {
-		var modes = [DHNetConfigMode]()
+	func lc_netConfigModes() -> [LCNetConfigMode] {
+		var modes = [LCNetConfigMode]()
 		if let configModes = self.wifiConfigMode, configModes.count > 0 {
 			for mode in configModes.components(separatedBy: ",") {
-				if mode.dh_caseInsensitiveContain(string: "SmartConfig") || mode.dh_caseInsensitiveContain(string: "SoundWave") {
+				if mode.lc_caseInsensitiveContain(string: "SmartConfig") || mode.lc_caseInsensitiveContain(string: "SoundWave") {
 					if modes.contains(.wifi) == false { //防止重复添加
 						modes.append(.wifi)
 					}
 				}
 				
-				if mode.dh_caseInsensitiveContain(string: "SoftAP") {
+				if mode.lc_caseInsensitiveContain(string: "SoftAP") || mode.lc_caseInsensitiveContain(string: "wifi") {
 					modes.append(.softAp)
 				}
 				
-				if mode.dh_caseInsensitiveContain(string: "LAN") {
+				if mode.lc_caseInsensitiveContain(string: "LAN") {
 					modes.append(.wired)
 				}
 				
-				if mode.dh_caseInsensitiveContain(string: "SIMCard") {
-					modes.append(.simCard)
-				}
+//				if mode.lc_caseInsensitiveContain(string: "SIMCard") {
+//					modes.append(.simCard)
+//				}
+//
+//				if mode.lc_caseInsensitiveSame(string: "Location") {
+//					modes.append(.local)
+//				}
+//
+//				if mode.lc_caseInsensitiveSame(string: "NBIOT") {
+//					modes.append(.nbIoT)
+//				}
 				
-				if mode.dh_caseInsensitiveSame(string: "Location") {
-					modes.append(.local)
-				}
-				
-				if mode.dh_caseInsensitiveSame(string: "NBIOT") {
-					modes.append(.nbIoT)
-				}
-				
-                if mode.dh_caseInsensitiveSame(string: "Bluetooth") {
+                if mode.lc_caseInsensitiveSame(string: "Bluetooth") {
                     modes.append(.ble)
+                }
+                if mode.lc_caseInsensitiveSame(string: "iot4G") {
+                    modes.append(.iot4G)
+                }
+                if mode.lc_caseInsensitiveSame(string: "iotBluetooth") {
+                    modes.append(.iotBluetooth)
+                }
+                if mode.lc_caseInsensitiveSame(string: "iotWifi") {
+                    modes.append(.iotWifi)
+                }
+                if mode.lc_caseInsensitiveSame(string: "iotLan") {
+                    modes.append(.wired)
                 }
                 
 			}
@@ -53,67 +65,65 @@ extension DHUserDeviceBindInfo {
             modes.append(.softAp)
         }
 		
-		if DHAddDeviceTest.openTest {
-			modes.append(.nbIoT)
-		}
+
 	
 		return modes
 	}
 	
-	func dh_support5GWifi() -> Bool {
+	func lc_support5GWifi() -> Bool {
         if wifiTransferMode == nil {
             return false
         }
-		return wifiTransferMode.dh_caseInsensitiveContain(string: "5Ghz")
+		return wifiTransferMode.lc_caseInsensitiveContain(string: "5Ghz")
 	}
 	
-	func dh_isSupportSoundWave() -> Bool {
+	func lc_isSupportSoundWave() -> Bool {
 		//TEST::!!!
-		if DHAddDeviceTest.openTest {
-			return DHAddDeviceTest.testSoundWave
+		if LCAddDeviceTest.openTest {
+			return LCAddDeviceTest.testSoundWave
 		}
 		
-		return wifiConfigMode != nil && wifiConfigMode.dh_caseInsensitiveContain(string: "SoundWave")
+		return wifiConfigMode != nil && wifiConfigMode.lc_caseInsensitiveContain(string: "SoundWave")
 	}
 	
-	func dh_bindStatus() -> DHDeviceBindStatus {
+	func lc_bindStatus() -> LCDeviceBindStatus {
 		
-		if bindStatus == nil || bindStatus.count == 0 || bindStatus.dh_caseInsensitiveContain(string: "unbind") {
+		if bindStatus == nil || bindStatus.count == 0 || bindStatus.lc_caseInsensitiveContain(string: "unbind") {
 			return .unbind
 		}
 		
-		if bindStatus.dh_caseInsensitiveContain(string: "bindByMe") {
+		if bindStatus.lc_caseInsensitiveContain(string: "bindByMe") {
 			return .bindBySelf
 		}
 		
-		if bindStatus.dh_caseInsensitiveContain(string: "bindByOther") {
+		if bindStatus.lc_caseInsensitiveContain(string: "bindByOther") {
 			return .bindByOther
 		}
 		
 		return .unbind
 	}
 	
-	func dh_isOnline() -> Bool {
-		return status != nil && status.dh_caseInsensitiveSame(string: "online")
+	func lc_isOnline() -> Bool {
+		return status != nil && (status.lc_caseInsensitiveSame(string: "online") || status.lc_caseInsensitiveSame(string: "sleep"))
 	}
 	
-	func dh_isExisted() -> Bool {
-		return deviceExist != nil && deviceExist.dh_caseInsensitiveSame(string: "exist")
+	func lc_isExisted() -> Bool {
+		return deviceExist != nil && deviceExist.lc_caseInsensitiveSame(string: "exist")
 	}
 	
-	func dh_isAccesoryPart() -> Bool {
-		return type != nil && type.dh_caseInsensitiveContain(string: "ap")
+	func lc_isAccesoryPart() -> Bool {
+		return type != nil && type.lc_caseInsensitiveContain(string: "ap")
 	}
 	
-	func dh_accessType() -> DHDeviceAccessType {
+	func lc_accessType() -> LCDeviceAccessType {
 		if accessType == nil || accessType.count == 0 {
 			return .paas
 		}
 		
-		var type = DHDeviceAccessType.paas
-		if accessType.dh_caseInsensitiveContain(string: "p2p") {
+		var type = LCDeviceAccessType.paas
+		if accessType.lc_caseInsensitiveContain(string: "p2p") {
 			type = .p2p
-		} else if accessType.dh_caseInsensitiveContain(string: "easy4ip") {
+		} else if accessType.lc_caseInsensitiveContain(string: "easy4ip") {
 			type = .easy4ip
 		}
 		
@@ -128,7 +138,7 @@ extension String {
 	///
 	/// - Parameter string: 是否包含的字符串
 	/// - Returns: YES/NO
-	func dh_caseInsensitiveContain(string: String) -> Bool {
+	func lc_caseInsensitiveContain(string: String) -> Bool {
 		let upperSelf = self.uppercased()
 		let result = upperSelf.contains(string.uppercased())
 		return result
@@ -138,7 +148,7 @@ extension String {
 	///
 	/// - Parameter string: 是否包含的字符串
 	/// - Returns: YES/NO
-	func dh_caseInsensitiveSame(string: String?) -> Bool {
+	func lc_caseInsensitiveSame(string: String?) -> Bool {
 		if string == nil {
 			return false
 		}

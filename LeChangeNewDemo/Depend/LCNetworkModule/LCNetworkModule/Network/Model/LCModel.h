@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #ifndef LCModel_h
@@ -8,7 +8,6 @@
 #import "LCRequestModel.h"
 #import "LCResponseModel.h"
 
-#import <LCBaseModule/LCError.h>
 #import "LCAuthModel.h"
 #import "LCDeviceInfo.h"
 #import "LCAroundWifiInfo.h"

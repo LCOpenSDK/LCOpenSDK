@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePlayerPersenter+LandscapeControlView.h"
@@ -41,7 +41,7 @@
  */
 - (LCButton *)getLandscapeItemWithType:(LCVideotapePlayerControlType)type {
     weakSelf(self);
-    LCButton *item = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *item = [LCButton createButtonWithType:LCButtonTypeCustom];
     item.tag = type;
     switch (type) {
         case LCVideotapePlayerControlPlay: {
@@ -64,7 +64,7 @@
             
         case LCVideotapePlayerControlTimes: {
             //播放或暂停
-            [item setImage:LC_IMAGENAMED(@"video_1x") forState:UIControlStateNormal];
+            [item setImage:LC_IMAGENAMED(@"icon_1x") forState:UIControlStateNormal];
             //监听管理者状态
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
                 [weakself onSpeed:btn];
@@ -74,22 +74,22 @@
                 CGFloat speedTime = 1.0;
                 if (speed == 1) {
                     speedTime = 1.0;
-                    [item setImage:LC_IMAGENAMED(@"video_1x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_1x") forState:UIControlStateNormal];
                 } else if (speed == 2) {
                     speedTime = 2.0;
-                    [item setImage:LC_IMAGENAMED(@"video_2x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_2x") forState:UIControlStateNormal];
                 } else if (speed == 3) {
                     speedTime = 4.0;
-                    [item setImage:LC_IMAGENAMED(@"video_4x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_4x") forState:UIControlStateNormal];
                 } else if (speed == 4) {
                     speedTime = 8.0;
-                    [item setImage:LC_IMAGENAMED(@"video_8x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_8x") forState:UIControlStateNormal];
                 } else if (speed == 5) {
                     speedTime = 16.0;
-                    [item setImage:LC_IMAGENAMED(@"video_16x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_16x") forState:UIControlStateNormal];
                 } else if (speed == 6) {
                     speedTime = 32.0;
-                    [item setImage:LC_IMAGENAMED(@"video_32x") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"icon_32x") forState:UIControlStateNormal];
                 }
                 
                 [self.playWindow setPlaySpeed:speedTime];

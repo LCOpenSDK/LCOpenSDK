@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeDownloadStatusView.h"
@@ -45,18 +45,18 @@
 
 - (void)setView {
     weakSelf(self);
-    self.backgroundColor = [UIColor dhcolor_c61];
+    self.backgroundColor = [UIColor lccolor_c61];
     self.lab = [UILabel new];
     self.lab.text = [NSString stringWithFormat:@"mobile_common_data_downloading".lc_T, self.totalRevieve / (1024.0 * 1024.0), self.size / (1024.0 * 1024.0)];
     [self addSubview:_lab];
     _lab.font = [UIFont lcFont_t6];
-    _lab.textColor = [UIColor dhcolor_c43];
+    _lab.textColor = [UIColor lccolor_c43];
     [_lab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.top.mas_equalTo(15);
     }];
 
-    self.closeBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.closeBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self.closeBtn setImage:LC_IMAGENAMED(@"videotape_icon_download_close") forState:UIControlStateNormal];
     [self addSubview:self.closeBtn];
     [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,7 +75,7 @@
 
     self.processView = [UIProgressView new];
     [self addSubview:self.processView];
-    [self.processView setProgressTintColor:[UIColor dhcolor_c43]];
+    [self.processView setProgressTintColor:[UIColor lccolor_c43]];
     [self.processView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakself.lab.mas_left);
         make.top.mas_equalTo(weakself.lab.mas_bottom).offset(15);

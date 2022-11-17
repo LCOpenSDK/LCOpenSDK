@@ -1,22 +1,22 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 import UIKit
 
-enum DHAddGuideActionType {
+enum LCAddGuideActionType {
     case next
     case detail
     case check
     case error
 }
 
-protocol DHAddGuideViewDelegate: NSObjectProtocol {
+protocol LCAddGuideViewDelegate: NSObjectProtocol {
     
-    func guideView(view: DHAddGuideView, action: DHAddGuideActionType)
+    func guideView(view: LCAddGuideView, action: LCAddGuideActionType)
 }
 
-class DHAddGuideView: UIView {
+class LCAddGuideView: UIView {
     
     /// 是否选中
     public var isChecked: Bool {
@@ -39,8 +39,8 @@ class DHAddGuideView: UIView {
     lazy var errorButton: UIButton = {
         let errorButton = UIButton()
 //
-        errorButton.setTitle("自动连接失败".lc_T, for: .normal)
-        errorButton.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+        errorButton.setTitle("automatic_connection_failed".lc_T, for: .normal)
+        errorButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
         errorButton.setImage(UIImage(named: "adddevice_icon_help"), for: .normal)
         errorButton.addTarget(self, action: #selector(errorButtonClicked), for: .touchUpInside)
         errorButton.isHidden = true
@@ -48,24 +48,24 @@ class DHAddGuideView: UIView {
         return errorButton
     }()
     
-    public weak var delegate: DHAddGuideViewDelegate?
+    public weak var delegate: LCAddGuideViewDelegate?
     private var tapUnderlineAction: (() -> Void)? = nil
     private var rects: [CGRect] = []    // 存储下划线字段的点击rect
     
-    //    deinit {
-    //        dh_printDeinit(self)
-    //    }
+        deinit {
+            debugPrint("🍻🍻🍻", "Deinit Success:", self)
+        }
     
-    public static func xibInstance() -> DHAddGuideView {
-		if let view = Bundle.dh_addDeviceBundle()?.loadNibNamed("DHAddGuideView", owner: nil, options: nil)!.first as? DHAddGuideView {
+    public static func xibInstance() -> LCAddGuideView {
+		if let view = Bundle.lc_addDeviceBundle()?.loadNibNamed("DHAddGuideView", owner: nil, options: nil)!.first as? LCAddGuideView {
             return view
         }
-        return DHAddGuideView()
+        return LCAddGuideView()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.dhcolor_c43()
+        backgroundColor = UIColor.lccolor_c43()
         
         self.topImageView.contentMode = .scaleAspectFit
 		self.topImageView.image = UIImage(named: "adddevice_netsetting_power")
@@ -76,7 +76,7 @@ class DHAddGuideView: UIView {
         self.topTipLabel.isSelectable = false
         self.topTipLabel.isEditable = false
         self.topTipLabel.delegate = self
-        self.topTipLabel.tintColor = UIColor.dhcolor_c0()
+        self.topTipLabel.tintColor = UIColor.lccolor_c0()
         topTipLabel.isUserInteractionEnabled = true
         self.descriptionLabel.textAlignment = .center
         self.descriptionLabel.text = nil
@@ -89,14 +89,14 @@ class DHAddGuideView: UIView {
         self.detailButton.titleLabel?.numberOfLines = 2
         
         //配置颜色、样式
-        self.topTipLabel.textColor = UIColor.dhcolor_c2()
-        self.descriptionLabel.textColor = UIColor.dhcolor_c5()
-        self.detailButton.setTitleColor(UIColor.dhcolor_c0(), for: .normal)
-        self.checkButton.setTitleColor(UIColor.dhcolor_c5(), for: .normal)
-        self.nextButton.setTitleColor(UIColor.dhcolor_c43(), for: .normal)
+        self.topTipLabel.textColor = UIColor.lccolor_c2()
+        self.descriptionLabel.textColor = UIColor.lccolor_c5()
+        self.detailButton.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+        self.checkButton.setTitleColor(UIColor.lccolor_c5(), for: .normal)
+        self.nextButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
         
-        self.nextButton.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
-        self.nextButton.backgroundColor = DHModuleConfig.shareInstance().commonButtonColor()
+        self.nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
+        self.nextButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()
         self.checkButton.setImage(UIImage(named: "adddevice_box_checkbox"), for: .normal)
         self.checkButton.setImage(UIImage(named: "adddevice_box_checkbox_checked"), for: .selected)
         
@@ -150,15 +150,15 @@ class DHAddGuideView: UIView {
             make.centerX.equalTo(self)
         }
         
-        if dh_isiPhoneX {
-            nextButtonBottomConstraint.constant += dh_bottomSafeMargin
+        if lc_isiPhoneX {
+            nextButtonBottomConstraint.constant += LC_bottomSafeMargin
         }
     }
     
     // MARK: Actions
     @IBAction func onCheckAction(_ sender: Any) {
         checkButton.isSelected = !checkButton.isSelected
-        nextButton.dh_enable = checkButton.isSelected
+        nextButton.lc_enable = checkButton.isSelected
         delegate?.guideView(view: self, action: .check)
     }
     
@@ -204,7 +204,7 @@ class DHAddGuideView: UIView {
     /// - Parameter hidden: true/false
     public func setCheckHidden(hidden: Bool) {
         checkButton.isHidden = hidden
-        nextButton.dh_enable = hidden
+        nextButton.lc_enable = hidden
     }
     
     public func setDetailButtonHidden(hidden: Bool) {
@@ -213,7 +213,7 @@ class DHAddGuideView: UIView {
     
     public func setCheck(checked: Bool) {
         checkButton.isSelected = checked
-        nextButton.dh_enable = checked
+        nextButton.lc_enable = checked
     }
     
     /// 设置详情文字，如果文字内容为空，隐藏按钮，防止触发点击事件
@@ -240,20 +240,20 @@ class DHAddGuideView: UIView {
         let attributedString: NSMutableAttributedString =
             NSMutableAttributedString(string: text, attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraph ?? NSParagraphStyle.default,
-                NSAttributedString.Key.font: UIFont.dhFont_t3()
+                NSAttributedString.Key.font: UIFont.lcFont_t3()
             ])
         
         // 字符串下划线
         if let _underlineString = underlineString {
             let userPolicyStr: NSMutableAttributedString = NSMutableAttributedString(string: _underlineString)
             let userPolicyStrRange: NSRange = NSRange(location: 0, length: _underlineString.length)
-            userPolicyStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c0()], range: userPolicyStrRange)
+            userPolicyStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.lccolor_c0()], range: userPolicyStrRange)
             if shouldCopy {
                 userPolicyStr.addAttributes([NSAttributedStringKey.link: "copy://"], range: userPolicyStrRange)
                 userPolicyStr.addAttributes([NSAttributedString.Key.underlineStyle: 1], range: userPolicyStrRange)
             }
             
-            userPolicyStr.addAttributes([NSAttributedString.Key.font: UIFont.dhFont_t3()], range: userPolicyStrRange)
+            userPolicyStr.addAttributes([NSAttributedString.Key.font: UIFont.lcFont_t3()], range: userPolicyStrRange)
             attributedString.append(userPolicyStr)
             
             if shouldCopy {
@@ -303,7 +303,7 @@ class DHAddGuideView: UIView {
             let number = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue)
             
             attrString.addAttributes([NSAttributedStringKey.underlineStyle: number,
-                                      NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c0()], range: range)
+                                      NSAttributedStringKey.foregroundColor: UIColor.lccolor_c0()], range: range)
             detailButton.setAttributedTitle(attrString, for: .normal)
         } else {
             detailButton.setTitle(text, for: .normal)
@@ -336,7 +336,7 @@ class DHAddGuideView: UIView {
         detailButton.snp.remakeConstraints { make in
             make.leading.equalTo(self).offset(13)
             make.centerX.equalTo(self)
-            make.bottom.equalTo(self).offset( dh_isiPhoneX ? bottom - dh_bottomSafeMargin : bottom )
+            make.bottom.equalTo(self).offset( lc_isiPhoneX ? bottom - LC_bottomSafeMargin : bottom )
         }
         
         errorButton.snp.remakeConstraints { (make) in
@@ -361,7 +361,7 @@ class DHAddGuideView: UIView {
 }
 
 
-extension DHAddGuideView: UIGestureRecognizerDelegate, UITextViewDelegate {
+extension LCAddGuideView: UIGestureRecognizerDelegate, UITextViewDelegate {
     
 //    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 //

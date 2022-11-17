@@ -3,7 +3,7 @@
   LeChangeDemo
 
   Created by imou on 2019/12/5.
-  Copyright © 2019 dahua. All rights reserved.
+  Copyright © 2019 Imou. All rights reserved.
 */
 
 //夏令时
@@ -132,9 +132,7 @@
 //选择对接模式
 "Choose_Injonit_Mode_Title" = "选择对接模式";
 "Choose_Injonit_Mode_ManagerMode" = "管理员模式对接";
-"Choose_Injonit_Mode_UserMode" = "用户模式对接";
 "Choose_Injonit_Mode_About_Manager" = "了解管理员模式";
-"Choose_Injonit_Mode_About_User" = "了解用户模式";
 "Choose_Injonit_Mode_Phone_Alert" = "请输入正确的邮箱地址";
 
 //用户登录注册
@@ -142,23 +140,12 @@
 "User_Mode_Login_Register" = "注册";
 "User_Mode_Account_Login" = "账户登录";
 "User_Mode_Account_Regist" = "账户注册";
-"User_Mode_Login_LoginBtn" = "用户模式子账户登录";
 "User_Mode_Login_Phone_Placeholder" = "请输入邮箱地址";
 "User_Mode_Login_PhoneNumber_Placeholder" = "请输入手机号或邮箱";
 "User_Mode_Register_Phone_SMS_Success" = "验证码下发成功";
 "User_Mode_Register_Phone_SMS_Fail" = "验证码下发失败";
 "User_Mode_Register_Fail" = "注册失败";
 "regist_user_account_success" = "注册子账号成功";
-
-//模式介绍
-"Mode_Introduce_Manager_Title" = "管理员模式介绍";
-"Mode_Introduce_User_Title" = "用户模式介绍";
-"Mode_Introduce_Manager_Start_Injoint" = "开启体验管理员模式对接";
-"Mode_Introduce_User_Start_Injoint" = "开启体验用户模式对接";
-"Mode_Introduce_Manager_Framework_Describe" = "1.乐橙设备全部绑定在开发者账户下，整体对接架构如下图所示";
-"Mode_Introduce_Manager_Relation_Describe" = "2.开发者需自行维护其产品用户体系和乐橙设备的关联关系，以典型的幼儿园宝宝在线产品账户体系举例";
-"Mode_Introduce_User_Framework_Describe" = "1.采用用户模式对接开放平台，设备需要绑定在用户模式子账号下，整体对接架构如下：";
-"Mode_Introduce_User_Relation_Describe" = "2.开发者需自行维护其产品用户体系和乐橙开放平台用户模式子账户的关系，以典型的智能家居产品账户体系举例：";
 
 //设备列表
 "device_manager_list_no_device" = "暂无设备，请点击右上角的\"+\"添加设备";
@@ -179,6 +166,7 @@
 //Alert
 "Alert_Title_Notice" = "提示";
 "Alert_Title_Notice1" = "提醒";
+"Alert_Title_Notice2" = "注意";
 "Alert_Title_Button_Confirm" = "确定";
 "Alert_Title_Button_Confirm1" = "知道了";
 "Alert_Title_Button_Cancle" = "取消";
@@ -224,13 +212,18 @@
 "play_module_device_record" = "本地录像";
 "play_module_none_record" = "今日暂无录像，查看更多>";
 "video_module_none_record" = "今日暂无录像";
+"no_message" = "暂无消息";
+"loading_failed" = "加载失败,";
+"tap_and_try_again" = "点击重试";
 "play_module_no_sdcard" = "暂无存储卡";
 "SelectAll" = "全选";
-"videotape_download" = "下载";
+"SelectNone" = "取消全选";
+"videotape_download" = "下载录像";
 "CancelSelectAll" = "取消全选";
 "common_done" = "完成";
 "More_MyFamily_EditBtnTitle_Edit" = "编辑";
-"mobile_common_data_downloading" = "正在下载 %.1fM/%.1fM";
+"mobile_common_data_downloading" = "%.2fMB/%.2fMB";
+"mobile_common_data_downloading1" = "正在下载";
 "mobile_common_data_download_fail" = "下载失败,点击重试";
 "mobile_common_data_download" = "下载";
 "mobile_common_data_download_success" = "下载成功";
@@ -242,7 +235,7 @@
 "device_manager_no_cloud_storage" = "未开通云存储服务";
 
 //设定页面
-"setting_device_version" = "设备程序版本";
+"setting_device_version" = "程序版本";
 "setting_device_update" = "开始升级";
 "setting_device_deployment" = "布防设置";
 "setting_device_device_name" = "设备名称";
@@ -259,13 +252,14 @@
 "setting_device_latest_version" = " 当前为最新版本无需升级";
 "setting_device_footer_alarm" = "报警设置";
 "setting_device_deployment_switch" = "移动检测";
+"operation_failed" = "操作失败";
 "setting_device_had_paste" = "复制成功";
-"setting_device_deployment_detail" = "  开启后，检测到画面变化时将录制视频";
+"setting_device_deployment_detail" = "开启后，检测到画面变化时将录制视频";
 "setting_device_snap_auto" = "自动抓取";
 "setting_device_snap_byself" = "自定义";
 "More_Device_Choose_Comefrom_Picture" = "从相册选择";
 "More_Device_Shoot" = "拍照";
-"setting_device_alarm_alert" = "默认开启7*24小时提醒时段";
+"setting_device_alarm_alert" = "默认开启7*24小时提醒时段，更多设置请点击“设备详情-布防设置-布防时间段设置”";
 "setting_device_alarm_alert_close" = "移动检测关闭后，您将不再接收到设备的报警消息和报警录像";
 "setting_device_update_alert" = "升级过程持续几分钟，升级时请务必保证设备不断电";
 "add_device_password_too_simple" = "密码过于简单";
@@ -273,66 +267,30 @@
 //添加设备
 "add_device_detecting_network_safety" = "正在检测网络安全配置，请稍候...";
 "add_device_confirm_same_network" = "已确认连上同一网络";
-"add_device_connect_same_network" = "请将手机和设备连接到同一网络";
-"add_devices_connect_by_wired_hint_one" = "确保您的设备已插入网线";
 "add_device_remember_password" = "记住密码";
 "add_device_device_not_support_5g" = "该设备不支持5GWiFi";
 "add_device_wifi_ssid" = "WiFi网络:";
 "add_device_input_wifi_password" = "请输入WiFi密码";
-"add_device_input_wifi_ssid" = "请输入WiFi名称";
-"Add_Device_ScanQRCode_Lable" = "请扫描设备机身上的二维码";
-"Add_Device_SerialNumber_Add" = "序列号添加";
 "Add_Device_Title" = "设备添加";
-"Add_Device_SerialNumber_Lable" = "请输入设备机身标签上的序列号（S/N）";
-"Add_Device_SerialNumber_InputPlaceholder" = "请输入设备序列号";
-"add_device_input_sec_code_by_user" = "请输入安全码";
 "add_device_without_input_sccode_tip" = "*如标签上无安全验证码，则无需输入";
-"Add_Device_Password_InputPlaceholder" = "请输入设备密码";
-"Add_Device_Finish" = "完成";
-"Add_Device_NextStep" = "下一步";
 "add_device_plug_power" = "请将设备接通电源";
-"Add_Device_DevicePassword_Set" = "设备密码是乐橙创新的安全加固策略，旨在更好地保障您设备的信息安全。只有使用正确的设备密码，才能够获取设备的音视频信息。\n当您将摄像机接入NVR等设备时，需要您手动输入该密码，请您妥善保管；如您遗忘密码，可将设备恢复默认配置后再添加至帐号，以设置新的设备密码";
-"Add_Device_DevicePassword_Confirm" = "1.如您曾在乐橙客户端或其他客户端设置过设备密码，并遗忘密码，可将设备恢复默认配置后再重新添加设备，以设置新的设备密码。\n2.如您未曾设置过设备密码，且您的设备标签上带有”安全码“字样，请输入设备标签上的8位安全码即可。 \n（安全码是您设备的初始密码，您可在添加设备完成后在【设备详情】-【设备设置】-【设备密码】内修改您的设备密码）";
-"Add_Device_TimeZone" = "设备时区";
-"Device_AddDevice_Initial_Password_Cannot_All_Letter" = "密码为数字字母组合,不能全为英文";
-"Device_AddDevice_Initial_Password_Cannot_All_Number" = "密码为数字字母组合,不能全为数字";
-"Device_AddDevice_Initial_Password_String_Length" = "密码长度为8到32位";
-"add_device_sn_not_exist" = "设备序列号不存在";
-"login_dev_not_supported" = "不支持该设备";
 "add_device_adjust_phone_volume" = "请调大手机音量\n并将手机喇叭对准设备麦克风";
 "add_device_will_hear_bugu" = "即将听到“布谷，布谷”声";
-"add_device_will_hear_jiji" = "即将听到“唧唧唧”声";
-"mobile_common_bec_device_add_by_yourself" = "设备被自己添加";
 "add_device_connect_router_please_wait" = "正在连接路由器，请稍候...";
 "add_device_adjust_phone_volume_to_hear_bugu" = "请调大手机音量，并将手机喇叭对准设备麦克风，确认听到“布谷，布谷”声";
-"add_device_adjust_phone_volume_to_hear_jiji" = "请调大手机音量，并将手机喇叭对准设备麦克风\n确认听到“布谷，布谷”声";
-"add_device_mobile_close" = "请手机尽可能靠近设备";
-"add_device_summer_date" = "时间";
-"add_device_summer_week" = "星期";
-"add_device_summer_start_time" = "开始时间";
-"add_device_summer_end_time" = "结束时间";
-"mobile_common_modify_device_pwd_tip" = "为了保护您设备的网络安全，建议添加完成后修改默认设备密码。";
 "add_device_try_again" = "再试一次";
 "add_device_config_fail" = "配置失败";
-"add_devices_summer_time" = "夏令时";
-"device_manager_time_zone" = "时区";
 "device_manager_input_wifi_password" = "请输入SSID";
 "add_device_detect_safe_network_config_failed" = "无法检测网络安全配置\n请确认手机和设备连接到同一网络";
-"device_manager_time_time" = "时间";
-"add_device_succeed" = "添加成功";
 "add_device_name_for_device" = "请给设备取个名字吧!";
-"more_settings" = "更多设置";
 "add_device_add_volume_tip" = "请调大手机音量";
-"add_device_wifi_connect_confirm" = "请确认手机已连上设备所要连接的Wi-Fi";
 "add_device_connect_and_goto_next" = "连接后将自动下一步";
 "add_device_switch_to_wireless_add" = "切换至无线添加";
 "add_device_switch_to_wired_add" = "切换至有线添加";
 "add_device_restart" = "重新开始";
-"common_msg_quit_confirm" = "确认退出？";
 "add_device_config_not_complete_tip" = "你还未完成配置，如果退出后，你将重新开始配置流程。";
 "add_device_tip_not_support_5g" = "1.您的摄像机暂不支持5G Hz频段Wi-Fi,如您使用的是双频路由器，请让手机和摄像机连接到2.4G Hz频段Wi-Fi的信号下。\n 2.如您不确定手机和摄像机当前所连接的Wi-Fi频段,您可查看路由器相关说明书，进入路由器设置页面进行确认。";
 "add_device_listen_wifi_pwd_error_tip" = "听到设备提示WIFI密码错误？";
-"add_device_exit" = "退出添加";
 "add_device_connect_cloud_please_wait" = "正在连接云平台，请稍候...";
 "add_device_binding_to_account" = "正在绑定设备到帐户，请稍候...";
 "add_device_operation_by_instructions" = "请按照设备使用说明书进行操作";
@@ -352,13 +310,9 @@
 
 "add_device_disconnect_power_and_restart" = "请将设备断电并重新连接电源后点击“重新开始”";
 "add_device_g1_reset_tip" = "用顶针长按设备背部reset孔直至设备正面指示灯熄灭后点击”重新开始“";
-"add_device_red_flash" = "红灯闪烁";
 "add_device_red_light" = "红灯长亮";
 "add_device_green_light" = "绿灯长亮";
-"add_device_green_flash" = "绿灯闪烁";
 "add_device_green_blue_light" = "绿/蓝灯长亮";
-"add_device_yellow_flash" = "黄灯闪烁";
-"add_device_red_circle" = "红灯旋转";
 "add_device_blue_light" = "蓝灯长亮";
 
 "add_device_title" = "设备添加";
@@ -370,7 +324,7 @@
 "add_device_input_sn" = "请输入设备序列号";
 "add_device_input_sn_under_device" = "请输入设备机身标签上的序列号(S/N)和安全码";
 "add_device_input_sccode" = "请输入设备安全验证码";
-"add_device_confrim_to_quit" = "确定退出？";
+"add_device_confrim_to_quit" = "确定退出";
 "add_device_not_complete_tip" = "您还未完成配置，如果退出，你将可能重新开始配置流程";
 "device_manager_wifi_connetting_tip" = "WIFI连接中，请稍后刷新查看";
 "mobile_common_network_config" = "网络配置";
@@ -483,6 +437,148 @@
 "device_delete_success"="删除成功.";
 "home_empty_channel"="暂无通道";
 "add_device_lechange_tip" = "乐橙设备建议通过输入设备型号进行配网；乐橙设备型号通常以“TP、TF、TC、TD”开头。\n如：TP2、TP7、TF1T";
-"add_device_dahua_tip" = "大华设备建议选择其他型号进行配网；大华设备型号通常以“IPC、DH”开头。\n如：IPC-HFW1225M-1、DH-NVR1104HS";
+"add_device_un_Imou_tip" = "非乐橙设备建议选择其他型号进行配网；非乐橙设备型号通常以“IPC、DH”开头。\n如：IPC-HFW1225M-1、DH-NVR1104HS";
 "add_device_image_tip" = "标签示意图如下:";
 "video_tape_download_warnning" = "录像下载未完成，退出将取消下载，是否退出？";
+"add_device_nb_tip2" = "如果删除设备后重新添加需要断电重连";
+"device_detail_cloud_storage" = "云存储";
+
+// 布防时间段  ------》 start
+"device_manager_monday" = "周一";
+"device_manager_tuesday" = "周二";
+"device_manager_wednesday" = "周三";
+"device_manager_thursday" = "周四";
+"device_manager_friday" = "周五";
+"device_manager_saturday" = "周六";
+"device_manager_sunday" = "周日";
+"device_manager_defence_time" = "布防时间段";
+"device_manager_defence_tips" = "设备将在设定的时间段内推送报警消息";
+"device_manager_add_period" = "添加时间段";
+"device_manager_period_setting" = "时间段设置";
+"device_manager_period" = "时间段";
+"device_manager_mon" = "一";
+"device_manager_tue" = "二";
+"device_manager_wed" = "三";
+"device_manager_thu" = "四";
+"device_manager_fri" = "五";
+"device_manager_sat" = "六";
+"device_manager_sun" = "日";
+"device_manager_mon_s" = "一";
+"device_manager_tue_s" = "二";
+"device_manager_wed_s" = "三";
+"device_manager_thu_s" = "四";
+"device_manager_fri_s" = "五";
+"device_manager_sat_s" = "六";
+"device_manager_sun_s" = "日";
+"device_settings_cross_line_set_no_save_tip"="设置尚未保存，是否退出？";
+"device_manager_exit" = "退出";
+"common_save" = "保存";
+"device_manager_time_set_tenmin_error" = "结束时间应超过开始时间10分钟";
+"device_manager_end_time_less_than_start" = "结束时间必须大于开始时间";
+"device_manager_defence_time1" = "检测时间段";
+"device_manager_defence_setting" = "布防设置";
+"device_manager_no_more_than_six_periods" = "最多只能添加6条时间段";
+// 布防时间段  ------》 end
+
+"distribution_network_failure_retry" = "配网失败，请重试";
+"soft_AP_addition" = "软AP添加";
+"SIM_card_adding" = "SIM卡添加";
+"local_distribution_network" = "本地配网";
+"NB_add" = "NB添加";
+"bluetooth_add" = "蓝牙添加";
+"iot_wired" = "iot有线";
+"iot_soft_AP" = "iot软AP";
+"iot_bluetooth" = "iot蓝牙";
+"distribution_network_not_completed" = "抱歉，您的设备未完成配网流程。请先在设备上配网完成后再用手机添加";
+"please_check_yourself_first" = "请先按设备的自检/消音按钮";
+"automatic_connection_failed" = "自动连接失败";
+"please_select_a_device_type" = "请选择设备类型";
+"please_enter_the_device_type" = "请输入设备类型";
+"incomplete_QR_code_information" = "二维码信息不完整，请尝试手动添加设备";
+"security_verification_code" = "安全验证码";
+"device_bluetooth_distribution_network" = "设备蓝牙配网中。。。";
+"equipment_distribution_network_succeeded" = "设备配网成功";
+"device_distribution_network_failure_retry" = "设备配网失败，请重试\n";
+"turn_on_mobile_phone_positioning" = "请开启手机定位信息权限";
+"card" = "卡";
+"fingerprint" = "指纹";
+"password" = "密码";
+"face" = "人脸";
+"user_addition" = "用户新增";
+"user_deletion" = "用户删除";
+"delete_all" = "全部删除";
+"user_modification" = "用户修改";
+"dont_prompt_again" = "不再提示";
+"time_selector" = "时间选择器";
+"selected_date_must_depend_month" = "选择日期必须依赖月份";
+"last_one" = "最后一个";
+"cloud_service" = "云服务";
+"save_setting" = "存储设置";
+"devices_setting_up" = "设备设置";
+"local_storage_abnormal" = "存储异常";
+"local_storage_normal" = "正常";
+"local_storage_formatting" = "格式化中";
+"local_storage" = "本地存储";
+"no_SD_card" = "无SD卡";
+"setting_of_deployment_time_period" = "布防时间段设置";
+
+"storage_normal" = "存储正常";
+"storage_exception" = "内置存储已损坏\n建议格式化";
+"storage_format" = "正在格式化，请稍后...";
+"SD_card" = "SD卡";
+"formatting_reminder" = "格式化将会清空存储内所有数据，且该操作一旦开始不可取消";
+"formatting_succeeded" = "格式化成功";
+"formatting_failed" = "格式化失败";
+"available_space" = "可用空间：";
+"has_been_used" = "GB  已使用：";
+"used_size" = "GB";
+"used_size_zero" = "0GB";
+"used_size_formatting" = "GB  已使用0.00GB";
+"Alert_Title_Button_Formatting" = "格式化";
+
+"message_module_delete_message_tip" = "删除消息";
+"message_module_delete_message_confirm" = "是否删除所选消息?";
+"message_module_cancel" = "取消";
+"message_module_confirm_delete" = "确认删除";
+"message_module_other" = "其他";
+"no_message" = "暂无消息";
+"mobile_common_bec_common_unknown" = "未知错误";
+"loading_failure" = "加载失败，";
+"click_retry" = "点击重试";
+"no_support_detection" = "该设备不支持动检";
+// 设备添加优化专项
+"add_device_scan_device_qr_code_tip" = "添加设备时，请扫描设备标签/机身\n上的二维码";
+"add_device_connect_to_wifi"="请连接设备需要连接的Wi-Fi";
+"device_manager_wifi_name_ssid"="点击切换或手动输入Wi-Fi名称";
+"device_manager_please_set_wifi_password"="请输入Wi-Fi密码";
+"permisssion_request_location_ssid_message"="“Demo”想访问您的位置，以便在添加设备时获取SSID。点击设置以允许访问。";
+"device_add_wifi_name" = "Wi-Fi名称";
+"add_device_iot_wifi_2_4g_only"="仅支持2.4G网络";
+"device_add_wifi_password" = "Wi-Fi密码";
+"common_permission_request"="权限请求";
+"permisssion_request_photos_message"="\"Demo\"想要访问您的照片以便您选择和保存图像。点击设置以允许访问。";
+"permisssion_request_faceid_message"="\"Demo\"希望访问您的面部ID以便您使用其登录。点击设置以允许访问。";
+"mobile_common_permission_explain_contact" = "请开启联系人访问权限，以正常使用添加通讯录好友的功能";
+"permisssion_request_microphone_message"="请开启麦克风访问权限，以正常使用对讲、自定义语音录制等功能";
+"common_i_know" = "知道了";
+"add_device_connect_2_4g_wifi"="请将您的设备连接到2.4GHz Wi-Fi网络 ";
+"add_device_connect_2_4g_wifi_explain_1"="1.您的设备暂不支持5G Hz频段Wi-Fi，如您使用的是双频路由器，请让手机和设备连接到2.4G Hz频段Wi-Fi的信号下。";
+"add_device_connect_2_4g_wifi_tips_2"="2.如您不确定手机和设备当前所连接的Wi-Fi频段,您可查看路由器相关说明书，进入路由器设置页面进行确认。";
+"add_device_softap_connect_device_hotspot_fail"="连接失败，请重试";
+"add_device_softap_connect_hotspot_title"="开启设备热点";
+"add_device_softap_connect_hotspot_des"="请进入手机的Wi-Fi设置，连接到如图所示热点，然后返回此页面";
+"add_device_softap_connect_hotspot_next"="跳转至Wi-Fi设置";
+"add_device_scan_bind_by_yourself"="该设备已在您账户下";
+
+// 2022.10.29
+"message_list_none"="暂无消息";
+"special_symbols_such_as_facial_expressions" = "如您的wifi名称中有表情等特殊符号，如🌹❤️😊❄️可能会导致您的设备无法正常连接，建议删除wifi名称内的特殊符号。";
+"password1" = "密码:";
+"connection_failure_prompt" = "如您自动连接失败，请尝试打开wifi列表，不保存密码，尝试重新输入密码";
+"wireless_add" = "无线添加";
+"get_the_added_process_information_is_empty" = "获取添加流程信息为空";
+"the_mobile_phone_has_been_jailbroken" = "您的手机已越狱，继续运行有风险";
+"add_device_save_password"="记住密码";
+"add_device_bluetooth_linking"="设备蓝牙配网中。。。";
+"common_set" = "设置";
+"hidden_wifi_other"="  其他...";

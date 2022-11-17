@@ -1,12 +1,13 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //	电源引导页：如果此时搜索到了设备，直接走有线添加
 
 import UIKit
 import CoreLocation
 import LCBaseModule
+import AFNetworking
 
-class DHPowerGuideViewController: DHGuideBaseViewController {
+class LCPowerGuideViewController: LCGuideBaseViewController {
 	
 	private lazy var locationManager: CLLocationManager = {
 		let location = CLLocationManager()
@@ -41,16 +42,16 @@ class DHPowerGuideViewController: DHGuideBaseViewController {
 	}
 	
 	private func pushToInitializeSearchVC() {
-		let controller = DHInitializeSearchViewController.storyboardInstance()
+		let controller = LCInitializeSearchViewController.storyboardInstance()
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
-	// MARK: DHAddBaseVCProtocol
-	override func rightActionType() -> [DHAddBaseRightAction] {
+	// MARK: LCAddBaseVCProtocol
+	override func rightActionType() -> [LCAddBaseRightAction] {
 		return  [.restart]
 	}
 	
-	// MARK: DHGuideBaseVCProtocol
+	// MARK: LCGuideBaseVCProtocol
 	override func tipText() -> String? {
 		return "add_device_plug_power".lc_T
 	}
@@ -69,9 +70,9 @@ class DHPowerGuideViewController: DHGuideBaseViewController {
 	
 	override func doNext() {
 		//【*】iOS13兼容：点一步，如果是WIFI配网，则判断
-		if #available(iOS 13.0, *), DHAddDeviceManager.sharedInstance.netConfigMode == .wifi {
+		if #available(iOS 13.0, *), LCAddDeviceManager.sharedInstance.netConfigMode == .wifi {
 			let status = CLLocationManager.authorizationStatus()
-			if status == .notDetermined {
+            if (status == .notDetermined) || (status == .restricted) {
 				//申请权限
 				locationManager.requestWhenInUseAuthorization()
 			} else if status == .denied {
@@ -89,12 +90,12 @@ class DHPowerGuideViewController: DHGuideBaseViewController {
 	private func goNextStep() {
 		//【*】局域网搜索到了设备：不需要初始化的，进入连接云平台；需要初始化的，进入初始化流程
 		//【*】局域网搜索不到设备：进入配网流程
-		if let device = DHAddDeviceManager.sharedInstance.getLocalDevice() {
+		if let device = LCAddDeviceManager.sharedInstance.getLocalDevice() {
 			
-			DHAddDeviceManager.sharedInstance.netConfigMode = .wired
+			LCAddDeviceManager.sharedInstance.netConfigMode = .wired
 			
 			//【*】不需要初始化：支持sc码的设备、已经初始化的设备、没有初始化能力集的设备
-			if DHAddDeviceManager.sharedInstance.isSupportSC ||
+			if LCAddDeviceManager.sharedInstance.isSupportSC ||
 				device.deviceInitStatus == .init ||
 				device.deviceInitStatus == .noAbility {
 				self.basePushToConnectCloudVC(devicePassword: nil)
@@ -102,20 +103,20 @@ class DHPowerGuideViewController: DHGuideBaseViewController {
 				self.pushToInitializeSearchVC()
 			}
 		} else {
-			let netConfigMode = DHAddDeviceManager.sharedInstance.netConfigMode
+			let netConfigMode = LCAddDeviceManager.sharedInstance.netConfigMode
 			if netConfigMode == .wired {
-				let plugVc = DHPlugNetGuideViewController()
+				let plugVc = LCPlugNetGuideViewController()
 				self.navigationController?.pushViewController(plugVc, animated: true)
 				
 			} else if netConfigMode == .wifi {
-				if DHNetWorkHelper.sharedInstance().emNetworkStatus == .reachableViaWiFi {
-					let passwordVc = DHWifiPasswordViewController.storyboardInstance()
-					let presenter = DHWifiPasswordPresenter(container: passwordVc)
+				if LCNetWorkHelper.sharedInstance().emNetworkStatus == AFNetworkReachabilityStatus.reachableViaWiFi.rawValue {
+					let passwordVc = LCWifiPasswordViewController.storyboardInstance()
+					let presenter = LCWifiPasswordPresenter(container: passwordVc)
 					passwordVc.setup(presenter: presenter)
 					self.navigationController?.pushViewController(passwordVc, animated: true)
 					
 				} else {
-					let plugVc = DHWifiCheckViewController()
+					let plugVc = LCWifiCheckViewController()
 					self.navigationController?.pushViewController(plugVc, animated: true)
 				}
 			}
@@ -123,10 +124,10 @@ class DHPowerGuideViewController: DHGuideBaseViewController {
 	}
     
     private func addDeviceStartLog() {
-        let result = "{SN: \(DHAddDeviceManager.sharedInstance.deviceId)，deviceModelName: \(DHAddDeviceManager.sharedInstance.deviceModel)}"
-        let model = DHAddDeviceLogModel()
+        let result = "{SN: \(LCAddDeviceManager.sharedInstance.deviceId)，deviceModelName: \(LCAddDeviceManager.sharedInstance.deviceModel)}"
+        let model = LCAddDeviceLogModel()
         model.bindDeviceType = StartAddType.NetworkConfig
         model.inputData = result
-        DHAddDeviceLogManager.shareInstance.addDeviceStartLog(model: model)
+        LCAddDeviceLogManager.shareInstance.addDeviceStartLog(model: model)
     }
 }

@@ -1,39 +1,39 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	通用的错误页面，适用于图片、文字、按钮固定的场景
 
 import UIKit
 
-protocol DHCommonErrorViewDelegate: NSObjectProtocol {
+protocol LCCommonErrorViewDelegate: NSObjectProtocol {
 	
 	/// 确定点击事件
 	///
 	/// - Parameters:
 	///   - errorView: self
-	func errorViewOnConfirm(errorView: DHCommonErrorView)
+	func errorViewOnConfirm(errorView: LCCommonErrorView)
 	
 	/// 退出点击事件
 	///
 	/// - Parameters:
 	///   - errorView: self
-	func errorViewOnQuit(errorView: DHCommonErrorView)
+	func errorViewOnQuit(errorView: LCCommonErrorView)
 	
 	/// FAQ点击事件
 	///
 	/// - Parameters:
 	///   - errorView: self
-	func errorViewOnFAQ(errorView: DHCommonErrorView)
+	func errorViewOnFAQ(errorView: LCCommonErrorView)
     
     /// 返回
     ///
     /// - Parameters:
     ///   - errorView: self
-    func errorViewOnBackRoot(errorView: DHCommonErrorView)
+    func errorViewOnBackRoot(errorView: LCCommonErrorView)
 }
 
-class DHCommonErrorView: UIView {
+class LCCommonErrorView: UIView {
 	
-	public weak var delegate: DHCommonErrorViewDelegate?
+	public weak var delegate: LCCommonErrorViewDelegate?
 
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var contentLabel: UILabel!
@@ -45,20 +45,20 @@ class DHCommonErrorView: UIView {
 	@IBOutlet weak var faqContainerBottomConstraint: NSLayoutConstraint!
 	@IBOutlet weak var needHelpButton: UIButton!
 	
-	public static func xibInstance() -> DHCommonErrorView {
-        if let view = Bundle.dh_addDeviceBundle()?.loadNibNamed("DHCommonErrorView", owner: nil, options: nil)!.first as? DHCommonErrorView {
+	public static func xibInstance() -> LCCommonErrorView {
+        if let view = Bundle.lc_addDeviceBundle()?.loadNibNamed("DHCommonErrorView", owner: nil, options: nil)!.first as? LCCommonErrorView {
             return view
         }
-		return DHCommonErrorView()
+		return LCCommonErrorView()
 	}
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
         
-        backgroundColor = UIColor.dhcolor_c43()
+        backgroundColor = UIColor.lccolor_c43()
         
-        contentLabel.textColor = UIColor.dhcolor_c2()
-        detailLabel.textColor = UIColor.dhcolor_c5()
+        contentLabel.textColor = UIColor.lccolor_c2()
+        detailLabel.textColor = UIColor.lccolor_c5()
 		
 		faqContainerView.backgroundColor = UIColor.clear
 		needHelpButton.setTitle("add_device_i_need_help".lc_T, for: .normal)
@@ -70,16 +70,16 @@ class DHCommonErrorView: UIView {
 		imageView.image = UIImage(named: "adddevice_fail_undetectable")
 		
 		//配置颜色、样式
-		confrimButton.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
-		confrimButton.backgroundColor = DHModuleConfig.shareInstance().commonButtonColor()
-        confrimButton.setTitleColor(UIColor.dhcolor_c43(), for: .normal)
+		confrimButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
+		confrimButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()
+        confrimButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
 		
-		quitButton.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
+		quitButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
 		quitButton.layer.borderWidth = 0.5
-		quitButton.layer.borderColor = UIColor.dhcolor_c5().cgColor
-        quitButton.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+		quitButton.layer.borderColor = UIColor.lccolor_c5().cgColor
+        quitButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
         
-        needHelpButton.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+        needHelpButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
 		
 		//默认不显示detail、quit
 		detailLabel.text = nil
@@ -126,7 +126,7 @@ class DHCommonErrorView: UIView {
 			make.centerX.equalTo(self)
 		}
 		
-		if dh_isiPhoneX {
+		if lc_isiPhoneX {
 			faqContainerBottomConstraint.constant += 15
 		}
 	}

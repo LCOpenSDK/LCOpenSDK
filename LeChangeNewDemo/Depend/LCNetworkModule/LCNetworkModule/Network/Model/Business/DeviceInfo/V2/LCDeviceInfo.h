@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -18,11 +18,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCChannelInfo : NSObject
 
+/// 缩略图URL
+@property (strong, nonatomic) NSString *picUrl;
+
+/// 云存储状态，notExist：未开通套餐，using：开通云存储且没有过期，expired：套餐过期
+@property (strong, nonatomic) NSString *csStatus;
+
+/// 被共享和授权的权限功能列表（逗号隔开）
+@property (strong, nonatomic) NSString *shareFunctions;
+
 /// 通道号
 @property (strong, nonatomic) NSString *channelId;
-
-/// 设备序列号
-@property (strong, nonatomic) NSString *deviceId;
 
 /// 通道名称
 @property (strong, nonatomic) NSString *channelName;
@@ -33,8 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 远程通道状态 online-在线 offline-在线 close-未配置 sleep-休眠
 @property (strong, nonatomic) NSString *status;
 
-/// 缩略图URL
-@property (strong, nonatomic) NSString *picUrl;
+/// 非接口字段
+/// 设备最后离线时间
+@property (strong, nonatomic) NSString *lastOffLineTime;
+
+@property (nonatomic, strong) NSArray<LCCIResolutions *> *resolutions;
+
+/// 设备序列号
+@property (strong, nonatomic) NSString *deviceId;
 
 /// 提醒状态，off-不提醒，on-提醒
 @property (strong, nonatomic) NSString *remindStatus;
@@ -47,22 +59,52 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设备属于自己；"share"：通过乐橙app共享给此用户；"auth"：通过乐橙PC客户端授权给此用户；"shareAndAuth"：通过乐橙app共享给此用户以及通过乐橙PC客户端授权给此用户；
 @property (strong, nonatomic) NSString *shareStatus;
 
-/// 被共享和授权的权限功能列表（逗号隔开）
-@property (strong, nonatomic) NSString *shareFunctions;
+@end
 
-@property (nonatomic, strong) NSArray<LCCIResolutions *> *resolutions;
-
+@interface LCDeviceListUpgradeInfo : NSObject
+@property (copy, nonatomic) NSString *version; // 最新版本号
+@property (copy, nonatomic) NSString *attention; //升级描述信息
+@property (copy, nonatomic) NSString *packageUrl; //下载地址
 @end
 
 @interface LCDeviceInfo : NSObject
 
-/// 绑定分享列表自增ID
-@property (nonatomic) NSInteger bindId;
+@property (strong, nonatomic) LCDeviceListUpgradeInfo *upgradeInfo;
 
 /// 设备序列号
 @property (strong, nonatomic) NSString *deviceId;
 
-/// 是否在线  online-在线 offline-离线 upgrading-升级中 sleep-休眠
+/// iot设备产品ID
+@property (strong, nonatomic) NSString *productId;
+
+/// 设备软件程序是否有新版本可以升级
+@property (strong, nonatomic) NSString *canBeUpgrade;
+
+/// 设备接入类型 PaaS-表示Paas程序接入、Lechange-表示乐橙非PaaS设备、Easy4IP表示Easy4IP程序设备、P2P表示P2P程序设备
+@property (strong, nonatomic) NSString *accessType;
+
+/// 设备版本号
+@property (strong, nonatomic) NSString *deviceVersion;
+
+///  播放token
+@property (strong, nonatomic) NSString *playToken;
+
+@property (strong, nonatomic) NSString *p2pPort;
+
+/// 品牌信息 lechange-乐橙设备，general-通用设备
+@property (strong, nonatomic) NSString *brand;
+
+
+/// 设备加密模式：0-设备默认加密 1-用户自定义加密
+@property (strong, nonatomic) NSString *encryptMode;
+
+/// 设备最后离线时间
+@property (strong, nonatomic) NSString *lastOffLineTime;
+
+/// 设备名称
+@property (strong, nonatomic) NSString *name;
+
+/// 设备状态，online：在线，offline：离线，sleep：休眠，upgrading升级中
 @property (strong, nonatomic) NSString *status;
 
 /// 设备型号
@@ -71,32 +113,34 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设备大类 【NVR/DVR/HCVR/IPC/SD/IHG/ARC】
 @property (strong, nonatomic) NSString *catalog;
 
-/// 品牌信息 lechange-乐橙设备，general-通用设备
-@property (strong, nonatomic) NSString *brand;
-
-/// 软件版本号
-@property (strong, nonatomic) NSString *version;
-
-/// 设备名称
-@property (strong, nonatomic) NSString *name;
-
 /// 能力集
 @property (strong, nonatomic) NSString *ability;
-
-///  播放token
-@property (strong, nonatomic) NSString *playToken;
-
-/// 设备接入类型 PaaS-表示Paas程序接入、Lechange-表示乐橙非PaaS设备、Easy4IP表示Easy4IP程序设备、P2P表示P2P程序设备
-@property (strong, nonatomic) NSString *accessType;
-
-/// 设备下所有通道在线状态
-@property (strong, nonatomic) NSArray<LCChannelInfo *> *channels;
 
 /// 通道个数
 @property (copy, nonatomic) NSString *channelNum;
 
+/// 权限类型：bind、 share
+@property (copy, nonatomic) NSString *source;
+
+/// 设备下所有通道在线状态
+@property (strong, nonatomic) NSArray<LCChannelInfo *> *channels;
+
+/// 非接口字段
+/// 绑定分享列表自增ID
+@property (nonatomic) NSInteger bindId;
+
+/// 软件版本号
+@property (strong, nonatomic) NSString *version;
+
 /// 扩展字段：是否为多通道设备
 @property (assign, nonatomic, readonly) BOOL lc_isMultiChannelDevice;
+
+/// 对象转json字符串
+-(NSString *)transfromToJson;
+
+/// json字符串转LCDeviceInfo对象
+/// @param jsonString json字符串
++(LCDeviceInfo * _Nullable)jsonToObject:(NSString * _Nonnull)jsonString;
 
 @end
 

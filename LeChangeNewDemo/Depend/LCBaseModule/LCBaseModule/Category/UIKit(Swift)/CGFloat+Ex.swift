@@ -1,12 +1,12 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import Foundation
 
 public extension CGFloat {
 	
-	var dh_streamString: String {
+	var lc_streamString: String {
 		
 		var result = ""
 		
@@ -27,7 +27,7 @@ public extension CGFloat {
 		return result
 	}
 	
-	var dh_intFloat: CGFloat {
+	var lc_intFloat: CGFloat {
 		return CGFloat(Int(self))
 	}
 	

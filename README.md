@@ -4,7 +4,7 @@ LCOpenSDK is a tripartite library provided by Imou Open Platform to third-party 
 
 To integrate LCOpenSDK into your Xcode project using CocoaPods, specify it in your Podfile:
 
-pod 'LCOpenSDK', '~> 3.11.5'
+pod 'LCOpenSDK', '~> 3.12.00'
 
 #### Use configuration
 You need to add configuration information before use, otherwise an error will occur.   

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import "LCNotificationKey.h"
@@ -80,9 +80,6 @@ NSString *const LCNotificationSkipLaunchAd = @"@LCNotificationSkipLaunchAd";
 
 NSString *const LCNotificationKeyRename = @"LCNotificationKeyRename";//钥匙重命名
 
-/// 更新DHChannel属性
-NSString *const DHNotificationUpdateDHChannelProperty = @"DHNotificationUpdateDHChannelProperty";
-
 NSString *const LCNotificationBuyPassengerSuccess = @"LCNotificationBuyPassengerSuccess";   //购买客流统计套餐成功
 NSString *const LCNotificationBuyShareSuccess = @"LCNotificationBuyShareSuccess";     //购买分享套餐成功
 NSString *const LCNotificationBuyCloudSuccess = @"LCNotificationBuyCloudSuccess";     //购买云套餐成功
@@ -118,18 +115,6 @@ NSString *const LCNotificationOMSIModelsUpdated = @"LCNotificationOMSIModelsUpda
 
 
 NSString *const LCNotificationADDDeviceSuccess = @"LCNotificationADDDeviceSuccess";
-
-/// 更新单个设备通知（添加添加完成、收到设备共享时发送）
-NSString *const DHNotificationUpdateDeviceToListById = @"DHNotificationUpdateDeviceToListById";
-
-/// 更新下载tabbar图片通知
-NSString *const DHNotificationUpdateTabListGet = @"DHNotificationUpdateTabListGet";
-
-/// 退出账户重置 商城、发现 webView
-NSString *const DHNotificationResetShopAndDiscovery = @"DHNotificationResetShopAndDiscovery";
-
-/// 重置蓝牙连接所有数据状态
-NSString *const DHNotificationResetBLEConnectDataKey = @"DHNotificationResetBLEConnectDataKey";
 
 /// 网关情景模式推送
 NSString *const LCNotificationGatewayDeviceSceneModeChange = @"LCNotificationGatewayDeviceSceneModeChange";
@@ -186,3 +171,5 @@ NSString *const SMBNotificationDeviceUpgradeSuccess = @"SMBNotificationDeviceUpg
 NSString *const SMBNotificationDeviceWiFiUpdateSuccess = @"SMBNotificationDeviceWiFiUpdateSuccess";
 /// 动检更改完成
 NSString *const SMBNotificationDeviceMotionDetectUpdate = @"SMBNotificationDeviceMotionDetectUpdate";
+/// SD卡存储变化
+NSString *const SMBNotificationDeviceSDCardUpdate = @"SMBNotificationDeviceSDCardUpdate";

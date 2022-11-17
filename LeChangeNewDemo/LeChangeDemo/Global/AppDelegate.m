@@ -1,17 +1,17 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "LCAccountJointViewController.h"
-#import "LCLivePreviewViewController.h"
-#import "LCDeviceListViewController.h"
 #import "LCToolKit.h"
 #import "LCUIKit.h"
 #import <LCBaseModule/LCPermissionHelper.h>
 #import <LCBaseModule/LCLogManager.h>
-#import <LCBaseModule/DHModule.h>
+#import <LCBaseModule/LCModule.h>
 #import <LCAddDeviceModule/LCAddDeviceModule-Swift.h>
+#import <LCNewPlayBackModule/LCNewPlayBackRouter.h>
+#import <LCMessageModule/LCMessageModule-Swift.h>
 
 @interface AppDelegate ()
 
@@ -25,10 +25,12 @@
     // Override point for customization after application launch.
 
     NSString *addDeviceModule = NSStringFromClass([LCAddDeviceModule class]);
+    NSString *newPlaybackModule = NSStringFromClass([LCNewPlayBackRouter class]);
+    NSString *messageModule = NSStringFromClass([LCMessageRouter class]);
     //【*】加载模块，如果外部代码没有引用，则无法加载
-    [DHModule loadModuleByNameArray:@[addDeviceModule]];
+    [LCModule loadModuleByNameArray:@[addDeviceModule, newPlaybackModule, messageModule]];
 
-    [[DHUserManager shareInstance] getUserConfigFile];
+    [[LCUserManager shareInstance] getUserConfigFile];
     
     [LCLogManager shareInstance].maxLogSize = 10;
     [LCLogManager shareInstance].isCycle = YES;
@@ -40,7 +42,6 @@
     LCAccountJointViewController *vc = [LCAccountJointViewController new];
     LCBasicNavigationController *navi = [[LCBasicNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navi;
-    
     [LCNetTool lc_ObserveNetStatus:^(LCNetStatus status) {
         
     }];
@@ -58,13 +59,14 @@
     }];
     
     [self.helper requestAlwaysLocationPermissions:YES completion:^(BOOL granted) {
+        
     }];
     
-    [[DHNetWorkHelper sharedInstance] checkNetwork]; //检测网络，接口已修改为异步，不影响程序启动流程
+    [[LCNetWorkHelper sharedInstance] checkNetwork]; //检测网络，接口已修改为异步，不影响程序启动流程
     
     if ([self isCanExplorerForCydiaUrlScheme]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [LCProgressHUD showMsg:@"您的手机已越狱，继续运行有风险".lc_T];
+            [LCProgressHUD showMsg:@"the_mobile_phone_has_been_jailbroken".lc_T];
         });
     }
     

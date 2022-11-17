@@ -1,11 +1,11 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import "LCAddBoxGudieView.h"
 #import <LCBaseModule/UIColor+LeChange.h>
-#import <LCBaseModule/UIFont+Dahua.h>
-#import <LCBaseModule/NSString+Dahua.h>
+#import <LCBaseModule/UIFont+Imou.h>
+#import <LCBaseModule/NSString+Imou.h>
 
 #define TitleLabel_Top 80
 #define TitleLabel_Left 30
@@ -54,7 +54,7 @@
  */
 -(void)setup
 {
-    self.backgroundColor = [UIColor dhcolor_c51];
+    self.backgroundColor = [UIColor lccolor_c51];
     
     [self addSubview:self.bgView];
     
@@ -69,7 +69,7 @@
     [self addSubview:self.checkButton];
     
     UIView *blackColorView = [[UIView alloc] initWithFrame:self.bgView.frame];
-    [blackColorView setBackgroundColor:[UIColor dhcolor_c51]];
+    [blackColorView setBackgroundColor:[UIColor lccolor_c51]];
     [self addSubview:blackColorView];
     [self insertSubview:blackColorView aboveSubview:self.bgView];
 }
@@ -118,9 +118,9 @@
         //标题label
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, CGRectGetWidth(self.bounds), 20)];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.textColor = [UIColor dhcolor_c43];
+        _titleLabel.textColor = [UIColor lccolor_c43];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont dhFont_t3];
+        _titleLabel.font = [UIFont lcFont_t3];
         _titleLabel.text = @"Device_AddDevice_Confirm_Box_Working".lc_T;
     }
     
@@ -134,9 +134,9 @@
         //子标题label
         _subtitleOneLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetHeight(self.bounds)*0.25, CGRectGetWidth(self.bounds)-30, 20)];
         _subtitleOneLabel.backgroundColor = [UIColor clearColor];
-        _subtitleOneLabel.textColor = [UIColor dhcolor_c43];
+        _subtitleOneLabel.textColor = [UIColor lccolor_c43];
         _subtitleOneLabel.textAlignment = NSTextAlignmentLeft;
-        _subtitleOneLabel.font = [UIFont dhFont_t3];
+        _subtitleOneLabel.font = [UIFont lcFont_t3];
         _subtitleOneLabel.text = @"Device_AddDevice_Plug_Power_Box_White_Light".lc_T;
     }
     
@@ -150,9 +150,9 @@
         //子标题label
         _subtitleTwoLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetHeight(self.bounds)*0.32, CGRectGetWidth(self.bounds)-30, 20)];
         _subtitleTwoLabel.backgroundColor = [UIColor clearColor];
-        _subtitleTwoLabel.textColor = [UIColor dhcolor_c43];
+        _subtitleTwoLabel.textColor = [UIColor lccolor_c43];
         _subtitleTwoLabel.textAlignment = NSTextAlignmentLeft;
-        _subtitleTwoLabel.font = [UIFont dhFont_t3];
+        _subtitleTwoLabel.font = [UIFont lcFont_t3];
         _subtitleTwoLabel.text = @"Device_AddDevice_Connect_Available_Network".lc_T;
     }
     
@@ -187,7 +187,7 @@
 		_commitButton.layer.masksToBounds = YES;
 		_commitButton.layer.borderWidth = 0.5;
 		_commitButton.layer.cornerRadius = 0;
-		_commitButton.layer.borderColor = [UIColor dhcolor_c43].CGColor;
+		_commitButton.layer.borderColor = [UIColor lccolor_c43].CGColor;
         [_commitButton setTitle:@"Device_AddDevice_Has_Confirm_Add".lc_T forState:UIControlStateNormal];
         [_commitButton addTarget:self action:@selector(onClickAddBoxCommit:) forControlEvents:UIControlEventTouchUpInside];
     }

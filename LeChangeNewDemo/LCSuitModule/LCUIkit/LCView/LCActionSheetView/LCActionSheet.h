@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 #import "LCUIKit.h"

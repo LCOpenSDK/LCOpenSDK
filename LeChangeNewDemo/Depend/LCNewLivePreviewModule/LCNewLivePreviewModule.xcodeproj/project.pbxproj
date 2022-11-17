@@ -1,0 +1,772 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0309D36D29025EFF0088B9D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0309D36C29025EFF0088B9D5 /* Info.plist */; };
+		032664872902DCF90082EAC9 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */; };
+		033732922913B20300556FC4 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */; };
+		04257C1828E2A55B0062C0F1 /* LCNewLivePreviewModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */; };
+		04257C1928E2A55B0062C0F1 /* LCNewLivePreviewModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04257C5828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C2828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h */; };
+		04257C5928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C2928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h */; };
+		04257C5A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C2A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m */; };
+		04257C5B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C2B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h */; };
+		04257C5C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C2C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m */; };
+		04257C5D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C2D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m */; };
+		04257C5E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C2E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h */; };
+		04257C5F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C2F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m */; };
+		04257C6028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C3028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h */; };
+		04257C6128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C3128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m */; };
+		04257C6928E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C3B28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m */; };
+		04257C6A28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C3D28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m */; };
+		04257C6B28E2A7ED0062C0F1 /* LCNewVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C3E28E2A7ED0062C0F1 /* LCNewVideoControlView.m */; };
+		04257C6C28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C3F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h */; };
+		04257C6D28E2A7ED0062C0F1 /* LCNewVideoControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C4028E2A7ED0062C0F1 /* LCNewVideoControlView.h */; };
+		04257C6E28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C4128E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h */; };
+		04257C6F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C4228E2A7ED0062C0F1 /* LCNewLandscapeControlView.m */; };
+		04257C7428E2A7ED0062C0F1 /* LCNewPTZPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C4928E2A7ED0062C0F1 /* LCNewPTZPanel.m */; };
+		04257C7528E2A7ED0062C0F1 /* LCNewPTZPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C4A28E2A7ED0062C0F1 /* LCNewPTZPanel.h */; };
+		04257C7728E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */; };
+		04257C7828E2A7ED0062C0F1 /* LCNewVideoHistoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */; };
+		04257C7928E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */; };
+		04257C7A28E2A7ED0062C0F1 /* LCNewVideoHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C5028E2A7ED0062C0F1 /* LCNewVideoHistoryView.m */; };
+		04257C7C28E2A7ED0062C0F1 /* LCNewPTZControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257C5328E2A7ED0062C0F1 /* LCNewPTZControlView.m */; };
+		04257C7D28E2A7ED0062C0F1 /* LCNewPTZControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C5428E2A7ED0062C0F1 /* LCNewPTZControlView.h */; };
+		04257C7E28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C5528E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871AFB28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04871AFA28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib */; };
+		04C4B74228F12C1700344C5C /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C4B74128F12C1700344C5C /* Masonry.framework */; };
+		04C4B75328F148ED00344C5C /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C4B75228F148ED00344C5C /* KVOController.framework */; };
+		04F8149128F1172800307775 /* LCMediaBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F8149028F1172800307775 /* LCMediaBaseModule.framework */; };
+		04F8149328F1177000307775 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F8149228F1177000307775 /* LCNetworkModule.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04871B0A28F1790F009E0540 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04257C0A28E2A55B0062C0F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04871AF328F1715F009E0540;
+			remoteInfo = LCNewLivePreviewModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0309D36C29025EFF0088B9D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCDeviceDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCOpenSDKDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04257C1328E2A55B0062C0F1 /* LCNewLivePreviewModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCNewLivePreviewModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNewLivePreviewModule.h; sourceTree = "<group>"; };
+		04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LCNewLivePreviewModule.docc; sourceTree = "<group>"; };
+		04257C2828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewLivePreviewPresenter.h; sourceTree = "<group>"; };
+		04257C2928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewLivePreviewPresenter+SDKListener.h"; sourceTree = "<group>"; };
+		04257C2A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewLivePreviewPresenter+Control.m"; sourceTree = "<group>"; };
+		04257C2B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewLivePreviewPresenter+VideotapeList.h"; sourceTree = "<group>"; };
+		04257C2C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewLivePreviewPresenter+LandscapeControlView.m"; sourceTree = "<group>"; };
+		04257C2D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewLivePreviewPresenter.m; sourceTree = "<group>"; };
+		04257C2E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewLivePreviewPresenter+LandscapeControlView.h"; sourceTree = "<group>"; };
+		04257C2F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewLivePreviewPresenter+VideotapeList.m"; sourceTree = "<group>"; };
+		04257C3028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewLivePreviewPresenter+Control.h"; sourceTree = "<group>"; };
+		04257C3128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewLivePreviewPresenter+SDKListener.m"; sourceTree = "<group>"; };
+		04257C3B28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewLivePreviewViewController.m; sourceTree = "<group>"; };
+		04257C3D28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewLandscapeControlView+Gesture.m"; sourceTree = "<group>"; };
+		04257C3E28E2A7ED0062C0F1 /* LCNewVideoControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideoControlView.m; sourceTree = "<group>"; };
+		04257C3F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewLandscapeControlView.h; sourceTree = "<group>"; };
+		04257C4028E2A7ED0062C0F1 /* LCNewVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideoControlView.h; sourceTree = "<group>"; };
+		04257C4128E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewLandscapeControlView+Gesture.h"; sourceTree = "<group>"; };
+		04257C4228E2A7ED0062C0F1 /* LCNewLandscapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewLandscapeControlView.m; sourceTree = "<group>"; };
+		04257C4928E2A7ED0062C0F1 /* LCNewPTZPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewPTZPanel.m; sourceTree = "<group>"; };
+		04257C4A28E2A7ED0062C0F1 /* LCNewPTZPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewPTZPanel.h; sourceTree = "<group>"; };
+		04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeHistoryCell.h; sourceTree = "<group>"; };
+		04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideoHistoryView.h; sourceTree = "<group>"; };
+		04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeHistoryCell.m; sourceTree = "<group>"; };
+		04257C5028E2A7ED0062C0F1 /* LCNewVideoHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideoHistoryView.m; sourceTree = "<group>"; };
+		04257C5328E2A7ED0062C0F1 /* LCNewPTZControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewPTZControlView.m; sourceTree = "<group>"; };
+		04257C5428E2A7ED0062C0F1 /* LCNewPTZControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewPTZControlView.h; sourceTree = "<group>"; };
+		04257C5528E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewLivePreviewViewController.h; sourceTree = "<group>"; };
+		04871AF428F1715F009E0540 /* LCNewLivePreviewModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCNewLivePreviewModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871AFA28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCNewVideotapeHistoryCell.xib; sourceTree = "<group>"; };
+		04C4B74128F12C1700344C5C /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
+		04C4B75228F148ED00344C5C /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F8149028F1172800307775 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F8149228F1177000307775 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04257C1028E2A55B0062C0F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				033732922913B20300556FC4 /* LCOpenSDKDynamic.framework in Frameworks */,
+				032664872902DCF90082EAC9 /* LCDeviceDetailModule.framework in Frameworks */,
+				04C4B75328F148ED00344C5C /* KVOController.framework in Frameworks */,
+				04F8149328F1177000307775 /* LCNetworkModule.framework in Frameworks */,
+				04C4B74228F12C1700344C5C /* Masonry.framework in Frameworks */,
+				04F8149128F1172800307775 /* LCMediaBaseModule.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871AF128F1715F009E0540 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04257C0928E2A55B0062C0F1 = {
+			isa = PBXGroup;
+			children = (
+				04257C1528E2A55B0062C0F1 /* LCNewLivePreviewModule */,
+				04871AF928F1754B009E0540 /* LCNewLivePreviewModuleBundle */,
+				04257C1428E2A55B0062C0F1 /* Products */,
+				04257C8028E2A84A0062C0F1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04257C1428E2A55B0062C0F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04257C1328E2A55B0062C0F1 /* LCNewLivePreviewModule.framework */,
+				04871AF428F1715F009E0540 /* LCNewLivePreviewModuleBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04257C1528E2A55B0062C0F1 /* LCNewLivePreviewModule */ = {
+			isa = PBXGroup;
+			children = (
+				04257C2528E2A7ED0062C0F1 /* NewLivePreview */,
+				04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */,
+				04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */,
+			);
+			path = LCNewLivePreviewModule;
+			sourceTree = "<group>";
+		};
+		04257C2528E2A7ED0062C0F1 /* NewLivePreview */ = {
+			isa = PBXGroup;
+			children = (
+				04257C2728E2A7ED0062C0F1 /* Presenter */,
+				04257C3A28E2A7ED0062C0F1 /* View */,
+			);
+			path = NewLivePreview;
+			sourceTree = "<group>";
+		};
+		04257C2728E2A7ED0062C0F1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				04257C2828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h */,
+				04257C2D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m */,
+				04257C2928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h */,
+				04257C3128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m */,
+				04257C3028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h */,
+				04257C2A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m */,
+				04257C2B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h */,
+				04257C2F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m */,
+				04257C2E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h */,
+				04257C2C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		04257C3A28E2A7ED0062C0F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04257C3C28E2A7ED0062C0F1 /* ToolBar */,
+				04257C4728E2A7ED0062C0F1 /* Moudle */,
+				04257C5228E2A7ED0062C0F1 /* PTZ */,
+				04257C5528E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h */,
+				04257C3B28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04257C3C28E2A7ED0062C0F1 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				04257C4128E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h */,
+				04257C3D28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m */,
+				04257C4028E2A7ED0062C0F1 /* LCNewVideoControlView.h */,
+				04257C3E28E2A7ED0062C0F1 /* LCNewVideoControlView.m */,
+				04257C3F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h */,
+				04257C4228E2A7ED0062C0F1 /* LCNewLandscapeControlView.m */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		04257C4728E2A7ED0062C0F1 /* Moudle */ = {
+			isa = PBXGroup;
+			children = (
+				04257C4928E2A7ED0062C0F1 /* LCNewPTZPanel.m */,
+				04257C4A28E2A7ED0062C0F1 /* LCNewPTZPanel.h */,
+				04257C4C28E2A7ED0062C0F1 /* LCVideoHistoryList */,
+			);
+			path = Moudle;
+			sourceTree = "<group>";
+		};
+		04257C4C28E2A7ED0062C0F1 /* LCVideoHistoryList */ = {
+			isa = PBXGroup;
+			children = (
+				04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */,
+				04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */,
+				04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */,
+				04257C5028E2A7ED0062C0F1 /* LCNewVideoHistoryView.m */,
+			);
+			path = LCVideoHistoryList;
+			sourceTree = "<group>";
+		};
+		04257C5228E2A7ED0062C0F1 /* PTZ */ = {
+			isa = PBXGroup;
+			children = (
+				04257C5328E2A7ED0062C0F1 /* LCNewPTZControlView.m */,
+				04257C5428E2A7ED0062C0F1 /* LCNewPTZControlView.h */,
+			);
+			path = PTZ;
+			sourceTree = "<group>";
+		};
+		04257C8028E2A84A0062C0F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */,
+				032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */,
+				04C4B75228F148ED00344C5C /* KVOController.framework */,
+				04F8149228F1177000307775 /* LCNetworkModule.framework */,
+				04F8149028F1172800307775 /* LCMediaBaseModule.framework */,
+				04C4B74128F12C1700344C5C /* Masonry.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04871AF928F1754B009E0540 /* LCNewLivePreviewModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				0309D36C29025EFF0088B9D5 /* Info.plist */,
+				04871AFA28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib */,
+			);
+			path = LCNewLivePreviewModuleBundle;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		04257C0E28E2A55B0062C0F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04257C7E28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h in Headers */,
+				04257C5E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h in Headers */,
+				04257C6D28E2A7ED0062C0F1 /* LCNewVideoControlView.h in Headers */,
+				04257C5828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h in Headers */,
+				04257C6E28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h in Headers */,
+				04257C7728E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h in Headers */,
+				04257C6C28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h in Headers */,
+				04257C7528E2A7ED0062C0F1 /* LCNewPTZPanel.h in Headers */,
+				04257C6028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h in Headers */,
+				04257C1928E2A55B0062C0F1 /* LCNewLivePreviewModule.h in Headers */,
+				04257C5B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h in Headers */,
+				04257C7D28E2A7ED0062C0F1 /* LCNewPTZControlView.h in Headers */,
+				04257C5928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h in Headers */,
+				04257C7828E2A7ED0062C0F1 /* LCNewVideoHistoryView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04257C1228E2A55B0062C0F1 /* LCNewLivePreviewModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04257C1C28E2A55B0062C0F1 /* Build configuration list for PBXNativeTarget "LCNewLivePreviewModule" */;
+			buildPhases = (
+				04257C0E28E2A55B0062C0F1 /* Headers */,
+				04257C0F28E2A55B0062C0F1 /* Sources */,
+				04257C1028E2A55B0062C0F1 /* Frameworks */,
+				04257C1128E2A55B0062C0F1 /* Resources */,
+				04871B0F28F17A71009E0540 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04871B0B28F1790F009E0540 /* PBXTargetDependency */,
+			);
+			name = LCNewLivePreviewModule;
+			productName = LCNewLivePreviewModule;
+			productReference = 04257C1328E2A55B0062C0F1 /* LCNewLivePreviewModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		04871AF328F1715F009E0540 /* LCNewLivePreviewModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04871AF528F1715F009E0540 /* Build configuration list for PBXNativeTarget "LCNewLivePreviewModuleBundle" */;
+			buildPhases = (
+				04871AF028F1715F009E0540 /* Sources */,
+				04871AF128F1715F009E0540 /* Frameworks */,
+				04871AF228F1715F009E0540 /* Resources */,
+				04871B1228F17AC0009E0540 /* Remove Executable File */,
+				04871B1328F17AF7009E0540 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCNewLivePreviewModuleBundle;
+			productName = LCNewLivePreviewModuleBundle;
+			productReference = 04871AF428F1715F009E0540 /* LCNewLivePreviewModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04257C0A28E2A55B0062C0F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					04257C1228E2A55B0062C0F1 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					04871AF328F1715F009E0540 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 04257C0D28E2A55B0062C0F1 /* Build configuration list for PBXProject "LCNewLivePreviewModule" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04257C0928E2A55B0062C0F1;
+			productRefGroup = 04257C1428E2A55B0062C0F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04257C1228E2A55B0062C0F1 /* LCNewLivePreviewModule */,
+				04871AF328F1715F009E0540 /* LCNewLivePreviewModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04257C1128E2A55B0062C0F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871AF228F1715F009E0540 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0309D36D29025EFF0088B9D5 /* Info.plist in Resources */,
+				04871AFB28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04871B0F28F17A71009E0540 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    echo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		04871B1228F17AC0009E0540 /* Remove Executable File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Executable File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Remove execute file in bundle: ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME\"\nrm -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME}\n";
+		};
+		04871B1328F17AF7009E0540 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    #先删除旧的\n    rm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n    echo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04257C0F28E2A55B0062C0F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04257C5C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m in Sources */,
+				04257C7428E2A7ED0062C0F1 /* LCNewPTZPanel.m in Sources */,
+				04257C5F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m in Sources */,
+				04257C6128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m in Sources */,
+				04257C6A28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m in Sources */,
+				04257C1828E2A55B0062C0F1 /* LCNewLivePreviewModule.docc in Sources */,
+				04257C7A28E2A7ED0062C0F1 /* LCNewVideoHistoryView.m in Sources */,
+				04257C5D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m in Sources */,
+				04257C5A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m in Sources */,
+				04257C6F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.m in Sources */,
+				04257C7928E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m in Sources */,
+				04257C6B28E2A7ED0062C0F1 /* LCNewVideoControlView.m in Sources */,
+				04257C6928E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m in Sources */,
+				04257C7C28E2A7ED0062C0F1 /* LCNewPTZControlView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871AF028F1715F009E0540 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04871B0B28F1790F009E0540 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04871AF328F1715F009E0540 /* LCNewLivePreviewModuleBundle */;
+			targetProxy = 04871B0A28F1790F009E0540 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04257C1A28E2A55B0062C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		04257C1B28E2A55B0062C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		04257C1D28E2A55B0062C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS/LCOpenSDKDynamic.framework\"";
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewLivePreviewModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04257C1E28E2A55B0062C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS/LCOpenSDKDynamic.framework\"";
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewLivePreviewModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04871AF628F1715F009E0540 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewLivePreviewModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		04871AF728F1715F009E0540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewLivePreviewModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04257C0D28E2A55B0062C0F1 /* Build configuration list for PBXProject "LCNewLivePreviewModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04257C1A28E2A55B0062C0F1 /* Debug */,
+				04257C1B28E2A55B0062C0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04257C1C28E2A55B0062C0F1 /* Build configuration list for PBXNativeTarget "LCNewLivePreviewModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04257C1D28E2A55B0062C0F1 /* Debug */,
+				04257C1E28E2A55B0062C0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04871AF528F1715F009E0540 /* Build configuration list for PBXNativeTarget "LCNewLivePreviewModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04871AF628F1715F009E0540 /* Debug */,
+				04871AF728F1715F009E0540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04257C0A28E2A55B0062C0F1 /* Project object */;
+}

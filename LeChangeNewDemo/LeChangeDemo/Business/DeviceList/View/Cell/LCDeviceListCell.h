@@ -1,10 +1,10 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "LCUIKit.h"
-#import "LCDeviceListPresenter.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^LCDeviceListCellClickBlock)(LCDeviceInfo * info,NSInteger channelIndex,NSInteger index);
@@ -14,10 +14,6 @@ typedef void(^LCDeviceListCellClickBlock)(LCDeviceInfo * info,NSInteger channelI
 /// 设备信息模型
 @property (copy, nonatomic) LCDeviceInfo *deviceInfo;
 
-/// presenter
-@property (strong, nonatomic) LCDeviceListPresenter *presenter;
-
-/// presenter
 @property (copy, nonatomic) LCDeviceListCellClickBlock resultBlock;
 
 @end

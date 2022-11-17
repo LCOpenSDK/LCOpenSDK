@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePlayerPersenter.h"
@@ -55,7 +55,7 @@
  */
 - (LCButton *)getItemWithType:(LCVideotapePlayerControlType)type {
     weakSelf(self);
-    LCButton *item = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *item = [LCButton createButtonWithType:LCButtonTypeCustom];
     item.tag = type;
     switch (type) {
         case LCVideotapePlayerControlPlay: {
@@ -145,7 +145,7 @@
         break;
         case LCVideotapePlayerControlFullScreen: {
             //全屏
-            [item setImage:LC_IMAGENAMED(@"live_video_icon_fullscreen") forState:UIControlStateNormal];
+            [item setImage:LC_IMAGENAMED(@"icon_hengping") forState:UIControlStateNormal];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
                 [weakself onFullScreen:btn];
             };
@@ -205,7 +205,7 @@
 //            }
             [item setImage:LC_IMAGENAMED(@"video_icon_download") forState:UIControlStateNormal];
             [item setTitle:@"mobile_common_data_download".lc_T forState:UIControlStateNormal];
-            [item setTitleColor:[UIColor dhcolor_c51] forState:UIControlStateNormal];
+            [item setTitleColor:[UIColor lccolor_c51] forState:UIControlStateNormal];
             if (self.videoManager.localVideotapeInfo) {
                 //本地录像没有下载
                 item.enabled = NO;
@@ -335,8 +335,8 @@
     if (status == -1) {
         //默认状态
         [btn setImage:LC_IMAGENAMED(@"video_icon_download") forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor dhcolor_c54]];
-        [btn setBorderWithStyle:LC_BORDER_DRAW_TOP borderColor:[UIColor dhcolor_c53] borderWidth:1];
+        [btn setBackgroundColor:[UIColor lccolor_c54]];
+        [btn setBorderWithStyle:LC_BORDER_DRAW_TOP borderColor:[UIColor lccolor_c53] borderWidth:1];
     }
 }
 
@@ -354,7 +354,7 @@
 
 - (void)configBigPlay {
     UIView *tempView = [self.playWindow getWindowView];
-    self.errorBtn = [LCButton lcButtonWithType:LCButtonTypeVertical];
+    self.errorBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.errorBtn setImage:LC_IMAGENAMED(@"videotape_icon_replay") forState:UIControlStateNormal];
     //    [replayBtn setTitle:@"play_module_video_replay_description".lc_T forState:UIControlStateSelected];
     [self.container.view addSubview:self.errorBtn];
@@ -374,12 +374,13 @@
     [self.errorMsgLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.errorBtn.mas_bottom).offset(10);
         make.width.mas_equalTo(SCREEN_WIDTH);
+        make.centerX.mas_equalTo(tempView.mas_centerX);
         make.height.mas_equalTo(30);
     }];
     self.errorMsgLab.hidden = YES;
     self.errorMsgLab.text = @"play_module_video_replay_description".lc_T;
 
-    self.bigPlayBtn = [LCButton lcButtonWithType:LCButtonTypeVertical];
+    self.bigPlayBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.bigPlayBtn setImage:LC_IMAGENAMED(@"videotape_icon_play_big") forState:UIControlStateNormal];
     //    [replayBtn setTitle:@"" forState:UIControlStateNormal];
     [self.container.view addSubview:self.bigPlayBtn];
@@ -422,7 +423,7 @@
 
 -(void)showPSKAlert:(BOOL)isPasswordError isPlay:(BOOL)isPlay {
     weakSelf(self);
-    [LCOCAlertView lc_showTextFieldAlertTextFieldWithTitle: @"Alert_Title_Notice".lc_T Detail:isPasswordError ?  @"mobile_common_input_video_password_tip".lc_T : @"mobile_common_input_video_key_tip".lc_T Placeholder:@"" ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:@"Alert_Title_Button_Cancle".lc_T Handle:^(BOOL isConfirmSelected, NSString *_Nonnull inputContent) {
+    [LCAlertView lc_showTextFieldAlertWithTitle: @"Alert_Title_Notice".lc_T detail:isPasswordError ?  @"mobile_common_input_video_password_tip".lc_T : @"mobile_common_input_video_key_tip".lc_T placeholder:@"" confirmString:@"Alert_Title_Button_Confirm".lc_T cancleString:@"Alert_Title_Button_Cancle".lc_T handle:^(BOOL isConfirmSelected, NSString *_Nonnull inputContent) {
         if (isConfirmSelected) {
             weakself.videoManager.currentPsk = inputContent;
             if (isPlay) {
@@ -514,7 +515,7 @@
     if (!_videoTypeLabel) {
         _videoTypeLabel = [UILabel new];
         _videoTypeLabel.textColor = [UIColor whiteColor];
-        _videoTypeLabel.font = [UIFont dhFont_t8];
+        _videoTypeLabel.font = [UIFont lcFont_t8];
         _videoTypeLabel.textAlignment = NSTextAlignmentRight;
         [[self.playWindow getWindowView] addSubview:_videoTypeLabel];
         _videoTypeLabel.hidden = YES;

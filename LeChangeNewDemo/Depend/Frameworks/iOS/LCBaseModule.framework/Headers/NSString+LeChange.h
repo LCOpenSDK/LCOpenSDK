@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //  NSString扩展
 
 #import <UIKit/UIKit.h>
@@ -13,10 +13,6 @@ typedef enum {
 @interface NSString(LeChange)
 
 @property (nonatomic) BOOL isAbsent; //Defualt is NO.if yes,string is nil or length is 0.
-
-- (NSString *)lc_EncryptToServerWithPwd:(NSString *)password;
-
-- (NSString *)lc_DecryptToServerWithPwd:(NSString *)password;
 
 //获取json值
 - (id)lc_jsonValue;
@@ -127,5 +123,16 @@ typedef enum {
 - (BOOL)lc_isValidEmail;
 
 - (BOOL)lc_isAllNum;
+
++ (NSString *)getGatewayIpForCurrentWiFi;
+
++ (NSString *)getCurreWiFiSsid;
+
+/**
+ 返回当前的语言
+
+ @return eg 'zh-CN'
+ */
++ (NSString *)lc_currentLanguageCode;
 
 @end

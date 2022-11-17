@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param chanelId 通道号
  @return 是否存在
  */
--(BOOL)lc_deskCacheIsExistThumbImageForDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId;
++ (BOOL)lc_deskCacheIsExistThumbImageForDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId;
 
 
 /**
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备ID
  @param chanelId 设备通道ID
  */
--(void)lc_deleteThumbImageWithDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId;
++ (void)lc_deleteThumbImageWithDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId;
 @end
 
 NS_ASSUME_NONNULL_END

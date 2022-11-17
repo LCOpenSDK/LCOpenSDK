@@ -1,0 +1,37 @@
+/* 
+  InfoPlist.strings
+  LeChangeDemo
+
+  Created by 吕同生 on 2022/10/31.
+  Copyright © 2022 imou. All rights reserved.
+*/
+// 权限申请文案
+
+// Bluetooth
+NSBluetoothAlwaysUsageDescription = "So the app can discover and connect to Bluetooth network devices";
+NSBluetoothPeripheralUsageDescription = "So the app can discover and connect to Bluetooth network devices";
+
+// Location
+NSLocationWhenInUseUsageDescription = "Your location is needed in the processes of adding devices.";
+
+// Location
+NSLocationUsageDescription = "Your location is needed in the processes of adding devices.";
+
+// Local Network
+NSLocalNetworkUsageDescription = "This app will be able to discover and connect to devices on the networks you use.";
+
+// User Tracking
+NSUserTrackingUsageDescription = "Your data will be used to provide you better, safer and personalized services if you allow the app to access IDFA.";
+
+// Photo Library
+NSPhotoLibraryUsageDescription = "This lets you choose photos from your album and save photos.";
+NSPhotoLibraryAddUsageDescription = "This lets you choose photos from your album and save photos.";
+
+// Face ID
+NSFaceIDUsageDescription = "This lets you log in with your face ID.";
+
+// Camera
+NSCameraUsageDescription = "This lets you scan new products, take a profile picture and more.";
+
+// Microphone
+NSMicrophoneUsageDescription = "This lets you use two-way audio.";

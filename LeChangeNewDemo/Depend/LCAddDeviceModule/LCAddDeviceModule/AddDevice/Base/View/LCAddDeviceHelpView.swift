@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 import UIKit
@@ -13,16 +13,16 @@ class LCAddDeviceHelpView: UIView {
         let desLbl: UILabel = UILabel(frame: CGRect.zero)
         return desLbl
 //        let desLbl: TTTAttributedLabel = TTTAttributedLabel(frame: CGRect.zero)
-//        desLbl.font = UIFont.dhFont_t5()
+//        desLbl.font = UIFont.lcFont_t5()
 //        desLbl.textAlignment = .left
 //
 //		//SMB Todo::
 //        var text: NSString = "客服热线：".lc_T + "1234567890" as NSString
-//        var atributeStr: NSMutableAttributedString = NSMutableAttributedString(string: text as String, attributes: [NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c5(), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13.0)])
+//        var atributeStr: NSMutableAttributedString = NSMutableAttributedString(string: text as String, attributes: [NSAttributedStringKey.foregroundColor: UIColor.lccolor_c5(), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13.0)])
 //        desLbl.attributedText = atributeStr
-//        desLbl.linkAttributes       = [NSAttributedStringKey.foregroundColor: UIColor.dhcolor_c32(),
+//        desLbl.linkAttributes       = [NSAttributedStringKey.foregroundColor: UIColor.lccolor_c32(),
 //                                       NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13.0),
-//                                       NSAttributedStringKey.underlineColor: UIColor.dhcolor_c32(),
+//                                       NSAttributedStringKey.underlineColor: UIColor.lccolor_c32(),
 //                                       NSAttributedStringKey.underlineStyle: 1 as NSNumber
 //        ]
 //
@@ -38,7 +38,7 @@ class LCAddDeviceHelpView: UIView {
         btn.setImage(image, for: .normal)
         btn.setTitle("common_help".lc_T, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 13.0)
-        btn.setTitleColor(UIColor.dhcolor_c5(), for: .normal)
+        btn.setTitleColor(UIColor.lccolor_c5(), for: .normal)
         btn.contentHorizontalAlignment = .right
         btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: (image?.size.width)!, bottom: 0, right: (image?.size.width)!)
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 35, bottom: 0, right: -35)

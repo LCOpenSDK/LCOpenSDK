@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeHistoryCell.h"
@@ -41,8 +41,8 @@
     }
 }
 
--(void)loadVideotapImage:(NSString *)url DeviceId:(NSString *)deviceId Key:(NSString *)key{
-    [self.videoImageView lc_setImageWithURL:url placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:deviceId Key:key];
+-(void)loadVideotapImage:(nullable NSString *)url DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key{
+    [self.videoImageView lc_setImageWithURL:url placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:deviceId ProductId:productId Key:key];
 }
 
 @end

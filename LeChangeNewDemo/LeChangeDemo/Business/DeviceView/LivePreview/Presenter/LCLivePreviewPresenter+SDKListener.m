@@ -1,9 +1,8 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCLivePreviewPresenter+SDKListener.h"
-#import "UIImageView+Surface.h"
 #import "LCLivePreviewPresenter+Control.h"
 
 @implementation LCLivePreviewPresenter (SDKListener)
@@ -39,7 +38,7 @@
                 return;
             }
             //不处理
-            if ([code integerValue] == STATE_DHHTTP_KEY_ERROR) {
+            if ([code integerValue] == STATE_LCHTTP_KEY_ERROR) {
                 [self showErrorBtn];
                 if (![self.videoManager.currentPsk isEqualToString:self.videoManager.currentDevice.deviceId]) {
                     //自定义id时先改成默认的设备ID重试
@@ -50,7 +49,7 @@
                     [self showPSKAlert];
                 }
             }
-            if ([code integerValue] != 0 && [code integerValue] != STATE_DHHTTP_OK) {
+            if ([code integerValue] != 0 && [code integerValue] != STATE_LCHTTP_OK) {
                 [self showErrorBtn];
             }
         }

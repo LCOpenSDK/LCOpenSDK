@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCDatePick.h"
@@ -42,23 +42,23 @@
 
     self.topView = [UIView new];
     [self addSubview:self.topView];
-    [self.topView setBorderWithView:self.topView Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor dhcolor_c40] borderWidth:1];
+    [self.topView setBorderWithView:self.topView Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor lccolor_c40] borderWidth:1];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
         make.height.mas_equalTo(50);
     }];
 
-    self.cancleBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.cancleBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self.topView addSubview:self.cancleBtn];
-    [self.cancleBtn setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
+    [self.cancleBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
     [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.mas_equalTo(self.topView);
         make.width.mas_equalTo(self.cancleBtn.mas_height);
     }];
 
-    self.confirmBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.confirmBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self.topView addSubview:self.confirmBtn];
-    [self.confirmBtn setTitleColor:[UIColor dhcolor_c10] forState:UIControlStateNormal];
+    [self.confirmBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateNormal];
     [self.confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.bottom.mas_equalTo(self.topView);
         make.width.mas_equalTo(self.confirmBtn.mas_height);
@@ -77,7 +77,7 @@
 
     [self.confirmBtn setTitle:@"Alert_Title_Button_Confirm".lc_T forState:UIControlStateNormal];
     [self.cancleBtn setTitle:@"Alert_Title_Button_Cancle".lc_T forState:UIControlStateNormal];
-    self.titleLab.text = @"时间选择器";
+    self.titleLab.text = @"time_selector".lc_T;
 
     self.pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self addSubview:self.pickView];
@@ -120,7 +120,7 @@
 + (LCDatePick *(^)(void))initialize {
     return ^(void) {
                LCDatePick *datePick = [LCDatePick new];
-               datePick.backgroundColor = [UIColor dhcolor_c43];
+               datePick.backgroundColor = [UIColor lccolor_c43];
                datePick.hidden = YES;
                [[datePick topPresentOrRootController].view addSubview:datePick];
                [datePick mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,7 +135,7 @@
 - (LCDatePick * (^)(void))start {
     return ^(void) {
                self.hidden = NO;
-               NSAssert(([self.row indexOfObject:@"day"] && ![self.row indexOfObject:@"month"]), @"选择日期必须依赖月份");
+               NSAssert(([self.row indexOfObject:@"day"] && ![self.row indexOfObject:@"month"]), @"selected_date_must_depend_month".lc_T);
                return self;
     };
 }
@@ -337,7 +337,7 @@
     } else if ([componentType isEqualToString:@"weekofmonth"]) {
         str = [NSString stringWithFormat:@"第%ld个", row + 1];
         if ((row + 1) == 5) {
-            str = @"最后一个";
+            str = @"last_one".lc_T;
         }
     } else if ([componentType isEqualToString:@"weekDay"]) {
         str = [NSString stringWithFormat:@"%@", [self numberChangeToString:row]];
@@ -359,36 +359,36 @@
 - (NSString *)numberChangeToString:(NSInteger)weekDay {
     switch (weekDay) {
         case 0: {
-            return @"周日";
+            return @"device_manager_sunday".lc_T;
         }
         break;
         case 1: {
-            return @"周一";
+            return @"device_manager_monday".lc_T;
         }
         break;
         case 2: {
-            return @"周二";
+            return @"device_manager_tuesday".lc_T;
         }
         break;
         case 3: {
-            return @"周三";
+            return @"device_manager_wednesday".lc_T;
         }
         break;
         case 4: {
-            return @"周四";
+            return @"device_manager_thursday".lc_T;
         }
         break;
         case 5: {
-            return @"周五";
+            return @"device_manager_friday".lc_T;
         }
         break;
         case 6: {
-            return @"周六";
+            return @"device_manager_saturday".lc_T;
         }
         break;
 
         default: {
-            return @"周一";
+            return @"device_manager_monday".lc_T;
         }
         break;
     }

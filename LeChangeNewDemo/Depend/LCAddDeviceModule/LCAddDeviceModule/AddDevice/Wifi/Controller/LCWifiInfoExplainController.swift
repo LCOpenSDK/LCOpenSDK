@@ -1,10 +1,10 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 import UIKit
 
-class LCWifiInfoExplainController: DHErrorBaseViewController {
+class LCWifiInfoExplainController: LCErrorBaseViewController {
 
     public var myTitle: String = ""
     
@@ -16,9 +16,9 @@ class LCWifiInfoExplainController: DHErrorBaseViewController {
         }
     }
     
-    // MARK: - DHAddBaseVCProtocol
+    // MARK: - LCAddBaseVCProtocol
     
-    override func leftActionType() -> DHAddBaseLeftAction {
+    override func leftActionType() -> LCAddBaseLeftAction {
         return .back
     }
     
@@ -26,14 +26,14 @@ class LCWifiInfoExplainController: DHErrorBaseViewController {
 		return myTitle.count > 0
     }
     
-    // MARK: - DHErrorBaseVCProtocol
+    // MARK: - LCErrorBaseVCProtocol
     
     override func errorImageName() -> String {
         return "adddevice_icon_wifiexplain_choosewifi"
     }
     
     override func errorContent() -> String {
-        return "如您的wifi名称中有表情等特殊符号，如🌹❤️😊❄️可能会导致您的设备无法正常连接，建议删除wifi名称内的特殊符号。".lc_T
+        return "special_symbols_such_as_facial_expressions".lc_T
     }
     
     override func icConfirmHidden() -> Bool {

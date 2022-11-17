@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 dahua. All rights reserved.
+//  Copyright © 2018 Imou. All rights reserved.
 //
 
 #import "LCSmartConfig.h"
@@ -15,19 +15,18 @@ static LCSmartConfig *smartConfig = nil;
     return smartConfig;
 }
 
-- (void)startConfigWithDevice:(NSString *)deviceID
+- (NSString *)startConfigWithDevice:(NSString *)deviceID
 							   ssid:(NSString *)ssid
 						   password:(NSString *)password
 						   security:(NSString *)security
-							fskMode:(DHFSKMode)fskMode {
+							fskMode:(LCFSKMode)fskMode {
     if (ssid == nil || [[ssid stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
-        return;
+        return nil;
     }
 	
     NSLog(@"🍎🍎🍎 %@:: Start smart config by %@ %@ %@ %lu", NSStringFromClass([self class]), deviceID, ssid, password, (unsigned long)fskMode);
     
-    [self.configWifi configWifiStart:deviceID ssid:ssid password:password secure:security voiceFreq:11000];
-
+    return [self.configWifi configWifiStart:deviceID ssid:ssid password:password secure:security voiceFreq:11000 txMode:fskMode];
 }
 
 - (LCOpenSDK_ConfigWIfi *)configWifi {

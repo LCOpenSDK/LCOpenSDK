@@ -1,22 +1,13 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	内部使用DHNetSDKIneterface，用于Swift的桥接
 
 #import <Foundation/Foundation.h>
-#import "DHApWifiInfo.h"
-#import "DHDeviceNetInfo.h"
-#import "DHDeviceResetPWDInfo.h"
-#import "DHDevicePWDResetInfo.h"
+#import "LCDeviceNetInfo.h"
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
+@class DHDevicePWDResetInfo;
 
 @interface DHNetSDKHelper : NSObject
-
-+ (void)loginDeviceByIp:(NSString *)devIp
-				   port:(NSInteger)port
-               username:(NSString *)username
-               password:(NSString *)password
-                success:(void (^)(long loginHandle))success
-                failure:(void (^)(NSString *description))failure;
-
 
 /// 兼容模式登陆
 /// @param devIp IP地址
@@ -24,13 +15,13 @@
 /// @param username 用户名
 /// @param password 密码
 /// @param success
-/// @param failure 
-+ (void)loginDeviceExByIp:(NSString *)devIp
-                     port:(NSInteger)port
-                 username:(NSString *)username
-                 password:(NSString *)password
-                  success:(void (^)(DHNetLoginDeviceInfo *deviceInfo))success
-                  failure:(void (^)(NSString *description))failure;
+/// @param failure
++ (void)loginDeviceByIp:(NSString *)devIp
+				   port:(NSInteger)port
+               username:(NSString *)username
+               password:(NSString *)password
+                success:(void (^)(long loginHandle))success
+                failure:(void (^)(NSString *description))failure;
 
 /// 安全登陆(设备添加使用)
 /// @param devIp IP地址
@@ -46,20 +37,6 @@
                                success:(void (^)(long loginHandle))success
                                failure:(void (^)(NSString *description))failure;
 
-/// 安全登陆(局域网预览登陆使用)
-/// @param devIp IP地址
-/// @param port 端口号
-/// @param username 用户名
-/// @param password 密码
-/// @param success
-/// @param failure
-+ (void)loginWithHighLevelSecurityExByIp:(NSString *)devIp
-                                  port:(NSInteger)port
-                              username:(NSString *)username
-                              password:(NSString *)password
-                               success:(void (^)(DHNetLoginDeviceInfo *deviceInfo))success
-                               failure:(void (^)(NSString *description))failure;
-
 /**
  登出设备
 
@@ -68,59 +45,38 @@
  */
 + (void)logoutDevice:(long)loginHandle completion:(dispatch_block_t)completion;
 
-/**
- SC设备设置连接Wi-Fi 老方法，通过netSDK实现
- 
- @param mSSIDmSSID IP地址
- @param password 端口号
- @param encryptionAuthority wifi加密方式
- @param complete 完成的处理
- */
-+ (void)scDeviceApConnectWifi:(NSString *)mSSID
-                     password:(NSString *)password
-                           ip:(NSString *)deviceIP
-                         port:(NSInteger)port
-          encryptionAuthority:(int)encryptionAuthority complete:(void (^)(NSInteger error))complete;
+/// 软AP配网   SoftAP distribution network
+/// @param wifiName wifi名字
+/// @param wifiPwd wifi密码
+/// @param wifiEncry wifi加密方式 0：off, 2：WEP64bit, 3：WEP128bit, 4:WPA-PSK-TKIP, 5: WPA-PSK-CCMP
+/// @param netcardName wifi网卡名字
+/// @param deviceIp 设备IP
+/// @param devicePwd 设备密码
+/// @param isSC 设备是否有安全
+/// @param handler 回调
+/// @param timeout 超时时间
++ (void)startSoftAPConfig:(NSString *)wifiName
+                  wifiPwd:(NSString *)wifiPwd
+                wifiEncry:(int)wifiEncry
+              netcardName:(NSString *)netcardName
+                 deviceIp:(NSString *)deviceIp
+                devicePwd:(NSString *)devicePwd
+                     isSC:(BOOL)isSC
+                  handler:(void(^)(NSInteger result))handler
+                  timeout:(int)timeout;
 
-/// SC设备softAPConfig方法连接Wi-Fi，通过OpenSDK方法配网
-/// @param wifiName WiFi名称
-/// @param wiFiPsw WiFi密码
-/// @param deviceId 设备id
-/// @param devicePsw 设备密码
-/// @param isSC 是否SC设备
-/// @param complete 回调函数
-+(void)scDeviceSoftAPConnectWifi:(NSString *)wifiName wiFiPsw:(NSString *)wiFiPsw deviceId:(NSString *)deviceId devicePsw:(NSString *)devicePsw isSC:(BOOL )isSC complete:(void(^)(BOOL))complete;
-
-/// 搜索设备初始化信息
-/// @param deviceId 设备Id
-/// @param timeOut 超时时间
-/// @param success 搜索到的设备初始化信息
-+(void)searchDeviceInitInfo:(NSString *)deviceId timeOut:(int)timeOut callBack:(void (^)(NSDictionary *deviceInfo))callBack;
-
-/**
- 获取sc设备WIFI列表
- 
- @param loginHandle 登录句柄
- @param complete 完成的处理
- */
-
-+ (void)scDeviceApLoadWifiList:(NSString *)deviceIP port:(NSInteger)port complete:(void (^)(NSArray<DHApWifiInfo *> * Wifilist, NSInteger error))complete;
-
-/**
- 获取设备WIFI列表
-
- @param loginHandle 登录句柄
- @param complete 完成的处理
- */
-+ (void)loadWifiListByLoginHandle:(long)loginHandle
-						 complete:(void (^)(NSArray<DHApWifiInfo *> * Wifilist, NSInteger error))complete;
-
-+ (void)connectWIFIByLoginHandle:(long)loginHandle
-                            ssid:(NSString *)ssid
-                        password:(NSString *)password
-             encryptionAuthority:(int)encryptionAuthority
-                     netcardName:(NSString *)netcardName
-                        complete:(void (^)(BOOL result))complete;
+/// 软AP配网获取设备wifi列表   Wifi list of soft AP distribution network acquisition equipment
+/// @param deviceIP deviceIP IP地址
+/// @param port port 端口号
+/// @param password 设备密码
+/// @param errorCode 错误码
+/// @return 成功返回wifi列表
++ (void)getSoftApWifiList:(NSString *)deviceIP
+                     port:(NSInteger)port
+           devicePassword:(NSString *)password
+                     isSC:(BOOL)isSC
+                  success:(void(^)(NSArray <LCOpenSDK_WifiInfo *>* _Nullable list))success
+                  failure:(void(^)(NSInteger code, NSString* _Nullable describe))failure;
 
 
 + (void)queryProductDefinition:(long)loginHandle
@@ -139,9 +95,9 @@
  @param phoneIp 手机ip，可以为空
  @param result 结果 
  */
-+ (void)queryPasswordResetType:(DHDeviceNetInfo *)device
++ (void)queryPasswordResetType:(LCDeviceNetInfo *)device
 					 byPhoneIp:(NSString *)phoneIp
-						result:(void(^) (DHDeviceResetPWDInfo *))result;
+						result:(void(^) (LCDeviceResetPWDInfo *))result;
 
 /**
  异步重置设备密码
@@ -155,7 +111,7 @@
  @return YES/NO
  */
 + (void)resetPassword:(NSString *)password
-			   device:(DHDeviceNetInfo *)device
+			   device:(LCDeviceNetInfo *)device
 		 securityCode:(NSString *)securityCode
 			  contact:(NSString *)contact
 		  useAsPreset:(BOOL)useAsPreset

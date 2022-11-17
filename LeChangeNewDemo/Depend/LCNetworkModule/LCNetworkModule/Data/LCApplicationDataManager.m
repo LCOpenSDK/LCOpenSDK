@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCApplicationDataManager.h"
@@ -12,17 +12,15 @@
 #define HOSTAPI           @"GLOBAL_CONFIG_APPLICATION_HOSTAPI"
 #define OVERSEAHOSTAPI    @"GLOBAL_CONFIG_APPLICATION_OVERSEA_HOSTAPI"
 #define MANAGERTOKEN      @"GLOBAL_AUTH_MANAGER_TOKEN"
-#define USERTOKEN         @"GLOBAL_AUTH_USER_TOKEN"
 #define SUBACCOUNTTOKEN   @"GLOBAL_AUTH_SUBACCOUNT_TOKEN"
 #define SUBACCOUNOPENID   @"GLOBAL_AUTH_SUBACCOUNT_OPENID"
 #define EXPIRETIME        @"GLOBAL_AUTH_EXPIRE_TIME"
-#define CURRENTMODE       @"GLOBAL_JOINT_CURRENT_MODE"
 #define SUBACCOUNT        @"GLOBAL_SUBACCOUNT"
 #define DebugFlag         @"GLOBAL_DEBUGFLAG"
 
 ///默认请求基地址
 //#define DEFAULTHOSTAPICHN @"https://funcopenapi.lechange.cn:443/openapi" //中国大陆(测试)
-//#define DEFAULTHOSTAPIOVS @"https://openapifunc.easy4ip.com:443/openapi" //海外（测试）
+//#define DEFAULTHOSTAPIOVS @"https://openapifunc.easy4ip.com:443/openapi" //海外（测试） https://openapi-func-sz.imoulife.com
 #define DEFAULTHOSTAPICHN @"https://openapi.lechange.cn:443" //中国大陆(正式)
 #define DEFAULTHOSTAPIOVS @"https://openapi.easy4ip.com:443" //海外（正式）
 static NSMutableDictionary *serialCachePool;
@@ -32,11 +30,13 @@ static NSMutableDictionary *deviceInfosPool;
 @implementation LCApplicationDataManager
 
 + (NSString *)appId {
-    return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:[LCApplicationDataManager isChinaMainland]?APPID:OVERSEAAPPID];
+//    return @"lcad69e70cc6304e91";
+    return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:[LCApplicationDataManager isChinaMainland] ? APPID : OVERSEAAPPID];
 }
 
 + (NSString *)appSecret {
-    return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:[LCApplicationDataManager isChinaMainland]?APPSECRET:OVERSEAAPPSECRET];
+//    return @"d8e838cf5ade420f9c46dfdd24c774";
+    return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:[LCApplicationDataManager isChinaMainland] ? APPSECRET : OVERSEAAPPSECRET];
 }
 
 + (NSString *)hostApi {
@@ -47,12 +47,12 @@ static NSMutableDictionary *deviceInfosPool;
 }
 
 + (void)setAppIdWith:(NSString *)appId {
-    [[NSUserDefaults standardUserDefaults] setObject:appId forKey:[LCApplicationDataManager isChinaMainland]?APPID:OVERSEAAPPID];
+    [[NSUserDefaults standardUserDefaults] setObject:appId forKey:[LCApplicationDataManager isChinaMainland] ? APPID : OVERSEAAPPID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void)setAppSecretWith:(NSString *)appSecret {
-    [[NSUserDefaults standardUserDefaults] setObject:appSecret forKey:[LCApplicationDataManager isChinaMainland]?APPSECRET:OVERSEAAPPSECRET];
+    [[NSUserDefaults standardUserDefaults] setObject:appSecret forKey:[LCApplicationDataManager isChinaMainland] ? APPSECRET : OVERSEAAPPSECRET];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -64,14 +64,6 @@ static NSMutableDictionary *deviceInfosPool;
 ///保存管理员模式Token
 + (void)setManagerToken:(NSString *)token {
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:MANAGERTOKEN];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKEN];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-///保存用户模式Token
-+ (void)setUserToken:(NSString *)token {
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:USERTOKEN];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MANAGERTOKEN];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -80,16 +72,15 @@ static NSMutableDictionary *deviceInfosPool;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(void)setSubAccountId:(NSString *)openId {
++ (void)setSubAccountId:(NSString *)openId {
     [[NSUserDefaults standardUserDefaults] setObject:openId forKey:SUBACCOUNOPENID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(NSString *)openId {
++ (NSString *)openId {
     NSString *openId = [[NSUserDefaults standardUserDefaults] objectForKey:SUBACCOUNOPENID];
     return openId;
 }
-
 
 ///保存Token过期时间
 + (void)setExpireTime:(NSInteger)second {
@@ -115,7 +106,7 @@ static NSMutableDictionary *deviceInfosPool;
     return subAccountToken;
 }
 
-+(NSString *)managerToken {
++ (NSString *)managerToken {
     NSString *managerToken = [[NSUserDefaults standardUserDefaults] objectForKey:MANAGERTOKEN];
     return managerToken;
 }
@@ -142,33 +133,27 @@ static NSMutableDictionary *deviceInfosPool;
     return [textStr integerValue];
 }
 
-+(void)setDebugFlag:(BOOL)debugFlag{
++ (void)setDebugFlag:(BOOL)debugFlag {
     
     [[NSUserDefaults standardUserDefaults] setBool:debugFlag forKey:DebugFlag];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
-+(BOOL)getDebugFlag{
-    
++ (BOOL)getDebugFlag {
     BOOL debugFlagValue = [[NSUserDefaults standardUserDefaults] boolForKey:DebugFlag];
     return debugFlagValue;
 }
 
-///当前是否管理员模式
-+ (BOOL)isManagerMode {
-    NSString *managerToken = [[NSUserDefaults standardUserDefaults] objectForKey:MANAGERTOKEN];
-    return managerToken ? YES : NO;
-}
 
 ///存储当前对接模式
 + (void)setCurrentMode:(LCJointModeType)type {
-    [[NSUserDefaults standardUserDefaults] setInteger:type forKey:CURRENTMODE];
+    [[NSUserDefaults standardUserDefaults] setInteger:type forKey:@"GLOBAL_JOINT_CURRENT_MODE"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 ///是否对接国内版本
 + (BOOL)isChinaMainland {
-    LCJointModeType type = [[NSUserDefaults standardUserDefaults] integerForKey:CURRENTMODE];
+    LCJointModeType type = [[NSUserDefaults standardUserDefaults] integerForKey:@"GLOBAL_JOINT_CURRENT_MODE"];
     return type == LCJointModeChinaMainland ? YES : NO;
 }
 

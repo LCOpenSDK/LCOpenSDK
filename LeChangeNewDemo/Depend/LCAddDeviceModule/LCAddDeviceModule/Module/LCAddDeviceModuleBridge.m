@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 #import "LCAddDeviceModuleBridge.h"
@@ -8,12 +8,12 @@
 @implementation LCAddDeviceModuleBridge
 
 + (void)clearOMSCache {
-	id<DHOMSConfigManagerProtocol> omsConfig = [DHModule implForService: @protocol(DHOMSConfigManagerProtocol)];
+	id<LCOMSConfigManagerProtocol> omsConfig = [LCModule implForService: @protocol(LCOMSConfigManagerProtocol)];
 	[omsConfig clearOMSCache];
 }
 
 + (NSString *)getOMSCacheFolderPath {
-	id<DHOMSConfigManagerProtocol> omsConfig = [DHModule implForService: @protocol(DHOMSConfigManagerProtocol)];
+	id<LCOMSConfigManagerProtocol> omsConfig = [LCModule implForService: @protocol(LCOMSConfigManagerProtocol)];
 	return [omsConfig cacheFolderPath];
 }
 

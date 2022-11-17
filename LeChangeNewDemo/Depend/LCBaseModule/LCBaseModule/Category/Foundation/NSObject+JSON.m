@@ -1,12 +1,12 @@
 //
-//  Copyright © 2017年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2017年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 #import "NSObject+JSON.h"
 
 @implementation NSObject (JSON)
 
-- (NSString *)dh_jsonString
+- (NSString *)lc_jsonString
 {
     if (![NSJSONSerialization isValidJSONObject:self]) {
         NSLog(@"❌❌ Error: Invalid json object");
@@ -24,7 +24,7 @@
 
 @implementation NSString (JSON)
 
-- (id)dh_jsonObject
+- (id)lc_jsonObject
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -32,9 +32,9 @@
     return result;
 }
 
-- (NSDictionary *)dh_jsonDictionary
+- (NSDictionary *)lc_jsonDictionary
 {
-    id result = [self dh_jsonObject];
+    id result = [self lc_jsonObject];
     if ([result isKindOfClass:[NSDictionary class]]) {
         return (NSDictionary *)result;
     }
@@ -42,9 +42,9 @@
     return nil;
 }
 
-- (NSArray *)dh_jsonArray
+- (NSArray *)lc_jsonArray
 {
-    id result = [self dh_jsonObject];
+    id result = [self lc_jsonObject];
     if ([result isKindOfClass:[NSArray class]]) {
         return (NSArray *)result;
     }

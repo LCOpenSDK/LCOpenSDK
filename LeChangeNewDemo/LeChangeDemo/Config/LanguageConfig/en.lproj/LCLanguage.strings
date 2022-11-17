@@ -3,7 +3,7 @@
   LeChangeDemo
 
   Created by imou on 2019/12/5.
-  Copyright © 2019 dahua. All rights reserved.
+  Copyright © 2019 Imou. All rights reserved.
 */
 
 //夏令时
@@ -131,9 +131,7 @@
 //选择对接模式
 "Choose_Injonit_Mode_Title"="Select Connection Mode";
 "Choose_Injonit_Mode_ManagerMode"="Admin Mode";
-"Choose_Injonit_Mode_UserMode"="User Mode";
 "Choose_Injonit_Mode_About_Manager"="Know more";
-"Choose_Injonit_Mode_About_User"="Know more";
 "Choose_Injonit_Mode_Phone_Alert"="Please enter correct mobile email address";
 "regist_user_account_success" = "Registered sub account successfully";
 
@@ -145,7 +143,6 @@
 //用户登录注册
 "User_Mode_Login_Title"="Log in";
 "User_Mode_Login_Register"="Register";
-"User_Mode_Login_LoginBtn"="User Mode Login";
 "User_Mode_Account_Login" = "Account Login";
 "User_Mode_Account_Regist" = "Account Register";
 "User_Mode_Login_Phone_Placeholder"="Please enter E-mail Address";
@@ -154,24 +151,12 @@
 "User_Mode_Register_Phone_SMS_Fail"="Failed to send verification code.";
 "User_Mode_Register_Fail"="Failed to register.";
 
-//模式介绍
-"Mode_Introduce_Manager_Title"="Introduction to Admin Mode";
-"Mode_Introduce_User_Title"="Introduction to User Mode";
-"Mode_Introduce_Manager_Start_Injoint"="Connect with Admin Mode";
-"Mode_Introduce_User_Start_Injoint"="Connect with User Mode";
-"Mode_Introduce_Manager_Framework_Describe"="1. All Imou devices are bound to developer account. Overall structure is shown as below.";
-"Mode_Introduce_Manager_Relation_Describe"="2. The developer shall maintain the relation between product user system and Imou devices. Take the typical account system of kindergarten baby online product for example.";
-"Mode_Introduce_User_Framework_Describe"="1. Connect the Open Platform with user mode. The devices are bound to user mode subaccount. Overall structure is shown as below.";
-"Mode_Introduce_User_Relation_Describe"="2. The developer shall maintain the relation between user system of the product and user mode subaccount of Imou Open Platform. Take the typical account system of smart home product for example.";
-
-
 //设备列表
 "device_manager_list_no_device"="No device. Please tap \+\ to add device.";
-"device_manager_list_title"="Imou";
+"device_manager_list_title"="IMOU";
 
 "footer_no_more_data"="All data has been loaded.";
 "footer_refresh"="Loading more data...";
-
 
 
 //Button
@@ -184,15 +169,16 @@
 //Alert
 "Alert_Title_Notice" = "Alert";
 "Alert_Title_Notice1" = "Notice";
+"Alert_Title_Notice2" = "Notice";
 "Alert_Title_Button_Confirm" = "Confirm";
-"Alert_Title_Button_Confirm1" = "I Know";
+"Alert_Title_Button_Confirm1" = "OK";
 "Alert_Title_Button_Cancle" = "Cancel";
 "mobile_common_permission_apply" = "Permission Application";
 
 
 //common
 "mobile_common_delete" = "Delete";
-"mobile_common_bec_device_offline"="Device is offline.";
+"mobile_common_bec_device_offline"="Offline";
 "mobile_common_release_to_load"="Release to load more...";
 "mobile_common_pull_down_to_refresh"="Pull down to refresh...";
 "mobile_common_data_loading"="Refreshing...";
@@ -200,8 +186,8 @@
 "mobile_common_net_fail" = "Network request failed (%ld)";
 "common_next" = "Next";
 "common_cancel" = "Cancel";
-"common_confirm" = "OK";
-"common_retry" = "Retry";
+"common_confirm" = "Confirm";
+"common_retry" = "Try Again";
 "common_help" = "Help";
 
 //权限申请
@@ -218,17 +204,20 @@
 "play_module_video_replay_description" = "Play error. Click to refresh";
 "play_history_show_more" = "more";
 //全部录像页面
-"play_module_device_record" = "Local Record";
-"play_module_cloud_record" = "Cloud Record";
-"SelectAll" = "Select all";
-"videotape_download" = "Download";
+"play_module_device_record" = "Equipment";
+"play_module_cloud_record" = "Cloud";
+
+"SelectNone" = "Select none";
+"SelectAll" = "All";
+"videotape_download" = "Download the recording";
 "CancelSelectAll" = "Cancel";
 "common_done" = "Done";
 "play_module_none_record" = "No Record Today";
 "play_module_no_sdcard" = "No Local Storage";
 "More_MyFamily_EditBtnTitle_Edit" = "Edit";
-"mobile_common_data_downloading" = "Now downloading %.1fM/%.1fM";
-"mobile_common_data_download_fail" = "Failed to download.";
+"mobile_common_data_downloading" = "%.2fMB/%.2fMB";
+"mobile_common_data_downloading1" = "Downloading";
+"mobile_common_data_download_fail" = "Failed to download，try again.";
 "mobile_common_data_download" = "Download";
 "mobile_common_data_download_success" = "Successed to download";
 "play_module_media_play_no_record_here" = "No record";
@@ -236,6 +225,9 @@
 "mobile_common_input_video_password_tip" = "To guarantee your data security. Please input Device password.";
 "play_module_video_media_start_record" = "Start recording";
 "play_module_media_play_record_failed" = "Failed to record";
+"no_message" = "No message";
+"loading_failed" = "Loading failed,";
+"tap_and_try_again" = "Tap and try again";
 "device_manager_no_cloud_storage" = "Cloud storage service is not opened.";
 "video_module_none_record" = "No Record Today";
 
@@ -243,13 +235,14 @@
 "setting_device_version" = "Device Firmware Version";
 "setting_device_update" = "Start upgrade.";
 "setting_device_updateing" = "upgradeing";
-"setting_device_deployment" = "Alarm Setting";
+"setting_device_deployment" = "Detection";
 "setting_device_device_name" = "Device Name";
 "setting_device_device_info_title" = "Device Details";
 "setting_device_device_model" = "Device Model";
 "setting_device_serial_number" = "S/N";
 "setting_device_thumb" = "Cover Image Setting";
 "setting_device_edit_name_placeholder" = "Please input device name.";
+"operation_failed" = "Operation failed";
 
 "setting_device_delete_alert" = "confirm delete？";
 "setting_device_now_version" = "Current Version";
@@ -258,76 +251,42 @@
 "setting_device_footer_alarm" = "Alarm Setting";
 "setting_device_deployment_switch" = "Motion Detection";
 "setting_device_had_paste" = "Copy Successfully";
-"setting_device_deployment_detail" = "  It will record video when movement is detected after it is enabled.";
+"setting_device_deployment_detail" = "Record videos and sent notification when motion is delected, Notifications must be enabled";
 "setting_device_snap_auto" = "Auto Snapshot";
 "setting_device_snap_byself" = "Custom";
 "More_Device_Choose_Comefrom_Picture" = "Select form album";
 "More_Device_Shoot" = "Snapshot";
-"setting_device_alarm_alert" = "7*24 reminder enabled by default.";
+"setting_device_alarm_alert" = "7*24 reminder enabled by default. Please click detail-Reminder Period for more setting.";
 "setting_device_alarm_alert_close" = "You will no longer receive device alarm message and video after motion detection is disabled.";
 "setting_device_update_alert" = "The upgrade process lasts for several minutes. Please ensure that the equipment is not powered off during the upgrade";
 "add_device_password_too_simple" = "Password too simple";
 "add_device_please_input_RCCode" = "Please enter the correct security verification code";
+"add_device_please_input_device_name" = "Please enter the device name";
 
 //添加设备
 "add_device_config_fail" = "Config fail";
 "add_device_detecting_network_safety" = "Detecting network security config, please wait...";
 "add_device_confirm_same_network" = "Confirm to connect to the same network";
-"add_device_connect_same_network" = "Please connect your phone and device to the same network";
-"add_devices_connect_by_wired_hint_one" = "Ensure that the network cable is connected";
 "device_manager_input_wifi_password" = "Please input WiFi password.";
 "add_device_remember_password" = "Remember the password";
 "add_device_device_not_support_5g" = "The device does not support 5G Wi-Fi";
 "add_device_wifi_ssid" = "Wi-Fi network:";
 "add_device_input_wifi_password" = "Please enter the Wi-Fi password";
-"add_device_input_wifi_ssid" = "Please enter the Wi-Fi SSID";
-"Add_Device_ScanQRCode_Lable" = "Please scan the QR code on the device";
-"Add_Device_SerialNumber_Add" = "Serial number adding";
 "Add_Device_Title" = "Device Adding";
-"Add_Device_SerialNumber_Lable" = "Please enter serial number （S/N） and safety code on the device label.";
-"Add_Device_SerialNumber_InputPlaceholder" = "Please enter the serial number of the device";
-"add_device_input_sec_code_by_user" = "Please enter the safety code";
 "add_device_without_input_sccode_tip" = "* If there is no safety code on label, then no need to enter.";
-"Add_Device_Password_InputPlaceholder" = "Please enter the device password";
-"Add_Device_Finish" = "Done";
-"Add_Device_NextStep" = "Next";
 "add_device_detect_safe_network_config_failed" = "Unable to detect network security config \n Please confirm that your phone and device are connected to the same network";
-"add_device_plug_power" = "Please connect power cable to the device";
-"Add_Device_DevicePassword_Set" = "Device password is innovative security reinforcement strategy of Imou, to better protect information security of your device. With correct device password, you can acquire device audio and video information. Please enter the password when you connect camera to NVR and other devices. Please keep the password properly. If you forgot the password, restore the device to default settings, add to account and set a new device password.";
-"Add_Device_DevicePassword_Confirm" = "1. If you have set device password at Imou app or other clients, and in case of forgetting the password, you can restore to default settings, add the device again, and set a new device password.\n2. If you have not set device password, and there is “safety code”on device label, please enter the 8-bit safety code. \n (Safety code is initial password of your device. After adding device, you can modify device password on the interface of Device Details - Device Setting - Device Password.)";
-"Add_Device_TimeZone" = "Device time zone";
-"Device_AddDevice_Initial_Password_Cannot_All_Letter" = "密码为数字字母组合,不能全为英文";
-"Device_AddDevice_Initial_Password_Cannot_All_Number" = "密码为数字字母组合,不能全为数字";
-"Device_AddDevice_Initial_Password_String_Length" = "密码长度为8到32位";
-"add_device_sn_not_exist" = "Device serial number does not exist";
-"login_dev_not_supported" = "This device is unsupported";
+"add_device_plug_power" = "Connect the device to the power";
 "add_device_adjust_phone_volume" = "Turn up the volume of your phone and point speaker to the device microphone, sure to hear sonic wave";
 "add_device_will_hear_bugu" = "The sound of \"cuckoo, cuckoo\" will be heard";
-"add_device_will_hear_jiji" = "The sound of \"jiji, jiji\" will be heard";
-"mobile_common_bec_device_add_by_yourself" = "Device has been registered with your account";
 "add_device_connect_router_please_wait" = "Connecting to the router, please wait...";
 "add_device_adjust_phone_volume_to_hear_bugu" = "Turn up the volume of your phone and point the speaker at the microphone to make sure you hear \"cuckoo, cuckoo\".";
-"add_device_adjust_phone_volume_to_hear_jiji" = "Turn up the volume of your phone and point the speaker at the microphone to make sure you hear \"cuckoo, cuckoo\".";
-"add_device_mobile_close" = "请手机尽可能靠近设备";
-"add_device_summer_date" = "Date";
-"add_device_summer_week" = "Week";
-"add_device_summer_start_time" = "Start Time";
-"add_device_summer_end_time" = "End Time";
-"mobile_common_modify_device_pwd_tip" = "In order to protect network security for your device, we recommend you to modify default password after device is added.";
 "add_device_try_again" = "Try it again";
-"add_devices_summer_time" = "DST";
-"device_manager_time_zone_config" = "Time Zone Setting";
-"device_manager_time_time" = "Time Setting";
-"add_device_succeed" = "Add successfully";
 "add_device_name_for_device" = "Please name your device here";
-"more_settings" = "More Settings";
 "add_device_add_volume_tip" = "Please first turn up cellphone volume.";
-"add_device_wifi_connect_confirm" = "Please confirm that your phone is connected to the Wi-Fi of the device";
 "add_device_connect_and_goto_next" = "After connecting, it will automatically enter the next step";
 "add_device_switch_to_wired_add" = "Switch to wired add";
 "add_device_switch_to_wireless_add" = "Switch to wireless add";
 "add_device_restart" = "Restart";
-"common_msg_quit_confirm" = "Are you sure you want to exit？";
 "add_device_config_not_complete_tip" = "You have not completed the config, if exit, you will restart the config process.";
 "add_device_tip_not_support_5g" = "1. Your camera does not support 5G Hz band Wi-Fi. If you are using a dual-band router, please connect your phone and camera to the 2.4G Hz band Wi-Fi signal.\n 2. If you are not sure about the current Wi-Fi band to which your phone and camera are connected, you can check the relevant instructions of the router and enter the router setting page for confirmation.";
 "add_device_listen_wifi_pwd_error_tip" = "Hearing the device prompt WiFi password error?";
@@ -338,7 +297,7 @@
 "add_device_binding_to_account" = "Binding device to account, please wait...";
 "add_device_operation_by_instructions" = "Please follow the operation instruction of the device";
 "add_device_complete_related_operations" = "Related operations have been completed";
-"add_device_device_bind_by_other" = "Sorry, your device has been bound by %@, you can contact him/her for device share or to unbind the device";
+"add_device_device_bind_by_other" = "Sorry, your device has been bound by %@, you can contact him/her to unbind the device.";
 "add_device_by_wired" = "Wired";
 "add_device_by_wireless" = "Wireless";
 "add_device_summer_chooes_startTime" = "请选择开始时间";
@@ -350,15 +309,10 @@
 "message_pushconfig_timesettip" = "The start time and end time cannot be the same";
 "device_manager_encryption_password_rule" = "The password must be the combination of 8-32 numbers, letters and symbols (Case sensitive)";
 
-"add_device_exit" = "Exit";
-"add_device_red_flash" = "红灯闪烁";
-"add_device_red_light" = "红灯长亮";
-"add_device_green_light" = "绿灯长亮";
-"add_device_green_flash" = "绿灯闪烁";
-"add_device_green_blue_light" = "绿/蓝灯长亮";
-"add_device_yellow_flash" = "黄灯闪烁";
-"add_device_red_circle" = "红灯旋转";
-"add_device_blue_light" = "蓝灯长亮";
+"add_device_red_light" = "The red light is always on";
+"add_device_green_light" = "The green light is always on";
+"add_device_green_blue_light" = "The green/blue light is always on";
+"add_device_blue_light" = "The blue light is always on";
 
 "add_device_title" = "Device Adding";
 "add_device_falshlight_off" = "Tap to light up";
@@ -369,10 +323,10 @@
 "add_device_input_sn" = "Please enter the serial number of the device";
 "add_device_input_sn_under_device" = "Please enter serial number and safety code on the device label.";
 "add_device_input_sccode" = "Please enter the safety code";
-"add_device_confrim_to_quit" = "Are you sure to quit?";
+"add_device_confrim_to_quit" = "Exit";
 "add_device_not_complete_tip" = "You have not completed the config, if exit, you will restart the config process. ";
 "device_manager_wifi_connetting_tip" = "Wi-Fi connecting. Check it after refreshing";
-"mobile_common_network_config" = "Network Config";
+"mobile_common_network_config" = "Network";
 "device_manager_connect" = "Connect";
 "device_manager_wifi_list_empty" = "No WiFi";
 "mobile_common_get_info_failed" = "Failed to obtain";
@@ -380,7 +334,7 @@
 "device_manager_connected_wifi" = "Current Wi-Fi Network:";
 "device_manager_select_wifi" = "Select wifi network";
 "add_device_connect_failed" = "Connection failed";
-"add_device_kindly_reminder" = "Reminder";
+"add_device_kindly_reminder" = "Please note";
 "add_device_input_device_password" = "Please enter the device password";
 "add_device_password_initial_tip" = "1. If you have set device password or other clients, and in case of forgetting the password, you can restore to default settings, add the device again, and set a new device password.\n2. If you have not set device password, and there is “safety code”on device label, please enter the 8-bit safety code. \n (Safety code is initial password of your device. After adding device, you can modify device password on the interface of Device Details - Device Setting - Device Password.)";
 "add_device_device_locked_please_reboot" = "Sorry, device password errors reach limit, your device has been locked, please turn off the device and reboot";
@@ -399,26 +353,26 @@
 "add_device_yellow_light_twinkle" = "Yellow light flash";
 "add_device_green_blue_light_always" = "Green/Blue light stays illuminated";
 "add_device_blue_light_always" = "Blue light stays illuminated";
-"add_device_timeout_add_by_qrcode" = "二维码添加";
+"add_device_timeout_add_by_qrcode" = "QR code adding";
 "add_device_red_light_always" = "Red light stays illuminated";
-"Device_AddDevice_Confirm_Box_Working" = "添加前,请确保乐盒能正常工作:";
-"Device_AddDevice_Plug_Power_Box_White_Light" = "① 插上电源,乐盒指示灯显示为白色";
-"Device_AddDevice_Connect_Available_Network" = "② 连上可用网络";
-"Device_AddDevice_No_Reminder" = "  下次不再提醒";
-"Device_AddDevice_Has_Confirm_Add" = "已确认, 开始添加";
+"Device_AddDevice_Confirm_Box_Working" = "Before adding, please ensure that the music box can work normally:";
+"Device_AddDevice_Plug_Power_Box_White_Light" = "① Plug in the power supply, and the music box indicator is white";
+"Device_AddDevice_Connect_Available_Network" = "② Connect to available networks";
+"Device_AddDevice_No_Reminder" = "  Don't remind me again";
+"Device_AddDevice_Has_Confirm_Add" = "Confirmed, start adding";
 "add_device_i_need_help" = "I need help";
 "add_device_connect_timeout" = "Connection timed out";
 "add_device_operation_by_voice_or_light" = "Please follow the device indicator light or voice prompt to select the operation";
 "add_device_config_failed" = "Config failed";
 "device_common_operate_fail_try_again" = "Operation failed. Please try again.";
 "add_device_device_bind_by_yourself" = "The device is already in your account";
-"add_device_add_successfully" = "Add successfully!";
+"add_device_add_successfully" = "Device added successfully!";
 "add_device_done" = "complete";
 "add_devices_time_zone_quit_hint" = "Time zone not set may cause error in cloud storage";
 "add_device_operation_by_voice_tip" = "Please follow the device voice operation";
 "add_device_config_done" = "Config complete";
 "add_device_config_failed_please_retry" = "Config failed, please start again";
-"add_devices_tip_about_wifi_pwd" = "设备的热点密码为设备安全码，找到设备标签上带有”设备安全码“的字样，输入设备标签上的8位设备安全码即可";
+"add_devices_tip_about_wifi_pwd" = "The hotspot password of the device is the device security code. Find the words ”device security code“ on the device label and enter the 8-digit device security code on the device label";
 "add_device_initialize_failed" = "Failed to detect network security configuration";
 "add_device_set_device_password_for_safety" = "To enhance security, please set your device password";
 "common_button_next_step" = "Next";
@@ -427,7 +381,7 @@
 "add_device_input_imei_under_device" = "Please enter the IMEI number on the label of the device body";
 "add_device_input_imei_by_user_tip" = "*IMEI号为15-17位数字";
 "add_device_qrcode_title_tip" = "Please face the QR code directly to the camera lens";
-"add_device_qrcode_msg_tip" = "距离保持在10-30cm,前后缓慢移动\n听到“二维码扫描成功”的语音提示后点击下一步";
+"add_device_qrcode_msg_tip" = "Keep the distance at 10-30cm, move slowly back and forth nClick Next after hearing the voice prompt “QR code scanning succeeded”";
 "add_device_same_network_tip" = "Please connect your phone and device to the same network";
 "add_devices_smartconfig_msg_no_wifi" = "Please connect your mobile phone to Wi-Fi";
 "add_device_confirm_power_and_sim" = "Please connect the device to the power supply and insert the SIM card.";
@@ -464,9 +418,9 @@
 "no_usable_network" = "No available network";
 "add_device_quit_add_process" = "Exit ";
 "device_settings_wifi_config_save_failed" = "Failed to save";
-"add_device_operation_by_ap_instructions" = "请按照设备使用说明书进行操作";
+"add_device_operation_by_ap_instructions" = "please follow the equipment manual";
 "mobile_common_common_ignore" = "Ignore";
-"go_to_setting" = "Setup";
+"go_to_setting" = "Settings";
 "add_device_re_add" = "Add again";
 "add_device_mode_xxxx" = "Device model-XXXX";
 "add_device_try_again_or_use_other_way" = "Please try again or choose another method to add the device";
@@ -476,5 +430,156 @@
 "add_device_enter_wifi_password" = "Please enter the Wi-Fi name";
 "add_device_wait_to_connect_wifi_failed_sc" = "Automatic connection failed. Please go to Wi-Fi setting page of your smartphone, connect hotspot \"%@\" (password is the device safety code), and then return to this page.";
 "device_delete_success"="Delete successfully.";
-"home_empty_channel"="暂无通道";
-"Device_AddDevice_Scan_RDCode_Tip" = "请遮挡住部分条形码后，再尝试用手机扫描二维码，识别速度更快哦";
+"home_empty_channel"="No access";
+"Device_AddDevice_Scan_RDCode_Tip" = "Please cover part of the barcode and then try to scan the QR code with your mobile phone for faster recognition";
+"device_detail_cloud_storage" = "Cloud Storage";
+
+// 布防时间段  ------》 start
+"device_manager_monday" = "Monday";
+"device_manager_tuesday" = "Tuesday";
+"device_manager_wednesday" = "Wednesday";
+"device_manager_thursday" = "Thursday";
+"device_manager_friday" = "Friday";
+"device_manager_saturday" = "Saturday";
+"device_manager_sunday" = "Sunday";
+"device_manager_defence_time"   = "Detection On";
+"device_manager_defence_tips" = "Schedule detection periods for your device, during which you will be alerted if an alarm is triggered.";
+"device_manager_add_period" = "Add Period";
+"device_manager_period_setting" = "Set Period";
+"device_manager_period" = "Period";
+"device_manager_mon" = "Mon";
+"device_manager_tue" = "Tue";
+"device_manager_wed" = "Wed";
+"device_manager_thu" = "Thu";
+"device_manager_fri" = "Fri";
+"device_manager_sat" = "Sat";
+"device_manager_sun" = "Sun";
+"device_manager_mon_s" = "M";
+"device_manager_tue_s" = "T";
+"device_manager_wed_s" = "W";
+"device_manager_thu_s" = "T";
+"device_manager_fri_s" = "F";
+"device_manager_sat_s" = "S";
+"device_manager_sun_s" = "S";
+"device_settings_cross_line_set_no_save_tip" = "You haven't saved your settings. Are you sure you want to exit?";
+"device_manager_exit" = "Exit";
+"common_save" = "Save";
+"device_manager_time_set_tenmin_error" = "End time should be 10 minutes later than start time.";
+"device_manager_end_time_less_than_start" = "End time must be later than start time.";
+"device_manager_defence_time1"   = "Detection On";
+"device_manager_defence_setting" = "Detection";
+"device_manager_no_more_than_six_periods" = "Add max 6 periods";
+// 布防时间段  ------》 end
+
+"distribution_network_failure_retry" = "Distribution network failed, please try again";
+"soft_AP_addition" = "Soft AP addition";
+"SIM_card_adding" = "SIM卡添加";
+"local_distribution_network" = "本地配网";
+"NB_add" = "NB添加";
+"bluetooth_add" = "Bluetooth add";
+"iot_wired" = "iot wired";
+"iot_soft_AP" = "iot soft AP";
+"iot_bluetooth" = "iot Bluetooth";
+"distribution_network_not_completed" = "Sorry, your device has not completed the distribution process. Please add the mobile phone after completing the distribution network on the device";
+"please_check_yourself_first" = "Please press the self check/silence button of the equipment first";
+
+"automatic_connection_failed" = "Connection failed";
+"please_select_a_device_type" = "Please select a device type";
+"please_enter_the_device_type" = "Please enter the device type";
+"incomplete_QR_code_information" = "The QR code information is incomplete. Please try to add the device manually";
+
+
+"security_verification_code" = "安全验证码";
+"device_bluetooth_distribution_network" = "The device is in the Bluetooth distribution network";
+"equipment_distribution_network_succeeded" = "Equipment distribution network succeeded";
+
+"device_distribution_network_failure_retry" = "Device distribution failed, please try again\n";
+"turn_on_mobile_phone_positioning" = "Please open the mobile location information permission";
+"card" = "Card";
+"fingerprint" = "Fingerprint";
+"password" = "Password";
+"face" = "Face";
+"user_addition" = "User addition";
+"user_deletion" = "User deletion";
+"delete_all" = "Delete all";
+"user_modification" = "User modification";
+"dont_prompt_again" = "Don't show this again";
+"time_selector" = "Time Selector";
+
+
+"selected_date_must_depend_month" = "The selected date must depend on the month";
+"last_one" = "最后一个";
+"cloud_service" = "Cloud Service";
+"save_setting" = "Storage Setting";
+"devices_setting_up" = "Device Settings";
+"local_storage_abnormal" = "Storage exception";
+"local_storage_normal" = "Normal";
+"local_storage_formatting" = "Formatting";
+"local_storage" = "Local Storage";
+"no_SD_card" = "No Local Storage";
+"setting_of_deployment_time_period" = "Arm Schedule Setting";
+"no_support_detection" = "The device does not support Motion Detection";
+
+"storage_normal" = "Local storage is in a healthy state.";
+"storage_exception" = "SD Card has been damaged \n You are recommended to format \n the storage.";
+"storage_format" = "Formatted";
+"formatting_reminder" = "Formatting will clear all data in the Local storage and it cannot be cancelled once once implemented.";
+"SD_card" = "SD";
+
+"formatting_succeeded" = "Formatting succeeded";
+"formatting_failed" = "Failed to format";
+"available_space" = "Available: ";
+"has_been_used" = "GB Used: ";
+"used_size" = "GB";
+"used_size_zero" = "0GB";
+"used_size_formatting" = "GB Used: 0.00GB";
+"Alert_Title_Button_Formatting" = "Format";
+
+"message_module_delete_message_tip" = "Delete the message";
+"message_module_delete_message_confirm" = "Delete the selected message?";
+"message_module_cancel" = "Cancel";
+"message_module_confirm_delete" = "Confirm";
+"message_module_other" = "Other";
+"no_message" = "NO message";
+"mobile_common_bec_common_unknown" = "Unknown error";
+"loading_failure" = "load failed,";
+"click_retry" = "click retry";
+// 设备添加优化专项
+"add_device_scan_device_qr_code_tip" = "Please scan the QR code on the \n device";
+"add_device_connect_to_wifi"="Please connect to a Wi-Fi \n NetWork";
+"device_manager_wifi_name_ssid"="Click Switch or enter Wi-Fi name manually";
+"device_manager_please_set_wifi_password"="Please enter your Wi-Fi password";
+"permisssion_request_location_ssid_message"="“Demo” want to access your location to get the SSID when you add a device. Click Settings to allow access.";
+"device_add_wifi_name" = "Wi-Fi name";
+"add_device_iot_wifi_2_4g_only"="2.4GHz Wi-Fi only";
+"device_add_wifi_password" = "Wi-Fi password";
+"common_permission_request"="Permission Request";
+"permisssion_request_photos_message"="\"Demo\" want to access your photos so you can select and save images. Click Settings to allow access.";
+"permisssion_request_faceid_message"="\"Demo\" wants to access your facial ID so you can sign in with it. Click Settings to allow access.";
+"mobile_common_permission_explain_contact" = "Please enable contact access to use the function of adding friends to the address book normally";
+"permisssion_request_microphone_message"="Please open the microphone access permission to use the intercom, customized voice recording and other functions normally";
+"common_i_know" = "Next";
+"add_device_connect_2_4g_wifi"="Please connect your device to a 2.4GHz Wi-Fi network";
+"add_device_connect_2_4g_wifi_explain_1"="1.Your device does not support 5 GHz Wi-Fi now. If you are using a dual—band router, please ensure that your phone and your device are connected to the same 2.4 GHz network.";
+"add_device_connect_2_4g_wifi_tips_2"="2.If you are not sure about the Wi-Fi frequency band that is connected to,pleace check it on the user manual or the web setup page of the router.";
+"add_device_softap_connect_device_hotspot_fail"="Connection failed, please try again";
+"add_device_softap_connect_hotspot_title"="Turn on device hotspot";
+"add_device_softap_connect_hotspot_des"="Please enter your phone's Wi-Fi settings, connect to the hotspot as shown in the figure, and then return to this page";
+"add_device_softap_connect_hotspot_next"="Go to Wi-Fi settings";
+"add_device_scan_bind_by_yourself"="The device is already in your account";
+
+// 2022.10.29
+"message_list_none"="No message";
+
+"video_tape_download_warnning" = "The video download is not completed, exit will cancel the download, whether to exit";
+"password1" = "Password:";
+"connection_failure_prompt" = "If your automatic connection fails, please try to open the wifi list, do not save the password, and try to re-enter the password";
+"wireless_add" = "Wireless Add";
+"get_the_added_process_information_is_empty" = "Get the added process information is empty";
+"the_mobile_phone_has_been_jailbroken" = "The mobile phone has escaped from prison. It is risky to continue running";
+"special_symbols_such_as_facial_expressions" = "For example, your wifi name contains special symbols such as emoticons, such as 🌹❤️😊❄️ It may cause your device to fail to connect properly. It is recommended to delete the special symbols in the wifi name.";
+
+// 蓝牙配网
+"add_device_bluetooth_linking"="In Bluetooth distribution network...";
+"common_set" = "Set";
+"hidden_wifi_other"="Others...";

@@ -226,13 +226,13 @@
         _titleLbl.textColor = _titleColor;
         _titleLbl.text = [_title trimNewLine];
         [_titleLbl adjustForHeight];
-        _titleLbl.dh_left = SHEET_PADDING_LABEL_LEFT;
-        _titleLbl.dh_width = labelWidth;
+        _titleLbl.lc_left = SHEET_PADDING_LABEL_LEFT;
+        _titleLbl.lc_width = labelWidth;
     
         //消息体
         _msgLbl = [[UILabel alloc]initWithFrame:CGRectZero];
         _msgLbl.textColor = _msgColor;
-        _msgLbl.dh_width = self.frame.size.width;
+        _msgLbl.lc_width = self.frame.size.width;
         _msgLbl.text = [_msg trimNewLine];
         _msgLbl.font = _msgFont;
         _msgLbl.textAlignment = NSTextAlignmentCenter;
@@ -241,14 +241,14 @@
         _textFiled = [[UITextField alloc]initWithFrame:CGRectZero];
         _textFiled.isAccessibilityElement = YES;
         _textFiled.accessibilityIdentifier = @"textFieldInInitWithTitleOfSheetView";
-        _textFiled.dh_left = SHEET_PADDING_LABEL_LEFT;
-        _textFiled.dh_width = labelWidth;
-        _textFiled.dh_height = 0.0;
+        _textFiled.lc_left = SHEET_PADDING_LABEL_LEFT;
+        _textFiled.lc_width = labelWidth;
+        _textFiled.lc_height = 0.0;
         _textFiled.borderStyle = UITextBorderStyleRoundedRect;
         
         _btnContainer  = [[LCButtonContainer alloc]initWithFrame:CGRectZero];
-        _btnContainer.dh_left = SHEET_PADDING_BUTTON_LEFT;
-        _btnContainer.dh_width = buttonWidth;
+        _btnContainer.lc_left = SHEET_PADDING_BUTTON_LEFT;
+        _btnContainer.lc_width = buttonWidth;
         
         if (_cancleBtnTitle!=nil) {
             _cancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -259,12 +259,12 @@
             [_cancleBtn setTitleColor:[LCSheetView appearance].cancleTitleColor forState:UIControlStateNormal];
             [_cancleBtn addTarget:self action:@selector(cancleBtnCliked:) forControlEvents:UIControlEventTouchUpInside];
             [_cancleBtn setTitle:_cancleBtnTitle forState:UIControlStateNormal];
-            _cancleBtn.dh_left = 0.0;
-            _cancleBtn.dh_width = buttonWidth;
+            _cancleBtn.lc_left = 0.0;
+            _cancleBtn.lc_width = buttonWidth;
             [_btnArray addObject:_cancleBtn];
         }
         
-        _cancleBtn.dh_height = SHEET_BUTTON_HEIGHT;
+        _cancleBtn.lc_height = SHEET_BUTTON_HEIGHT;
         for (NSString *btnTitle in _otherArray){
             UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             tempBtn.isAccessibilityElement = YES;
@@ -279,10 +279,10 @@
             CGFloat top = index * (SHEET_BUTTON_HEIGHT + 1 + SHEET_PADDING_INSERT);
             CGFloat bottom = top + SHEET_BUTTON_HEIGHT;
             if (_showButtonBackground == NO) {
-                tempBtn.dh_top = top;
-                tempBtn.dh_left = 0.0;
-                tempBtn.dh_width = buttonWidth;
-                tempBtn.dh_height = SHEET_BUTTON_HEIGHT;
+                tempBtn.lc_top = top;
+                tempBtn.lc_left = 0.0;
+                tempBtn.lc_width = buttonWidth;
+                tempBtn.lc_height = SHEET_BUTTON_HEIGHT;
                 [tempBtn setBackgroundColor:[UIColor whiteColor]];
                 [tempBtn setTitleColor:[LCSheetView appearance].btnTitleColor forState:UIControlStateNormal];
                 [_btnContainer addSubview:tempBtn];
@@ -291,11 +291,11 @@
                 btnBgView.frame = CGRectMake(0, top, buttonWidth, SHEET_BUTTON_HEIGHT);
                 [_btnContainer addSubview:btnBgView];
                 
-                tempBtn.dh_width = 250;
-                tempBtn.dh_height = 40;
-                tempBtn.dh_left = (SHEET_SCREEN_WIDTH - tempBtn.dh_width) / 2.0;
-                tempBtn.dh_top = (SHEET_BUTTON_HEIGHT - tempBtn.dh_height) / 2.0;
-                tempBtn.layer.cornerRadius = tempBtn.dh_height / 2.0;
+                tempBtn.lc_width = 250;
+                tempBtn.lc_height = 40;
+                tempBtn.lc_left = (SHEET_SCREEN_WIDTH - tempBtn.lc_width) / 2.0;
+                tempBtn.lc_top = (SHEET_BUTTON_HEIGHT - tempBtn.lc_height) / 2.0;
+                tempBtn.layer.cornerRadius = tempBtn.lc_height / 2.0;
                 tempBtn.layer.masksToBounds = YES;
                 [tempBtn setBackgroundColor:_buttonBgColor];
                 [tempBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -309,26 +309,26 @@
             
             [_btnArray addObject:tempBtn];
             if ([btnTitle isEqual:[_otherArray lastObject]] && _cancleBtnTitle!=nil) {
-                _cancleBtn.dh_top = bottom + [LCSheetView appearance].paddingBetwennCancleAndOther;
-                _btnContainer.dh_height = _cancleBtn.dh_bottom;
+                _cancleBtn.lc_top = bottom + [LCSheetView appearance].paddingBetwennCancleAndOther;
+                _btnContainer.lc_height = _cancleBtn.lc_bottom;
                 [_cancleBtn setBackgroundColor:[UIColor whiteColor]];
             }
             else
             {
-                _btnContainer.dh_height = bottom;
+                _btnContainer.lc_height = bottom;
             }
         }
         
         [_btnContainer addSubview:_cancleBtn];
         if (_cancleBtnTitle!=nil)
         {
-            _btnContainer.dh_height = _cancleBtn.dh_bottom;
+            _btnContainer.lc_height = _cancleBtn.lc_bottom;
             
             //添加底部分隔线
             if (_showButtonBackground) {
                 UIView *bottomLine = UIView.new;
                 bottomLine.backgroundColor = [UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1.0];
-                bottomLine.frame = CGRectMake(0, _cancleBtn.dh_top - 1, SHEET_SCREEN_WIDTH, 0.5);;
+                bottomLine.frame = CGRectMake(0, _cancleBtn.lc_top - 1, SHEET_SCREEN_WIDTH, 0.5);;
                 [_btnContainer addSubview:bottomLine];
             }
         }
@@ -345,25 +345,25 @@
 
 - (void)resetFrame
 {
-    _titleLbl.dh_top = [LCSheetView appearance].paddingTop;
+    _titleLbl.lc_top = [LCSheetView appearance].paddingTop;
     if (self.title==nil || self.title.length==0) {
-        _msgLbl.dh_top = 0;
+        _msgLbl.lc_top = 0;
     }
     else
     {
-        _msgLbl.dh_top = _titleLbl.frame.origin.y + _titleLbl.frame.size.height + [LCSheetView appearance].paddingBetwennTiltAndMsg;
+        _msgLbl.lc_top = _titleLbl.frame.origin.y + _titleLbl.frame.size.height + [LCSheetView appearance].paddingBetwennTiltAndMsg;
     }
     
     switch (_sheetViewStyle) {
         case LCSheetViewStyleDefault:
-            _textFiled.dh_height  = 0.0;
+            _textFiled.lc_height  = 0.0;
             break;
         case LCSheetViewSecureTextInput:
-            _textFiled.dh_height = SHEET_TEXTFILED_HEIGHT;
+            _textFiled.lc_height = SHEET_TEXTFILED_HEIGHT;
             _textFiled.secureTextEntry = YES;
             break;
         case LCSheetViewStylePlainTextInput:
-            _textFiled.dh_height = SHEET_TEXTFILED_HEIGHT;
+            _textFiled.lc_height = SHEET_TEXTFILED_HEIGHT;
             _textFiled.secureTextEntry = NO;
             break;
         default:
@@ -372,11 +372,11 @@
     
     if (self.msgLbl.text.length == 0)
     {
-        _textFiled.dh_top = self.msgLbl.dh_bottom;
+        _textFiled.lc_top = self.msgLbl.lc_bottom;
     }
     else
     {
-        _textFiled.dh_top = self.msgLbl.dh_bottom + SHEET_PADDING_INSERT;
+        _textFiled.lc_top = self.msgLbl.lc_bottom + SHEET_PADDING_INSERT;
     }
     
     if (_sheetViewStyle == LCSheetViewStyleDefault)
@@ -387,23 +387,23 @@
         } else if(_titleLbl.text.length == 0) {
             offset = [LCSheetView appearance].buttonPaddingTop;
         }
-        _btnContainer.dh_top = _textFiled.dh_bottom + offset ;
+        _btnContainer.lc_top = _textFiled.lc_bottom + offset ;
     }
     else
     {
-        _btnContainer.dh_top = _textFiled.dh_bottom + SHEET_PADDING_INSERT;
+        _btnContainer.lc_top = _textFiled.lc_bottom + SHEET_PADDING_INSERT;
     }
     
-    _contentView.dh_height = _btnContainer.dh_bottom + SHEET_PADDING_BOTTOM;
+    _contentView.lc_height = _btnContainer.lc_bottom + SHEET_PADDING_BOTTOM;
     
-    if (_contentView.dh_height < SHEETVIEW_MIN_HEIGHT) {
-        _contentView.dh_height = SHEETVIEW_MIN_HEIGHT;
+    if (_contentView.lc_height < SHEETVIEW_MIN_HEIGHT) {
+        _contentView.lc_height = SHEETVIEW_MIN_HEIGHT;
         //        _btnContainer.height = SHEETVIEW_MIN_HEIGHT - SHEET_PADDING_BOTTOM - _btnContainer.top;
-        _btnContainer.dh_bottom = SHEETVIEW_MIN_HEIGHT - SHEET_PADDING_BOTTOM;
+        _btnContainer.lc_bottom = SHEETVIEW_MIN_HEIGHT - SHEET_PADDING_BOTTOM;
     }
     
-    _topBgView.dh_height = _btnContainer.dh_top - SHEETVIEW_LINE_HEIGHT;
-    _topLine.dh_top = _btnContainer.dh_top - SHEETVIEW_LINE_HEIGHT;
+    _topBgView.lc_height = _btnContainer.lc_top - SHEETVIEW_LINE_HEIGHT;
+    _topLine.lc_top = _btnContainer.lc_top - SHEETVIEW_LINE_HEIGHT;
 }
 
 - (NSString *)title

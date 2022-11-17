@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //  乐橙云录像详情
 
 #import <Foundation/Foundation.h>
@@ -37,6 +37,14 @@ typedef enum : NSUInteger {
  */
 -(NSString *)durationTime;
 
+
+/// 对象转json字符串
+-(NSString *)transfromToJson;
+
+/// json字符串转LCLocalVideotapeInfo对象
+/// @param jsonString json字符串
++(LCLocalVideotapeInfo * _Nullable)jsonToObject:(NSString *)jsonString;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN
@@ -48,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSString * recordRegionId;
 ///设备序列号
 @property (strong,nonatomic) NSString * deviceId;
+///iot设备产品ID
+@property (strong,nonatomic) NSString * _Nullable productId;
 ///通道号
 @property (strong,nonatomic) NSString * channelId;
 ///开始时间
@@ -82,6 +92,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return 持续时间格式为 HH:MM:SS
  */
 -(NSString *)durationTime;
+
+/// LCCloudVideotapeInfo对象转json字符串
+-(NSString *)transfromToJson;
+
+/// json字符串转LCCloudVideotapeInfo对象
+/// @param jsonString json字符串
++(LCCloudVideotapeInfo * _Nullable)jsonToObject:(NSString *)jsonString;
 
 @end
 

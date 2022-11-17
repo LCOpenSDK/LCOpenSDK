@@ -1,8 +1,8 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
-#import "DHDateFormatter.h"
+#import "LCDateFormatter.h"
 #import "NSDate+LeChange.h"
 #import "NSString+LeChange.h"
 
@@ -27,7 +27,7 @@ static NSCalendar *sharedCalendar = nil;
 
 + (NSDate *)lc_dateOfString:(NSString*)dateString withFormat:(NSString *)format {
     //NSDateFormatter *formatter = [NSDateFormatter new];
-    DHDateFormatter *formatter = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *formatter = [[LCDateFormatter alloc]initWithGregorianCalendar];
     formatter.dateFormat = format;
     NSDate *date = [formatter dateFromString:dateString];
     return date;
@@ -35,7 +35,7 @@ static NSCalendar *sharedCalendar = nil;
 
 - (NSString *)lc_dateDescription {
     //NSDateFormatter *formatter = [NSDateFormatter new];
-    DHDateFormatter *formatter = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *formatter = [[LCDateFormatter alloc]initWithGregorianCalendar];
     NSDate *todayEndDate = [[NSDate date] lc_dateAtEndOfDay];
     
     NSTimeInterval dayInterval = 3600 * 24;
@@ -58,7 +58,7 @@ static NSCalendar *sharedCalendar = nil;
 
 + (NSDate *)lc_stringToDate:(NSString *)timeString format:(NSString*)format{
     //NSDateFormatter *formatter = [NSDateFormatter new];
-    DHDateFormatter *formatter = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *formatter = [[LCDateFormatter alloc]initWithGregorianCalendar];
     formatter.dateFormat = format;
     NSDate *date = [formatter dateFromString:timeString];
     
@@ -134,7 +134,7 @@ static NSCalendar *sharedCalendar = nil;
 - (NSString *)lc_stringRepresentation
 {
     //NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *string = [format stringFromDate:self];
     return string;
@@ -143,7 +143,7 @@ static NSCalendar *sharedCalendar = nil;
 - (NSString *)lc_stringOfDateWithFormator:(NSString *)formator
 {
     //NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [format setDateFormat:formator];
     NSString *string = [format stringFromDate:self];
     return string;
@@ -241,7 +241,7 @@ static NSCalendar *sharedCalendar = nil;
 {
     NSDate *nowdate = [NSDate date];
     //NSDateFormatter* format = [[NSDateFormatter alloc] init];//格式化
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* strCurrentTime = [format stringFromDate:nowdate];
     
@@ -274,7 +274,7 @@ static NSCalendar *sharedCalendar = nil;
     }
     
     //NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     
     NSDate *date = nil;
     
@@ -324,7 +324,7 @@ static NSCalendar *sharedCalendar = nil;
 + (NSDate *)lc_dateFromString:(NSString *)string format:(NSString *)format
 {
     //NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    DHDateFormatter *formatter = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *formatter = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [formatter setDateFormat:format];
     return [formatter dateFromString:string];
 }
@@ -332,7 +332,7 @@ static NSCalendar *sharedCalendar = nil;
 + (NSString *)lc_stringOfDate:(NSDate *)date format:(NSString *)format
 {
     //NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    DHDateFormatter *formatter = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *formatter = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [formatter setDateFormat:format];
     return [formatter stringFromDate:date];
 }
@@ -341,7 +341,7 @@ static NSCalendar *sharedCalendar = nil;
 + (NSDate *)lc_dateOfTimeInfo:(Time_Info)timeInfo
 {
     //NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *strDate = [NSString stringWithFormat:@"%d-%02d-%2d %2d:%2d:%2d", timeInfo.year, timeInfo.month,
                          timeInfo.day, timeInfo.hour, timeInfo.minute, timeInfo.second];
@@ -377,7 +377,7 @@ static NSCalendar *sharedCalendar = nil;
     }
     
     //NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+    LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *string = [format stringFromDate:date];
     return string;
@@ -394,7 +394,7 @@ static NSCalendar *sharedCalendar = nil;
     if (date)
     {
         //NSDateFormatter *format = [[NSDateFormatter alloc]init];
-        DHDateFormatter *format = [[DHDateFormatter alloc]initWithGregorianCalendar];
+        LCDateFormatter *format = [[LCDateFormatter alloc]initWithGregorianCalendar];
         [format setDateFormat:@"HH:mm"];
         NSString *string = [format stringFromDate:date];
         return string;

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015年 Dahua. All rights reserved.
+//  Copyright (c) 2015年 Imou. All rights reserved.
 //
 //  UIView扩展，用于界面添加提示图片和文字。提示展示方式主要是界面中间有一张图片和一段文字。
 

@@ -1,0 +1,36 @@
+/* 
+  InfoPlist.strings
+  LeChangeDemo
+
+  Created by 吕同生 on 2022/10/31.
+  Copyright © 2022 imou. All rights reserved.
+*/
+
+// Bluetooth
+NSBluetoothAlwaysUsageDescription = "请开启蓝牙访问权限，以正常连接设备";
+NSBluetoothPeripheralUsageDescription = "请开启蓝牙访问权限，以正常连接设备";
+
+// Location
+NSLocationWhenInUseUsageDescription = "添加设备过程需要您的位置信息。";
+
+// Location
+NSLocationUsageDescription = "添加设备过程需要您的位置信息。";
+
+// Local Network
+NSLocalNetworkUsageDescription = "请开启本地网络权限，以正常使用搜索局域网设备功能";
+
+// User Tracking
+NSUserTrackingUsageDescription = "请协助获取IDFA标记权限，该标记将用于向您提供更优质、安全的个性化服务及内容";
+
+// Photo Library
+NSPhotoLibraryUsageDescription = "开启权限后，您可以选择和保存图像。";
+NSPhotoLibraryAddUsageDescription = "开启权限后，您可以选择和保存图像。";
+
+// Face ID
+NSFaceIDUsageDescription = "开启权限后，您可以使用面部ID进行登录。";
+
+// Camera
+NSCameraUsageDescription = "开启权限后，您可以使用拍照、扫描二维码等功能。";
+
+// Microphone
+NSMicrophoneUsageDescription = "开启权限后，您可以正常使用对讲功能。";

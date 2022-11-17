@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCInputTextField.h"
@@ -33,12 +33,12 @@ typedef void(^ActionBlock)(void);
     self.iconView = [UIImageView new];
     [self addSubview:self.iconView];
 
-    self.textField = [DHTextField lcTextFieldWithResult:result];
+    self.textField = [LCCTextField lcTextFieldWithResult:result];
     [self addSubview:self.textField];
     
     self.textField.layer.cornerRadius = 2;
     
-    self.sendCodeBtn = [LCButton lcButtonWithType:LCButtonTypeCode];
+    self.sendCodeBtn = [LCButton createButtonWithType:LCButtonTypeCode];
     [self addSubview:self.sendCodeBtn];
     [self layoutIfNeeded];
     
@@ -61,7 +61,7 @@ typedef void(^ActionBlock)(void);
                 make.bottom.mas_equalTo(self.mas_bottom);
             }];
             self.textField.layer.borderWidth = 1.0f;
-            self.textField.layer.borderColor = [UIColor dhcolor_c52].CGColor;
+            self.textField.layer.borderColor = [UIColor lccolor_c52].CGColor;
         }
         break;
 
@@ -82,7 +82,7 @@ typedef void(^ActionBlock)(void);
                 make.bottom.mas_equalTo(self.mas_bottom).offset(-11);
             }];
             self.layoutBlock = ^{
-                [weakself setBorderWithView:weakself Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor dhcolor_c59] borderWidth:1.0];
+                [weakself setBorderWithView:weakself Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor lccolor_c59] borderWidth:1.0];
             };
           
         }
@@ -104,7 +104,7 @@ typedef void(^ActionBlock)(void);
                 make.bottom.mas_equalTo(self.mas_bottom).offset(-11);
             }];
             self.layoutBlock = ^{
-                [weakself setBorderWithView:weakself Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor dhcolor_c59] borderWidth:1.0];
+                [weakself setBorderWithView:weakself Style:LC_BORDER_DRAW_BOTTOM borderColor:[UIColor lccolor_c59] borderWidth:1.0];
             };
         }
             break;

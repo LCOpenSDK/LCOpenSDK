@@ -1,10 +1,11 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/LCPermissionHelper.h>
 #import <LCBaseModule/LCSetJurisdictionHelper.h>
-
+#import <UserNotifications/UNUserNotificationCenter.h>
+#import <UserNotifications/UNNotificationSettings.h>
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Contacts/Contacts.h>
@@ -25,7 +26,6 @@
         if (completion) {
             completion(NO);
         }
-        return;
     }
     BOOL locationEnable = [CLLocationManager locationServicesEnabled];
     if (!self.locationManager) {
@@ -173,6 +173,47 @@
 			});
 		}
 	}
+}
+
++ (void)showUnPermissionLocationAlert:(NSString *)message {
+    [LCSetJurisdictionHelper setJurisdictionAlertView:@"common_permission_request".lc_T message:message];
+}
+
++ (void)showUnPermissionFaceIDAlert {
+    [LCSetJurisdictionHelper setJurisdictionAlertView:@"common_permission_request".lc_T message:@"permisssion_request_faceid_message".lc_T];
+}
+
++(void)checkCurrentNotificationStatus:(void (^)(BOOL granted))completion
+{
+    if (@available(iOS 10 , *))
+    {
+        [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                 if (settings.authorizationStatus == UNAuthorizationStatusDenied)
+             {      // 没权限
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     completion(false);
+                 });
+             }else{
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     completion(true);
+                 });
+             }
+         }];
+    }
+    else if (@available(iOS 8 , *))
+    {
+        UIUserNotificationSettings * setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (setting.types == UIUserNotificationTypeNone) {
+            // 没权限
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(false);
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(true);
+            });
+        }
+    }
 }
 
 @end

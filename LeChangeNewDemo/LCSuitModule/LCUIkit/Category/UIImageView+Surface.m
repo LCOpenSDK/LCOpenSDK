@@ -32,13 +32,13 @@
     }];
 }
 
-- (BOOL)lc_deskCacheIsExistThumbImageForDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId {
++ (BOOL)lc_deskCacheIsExistThumbImageForDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId {
     SDImageCache* cache = [SDImageCache sharedImageCache];
     NSString* key_temp = [NSString stringWithFormat:@"thumbimg_%@_%@",deviceId,chanelId];
     return [cache diskImageDataExistsWithKey:key_temp];
 }
 
-- (void)lc_deleteThumbImageWithDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId {
++ (void)lc_deleteThumbImageWithDeviceId:(NSString *)deviceId ChannelId:(NSString *)chanelId {
     if ([self lc_deskCacheIsExistThumbImageForDeviceId:deviceId ChannelId:chanelId]) {
         SDImageCache* cache = [SDImageCache sharedImageCache];
         NSString* key_temp = [NSString stringWithFormat:@"thumbimg_%@_%@",deviceId,chanelId];

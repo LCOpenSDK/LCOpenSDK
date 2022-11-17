@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //  回调均非主线程，需要强制切换到主线程进行
 
 #import "LCVideotapePlayerPersenter+SDKListener.h"
@@ -34,7 +34,7 @@
         }
         
         //几种密钥错误
-        if ((type == RESULT_PROTO_TYPE_DHHTTP && [code integerValue] == STATE_DHHTTP_KEY_ERROR) ||
+        if ((type == RESULT_PROTO_TYPE_LCHTTP && [code integerValue] == STATE_LCHTTP_KEY_ERROR) ||
             (type == RESULT_PROTO_TYPE_RTSP && [code integerValue] == STATE_RTSP_KEY_MISMATCH) ||
             (type == RESULT_PROTO_TYPE_HLS && ([code integerValue] == STATE_HLS_KEY_MISMATCH || [code integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH)) ) {
             //本地录像解密失败
@@ -65,11 +65,11 @@
         }
         
         //HTTP链路优化，错误判定
-        if (type == RESULT_PROTO_TYPE_DHHTTP &&
+        if (type == RESULT_PROTO_TYPE_LCHTTP &&
             ([code integerValue] != 0 &&
-             [code integerValue] != STATE_DHHTTP_OK &&
-             [code integerValue] != STATE_DHHTTP_PLAY_FILE_OVER &&
-             [code integerValue] != STATE_DHHTTP_PAUSE_OK)) {
+             [code integerValue] != STATE_LCHTTP_OK &&
+             [code integerValue] != STATE_LCHTTP_PLAY_FILE_OVER &&
+             [code integerValue] != STATE_LCHTTP_PAUSE_OK)) {
             //拉流失败不处理
             [self showErrorBtn];
             return;

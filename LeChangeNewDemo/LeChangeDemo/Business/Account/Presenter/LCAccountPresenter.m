@@ -1,8 +1,9 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCAccountPresenter.h"
+#import "LCBaseModule/LCBaseModule-Swift.h"
 
 @implementation LCAccountPresenter
 
@@ -64,75 +65,17 @@
     }
 }
 
-
-//选择对接模式页面点击事件
-- (void)modeSelectBtnClick:(LCButton *)sender {
-    switch (sender.tag) {
-        case 1001: {
-            //对接管理员模式
-            [self getManagerModeToken];
-        }
-            break;
-        case 1002: {
-            //了解管理员模式
-            [self.container.navigationController pushToManagerModeIntroduce];
-        }
-            break;
-        case 1003: {
-            //对接用户模式
-            [self.container.navigationController pushToUserModeLogin];
-        }
-            break;
-        case 1004: {
-            //了解用户模式
-            [self.container.navigationController pushToUserModeIntroduce];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-//用户注册页面点击事件
-- (void)userModeRegisterBtnClick:(LCButton *)sender {
-    if (sender.tag == 1002) {
-        //免验证注册
-         self.isAvoidRegister = YES;
-    }
-    [self registerParamCheck];
-}
-
-//用户登录页面点击事件
-- (void)userModeLoginBtnClick:(LCButton *)sender {
-    switch (sender.tag) {
-        case 1001: {
-            //登录
-            if (![self loginParamCheck]) {
-                return;
-            }
-        }
-            break;
-        case 1002: {
-            //注册跳转
-            [self.container.navigationController pushToUserModeRegist];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 ///获取验证码
 - (void)userModeRegisterGetSMSCode {
     if (!self.userEmail || ![self.userEmail isVaildEmail]) {
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T confirmString:@"Alert_Title_Button_Confirm".lc_T cancelString:nil handle:nil];
         return;
     }
     [LCAccountInterface userBindSms:self.userEmail success:^{
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"User_Mode_Register_Phone_SMS_Success".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"User_Mode_Register_Phone_SMS_Success".lc_T confirmString:@"Alert_Title_Button_Confirm".lc_T cancelString:nil handle:nil];
         
     } failure:^(LCError * _Nonnull error) {
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T ConfirmTitle:@"User_Mode_Register_Phone_SMS_Fail".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T confirmString:@"User_Mode_Register_Phone_SMS_Fail".lc_T cancelString:nil handle:nil];
     }];
 }
 
@@ -140,17 +83,17 @@
 - (BOOL)accountJointVaildCheck {
     if (!self.appId || [self.appId isNull]) {
         //提示APPID不能为空
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Plantform_APPID_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"Choose_Plantform_APPID_Alert".lc_T confirmString:@"Alert_Title_Button_Confirm".lc_T cancelString:nil handle:nil];
         return NO;
     }
     if (!self.appSecret || [self.appSecret isNull]) {
         //提示APPID不能为空
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Plantform_APPSecret_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"Choose_Plantform_APPSecret_Alert".lc_T confirmString:@"Alert_Title_Button_Confirm".lc_T cancelString:nil handle:nil];
         return NO;
     }
     if (!self.hostApi || [self.hostApi isNull] || ![self.hostApi isVaildURL]) {
         //检查Host有效性
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Plantform_HOST_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
+        [LCAlertView lc_ShowAlertWithTitle:@"Alert_Title_Notice".lc_T detail:@"Choose_Plantform_HOST_Alert".lc_T confirmString:@"Alert_Title_Button_Confirm".lc_T cancelString:nil handle:nil];
         return NO;
     }
     //保存下当前信息
@@ -162,61 +105,17 @@
     return YES;
 }
 
-//注册校验
-- (BOOL)registerParamCheck {
-    if (!self.userEmail || ![self.userEmail isVaildEmail]) {
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
-        return NO;
-    }
-    if (!self.isAvoidRegister && !self.verificationCode) {
-        //需要验证码
-            return NO;
-    }
-    //需要验证码
-    weakSelf(self);
-    [LCProgressHUD showHudOnView:nil];
-    [LCAccountInterface userBind:self.userEmail success:^{
-        //成功直接跳转登录
-        [LCProgressHUD showMsg:@"regist_user_account_success".lc_T];
-        [LCProgressHUD hideAllHuds:nil];
-        [weakself loginParamCheck];
-    } failure:^(LCError * _Nonnull error) {
-        //Alert提示
-        [LCProgressHUD hideAllHuds:nil];
-        [LCOCAlertView lc_ShowAlertWithContent:error.errorMessage];
-    }];
-    return YES;
-}
-
-//登录校验
-- (BOOL)loginParamCheck {
-    weakSelf(self);
-    if (!self.userEmail || ![self.userEmail isVaildEmail]) {
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:@"Choose_Injonit_Mode_Phone_Alert".lc_T ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
-        return NO;
-    }
-    [LCProgressHUD showHudOnView:nil];
-    [LCAccountInterface userTokenWithPhone:self.userEmail success:^(LCAuthModel *_Nonnull authInfo) {
-        //跳转主页
-        [LCProgressHUD hideAllHuds:nil];
-        [weakself.container.navigationController pushToLeChanegMainPage];
-    } failure:^(LCError *_Nonnull error) {
-        [LCProgressHUD hideAllHuds:nil];
-        [LCOCAlertView lc_ShowAlertWith:@"Alert_Title_Notice".lc_T Detail:error.errorMessage ConfirmTitle:@"Alert_Title_Button_Confirm".lc_T CancleTitle:nil Handle:nil];
-    }];
-    return YES;
-}
-
 - (void)getManagerModeToken {
     weakSelf(self);
     [LCProgressHUD showHudOnView:nil];
     [LCAccountInterface accessTokenWithsuccess:^(LCAuthModel *_Nonnull authInfo) {
         [LCProgressHUD hideAllHuds:nil];
         [weakself.container.navigationController pushToSubAccountPage:NO];
-        
+        NSLog(@"SignIn: %s跳转到子账户页面成功", __FUNCTION__);
         //[weakself.container.navigationController pushToLeChanegMainPage];
     } failure:^(LCError *_Nonnull error) {
         //返回初始界面
+        NSLog(@"SignIn：%s跳转到子账户页面失败", __FUNCTION__);
         [LCProgressHUD hideAllHuds:nil];
         [LCProgressHUD showMsg:error.errorMessage];
     }];
@@ -266,13 +165,17 @@
     [LCAccountInterface getOpenIdByAccount:self.userEmail success:^(LCAuthModel * _Nonnull authInfo) {
         //登录成功后保存子账号信息
         [weakself saveSubAccount:self.userEmail];
+        NSLog(@"SignIn：%s登陆成功，保存子账户信息成功",__FUNCTION__);
         [LCAccountInterface subAccountToken:@"" success:^(LCAuthModel * _Nonnull authInfo) {
             [LCProgressHUD hideAllHuds:nil];
+            NSLog(@"SignIn：%s跳转到乐橙主页面成功",__FUNCTION__);
             [weakself.container.navigationController pushToLeChanegMainPage];
             [weakself resetNavigationStacks];
         } failure:^(LCError * _Nonnull error) {
+            NSLog(@"SignIn：%s跳转到乐橙主页面失败",__FUNCTION__);
             [LCProgressHUD hideAllHuds:nil];
             [LCProgressHUD showMsg:error.errorMessage];
+            NSLog(@"SignIn：%s登陆失败，保存子账户信息成功",__FUNCTION__);
         }];
     } failure:^(LCError * _Nonnull error) {
         [LCProgressHUD hideAllHuds:nil];

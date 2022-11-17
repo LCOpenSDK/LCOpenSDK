@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import "NSObject+LeChange.h"
@@ -29,7 +29,7 @@ int _tDistributionVersion = -1;
 inline void NSLog(NSString *format, ...)
 {
     
-/// 暂时解决依赖 DHAppConfig
+/// 暂时解决依赖 LCAppConfig
     if (_tDistributionVersion == -1) {
          NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
         BOOL bDistributionVersion = [bundleDic[@"LCDistributionVersion"] boolValue];

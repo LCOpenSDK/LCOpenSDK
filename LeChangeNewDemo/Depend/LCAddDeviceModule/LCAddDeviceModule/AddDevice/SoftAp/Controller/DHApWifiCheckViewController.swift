@@ -1,11 +1,11 @@
 //
-//  Copyright © 2018年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2018年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //	软AP热点连接检查
 
 import UIKit
 import LCBaseModule
 
-class DHApWifiCheckViewController: DHGuideBaseViewController {
+class DHApWifiCheckViewController: LCGuideBaseViewController {
 
 	deinit {
 		NotificationCenter.default.removeObserver(self)
@@ -34,15 +34,14 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 		self.setupWifiName()
 		self.baseAddOMSIntroductionObserver()
 		self.adjustContraints()
-		self.checkWifi()
         self.refreshTipText()
+        
+        //【*】兼容iOS13，只有当WiFi名称匹配时，才做搜索操作
+        self.appBecomeActive()
         
         if #available(iOS 11.0, *) {
             self.autoConnectHotspot()
         }
-        
-        //【*】兼容iOS13，只有当WiFi名称匹配时，才做搜索操作
-        self.appBecomeActive()
         
 	}
 	
@@ -75,8 +74,8 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 			})
 			
 			wifiNameLabel = UILabel()
-			wifiNameLabel?.textColor = UIColor.dhcolor_c2()
-			wifiNameLabel?.font = UIFont.dhFont_t3()
+			wifiNameLabel?.textColor = UIColor.lccolor_c2()
+			wifiNameLabel?.font = UIFont.lcFont_t3()
 			wifiNameView?.addSubview(wifiNameLabel!)
 	
 			wifiNameLabel?.snp.makeConstraints({ (make) in
@@ -89,10 +88,10 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 
 	func adjustContraints() {
 		self.guideView.topImageView.contentMode = .scaleAspectFit
-        if dh_screenHeight < 667 {
+        if lc_screenHeight < 667 {
             self.guideView.updateTopImageViewConstraint(top: 0, width: 355, maxHeight: 355 * (300.0 / 375.0))
-            guideView.topTipLabel.font = UIFont.dhFont_t3()
-            guideView.descriptionLabel.font = UIFont.dhFont_t5()
+            guideView.topTipLabel.font = UIFont.lcFont_t3()
+            guideView.descriptionLabel.font = UIFont.lcFont_t5()
         } else {
             self.guideView.updateTopImageViewConstraint(top: 0, width: 375, maxHeight: 300)
         }
@@ -102,28 +101,21 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 	
 	func addNetworkObserver() {
 		NotificationCenter.default.addObserver(self, selector: #selector(networkChanged), name: NSNotification.Name(rawValue: "LCNotificationWifiNetWorkChange"), object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(checkWifi), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	@objc func networkChanged() {
-         //判断apWifi名称与实际的是否一致: 国内全名称判断，海外判断是否包含deviceId
-         let predicateWifiName = DHModuleConfig.shareInstance().isLeChange ? getApWifiName() : DHAddDeviceManager.sharedInstance.deviceId.uppercased()
-         let wifiSSID = DHMobileInfo.sharedInstance().wifissid
-         
-         print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::Networkchanged...current:\(wifiSSID ?? "")")
-         //【*】兼容处理：iOS13下可能存在ssid获取不到的情况
-        if wifiSSID != nil, wifiSSID != getApWifiName() {
-             if wifiSSID!.contains(predicateWifiName) {
-                 LCProgressHUD.show(on: self.view)
-             }
-         }
-         
-         checkWifi()
+        if #available(iOS 14.0, *) {
+            //判断apWifi名称与实际的是否一致: 国内全名称判断，海外判断是否包含deviceId
+            appBecomeActive()
+        } else {
+            checkWifi()
+        }
 	}
     
     @objc func appBecomeActive() {
-        let predicateWifiName = DHModuleConfig.shareInstance().isLeChange ? getApWifiName() : DHAddDeviceManager.sharedInstance.deviceId.uppercased()
-        let wifiSSID = DHMobileInfo.sharedInstance().wifissid
+        let predicateWifiName = LCModuleConfig.shareInstance().isChinaMainland ? getApWifiName() : LCAddDeviceManager.sharedInstance.deviceId.uppercased()
+        let wifiSSID = LCNetWorkHelper.sharedInstance().fetchSSIDInfo()
         
         //【*】兼容处理：只有Wifi能正常获取到，才进行搜索
         if wifiSSID != nil, wifiSSID?.contains(predicateWifiName) == true {
@@ -140,8 +132,8 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
          * V2 ->  如果平台给的是AAA-XXXX 那就是AAA-SN匹配  (Imou-XXXX)
          */
         
-        let manager = DHAddDeviceManager.sharedInstance
-        let softApWifiName = manager.getIntroductionParser()?.softApGuideInfo.wifiName ?? DHOMSSoftApGuideDefault.wifiname
+        let manager = LCAddDeviceManager.sharedInstance
+        let softApWifiName = manager.getIntroductionParser()?.softApGuideInfo.wifiName ?? LCOMSSoftApGuideDefault.wifiname
         var predicateWifiName = softApWifiName
         var prefix = manager.deviceModel
         print("🍎🍎🍎 \(#function):: softApWifiName: \(softApWifiName)")
@@ -152,7 +144,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         
         if manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion?.lowercased() == "v1" {
             //国内：设备型号-deviceId后4位； 海外：设备型号-deviceId，
-            if DHModuleConfig.shareInstance().isLeChange {
+            if LCModuleConfig.shareInstance().isChinaMainland {
                 predicateWifiName = prefix + "-" + manager.deviceId.suffix(4).uppercased()
             } else {
                 predicateWifiName = prefix + "-" + manager.deviceId.uppercased()
@@ -162,7 +154,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             //国内、海外：统一，设备型号-deviceId
             predicateWifiName = prefix + "-" + manager.deviceId.uppercased()
             return predicateWifiName
-        } else if DHModuleConfig.shareInstance().isLeChange {
+        } else if LCModuleConfig.shareInstance().isChinaMainland {
             return "DAP" + "-" + manager.deviceId.uppercased()
         }
         
@@ -172,88 +164,76 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 	@objc private func checkWifi() {
         
         //3.13.3小版本需求
-        let manager = DHAddDeviceManager.sharedInstance
+        let manager = LCAddDeviceManager.sharedInstance
         if let wifiModelVersion = manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion, wifiModelVersion.count != 0 {
-            wifiNameLabel?.text = DHAddDeviceManager.sharedInstance.getIntroductionParser()?.softApGuideInfo.wifiName ?? DHOMSSoftApGuideDefault.wifiname
+            wifiNameLabel?.text = LCAddDeviceManager.sharedInstance.getIntroductionParser()?.softApGuideInfo.wifiName ?? LCOMSSoftApGuideDefault.wifiname
         } else {
             
             wifiNameLabel?.text = "DAP-XXXX"
         }
-		
-//		//非WIFI状态下，不处理
-//		guard DHNetWorkHelper.sharedInstance().emNetworkStatus == .reachableViaWiFi else {
-//			return
-//		}
-//		
-//		//判断apWifi名称与实际的是否一致: 国内全名称判断，海外判断是否包含deviceId
-//		let predicateWifiName = DHModuleConfig.shareInstance().isLeChange ? getApWifiName() : DHAddDeviceManager.sharedInstance.deviceId.uppercased()
-//		let wifiSSID = DHMobileInfo.sharedInstance().wifissid
-//        
-//		// 可能会出现ssid为空的情况
-//		guard wifiSSID != nil, wifiSSID!.uppercased().contains(predicateWifiName.uppercased()) else {
-//			return
-//		}
-//		
+        
+        print("LTS-01-" + (wifiNameLabel?.text ?? ""))
+        
+        guard UIViewController.lc_top() == self else {
+            return
+        }
+				
 		// 防止多次Push
 		if isWifiChecked == true {
 			return
 		}
         
+        print("LTS-02-isWifiChecked-true")
+        
 		self.isWifiChecked = true
 		
 		//DTS000450176，切换到后台，停止了局域网搜索，可能会导致搜索不到设备
-		DHNetSDKSearchManager.sharedInstance()?.startSearch()
-		
+		LCNetSDKSearchManager.sharedInstance()?.startSearch()
+        print("LTS-03-LCNetSDKSearchManager-startSearch")
 		//WIFI连接上后，搜索2s，判断初始化状态：
         LCProgressHUD.show(on: self.view)
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            if let device = DHAddDeviceManager.sharedInstance.getLocalDevice() {
-                if true == DHAddDeviceManager.sharedInstance.isSupportSC {
-                    self.pushScDeviceNextPage(deviceIsInited: device.deviceInitStatus == .init)
-                } else {
-                   
-                    if device.deviceInitStatus == .unInit {
-                        //【*】未初始初始化，跳转初始化搜索界面
-                        self.basePushToInitializeSearchVC()
-                    } else if device.deviceInitStatus == .noAbility, DHModuleConfig.shareInstance().isLeChange {
-                        //【*】没有初始化能力集的，国内跳转局域网搜索（后面会赋值admin密码）；海外跳转登录
-                        self.basePushToInitializeSearchVC()
-                    } else {
-                        //【*】已初始化的跳转登录
-                        self.pushToApLoginVC()
-                    }
+        DispatchQueue.main.async {
+            print("LTS-04-ApWifiCheck-DispatchQueue.main.async")
+            let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+            timer.schedule(wallDeadline: .now(), repeating: 2.0)
+            var repeatCount = 25
+            timer.setEventHandler(handler: {
+                repeatCount -= 1
+                if repeatCount == 0 {
+                    // 重置标志位
+                    print("LTS-05-apWifiCheck--repeatCount-0")
+                    self.isWifiChecked = false
+                    timer.cancel()
+                    LCProgressHUD.hideAllHuds(self.view)
+                    print("⚠️⚠️⚠️\(NSStringFromClass(self.classForCoder))...获取设备信息失败，")
+                    return
                 }
-                LCProgressHUD.hideAllHuds(self.view)
-            } else {
-                if true == DHAddDeviceManager.sharedInstance.isSupportSC {
-                    //没找到设备，继续轮询
-                    let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-                    timer.schedule(wallDeadline: .now(), repeating: 2.0)
-                    var repeatCount = 15
-                    timer.setEventHandler(handler: {
-                        repeatCount -= 1
-                        if repeatCount == 0 {
-                            timer.cancel()
-                            LCProgressHUD.hideAllHuds(self.view)
-                            print("⚠️⚠️⚠️\(NSStringFromClass(self.classForCoder))...获取设备信息失败，")
-                            self.isWifiChecked = false
-                            return
+                print("LTS-05-apWifiCheck--repeat-" + String(repeatCount))
+                if let device = LCAddDeviceManager.sharedInstance.getLocalDevice() {
+                    print("LTS-06-apWifiCheck--搜索到设备")
+                    if true == LCAddDeviceManager.sharedInstance.isSupportSC {
+                        self.pushScDeviceNextPage(deviceIsInited: device.deviceInitStatus == .`init`)
+                    } else {
+                        if device.deviceInitStatus == .unInit {
+                            //【*】未初始初始化，跳转初始化搜索界面
+                            self.basePushToInitializeSearchVC()
+                        } else if device.deviceInitStatus == .noAbility, LCModuleConfig.shareInstance().isChinaMainland {
+                            //【*】没有初始化能力集的，国内跳转局域网搜索（后面会赋值admin密码）；海外跳转登录
+                            self.basePushToInitializeSearchVC()
+                        } else {
+                            //【*】已初始化的跳转登录
+                            self.pushToApLoginVC()
                         }
-                        if let device = DHAddDeviceManager.sharedInstance.getLocalDevice() {
-                            //SC设备软AP配网
-                            timer.cancel()
-                            self.pushScDeviceNextPage(deviceIsInited: device.deviceInitStatus == .init)
-                            LCProgressHUD.hideAllHuds(self.view)
-                        }
-                    })
-                    timer.resume()
-                } else {
-                    self.basePushToInitializeSearchVC()
+                    }
+                    //SC设备软AP配网
+                    timer.cancel()
                     LCProgressHUD.hideAllHuds(self.view)
                 }
-            }
-		}
+            })
+            timer.resume()
+        }
 	}
+    
     // MARK: sc设备软AP配网
     func autoConnectHotspot() {
         //sc设备自动连接热点
@@ -264,11 +244,11 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         //SC设备软AP配网
         let predicateWifiName = getApWifiName()
         LCProgressHUD.show(on: self.view)
-        DHAddDeviceManager.sharedInstance.autoConnectHotSpot(wifiName: predicateWifiName, password: DHAddDeviceManager.sharedInstance.initialPassword, completion: { (success) in
+        LCAddDeviceManager.sharedInstance.autoConnectHotSpot(wifiName: predicateWifiName, password: LCAddDeviceManager.sharedInstance.initialPassword, completion: { (success) in
             
             LCProgressHUD.hideAllHuds(self.view)
             if success {
-                DHMobileInfo.sharedInstance().wifissid = predicateWifiName
+                LCMobileInfo.sharedInstance().wifissid = predicateWifiName
                 self.autoConnectHotSpotFailed = false
                 self.checkWifi()
                 print("连接sc设备热点成功")
@@ -290,11 +270,11 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
                 self.selectWifiButton = UIButton(type: .system)
                 guideView.addSubview(self.selectWifiButton!)
                 self.selectWifiButton?.layer.borderWidth = 1
-                self.selectWifiButton?.layer.borderColor = UIColor.dhcolor_c8().cgColor
+                self.selectWifiButton?.layer.borderColor = UIColor.lccolor_c8().cgColor
                 self.selectWifiButton?.setTitle("add_device_connect_goto_select_wifi".lc_T, for: .normal)
-                self.selectWifiButton?.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
-                self.selectWifiButton?.backgroundColor = UIColor.dhcolor_c43()
-                self.selectWifiButton?.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+                self.selectWifiButton?.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
+                self.selectWifiButton?.backgroundColor = UIColor.lccolor_c43()
+                self.selectWifiButton?.setTitleColor(UIColor.lccolor_c2(), for: .normal)
                 self.selectWifiButton?.snp.makeConstraints({ (make) in
                     make.bottom.right.equalTo(self.guideView).offset(-20)
                     make.left.equalTo(self.guideView).offset(20)
@@ -321,7 +301,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             
 
             //SC自动连接的失败页面   中间有关于热点密码
-            if true == DHAddDeviceManager.sharedInstance.isSupportSC {
+            if true == LCAddDeviceManager.sharedInstance.isSupportSC {
                 self.guideView.detailButton.isHidden = false
                 self.guideView.descriptionLabel.isHidden = true
             } else {
@@ -342,8 +322,8 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
     // MARK: sc device connect hotspot
     
 	private func pushToApLoginVC() {
-		let controller = DHAuthPasswordViewController.storyboardInstance()
-		controller.presenter = DHApAuthPasswordPresenter(container: controller)
+		let controller = LCAuthPasswordViewController.storyboardInstance()
+		controller.presenter = LCApAuthPasswordPresenter(container: controller)
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
     
@@ -353,21 +333,21 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         if deviceIsInited {
             //【*】已初始化的跳转登录
             LCProgressHUD.show(on: self.view)
-            let helper = DHAuthPassworHelper()
+            let helper = LCAuthPassworHelper()
             
-            if let device = DHAddDeviceManager.sharedInstance.getLocalDevice() {
-                helper.authByNetSDK(password: DHAddDeviceManager.sharedInstance.initialPassword, device: device, success: { loginHandle in
+            if let device = LCAddDeviceManager.sharedInstance.getLocalDevice() {
+                helper.authByNetSDK(password: LCAddDeviceManager.sharedInstance.initialPassword, device: device, success: { loginHandle in
                     LCProgressHUD.hideAllHuds(self.view)
                     
-                    let controller = DHApWifiSelectViewController.storyboardInstance()
+                    let controller = LCApWifiSelectViewController.storyboardInstance()
                     controller.scDeviceIsInited = deviceIsInited
                     self.navigationController?.pushViewController(controller, animated: true)
                     
                 }) { (description) in
                     LCProgressHUD.hideAllHuds(self.view)
                 
-                let controller = DHAuthPasswordViewController.storyboardInstance()
-                let presenter = DHApAuthPasswordPresenter(container: controller)
+                let controller = LCAuthPasswordViewController.storyboardInstance()
+                let presenter = LCApAuthPasswordPresenter(container: controller)
                 presenter.scDeviceIsInited = true
                 controller.presenter = presenter
                 self.navigationController?.pushViewController(controller, animated: true)
@@ -375,14 +355,14 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             }
             
         } else {
-            let controller = DHApWifiSelectViewController.storyboardInstance()
+            let controller = LCApWifiSelectViewController.storyboardInstance()
             controller.scDeviceIsInited = deviceIsInited
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     private func pushToApWifiSelectVC() {
-        let controller = DHApWifiSelectViewController.storyboardInstance()
+        let controller = LCApWifiSelectViewController.storyboardInstance()
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -403,13 +383,13 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
     
     private func tipbeforeIOS11() {
         let predicateWifiName = self.getApWifiName()
-        let scCode = DHAddDeviceManager.sharedInstance.initialPassword
+        let scCode = LCAddDeviceManager.sharedInstance.initialPassword
         guideView.errorButton.isHidden = true;
         //IOS11之前不能自动连接WIFI 文案是固定的
-        if true == DHAddDeviceManager.sharedInstance.isSupportSC {
+        if true == LCAddDeviceManager.sharedInstance.isSupportSC {
             
             //有SC码情况下 扫码
-            if scCode.count != 0 && DHAddDeviceManager.sharedInstance.isEnterByQrcode {
+            if scCode.count != 0 && LCAddDeviceManager.sharedInstance.isEnterByQrcode {
                 let str = String(format: "add_device_connect_accode_ap_hotpot_and_back".lc_T, arguments: [predicateWifiName])
                 guideView.setTopTipLabel(text: str, underlineString: scCode, shouldCopy: true) {
                     let pasteboard = UIPasteboard.general
@@ -424,7 +404,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             
         } else {
             let str = String(format: "add_device_connect_ap_hotpot_and_back".lc_T, arguments: [predicateWifiName])
-            guideView.topTipLabel.dh_setAttributedText(text: str, font: UIFont.dhFont_t1())
+            guideView.topTipLabel.lc_setAttributedText(text: str, font: UIFont.lcFont_t1())
             
             guideView.detailButton.isHidden = true
         }
@@ -433,11 +413,11 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             self.selectWifiButton = UIButton(type: .system)
             guideView.addSubview(self.selectWifiButton!)
             self.selectWifiButton?.layer.borderWidth = 1
-            self.selectWifiButton?.layer.borderColor = UIColor.dhcolor_c8().cgColor
+            self.selectWifiButton?.layer.borderColor = UIColor.lccolor_c8().cgColor
             self.selectWifiButton?.setTitle("add_device_connect_goto_select_wifi".lc_T, for: .normal)
-            self.selectWifiButton?.layer.cornerRadius = DHModuleConfig.shareInstance().commonButtonCornerRadius()
-            self.selectWifiButton?.backgroundColor = UIColor.dhcolor_c43()
-            self.selectWifiButton?.setTitleColor(UIColor.dhcolor_c2(), for: .normal)
+            self.selectWifiButton?.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
+            self.selectWifiButton?.backgroundColor = UIColor.lccolor_c43()
+            self.selectWifiButton?.setTitleColor(UIColor.lccolor_c2(), for: .normal)
             self.selectWifiButton?.snp.makeConstraints({ (make) in
                 make.bottom.right.equalTo(self.guideView).offset(-20)
                 make.left.equalTo(self.guideView).offset(20)
@@ -464,19 +444,19 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
         }
         
         let predicateWifiName = self.getApWifiName()
-        let scCode = DHAddDeviceManager.sharedInstance.initialPassword
+        let scCode = LCAddDeviceManager.sharedInstance.initialPassword
 
-        if DHAddDeviceManager.sharedInstance.isSupportSC == true {
+        if LCAddDeviceManager.sharedInstance.isSupportSC == true {
             //自动连接失败
             if autoConnectHotSpotFailed == true {
-                if scCode.count != 0 && DHAddDeviceManager.sharedInstance.isEnterByQrcode {//支持SC码的时候  扫码进入 二维码中有SC 展示真实的热点、有下划线、支持复制
+                if scCode.count != 0 && LCAddDeviceManager.sharedInstance.isEnterByQrcode {//支持SC码的时候  扫码进入 二维码中有SC 展示真实的热点、有下划线、支持复制
                     let str = String(format: "add_device_wait_to_connect_wifi_failed_sc".lc_T, arguments: [predicateWifiName])
                     
                     //没有安全码的清空下  展示“安全验证码”、无下划线、不支持复制
                     //支持SC码的时候 手动输入的 展示“安全验证码”、无下划线、不支持复制
                     
                     guideView.setTopTipLabel(text: str, underlineString: scCode, shouldCopy: true) {
-                        if DHAddDeviceManager.sharedInstance.isEnterByQrcode {
+                        if LCAddDeviceManager.sharedInstance.isEnterByQrcode {
                             let pasteboard = UIPasteboard.general
                             pasteboard.string = scCode
                             LCProgressHUD.showMsg("device_manager_copy_success".lc_T)
@@ -496,14 +476,14 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
             let str = String(format: "add_device_wait_to_connect_wifi_failed".lc_T, arguments: [predicateWifiName])
             
             
-            guideView.errorButton.titleLabel?.font = UIFont.dhFont_t1()
-            guideView.topTipLabel.dh_setAttributedText(text: str, font: UIFont.dhFont_t1())
+            guideView.errorButton.titleLabel?.font = UIFont.lcFont_t1()
+            guideView.topTipLabel.lc_setAttributedText(text: str, font: UIFont.lcFont_t1())
             guideView.errorButton.isHidden = false
         }
         
     }
 	
-	// MARK: DHGuideBaseVCProtocol
+	// MARK: LCGuideBaseVCProtocol
 	override func tipText() -> String? {
         
         
@@ -524,7 +504,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 	
     override func detailText() -> String? {
         
-        if true == DHAddDeviceManager.sharedInstance.isSupportSC {
+        if true == LCAddDeviceManager.sharedInstance.isSupportSC {
             return "add_device_about_wifi_pwd".lc_T
         } else {
             return "add_device_goto_connect_wifi".lc_T
@@ -540,7 +520,7 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
 		return true
 	}
     
-	// MARK: DHAddBaseVCProtocol
+	// MARK: LCAddBaseVCProtocol
 
 	override func needUpdateCurrentOMSIntroduction() {
 		setupWifiName()
@@ -548,8 +528,8 @@ class DHApWifiCheckViewController: DHGuideBaseViewController {
     
     override func doDetail() {
         print("DHApWifiCheckViewController doDetail")
-        if true == DHAddDeviceManager.sharedInstance.isSupportSC {
-            let vc = DHHotSpotViewController()
+        if true == LCAddDeviceManager.sharedInstance.isSupportSC {
+            let vc = LCHotSpotViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
             self.gotoSettingPage()

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCDeviceVideoManager.h"
@@ -8,7 +8,7 @@ static LCDeviceVideoManager * manager = nil;
 
 @implementation LCDeviceVideoManager
 
-+(instancetype)manager{
++ (instancetype)shareInstance {
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -42,8 +42,8 @@ static LCDeviceVideoManager * manager = nil;
     return nil;
 }
 
--(NSString *)currentPsk{
-    if (!_currentPsk || _currentPsk.length==0) {
+- (NSString *)currentPsk {
+    if (!_currentPsk || _currentPsk.length == 0) {
        return self.currentDevice.deviceId;
     }
     return _currentPsk;

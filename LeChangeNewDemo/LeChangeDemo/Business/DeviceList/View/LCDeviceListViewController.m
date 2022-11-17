@@ -42,6 +42,10 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 - (LCDeviceListPresenter *)presenter {
     if (!_presenter) {
         _presenter = [LCDeviceListPresenter new];

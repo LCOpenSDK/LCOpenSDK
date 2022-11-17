@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 // 获取设备版本和可升级信息
 
 #import <Foundation/Foundation.h>

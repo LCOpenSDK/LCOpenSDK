@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 #import "LCActionSheet.h"
@@ -36,7 +36,7 @@
     CGRect winRect = keyWin.frame;
     
     self.backgroundView = [[UIView alloc] initWithFrame:winRect];
-    self.backgroundView.backgroundColor = [UIColor dhcolor_c51];
+    self.backgroundView.backgroundColor = [UIColor lccolor_c51];
     
     self.backgroundView.tag = kDHActionSheetWindowTag;
     self.backgroundView.userInteractionEnabled = YES;
@@ -46,13 +46,13 @@
     [keyWin addSubview:self];
     
     UIView *cancelTap = [[UIView alloc]initWithFrame:CGRectMake(0, 0, winRect.size.width, winRect.size.height - 240)];
-    cancelTap.backgroundColor = [UIColor dhcolor_c43];
+    cancelTap.backgroundColor = [UIColor lccolor_c43];
     cancelTap.alpha = .1;
     UIGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(cancleBtnAction:)];
     [cancelTap addGestureRecognizer:tap];
     [self.backgroundView addSubview:cancelTap];
     
-    self.backgroundColor = [UIColor dhcolor_c43];
+    self.backgroundColor = [UIColor lccolor_c43];
     
     _delegate = delegate;
     
@@ -81,7 +81,7 @@
     self.pickerView.showsSelectionIndicator = YES;
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    self.pickerView.backgroundColor = [UIColor dhcolor_c43];
+    self.pickerView.backgroundColor = [UIColor lccolor_c43];
     
     [self addSubview:self.pickerView];
     [self layoutUnitLabel];

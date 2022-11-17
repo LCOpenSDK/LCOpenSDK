@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 
@@ -7,7 +7,7 @@ import UIKit
 
 public extension CALayer {
     
-    var dh_width: CGFloat {
+    var lc_width: CGFloat {
         get {
             return self.frame.width
         }
@@ -19,7 +19,7 @@ public extension CALayer {
         }
     }
     
-    var dh_height: CGFloat {
+    var lc_height: CGFloat {
         get {
             return self.frame.height
         }
@@ -31,7 +31,7 @@ public extension CALayer {
         }
     }
     
-    var dh_x: CGFloat {
+    var lc_x: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -43,7 +43,7 @@ public extension CALayer {
         }
     }
     
-    var dh_y: CGFloat {
+    var lc_y: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -55,7 +55,7 @@ public extension CALayer {
         }
     }
     
-    var dh_size: CGSize {
+    var lc_size: CGSize {
         get {
             return self.frame.size
         }

@@ -1,11 +1,11 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCAccountJointViewController.h"
-#import "LCSegmentController.h"
+#import <LCMediaBaseModule/LCSegmentController.h>
+#import <LCBaseModule/LCBaseModule.h>
 #import "LCInputTextField.h"
-#import "LCLivePreviewViewController.h"
 #import "LCAccountPresenter.h"
 #import "LCUIKit.h"
 
@@ -42,12 +42,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self lcCreatNavigationBarWith:LCNAVIGATION_STYLE_CLEARWITHLINE buttonClickBlock:nil];
-    [LCApplicationDataManager setCurrentMode:0];
+    [LCApplicationDataManager setCurrentMode:LCJointModeChinaMainland];
     UIViewController *vc = [UIViewController new];
     vc.view.backgroundColor = UIColor.yellowColor;
     [self drawSegment];
     [self setUpView];
-    [self fixlayoutConstant:self.view];
 }
 
 - (LCAccountPresenter *)present {
@@ -67,20 +66,22 @@
             //选择国内
             weakself.titleLab.text = @"Choose_Plantform_Injoint_Inland".lc_T;
             weakself.lab.text = @"Choose_Plantform_Alert".lc_T;
+            NSLog(@"%@选择国内",NSStringFromClass([self class]));
         } else {
             //选择国海外
             weakself.titleLab.text = @"Choose_Plantform_Injoint_Oversea".lc_T;
             weakself.lab.text = @"Choose_Plantform_Alert_oversea".lc_T;
+            NSLog(@"%@选择海外",NSStringFromClass([self class]));
         }
         
-        weakself.bottomBtn.dh_enable = YES;
+        weakself.bottomBtn.lc_enable = YES;
         weakself.apiHost.textField.text = [LCApplicationDataManager hostApi];
         weakself.appID.textField.text = [LCApplicationDataManager appId];
         weakself.appSecret.textField.text = [LCApplicationDataManager appSecret];
     }];
     
     segment.valueWillChageBlock = ^{
-        weakself.bottomBtn.dh_enable = NO;
+        weakself.bottomBtn.lc_enable = NO;
     };
     
     [self.view addSubview:segment];
@@ -116,7 +117,7 @@
     [self.view addSubview:apiHost];
     apiHost.titleLable.text = @"Choose_Plantform_Host_Api".lc_T;
     apiHost.textField.text = [LCApplicationDataManager hostApi];
-    //apiHost.textField.text = @"https://funcopenapi.lechange.cn:443";
+//    apiHost.textField.text = @"https://funcopenapi.lechange.cn:443";
     apiHost.textField.keyboardType = UIKeyboardTypeURL;
     [apiHost updateFocusIfNeeded];
     [apiHost mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,7 +158,7 @@
     }];
     
     
-    LCButton *confirmBtn = [LCButton lcButtonWithType:LCButtonTypePrimary];
+    LCButton *confirmBtn = [LCButton createButtonWithType:LCButtonTypePrimary];
     self.bottomBtn = confirmBtn;
     [confirmBtn setTitle:@"Button_Confirm".lc_T forState:UIControlStateNormal];
     confirmBtn.tag = 1000;
@@ -177,7 +178,7 @@
     lab.numberOfLines = 0;
     lab.text = @"Choose_Plantform_Alert".lc_T;
     lab.lineBreakMode = NSLineBreakByWordWrapping;
-    lab.textColor = [UIColor dhcolor_c41];
+    lab.textColor = [UIColor lccolor_c41];
     lab.font = [UIFont lcFont_t5];
     [self.view addSubview:lab];
     [lab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,8 +192,7 @@
     }
 }
 
--(void)titleTapAction:(UITapGestureRecognizer *)sender{
-    
+- (void)titleTapAction:(UITapGestureRecognizer *)sender {
     [self setSwitchStatus:YES];
 }
 
@@ -204,7 +204,7 @@
 }
 
 -(void)DebugStatus{
-    
+
     [self setSwitchStatus:NO];
 }
 
@@ -243,12 +243,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //  日期扩展
 
 //分钟、小时、天、年对应的秒数

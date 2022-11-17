@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 dahua. All rights reserved.
+//  Copyright © 2017 Imou. All rights reserved.
 //
 
 import UIKit
@@ -8,7 +8,7 @@ public extension Date {
 
     static func lc_time(time: TimeInterval, format: String) -> String {
         
-        let formatter = DHDateFormatter()
+        let formatter = LCDateFormatter()
         formatter.dateFormat = format
         let date = Date(timeIntervalSince1970: time)
         
@@ -16,7 +16,7 @@ public extension Date {
     }
     
     func lc_string(_ format: String) -> String? {
-		let dateFormatter = DHDateFormatter()
+		let dateFormatter = LCDateFormatter()
 		dateFormatter.dateFormat = format
 		
         return dateFormatter.string(from: self)

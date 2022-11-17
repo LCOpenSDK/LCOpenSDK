@@ -1,6 +1,4 @@
-//
-//  Copyright © 2020 dahua. All rights reserved.
-//
+
 
 #import "LCLivePreviewPresenter+VideotapeList.h"
 
@@ -10,7 +8,19 @@
     weakSelf(self);
 
     [self.historyView startAnimation];
-    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:[NSDate new] From:-1 Count:6 success:^(NSMutableArray<LCCloudVideotapeInfo *> *_Nonnull videos) {
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:currentDate]];
+    //结束时间
+    NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:currentDate]];
+    
+    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
+    NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
+    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId beginTime:beginTime endTime:endTime Count:6 success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
         if (videos.count > 0) {
             [weakself willChangeValueForKey:@"videotapeList"];
             weakself.videotapeList = videos;
@@ -23,7 +33,7 @@
                 [self setErrorViewWith:nil];
             }
         }
-    } failure:^(LCError *_Nonnull error) {
+    } failure:^(LCError * _Nonnull error) {
         [self setErrorViewWith:error];
     }];
 }
@@ -31,7 +41,7 @@
 - (void)loadLocalVideotape {
     weakSelf(self);
     [self.historyView startAnimation];
-    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:[NSDate new] From:1 To:6 success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
+    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId day:[NSDate new] From:1 To:6 success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
         if (videos.count == 0) {
             [self setErrorViewWith:nil];
         } else {
@@ -46,7 +56,7 @@
 
 - (void)setErrorViewWith:(LCError *)error {
     weakSelf(self);
-    LCButton *errorBtn = [LCButton lcButtonWithType:LCButtonTypeShadow];
+    LCButton *errorBtn = [LCButton createButtonWithType:LCButtonTypeShadow];
     if (!error) {
         //展示无数据
         [errorBtn setTitle:@"play_module_none_record".lc_T forState:UIControlStateNormal];

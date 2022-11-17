@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCDeviceListCell.h"
@@ -17,8 +17,8 @@
 /// titleLab
 @property (strong, nonatomic) UILabel *titleLab;
 
-/// 云服务按钮
-@property (strong, nonatomic) LCButton *cloudServiceIcon;
+/// 消息按钮
+@property (strong, nonatomic) LCButton *messageIcon;
 
 /// 默认图
 @property (strong, nonatomic) UIImageView *defaultImageView;
@@ -29,6 +29,11 @@
 /// emptyLabel
 @property (strong, nonatomic) UILabel *emptyLabel;
 
+@property (strong, nonatomic) UIImageView *playImg;
+
+@property (strong, nonatomic) UIView *maskView;
+
+@property (strong, nonatomic) UILabel *offlineTimeLabel;
 
 @end
 
@@ -42,7 +47,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupView];
-        self.backgroundColor = [UIColor dhcolor_c43];
+        self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -56,26 +61,29 @@
 
 - (void)setupView {
     weakSelf(self);
-    UIView *lineView = [UIView new];
-    [self addSubview:lineView];
-    lineView.backgroundColor = [UIColor dhcolor_c54];
-    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(5);
+    UIView *content = [UIView new];
+    content.backgroundColor = [UIColor lccolor_c43];
+    content.layer.cornerRadius = 10.0;
+    content.layer.masksToBounds = YES;
+    [self.contentView addSubview:content];
+    [content mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.top.equalTo(@15);
+        make.trailing.equalTo(self.contentView).offset(-15);
+        make.bottom.equalTo(self.contentView);
     }];
     
     UILabel *titleLab = [UILabel new];
-    [self.contentView addSubview:titleLab];
+    [content addSubview:titleLab];
     self.titleLab = titleLab;
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(self).offset(15);
+        make.left.top.mas_equalTo(content).offset(15);
     }];
     
-    LCButton *setIcon = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *setIcon = [LCButton createButtonWithType:LCButtonTypeCustom];
     self.setIcon = setIcon;
-    [self.contentView addSubview:setIcon];
+    [content addSubview:setIcon];
     [setIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.trailing.mas_equalTo(content.mas_trailing).offset(-15);
         make.height.mas_equalTo(setIcon.mas_width);
         make.centerY.mas_equalTo(titleLab.mas_centerY);
     }];
@@ -86,82 +94,150 @@
         }
     };
     
-    LCButton *cloudServiceIcon = [LCButton lcButtonWithType:LCButtonTypeCustom];
-    self.cloudServiceIcon = cloudServiceIcon;
-    cloudServiceIcon.hidden = YES;
-    [self.contentView addSubview:cloudServiceIcon];
-    [cloudServiceIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(setIcon.mas_left);
-        make.height.mas_equalTo(cloudServiceIcon.mas_width);
+    LCButton *messageIcon = [LCButton createButtonWithType:LCButtonTypeCustom];
+    self.messageIcon = messageIcon;
+    [content addSubview:messageIcon];
+    [messageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.mas_equalTo(setIcon.mas_leading).offset(-15);
+        make.height.mas_equalTo(messageIcon.mas_width);
         make.centerY.mas_equalTo(titleLab.mas_centerY);
     }];
-    [cloudServiceIcon setBackgroundImage:LC_IMAGENAMED(@"home_icon_using") forState:UIControlStateNormal];
-    cloudServiceIcon.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
+    [messageIcon setBackgroundImage:LC_IMAGENAMED(@"home_icon_device_message") forState:UIControlStateNormal];
+    messageIcon.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
         if (weakself.resultBlock) {
             weakself.resultBlock(weakself.deviceInfo, 0, 2);
         }
     };
-    
-//    LCButton * playAll = [LCButton lcButtonWithType:LCButtonTypeCustom];
-//    self.cloudServiceIcon = cloudServiceIcon;
-//    [self.contentView addSubview:playAll];
-//    [playAll mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(cloudServiceIcon.mas_left);
-//        make.height.mas_equalTo(cloudServiceIcon.mas_width);
-//        make.centerY.mas_equalTo(titleLab.mas_centerY);
-//    }];
-//    [playAll setBackgroundImage:LC_IMAGENAMED(@"home_icon_item_playall") forState:UIControlStateNormal];
-    
 
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     [self.layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    self.layout.minimumLineSpacing = 10;
+    self.layout.minimumInteritemSpacing = 10;
     self.channelList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:_layout];
-    [self.contentView addSubview:self.channelList];
+    [content addSubview:self.channelList];
     [self.channelList mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).offset(45);
-        make.left.mas_equalTo(titleLab);
-        make.right.bottom.mas_equalTo(self).offset(-15);
+        make.top.mas_equalTo(content).offset(50);
+        make.leading.mas_equalTo(content).offset(15);
+        make.trailing.mas_equalTo(content).offset(-15);
+        make.bottom.equalTo(content).offset(-12);
     }];
     self.channelList.showsHorizontalScrollIndicator = NO;
-    self.channelList.backgroundColor = [UIColor dhcolor_c00];
+    self.channelList.backgroundColor = [UIColor lccolor_c00];
     self.channelList.dataSource = self;
     self.channelList.delegate = self;
     [self.channelList registerClass:[LCDeviceListChannelCell class] forCellWithReuseIdentifier:@"LCDeviceListChannelCell"];
     
     self.defaultImageView = [[UIImageView alloc] initWithImage:LC_IMAGENAMED(@"common_defaultcover_big")];
-    [self.contentView addSubview:self.defaultImageView];
+    [content addSubview:self.defaultImageView];
+    self.defaultImageView.userInteractionEnabled = YES;
+    [self.defaultImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(play)]];
     [self.defaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(self.channelList);
+        make.top.equalTo(content).offset(50);
+        make.leading.bottom.trailing.equalTo(content);
+    }];
+    
+    UIImageView * playImg = [[UIImageView alloc] initWithImage:LC_IMAGENAMED(@"home_icon_play_big")];
+    [self.defaultImageView addSubview:playImg];
+    self.playImg = playImg;
+    [playImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.defaultImageView);
     }];
     
     self.emptyLabel = [[UILabel alloc]init];
-    self.emptyLabel.textColor = [UIColor dhcolor_c44];
+    self.emptyLabel.textColor = [UIColor lccolor_c43];
     self.emptyLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.emptyLabel.text = @"home_empty_channel".lc_T;
     [self.defaultImageView addSubview:self.emptyLabel];
     [self.emptyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
+        make.centerX.mas_equalTo(content.mas_centerX);
         make.centerY.mas_equalTo(self.defaultImageView.mas_centerY);
+    }];
+    
+    self.maskView = [UIView new];
+    self.maskView.backgroundColor = [UIColor lccolor_c51];
+    [content addSubview:self.maskView];
+    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(content).offset(50);
+        make.leading.bottom.trailing.equalTo(content);
+    }];
+    
+    UILabel *offlineLab = [UILabel new];
+    [self.maskView addSubview:offlineLab];
+    offlineLab.textColor = [UIColor whiteColor];
+    offlineLab.textAlignment = NSTextAlignmentCenter;
+    offlineLab.text = @"mobile_common_bec_device_offline".lc_T;
+    offlineLab.font = [UIFont systemFontOfSize:16];
+    [offlineLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.maskView).offset(70);
+        make.leading.trailing.equalTo(self.maskView);
+    }];
+    
+    self.offlineTimeLabel = [[UILabel alloc] init];
+    self.offlineTimeLabel.textColor = [UIColor whiteColor];
+    self.offlineTimeLabel.textAlignment = NSTextAlignmentCenter;
+    self.offlineTimeLabel.font = [UIFont systemFontOfSize:16];
+    [self.maskView addSubview:self.offlineTimeLabel];
+    [self.offlineTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(offlineLab.mas_bottom).offset(10);
+        make.leading.trailing.equalTo(self.maskView);
     }];
 }
 
 - (void)setDeviceInfo:(LCDeviceInfo *)deviceInfo {
     _deviceInfo = deviceInfo;
     self.titleLab.text = deviceInfo.name;
-//    [self.cloudServiceIcon setHidden:deviceInfo.]
-
-    if (deviceInfo.channels.count == 0) {
-        self.defaultImageView.hidden = NO;
-    } else {
+    if (self.deviceInfo.channels.count > 1) {
         self.defaultImageView.hidden = YES;
+        self.emptyLabel.hidden = YES;
+        self.playImg.hidden = YES;
+        self.channelList.hidden = NO;
+        self.messageIcon.hidden = YES;
+        self.maskView.hidden = YES;
         [self.channelList reloadData];
+    } else {
+        self.channelList.hidden = YES;
+        self.defaultImageView.hidden = NO;
+        self.emptyLabel.hidden = NO;
+        self.playImg.hidden = YES;
+        self.messageIcon.hidden = NO;
+        NSString *imageUrl = @"";
+        if (self.deviceInfo.channels.count > 0) {
+            imageUrl = self.deviceInfo.channels[0].picUrl;
+            self.emptyLabel.hidden = YES;
+            self.playImg.hidden = NO;
+        }
+        [self.defaultImageView lc_setThumbImageWithURL:imageUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:self.deviceInfo.deviceId ChannelId:@"0"];
+        if ([self.deviceInfo.status isEqualToString:@"offline"]) {
+            self.maskView.hidden = NO;
+            self.playImg.hidden = YES;
+            NSDateFormatter *formatter = [[LCDateFormatter alloc] initWithGregorianCalendar];
+            [formatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
+            if ([LCModuleConfig shareInstance].isChinaMainland == NO)  {
+                formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+            }
+            NSDate *date = [formatter dateFromString:self.deviceInfo.lastOffLineTime];
+            [formatter setDateFormat:@"MM-dd HH:mm:ss"];
+            formatter.timeZone = [NSTimeZone systemTimeZone];
+            self.offlineTimeLabel.text = [formatter stringFromDate:date];
+        } else {
+            self.maskView.hidden = YES;
+            self.playImg.hidden = NO;
+        }
+        if (self.deviceInfo.channels.count == 0) {
+            self.maskView.hidden = YES;
+            self.messageIcon.hidden = YES;
+            self.playImg.hidden = YES;
+        }
     }
-    
-    //增加设置按钮随通道个数
-    //self.setIcon.hidden = deviceInfo.channels.count == 0 ? YES : NO;
     
     [self setNeedsLayout];
     [self setNeedsUpdateConstraints];
+}
+
+- (void)play {
+    if (self.resultBlock) {
+        self.resultBlock(self.deviceInfo, 0, 0);
+    }
 }
 
 
@@ -169,7 +245,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.resultBlock) {
-        self.resultBlock(self.deviceInfo, indexPath.item,0);
+        self.resultBlock(self.deviceInfo, indexPath.item, 0);
     }
 }
 
@@ -181,6 +257,12 @@
     LCDeviceListChannelCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LCDeviceListChannelCell" forIndexPath:indexPath];
     cell.index = indexPath.item;
     cell.deviceInfo = self.deviceInfo;
+    weakSelf(self)
+    cell.resultBlock = ^(LCDeviceInfo * _Nonnull info, NSInteger channelIndex) {
+        if (weakself.resultBlock) {
+            weakself.resultBlock(weakself.deviceInfo, 0, 2);
+        }
+    };
     return cell;
 }
 
@@ -189,13 +271,11 @@
 }
 
 - (CGSize)getCollectionCellSize {
-    if ([self.deviceInfo.catalog isEqualToString:@"NVR"]) {
+    if ([self.deviceInfo.catalog isEqualToString:@""] || self.deviceInfo.lc_isMultiChannelDevice) {
         //多通道
-        return CGSizeMake(250, 141);
+        return CGSizeMake(153, 114);
     }
     return self.channelList.frame.size;
 }
-
-
 
 @end

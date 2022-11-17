@@ -1,13 +1,13 @@
 //
-//  Copyright © 2018 dahua. All rights reserved.
+//  Copyright © 2018 Imou. All rights reserved.
 //
 
 #import "UIWindow+LeChange.h"
-#import <LCBaseModule/DHPopViewDismissProtocol.h>
+#import <LCBaseModule/LCPopViewDismissProtocol.h>
 
 @implementation UIWindow(LeChange)
 
-- (void)dh_clearPopViews {
+- (void)lc_clearPopViews {
 	
 	id responder = [self getCurrentResponder:self.rootViewController];
 	if ([responder isKindOfClass:[UIAlertController class]] ||
@@ -17,9 +17,7 @@
 		[responder dismissViewControllerAnimated:false completion:nil];
 	} else {
 		
-		if ([responder isKindOfClass:NSClassFromString(@"DHBasePopView")] ||
-			[responder isKindOfClass:NSClassFromString(@"DHChannelPopView")] ||
-			[responder isKindOfClass:NSClassFromString(@"LCVideoDecrytionAlertView")] ||
+		if ([responder isKindOfClass:NSClassFromString(@"LCVideoDecrytionAlertView")] ||
 			[responder isKindOfClass:NSClassFromString(@"LCMessagePopView")] ||
 			[responder isKindOfClass:NSClassFromString(@"LCInputPopView")]||
 			[responder isKindOfClass:NSClassFromString(@"MMDeviceQRCodeView")] ||
@@ -34,7 +32,7 @@
 	
 }
 
-- (void)dh_popViewDismiss
+- (void)lc_popViewDismiss
 {
     id responder = [self getCurrentResponder:self.rootViewController];
     if ([responder isKindOfClass:[UIAlertController class]] ||
@@ -44,7 +42,7 @@
         [responder dismissViewControllerAnimated:false completion:nil];
     } else {
         
-        if ([responder conformsToProtocol:@protocol(DHPopViewDismissProtocol)]) {
+        if ([responder conformsToProtocol:@protocol(LCPopViewDismissProtocol)]) {
             
             [responder dismissPopView];
         }

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCLivePreviewPresenter+LandscapeControlView.h"
@@ -46,7 +46,7 @@
  */
 - (LCButton *)getLandscapeItemWithType:(LCLivePreviewControlType)type {
     weakSelf(self);
-    LCButton *item = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    LCButton *item = [LCButton createButtonWithType:LCButtonTypeCustom];
     item.tag = type;
     switch (type) {
         case LCLivePreviewControlPlay: {
@@ -96,7 +96,7 @@
                 [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
                 
                 //监听管理者状态
-                [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                [item.KVOController observe:[LCDeviceVideoManager shareInstance] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                     if (![change[@"new"] boolValue]) {
                         //高清
                         [item setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
@@ -130,10 +130,10 @@
                 }
             }];
             
-            [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+            [item.KVOController observe:[LCDeviceVideoManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                     item.enabled = NO;
             }];
-            [item.KVOController observe:[LCDeviceVideoManager manager] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+            [item.KVOController observe:[LCDeviceVideoManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
                     item.enabled = YES;
                 }
@@ -158,7 +158,7 @@
         break;
         case LCLivePreviewControlPTZ: {
             //云台
-            [item setImage:LC_IMAGENAMED(@"live_video_icon_h_cloudterrace_off") forState:UIControlStateNormal];
+            [item setImage:LC_IMAGENAMED(@"live_cloudterrace_off") forState:UIControlStateNormal];
             //监听管理者状态,判断云台
             if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
                 if (![self.videoManager.currentChannelInfo.ability isSupportPTZ] && ![self.videoManager.currentChannelInfo.ability isSupportPT] && ![self.videoManager.currentChannelInfo.ability isSupportPT1]) {
@@ -181,9 +181,9 @@
             [item.KVOController observe:self.videoManager keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开云台
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_h_cloudterrace_on") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"live_cloudterrace_on") forState:UIControlStateNormal];
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_h_cloudterrace_off") forState:UIControlStateNormal];
+                    [item setImage:LC_IMAGENAMED(@"live_cloudterrace_off") forState:UIControlStateNormal];
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {

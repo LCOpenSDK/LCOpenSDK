@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeListCell.h"
@@ -26,7 +26,8 @@
 
 - (void)configCloudVideotape {
     LCCloudVideotapeInfo *info = (LCCloudVideotapeInfo *)self.model;
-    [self.picImgview lc_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") DeviceId:info.deviceId Key:info.deviceId];
+    NSString *pid = info.productId != nil ? info.productId : @"";
+    [self.picImgview lc_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") DeviceId:info.deviceId ProductId:pid Key:info.deviceId];
     self.startTimeLab.text = [[info.beginTime componentsSeparatedByString:@" "] objectAtIndex:1];
     self.durationTimeLab.text = [info durationTime];
 }

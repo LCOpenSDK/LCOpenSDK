@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCLivePreviewViewController.h"
@@ -8,7 +8,6 @@
 #import "LCPTZControlView.h"
 #import "LCLandscapeControlView.h"
 #import "LCLivePreviewPresenter+LandscapeControlView.h"
-#import "UIImageView+Surface.h"
 #import "LCDeviceVideotapePlayManager.h"
 
 
@@ -57,7 +56,8 @@
             [weakself.persenter.playWindow uninitPlayWindow];
             [weakself.navigationController popViewControllerAnimated:YES];
         } else {
-            [weakself.navigationController pushToDeviceSettingPage];
+            NSInteger selectChannelIndex = self.persenter.videoManager.currentChannelIndex;
+            [weakself.navigationController pushToDeviceSettingPage:self.persenter.videoManager.currentDevice selectedChannelId:self.persenter.videoManager.currentDevice.channels[selectChannelIndex].channelId];
         }
     }];
     
@@ -127,7 +127,7 @@
     ///创建云台
     LCPTZControlView * ptzControlView = [[LCPTZControlView alloc] initWithDirection:self.persenter.videoManager.currentDevice.ability.isSupportPTZ?LCPTZControlSupportEight:(self.persenter.videoManager.currentDevice.ability.isSupportPT?LCPTZControlSupportEight:LCPTZControlSupportFour)];
     ptzControlView.tag = 999;
-    ptzControlView.backgroundColor = [UIColor dhcolor_c43];
+    ptzControlView.backgroundColor = [UIColor lccolor_c43];
     ptzControlView.alpha = 0;
     [self.view addSubview:ptzControlView];
     [ptzControlView mas_makeConstraints:^(MASConstraintMaker *make) {

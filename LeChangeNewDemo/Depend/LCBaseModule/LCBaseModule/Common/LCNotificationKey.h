@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -72,9 +72,6 @@ UIKIT_EXTERN NSString *const LCNotificationNewMsgUpdateRedDot;//更新tabbar红�
 
 UIKIT_EXTERN NSString *const LCNotificationTransferDeviceSuccess;   //设备转移成功，通过H5
 
-/// 更新DHChannel属性
-UIKIT_EXTERN NSString *const DHNotificationUpdateDHChannelProperty;
-
 //定向广告
 UIKIT_EXTERN NSString *const LCNotificationCustomAd;
 UIKIT_EXTERN NSString *const LCNotificationSkipLaunchAd;
@@ -125,18 +122,6 @@ UIKIT_EXTERN NSString *const LCNotificationOMSIntrodutionUpdated;
 UIKIT_EXTERN NSString *const LCNotificationOMSIModelsUpdated;
 
 UIKIT_EXTERN NSString *const LCNotificationADDDeviceSuccess;
-
-/// 更新单个设备通知至设备列表（添加添加完成、收到设备共享时发送）
-UIKIT_EXTERN NSString *const DHNotificationUpdateDeviceToListById;
-
-/// 更新下载tabbar图片通知
-UIKIT_EXTERN NSString *const DHNotificationUpdateTabListGet;
-
-/// 退出账户重置 商城、发现 webView
-UIKIT_EXTERN NSString *const DHNotificationResetShopAndDiscovery;
-
-/// 退出账户 重置蓝牙连接数据状态
-UIKIT_EXTERN NSString *const DHNotificationResetBLEConnectDataKey;
 
 /// 网关情景模式推送
 UIKIT_EXTERN NSString *const LCNotificationGatewayDeviceSceneModeChange;
@@ -192,3 +177,5 @@ UIKIT_EXTERN NSString *const SMBNotificationDeviceUpgradeSuccess;
 UIKIT_EXTERN NSString *const SMBNotificationDeviceWiFiUpdateSuccess;
 /// 动检更改完成
 UIKIT_EXTERN NSString *const SMBNotificationDeviceMotionDetectUpdate;
+/// SD卡存储变化
+UIKIT_EXTERN NSString *const SMBNotificationDeviceSDCardUpdate;

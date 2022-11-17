@@ -1,11 +1,13 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //  账户对接相关接口
 
 #import <Foundation/Foundation.h>
 #import "LCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class LCError;
 
 @interface LCAccountInterface : NSObject
 
@@ -17,18 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)accessTokenWithsuccess:(void (^)(LCAuthModel *authInfo))success
                        failure:(void (^)(LCError *error))failure;
-
-/**
- 获取用户模式Token
-
- @param phoneNum 用户电话
- @param success 成功回调
- @param failure 失败回调
- */
-
-+ (void)userTokenWithPhone:(nonnull NSString *)phoneNum success:(void (^)(LCAuthModel *authInfo))success
-                   failure:(void (^)(LCError *error))failure;
-
 
 /**
  创建子账户
@@ -72,15 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)userBindSms:(NSString *)phoneNum success:(void (^)(void))success
            failure:(void (^)(LCError *error))failure;
 
-/**
- 用户绑定
-
- @param email 邮箱
- @param success 成功回调
- @param failure 失败回调
- */
-+(void)userBind:(NSString *)email success:(void (^)(void))success
-           failure:(void (^)(LCError *error))failure;
 
 @end
 

@@ -1,11 +1,11 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCButton.h"
 #import "UIColor+LeChange.h"
-
-#import <LCBaseModule/UIFont+Dahua.h>
+#import <Masonry/Masonry.h>
+#import <LCBaseModule/UIFont+Imou.h>
 
 #define LCBUTTON_PRIMARY_LEFT_MARGIN  15
 #define LCBUTTON_PRIMARY_RIGHT_MARGIN -15
@@ -30,7 +30,7 @@ typedef void (^actionCache)(void);
 @implementation LCButton
 
 
-+ (instancetype)lcButtonWithType:(LCButtonType)type {
++ (instancetype)createButtonWithType:(LCButtonType)type {
     LCButton *btn = [LCButton buttonWithType:UIButtonTypeCustom];
     btn.lcBtnType = type;
     [btn addTarget:btn action:@selector(lcBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -88,31 +88,31 @@ typedef void (^actionCache)(void);
 }
 
 - (void)setUpPrimaryStyle {
-    self.backgroundColor = [UIColor dhcolor_c10];
-    [self setTitleColor:[UIColor dhcolor_c43] forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor lccolor_c10];
+    [self setTitleColor:[UIColor lccolor_c43] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t3];
     [self layoutIfNeeded];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
 }
 - (void)setUpMinorStyle {
-    self.backgroundColor = [UIColor dhcolor_c43];
+    self.backgroundColor = [UIColor lccolor_c43];
     self.layer.borderWidth = 1.0;
-    self.layer.borderColor = [UIColor dhcolor_c52].CGColor;
-    [self setTitleColor:[UIColor dhcolor_c41] forState:UIControlStateNormal];
+    self.layer.borderColor = [UIColor lccolor_c52].CGColor;
+    [self setTitleColor:[UIColor lccolor_c41] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t5];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
 }
 - (void)setUpLinkStyle {
-    self.backgroundColor = [UIColor dhcolor_c00];
-    [self setTitleColor:[UIColor dhcolor_c32] forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor lccolor_c00];
+    [self setTitleColor:[UIColor lccolor_c32] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t5];
 }
 
 - (void)setUpCodeStyle {
-    self.backgroundColor = [UIColor dhcolor_c10];
-    [self setTitleColor:[UIColor dhcolor_c43] forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor lccolor_c10];
+    [self setTitleColor:[UIColor lccolor_c43] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t5];
     [self setTitle:@"Button_Title_Get_Code".lc_T forState:UIControlStateNormal];
     [self layoutIfNeeded];
@@ -121,20 +121,20 @@ typedef void (^actionCache)(void);
 }
 
 - (void)setUpShadowStyle {
-    self.backgroundColor = [UIColor dhcolor_c43];
-    [self setTitleColor:[UIColor dhcolor_c40] forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor lccolor_c43];
+    [self setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t5];
     [self layoutIfNeeded];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = NO;
-    self.layer.shadowColor = [UIColor dhcolor_c40].CGColor;
+    self.layer.shadowColor = [UIColor lccolor_c40].CGColor;
     self.layer.shadowOffset = CGSizeMake(0,0);
     self.layer.shadowOpacity = 0.2;
     self.layer.shadowRadius = 2;
 }
 
 - (void)setUpVerticalStyle {
-    [self setTitleColor:[UIColor dhcolor_c43] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor lccolor_c43] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont lcFont_t5];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }

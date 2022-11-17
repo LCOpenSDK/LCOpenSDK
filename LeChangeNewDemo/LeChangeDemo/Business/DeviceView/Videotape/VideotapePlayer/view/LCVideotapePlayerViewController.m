@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePlayerViewController.h"
@@ -41,8 +41,8 @@
             if (self.persenter.videoManager.cloudVideotapeInfo) {
                 //下载中
                 if ([self isDownLoadVideo]) {
-                    [DHAlertController showWithTitle:@"Alert_Title_Notice".lc_T message:@"video_tape_download_warnning".lc_T cancelButtonTitle:@"common_cancel".lc_T otherButtonTitle:@"common_confirm".lc_T handler:^(NSInteger index) {
-                        if (index == 1) {
+                    [LCAlertView lc_ShowAlertWithTitle:@"add_device_confrim_to_quit".lc_T detail:@"video_tape_download_warnning".lc_T confirmString:@"common_confirm".lc_T cancelString:@"common_cancel".lc_T handle:^(BOOL isConfirmSelected) {
+                        if (isConfirmSelected == YES) {
                             if ([self isDownLoadVideo]) {
                                 [self.persenter stopDownload];
                                 [self willChangeValueForKey:@"downloadQueue"];

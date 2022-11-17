@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 
@@ -8,8 +8,8 @@
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_AudioTalk.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_EventListener.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Define.h>
-#import "UIDevice+LeChange.h"
-#import "LCLivePreviewDefine.h"
+#import <LCMediaBaseModule/UIDevice+MediaBaseModule.h>
+#import <LCMediaBaseModule/VPVideoDefines.h>
 #import "LCDeviceVideotapePlayManager.h"
 #import "LCLandscapeControlView.h"
 

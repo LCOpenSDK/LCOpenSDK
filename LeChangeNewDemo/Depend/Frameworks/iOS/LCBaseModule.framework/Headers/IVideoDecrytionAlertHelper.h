@@ -5,9 +5,9 @@
 #ifndef IVideoDecrytionAlertView_h
 #define IVideoDecrytionAlertView_h
 
-#import "DHModule.h"
+#import "LCModule.h"
 
-@protocol IVideoDecrytionAlertHelper<DHServiceProtocol>
+@protocol IVideoDecrytionAlertHelper<LCServiceProtocol>
 
 @property (nonatomic, copy) NSString *title; /**< 标题 */
 @property (nonatomic, copy) NSString *detail; /**< 内容 */

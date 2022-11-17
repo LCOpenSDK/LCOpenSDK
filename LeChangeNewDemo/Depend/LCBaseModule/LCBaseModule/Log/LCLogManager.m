@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016 dahua. All rights reserved.
+//  Copyright © 2016 Imou. All rights reserved.
 //
 #define TIMER_INTERVAL 120.0    //120秒判断一次文件是否超过最大容量
 
@@ -46,9 +46,7 @@ static LCLogManager *instance;
 
 
 #pragma mark - 🍌public method
-- (void)startFileLog
-{
- 
+- (void)startFileLog {
     //1.更新状态
     _isLogging = YES;
     

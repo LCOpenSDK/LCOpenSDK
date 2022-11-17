@@ -1,0 +1,833 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0309D37029025F460088B9D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0309D36F29025F460088B9D5 /* Info.plist */; };
+		03401B2F2906F8E600F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */; };
+		03ABE06828F568AE00BCE307 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE06728F568AE00BCE307 /* Masonry.framework */; };
+		03ABE0F628F6535E00BCE307 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */; };
+		04871B3E28F262BF009E0540 /* LCNewPlayBackModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */; };
+		04871B3F28F262BF009E0540 /* LCNewPlayBackModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B3C28F262BF009E0540 /* LCNewPlayBackModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04871B7B28F263C6009E0540 /* LCNewVideotapePersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */; };
+		04871B7C28F263C6009E0540 /* LCNewVideotapePersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B5928F263C6009E0540 /* LCNewVideotapePersenter.h */; };
+		04871B7D28F263C6009E0540 /* LCNewVideotapeListDateControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B5C28F263C6009E0540 /* LCNewVideotapeListDateControl.h */; };
+		04871B7E28F263C6009E0540 /* LCNewVideotapeListDateControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B5D28F263C6009E0540 /* LCNewVideotapeListDateControl.m */; };
+		04871B7F28F263C6009E0540 /* LCNewVideotapeListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B5E28F263C6009E0540 /* LCNewVideotapeListViewController.h */; };
+		04871B8028F263C6009E0540 /* LCNewVideotapeListHeardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6028F263C6009E0540 /* LCNewVideotapeListHeardView.h */; };
+		04871B8128F263C6009E0540 /* LCNewVideotapeListHeardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6128F263C6009E0540 /* LCNewVideotapeListHeardView.m */; };
+		04871B8228F263C6009E0540 /* LCNewVideotapeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6328F263C6009E0540 /* LCNewVideotapeListCell.m */; };
+		04871B8428F263C6009E0540 /* LCNewVideotapeListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6528F263C6009E0540 /* LCNewVideotapeListCell.h */; };
+		04871B8528F263C6009E0540 /* LCNewVideotapeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */; };
+		04871B8628F263C6009E0540 /* LCNewVideotapePlayerPersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6928F263C6009E0540 /* LCNewVideotapePlayerPersenter.h */; };
+		04871B8728F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.h */; };
+		04871B8828F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6B28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.h */; };
+		04871B8928F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B6C28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.h */; };
+		04871B8A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m */; };
+		04871B8B28F263C6009E0540 /* LCNewVideotapePlayerPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6E28F263C6009E0540 /* LCNewVideotapePlayerPersenter.m */; };
+		04871B8C28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B6F28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.m */; };
+		04871B8D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B7028F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m */; };
+		04871B8E28F263C6009E0540 /* LCNewDeviceVideotapePlayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B7128F263C6009E0540 /* LCNewDeviceVideotapePlayManager.h */; };
+		04871B8F28F263C6009E0540 /* LCNewVideotapePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B7328F263C6009E0540 /* LCNewVideotapePlayerViewController.m */; };
+		04871B9028F263C6009E0540 /* LCNewVideotapePlayProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B7528F263C6009E0540 /* LCNewVideotapePlayProcessView.m */; };
+		04871B9128F263C6009E0540 /* LCNewVideotapeDownloadStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B7628F263C6009E0540 /* LCNewVideotapeDownloadStatusView.m */; };
+		04871B9228F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B7728F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h */; };
+		04871B9328F263C6009E0540 /* LCNewVideotapePlayProcessView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B7828F263C6009E0540 /* LCNewVideotapePlayProcessView.h */; };
+		04871B9428F263C6009E0540 /* LCNewVideotapePlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871B7928F263C6009E0540 /* LCNewVideotapePlayerViewController.h */; };
+		04871B9528F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871B7A28F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m */; };
+		04871BB228F27B38009E0540 /* LCMediaBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871BB128F27B38009E0540 /* LCMediaBaseModule.framework */; };
+		04871BB428F27B4D009E0540 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871BB328F27B4D009E0540 /* LCNetworkModule.framework */; };
+		04871BB628F28021009E0540 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871BB528F28021009E0540 /* KVOController.framework */; };
+		04871BD228F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BCE28F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h */; };
+		04871BD328F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BCF28F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h */; };
+		04871BD428F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BD028F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.m */; };
+		04871BD528F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BD128F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m */; };
+		04871BD828F2B49C009E0540 /* LCPlayBackVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BD628F2B49C009E0540 /* LCPlayBackVideoControlView.m */; };
+		04871BD928F2B49C009E0540 /* LCPlayBackVideoControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BD728F2B49C009E0540 /* LCPlayBackVideoControlView.h */; };
+		04871BDA28F2B878009E0540 /* LCNewVideotapeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04871B6428F263C6009E0540 /* LCNewVideotapeListCell.xib */; };
+		04871BE228F2BA64009E0540 /* LCNewPlayBackRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */; };
+		04871BE328F2BA64009E0540 /* LCNewPlayBackRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04871BA228F26645009E0540 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04871B3028F262BF009E0540 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04871B9928F26428009E0540;
+			remoteInfo = LCNewPlayBackModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0309D36F29025F460088B9D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		03ABE06728F568AE00BCE307 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871B3928F262BF009E0540 /* LCNewPlayBackModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCNewPlayBackModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871B3C28F262BF009E0540 /* LCNewPlayBackModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNewPlayBackModule.h; sourceTree = "<group>"; };
+		04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LCNewPlayBackModule.docc; sourceTree = "<group>"; };
+		04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapePersenter.m; sourceTree = "<group>"; };
+		04871B5928F263C6009E0540 /* LCNewVideotapePersenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapePersenter.h; sourceTree = "<group>"; };
+		04871B5C28F263C6009E0540 /* LCNewVideotapeListDateControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeListDateControl.h; sourceTree = "<group>"; };
+		04871B5D28F263C6009E0540 /* LCNewVideotapeListDateControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeListDateControl.m; sourceTree = "<group>"; };
+		04871B5E28F263C6009E0540 /* LCNewVideotapeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeListViewController.h; sourceTree = "<group>"; };
+		04871B6028F263C6009E0540 /* LCNewVideotapeListHeardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeListHeardView.h; sourceTree = "<group>"; };
+		04871B6128F263C6009E0540 /* LCNewVideotapeListHeardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeListHeardView.m; sourceTree = "<group>"; };
+		04871B6328F263C6009E0540 /* LCNewVideotapeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeListCell.m; sourceTree = "<group>"; };
+		04871B6428F263C6009E0540 /* LCNewVideotapeListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCNewVideotapeListCell.xib; sourceTree = "<group>"; };
+		04871B6528F263C6009E0540 /* LCNewVideotapeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeListCell.h; sourceTree = "<group>"; };
+		04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeListViewController.m; sourceTree = "<group>"; };
+		04871B6928F263C6009E0540 /* LCNewVideotapePlayerPersenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapePlayerPersenter.h; sourceTree = "<group>"; };
+		04871B6A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewVideotapePlayerPersenter+Control.h"; sourceTree = "<group>"; };
+		04871B6B28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewVideotapePlayerPersenter+SDKListener.h"; sourceTree = "<group>"; };
+		04871B6C28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCNewVideotapePlayerPersenter+LandscapeControlView.h"; sourceTree = "<group>"; };
+		04871B6D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewVideotapePlayerPersenter+Control.m"; sourceTree = "<group>"; };
+		04871B6E28F263C6009E0540 /* LCNewVideotapePlayerPersenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapePlayerPersenter.m; sourceTree = "<group>"; };
+		04871B6F28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewVideotapePlayerPersenter+SDKListener.m"; sourceTree = "<group>"; };
+		04871B7028F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCNewVideotapePlayerPersenter+LandscapeControlView.m"; sourceTree = "<group>"; };
+		04871B7128F263C6009E0540 /* LCNewDeviceVideotapePlayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewDeviceVideotapePlayManager.h; sourceTree = "<group>"; };
+		04871B7328F263C6009E0540 /* LCNewVideotapePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapePlayerViewController.m; sourceTree = "<group>"; };
+		04871B7528F263C6009E0540 /* LCNewVideotapePlayProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapePlayProcessView.m; sourceTree = "<group>"; };
+		04871B7628F263C6009E0540 /* LCNewVideotapeDownloadStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeDownloadStatusView.m; sourceTree = "<group>"; };
+		04871B7728F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeDownloadStatusView.h; sourceTree = "<group>"; };
+		04871B7828F263C6009E0540 /* LCNewVideotapePlayProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapePlayProcessView.h; sourceTree = "<group>"; };
+		04871B7928F263C6009E0540 /* LCNewVideotapePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapePlayerViewController.h; sourceTree = "<group>"; };
+		04871B7A28F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewDeviceVideotapePlayManager.m; sourceTree = "<group>"; };
+		04871B9A28F26428009E0540 /* LCNewPlayBackModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCNewPlayBackModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BB128F27B38009E0540 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BB328F27B4D009E0540 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BB528F28021009E0540 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04871BCE28F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCPlayBackLandscapeControlView+Gesture.h"; sourceTree = "<group>"; };
+		04871BCF28F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCPlayBackLandscapeControlView.h; sourceTree = "<group>"; };
+		04871BD028F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCPlayBackLandscapeControlView+Gesture.m"; sourceTree = "<group>"; };
+		04871BD128F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCPlayBackLandscapeControlView.m; sourceTree = "<group>"; };
+		04871BD628F2B49C009E0540 /* LCPlayBackVideoControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCPlayBackVideoControlView.m; sourceTree = "<group>"; };
+		04871BD728F2B49C009E0540 /* LCPlayBackVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCPlayBackVideoControlView.h; sourceTree = "<group>"; };
+		04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewPlayBackRouter.m; sourceTree = "<group>"; };
+		04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewPlayBackRouter.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04871B3628F262BF009E0540 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03401B2F2906F8E600F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
+				04871BB628F28021009E0540 /* KVOController.framework in Frameworks */,
+				04871BB428F27B4D009E0540 /* LCNetworkModule.framework in Frameworks */,
+				03ABE06828F568AE00BCE307 /* Masonry.framework in Frameworks */,
+				03ABE0F628F6535E00BCE307 /* MBProgressHUD.framework in Frameworks */,
+				04871BB228F27B38009E0540 /* LCMediaBaseModule.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871B9728F26428009E0540 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0309D36E29025F2C0088B9D5 /* LCNewPlayBackModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				0309D36F29025F460088B9D5 /* Info.plist */,
+			);
+			path = LCNewPlayBackModuleBundle;
+			sourceTree = "<group>";
+		};
+		04871B2F28F262BF009E0540 = {
+			isa = PBXGroup;
+			children = (
+				0309D36E29025F2C0088B9D5 /* LCNewPlayBackModuleBundle */,
+				04871B3B28F262BF009E0540 /* LCNewPlayBackModule */,
+				04871B3A28F262BF009E0540 /* Products */,
+				04871BB028F27B38009E0540 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04871B3A28F262BF009E0540 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04871B3928F262BF009E0540 /* LCNewPlayBackModule.framework */,
+				04871B9A28F26428009E0540 /* LCNewPlayBackModuleBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04871B3B28F262BF009E0540 /* LCNewPlayBackModule */ = {
+			isa = PBXGroup;
+			children = (
+				04871BDF28F2BA64009E0540 /* Router */,
+				04871B5628F263C6009E0540 /* VideotapeList */,
+				04871B6728F263C6009E0540 /* VideotapePlayer */,
+				04871B3C28F262BF009E0540 /* LCNewPlayBackModule.h */,
+				04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */,
+			);
+			path = LCNewPlayBackModule;
+			sourceTree = "<group>";
+		};
+		04871B5628F263C6009E0540 /* VideotapeList */ = {
+			isa = PBXGroup;
+			children = (
+				04871B5728F263C6009E0540 /* persenter */,
+				04871B5A28F263C6009E0540 /* view */,
+			);
+			path = VideotapeList;
+			sourceTree = "<group>";
+		};
+		04871B5728F263C6009E0540 /* persenter */ = {
+			isa = PBXGroup;
+			children = (
+				04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */,
+				04871B5928F263C6009E0540 /* LCNewVideotapePersenter.h */,
+			);
+			path = persenter;
+			sourceTree = "<group>";
+		};
+		04871B5A28F263C6009E0540 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04871B5B28F263C6009E0540 /* dateControl */,
+				04871B5E28F263C6009E0540 /* LCNewVideotapeListViewController.h */,
+				04871B5F28F263C6009E0540 /* HeardView */,
+				04871B6228F263C6009E0540 /* cell */,
+				04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04871B5B28F263C6009E0540 /* dateControl */ = {
+			isa = PBXGroup;
+			children = (
+				04871B5C28F263C6009E0540 /* LCNewVideotapeListDateControl.h */,
+				04871B5D28F263C6009E0540 /* LCNewVideotapeListDateControl.m */,
+			);
+			path = dateControl;
+			sourceTree = "<group>";
+		};
+		04871B5F28F263C6009E0540 /* HeardView */ = {
+			isa = PBXGroup;
+			children = (
+				04871B6028F263C6009E0540 /* LCNewVideotapeListHeardView.h */,
+				04871B6128F263C6009E0540 /* LCNewVideotapeListHeardView.m */,
+			);
+			path = HeardView;
+			sourceTree = "<group>";
+		};
+		04871B6228F263C6009E0540 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04871B6328F263C6009E0540 /* LCNewVideotapeListCell.m */,
+				04871B6428F263C6009E0540 /* LCNewVideotapeListCell.xib */,
+				04871B6528F263C6009E0540 /* LCNewVideotapeListCell.h */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04871B6728F263C6009E0540 /* VideotapePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				04871B7128F263C6009E0540 /* LCNewDeviceVideotapePlayManager.h */,
+				04871B7A28F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m */,
+				04871B6828F263C6009E0540 /* persenter */,
+				04871B7228F263C6009E0540 /* view */,
+			);
+			path = VideotapePlayer;
+			sourceTree = "<group>";
+		};
+		04871B6828F263C6009E0540 /* persenter */ = {
+			isa = PBXGroup;
+			children = (
+				04871B6928F263C6009E0540 /* LCNewVideotapePlayerPersenter.h */,
+				04871B6E28F263C6009E0540 /* LCNewVideotapePlayerPersenter.m */,
+				04871B6A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.h */,
+				04871B6D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m */,
+				04871B6B28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.h */,
+				04871B6F28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.m */,
+				04871B6C28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.h */,
+				04871B7028F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m */,
+			);
+			path = persenter;
+			sourceTree = "<group>";
+		};
+		04871B7228F263C6009E0540 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04871B7928F263C6009E0540 /* LCNewVideotapePlayerViewController.h */,
+				04871B7328F263C6009E0540 /* LCNewVideotapePlayerViewController.m */,
+				04871B7428F263C6009E0540 /* ToolBar */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04871B7428F263C6009E0540 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				04871BD728F2B49C009E0540 /* LCPlayBackVideoControlView.h */,
+				04871BD628F2B49C009E0540 /* LCPlayBackVideoControlView.m */,
+				04871BCF28F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h */,
+				04871BD128F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m */,
+				04871BCE28F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h */,
+				04871BD028F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.m */,
+				04871B7628F263C6009E0540 /* LCNewVideotapeDownloadStatusView.m */,
+				04871B7728F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h */,
+				04871B7828F263C6009E0540 /* LCNewVideotapePlayProcessView.h */,
+				04871B7528F263C6009E0540 /* LCNewVideotapePlayProcessView.m */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		04871BB028F27B38009E0540 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */,
+				03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */,
+				03ABE06728F568AE00BCE307 /* Masonry.framework */,
+				04871BB528F28021009E0540 /* KVOController.framework */,
+				04871BB328F27B4D009E0540 /* LCNetworkModule.framework */,
+				04871BB128F27B38009E0540 /* LCMediaBaseModule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04871BDF28F2BA64009E0540 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */,
+				04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		04871B3428F262BF009E0540 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04871BE328F2BA64009E0540 /* LCNewPlayBackRouter.h in Headers */,
+				04871B9228F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h in Headers */,
+				04871B7F28F263C6009E0540 /* LCNewVideotapeListViewController.h in Headers */,
+				04871B8428F263C6009E0540 /* LCNewVideotapeListCell.h in Headers */,
+				04871B8628F263C6009E0540 /* LCNewVideotapePlayerPersenter.h in Headers */,
+				04871BD328F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h in Headers */,
+				04871B8728F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.h in Headers */,
+				04871B9428F263C6009E0540 /* LCNewVideotapePlayerViewController.h in Headers */,
+				04871B8028F263C6009E0540 /* LCNewVideotapeListHeardView.h in Headers */,
+				04871BD228F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h in Headers */,
+				04871B7C28F263C6009E0540 /* LCNewVideotapePersenter.h in Headers */,
+				04871B8928F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.h in Headers */,
+				04871B8E28F263C6009E0540 /* LCNewDeviceVideotapePlayManager.h in Headers */,
+				04871B8828F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.h in Headers */,
+				04871B7D28F263C6009E0540 /* LCNewVideotapeListDateControl.h in Headers */,
+				04871B9328F263C6009E0540 /* LCNewVideotapePlayProcessView.h in Headers */,
+				04871BD928F2B49C009E0540 /* LCPlayBackVideoControlView.h in Headers */,
+				04871B3F28F262BF009E0540 /* LCNewPlayBackModule.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04871B3828F262BF009E0540 /* LCNewPlayBackModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04871B4228F262BF009E0540 /* Build configuration list for PBXNativeTarget "LCNewPlayBackModule" */;
+			buildPhases = (
+				04871B3428F262BF009E0540 /* Headers */,
+				04871B3528F262BF009E0540 /* Sources */,
+				04871B3628F262BF009E0540 /* Frameworks */,
+				04871B3728F262BF009E0540 /* Resources */,
+				04871B9F28F265ED009E0540 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04871BA328F26645009E0540 /* PBXTargetDependency */,
+			);
+			name = LCNewPlayBackModule;
+			productName = LCNewPlayBackModule;
+			productReference = 04871B3928F262BF009E0540 /* LCNewPlayBackModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		04871B9928F26428009E0540 /* LCNewPlayBackModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04871B9B28F26428009E0540 /* Build configuration list for PBXNativeTarget "LCNewPlayBackModuleBundle" */;
+			buildPhases = (
+				04871B9628F26428009E0540 /* Sources */,
+				04871B9728F26428009E0540 /* Frameworks */,
+				04871B9828F26428009E0540 /* Resources */,
+				04871BA028F26611009E0540 /* Remove Executable File */,
+				04871BA128F2662F009E0540 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCNewPlayBackModuleBundle;
+			productName = LCNewPlayBackModuleBundle;
+			productReference = 04871B9A28F26428009E0540 /* LCNewPlayBackModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04871B3028F262BF009E0540 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					04871B3828F262BF009E0540 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					04871B9928F26428009E0540 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 04871B3328F262BF009E0540 /* Build configuration list for PBXProject "LCNewPlayBackModule" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04871B2F28F262BF009E0540;
+			productRefGroup = 04871B3A28F262BF009E0540 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04871B3828F262BF009E0540 /* LCNewPlayBackModule */,
+				04871B9928F26428009E0540 /* LCNewPlayBackModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04871B3728F262BF009E0540 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871B9828F26428009E0540 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0309D37029025F460088B9D5 /* Info.plist in Resources */,
+				04871BDA28F2B878009E0540 /* LCNewVideotapeListCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04871B9F28F265ED009E0540 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    echo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		04871BA028F26611009E0540 /* Remove Executable File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Executable File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Remove execute file in bundle: ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME\"\nrm -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME}\n";
+		};
+		04871BA128F2662F009E0540 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n    #先删除旧的\n    rm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n    echo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n    cp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04871B3528F262BF009E0540 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04871B8A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m in Sources */,
+				04871BE228F2BA64009E0540 /* LCNewPlayBackRouter.m in Sources */,
+				04871B8D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m in Sources */,
+				04871BD428F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.m in Sources */,
+				04871B8128F263C6009E0540 /* LCNewVideotapeListHeardView.m in Sources */,
+				04871B9128F263C6009E0540 /* LCNewVideotapeDownloadStatusView.m in Sources */,
+				04871B8528F263C6009E0540 /* LCNewVideotapeListViewController.m in Sources */,
+				04871B3E28F262BF009E0540 /* LCNewPlayBackModule.docc in Sources */,
+				04871B8C28F263C6009E0540 /* LCNewVideotapePlayerPersenter+SDKListener.m in Sources */,
+				04871B8B28F263C6009E0540 /* LCNewVideotapePlayerPersenter.m in Sources */,
+				04871BD528F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m in Sources */,
+				04871B9528F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m in Sources */,
+				04871B8F28F263C6009E0540 /* LCNewVideotapePlayerViewController.m in Sources */,
+				04871B7B28F263C6009E0540 /* LCNewVideotapePersenter.m in Sources */,
+				04871B8228F263C6009E0540 /* LCNewVideotapeListCell.m in Sources */,
+				04871B7E28F263C6009E0540 /* LCNewVideotapeListDateControl.m in Sources */,
+				04871BD828F2B49C009E0540 /* LCPlayBackVideoControlView.m in Sources */,
+				04871B9028F263C6009E0540 /* LCNewVideotapePlayProcessView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04871B9628F26428009E0540 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04871BA328F26645009E0540 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04871B9928F26428009E0540 /* LCNewPlayBackModuleBundle */;
+			targetProxy = 04871BA228F26645009E0540 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04871B4028F262BF009E0540 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		04871B4128F262BF009E0540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		04871B4328F262BF009E0540 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewPlayBackModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04871B4428F262BF009E0540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				PODS_CONFIGURATION_BUILD_DIR = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewPlayBackModule;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04871B9C28F26428009E0540 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewPlayBackModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		04871B9D28F26428009E0540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNewPlayBackModuleBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04871B3328F262BF009E0540 /* Build configuration list for PBXProject "LCNewPlayBackModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04871B4028F262BF009E0540 /* Debug */,
+				04871B4128F262BF009E0540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04871B4228F262BF009E0540 /* Build configuration list for PBXNativeTarget "LCNewPlayBackModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04871B4328F262BF009E0540 /* Debug */,
+				04871B4428F262BF009E0540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04871B9B28F26428009E0540 /* Build configuration list for PBXNativeTarget "LCNewPlayBackModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04871B9C28F26428009E0540 /* Debug */,
+				04871B9D28F26428009E0540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04871B3028F262BF009E0540 /* Project object */;
+}

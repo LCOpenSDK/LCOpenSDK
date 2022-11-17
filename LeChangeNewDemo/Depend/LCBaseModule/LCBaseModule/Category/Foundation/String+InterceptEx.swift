@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 dahua. All rights reserved.
+//  Copyright © 2018 Imou. All rights reserved.
 //
 
 import Foundation
@@ -32,11 +32,11 @@ public extension String {
 }
 //不包含后几个字符串的方法
 //extension String {
-//    func dh_dropLast(_ n: Int = 1) -> String {
+//    func lc_dropLast(_ n: Int = 1) -> String {
 //        return String(characters.dropLast(n))
 //    }
-//    var dh_dropLast: String {
-//        return dh_dropLast()
+//    var lc_dropLast: String {
+//        return lc_dropLast()
 //    }
 //}
 

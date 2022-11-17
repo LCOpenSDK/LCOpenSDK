@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// HostAPI
 @property (nonatomic, strong) NSString *hostApi;
 
-/// 用户模式手机号
+/// 邮箱或手机号
 @property (nonatomic, strong) NSString *userEmail;
 
 /// 注册验证码
@@ -32,15 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 子账户
 - (void)subAccountBtnClick:(LCButton *)sender;
-
-//选择对接模式页面点击事件
-- (void)modeSelectBtnClick:(LCButton *)sender;
-
-//用户注册页面点击事件
-- (void)userModeRegisterBtnClick:(LCButton *)sender;
-
-//用户登录页面点击事件
-- (void)userModeLoginBtnClick:(LCButton *)sender;
 
 ///获取验证码
 - (void)userModeRegisterGetSMSCode;

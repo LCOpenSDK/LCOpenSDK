@@ -1,20 +1,20 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 import UIKit
 
-class LCDeviceAddErrorController: DHErrorBaseViewController {
+class LCDeviceAddErrorController: LCErrorBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = DHAddDeviceManager.sharedInstance.isEntryFromWifiConfig ? "device_manager_network_config".lc_T : "add_device_title".lc_T
+        self.title = LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig ? "device_manager_network_config".lc_T : "add_device_title".lc_T
     }
 
-    // MARK: - DHAddBaseVCProtocol
+    // MARK: - LCAddBaseVCProtocol
     
-    override func leftActionType() -> DHAddBaseLeftAction {
+    override func leftActionType() -> LCAddBaseLeftAction {
         return .back
     }
     
@@ -22,7 +22,7 @@ class LCDeviceAddErrorController: DHErrorBaseViewController {
         return false
     }
     
-    // MARK: - DHErrorBaseVCProtocol
+    // MARK: - LCErrorBaseVCProtocol
     
     override func errorImageName() -> String {
         return "adddevice_icon_hotspotexplain_fail"
@@ -30,7 +30,7 @@ class LCDeviceAddErrorController: DHErrorBaseViewController {
     
     override func errorContent() -> String {
         // todo: word
-        return "如您自动连接失败，请尝试打开wifi列表，不保存密码，尝试重新输入密码".lc_T
+        return "connection_failure_prompt".lc_T
     }
     
     override func icConfirmHidden() -> Bool {

@@ -1,10 +1,10 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCDeviceVideotapePlayManager.h"
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Download.h>
-#import "PHAsset+Lechange.h"
+#import <LCMediaBaseModule/PHAsset+Lechange.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DownloadListener.h>
 #import "LCUIKit.h"
 
@@ -46,11 +46,11 @@ static LCDeviceVideotapePlayManager *manager = nil;
 }
 
 - (LCDeviceInfo *)currentDevice {
-    return [LCDeviceVideoManager manager].currentDevice;
+    return [LCDeviceVideoManager shareInstance].currentDevice;
 }
 
 - (NSInteger)currentChannelIndex {
-    return [LCDeviceVideoManager manager].currentChannelIndex;
+    return [LCDeviceVideoManager shareInstance].currentChannelIndex;
 }
 
 - (void)setCloudVideotapeInfo:(LCCloudVideotapeInfo *)cloudVideotapeInfo {
@@ -81,7 +81,7 @@ static LCDeviceVideotapePlayManager *manager = nil;
 
     } else {
         //开始下载设备录像
-        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId decryptKey:self.currentPsk fileID:info.recordId speed:1];
+        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId decryptKey:self.currentPsk fileID:info.recordId speed:1 productId:self.currentDevice.productId playToken:self.currentDevice.playToken];
         if (result != 0) {
             NSLog(@"下载设备录像返回码：%ld",(long)result);
         }
@@ -251,10 +251,10 @@ static LCDeviceVideotapePlayManager *manager = nil;
             }
                 break;
             case 9: {
-                LCVideotapeDownloadInfo *info = [self currentDownloadInfo];
-                if (info.donwloadStatus != LCVideotapeDownloadStatusPartDownload) {
-                    [self updateDownload:index Recieve:-1 Status:LCVideotapeDownloadStatusPartDownload];
-                }
+//                LCVideotapeDownloadInfo *info = [self currentDownloadInfo];
+//                if (info.donwloadStatus != LCVideotapeDownloadStatusPartDownload) {
+//                    [self updateDownload:index Recieve:-1 Status:LCVideotapeDownloadStatusPartDownload];
+//                }
             }
                 break;
             case 11: {

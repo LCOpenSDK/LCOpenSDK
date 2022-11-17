@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03636CCD28DEF79C00FE1B59 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03636CCC28DEF79C00FE1B59 /* MJRefresh.framework */; };
+		03ABE0DA28F5AF8500BCE307 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0D928F5AF8500BCE307 /* AFNetworking.framework */; };
 		0401AF62250A45DC00F8E1D6 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0401AF61250A45DC00F8E1D6 /* LCBaseModule.framework */; };
+		0420901128F6966200800D39 /* LCMessageInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420900F28F6966200800D39 /* LCMessageInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0420901228F6966200800D39 /* LCMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420901028F6966200800D39 /* LCMessageInfo.m */; };
+		0420901528F6A10700800D39 /* LCMessageInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420901328F6A10700800D39 /* LCMessageInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0420901628F6A10700800D39 /* LCMessageInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420901428F6A10700800D39 /* LCMessageInterface.m */; };
 		045FE35424E3845300A422EA /* LCAccountInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE32024E3845200A422EA /* LCAccountInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE35524E3845300A422EA /* LCDeviceHandleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE32124E3845200A422EA /* LCDeviceHandleInterface.m */; };
 		045FE35624E3845300A422EA /* LCAddDeviceInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE32224E3845200A422EA /* LCAddDeviceInterface.m */; };
@@ -48,21 +54,19 @@
 		045FE37B24E3845300A422EA /* LCNetworkRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE35224E3845300A422EA /* LCNetworkRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE37C24E3845300A422EA /* LCNetworkRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE35324E3845300A422EA /* LCNetworkRequestManager.m */; };
 		045FE37E24E386F200A422EA /* LCNetworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE37D24E384E800A422EA /* LCNetworkModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		045FE38324E3884300A422EA /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045FE38224E3884300A422EA /* AFNetworking.framework */; };
 		045FE38724E388F800A422EA /* LCApplicationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE38524E388F800A422EA /* LCApplicationDataManager.m */; };
 		045FE38824E388F800A422EA /* LCApplicationDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE38624E388F800A422EA /* LCApplicationDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		045FE38A24E3895A00A422EA /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045FE38924E3895A00A422EA /* MJExtension.framework */; };
 		045FE38C24E38A8300A422EA /* LCNetworkModule.pch in Headers */ = {isa = PBXBuildFile; fileRef = 045FE38B24E38A8300A422EA /* LCNetworkModule.pch */; };
 		0491862724E39A4F00651E0F /* LCRequestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE34C24E3845300A422EA /* LCRequestModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0491868924E403F900651E0F /* LCClientConfigInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868024E403F900651E0F /* LCClientConfigInfo.m */; };
-		0491868A24E403F900651E0F /* DHApInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868124E403F900651E0F /* DHApInfo.m */; };
+		0491868A24E403F900651E0F /* LCApInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868124E403F900651E0F /* LCApInfo.m */; };
 		0491868B24E403F900651E0F /* LCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868224E403F900651E0F /* LCDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0491868C24E403F900651E0F /* DHWiFiConfigInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868324E403F900651E0F /* DHWiFiConfigInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0491868C24E403F900651E0F /* LCWiFiConfigInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868324E403F900651E0F /* LCWiFiConfigInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0491868D24E403F900651E0F /* LCClientConfigInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868424E403F900651E0F /* LCClientConfigInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0491868E24E403F900651E0F /* LCDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868524E403F900651E0F /* LCDevice.m */; };
-		0491868F24E403F900651E0F /* IDHApInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868624E403F900651E0F /* IDHApInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0491869024E403F900651E0F /* DHApInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868724E403F900651E0F /* DHApInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0491869124E403F900651E0F /* DHWiFiConfigInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868824E403F900651E0F /* DHWiFiConfigInfo.m */; };
+		0491868F24E403F900651E0F /* ILCApInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868624E403F900651E0F /* ILCApInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0491869024E403F900651E0F /* LCApInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491868724E403F900651E0F /* LCApInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0491869124E403F900651E0F /* LCWiFiConfigInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491868824E403F900651E0F /* LCWiFiConfigInfo.m */; };
 		0491869824E4053900651E0F /* LCEncryptInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491869624E4053800651E0F /* LCEncryptInfo.m */; };
 		0491869924E4053900651E0F /* LCEncryptInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491869724E4053800651E0F /* LCEncryptInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -78,7 +82,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03636CCC28DEF79C00FE1B59 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ABE0D928F5AF8500BCE307 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0401AF61250A45DC00F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = ../Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
+		0420900F28F6966200800D39 /* LCMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageInfo.h; sourceTree = "<group>"; };
+		0420901028F6966200800D39 /* LCMessageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageInfo.m; sourceTree = "<group>"; };
+		0420901328F6A10700800D39 /* LCMessageInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageInterface.h; sourceTree = "<group>"; };
+		0420901428F6A10700800D39 /* LCMessageInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageInterface.m; sourceTree = "<group>"; };
 		045FE31024E380C900A422EA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045FE31324E3831C00A422EA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045FE32024E3845200A422EA /* LCAccountInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAccountInterface.h; sourceTree = "<group>"; };
@@ -122,20 +132,19 @@
 		045FE35224E3845300A422EA /* LCNetworkRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetworkRequestManager.h; sourceTree = "<group>"; };
 		045FE35324E3845300A422EA /* LCNetworkRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetworkRequestManager.m; sourceTree = "<group>"; };
 		045FE37D24E384E800A422EA /* LCNetworkModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNetworkModule.h; sourceTree = "<group>"; };
-		045FE38224E3884300A422EA /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../Frameworks/iOS/AFNetworking.framework; sourceTree = "<group>"; };
 		045FE38524E388F800A422EA /* LCApplicationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCApplicationDataManager.m; sourceTree = "<group>"; };
 		045FE38624E388F800A422EA /* LCApplicationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCApplicationDataManager.h; sourceTree = "<group>"; };
 		045FE38924E3895A00A422EA /* MJExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJExtension.framework; path = ../Frameworks/iOS/MJExtension.framework; sourceTree = "<group>"; };
 		045FE38B24E38A8300A422EA /* LCNetworkModule.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNetworkModule.pch; sourceTree = "<group>"; };
 		0491868024E403F900651E0F /* LCClientConfigInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCClientConfigInfo.m; sourceTree = "<group>"; };
-		0491868124E403F900651E0F /* DHApInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHApInfo.m; sourceTree = "<group>"; };
+		0491868124E403F900651E0F /* LCApInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCApInfo.m; sourceTree = "<group>"; };
 		0491868224E403F900651E0F /* LCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDevice.h; sourceTree = "<group>"; };
-		0491868324E403F900651E0F /* DHWiFiConfigInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHWiFiConfigInfo.h; sourceTree = "<group>"; };
+		0491868324E403F900651E0F /* LCWiFiConfigInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCWiFiConfigInfo.h; sourceTree = "<group>"; };
 		0491868424E403F900651E0F /* LCClientConfigInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCClientConfigInfo.h; sourceTree = "<group>"; };
 		0491868524E403F900651E0F /* LCDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDevice.m; sourceTree = "<group>"; };
-		0491868624E403F900651E0F /* IDHApInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDHApInfo.h; sourceTree = "<group>"; };
-		0491868724E403F900651E0F /* DHApInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHApInfo.h; sourceTree = "<group>"; };
-		0491868824E403F900651E0F /* DHWiFiConfigInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHWiFiConfigInfo.m; sourceTree = "<group>"; };
+		0491868624E403F900651E0F /* ILCApInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILCApInfo.h; sourceTree = "<group>"; };
+		0491868724E403F900651E0F /* LCApInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCApInfo.h; sourceTree = "<group>"; };
+		0491868824E403F900651E0F /* LCWiFiConfigInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCWiFiConfigInfo.m; sourceTree = "<group>"; };
 		0491869624E4053800651E0F /* LCEncryptInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEncryptInfo.m; sourceTree = "<group>"; };
 		0491869724E4053800651E0F /* LCEncryptInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEncryptInfo.h; sourceTree = "<group>"; };
 		2F255FDE228D1613004810D0 /* LCNetworkModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCNetworkModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,14 +164,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				0401AF62250A45DC00F8E1D6 /* LCBaseModule.framework in Frameworks */,
-				045FE38A24E3895A00A422EA /* MJExtension.framework in Frameworks */,
-				045FE38324E3884300A422EA /* AFNetworking.framework in Frameworks */,
+				03ABE0DA28F5AF8500BCE307 /* AFNetworking.framework in Frameworks */,
+				03636CCD28DEF79C00FE1B59 /* MJRefresh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0420900E28F6964700800D39 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				0420900F28F6966200800D39 /* LCMessageInfo.h */,
+				0420901028F6966200800D39 /* LCMessageInfo.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		045FE30E24E3808000A422EA /* LCNetworkModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +232,8 @@
 				045FE32224E3845200A422EA /* LCAddDeviceInterface.m */,
 				045FE32324E3845200A422EA /* LCVideotapeInterface.h */,
 				045FE32924E3845200A422EA /* LCVideotapeInterface.m */,
+				0420901328F6A10700800D39 /* LCMessageInterface.h */,
+				0420901428F6A10700800D39 /* LCMessageInterface.m */,
 			);
 			path = LCNetworkRequestInterface;
 			sourceTree = "<group>";
@@ -231,6 +251,7 @@
 		045FE32C24E3845300A422EA /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				0420900E28F6964700800D39 /* Message */,
 				045FE32D24E3845300A422EA /* Auth */,
 				045FE33024E3845300A422EA /* DeviceInfo */,
 				045FE33F24E3845300A422EA /* DeviceHandle */,
@@ -351,11 +372,11 @@
 				0491868024E403F900651E0F /* LCClientConfigInfo.m */,
 				0491868224E403F900651E0F /* LCDevice.h */,
 				0491868524E403F900651E0F /* LCDevice.m */,
-				0491868324E403F900651E0F /* DHWiFiConfigInfo.h */,
-				0491868824E403F900651E0F /* DHWiFiConfigInfo.m */,
-				0491868624E403F900651E0F /* IDHApInfo.h */,
-				0491868724E403F900651E0F /* DHApInfo.h */,
-				0491868124E403F900651E0F /* DHApInfo.m */,
+				0491868324E403F900651E0F /* LCWiFiConfigInfo.h */,
+				0491868824E403F900651E0F /* LCWiFiConfigInfo.m */,
+				0491868624E403F900651E0F /* ILCApInfo.h */,
+				0491868724E403F900651E0F /* LCApInfo.h */,
+				0491868124E403F900651E0F /* LCApInfo.m */,
 				0491869724E4053800651E0F /* LCEncryptInfo.h */,
 				0491869624E4053800651E0F /* LCEncryptInfo.m */,
 			);
@@ -365,9 +386,10 @@
 		4E081E4E21254EE800D6D66F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03ABE0D928F5AF8500BCE307 /* AFNetworking.framework */,
+				03636CCC28DEF79C00FE1B59 /* MJRefresh.framework */,
 				0401AF61250A45DC00F8E1D6 /* LCBaseModule.framework */,
 				045FE38924E3895A00A422EA /* MJExtension.framework */,
-				045FE38224E3884300A422EA /* AFNetworking.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -398,6 +420,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0420901528F6A10700800D39 /* LCMessageInterface.h in Headers */,
+				0420901128F6966200800D39 /* LCMessageInfo.h in Headers */,
 				045FE35424E3845300A422EA /* LCAccountInterface.h in Headers */,
 				045FE36924E3845300A422EA /* LCDeviceInfo.h in Headers */,
 				045FE35C24E3845300A422EA /* LCDeviceManagerInterface.h in Headers */,
@@ -418,11 +442,11 @@
 				045FE38824E388F800A422EA /* LCApplicationDataManager.h in Headers */,
 				045FE37E24E386F200A422EA /* LCNetworkModule.h in Headers */,
 				045FE37824E3845300A422EA /* LCResponseModel.h in Headers */,
-				0491868C24E403F900651E0F /* DHWiFiConfigInfo.h in Headers */,
+				0491868C24E403F900651E0F /* LCWiFiConfigInfo.h in Headers */,
 				0491868D24E403F900651E0F /* LCClientConfigInfo.h in Headers */,
 				0491868B24E403F900651E0F /* LCDevice.h in Headers */,
-				0491868F24E403F900651E0F /* IDHApInfo.h in Headers */,
-				0491869024E403F900651E0F /* DHApInfo.h in Headers */,
+				0491868F24E403F900651E0F /* ILCApInfo.h in Headers */,
+				0491869024E403F900651E0F /* LCApInfo.h in Headers */,
 				0491862724E39A4F00651E0F /* LCRequestModel.h in Headers */,
 				0491869924E4053900651E0F /* LCEncryptInfo.h in Headers */,
 				045FE37524E3845300A422EA /* LCModel.h in Headers */,
@@ -457,9 +481,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E9B4A522123B47200A1D322 /* Build configuration list for PBXNativeTarget "LCNetworkModule" */;
 			buildPhases = (
+				4E9B4A472123B47100A1D322 /* Headers */,
 				4E9B4A452123B47100A1D322 /* Sources */,
 				4E9B4A462123B47100A1D322 /* Frameworks */,
-				4E9B4A472123B47100A1D322 /* Headers */,
 				4E9B4A482123B47100A1D322 /* Resources */,
 				4E081E3F2125362D00D6D66F /* ShellScript */,
 			);
@@ -487,7 +511,7 @@
 					};
 					4E9B4A492123B47100A1D322 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1400;
 					};
 				};
 			};
@@ -574,7 +598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -594,15 +618,17 @@
 				045FE38724E388F800A422EA /* LCApplicationDataManager.m in Sources */,
 				045FE36624E3845300A422EA /* LCCheckDeviceBindOrNotInfo.m in Sources */,
 				045FE37724E3845300A422EA /* LCResponseModel.m in Sources */,
+				0420901628F6A10700800D39 /* LCMessageInterface.m in Sources */,
 				045FE36824E3845300A422EA /* LCBindDeviceChannelInfo.m in Sources */,
 				045FE37924E3845300A422EA /* LCRequestModel.m in Sources */,
 				0491868E24E403F900651E0F /* LCDevice.m in Sources */,
-				0491869124E403F900651E0F /* DHWiFiConfigInfo.m in Sources */,
+				0491869124E403F900651E0F /* LCWiFiConfigInfo.m in Sources */,
 				045FE36224E3845300A422EA /* LCDeviceOnlineInfo.m in Sources */,
 				045FE36724E3845300A422EA /* LCDeviceVersionInfo.m in Sources */,
 				045FE35624E3845300A422EA /* LCAddDeviceInterface.m in Sources */,
 				045FE37424E3845300A422EA /* LCAddDeviceModel.m in Sources */,
-				0491868A24E403F900651E0F /* DHApInfo.m in Sources */,
+				0491868A24E403F900651E0F /* LCApInfo.m in Sources */,
+				0420901228F6966200800D39 /* LCMessageInfo.m in Sources */,
 				045FE35F24E3845300A422EA /* LCAuthModel.m in Sources */,
 				045FE37224E3845300A422EA /* LCCloudVideotapeInfo.m in Sources */,
 				045FE36E24E3845300A422EA /* LCAlarmPlan.m in Sources */,
@@ -633,18 +659,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LCNetworkModuleBundle/Info.plist;
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModuleBundle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNetworkModuleBundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 arm64e arm7s";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -654,18 +684,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LCNetworkModuleBundle/Info.plist;
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModuleBundle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNetworkModuleBundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 arm64e arm7s";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -675,20 +709,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LCNetworkModuleBundle/Info.plist;
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModuleBundle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNetworkModuleBundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 arm64e arm7s";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -817,12 +855,13 @@
 		4E9B4A532123B47200A1D322 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -833,9 +872,11 @@
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(POD_SEARCH_FRAMEWORK_PATH)",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
 					"\"$(SRCROOT)/../Merge\"",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
@@ -851,8 +892,10 @@
 				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModule;
 				PRODUCT_NAME = LCNetworkModule;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -863,12 +906,13 @@
 		4E9B4A542123B47200A1D322 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -882,6 +926,8 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
 					"\"$(SRCROOT)/../Merge\"",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
@@ -897,8 +943,10 @@
 				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModule;
 				PRODUCT_NAME = LCNetworkModule;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64e armv7 armv7s arm64";
@@ -971,12 +1019,13 @@
 		4EB831952152041F009DA78C /* DebugPersonal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -990,6 +1039,8 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
 					"\"$(SRCROOT)/../Merge\"",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
@@ -1005,8 +1056,10 @@
 				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dhuatech.LCNetworkModule;
 				PRODUCT_NAME = LCNetworkModule;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

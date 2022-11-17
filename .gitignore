@@ -66,3 +66,10 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+.DS_Store
+Framework/.DS_Store
+LeChangeNewDemo/.DS_Store
+Framework/.DS_Store
+.DS_Store
+.DS_Store
+Framework/.DS_Store

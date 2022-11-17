@@ -1,0 +1,11 @@
+framework module LCDeviceDetailModule {
+  umbrella header "LCDeviceDetailModule.h"
+
+  export *
+  module * { export * }
+}
+
+module LCDeviceDetailModule.Swift {
+  header "LCDeviceDetailModule-Swift.h"
+  requires objc
+}

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +13,7 @@ extension UITextView {
     ///   - font: 字体大小
     ///   - lineSpace: 行距
     ///   - alignment: 对齐方式
-    @objc func dh_setAttributedText(text: String?, font: UIFont, lineSpace: CGFloat = 5, alignment: NSTextAlignment = .center) {
+    @objc func lc_setAttributedText(text: String?, font: UIFont, lineSpace: CGFloat = 5, alignment: NSTextAlignment = .center) {
         guard let string = text else {
             self.attributedText = nil
             return

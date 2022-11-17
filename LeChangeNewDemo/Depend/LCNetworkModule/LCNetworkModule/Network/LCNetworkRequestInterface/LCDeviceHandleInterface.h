@@ -1,11 +1,13 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //  设备操作相关接口
 
 #import <Foundation/Foundation.h>
 #import "LCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class LCError;
 
 @interface LCDeviceHandleInterface : NSObject
 
@@ -16,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调(返回抓图访问地址)
  @param failure 失败回调
+ 
+ Device acquisition picture
+
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback (return capture access address)
+ @param failure Failure callback
  */
 + (void)setDeviceSnapWithDevice:(NSString *)deviceId Channel:(NSString *)channelId success:(void (^)(NSString *picUrlString))success
                         failure:(void (^)(LCError *error))failure;
@@ -27,6 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调(返回抓图访问地址)
  @param failure 失败回调
+ 
+ Device to obtain the updated version of the picture
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback (return capture access address)
+ @param failure Failure callback
  */
 + (void)setDeviceSnapEnhancedWithDevice:(NSString *)deviceId Channel:(NSString *)channelId success:(void (^)(NSString *picUrlString))success
                                 failure:(void (^)(LCError *error))failure;
@@ -40,6 +56,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param duration 持续时间
  @param success 成功回调(返回抓图访问地址)
  @param failure 失败回调
+ 
+ The gimbal controls V2
+
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param operation Practice
+ @param duration The duration
+ @param success Successful callback (Return the capture access address)
+ @param failure Failure callback
  */
 + (void)controlMovePTZWithDevice:(NSString *)deviceId Channel:(NSString *)channelId Operation:(NSString *)operation Duration:(NSInteger)duration success:(void (^)(NSString *picUrlString))success
                          failure:(void (^)(LCError *error))failure;
@@ -50,6 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备序列号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Obtain WiFi information around the device
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)wifiAroundDevice:(NSString *)deviceId success:(void (^)(LCAroundWifiInfo *wifiInfo))success
                  failure:(void (^)(LCError *error))failure;
@@ -60,6 +91,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备序列号
  @param success 成功回调
  @param failure 失败回调
+ 
+ WiFi information about the current device
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)currentDeviceWifiDevice:(NSString *)deviceId success:(void (^)(LCWifiInfo *wifiInfo))success
                         failure:(void (^)(LCError *error))failure;
@@ -68,9 +105,16 @@ NS_ASSUME_NONNULL_BEGIN
  控制设备连接至某一Wifi
 
  @param deviceId 设备序列号
- @param session WiFi连接信息
+ @param session WiFi连接信息 WiFi Connection Information
  @param success 成功回调
  @param failure 失败回调
+ 
+ Controls the connection of the device to a Wifi
+ 
+ @param deviceId Device Serial Number
+ @param session  WiFi Connection Information
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)controlDeviceWifiFor:(NSString *)deviceId ConnestSession:(LCWifiConnectSession *)session success:(void (^)(void))success
                      failure:(void (^)(LCError *error))failure;
@@ -81,6 +125,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备序列号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Obtain and upgrade the latest version of the device
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)upgradeDevice:(NSString *)deviceId success:(void (^)(void))success
               failure:(void (^)(LCError *error))failure;
@@ -93,6 +143,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param enable 是否生效
  @param success 成功回调
  @param failure 失败回调
+ 
+ Set the dynamic check switch
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param enable Whether to take effect
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)modifyDeviceAlarmStatus:(NSString *)deviceId channelId:(NSString *)channelId enable:(BOOL)enable success:(void (^)(void))success
                         failure:(void (^)(LCError *error))failure;
@@ -104,6 +162,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Gets the dynamic detection plan
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)deviceAlarmPlan:(NSString *)deviceId channelId:(NSString *)channelId success:(void (^)(LCAlarmPlan *plan))success
                 failure:(void (^)(LCError *error))failure;
@@ -112,9 +177,16 @@ NS_ASSUME_NONNULL_BEGIN
  配置动检计划
 
  @param deviceId 设备序列号
- @param plan 动检计划
+ @param plan 动检计划 DongJian plan
  @param success 成功回调
  @param failure 失败回调
+ 
+ Configure a dynamic check plan
+ 
+ @param deviceId Device Serial Number
+ @param plan  DongJian plan
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)modifyDeviceAlarmPlan:(NSString *)deviceId LCAlarmPlan:(LCAlarmPlan *)plan success:(void (^)(void))success
                       failure:(void (^)(LCError *error))failure;
@@ -125,6 +197,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备序列号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Gets the dynamic detection plan
+
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)breathingLightStatusForDevice:(NSString *)deviceId success:(void (^)(BOOL status))success
                               failure:(void (^)(LCError *error))failure;
@@ -136,6 +214,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param open 是否打开呼吸灯
  @param success 成功回调
  @param failure 失败回调
+ 
+ Set the breathing light status
+
+ @param deviceId Device Serial Number
+ @param open Whether to turn on the breathing light
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)modifyBreathingLightForDevice:(NSString *)deviceId Status:(BOOL)open success:(void (^)(void))success
                               failure:(void (^)(LCError *error))failure;
@@ -147,6 +232,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Get the device flip status
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)frameReverseStatusForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(NSString *direction))success
                             failure:(void (^)(LCError *error))failure;
@@ -159,6 +251,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Set the device flip state
+ 
+ @param deviceId Device Serial Number
+ @param direction Picture direction (normal: normal;  Leonard: I can't reverse that）
+ @param channelId Channel number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)modifyFrameReverseStatusForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId Direction:(NSString *)direction success:(void (^)(void))success
                                   failure:(void (^)(LCError *error))failure;
@@ -167,22 +267,67 @@ NS_ASSUME_NONNULL_BEGIN
  格式化设备SD卡
 
  @param deviceId 设备序列号
- @param channelId 通道号
  @param success 成功回调 （ 1.start-recover：开始初始化（正常情况下）2.no-sdcard：插槽内无SD卡 3.in-recover：正在初始化（有可能别的客户端已经请求初始化）4.sdcard-error：其他SD卡错误）
  @param failure 失败回调
+ 
+ Format the SD card of the device
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback (1.start-recover: initialization starts (normal) 2. No-sdcard: no sdcard exists in the slot 3. In-recover: Initialization is underway (other clients may have requested initialization) 4. Sdcard-error: other sdcard errors)
+ @param failure Failure callback
  */
-+ (void)recoverSDCardForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(NSString *result))success
++ (void)recoverSDCardForDevice:(NSString *)deviceId success:(void (^)(NSString *result))success
                        failure:(void (^)(LCError *error))failure;
 
+/**
+ SD卡内存查询
+
+ @param deviceId 设备序列号
+ @param success 成功回调
+ @param failure 失败回调
+ 
+ SD card memory query
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
+ */
++ (void)queryMemorySDCardForDevice:(NSString *)deviceId success:(void (^)(NSDictionary *storage))success
+                       failure:(void (^)(LCError *error))failure;
+
+/**
+ 设备SD卡状态
+
+ @param deviceId 设备序列号
+ @param success 成功回调
+ @param failure 失败回调
+ 
+ SD card status of the device
+ 
+ @param deviceId Device Serial Number
+ @param success Successful callback
+ @param failure Failure callback
+ */
++ (void)statusSDCardForDevice:(NSString *)deviceId success:(void (^)(NSString *status))success
+                       failure:(void (^)(LCError *error))failure;
 /**
  设置设备的OSD配置
 
  @param deviceId 设备序列号
  @param channelId 通道号
- @param open 是否打开OSD设置
- @param osd OSD字符
+ @param open 是否打开OSD设置 Whether to enable OSD Settings
+ @param osd OSD字符 OSD character
  @param success 成功回调
  @param failure 失败回调
+ 
+ Set OSD configurations for the device
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param open  Whether to enable OSD Settings
+ @param osd  OSD character
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)setDeviceOsdForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId enable:(BOOL)open OSD:(NSString *)osd success:(void (^)(void))success
                       failure:(void (^)(LCError *error))failure;
@@ -194,6 +339,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelId 通道号
  @param success 成功回调
  @param failure 失败回调
+ 
+ Obtain the OSD configuration of the device
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)queryDeviceOsdForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(BOOL enable, NSString *osd))success
                         failure:(void (^)(LCError *error))failure;
@@ -206,69 +358,55 @@ NS_ASSUME_NONNULL_BEGIN
  @param data 图片二进制数据的base64编码字符串
  @param success 成功回调
  @param failure 失败回调
+ 
+ Set the video cover of the device
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param data Image binary data base64 encoded string
+ @param success Successful callback
+ @param failure Failure callback
  */
 + (void)uploadDeviceCoverPictureForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId PictureData:(NSData *)data success:(void (^)(NSString *picUrlString))success
                                   failure:(void (^)(LCError *error))failure;
 
 /**
- 获取设备云台控制接口
+ 获取当前设备的云存储服务信息
 
- @param deviceId 设备ID
- @param channelId 通道ID
- @param success 成功回调（h，v，z）
- @param failure 失败回调
- */
-+ (void)devicePTZInfoForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(NSString *h, NSString *v, NSString *z))success
-                       failure:(void (^)(LCError *error))failure;
-
-/**
- 设备/通道封面刷新
-
- @param deviceId 设备Id
- @param channelId 通道Id
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)refreshDeviceCoverForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(void))success
-                            failure:(void (^)(LCError *error))failure;
-
-/**
- 新增收藏点
-
- @param deviceId 设备ID
- @param channelId 通道ID
- @param name 收藏点名称
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)setCollectionForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId Name:(NSString *)name success:(void (^)(void))success
-                       failure:(void (^)(LCError *error))failure;
-
-/**
- 删除收藏点
-
- @param deviceId 设备ID
- @param channelId 通道ID
- @param nameList 收藏点名称列表
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)deleteCollectionForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId NameList:(NSMutableArray <NSString *> *)nameList success:(void (^)(void))success
-                          failure:(void (^)(LCError *error))failure;
-
-/**
- 获取收藏点信息
+ @param deviceId  设备序列号
+ @param channelId 设备通道号
+ @param success   成功回调  open: 云存储是否已打开
+ @param failure   失败回调
  
- @param deviceId 设备ID
- @param channelId 通道ID
- @param success 成功回调（String数组）
- @param failure 失败回调
+ Obtain the cloud storage service information of the current device
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param success Successful callback open: indicates whether the cloud storage device is opened
+ @param failure Failure callback
  */
-+ (void)getCollectionForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(NSMutableArray <NSString *> *))success
-                       failure:(void (^)(LCError *error))failure;
++ (void)getDeviceCloud:(nonnull NSString *)deviceId channelId:(nullable NSString *)channelId success:(void (^)(BOOL open))success failure:(void (^)(LCError *error))failure;
 
-+(void)modifyCollectionForDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(NSMutableArray <NSString *> *))success
-failure:(void (^)(LCError *error))failure;
+/**
+ 设置当前设备的云存储服务开关
+
+ @param deviceId  设备序列号
+ @param channelId 设备通道号
+ @param open      打开/关闭
+ @param success   成功回调  open: 云存储是否已打开
+ @param failure   失败回调
+ 
+ Set the cloud storage service switch of the current device
+ 
+ @param deviceId Device Serial Number
+ @param channelId Channel number
+ @param open      true/false
+ @param success Successful callback open: indicates whether the cloud storage device is opened
+ @param failure Failure callback
+ */
++ (void)setAllStorageStrategy:(nonnull NSString *)deviceId channelId:(nullable NSString *)channelId isOpen:(BOOL)open success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
+
+
 
 @end
 

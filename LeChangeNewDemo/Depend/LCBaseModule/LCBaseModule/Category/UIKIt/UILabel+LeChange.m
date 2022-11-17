@@ -1,5 +1,5 @@
 //
-//  Copyright © 2016 dahua. All rights reserved.
+//  Copyright © 2016 Imou. All rights reserved.
 //
 
 #import "UILabel+LeChange.h"

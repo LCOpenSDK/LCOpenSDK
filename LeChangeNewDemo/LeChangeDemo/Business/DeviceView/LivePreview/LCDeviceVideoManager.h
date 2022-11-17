@@ -1,9 +1,9 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "LCLivePreviewDefine.h"
+#import <LCMediaBaseModule/VPVideoDefines.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Define.h>
 
 #define RTSP_Result_String(enum) [@[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"99", @"100" ] objectAtIndex:enum]
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  初始化单例
  */
-+(instancetype)manager;
++ (instancetype)shareInstance;
 
 /// 播放按钮是否处于开启状态（仅是按钮状态，不代表拉流成功）
 @property (nonatomic) BOOL isPlay;
@@ -32,9 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否为SD质量
 @property (nonatomic) BOOL isSD;
-
-/// 是否乐橙绑定的设备
-@property (nonatomic) BOOL isbindFromLeChange;
 
 /// 是否打开音频
 @property (nonatomic) BOOL isSoundOn;

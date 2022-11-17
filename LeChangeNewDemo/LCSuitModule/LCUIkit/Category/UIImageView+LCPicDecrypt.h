@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备Id
  @param key 解密密钥
  */
--(void)lc_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder DeviceId:(NSString *)deviceId Key:(NSString *)key;
+-(void)lc_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key;
 
 @end
 

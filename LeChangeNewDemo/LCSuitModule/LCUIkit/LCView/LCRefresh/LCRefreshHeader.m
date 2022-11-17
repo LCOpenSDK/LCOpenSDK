@@ -1,13 +1,13 @@
 //
-//  Copyright © 2015年 dahua. All rights reserved.
+//  Copyright © 2015年 Imou. All rights reserved.
 //
 
 #import "LCRefreshHeader.h"
-#import <LCBaseModule/DHActivityIndicatorView.h>
+#import <LCBaseModule/LCActivityIndicatorView.h>
 
 @interface LCRefreshHeader ()
 {
-    DHActivityIndicatorView *actionView;
+    LCActivityIndicatorView *actionView;
     UILabel *statelabel;
 }
 @end
@@ -31,7 +31,7 @@
 	statelabel.backgroundColor = [UIColor clearColor];
 	[statelabel setNumberOfLines:0];
     
-    actionView = [[DHActivityIndicatorView alloc]init];
+    actionView = [[LCActivityIndicatorView alloc]init];
     [self addSubview:statelabel];
     [self addSubview:actionView];
 }

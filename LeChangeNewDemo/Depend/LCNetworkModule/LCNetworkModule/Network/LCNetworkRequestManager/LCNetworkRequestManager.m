@@ -1,11 +1,12 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //。网络请求处理类
 
 #import "LCNetworkRequestManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "LCApplicationDataManager.h"
 #import "LCAccountInterface.h"
+#import <LCBaseModule/LCBaseModule.h>
 
 #define TIMEOUT_INTERVAL 10.0 //请求超时时间
 
@@ -71,7 +72,9 @@
                 }
             } else {
                 NSLog(@"LCOpenSDKDemo now recv error: %@", error);
-                failure([LCError errorWithCode:@"9999" errorMessage:[NSString stringWithFormat:@"mobile_common_net_fail".lc_T, error.code] errorInfo:error.userInfo]);
+                LCError *tempError
+                = [LCError errorWithCode:@"9999" errorMessage:[NSString stringWithFormat:@"mobile_common_net_fail".lc_T, error.code] errorInfo:error.userInfo];
+                failure(tempError);
             }
         });
     }];

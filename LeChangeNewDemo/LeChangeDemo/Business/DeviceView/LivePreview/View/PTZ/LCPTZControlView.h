@@ -1,10 +1,10 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 // 云台控制
 
 #import <UIKit/UIKit.h>
 #import "LCPTZPanel.h"
-#import "UIView+LCDraggable.h"
+#import <LCMediaBaseModule/UIView+LCDraggable.h>
 
 typedef enum : NSUInteger {
     LCPTZControlSupportFour,///支持4方向

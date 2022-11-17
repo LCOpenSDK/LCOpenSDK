@@ -5,7 +5,7 @@
 #import "UITableView+LeChange.h"
 #import "NSString+LeChange.h"
 #import <objc/runtime.h>
-#import <LCBaseModule/DHPubDefine.h>
+#import <LCBaseModule/LCPubDefine.h>
 
 #define SECTION_FONT_SIZE 13
 
@@ -32,14 +32,14 @@
 
 - (CGFloat)lc_getHeightOfSectionString:(NSString*)content margin:(CGFloat)margin defaultHeight:(CGFloat)defaultHeight fontSize:(CGFloat)fontSize {
     UIFont *font = [UIFont systemFontOfSize:fontSize];
-    CGSize size = CGSizeMake((CGFloat)(DH_SCREEN_SIZE_WIDTH - margin * 2), CGFLOAT_MAX);
+    CGSize size = CGSizeMake((CGFloat)(LC_SCREEN_SIZE_WIDTH - margin * 2), CGFLOAT_MAX);
     CGFloat headerHeight = [content lc_sizeWithFont:font  size:size].height + 15;
     headerHeight = headerHeight < defaultHeight ? defaultHeight : headerHeight;
     return headerHeight;
 }
 
 - (UIView*)lc_getSectionViewOfString:(NSString*)content {
-    UIView *contentView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, DH_SCREEN_SIZE_WIDTH, [self lc_getHeightOfSectionString:content])];
+    UIView *contentView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, LC_SCREEN_SIZE_WIDTH, [self lc_getHeightOfSectionString:content])];
     contentView.backgroundColor = [UIColor clearColor];
     UILabel *contentLabel = UILabel.new;
     contentLabel.frame = CGRectMake(15, 0, contentView.frame.size.width - 30, contentView.frame.size.height);

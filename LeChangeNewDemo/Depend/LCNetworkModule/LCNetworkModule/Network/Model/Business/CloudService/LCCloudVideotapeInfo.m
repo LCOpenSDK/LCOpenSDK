@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //  
 
 #import "LCCloudVideotapeInfo.h"
@@ -34,6 +34,25 @@
     return [formatter dateFromString:self.endTime];
 }
 
+-(NSString *)transfromToJson
+{
+    return [self mj_JSONString];
+}
+
++(LCLocalVideotapeInfo * _Nullable)jsonToObject:(NSString *)jsonString
+{
+    NSDictionary *dic = [jsonString mj_JSONObject];
+    if (dic == nil) {
+        return nil;
+    }
+    return [LCLocalVideotapeInfo mj_objectWithKeyValues:dic];
+}
+
++ (NSArray *)mj_ignoredPropertyNames
+{
+    return @[@"beginDate", @"endDate"];
+}
+
 @end
 
 @implementation LCCloudVideotapeInfo
@@ -64,6 +83,25 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     return [formatter dateFromString:self.endTime];
+}
+
+-(NSString *)transfromToJson
+{
+    return [self mj_JSONString];
+}
+
++(LCCloudVideotapeInfo * _Nullable)jsonToObject:(NSString *)jsonString
+{
+    NSDictionary *dic = [jsonString mj_JSONObject];
+    if (dic == nil) {
+        return nil;
+    }
+    return [LCCloudVideotapeInfo mj_objectWithKeyValues:dic];
+}
+
++ (NSArray *)mj_ignoredPropertyNames
+{
+    return @[@"index", @"beginDate", @"endDate"];
 }
 
 @end

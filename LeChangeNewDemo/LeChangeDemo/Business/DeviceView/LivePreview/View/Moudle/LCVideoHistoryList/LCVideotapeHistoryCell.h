@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -26,7 +26,7 @@ typedef void(^LCVideotapeHistoryCellClickBlock)(void);
  @param deviceId 设备序列号
  @param key 解密密钥
  */
--(void)loadVideotapImage:(nullable NSString *)url DeviceId:(NSString *)deviceId Key:(NSString *)key;
+-(void)loadVideotapImage:(nullable NSString *)url DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key;
 
 
 @end

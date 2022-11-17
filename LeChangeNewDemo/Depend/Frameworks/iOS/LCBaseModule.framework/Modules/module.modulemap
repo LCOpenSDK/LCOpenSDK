@@ -6,6 +6,6 @@ framework module LCBaseModule {
 }
 
 module LCBaseModule.Swift {
-    header "LCBaseModule-Swift.h"
-    requires objc
+  header "LCBaseModule-Swift.h"
+  requires objc
 }

@@ -1,0 +1,6 @@
+framework module LCNewPlayBackModule {
+  umbrella header "LCNewPlayBackModule.h"
+
+  export *
+  module * { export * }
+}

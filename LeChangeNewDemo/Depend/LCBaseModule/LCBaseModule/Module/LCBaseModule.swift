@@ -4,7 +4,7 @@
 
 import UIKit
 
-class LCBaseModule: NSObject, DHModuleProtocol {
+class LCBaseModule: NSObject, LCModuleProtocol {
 
 	func moduleInit() {
 		registerVideoDecrptionAlertHelper()
@@ -12,7 +12,7 @@ class LCBaseModule: NSObject, DHModuleProtocol {
 	
 	func registerVideoDecrptionAlertHelper() {
 		if let cls = NSClassFromString("LCVideoDecrytionAlertView") {
-			DHModule.registerService(IVideoDecrytionAlertHelper.self, implClass: cls)
+			LCModule.registerService(IVideoDecrytionAlertHelper.self, implClass: cls)
 		}
 	}
 }

@@ -1,12 +1,12 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCLivePreviewPresenter+Control.h"
-#import "LCLivePreviewDefine.h"
+#import <LCMediaBaseModule/VPVideoDefines.h>
 #import <objc/runtime.h>
-#import "PHAsset+Lechange.h"
-#import "UIImage+LeChange.h"
+#import <LCMediaBaseModule/PHAsset+Lechange.h>
+#import <LCMediaBaseModule/UIImage+MediaBaseModule.h>
 #import "LCLivePreviewPresenter+SDKListener.h"
 
 static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSavePath";
@@ -78,14 +78,13 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     param.isOpt = YES;
     param.accessToken = [LCApplicationDataManager token];
     param.deviceID = self.videoManager.currentDevice.deviceId;
+    param.productId = self.videoManager.currentDevice.productId;
     param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
     if ([self.videoManager.currentChannelInfo.resolutions count] >0) {
-        
         LCCIResolutions *resolutions = self.videoManager.currentResolution;
         if (!resolutions) {
-            
             resolutions = [self.videoManager.currentChannelInfo.resolutions firstObject];
             self.videoManager.currentResolution = resolutions;
         }
@@ -104,7 +103,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     self.videoManager.isPlay = YES;
 }
 
--(void)qualitySelect:(LCButton *)btn{
+- (void)qualitySelect:(LCButton *)btn {
     
     [btn setTitle:@"" forState:UIControlStateNormal];
     if (!self.qualityView) {
@@ -115,7 +114,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         for (int i =0; i<btnCount; i++) {
             
             LCCIResolutions *NResolution = self.videoManager.currentChannelInfo.resolutions[i];
-            LCButton *qualityBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+            LCButton *qualityBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
             [qualityBtn setFrame:CGRectMake(0, 30 * i, 30, 30)];
             [qualityBtn setTitle:NResolution.name forState:UIControlStateNormal];
             [qualityBtn setTag:(100 + i)];
@@ -138,7 +137,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         for (int i =0; i<btnCount; i++) {
             
             LCCIResolutions *NResolution = self.videoManager.currentChannelInfo.resolutions[i];
-            LCButton *qualityBtn = [LCButton lcButtonWithType:LCButtonTypeCustom];
+            LCButton *qualityBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
             [qualityBtn setFrame:CGRectMake(0, 30 * i, 30, 30)];
             [qualityBtn setTitle:NResolution.name forState:UIControlStateNormal];
             [qualityBtn setTag:(100 + i)];
@@ -190,6 +189,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
     param.imageSize = NResolution.imageSize;
+    param.productId = self.videoManager.currentDevice.productId;
     
     [self.playWindow playRtspReal:param];
 }
@@ -220,7 +220,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
-    
+    param.productId = self.videoManager.currentDevice.productId;
     [self.playWindow playRtspReal:param];
     
 }
@@ -308,6 +308,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
         param.talkType = @"talk";
+        param.productId = self.videoManager.currentDevice.productId;
         
         NSInteger result = [self.talker playTalk:param];
         if (result != 0) {

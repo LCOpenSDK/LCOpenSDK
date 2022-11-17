@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCVideoControlView.h"
@@ -58,11 +58,11 @@
         //黑色控制条
 //        [self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:15 tailSpacing:15];
         [self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:30 leadSpacing:30 tailSpacing:30];
-        self.backgroundColor = [UIColor dhcolor_c50];
+        self.backgroundColor = [UIColor lccolor_c50];
     }else{
         //白色控制条
 //        [self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:20 leadSpacing:10 tailSpacing:10];
-        self.backgroundColor = [UIColor dhcolor_c43];
+        self.backgroundColor = [UIColor lccolor_c43];
         [self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:50 leadSpacing:40 tailSpacing:40];
     }
 }

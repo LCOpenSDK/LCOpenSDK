@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //。 网络请求，响应数据模型，Http请求统一先解析为该s模型，然后再进行分发
 
 #import <Foundation/Foundation.h>

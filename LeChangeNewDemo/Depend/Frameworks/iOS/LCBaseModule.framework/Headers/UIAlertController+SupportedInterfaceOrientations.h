@@ -1,6 +1,5 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
-//  解决LCNavigationController的崩溃问题
+//  Copyright © 2016年 Imou. All rights reserved.
 
 #import <UIKit/UIKit.h>
 

@@ -1,0 +1,6 @@
+framework module LCNewLivePreviewModule {
+  umbrella header "LCNewLivePreviewModule.h"
+
+  export *
+  module * { export * }
+}

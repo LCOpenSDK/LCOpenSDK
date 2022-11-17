@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeListDateControl.h"
@@ -20,7 +20,7 @@
 
 -(void)setupView{
     weakSelf(self);
-    self.lastDay = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.lastDay = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self addSubview:self.lastDay];
     self.lastDay.tag = 0;
     [self.lastDay addTarget:self action:@selector(onDayChange:) forControlEvents:UIControlEventTouchUpInside];
@@ -31,7 +31,7 @@
         make.height.width.mas_equalTo(19);
     }];
     
-    self.nextDay = [LCButton lcButtonWithType:LCButtonTypeCustom];
+    self.nextDay = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self addSubview:self.nextDay];
     self.nextDay.tag = 2;
     [self.nextDay addTarget:self action:@selector(onDayChange:) forControlEvents:UIControlEventTouchUpInside];

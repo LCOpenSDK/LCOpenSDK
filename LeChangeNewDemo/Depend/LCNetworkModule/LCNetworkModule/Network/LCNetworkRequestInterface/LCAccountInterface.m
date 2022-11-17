@@ -1,10 +1,11 @@
 //
-//  Copyright © 2019 dahua. All rights reserved.
+//  Copyright © 2019 Imou. All rights reserved.
 //
 
 #import "LCAccountInterface.h"
 #import "LCNetworkRequestManager.h"
 #import "LCApplicationDataManager.h"
+#import <LCBaseModule/LCError.h>
 
 @implementation LCAccountInterface
 
@@ -23,19 +24,6 @@
         failure(error);
     }];
   
-}
-
-+ (void)userTokenWithPhone:(NSString *)phoneNum success:(void (^)(LCAuthModel *_Nonnull))success failure:(void (^)(LCError *_Nonnull))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/userTokenByAccount" parameters:@{ @"account": phoneNum } success:^(id _Nonnull objc) {
-        LCAuthModel *model = [LCAuthModel mj_objectWithKeyValues:objc];
-        if (success) {
-            // TODO: 相关数据存本地
-            success(model);
-        }
-    } failure:^(LCError *error) {
-        //开发者应自行处理错误
-        failure(error);
-    }];
 }
 
 + (void)createSubAccount:(nonnull NSString *)account success:(void (^)(LCAuthModel *authInfo))success
@@ -96,15 +84,5 @@
     }];
 }
 
-+ (void)userBind:(NSString *)email success:(void (^)(void))success failure:(void (^)(LCError *_Nonnull))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/userBind" parameters:@{ @"email": email } success:^(id _Nonnull objc) {
-        if (success) {
-            success();
-        }
-    } failure:^(LCError *error) {
-        //开发者应自行处理错误
-        failure(error);
-    }];
-}
 
 @end

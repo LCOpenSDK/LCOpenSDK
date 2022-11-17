@@ -1,0 +1,11 @@
+framework module LCMessageModule {
+  umbrella header "LCMessageModule.h"
+
+  export *
+  module * { export * }
+}
+
+module LCMessageModule.Swift {
+  header "LCMessageModule-Swift.h"
+  requires objc
+}

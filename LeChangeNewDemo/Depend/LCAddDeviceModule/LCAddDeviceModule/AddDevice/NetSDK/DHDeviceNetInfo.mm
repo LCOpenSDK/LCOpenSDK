@@ -1,50 +1,47 @@
 //
-//  Copyright © 2018年 dahua. All rights reserved.
+//  Copyright © 2018年 Imou. All rights reserved.
 //
 
 #import "DHDeviceNetInfo.h"
-#import <LCOpenSDKDynamic/LCOpenNetSDK/netsdk.h>
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 
 @implementation DHDeviceNetInfo
-- (instancetype)initWithNetInfo:(void *)pDevice
-{
-    if(self = [super init])
-    {
-		DEVICE_NET_INFO_EX *pDevNetInfo = (DEVICE_NET_INFO_EX *)pDevice;
-        self.ipVersion = pDevNetInfo->iIPVersion;
-        self.ip = [NSString stringWithUTF8String:pDevNetInfo->szIP];
-		self.port = pDevNetInfo->nPort > 0 ? pDevNetInfo->nPort : 37777;
-        self.submask = [NSString stringWithUTF8String:pDevNetInfo->szSubmask];
-        self.mac = [NSString stringWithUTF8String:pDevNetInfo->szMac];
-        self.gateway = [NSString stringWithUTF8String:pDevNetInfo->szGateway];
-        self.deviceType = [NSString stringWithUTF8String:pDevNetInfo->szDeviceType];
-        self.definition = pDevNetInfo->byDefinition;
-        self.manuFactory = pDevNetInfo->byManuFactory;
-        self.dhcpEn = pDevNetInfo->bDhcpEn;
-        self.reserved1 = pDevNetInfo->byReserved1;
-        self.verifyData = [NSString stringWithUTF8String:pDevNetInfo->verifyData];
-        
-        self.serialNo = [NSString stringWithUTF8String:pDevNetInfo->szSerialNo];
-        self.devSoftVersion = [NSString stringWithUTF8String:pDevNetInfo->szDevSoftVersion];
-        self.detailType = [NSString stringWithUTF8String:pDevNetInfo->szDetailType];
-        self.vendor = [NSString stringWithUTF8String:pDevNetInfo->szVendor];
-        self.devName = [NSString stringWithUTF8String:pDevNetInfo->szDevName];
-        self.userName = [NSString stringWithUTF8String:pDevNetInfo->szUserName];
-        self.passWord = [NSString stringWithUTF8String:pDevNetInfo->szPassWord];
-        self.httpPort = pDevNetInfo->nHttpPort;
-        self.videoInputCh = pDevNetInfo->wVideoInputCh;
-        self.remoteVideoInputCh = pDevNetInfo->wRemoteVideoInputCh;
-        self.videoOutputCh = pDevNetInfo->wVideoOutputCh;
-        self.alarmInputCh = pDevNetInfo->wAlarmInputCh;
-        self.alarmOutputCh = pDevNetInfo->wAlarmOutputCh;
-        self.newWordLen = pDevNetInfo->bNewWordLen;
-        self.nowPassWord = [NSString stringWithUTF8String:pDevNetInfo->szNewPassWord];
-        self.initStatus = pDevNetInfo->byInitStatus;
-        self.byPWDResetWay = pDevNetInfo->byPwdResetWay;
-        self.specialAbility = pDevNetInfo->bySpecialAbility;
-        self.nowDetailType = [NSString stringWithUTF8String:pDevNetInfo->szNewDetailType];
-        self.bNowUserName = pDevNetInfo->bNewUserName;
-        self.nowUserName = [NSString stringWithUTF8String:pDevNetInfo->szNewUserName];
+- (instancetype)initWithNetInfo:(LCOpenSDK_SearchDeviceInfo *)pDevice {
+    if(self = [super init]) {
+        self.ipVersion          = pDevice.ipVersion;
+        self.ip                 = pDevice.ip;
+        self.port               = pDevice.port;
+        self.submask            = pDevice.submask;
+        self.mac                = pDevice.mac;
+        self.gateway            = pDevice.gateway;
+        self.deviceType         = pDevice.deviceType;
+        self.definition         = pDevice.definition;
+        self.manuFactory        = pDevice.manuFactory;
+        self.dhcpEn             = pDevice.dhcpEn;
+        self.reserved1          = pDevice.reserved1;
+        self.verifyData         = pDevice.verifyData;
+        self.serialNo           = pDevice.serialNo;
+        self.devSoftVersion     = pDevice.devSoftVersion;
+        self.detailType         = pDevice.detailType;
+        self.vendor             = pDevice.vendor;
+        self.devName            = pDevice.devName;
+        self.userName           = pDevice.userName;
+        self.passWord           = pDevice.passWord;
+        self.httpPort           = pDevice.httpPort;
+        self.videoInputCh       = pDevice.videoInputCh;
+        self.remoteVideoInputCh = pDevice.remoteVideoInputCh;
+        self.videoOutputCh      = pDevice.videoOutputCh;
+        self.alarmInputCh       = pDevice.alarmInputCh;
+        self.alarmOutputCh      = pDevice.alarmOutputCh;
+        self.newWordLen         = pDevice.newWordLen;
+        self.nowPassWord        = pDevice.nowPassWord;
+        self.initStatus         = pDevice.initStatus;
+        self.byPWDResetWay      = pDevice.byPWDResetWay;
+        self.specialAbility     = pDevice.specialAbility;
+        self.nowDetailType      = pDevice.nowDetailType;
+        self.bNowUserName       = pDevice.bNowUserName;
+        self.nowUserName        = pDevice.nowUserName;
+        self.searchSequence = pDevice.searchSequence;
 	}
 	
     return self;
@@ -106,7 +103,7 @@
 
 - (DHDeviceInitStatus)deviceInitStatus
 {
-    BYTE byInitStatus = self.initStatus;
+    unsigned char byInitStatus = self.initStatus;
     if((byInitStatus & 0B01) == 0B01)
     {
         return DHDeviceInitStatusUnInit;
@@ -131,7 +128,7 @@
 
 - (BOOL)isSupportPWDReset {
 	// bit6~7: 0- 未知 1-不支持密码重置 2-支持密码重置
-	BYTE status = (self.initStatus >> 6) & 0B11 ;
+    unsigned char status = (self.initStatus >> 6) & 0B11 ;
 	if (status == 2) {
 		//只有这一种情况才支持重置
 		return YES;

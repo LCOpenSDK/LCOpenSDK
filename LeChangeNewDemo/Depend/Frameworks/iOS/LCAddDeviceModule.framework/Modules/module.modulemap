@@ -6,6 +6,6 @@ framework module LCAddDeviceModule {
 }
 
 module LCAddDeviceModule.Swift {
-    header "LCAddDeviceModule-Swift.h"
-    requires objc
+  header "LCAddDeviceModule-Swift.h"
+  requires objc
 }

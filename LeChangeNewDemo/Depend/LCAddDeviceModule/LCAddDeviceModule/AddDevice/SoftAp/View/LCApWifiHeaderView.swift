@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 import UIKit
@@ -27,7 +27,7 @@ class LCApWifiHeaderView: UIView {
     // MARK: - private method
     
     private func loadSubviews() {
-        backgroundColor = UIColor.dhcolor_c7()
+        backgroundColor = UIColor.lccolor_c7()
         indicatorView.hidesWhenStopped = true
         
         addSubview(headerLabel)
@@ -57,8 +57,8 @@ class LCApWifiHeaderView: UIView {
     
     lazy var headerLabel: UILabel = {
         let headerLabel = UILabel()
-        headerLabel.font = UIFont.dhFont_t2()
-        headerLabel.textColor = UIColor.dhcolor_c2()
+        headerLabel.font = UIFont.lcFont_t2()
+        headerLabel.textColor = UIColor.lccolor_c2()
         headerLabel.text = "add_device_choose_wifi".lc_T
         
         return headerLabel

@@ -1,11 +1,12 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapePersenter.h"
 #import "LCVideotapeListCell.h"
 #import "LCVideotapeListHeardView.h"
 #import "LCDeviceVideotapePlayManager.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface LCVideotapePersenter ()
 
@@ -41,11 +42,21 @@
     [self.cloudVideoArray removeAllObjects];
     [self.groupCloudVideos removeAllObjects];
     [self didChangeValueForKey:@"cloudVideoArray"];
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
+    //结束时间
+    NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
     
-    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:-1 Count:30 success:^(NSMutableArray<LCCloudVideotapeInfo *> *_Nonnull videos) {
+    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
+    NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
+    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
         [weakself willChangeValueForKey:@"cloudVideoArray"];
         [weakself.cloudVideoArray removeAllObjects];
-        weakself.cloudVideoArray = videos;
+        [weakself addNewCloudVideos:videos];
         weakself.groupCloudVideos = [self groupVideoListWith:weakself.cloudVideoArray];
         
         if (videos.count == 0) {
@@ -62,7 +73,8 @@
         
         [LCProgressHUD hideAllHuds:nil];
         [weakself.videoListPage.cloudVideoList.mj_header endRefreshing];
-    } failure:^(LCError *_Nonnull error) {
+        [weakself.videoListPage.cloudVideoList.mj_footer resetNoMoreData];
+    } failure:^(LCError * _Nonnull error) {
         [LCProgressHUD hideAllHuds:nil];
         [LCProgressHUD showMsg:error.errorMessage];
         [weakself.videoListPage.cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:error.errorMessage];
@@ -76,22 +88,22 @@
     if (date) {
         self.currentDate = date;
     } else {
-        
+
     }
-    
+
     [self willChangeValueForKey:@"localVideoArray"];
     [self.localVideoArray removeAllObjects];
     [self.groupLocalVideos removeAllObjects];
     [self didChangeValueForKey:@"localVideoArray"];
-    
-    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:1 To:30 success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
+
+    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:1 To:30 success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
         [weakself willChangeValueForKey:@"localVideoArray"];
         [weakself.localVideoArray removeAllObjects];
         weakself.localVideoArray = videos;
         self.groupLocalVideos = [self groupVideoListWith:weakself.localVideoArray];
         [weakself.videoListPage.localVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:videos.count==0?@"video_module_none_record".lc_T:@""];
         [weakself didChangeValueForKey:@"localVideoArray"];
-        
+
         [LCProgressHUD hideAllHuds:nil];
         [self.videoListPage.localVideoList.mj_header endRefreshing];
     } failure:^(LCError *_Nonnull error) {
@@ -108,23 +120,70 @@
     if (date) {
         self.currentDate = date;
     }
-    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:[self.cloudVideoArray.lastObject.recordId integerValue] Count:30 success:^(NSMutableArray<LCCloudVideotapeInfo *> *_Nonnull videos) {
+    
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
+    
+    NSString *lastCloudEndStr = self.cloudVideoArray.lastObject.beginTime;
+    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeInterval endTime = 0.0;
+    if (lastCloudEndStr != nil) {
+        endTime = [[tDataFormatter dateFromString:lastCloudEndStr] timeIntervalSince1970];
+    }
+    if (endTime == 0.0) {
+        //结束时间
+        NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
+        endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
+    }else {
+        endTime = endTime - 1;
+    }
+    
+    NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
+    [LCVideotapeInterface getCloudRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
         [weakself willChangeValueForKey:@"cloudVideoArray"];
-        [weakself.cloudVideoArray addObjectsFromArray:videos];
+        [weakself addNewCloudVideos:videos];
         self.groupCloudVideos = [self groupVideoListWith:weakself.cloudVideoArray];
         [weakself didChangeValueForKey:@"cloudVideoArray"];
         
         [LCProgressHUD hideAllHuds:nil];
-        [self.videoListPage.cloudVideoList.mj_footer endRefreshing];
         if (videos.count < 30) {
-            [self.videoListPage.cloudVideoList.mj_footer setState:MJRefreshStateNoMoreData];
+            [weakself.videoListPage.cloudVideoList.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [weakself.videoListPage.cloudVideoList.mj_footer endRefreshing];
         }
-    } failure:^(LCError *_Nonnull error) {
+    } failure:^(LCError * _Nonnull error) {
         [LCProgressHUD hideAllHuds:nil];
         [LCProgressHUD showMsg:error.errorMessage];
-        [self.videoListPage.cloudVideoList.mj_footer endRefreshing];
+        [weakself.videoListPage.cloudVideoList.mj_footer endRefreshing];
     }];
 }
+
+//- (void)loadMoreLocalVideoListWithDate:(NSDate *)date {
+//    [LCProgressHUD showHudOnLowerView:nil];
+//    weakSelf(self);
+//    if (date) {
+//        self.currentDate = date;
+//    }
+//    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:(int)(self.localVideoArray.count + 1) To:(int)(self.localVideoArray.count + 30) success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
+//        [weakself willChangeValueForKey:@"localVideoArray"];
+//        [weakself.localVideoArray addObjectsFromArray:videos];
+//        self.groupLocalVideos = [self groupVideoListWith:weakself.localVideoArray];
+//        [weakself didChangeValueForKey:@"localVideoArray"];
+//
+//        [LCProgressHUD hideAllHuds:nil];
+//        [self.videoListPage.localVideoList.mj_footer endRefreshing];
+//        if (videos.count < 30) {
+//            [self.videoListPage.localVideoList.mj_footer setState:MJRefreshStateNoMoreData];
+//        }
+//    } failure:^(LCError *_Nonnull error) {
+//        [LCProgressHUD hideAllHuds:nil];
+//        [LCProgressHUD showMsg:error.errorMessage];
+//        [self.videoListPage.localVideoList.mj_footer endRefreshing];
+//    }];
+//}
 
 - (void)loadMoreLocalVideoListWithDate:(NSDate *)date {
     [LCProgressHUD showHudOnLowerView:nil];
@@ -132,7 +191,40 @@
     if (date) {
         self.currentDate = date;
     }
-    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId channelId:self.videoManager.currentChannelInfo.channelId day:self.currentDate From:(int)(self.localVideoArray.count + 1) To:(int)(self.localVideoArray.count + 30) success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
+    
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:date]];
+    //1 首先查询列表中是否有数据，有将列表中的结束时间作为下次查询的开始时间
+    if(weakself.localVideoArray.count!=0){
+        NSDateFormatter * tempDateFormatter = [[NSDateFormatter alloc] init];
+        tempDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSDate* tempDate = [tempDateFormatter dateFromString:weakself.localVideoArray.lastObject.endTime];
+        
+        startStr= [tempDateFormatter stringFromDate:[NSDate dateWithTimeInterval:1 sinceDate:tempDate]];
+    }
+    
+    NSString * endStr = @"";
+    if (![[NSCalendar currentCalendar] isDateInToday:date]) {
+    //如果不是今天
+        endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:date]];
+    }else{
+        //否则搜索时间为当前时间
+        NSDateFormatter * dataFormatterEnd = [[NSDateFormatter alloc] init];
+        dataFormatterEnd.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        endStr = [dataFormatterEnd stringFromDate:date];
+    }
+    NSDateFormatter * dataFormatterEnd = [[NSDateFormatter alloc] init];
+    dataFormatterEnd.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *startDate = [dataFormatter dateFromString:startStr];
+    NSDate *endDate = [dataFormatter dateFromString:endStr];
+    if ([startDate compare:endDate] == NSOrderedDescending) {
+        endStr = startStr;
+    }
+    
+    [LCVideotapeInterface queryLocalRecordsForDevice:self.videoManager.currentDevice.deviceId productId:self.videoManager.currentDevice.productId channelId:self.videoManager.currentChannelInfo.channelId StartTime:startStr EndTime:endStr From:(int)(self.localVideoArray.count + 1) To:(int)(self.localVideoArray.count + 30) success:^(NSMutableArray<LCLocalVideotapeInfo *> *_Nonnull videos) {
         [weakself willChangeValueForKey:@"localVideoArray"];
         [weakself.localVideoArray addObjectsFromArray:videos];
         self.groupLocalVideos = [self groupVideoListWith:weakself.localVideoArray];
@@ -166,7 +258,7 @@
 
 - (LCDeviceVideoManager *)videoManager {
     if (!_videoManager) {
-        _videoManager = [LCDeviceVideoManager manager];
+        _videoManager = [LCDeviceVideoManager shareInstance];
     }
     return _videoManager;
 }
@@ -251,6 +343,29 @@
     return result;
 }
 
+- (void)addNewCloudVideos:(NSArray<LCCloudVideotapeInfo *> *)videos
+{
+    NSMutableArray<LCCloudVideotapeInfo *> *newVideos = @[].mutableCopy;
+    LCCloudVideotapeInfo *firstCloud;
+    if (self.cloudVideoArray.count > 0) {
+        firstCloud = [self.cloudVideoArray lastObject];
+    }
+    for (int i = 0; i < videos.count; i++) {
+        LCCloudVideotapeInfo *current = videos[i];
+        if (firstCloud != nil && [firstCloud.beginTime isEqualToString: current.beginTime]) {
+            [self.cloudVideoArray removeLastObject];
+        }
+        if (i < videos.count - 1) {
+            LCCloudVideotapeInfo *next = videos[i + 1];
+            if ([current.beginTime isEqualToString: next.beginTime]) {
+                continue;
+            }
+        }
+        [newVideos addObject:current];
+    }
+    [self.cloudVideoArray addObjectsFromArray:newVideos];
+}
+
 #pragma mark - scrollView代理相关,滚动到哪个页面，页面自动刷新（如果该页面数据为空）
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
@@ -285,7 +400,7 @@
     
     
     NSArray<LCCloudVideotapeInfo *> * items = [self.selectedCloudVideoSet allObjects];
-    [LCVideotapeInterface deleteCloudRecords:items.firstObject.recordRegionId success:^{
+    [LCVideotapeInterface deleteCloudRecords:items.firstObject.recordRegionId productId: items.firstObject.productId success:^{
         [weakself.selectedCloudVideoSet removeObject:items.firstObject];
         //[self.videoListPage.cloudVideoList deleteItemsAtIndexPaths:@[items.firstObject.index]];
         
@@ -377,7 +492,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     LCVideotapeListHeardView *heardView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LCVideotapeListHeardView" forIndexPath:indexPath];
-    heardView.backgroundColor = [UIColor dhcolor_c54];
+    heardView.backgroundColor = [UIColor lccolor_c54];
     heardView.index = indexPath.section;
     if (collectionView.tag == 1000) {
         LCCloudVideotapeInfo *info = self.groupCloudVideos[indexPath.section][0];

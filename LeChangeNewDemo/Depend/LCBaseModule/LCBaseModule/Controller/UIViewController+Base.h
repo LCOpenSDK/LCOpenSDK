@@ -35,7 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param cls 类名
  @return 返回成功YES
  */
-- (BOOL)dh_popToContollerByClass:(Class)cls;
+- (BOOL)lc_popToContollerByClass:(Class)cls;
+
+/// 获取当前层级最顶层页面
++ (UIViewController *)LC_topViewController;
 
 @end
 

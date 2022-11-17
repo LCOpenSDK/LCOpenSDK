@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017年 Zhejiang Dahua Technology Co.,Ltd. All rights reserved.
+//  Copyright © 2017年 Zhejiang Imou Technology Co.,Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 
  @return 非JSON对象，返回nil；成功转换，返回对应的值
  */
-- (NSString *)dh_jsonString;
+- (NSString *)lc_jsonString;
 
 @end
 
@@ -25,20 +25,20 @@
  
  @return 转换返回对应的值
  */
-- (id)dh_jsonObject;
+- (id)lc_jsonObject;
 
 /**
  JSON串转化为字典对象
  
  @return 转换返回对应的值
  */
-- (NSDictionary *)dh_jsonDictionary;
+- (NSDictionary *)lc_jsonDictionary;
 
 /**
  JSON串转换为数组
 
  @return 转换返回对应的值
  */
-- (NSArray *)dh_jsonArray;
+- (NSArray *)lc_jsonArray;
 
 @end

@@ -5,18 +5,18 @@
       "scale" : "1x"
     },
     {
+      "filename" : "home_icon_device_setting@2x.png",
       "idiom" : "universal",
-      "filename" : "common_nav_settings_white_disable@2x.png",
       "scale" : "2x"
     },
     {
+      "filename" : "home_icon_device_setting@3x.png",
       "idiom" : "universal",
-      "filename" : "common_nav_settings_white_disable@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

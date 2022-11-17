@@ -1,9 +1,9 @@
 //
-//  Copyright © 2016年 dahua. All rights reserved.
+//  Copyright © 2016年 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/LCStore.h>
-#import <LCBaseModule/DHFileManager.h>
+#import <LCBaseModule/LCFileManager.h>
 
 @interface LCStore() {
     NSMutableDictionary *_storeDic;
@@ -30,7 +30,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        NSString *configfilepath = [DHFileManager configFilePath];
+        NSString *configfilepath = [LCFileManager configFilePath];
         NSLog(@"🍎🍎🍎 %@:: Init with config file path - %@", NSStringFromClass([self class]), configfilepath);
         _storeDic = [NSMutableDictionary dictionaryWithContentsOfFile:configfilepath];;
         if (_storeDic == nil) {

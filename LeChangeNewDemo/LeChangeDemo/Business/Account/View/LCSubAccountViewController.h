@@ -3,7 +3,7 @@
 //  LeChangeDemo
 //
 //  Created by 韩燕瑞 on 2021/7/12.
-//  Copyright © 2021 dahua. All rights reserved.
+//  Copyright © 2021 Imou. All rights reserved.
 //
 
 #import <LCBaseModule/LCBaseModule.h>

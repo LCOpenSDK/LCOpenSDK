@@ -1,5 +1,5 @@
 //
-//  Copyright © 2020 dahua. All rights reserved.
+//  Copyright © 2020 Imou. All rights reserved.
 //
 
 #import "LCVideotapeListHeardView.h"
@@ -31,7 +31,7 @@
 
 - (void)setupView {
     self.timeLab = [[UILabel alloc] initWithFrame:CGRectMake(30,0,100, self.bounds.size.height)];
-    self.timeLab.textColor = [UIColor dhcolor_c10];
+    self.timeLab.textColor = [UIColor lccolor_c10];
     self.timeLab.font = [UIFont lcFont_t5];
     [self addSubview:self.timeLab];
 }
@@ -62,7 +62,7 @@
     }
     CAShapeLayer *lineLayer = [CAShapeLayer layer];
     lineLayer.lineWidth = 2;
-    lineLayer.strokeColor = [UIColor dhcolor_c10].CGColor;
+    lineLayer.strokeColor = [UIColor lccolor_c10].CGColor;
     lineLayer.path = linePath.CGPath;
     self.lineLayer = lineLayer;
     [self.layer addSublayer:lineLayer];
@@ -71,8 +71,8 @@
     UIBezierPath *ovalPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(15,self.bounds.size.height /2.0 - 5, 10, 10)];
     CAShapeLayer *ovalLayer = [CAShapeLayer layer];
     ovalLayer.lineWidth = 3;
-    ovalLayer.fillColor = [UIColor dhcolor_c10].CGColor;
-    ovalLayer.strokeColor = [UIColor dhcolor_c20].CGColor;
+    ovalLayer.fillColor = [UIColor lccolor_c10].CGColor;
+    ovalLayer.strokeColor = [UIColor lccolor_c20].CGColor;
     ovalLayer.path = ovalPath.CGPath;
     self.ovalLayer = ovalLayer;
     [self.layer addSublayer:ovalLayer];

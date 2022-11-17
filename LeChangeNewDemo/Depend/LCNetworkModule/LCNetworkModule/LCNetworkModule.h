@@ -27,8 +27,13 @@
 #import <LCNetworkModule/LCAddDeviceModel.h>
 #import <LCNetworkModule/LCClientConfigInfo.h>
 #import <LCNetworkModule/LCDevice.h>
-#import <LCNetworkModule/DHWiFiConfigInfo.h>
-#import <LCNetworkModule/DHApInfo.h>
+#import <LCNetworkModule/LCWiFiConfigInfo.h>
+#import <LCNetworkModule/LCApInfo.h>
+#import <LCNetworkModule/LCNetworkRequestManager.h>
+
+//MARK: - Message
+#import <LCNetworkModule/LCMessageInterface.h>
+#import <LCNetworkModule/LCMessageInfo.h>
 
 //MARK: Data
 #import <LCNetworkModule/LCApplicationDataManager.h>

@@ -1,10 +1,11 @@
 //
-//  Copyright © 2016 dahua. All rights reserved.
+//  Copyright © 2016 Imou. All rights reserved.
 //
 
 #import "LCProgressHUD.h"
-#import "DHActivityIndicatorView.h"
+#import "LCActivityIndicatorView.h"
 #import "UIColor+LeChange.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #define COLOR_BG [[UIColor blackColor] colorWithAlphaComponent:0.65]
 
@@ -64,7 +65,7 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
 		MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:superView animated:YES];
 		
 		hud.mode = MBProgressHUDModeText;
-		hud.label.textColor = [UIColor dhcolor_c43];
+		hud.label.textColor = [UIColor lccolor_c43];
 		hud.label.numberOfLines = 0;
 		hud.labelText = msg;
 		hud.margin = 10.f;
@@ -94,7 +95,7 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
         
         hud.mode = MBProgressHUDModeText;
-        hud.label.textColor = [UIColor dhcolor_c43];
+        hud.label.textColor = [UIColor lccolor_c43];
         hud.label.numberOfLines = 0;
         hud.labelText = msg;
         hud.margin = 10.f;
@@ -108,8 +109,8 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
         [hud hide:YES afterDelay:gDelayTime];
     });
 }
-+ (MBProgressHUD *)showHudOnView:(UIView *)view tip:(NSString*)tip {
-    return [self showHudOnView:view tip:tip animated:YES];
++ (void)showHudOnView:(UIView *)view tip:(NSString*)tip {
+    [self showHudOnView:view tip:tip animated:YES];
 }
 
 + (MBProgressHUD *)showHudOnView:(UIView *)view animated:(BOOL)animated {
@@ -121,8 +122,8 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
 	return [self showHudOnView:view tip:nil animated:animated isInteract:isInteract offHeight:0];
 }
 
-+ (MBProgressHUD *)showHudOnView:(UIView *)view {
-    return [self showHudOnView:view tip:nil animated:YES];
++ (void)showHudOnView:(UIView *)view {
+    [self showHudOnView:view tip:nil animated:YES];
 }
 
 + (MBProgressHUD *)showHubOnView:(UIView *)view duration:(NSTimeInterval)duration {
@@ -148,8 +149,8 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
     return [self showHudOnView:view tip:tip animated:animated isInteract:false offHeight:offHeight];
 }
 
-+ (MBProgressHUD *)showHudOnLowerView:(UIView *)view {
-    return [self showHudOnLowerView:view tip:nil animated:YES];
++ (void)showHudOnLowerView:(UIView *)view {
+    [self showHudOnLowerView:view tip:nil animated:YES];
 }
 
 + (MBProgressHUD *)showHudOnLowerView:(UIView *)view tip:(NSString*)tip {
@@ -169,7 +170,7 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
     
     CGFloat mOffHeight = offHeight;
     
-    if (view.dh_y > 0) {
+    if (view.lc_y > 0) {
         mOffHeight = 0;
     }
     //y轴偏移量
@@ -188,7 +189,7 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
         UIView *subView = [mainView viewWithTag:TAG_SUBHUD_VIEW];
         if (subView == nil) {
             subView = UIView.new;
-            subView.frame = CGRectMake(0, subViewY, mainView.dh_width, mainView.dh_height + mOffHeight);
+            subView.frame = CGRectMake(0, subViewY, mainView.lc_width, mainView.lc_height + mOffHeight);
             subView.backgroundColor = [UIColor clearColor];
             subView.userInteractionEnabled = isInteract;
             subView.tag = TAG_SUBHUD_VIEW;
@@ -205,14 +206,14 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
     [MBProgressHUD hideAllHUDsForView:view animated:animated];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:animated];
-    DHActivityIndicatorView *customView = [[DHActivityIndicatorView alloc] init];
+    LCActivityIndicatorView *customView = [[LCActivityIndicatorView alloc] init];
     [customView startAnimating];
     hud.customView = customView;
     hud.animationType = MBProgressHUDAnimationZoomOut;
     hud.mode = MBProgressHUDModeCustomView;
     hud.margin = 15;
     hud.removeFromSuperViewOnHide = YES;
-    hud.label.textColor = [UIColor dhcolor_c43];
+    hud.label.textColor = [UIColor lccolor_c43];
     hud.labelText = tip;
     hud.graceTime = 0.2;
     
@@ -231,8 +232,8 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
         MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:superView animated:YES];
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = tip;
-        hud.label.textColor = [UIColor dhcolor_c43];
-        hud.contentColor = [UIColor dhcolor_c43];
+        hud.label.textColor = [UIColor lccolor_c43];
+        hud.contentColor = [UIColor lccolor_c43];
         
         hud.customView = [[UIImageView alloc] initWithImage:image];
         hud.customView.frame = CGRectMake(0, 0, image.size.width/2, image.size.height/2);
