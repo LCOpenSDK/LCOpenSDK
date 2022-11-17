@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - KVOController (1.2.0)
+  - LCOpenSDK (3.12.00)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.7.5)
@@ -30,6 +31,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - KVOController (~> 1.2.0)
+  - LCOpenSDK (from `../`)
   - Masonry
   - MBProgressHUD (= 1.0.0)
   - MJRefresh (~> 3.7.5)
@@ -50,9 +52,14 @@ SPEC REPOS:
     - SnapKit
     - ZXingObjC
 
+EXTERNAL SOURCES:
+  LCOpenSDK:
+    :path: "../"
+
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  LCOpenSDK: c6b91167a06b1cf0c7a958349785e9b784b01e2a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
@@ -61,6 +68,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
-PODFILE CHECKSUM: 490c5bb0f12dac26cb3f1004eb80827207d60016
+PODFILE CHECKSUM: c22828f7c3e12490fcd255979ea33da3911cb3d9
 
 COCOAPODS: 1.11.3

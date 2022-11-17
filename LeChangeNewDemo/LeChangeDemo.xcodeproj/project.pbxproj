@@ -15,8 +15,6 @@
 		037976D128FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */; };
 		037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */; };
 		03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE03A28F5618B00BCE307 /* LCDeviceDetailModule.framework */; };
-		03F6970D29238492004DF7F8 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F6970B2923848D004DF7F8 /* LCOpenSDKDynamic.framework */; };
-		03F6970E29238492004DF7F8 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03F6970B2923848D004DF7F8 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0401AF47250A104200F8E1D6 /* AddDevice.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */; };
 		0401AF5B250A3D1000F8E1D6 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */; };
 		04092ACA28F42061006D861D /* LCMessageModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04092AC928F42061006D861D /* LCMessageModule.xcassets */; };
@@ -233,7 +231,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				03F6970E29238492004DF7F8 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +250,6 @@
 		037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCNewPlayBackModuleBundle.bundle; path = Depend/Frameworks/iOS/LCNewPlayBackModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCMessageModuleBundle.bundle; path = Depend/Frameworks/iOS/LCMessageModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		03ABE03528F5618B00BCE307 /* LCDeviceDetailModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCDeviceDetailModule.xcodeproj; path = Depend/LCDeviceDetailModule/LCDeviceDetailModule.xcodeproj; sourceTree = "<group>"; };
-		03F6970B2923848D004DF7F8 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AddDevice.xcassets; sourceTree = "<group>"; };
 		0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = Depend/Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
 		0409299728F3FFB9006D861D /* LCMessageModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCMessageModule.xcodeproj; path = Depend/LCMessageModule/LCMessageModule.xcodeproj; sourceTree = "<group>"; };
@@ -428,7 +424,6 @@
 				10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */,
 				0469A50924E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework in Frameworks */,
 				0469A4C824E2796F00B3EBA5 /* FMDB.framework in Frameworks */,
-				03F6970D29238492004DF7F8 /* LCOpenSDKDynamic.framework in Frameworks */,
 				0469A4BD24E277ED00B3EBA5 /* SAMKeychain.framework in Frameworks */,
 				0469A4BB24E277DD00B3EBA5 /* Masonry.framework in Frameworks */,
 				0469A4B924E277D400B3EBA5 /* MJExtension.framework in Frameworks */,
@@ -969,7 +964,6 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03F6970B2923848D004DF7F8 /* LCOpenSDKDynamic.framework */,
 				0368EDF928463E1C00DDB53A /* MetalKit.framework */,
 				0368EDEF28463E0000DDB53A /* Metal.framework */,
 				04ADF5EC250F4251004028B1 /* libc++.tbd */,
