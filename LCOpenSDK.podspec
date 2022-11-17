@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/LCOpenSDK/LCOpenSDK"
   spec.license      = { :type => "MIT", :file => "LICENSE" } 
   spec.author       = { "OpenImoulife" => "OpenImoulife@163.com" }
-  spec.platform     = :ios, "8.0"  
+  spec.platform     = :ios, "9.0"  
   spec.source       = { :git => "https://github.com/LCOpenSDK/LCOpenSDK.git", :tag => spec.version.to_s }
   spec.frameworks   = 'CoreLocation', 'CoreAudio', 'CoreVideo', 'CoreMedia', 'CFNetwork', 'VideoToolbox', 'AudioToolbox', 'AVFoundation','OpenGLES','MediaAccessibility','MediaPlayer'
   spec.libraries    = "z"
