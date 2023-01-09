@@ -77,7 +77,7 @@
 - (BOOL)isCanExplorerForCydiaUrlScheme {
     NSURL *url = [NSURL URLWithString:@"cydia://"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        NSLog(@"🍎🍎🍎 %@:: The device is jail broken!", NSStringFromClass([self class]));
+        NSLog(@" %@:: The device is jail broken!", NSStringFromClass([self class]));
         return YES;
     }
     

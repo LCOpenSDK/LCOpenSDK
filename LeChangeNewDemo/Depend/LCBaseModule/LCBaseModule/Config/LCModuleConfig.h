@@ -30,8 +30,7 @@
 @property (nonatomic, assign, readonly) BOOL isShowDialogMaskView;
 /// 是否中性版本
 @property (nonatomic, assign, readonly) BOOL isGeneralVersion;
-/// 是否发布版本
-@property (nonatomic, assign, readonly) BOOL isDistributionVersion;
+
 /// 云台操作盘类型，0表示四方向，1表示八方向
 @property (nonatomic, assign, readonly) NSInteger ptzPanelStyle;
 /// 播放操作盘背景

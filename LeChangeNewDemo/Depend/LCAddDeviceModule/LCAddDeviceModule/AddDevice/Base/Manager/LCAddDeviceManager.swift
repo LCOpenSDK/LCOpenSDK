@@ -395,7 +395,7 @@ public struct LCAddConfigTimeout {
     public func getDeviceStatus(success: @escaping (LCUserDeviceBindInfo) -> (), failure: @escaping (LCError) -> ()) {
         statusQueue.async {
             if self.isGettingStatus || self.isCanceled {
-                print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Return getting status...")
+                print(" \(NSStringFromClass(self.classForCoder))::Return getting status...")
                 return
             }
             
@@ -486,17 +486,13 @@ public struct LCAddConfigTimeout {
 extension LCAddDeviceManager {
     //LCAddDeviceManager.sharedInstance.initialPassword
     public func autoConnectHotSpot(wifiName ssid: String?, password: String?, completion: @escaping((Bool) -> Void)) {
-        print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder)):: ssid:\(ssid ?? ""), password:\(password ?? "")")
-        
+        print(" \(Date()) \(NSStringFromClass(self.classForCoder)):: ssid:\(ssid ?? ""), password:\(password ?? "")")
         guard let _ = ssid, let _ = password else {
             completion(false)
             return
         }
-        
         //加入热点
         if #available(iOS 11.0, *) {
-            
-            
             // 如果已经在连接WiFi、下次回调不执行
             guard self.isConnectWiFiHotSpot == false else {
                 completion(false)
@@ -509,7 +505,7 @@ extension LCAddDeviceManager {
             } else {
                 configuration = NEHotspotConfiguration(ssid: ssid!, passphrase: password!, isWEP: false)
             }
-            
+
             NEHotspotConfigurationManager.shared.getConfiguredSSIDs { (wifiList) in
                 if wifiList.contains(ssid!) {
                     NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: ssid!)
@@ -529,7 +525,6 @@ extension LCAddDeviceManager {
                             completion(false)
                         }
                     } else {
-                        
                         LCNetWorkHelper.sharedInstance().fetchCurrentWiFiSSID({ (currentSSID) in
                             print("LCAddDeviceManager:: NEHotspotConfigurationManager apply succeed, with current wifi:\(currentSSID ?? "")")
                             //连接成功后，wifi实际连接可能较慢，如果立马去取，则会导致获取到的ssid为空； 不能据此判断连接失败
@@ -550,7 +545,7 @@ extension LCAddDeviceManager {
                 }
             }
         } else {
-            print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder)):: not ios 11...")
+            print(" \(Date()) \(NSStringFromClass(self.classForCoder)):: not ios 11...")
             completion(false)
         }
     }

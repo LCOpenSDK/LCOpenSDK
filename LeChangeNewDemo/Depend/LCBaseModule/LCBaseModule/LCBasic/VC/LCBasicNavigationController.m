@@ -23,7 +23,7 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    if ([self.topViewController respondsToSelector:@selector(supportedInterfaceOrientations)]) {
+    if ([self.visibleViewController respondsToSelector:@selector(supportedInterfaceOrientations)]) {
         return self.visibleViewController.supportedInterfaceOrientations;
     }
     return NO;

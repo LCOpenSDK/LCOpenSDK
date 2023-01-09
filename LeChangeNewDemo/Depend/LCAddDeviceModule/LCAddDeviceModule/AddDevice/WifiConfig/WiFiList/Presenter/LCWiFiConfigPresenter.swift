@@ -27,7 +27,7 @@ class LCWiFiConfigPresenter: ILCWiFiConfigPresenter {
         self.deviceId = deviceId
     }
     
-    // MARK: - 🍌bussiness
+    // MARK: - bussiness
     func sectionNumber() -> Int {
         // sb添加的tableview进页面会直接reload几次。
         if canShowOtherLabel {

@@ -68,6 +68,8 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, assign) BOOL             isOpt;
 // 码流分辨率
 @property (nonatomic, assign) NSInteger        imageSize;
+// 是否开启音频 默认开启
+@property (nonatomic, assign) BOOL        isOpenAudio;
 
 @end
 

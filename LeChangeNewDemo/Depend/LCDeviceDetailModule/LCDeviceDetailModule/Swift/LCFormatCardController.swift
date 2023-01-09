@@ -76,6 +76,7 @@ import LCBaseModule
                 } failure: { error in
                     print("失败" + error.errorMessage)
                     LCProgressHUD.hideAllHuds(nil)
+                    LCProgressHUD.showMsg("formatting_failed".lc_T)
                 }
             }
         }

@@ -94,7 +94,7 @@
         
         if (ptzDirection != VPDirectionUnknown) {
 			
-			NSLog(@"🍎🍎🍎 PTZ Down 1 %@:: %f", NSStringFromClass([self class]), [[NSDate date] timeIntervalSince1970]);
+			NSLog(@" PTZ Down 1 %@:: %f", NSStringFromClass([self class]), [[NSDate date] timeIntervalSince1970]);
             if (self.resultBlock) {
                 self.resultBlock(ptzDirection, 0, TAP_TIMEINTERVAL);
             }

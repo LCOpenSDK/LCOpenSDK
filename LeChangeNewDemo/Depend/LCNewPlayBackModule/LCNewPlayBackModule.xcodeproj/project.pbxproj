@@ -669,7 +669,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -714,7 +713,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

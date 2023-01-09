@@ -326,7 +326,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 
 extension LCQRScanViewController {
 	func scanResult(text: String, outputImage: UIImage?) {
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Scan code \(text)")
+		print(" \(NSStringFromClass(self.classForCoder))::Scan code \(text)")
         
         addDeviceStartLog(text: text)
         

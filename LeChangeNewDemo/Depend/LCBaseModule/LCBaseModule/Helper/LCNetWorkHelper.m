@@ -252,7 +252,6 @@ void systemNetworkChanged()
     return ssid;
 }
 - (void)fetchCurrentWiFiSSID:(void (^)(NSString * __nullable ssid))callBack {
-    
     if (@available(iOS 14.0, *)) {
         [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
             // 主线程回调

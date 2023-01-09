@@ -135,22 +135,22 @@ class LCInitializePasswordViewController: LCAddBaseViewController, UITextFieldDe
 		
 		guard device != nil else {
 			LCProgressHUD.hideAllHuds(lc_keyWindow)
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Initialized failed, device is nil with id:\(deviceId)")
+			print(" \(NSStringFromClass(self.classForCoder)):: Initialized failed, device is nil with id:\(deviceId)")
 			self.initializeFailure()
 			return
 		}
 		
 		let beginTime = Date().timeIntervalSince1970
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Initialized started:\(beginTime)")
+		print(" \(NSStringFromClass(self.classForCoder)):: Initialized started:\(beginTime)")
 		let isApDevice = LCAddDeviceManager.sharedInstance.netConfigMode == .softAp
 		LCNetSDKInitialManager.sharedInstance().initialDevice(withPassWord: password, isSoftAp: isApDevice, withInitialType: device!.deviceInitType, withSuccessBlock: {
 			LCAddDeviceManager.sharedInstance.initialPassword = password
 			
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Initialized succeed...")
+			print(" \(NSStringFromClass(self.classForCoder)):: Initialized succeed...")
 			LCProgressHUD.hideAllHuds(lc_keyWindow)
 			self.initialSuccess(devicePassword: password)
 		}) {
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Initialized failed...")
+			print(" \(NSStringFromClass(self.classForCoder)):: Initialized failed...")
 			LCProgressHUD.hideAllHuds(lc_keyWindow)
 			self.initializeFailure()
 		}

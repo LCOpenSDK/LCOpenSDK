@@ -48,6 +48,7 @@ import UIKit
             success(objc)
             print("LocalStorage：",Date.init(),"\(#function)::开始格式化" + objc)
         } failure: { error in
+            failure(error)
             print("LocalStorage：",Date.init(),"\(#function)::格式化失败:" + error.errorMessage)
         }
     }

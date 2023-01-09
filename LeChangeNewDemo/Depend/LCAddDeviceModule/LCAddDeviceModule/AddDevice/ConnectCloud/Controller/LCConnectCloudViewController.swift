@@ -180,7 +180,7 @@ extension LCConnectCloudViewController {
 			return
 		}
 		
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Tick...\(tick / 3 )")
+		print(" \(NSStringFromClass(self.classForCoder))::Tick...\(tick / 3 )")
 		
 		//【*】在线绑定、或者查询在线状态
 		guard self.isHandlingOnline == false else {
@@ -189,7 +189,7 @@ extension LCConnectCloudViewController {
 		
 		LCAddDeviceManager.sharedInstance.getDeviceStatus(success: { (bindInfo) in
 			
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
+			print(" \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
 			
 			guard cycleView.currentTime < cycleView.maxTime else {
 				return
@@ -214,12 +214,12 @@ extension LCConnectCloudViewController {
 			
 			// 【*】SMB: 设备在线，直接进行绑定
 			if bindInfo.lc_isOnline() {
-				print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: DMS is online, start to bind...")
+				print(" \(NSStringFromClass(self.classForCoder)):: DMS is online, start to bind...")
 				self.handleOnline()
 			}
 			
 		}) { (error) in
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::\(error.description)")
+			print(" \(NSStringFromClass(self.classForCoder))::\(error.description)")
 			
 			//解释器处理了错误【内部跳转页面等】，停止计时
             
@@ -276,7 +276,7 @@ extension LCConnectCloudViewController {
 		//【*】其他，直接绑定
 		let manager = LCAddDeviceManager.sharedInstance
 		if manager.abilities.contains("Auth") {
-			print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::handleOnlineLechange with Auth, password:\(String(describing: deviceInitialPassword))")
+			print(" \(Date()) \(NSStringFromClass(self.classForCoder))::handleOnlineLechange with Auth, password:\(String(describing: deviceInitialPassword))")
 			if let password = deviceInitialPassword, password.count > 0 {
 				self.bindDevice(password: password)
 			} else {
@@ -296,7 +296,7 @@ extension LCConnectCloudViewController {
             }
 
         } else {
-			print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::handleOnlineLechange with no auth, password:\(String(describing: deviceInitialPassword))")
+			print(" \(Date()) \(NSStringFromClass(self.classForCoder))::handleOnlineLechange with no auth, password:\(String(describing: deviceInitialPassword))")
             self.bindDevice(password: deviceInitialPassword ?? "")
 		}
 	}

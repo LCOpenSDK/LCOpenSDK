@@ -39,9 +39,6 @@ NS_CLASS_AVAILABLE_IOS(7_0) @interface LCTextField : UITextField <UITextFieldDel
 // storybord中可以使用的属性
 @property (nonatomic, assign) IBInspectable BOOL isSetOneTimeCode;
 
-///Warning:⚠️⚠️⚠️，已废弃
-@property (nonatomic, assign) BOOL isMenuHidden;
-
 /// 居中模式下，text在X方向的偏移量，负值向左，正值向右
 @property (nonatomic, assign) CGFloat textOffsetWhenInAlignmentCenter;
 

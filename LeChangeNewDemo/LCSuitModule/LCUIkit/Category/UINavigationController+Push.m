@@ -41,16 +41,6 @@
     [self pushViewController:mainPage animated:YES];
 }
 
-
-
-/**
- 跳转到直播预览
- */
-- (void)pushToLivePreview {
-    UIViewController *livePreview = [(UIViewController *)[NSClassFromString(@"LCLivePreviewViewController") alloc] init];
-    [self pushViewController:livePreview animated:YES];
-}
-
 /**
  跳转录像播放
  */

@@ -8,13 +8,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCNewLivePreviewPresenter (Control)
 
-/**
- 获取中间控制视图的子模块
- 
- @return 子模块列表
- */
--(NSMutableArray *)getMiddleControlItems;
-
 //全屏
 - (void)onFullScreen:(LCButton *)btn;
 

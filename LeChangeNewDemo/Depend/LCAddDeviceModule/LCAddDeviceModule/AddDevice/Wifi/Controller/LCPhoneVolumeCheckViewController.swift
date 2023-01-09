@@ -135,7 +135,7 @@ class LCPhoneVolumeCheckViewController: LCGuideBaseViewController {
 	func checkPhoneVolueIsValid() -> Bool {
 		var isValid = false
 		let valume = AVAudioSession.sharedInstance().outputVolume
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Phone volume:\(valume)")
+		print(" \(NSStringFromClass(self.classForCoder))::Phone volume:\(valume)")
 		if valume >= 0.8 {
 			isValid = true
 		}

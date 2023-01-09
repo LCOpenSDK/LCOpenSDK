@@ -88,6 +88,7 @@ typedef NS_ENUM(NSInteger, LCHTTP_STATE)
     STATE_LCHTTP_NOTFOUND = 404000,              //未找到，关闭客户端
     //The request timeout indicates that the streaming is successful, but the subsequent network is abnormal
     STATE_LCHTTP_REQ_TIMEOUT = 408000,           //请求超时，指拉流成功，但后续网络异常，导致拉流断开
+    STATE_HTTPDH_REQ_RETRY_RETRY = 408100, //连接重试 #组件内部做重试，重试依然失败则上抛STATE_DHHTTP_REQ_TIMEOUT，
     //Server internal error, close the client
     STATE_LCHTTP_SERVER_ERROR = 500000,          //服务器内部错误，关闭客户端
     //Service not available

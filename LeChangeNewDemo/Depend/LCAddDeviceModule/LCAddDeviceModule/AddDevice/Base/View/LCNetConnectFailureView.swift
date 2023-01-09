@@ -172,7 +172,7 @@ class LCNetConnectFailureView: UIView {
 		}
 		
 		let tuple = buttonTuples[button.tag]
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: OperationType:\(tuple.operation)")
+		print(" \(NSStringFromClass(self.classForCoder)):: OperationType:\(tuple.operation)")
 		action?(failureType, tuple.operation)
 	}
 	

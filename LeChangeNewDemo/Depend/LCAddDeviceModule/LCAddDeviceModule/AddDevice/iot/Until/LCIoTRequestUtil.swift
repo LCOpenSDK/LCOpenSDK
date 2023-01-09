@@ -61,7 +61,7 @@ class LCIoTRequestUtil: AFHTTPSessionManager {
     func post(method: LCIoTRequestMethod, params: Any?, timeout: TimeInterval = 5.0, success: ((_ result: Any?) -> Void)? = nil, failure: ((_ error: Error) -> Void)? = nil) {
         self.timeout = timeout
         let url = completeUrl(method: method)
-        print("🍎🍎🍎 \(Date()) \(NSStringFromClass(classForCoder))::post:\(url), params:\(String(describing: params))")
+        print(" \(Date()) \(NSStringFromClass(classForCoder))::post:\(url), params:\(String(describing: params))")
         
         var request = URLRequest(url: URL(string:url)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
         request.httpMethod = "POST"
@@ -77,7 +77,7 @@ class LCIoTRequestUtil: AFHTTPSessionManager {
                 print("❌❌❌ \(Date()) \(NSStringFromClass(self.classForCoder))::\(error!)")
                 failure?(error!)
             }else{
-                print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::\(String(describing: data))")
+                print(" \(Date()) \(NSStringFromClass(self.classForCoder))::\(String(describing: data))")
                 print(data!)
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
@@ -92,7 +92,7 @@ class LCIoTRequestUtil: AFHTTPSessionManager {
         dataTask.resume()
         
 //        post(url, parameters: params, headers: nil, progress: nil, success: { _, data in
-//            print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::\(String(describing: data))")
+//            print(" \(Date()) \(NSStringFromClass(self.classForCoder))::\(String(describing: data))")
 //            print(data!)
 //            success?(data)
 //        }) { _, error in

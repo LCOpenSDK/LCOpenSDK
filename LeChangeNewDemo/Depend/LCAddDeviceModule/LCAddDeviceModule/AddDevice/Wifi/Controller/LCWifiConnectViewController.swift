@@ -231,7 +231,7 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
     
     // MARK: - Find Device Process
 	private func findDevice() {
-        print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Device found...")
+        print(" \(NSStringFromClass(self.classForCoder))::Device found...")
 		isDeviceFound = true
         stopSmartConfig()
         stopAudio()
@@ -307,7 +307,7 @@ extension LCWifiConnectViewController {
 		
 		LCAddDeviceManager.sharedInstance.getDeviceStatus(success: { (bindInfo) in
 			
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
+			print(" \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
 			
 			//【*】保证设备已注册成功
 			guard bindInfo.lc_isExisted() else {
@@ -320,7 +320,7 @@ extension LCWifiConnectViewController {
 			}
 			
 			if bindInfo.lc_isOnline() {
-				print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: DMS is online, start to connect cloud...")
+				print(" \(NSStringFromClass(self.classForCoder)):: DMS is online, start to connect cloud...")
 				self.findDevice()
 			}
 			

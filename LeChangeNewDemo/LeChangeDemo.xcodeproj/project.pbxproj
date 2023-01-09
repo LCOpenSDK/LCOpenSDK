@@ -12,6 +12,8 @@
 		0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */; };
 		03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */; };
 		03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */; };
+		036ABEC22967C2B100E2700A /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03804B192965AF460099CF33 /* LCOpenSDKDynamic.framework */; };
+		036ABEC32967C2B100E2700A /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03804B192965AF460099CF33 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		037976D128FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */; };
 		037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */; };
 		03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE03A28F5618B00BCE307 /* LCDeviceDetailModule.framework */; };
@@ -216,21 +218,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		04CC84682518A631009EB27E /* CopyFiles */ = {
+		03804B242966696D0099CF33 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		10DD303D240DF93300A73815 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
+				036ABEC32967C2B100E2700A /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +243,7 @@
 		0368EDF928463E1C00DDB53A /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCNewPlayBackModuleBundle.bundle; path = Depend/Frameworks/iOS/LCNewPlayBackModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCMessageModuleBundle.bundle; path = Depend/Frameworks/iOS/LCMessageModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
+		03804B192965AF460099CF33 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03ABE03528F5618B00BCE307 /* LCDeviceDetailModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCDeviceDetailModule.xcodeproj; path = Depend/LCDeviceDetailModule/LCDeviceDetailModule.xcodeproj; sourceTree = "<group>"; };
 		0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AddDevice.xcassets; sourceTree = "<group>"; };
 		0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = Depend/Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
@@ -424,6 +419,7 @@
 				10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */,
 				0469A50924E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework in Frameworks */,
 				0469A4C824E2796F00B3EBA5 /* FMDB.framework in Frameworks */,
+				036ABEC22967C2B100E2700A /* LCOpenSDKDynamic.framework in Frameworks */,
 				0469A4BD24E277ED00B3EBA5 /* SAMKeychain.framework in Frameworks */,
 				0469A4BB24E277DD00B3EBA5 /* Masonry.framework in Frameworks */,
 				0469A4B924E277D400B3EBA5 /* MJExtension.framework in Frameworks */,
@@ -964,6 +960,7 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03804B192965AF460099CF33 /* LCOpenSDKDynamic.framework */,
 				0368EDF928463E1C00DDB53A /* MetalKit.framework */,
 				0368EDEF28463E0000DDB53A /* Metal.framework */,
 				04ADF5EC250F4251004028B1 /* libc++.tbd */,
@@ -1103,10 +1100,9 @@
 				101311C22398F6EE000E1FB7 /* Sources */,
 				101311C32398F6EE000E1FB7 /* Frameworks */,
 				101311C42398F6EE000E1FB7 /* Resources */,
-				10DD303D240DF93300A73815 /* Embed Frameworks */,
 				8603187026D5E82700FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */,
-				04CC84682518A631009EB27E /* CopyFiles */,
-				9BB1E56CB60388692028F183 /* [CP] Embed Pods Frameworks */,
+				93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */,
+				03804B242966696D0099CF33 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1364,7 +1360,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 解决部分系统下，无权限执行Pods-LeChangeDemo-frameworks.sh的问题\nchmod +x \"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh\"\n";
 		};
-		9BB1E56CB60388692028F183 /* [CP] Embed Pods Frameworks */ = {
+		93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1640,7 +1636,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2022111501;
+				MARKETING_VERSION = 2023010601;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1765,7 +1761,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2022111501;
+				MARKETING_VERSION = 2023010601;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",

@@ -80,6 +80,49 @@
     return bottomControlList;
 }
 
+- (void)refreshBottomControlItems {
+    for (LCButton *btn in self.bottomControlList) {
+        switch (btn.tag) {
+            case LCNewLivePreviewControlPTZ:
+                // easy4ip设备默认可对讲
+                if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                    btn.enabled = NO;
+                }
+                
+                //监听管理者状态，判断云台能力
+                if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
+                    if ([self.videoManager.currentChannelInfo.ability isSupportPTZ] || [self.videoManager.currentChannelInfo.ability isSupportPT] || [self.videoManager.currentChannelInfo.ability isSupportPT1]) {
+                        btn.enabled = YES;
+                    }
+                }
+                if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
+                    if ([self.videoManager.currentDevice.ability isSupportPTZ] || [self.videoManager.currentDevice.ability isSupportPT] || [self.videoManager.currentDevice.ability isSupportPT1]) {
+                        btn.enabled = YES;
+                    }
+                }
+
+                break;
+            case LCNewLivePreviewControlAudio:
+                if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                    btn.enabled = YES;
+                }
+                if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
+                    if (![self.videoManager.currentChannelInfo.ability isSupportAudioTalkV1] && ![self.videoManager.currentChannelInfo.ability isSupportAudioTalk]) {
+                        btn.enabled = NO;
+                    }
+                } else if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
+                    if (![self.videoManager.currentDevice.ability isSupportAudioTalkV1] && ![self.videoManager.currentDevice.ability isSupportAudioTalk]) {
+                        btn.enabled = NO;
+                    }
+                }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 /**
  根据能力创建控制模型
 
@@ -209,28 +252,37 @@
         case LCNewLivePreviewControlPTZ: {
             //云台
             [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
+            // easy4ip设备默认可对讲
+            if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                item.enabled = NO;
+                return item;
+            }
+            
             //监听管理者状态，判断云台能力
             if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
-                if (![self.videoManager.currentChannelInfo.ability isSupportPTZ] && ![self.videoManager.currentChannelInfo.ability isSupportPT] && ![self.videoManager.currentChannelInfo.ability isSupportPT1]) {
-                    item.enabled = NO;
-                    return item;
-                }
-            } else if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
-                if (![self.videoManager.currentDevice.ability isSupportPTZ] && ![self.videoManager.currentDevice.ability isSupportPT] && ![self.videoManager.currentDevice.ability isSupportPT1]) {
-                    item.enabled = NO;
+                if ([self.videoManager.currentChannelInfo.ability isSupportPTZ] || [self.videoManager.currentChannelInfo.ability isSupportPT] || [self.videoManager.currentChannelInfo.ability isSupportPT1]) {
+                    item.enabled = YES;
                     return item;
                 }
             }
+            if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
+                if ([self.videoManager.currentDevice.ability isSupportPTZ] || [self.videoManager.currentDevice.ability isSupportPT] || [self.videoManager.currentDevice.ability isSupportPT1]) {
+                    item.enabled = YES;
+                    return item;
+                }
+            }
+            //监听管理者状态，判断云台能力
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
-                    weakItem.enabled = YES;
-                } else {
-                    weakItem.enabled = NO;
+                    if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                        weakItem.enabled = NO;
+                    } else {
+                        weakItem.enabled = YES;
+                    }
                 }
             }];
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
-                    //是否打开声音
                     [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage_on") forState:UIControlStateNormal];
                 } else {
                     [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
@@ -263,6 +315,10 @@
             //对讲
             [item setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
             item.enabled = NO;
+            if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                item.enabled = YES;
+                return item;
+            }
             if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
                 if (![self.videoManager.currentChannelInfo.ability isSupportAudioTalkV1] && ![self.videoManager.currentChannelInfo.ability isSupportAudioTalk]) {
                     item.enabled = NO;
@@ -274,6 +330,7 @@
                     return item;
                 }
             }
+
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenAudioTalk" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
@@ -331,26 +388,6 @@
             break;
     }
     return item;
-}
-
-- (NSString *)checkAudioTalk {
-    if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
-        //NVR设备先检查通道能力再检查设备能力
-        if (self.videoManager.currentChannelInfo.ability.isSupportAudioTalkV1) {
-            //通道支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        } else if (self.videoManager.currentDevice.ability.isSupportAudioTalk) {
-            //设备支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        }
-    } else if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
-        //IPC设备检查设备能力
-        if (self.videoManager.currentDevice.ability.isSupportAudioTalk) {
-            //通道支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        }
-    }
-    return @"";
 }
 
 - (UIView *)getVideotapeView {
@@ -634,7 +671,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
 }
 
 -(void)setVideoType{

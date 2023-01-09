@@ -10,6 +10,7 @@
 		0302986D28F90B360038E6FE /* UINavigationController+Pop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302986B28F90B360038E6FE /* UINavigationController+Pop.m */; };
 		0302986E28F90B360038E6FE /* UINavigationController+Pop.h in Headers */ = {isa = PBXBuildFile; fileRef = 0302986C28F90B360038E6FE /* UINavigationController+Pop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03287CC328F19E5E00FFD051 /* LCAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03287CC228F19E5E00FFD051 /* LCAlertView.swift */; };
+		03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */; };
 		0360251729090F3100E5475B /* UIViewController+LCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */; };
 		0360251829090F3100E5475B /* UIViewController+LCNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03636CCB28DEF63500FE1B59 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03636CCA28DEF63500FE1B59 /* MJRefresh.framework */; };
@@ -260,6 +261,7 @@
 		0302986B28F90B360038E6FE /* UINavigationController+Pop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Pop.m"; sourceTree = "<group>"; };
 		0302986C28F90B360038E6FE /* UINavigationController+Pop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Pop.h"; sourceTree = "<group>"; };
 		03287CC228F19E5E00FFD051 /* LCAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAlertView.swift; sourceTree = "<group>"; };
+		03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LCNavigationBar.m"; sourceTree = "<group>"; };
 		0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LCNavigationBar.h"; sourceTree = "<group>"; };
 		03636CCA28DEF63500FE1B59 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,7 +270,6 @@
 		03ABE0E928F5B8B300BCE307 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADDC6B28F66AE300E385B4 /* UIImageView+Surface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Surface.h"; sourceTree = "<group>"; };
 		03ADDC6C28F66AE300E385B4 /* UIImageView+Surface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Surface.m"; sourceTree = "<group>"; };
-		03DBA16F2926334C0054C53C /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../Pods/LCOpenSDK/Framework/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03E8BF26286420E400C91BA5 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FCF86F28FD53D400C4CBB2 /* UINavigationBar+EX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+EX.swift"; sourceTree = "<group>"; };
 		04424FC124EFBE2600BFCA2B /* LCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCButton.m; sourceTree = "<group>"; };
@@ -517,6 +518,7 @@
 				03636CCB28DEF63500FE1B59 /* MJRefresh.framework in Frameworks */,
 				03ABE0EA28F5B8B300BCE307 /* MBProgressHUD.framework in Frameworks */,
 				04424FCC24EFC31E00BFCA2B /* Masonry.framework in Frameworks */,
+				03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 				03ABE05828F565C300BCE307 /* Masonry.framework in Frameworks */,
 				0469A4E124E2824E00B3EBA5 /* GTMBase64.framework in Frameworks */,
 				4E8543DF244FF37B00BF2FBE /* WebViewJavascriptBridge.framework in Frameworks */,
@@ -696,7 +698,7 @@
 		4E081E4E21254EE800D6D66F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03DBA16F2926334C0054C53C /* LCOpenSDKDynamic.framework */,
+				03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */,
 				3FFFDECE29013FD100CB48EC /* KVOController.framework */,
 				03ABE0E928F5B8B300BCE307 /* MBProgressHUD.framework */,
 				03ABE05728F565C000BCE307 /* Masonry.framework */,
@@ -1654,7 +1656,6 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 					"$(POD_SEARCH_FRAMEWORK_PATH)",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/KVOController",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
@@ -1710,7 +1711,6 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 					"$(POD_SEARCH_FRAMEWORK_PATH)",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/KVOController",

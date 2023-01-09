@@ -32,7 +32,7 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
     }()
     
     deinit {
-        debugPrint("🍻🍻🍻", "Deinit Success:", self)
+        debugPrint("LCIdentifyPresenter", "Deinit Success:", self)
     }
     
     func setup(container: LCIdentifyContainerProtocol) {
@@ -88,7 +88,7 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
         
         //安全验证码:由于旧的局域网搜索方式需要兼容，暂时还不能停止搜索
         if qrCode.scCode != nil {
-            print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Support SC Mode: \(qrCode.scCode!)")
+            print(" \(NSStringFromClass(self.classForCoder))::Support SC Mode: \(qrCode.scCode!)")
             LCAddDeviceManager.sharedInstance.isSupportSC = true
             LCAddDeviceManager.sharedInstance.initialPassword = qrCode.scCode
         } else {
@@ -98,7 +98,7 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
         
         //NC码
         if qrCode.ncCode != nil {
-            print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Support NC Mode: \(qrCode.ncCode!)")
+            print(" \(NSStringFromClass(self.classForCoder))::Support NC Mode: \(qrCode.ncCode!)")
             LCAddDeviceManager.sharedInstance.ncType = LCNetConnectType.convert(byNcCode: qrCode.ncCode!)
             
             let supportConfigModes = LCNetConnectType.getWifiConfigModes(byNcCode: qrCode.ncCode!)
@@ -223,15 +223,6 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
                 self.container?.navigationVC()?.pushViewController(bindVc, animated: true)
                 return
             }
-            
-//            if (error.errorCode == "DV1003") {
-//                LCProgressHUD.showMsg("add_device_scan_bind_by_yourself".lc_T)
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//                    self.container?.resumeIdenfity()
-//                }
-//                return
-//            }
-            
             // 主账号已绑定，给子账号授权
             if error.errorCode == "DV1003" {
                 LCAddDeviceManager.sharedInstance.addPlicy {

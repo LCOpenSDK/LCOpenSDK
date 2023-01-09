@@ -104,7 +104,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    NSLog(@"🍎🍎🍎 %@:: viewDidDisappear", NSStringFromClass([self class]));
+    NSLog(@" %@:: viewDidDisappear", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // 退出设置，下次默认打开声音
     self.persenter.videoManager.isSoundOn = YES;

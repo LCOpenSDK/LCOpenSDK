@@ -110,7 +110,7 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
          let predicateWifiName = LCModuleConfig.shareInstance().isChinaMainland ? getApWifiName() : LCAddDeviceManager.sharedInstance.deviceId.uppercased()
          let wifiSSID = LCMobileInfo.sharedInstance().wifissid
          
-         print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::Networkchanged...current:\(wifiSSID ?? "")")
+         print(" \(Date()) \(NSStringFromClass(self.classForCoder))::Networkchanged...current:\(wifiSSID ?? "")")
          //【*】兼容处理：iOS13下可能存在ssid获取不到的情况
         if wifiSSID != nil, wifiSSID != getApWifiName() {
              if wifiSSID!.contains(predicateWifiName) {
@@ -144,10 +144,10 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
         let softApWifiName = manager.getIntroductionParser()?.softApGuideInfo.wifiName ?? LCOMSSoftApGuideDefault.wifiname
         var predicateWifiName = softApWifiName
         var prefix = manager.deviceModel
-        print("🍎🍎🍎 \(#function):: softApWifiName: \(softApWifiName)")
+        print(" \(#function):: softApWifiName: \(softApWifiName)")
         if let index = softApWifiName.lastIndex(of: "-") { //避免出现 Ring-V2-XXXX的情况
             prefix = String(softApWifiName.prefix(upTo: index))
-            print("🍎🍎🍎 \(#function):: prefix: \(prefix)")
+            print(" \(#function):: prefix: \(prefix)")
         }
         
         if manager.getIntroductionParser()?.softApGuideInfo.wifiModelVersion?.lowercased() == "v1" {
@@ -232,7 +232,7 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
                         if repeatCount == 0 {
                             timer.cancel()
                             LCProgressHUD.hideAllHuds(self.view)
-                            print("⚠️⚠️⚠️\(NSStringFromClass(self.classForCoder))...获取设备信息失败，")
+                            print("\(NSStringFromClass(self.classForCoder))...获取设备信息失败，")
                             self.isWifiChecked = false
                             return
                         }
@@ -270,7 +270,7 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
                 self.checkWifi()
                 print("连接sc设备热点成功")
             } else {
-                print("⚠️⚠️⚠️\(NSStringFromClass(self.classForCoder))...连接热点失败")
+                print("\(NSStringFromClass(self.classForCoder))...连接热点失败")
                 self.autoConnectHotSpotFailed = true
             }
             
@@ -279,7 +279,6 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
     }
     
     func autoConnectWifiFailedChanged() {
-        
         if true == autoConnectHotSpotFailed {
             _ = tipText()
             // 自动连接失败.
@@ -313,10 +312,6 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
                 make.bottom.lessThanOrEqualTo(guideView).offset(-5)
                 make.centerX.equalTo(guideView)
             }
-            
-           
-            
-
             //SC自动连接的失败页面   中间有关于热点密码
             if true == LCAddDeviceManager.sharedInstance.isSupportSC {
                 self.guideView.detailButton.isHidden = false
@@ -326,13 +321,7 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
                 self.guideView.detailButton.isHidden = true
                 self.guideView.descriptionLabel.isHidden = false
             }
-
-            
         } else {
-          
-            
-            
-
         }
     }
     
@@ -452,10 +441,8 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
     }
     
     func refreshTipText() {
-        
         //IOS11
         if #available(iOS 11.0, *) { } else {
-            
             tipbeforeIOS11()
             return
         }
@@ -497,13 +484,10 @@ class LCApWifiCheckViewController: LCGuideBaseViewController {
             guideView.topTipLabel.lc_setAttributedText(text: str, font: UIFont.lcFont_t1())
             guideView.errorButton.isHidden = false
         }
-        
     }
 	
 	// MARK: LCGuideBaseVCProtocol
 	override func tipText() -> String? {
-        
-        
 		return nil
 	}
 	

@@ -214,8 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */,
-				04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */,
 				04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */,
+				04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */,
 				04257C5028E2A7ED0062C0F1 /* LCNewVideoHistoryView.m */,
 			);
 			path = LCVideoHistoryList;
@@ -604,7 +604,6 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -647,7 +646,6 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

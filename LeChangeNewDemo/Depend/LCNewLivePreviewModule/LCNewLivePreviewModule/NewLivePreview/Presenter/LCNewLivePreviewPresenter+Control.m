@@ -29,8 +29,8 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     self.qualityView.hidden = YES;
     self.LandScapeQualityView.hidden = YES;
     self.videoManager.currentResolution = self.videoManager.currentResolution;
-    [UIDevice lc_setRotateToSatusBarOrientation];
     self.videoManager.isFullScreen = !self.videoManager.isFullScreen;
+    [UIDevice lc_setRotateToSatusBarOrientation:self.container];
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -86,6 +86,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
+    param.isOpenAudio = self.videoManager.isSoundOn;
     if ([self.videoManager.currentChannelInfo.resolutions count] > 0) {
         LCCIResolutions *resolutions = self.videoManager.currentResolution;
         if (!resolutions) {
@@ -194,7 +195,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     param.playToken = self.videoManager.currentDevice.playToken;
     param.imageSize = NResolution.imageSize;
     param.productId = self.videoManager.currentDevice.productId;
-    
+    param.isOpenAudio = self.videoManager.isSoundOn;
     [self.playWindow playRtspReal:param];
 }
 
@@ -225,6 +226,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     param.psk = self.videoManager.currentPsk;
     param.playToken = self.videoManager.currentDevice.playToken;
     param.productId = self.videoManager.currentDevice.productId;
+    param.isOpenAudio = self.videoManager.isSoundOn;
     [self.playWindow playRtspReal:param];
     
 }

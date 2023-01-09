@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否打开云台
 @property (nonatomic) BOOL isOpenCloudStage;
 
-/// 是否开启对讲
+/// 正在对讲
 @property (nonatomic) BOOL isOpenAudioTalk;
 
 /// 是否开启录制

@@ -47,7 +47,7 @@
 //是否展示探照灯设置引导
 @property(nonatomic, assign) BOOL showSearchLightGuide;
 
-/// 是否打开用户体验计划，国内3.12.2版本添加
+/// 是否打开用户体验计划，国内3.12.01版本添加
 @property (nonatomic, assign) BOOL openUserExperience;
 
 /// 是否展示用户体验计划弹框

@@ -184,7 +184,7 @@ import UIKit
 		timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		timer!.schedule(deadline: DispatchTime.now(), repeating: .milliseconds(Int(interval)), leeway: .microseconds(10))
 		timer!.setEventHandler {
-			//print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::\(self.currentTime)-\(self.millisecondsCount)-\(self)")
+			//print(" \(NSStringFromClass(self.classForCoder))::\(self.currentTime)-\(self.millisecondsCount)-\(self)")
 			
 			if self.isStarted, Int(self.millisecondsCount / 1_000) >= self.maxTime {
 				self.timeoutProcess()
@@ -247,6 +247,6 @@ import UIKit
 	
 	// MARK: Deinit
 	deinit {
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: dealloced...")
+		print(" \(NSStringFromClass(self.classForCoder)):: dealloced...")
 	}
 }

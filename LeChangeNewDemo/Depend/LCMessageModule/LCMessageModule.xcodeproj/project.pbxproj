@@ -794,7 +794,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -837,7 +837,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
-					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -124,7 +124,7 @@ class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerVie
 extension LCInitializeSearchViewController {
 	
 	func cycleTimerViewTimeout(cycleView: LCCycleTimerView) {
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Capture timeout...")
+		print(" \(NSStringFromClass(self.classForCoder)):: Capture timeout...")
 		errorView.showOnView(superView: self.view, animated: true)
 		
 	}

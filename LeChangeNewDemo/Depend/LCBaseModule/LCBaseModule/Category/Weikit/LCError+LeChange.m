@@ -58,8 +58,13 @@
         default:
             desc = [self.errorInfo objectForKey:@"Desc"];
     }
-
-    return desc.length > 0 ? desc : @"mobile_common_bec_common_unknown".lc_T;
+    if (desc.length > 0) {
+        return desc;
+    } else if (self.errorCode.length > 0 || self.errorMessage.length > 0) {
+        return [NSString stringWithFormat:@"%@ %@", self.errorCode, self.errorMessage];
+    } else {
+        return @"mobile_common_bec_common_unknown".lc_T;
+    }
 }
 
 - (void)showErrorTips:(NSString *)customTips {

@@ -21,7 +21,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	
-	NSLog(@"🍎🍎🍎 %@:: viewDidAppear", NSStringFromClass([self class]));
+	NSLog(@" %@:: viewDidAppear", NSStringFromClass([self class]));
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushToLogin) name:@"NEEDLOGIN" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -38,7 +38,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	NSLog(@"🍎🍎🍎 %@:: viewDidDisappear", NSStringFromClass([self class]));
+	NSLog(@" %@:: viewDidDisappear", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

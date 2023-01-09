@@ -56,8 +56,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.persenter refreshBottomControlItems];
     // 开始拉流
-    if ([self.persenter.videoManager.currentDevice.status isEqualToString:@"online"]) {
+    if ([self.persenter.videoManager.currentDevice.status isEqualToString:@"online"] || [self.persenter.videoManager.currentDevice.status isEqualToString:@"sleep"]) {
         [self.persenter startPlay];
     }
     
@@ -65,16 +66,29 @@
     defaultImageView.hidden = NO;
     [defaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].currentChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].currentChannelInfo.channelId];
     self.persenter.videoTypeLabel.hidden = YES;
-    [self.persenter loadCloudVideotape];
     
     NSString *titleStr = self.persenter.videoManager.currentDevice.name;
     if (self.persenter.videoManager.currentDevice.channelNum > 0 &&   self.persenter.videoManager.currentChannelInfo != nil) {
         titleStr = self.persenter.videoManager.currentChannelInfo.channelName;
     }
     self.title = titleStr;
+    [self.landscapeControlView refreshTitle:titleStr];
     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    if (self.persenter.historyView != nil) {
+        [self.persenter.historyView removeFromSuperview];
+        self.persenter.historyView = nil;
+    }
+    UIView * videoHistoryView = [self.persenter getVideotapeView];
+    [self.view addSubview:videoHistoryView];
+    UIView *bottomView = [self.view viewWithTag:2000];
+    [videoHistoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(bottomView.mas_bottom).offset(5);
+        make.right.left.mas_equalTo(self.view);
+    }];
+    [self.persenter loadCloudVideotape];
 }
 
 - (void)configDevice:(LCDeviceInfo *)device channelIndex:(NSInteger)index {
@@ -175,7 +189,7 @@
 
     //创建底部控制栏
     LCNewVideoControlView * bottomView = [LCNewVideoControlView new];
-    bottomView.tag = 2;
+    bottomView.tag = 2000;
     bottomView.style = LCNewVideoControlLightStyle;
     [self.view addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -243,13 +257,6 @@
         [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
     };
     
-    UIView * videoHistoryView = [self.persenter getVideotapeView];
-    [self.view addSubview:videoHistoryView];
-    [videoHistoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(bottomView.mas_bottom).offset(5);
-        make.right.left.mas_equalTo(self.view);
-    }];
-    
 //    [self.KVOController observe:self.persenter.videoManager keyPath:@"isFullScreen" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
 //        if ([change[@"new"] boolValue]) {
 //            //全屏
@@ -287,6 +294,7 @@
         ptzL.alpha = 1.0;
     }];
 }
+
 - (void)hidePtz {
     //横屏云台
     UIView * ptzP = [self.view viewWithTag:998];
@@ -363,7 +371,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     [self.persenter.playWindow uninitPlayWindow];
 }

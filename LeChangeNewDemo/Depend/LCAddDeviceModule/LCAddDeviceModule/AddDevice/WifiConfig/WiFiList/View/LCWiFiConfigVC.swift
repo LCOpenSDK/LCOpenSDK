@@ -72,7 +72,7 @@ class LCWiFiConfigVC: LCBasicViewController {
     
 }
 
-// MARK: - 🍑container protocol
+// MARK: - container protocol
 
 extension LCWiFiConfigVC: ILCWiFiConfigContainer {
     func mainController() -> UIViewController {
@@ -107,7 +107,7 @@ extension LCWiFiConfigVC: ILCWiFiConfigContainer {
     
 }
 
-// MARK: - 🍑table view datasource
+// MARK: - table view datasource
 
 // todo: 改了之后写得不好，需要修改
 extension LCWiFiConfigVC: UITableViewDataSource {
@@ -134,7 +134,7 @@ extension LCWiFiConfigVC: UITableViewDataSource {
     }
 }
 
-// MARK: - 🍑table view delegate
+// MARK: - table view delegate
 
 extension LCWiFiConfigVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

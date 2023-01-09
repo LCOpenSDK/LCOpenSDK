@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)changeAlpha;
 
+- (void)refreshTitle:(NSString *)title;
+
 @end
 
 NS_ASSUME_NONNULL_END

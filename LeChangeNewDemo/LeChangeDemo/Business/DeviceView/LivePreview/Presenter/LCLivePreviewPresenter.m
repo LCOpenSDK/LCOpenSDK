@@ -323,26 +323,6 @@
     return item;
 }
 
-- (NSString *)checkAudioTalk {
-    if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
-        //NVR设备先检查通道能力再检查设备能力
-        if (self.videoManager.currentChannelInfo.ability.isSupportAudioTalkV1) {
-            //通道支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        } else if (self.videoManager.currentDevice.ability.isSupportAudioTalk) {
-            //设备支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        }
-    } else if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
-        //IPC设备检查设备能力
-        if (self.videoManager.currentDevice.ability.isSupportAudioTalk) {
-            //通道支持对讲
-            return self.videoManager.currentDevice.deviceId;
-        }
-    }
-    return @"";
-}
-
 - (UIView *)getVideotapeView {
     weakSelf(self);
     LCVideoHistoryView *videoHistoryView = [[LCVideoHistoryView alloc] init];
@@ -627,7 +607,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
 }
 
 -(void)setVideoType{

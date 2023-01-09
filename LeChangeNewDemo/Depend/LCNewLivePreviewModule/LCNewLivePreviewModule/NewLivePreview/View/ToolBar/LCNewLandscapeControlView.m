@@ -39,6 +39,8 @@
 //缩放手势
 @property(nonatomic, strong) UIPinchGestureRecognizer *pinchGesture;
 
+@property(nonatomic, strong) UILabel * titleLab;
+
 @end
 
 @implementation LCNewLandscapeControlView
@@ -98,11 +100,11 @@
     };
     
     //序列号显示
-    UILabel * titleLab = [UILabel new];
-    titleLab.text = [self.delegate currentTitle];
-    titleLab.textColor = [UIColor lc_colorWithHexString:@"#FFFFFF"];
-    [topView addSubview:titleLab];
-    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.titleLab = [UILabel new];
+    self.titleLab.text = [self.delegate currentTitle];
+    self.titleLab.textColor = [UIColor lc_colorWithHexString:@"#FFFFFF"];
+    [topView addSubview:self.titleLab];
+    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(topView.mas_centerY);
         make.centerX.mas_equalTo(topView.mas_centerX);
     }];
@@ -166,8 +168,12 @@
 //    self.startLab.text = [currentDate stringWithFormat:@"HH:mm:ss"];
 }
 
+- (void)refreshTitle:(NSString *)title {
+    self.titleLab.text = title;
+}
+
 - (void)dealloc {
-    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
 }
 
 @end

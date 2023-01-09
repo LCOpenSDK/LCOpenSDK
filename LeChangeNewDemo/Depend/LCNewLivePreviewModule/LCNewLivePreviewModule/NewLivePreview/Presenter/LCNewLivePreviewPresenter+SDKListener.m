@@ -110,11 +110,6 @@
 }
 
 - (void)onPlayBegan:(NSInteger)index {
-    if (self.videoManager.isSoundOn) {
-        [self.playWindow playAudio];
-    }else {
-        [self.playWindow stopAudio];
-    }
     dispatch_async(dispatch_get_main_queue(), ^{
         self.videoManager.playStatus = 1001;
         [self saveThumbImage];

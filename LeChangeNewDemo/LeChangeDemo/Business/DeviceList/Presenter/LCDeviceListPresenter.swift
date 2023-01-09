@@ -38,7 +38,7 @@ import LCNewLivePreviewModule
         param.port = LCApplicationDataManager.sdkPort()
         param.token = LCApplicationDataManager.token()
         let _ = LCOpenSDK_Api(openApi: param)
-        print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: Init open api: \(param.addr)")
+        print(" \(NSStringFromClass(self.classForCoder)):: Init open api: \(param.addr)")
     }
     
     func initSDKLog() {
@@ -159,6 +159,7 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
                 if info.catalog.uppercased() == "IPC" && info.status != "online" {
                     return
                 }
+                
                 self.listContainer?.navigationController?.pushViewController(self.livePreviewVC, animated: true)
             } else if index == 1 {
                 var channleId = ""

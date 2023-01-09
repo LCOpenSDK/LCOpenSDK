@@ -24,7 +24,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 - (void)onFullScreen:(LCButton *)btn {
     self.videoManager.isFullScreen = !self.videoManager.isFullScreen;
     self.videoManager.isLockFullScreen = NO;
-    [UIDevice lc_setRotateToSatusBarOrientation];
+    [UIDevice lc_setRotateToSatusBarOrientation:self.container];
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -234,12 +234,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 }
 
 - (void)onLockFullScreen:(LCButton *)btn {
-    
     self.videoManager.isLockFullScreen = !self.videoManager.isLockFullScreen;
-//    SEL selUpdateSupportedMethod = NSSelectorFromString(@"setNeedsUpdateOfSupportedInterfaceOrientations");
-//    if ([self.container.navigationController respondsToSelector:selUpdateSupportedMethod]) {
-//        (((void (*)(id, SEL))[self.container.navigationController methodForSelector:selUpdateSupportedMethod])(self.container.navigationController, selUpdateSupportedMethod));
-//    }
 }
 
 - (void)onRecording {

@@ -139,7 +139,7 @@
 
 + (void)logout:(long)loginHandle {
     [LCOpenSDK_Netsdk logout:loginHandle];
-	NSLog(@"🍎🍎🍎 %@:: Logout by login handle %ld", NSStringFromClass([self class]), loginHandle);
+	NSLog(@" %@:: Logout by login handle %ld", NSStringFromClass([self class]), loginHandle);
 }
 
 #pragma mark - Query WifiInfo
@@ -289,6 +289,6 @@ void safe_strcpy(char *__dst, const char *__src) {
 	if (__src) {
 		strcpy(__dst, __src);
 	} else {
-		NSLog(@"🍎🍎🍎 %s:: __src can't be nil...", __FUNCTION__ );
+		NSLog(@" %s:: __src can't be nil...", __FUNCTION__ );
 	}
 }

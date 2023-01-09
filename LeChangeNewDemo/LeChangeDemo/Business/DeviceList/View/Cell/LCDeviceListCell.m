@@ -260,7 +260,7 @@
     weakSelf(self)
     cell.resultBlock = ^(LCDeviceInfo * _Nonnull info, NSInteger channelIndex) {
         if (weakself.resultBlock) {
-            weakself.resultBlock(weakself.deviceInfo, 0, 2);
+            weakself.resultBlock(weakself.deviceInfo, channelIndex, 2);
         }
     };
     return cell;

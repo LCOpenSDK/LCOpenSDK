@@ -26,11 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pushToLeChanegMainPage;
 
 /**
- 跳转到直播预览
- */
-- (void)pushToLivePreview;
-
-/**
  跳转到全部录像界面 0:云录像 1:本地录像
  */
 - (void)pushToVideotapeListPageWithType:(NSInteger)type;

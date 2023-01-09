@@ -23,13 +23,12 @@
 
 @implementation LCLivePreviewViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupView];
-   
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if ([self.persenter.videoManager.currentDevice.status isEqualToString:@"online"]) {
@@ -37,7 +36,6 @@
         self.persenter.videoManager.isPlay = NO;
         [self.persenter onPlay:nil];
     }
-   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,7 +59,7 @@
         }
     }];
     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
 }
 
 - (void)netChange:(NSNotification *)notic {
@@ -303,7 +301,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"🍎🍎🍎 %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
 }
 
 

@@ -188,4 +188,6 @@ typedef enum : NSUInteger {
 /// 隐藏边界警告红线视图
 -(void)hideBorderView;
 
+- (void)refreshBottomControlItems;
+
 @end

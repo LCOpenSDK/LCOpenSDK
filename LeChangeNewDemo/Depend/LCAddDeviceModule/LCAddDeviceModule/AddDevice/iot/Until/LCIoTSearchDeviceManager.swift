@@ -57,7 +57,7 @@ class LCIoTSearchDeviceManager: NSObject {
     // MARK: Deinit
 
     deinit {
-        print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder)):: dealloced...")
+        print(" \(NSStringFromClass(self.classForCoder)):: dealloced...")
     }
 
     // MARK: - Timer Operation
@@ -151,7 +151,7 @@ extension LCIoTSearchDeviceManager {
                 if !self.isStarted {
                     return
                 }
-                print("🍎🍎🍎获取IoT设备信息成功")
+                print("获取IoT设备信息成功")
                 print(data)
                 self.deviceBaseInfo.sn = data["sn"] as! String
                 self.deviceBaseInfo.pid = data["pid"] as! String

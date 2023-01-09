@@ -24,7 +24,7 @@ static LCSmartConfig *smartConfig = nil;
         return nil;
     }
 	
-    NSLog(@"🍎🍎🍎 %@:: Start smart config by %@ %@ %@ %lu", NSStringFromClass([self class]), deviceID, ssid, password, (unsigned long)fskMode);
+    NSLog(@" %@:: Start smart config by %@ %@ %@ %lu", NSStringFromClass([self class]), deviceID, ssid, password, (unsigned long)fskMode);
     
     return [self.configWifi configWifiStart:deviceID ssid:ssid password:password secure:security voiceFreq:11000 txMode:fskMode];
 }

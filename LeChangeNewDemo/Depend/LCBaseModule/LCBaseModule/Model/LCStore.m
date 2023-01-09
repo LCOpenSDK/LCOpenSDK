@@ -19,7 +19,7 @@
 - (instancetype)initWithLocalPath:(NSString *)path {
     if (self = [super init]) {
         _localPath = path;
-        NSLog(@"🍎🍎🍎 %@:: Init with local path - %@", NSStringFromClass([self class]), path);
+        NSLog(@" %@:: Init with local path - %@", NSStringFromClass([self class]), path);
         _storeDic = [NSMutableDictionary dictionaryWithContentsOfFile:_localPath];;
         if (_storeDic == nil) {
             _storeDic = [NSMutableDictionary new];
@@ -31,7 +31,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         NSString *configfilepath = [LCFileManager configFilePath];
-        NSLog(@"🍎🍎🍎 %@:: Init with config file path - %@", NSStringFromClass([self class]), configfilepath);
+        NSLog(@" %@:: Init with config file path - %@", NSStringFromClass([self class]), configfilepath);
         _storeDic = [NSMutableDictionary dictionaryWithContentsOfFile:configfilepath];;
         if (_storeDic == nil) {
             _storeDic = [NSMutableDictionary new];

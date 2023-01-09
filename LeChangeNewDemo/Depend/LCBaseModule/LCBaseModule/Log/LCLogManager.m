@@ -45,7 +45,7 @@ static LCLogManager *instance;
 }
 
 
-#pragma mark - 🍌public method
+#pragma mark - public method
 - (void)startFileLog {
     //1.更新状态
     _isLogging = YES;
@@ -82,8 +82,7 @@ static LCLogManager *instance;
     _logDirectory = logDirectory;
     
     //3.开启定时器
-    if (nil == _timer)
-    {
+    if (nil == _timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                   target:self
                                                 selector:@selector(timerTick)
@@ -96,8 +95,7 @@ static LCLogManager *instance;
     
 }
 
-- (void)endFileLog
-{
+- (void)endFileLog {
     //1.更新状态
     _isLogging = NO;
     
@@ -111,9 +109,7 @@ static LCLogManager *instance;
     
 }
 
-
-- (BOOL)removeSendLogFile
-{
+- (BOOL)removeSendLogFile {
     //删除日志文件
     if (_logDirectory) {
         NSError *error;
@@ -132,18 +128,14 @@ static LCLogManager *instance;
 }
 
 - (NSString *)getLogFilePath {
-    
     return _logDirectory == nil? nil : _logDirectory;
-    
 }
 
-#pragma mark - 🍑private method
+#pragma mark - private method
 //写入日志文件
-- (void)directLogInIndex:(NSInteger )idx
-{
+- (void)directLogInIndex:(NSInteger )idx {
     //如果已经连接XCode调试则不输出到文件
-    if(isatty(STDOUT_FILENO))
-    {
+    if(isatty(STDOUT_FILENO)) {
         return ;
     }
     
@@ -158,8 +150,7 @@ static LCLogManager *instance;
 
 
 //计算单个文件的大小
-- (float) fileSizeAtPath:(NSString*) filePath{
-    
+- (float)fileSizeAtPath:(NSString*) filePath{
     NSFileManager* manager = [NSFileManager defaultManager];
     
     if ([manager fileExistsAtPath:filePath]){
@@ -167,13 +158,10 @@ static LCLogManager *instance;
         return size;
     }
     return 0;
-    
 }
 
-
 #pragma mark - 🍉Timer Action
--(void)timerTick
-{
+- (void)timerTick {
     if([self fileSizeAtPath:_currentPath]>_maxLogSize)
     {
         if (_isCycle)
@@ -184,11 +172,8 @@ static LCLogManager *instance;
         {
             _index ++ ;
         }
-        
         [self directLogInIndex:_index];
-        
     }
 }
-
 
 @end

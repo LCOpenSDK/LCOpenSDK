@@ -62,7 +62,7 @@
 		}
 	}
 	
-	NSLog(@"🍎🍎🍎 %@:: SN:%@, Type:%@, IdentifyCode:%@, SCCdoe:%@, NCCode:%@, IMEI:%@", NSStringFromClass([self class]), self.deviceSN, self.deviceType, self.identifyingCode, self.scCode, self.ncCode, self.imeiCode);
+	NSLog(@" %@:: SN:%@, Type:%@, IdentifyCode:%@, SCCdoe:%@, NCCode:%@, IMEI:%@", NSStringFromClass([self class]), self.deviceSN, self.deviceType, self.identifyingCode, self.scCode, self.ncCode, self.imeiCode);
 }
 
 - (NSString *)getValueByKey:(NSString *)key

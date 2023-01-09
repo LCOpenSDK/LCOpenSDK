@@ -52,7 +52,7 @@
 //bit0-是否支持2D Code修改IP: 0 不支持 1 支持
 //bit1-是否支持PN制:0 不支持 1支持
 //bit2-3(3.7新设备程序能力)-设备的IP地址是否DHCP分配:0-不支持 1-未分配 2-已分配3-DHCP使能关闭
-@property (nonatomic, assign) int specialAbility;
+@property (nonatomic, assign) NSInteger specialAbility;
 @property (nonatomic,   copy) NSString *nowDetailType; //设备型号
 
 @property (nonatomic, assign) BOOL bNowUserName;   //TRUE表示使用新用户名(szNewUserName)字段

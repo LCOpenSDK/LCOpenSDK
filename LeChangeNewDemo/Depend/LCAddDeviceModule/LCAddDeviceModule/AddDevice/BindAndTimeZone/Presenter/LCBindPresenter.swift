@@ -35,7 +35,7 @@ class LCBindPresenter: NSObject, LCConnectCloudTimeoutVCDelegate {
 	private var authedPassword: String = ""
 	
 	deinit {
-        debugPrint("🍻🍻🍻", "Deinit Success:", self)
+        debugPrint("LCBindPresenter", "Deinit Success:", self)
 	}
 	
 	func setup(container: LCBindContainerProtocol?) {
@@ -132,7 +132,7 @@ class LCBindPresenter: NSObject, LCConnectCloudTimeoutVCDelegate {
 		let errorCode = error.errorCode //EC_DEVICE_BINDING_LAN_LIMIT.rawValue //
 		
 		var processed = false
-		if errorCode == "DV1014" || errorCode == "DV1015" || errorCode == "DV1040" {
+		if errorCode == "DV1014" || errorCode == "DV1015" || errorCode == "DV1040" || errorCode == "DV1046" {
 			//【*】绑定限制：时间和次数
 			let desc = error.errorMessage as? String
 			_ = self.showBindFailureView(imagename: "adddevice_fail_rest", content: desc)
@@ -168,7 +168,7 @@ class LCBindPresenter: NSObject, LCConnectCloudTimeoutVCDelegate {
 				
 				processed = true
 			}
-		} 
+        }
 		
 		return processed
 	}

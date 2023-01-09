@@ -159,7 +159,7 @@ class LCOMSConfigManager: NSObject, LCOMSConfigManagerProtocol {
         }) { (error) in
             self.dicIntroductionStatus[model] = false
             NotificationCenter.default.post(name: notification, object: nil, userInfo: ["MarketModel": model])
-            print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Update introduction failed...")
+            print(" \(NSStringFromClass(self.classForCoder))::Update introduction failed...")
         }
 	}
 	
@@ -172,7 +172,7 @@ class LCOMSConfigManager: NSObject, LCOMSConfigManagerProtocol {
 			//清除缓存成功，同时清除内存缓存
 			self.dicIntoductions.removeAll()
 		} catch {
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Clear oms cache failed...")
+			print(" \(NSStringFromClass(self.classForCoder))::Clear oms cache failed...")
 		}
 	}
 	
@@ -220,7 +220,7 @@ class LCOMSConfigManager: NSObject, LCOMSConfigManagerProtocol {
 		let dic = ["updateTime": updateTime, "deviceTypeConfigs": types] as [String: Any]
 	
 		let result = NSKeyedArchiver.archiveRootObject(dic, toFile: path)
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Save models,result:\(result)")
+		print(" \(NSStringFromClass(self.classForCoder))::Save models,result:\(result)")
 	}
 	
 	private func loadIntroduction(byMarketModel marketModel: String) {
@@ -236,7 +236,7 @@ class LCOMSConfigManager: NSObject, LCOMSConfigManagerProtocol {
 		let language = currentLanguageCode()
 		let path = self.deviceIntroductionInfosPath(byLanguage: language, marketModel: marketModel)
 		let result = NSKeyedArchiver.archiveRootObject(introduction, toFile: path)
-		print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::Save models,result:\(result)")
+		print(" \(NSStringFromClass(self.classForCoder))::Save models,result:\(result)")
 	}
     
     

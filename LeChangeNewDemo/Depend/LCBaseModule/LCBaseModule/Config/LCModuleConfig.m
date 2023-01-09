@@ -46,17 +46,6 @@ int g_configDistributionVersion = -1;
     return [self generateDictionaryContainColor:dicConfig];
 }
 
-- (BOOL)isDistributionVersion
-{
-    if (g_configDistributionVersion == -1) {
-         NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
-        BOOL bDistributionVersion = [bundleDic[@"LCDistributionVersion"] boolValue];
-        g_configDistributionVersion = bDistributionVersion ? 1 : 0;
-    }
-    
-    return g_configDistributionVersion == 1;
-}
-
 - (BOOL)isShareEnable {
 
     

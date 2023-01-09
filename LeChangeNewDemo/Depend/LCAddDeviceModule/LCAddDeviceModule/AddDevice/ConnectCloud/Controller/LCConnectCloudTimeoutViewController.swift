@@ -65,7 +65,7 @@ class LCConnectCloudTimeoutViewController: LCAddBaseViewController {
 		}
 		
 		failureView.action = { [unowned self] (failureType, operationType: LCNetConnectFailureOperationType) in
-			print("🍎🍎🍎 \(NSStringFromClass(self.classForCoder))::FailureType-\(failureType), OperationType-\(operationType)")
+			print(" \(NSStringFromClass(self.classForCoder))::FailureType-\(failureType), OperationType-\(operationType)")
 			
 			if operationType == .tryAgain {
 				//【*】海外门铃类型DB10、DB11、DS11，跳转软AP引导界面

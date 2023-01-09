@@ -24,8 +24,8 @@ import LCBaseModule.LCModule
 	// MARK: - Load Custom Class
 	func loadCustomClass() {
 		//Unknown class xxxx in Interface Builder file
-		print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::Load \(LCAutoKeyboardView.classForCoder())...")
-		print("🍎🍎🍎 \(Date()) \(NSStringFromClass(self.classForCoder))::Load \(LCCycleTimerView.classForCoder())...")
+		print(" \(Date()) \(NSStringFromClass(self.classForCoder))::Load \(LCAutoKeyboardView.classForCoder())...")
+		print(" \(Date()) \(NSStringFromClass(self.classForCoder))::Load \(LCCycleTimerView.classForCoder())...")
 	}
 	
 	// MARK: Register Router

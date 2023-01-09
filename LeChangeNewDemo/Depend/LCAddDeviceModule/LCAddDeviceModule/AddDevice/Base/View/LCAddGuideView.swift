@@ -53,7 +53,7 @@ class LCAddGuideView: UIView {
     private var rects: [CGRect] = []    // 存储下划线字段的点击rect
     
         deinit {
-            debugPrint("🍻🍻🍻", "Deinit Success:", self)
+            debugPrint("LCAddGuideView", "Deinit Success:", self)
         }
     
     public static func xibInstance() -> LCAddGuideView {

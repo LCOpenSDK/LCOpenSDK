@@ -1,7 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework
-${PODS_ROOT}/LCOpenSDK/Framework/LCOpenSDKDynamic.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework

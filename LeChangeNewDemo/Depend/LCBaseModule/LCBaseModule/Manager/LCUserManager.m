@@ -278,14 +278,14 @@ static LCUserManager *userManager = nil;
 
 - (void)setEmail:(NSString *)email
 {
-	NSLog(@"🍎🍎🍎 %@:: Set email %@", NSStringFromClass([self class]), email);
+	NSLog(@" %@:: Set email %@", NSStringFromClass([self class]), email);
     _email = email;
     [self saveUserConfigFile];
 }
 
 - (void)setPhone:(NSString *)phone
 {
-	NSLog(@"🍎🍎🍎 %@:: Set phone %@", NSStringFromClass([self class]), phone);
+	NSLog(@" %@:: Set phone %@", NSStringFromClass([self class]), phone);
     _phone = phone;
     [self saveUserConfigFile];
 }

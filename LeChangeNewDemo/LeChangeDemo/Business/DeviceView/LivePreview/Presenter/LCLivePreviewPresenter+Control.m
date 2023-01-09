@@ -26,7 +26,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     self.qualityView.hidden = YES;
     self.LandScapeQualityView.hidden = YES;
     self.videoManager.currentResolution = self.videoManager.currentResolution;
-    [UIDevice lc_setRotateToSatusBarOrientation];
+    [UIDevice lc_setRotateToSatusBarOrientation:self.container];
 }
 
 - (void)onAudio:(LCButton *)btn {
