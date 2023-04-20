@@ -39,18 +39,18 @@ static LCNetSDKInitialManager *_instance = nil;
 
 - (void)initialDeviceWithPassWord:(NSString *)pwdString
 						 isSoftAp:(BOOL)isSoftAp
-				  withInitialType:(LCDeviceInitType)initialType
+                    deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 				 withSuccessBlock:(InitialSuccessHandle)success
 				 withFailureBlock:(InitialFailHandle)fail {
 	if (isSoftAp) {
-		[self initialApDeviceWithPassword:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+		[self initialApDeviceWithPassword:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 	} else {
-		[self initialCommonDeviceWithPassWord:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+        [self initialCommonDeviceWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 	}
 }
 
--(void)initialCommonDeviceWithPassWord:(NSString *)pwdString
-					   withInitialType:(LCDeviceInitType)initialType
+- (void)initialCommonDeviceWithPassWord:(NSString *)pwdString
+                         deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 					  withSuccessBlock:(InitialSuccessHandle)success
 					  withFailureBlock:(InitialFailHandle)fail {
 	/*
@@ -61,18 +61,18 @@ static LCNetSDKInitialManager *_instance = nil;
 	 3、IP无效：则需要等待DHCP分配IP成功才可以进行初始化。SearchManager在后台持续搜索，当DHCP分配成功，设备会重新发广播上报，SearchManager能够更新搜索到的设备信息，因此在IP无效的情况下，InitialManager(本类)只需要每隔0.5秒从SearchManager更新一次搜索结果，等待DHCP分配成功，根据获取到的有效IP进行单播初始化，20次以后DHCP未分配成功则初始化失败。
 	 */
 	
-	NSLog(@"LCNetSDKInitialManager::Initial common device with type:%lu", (unsigned long)initialType);
+	NSLog(@"LCNetSDKInitialManager::Initial common device with type:%lu", (unsigned long)deviceNetInfo.deviceInitType);
 	self.pwdString = pwdString;
 	
-	switch (initialType) {
+	switch (deviceNetInfo.deviceInitType) {
 			//老设备程序
 		case LCDeviceInitTypeOldDevice:
-			[self multicastWithPassWord:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+			[self multicastWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 			break;
 			
 			//IP有效初始化
 		case LCDeviceInitTypeIPEnable:
-			[self unicastWithPassWord:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+			[self unicastWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 			break;
 			
 			//IP无效
@@ -88,25 +88,21 @@ static LCNetSDKInitialManager *_instance = nil;
 			dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC), 0);
 			//定时器回调
 			dispatch_source_set_event_handler(timer, ^{
-				
 				NSLog(@"CGD定时器-----%@",[NSThread currentThread]);
 				count++;
 				if (count == maxCount) { // 执行20次(10秒后),释放定时器
 					dispatch_async(dispatch_get_main_queue(), ^{
-						//fail();
-						
 						//超时失败后，走老的初始化
-						[self initialCommonDeviceWithPassWord:pwdString withInitialType:LCDeviceInitTypeOldDevice withSuccessBlock:success withFailureBlock:fail];
+                        [self multicastWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 					});
 
 					dispatch_cancel(timer);
 					timer = nil;
 				}else{
 					//更新设备信息，获取IP
-					LCDeviceNetInfo *deviceNetInfo = [self updateDeviceSearchInfo];
 					if (deviceNetInfo.deviceInitType == LCDeviceInitTypeIPEnable){
 						//最新IP有效
-						if ([self unicastIpWithDeviceInfo:deviceNetInfo isMulticast:NO]) {
+						if ([self castWithDeviceInfo:deviceNetInfo isMulticast:NO useIP:YES]) {
 							//单播初始化成功
 							dispatch_async(dispatch_get_main_queue(), ^{
 								success();
@@ -120,7 +116,6 @@ static LCNetSDKInitialManager *_instance = nil;
 						dispatch_cancel(timer);
 						timer = nil;
 					}
-					
 				}
 			});
 			//启动定时器
@@ -134,22 +129,22 @@ static LCNetSDKInitialManager *_instance = nil;
 }
 
 - (void)initialApDeviceWithPassword:(NSString *)pwdString
-					withInitialType:(LCDeviceInitType)initialType
+                      deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 				   withSuccessBlock:(InitialSuccessHandle)success
 				   withFailureBlock:(InitialFailHandle)fail {
-	NSLog(@"LCNetSDKInitialManager::Initial ap device with type:%lu", (unsigned long)initialType);
+	NSLog(@"LCNetSDKInitialManager::Initial ap device with type:%lu", (unsigned long)deviceNetInfo.deviceInitType);
 	self.pwdString = pwdString;
 	
-	switch (initialType) {
+	switch (deviceNetInfo.deviceInitType) {
 			//老设备程序或者IP效，均走老流程
 		case LCDeviceInitTypeOldDevice:
 		case LCDeviceInitTypeIPUnable:
-			[self multicastWithPassWord:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+			[self multicastWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 			break;
 			
 			//IP有效初始化
 		case LCDeviceInitTypeIPEnable:
-			[self unicastWithPassWord:pwdString withInitialType:initialType withSuccessBlock:success withFailureBlock:fail];
+			[self unicastWithPassWord:pwdString deviceNetInfo:deviceNetInfo withSuccessBlock:success withFailureBlock:fail];
 			break;
 			
 		default:
@@ -158,32 +153,30 @@ static LCNetSDKInitialManager *_instance = nil;
 }
 
 - (void)multicastWithPassWord:(NSString *)pwdString
-			  withInitialType:(LCDeviceInitType)initialType
+                deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 			 withSuccessBlock:(InitialSuccessHandle)success
 			 withFailureBlock:(InitialFailHandle)fail {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		//组播 前三次发组播包 每次五秒
-		LCDeviceNetInfo *deviceNetInfo = [self updateDeviceSearchInfo];
 		if(deviceNetInfo==nil)
 		{
 			dispatch_async(dispatch_get_main_queue(), ^{
 				fail();
 			});
-		}else if ([self multicastWithDeviceInfo:deviceNetInfo isMulticast:YES]) {
+		}else if ([self castWithDeviceInfo:deviceNetInfo isMulticast:YES useIP:NO]) {
 			//组播初始化成功
 			dispatch_async(dispatch_get_main_queue(), ^{
 				success();
 			});
 		}else{
 			//组播初始化失败，获取最新的设备信息进行单播初始化
-            deviceNetInfo = [self updateDeviceSearchInfo];
             if(deviceNetInfo==nil)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     fail();
                 });
             }
-			else if ([self unicastIpWithDeviceInfo:deviceNetInfo isMulticast:NO]) {
+			else if ([self castWithDeviceInfo:deviceNetInfo isMulticast:NO useIP:YES]) {
 				//单播初始化成功
 				dispatch_async(dispatch_get_main_queue(), ^{
 					success();
@@ -200,13 +193,12 @@ static LCNetSDKInitialManager *_instance = nil;
 }
 
 - (void)unicastWithPassWord:(NSString *)pwdString
-			withInitialType:(LCDeviceInitType)initialType
+              deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 		   withSuccessBlock:(InitialSuccessHandle)success
 		   withFailureBlock:(InitialFailHandle)fail {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		
-		LCDeviceNetInfo *deviceNetInfo = [self updateDeviceSearchInfo];
-		if ([self unicastIpWithDeviceInfo:deviceNetInfo isMulticast:NO]) {
+		if ([self castWithDeviceInfo:deviceNetInfo isMulticast:NO useIP:YES]) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				success();
 			});
@@ -221,26 +213,11 @@ static LCNetSDKInitialManager *_instance = nil;
 
 #pragma mark - private
 
-- (BOOL)unicastIpWithDeviceInfo:(LCDeviceNetInfo *)deviceNetInfo isMulticast:(BOOL)isMulticast {
-    LCDeviceInfoLogModel *model = [LCNetSDKInterface initDevAccount:self.pwdString device:deviceNetInfo useIp:YES];
+- (BOOL)castWithDeviceInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo isMulticast:(BOOL)isMulticast useIP:(BOOL)useIP {
+    LCDeviceInfoLogModel *model = [LCNetSDKInterface initDevAccount:self.pwdString device:deviceNetInfo useIp:useIP];
     [self addDeviceNetSDKLog:model.isSuccess];
     [self addDeviceInitLog:deviceNetInfo info:model isMulticast:isMulticast];
     return model.isSuccess;
-}
-
-- (BOOL)multicastWithDeviceInfo:(LCDeviceNetInfo *)deviceNetInfo isMulticast:(BOOL)isMulticast {
-    LCDeviceInfoLogModel *model = [LCNetSDKInterface initDevAccount:self.pwdString device:deviceNetInfo useIp:NO];
-    [self addDeviceNetSDKLog:model.isSuccess];
-    [self addDeviceInitLog:deviceNetInfo info:model isMulticast:isMulticast];
-    return model.isSuccess;
-}
-
-//从LCNetSDKSearchManager获取最新的设备搜索信息
-- (LCDeviceNetInfo*)updateDeviceSearchInfo {
-    
-    NSString *deviceID = [LCAddDeviceManager sharedInstance].deviceId;
-    LCDeviceNetInfo *deviceNetInfo = [[LCNetSDKSearchManager sharedInstance] getNetInfoByID:deviceID];
-    return deviceNetInfo;
 }
 
 - (void)addDeviceNetSDKLog:(BOOL)isSuccess

@@ -16,8 +16,7 @@ class LCWiFiUnsupportVC: LCErrorBaseViewController {
         }
         // Do any additional setup after loading the view.
         errorView.updateTopImageViewConstraint(top: 5, width: 255, height: 255)
-        errorView.detailLabel.textAlignment = .left
-        errorView.contentLabel.textAlignment = .left
+        errorView.titleLabel.textAlignment = .left
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,7 +39,7 @@ class LCWiFiUnsupportVC: LCErrorBaseViewController {
     }
     
     override func errorContent() -> String {
-        return "add_device_tip_not_support_5g_1".lc_T + "\n\n" + "add_device_tip_not_support_5g_2".lc_T
+        return "add_device_tip_not_support_5g_1".lc_T() + "\n\n" + "add_device_tip_not_support_5g_2".lc_T()
     }
     
     override func icConfirmHidden() -> Bool {

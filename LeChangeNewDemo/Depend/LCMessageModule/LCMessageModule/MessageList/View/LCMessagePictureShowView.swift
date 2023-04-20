@@ -26,7 +26,7 @@ class LCMessagePictureShowView: UIView {
     }
     
     //MARK: - Public Func
-    public class func show(_ picUrl:String, productId:String?, deviceId:String, secretKey:String, containView:UIView) {
+    public class func show(_ picUrl:String, productId:String?, deviceId:String, secretKey:String, playtoken:String?, containView:UIView) {
         for subView in containView.subviews {
             if subView.isKind(of: LCMessagePictureShowView.classForCoder()) {
                 subView.removeFromSuperview()
@@ -37,7 +37,7 @@ class LCMessagePictureShowView: UIView {
         picShowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        picShowView.showMessagePicture(picUrl, productId: productId, deviceId: deviceId, secretKey: secretKey)
+        picShowView.showMessagePicture(picUrl, productId: productId, deviceId: deviceId, secretKey: secretKey, playtoken: playtoken)
         
     }
     
@@ -59,12 +59,12 @@ class LCMessagePictureShowView: UIView {
         self.addGestureRecognizer(tap)
     }
     
-    private func showMessagePicture(_ picUrl:String, productId:String?, deviceId:String, secretKey:String) {
-        messageImv.lc_setMessageImage(withURL: picUrl, placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: deviceId, productId: productId ?? "", key: secretKey)
+    private func showMessagePicture(_ picUrl:String, productId:String?, deviceId:String, secretKey:String, playtoken:String?) {
+        messageImv.lc_setMessageImage(withURL: picUrl, placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: deviceId, productId: productId ?? "", playtoken: playtoken ?? "", key: secretKey)
         let screenW = UIScreen.main.bounds.size.width
         let screenH = UIScreen.main.bounds.size.height
         messageImv.frame = CGRect(x: screenW / 2.0, y: screenH / 2.0, width: 0.0, height: 0.0)
-        
+
         UIView.animate(withDuration: 0.4) {
             self.messageImv.frame = CGRect(x: 15.0, y: screenH / 2.0 - 245.0 / 2.0, width: screenW - 30.0, height: 245.0)
         }

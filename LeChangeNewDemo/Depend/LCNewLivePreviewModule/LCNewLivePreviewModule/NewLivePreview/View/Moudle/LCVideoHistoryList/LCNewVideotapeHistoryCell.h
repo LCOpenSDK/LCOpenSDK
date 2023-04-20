@@ -26,7 +26,7 @@ typedef void(^LCNewVideotapeHistoryCellClickBlock)(void);
  @param deviceId 设备序列号
  @param key 解密密钥
  */
--(void)loadVideotapImage:(NSString *)url DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key;
+-(void)loadVideotapImage:(NSString *)url deviceId:(NSString *)deviceId productId:(NSString *)productId playtoken:(NSString *)playtoken key:(NSString *)key;
 
 
 @end

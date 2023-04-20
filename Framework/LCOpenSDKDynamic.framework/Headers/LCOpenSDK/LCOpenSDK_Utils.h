@@ -59,6 +59,27 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key token:(NSString *)token bufOut:(NSData**)pDestBufOut;
+
+///Data decryption TCM device    zh:数据解密TCM设备
+/// @param pSrcBufIn Data content to be decrypted    zh:待解密数据内容
+/// @param deviceID Device ID    zh:设备ID
+/// @param productId Product ID    zh:产品ID
+/// @param key decryption key    zh:解密密钥
+/// @param playtoken playtoken
+/// @param pDestBufOut decrypted data content    zh:解密后数据内容
+/// @return Decryption result    zh:解密结果
+/// 0.indicating successful decryption    zh:0, 表示解密成功
+/// 1.It indicates that integrity verification failed    zh:1, 表示完整性校验失败
+/// 2.It indicates that the key is incorrect    zh:2, 表示密钥错误
+/// 3.indicating that the picture is not encrypted    zh:3, 表示图片非加密
+/// 4.Unsupported encryption method    zh:4, 不支持的加密方式
+/// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
+/// 99.internal error    zh:99,内部错误
+- (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
+
+
++ (void)mtsPreKeepalive:(NSArray *)deviceDatas token:(NSString *)token;
+
 @end
 
 #endif

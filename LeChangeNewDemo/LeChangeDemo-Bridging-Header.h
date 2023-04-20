@@ -11,6 +11,5 @@
 #import <LCNetworkModule/LCDeviceManagerInterface.h>
 #import "LCRefreshHeader.h"
 #import "LCDeviceListCell.h"
-#import "LCDeviceVideoManager.h"
 #import "LCUIKit.h"
 //#import "UINavigationController"

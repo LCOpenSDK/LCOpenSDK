@@ -215,6 +215,7 @@ static NSTimeInterval gDelayTime = 1.5; /**< Hud自动隐藏的时间（扩展�
     hud.removeFromSuperViewOnHide = YES;
     hud.label.textColor = [UIColor lccolor_c43];
     hud.labelText = tip;
+    hud.label.numberOfLines = 0;
     hud.graceTime = 0.2;
     
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;

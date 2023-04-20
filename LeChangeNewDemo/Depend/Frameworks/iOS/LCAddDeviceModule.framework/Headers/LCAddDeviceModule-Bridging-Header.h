@@ -21,15 +21,9 @@
 #import <LCAddDeviceModule/LCNetSDKSearchManager.h>
 #import <LCAddDeviceModule/LCNetSDKHelper.h>
 #import <LCAddDeviceModule/LCNetSDKInitialManager.h>
-#import <LCAddDeviceModule/LCAddBoxGudieView.h>
 #import <LCAddDeviceModule/LCSmartConfig.h>
 #import <LCAddDeviceModule/LCDeviceInfoLogModel.h>
-#import <LCAddDeviceModule/LanDeviceBridge.h>
 #import <LCAddDeviceModule/LCNetSDKInterface.h>
-#import <LCAddDeviceModule/LCAddDeviceModuleBridge.h>
-#import <LCAddDeviceModule/MMTimeZoneModel.h>
-#import <LCAddDeviceModule/TYCyclePagerView.h>
-#import <LCAddDeviceModule/TYPageControl.h>
 #import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 
 //依赖的系统库

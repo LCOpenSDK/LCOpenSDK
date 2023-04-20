@@ -11,63 +11,50 @@ enum LCDeviceBindStatus {
 }
 
 extension LCUserDeviceBindInfo {
-	
-	func lc_netConfigModes() -> [LCNetConfigMode] {
-		var modes = [LCNetConfigMode]()
-		if let configModes = self.wifiConfigMode, configModes.count > 0 {
-			for mode in configModes.components(separatedBy: ",") {
-				if mode.lc_caseInsensitiveContain(string: "SmartConfig") || mode.lc_caseInsensitiveContain(string: "SoundWave") {
-					if modes.contains(.wifi) == false { //防止重复添加
-						modes.append(.wifi)
-					}
-				}
-				
-				if mode.lc_caseInsensitiveContain(string: "SoftAP") || mode.lc_caseInsensitiveContain(string: "wifi") {
-					modes.append(.softAp)
-				}
-				
-				if mode.lc_caseInsensitiveContain(string: "LAN") {
-					modes.append(.wired)
-				}
-				
-//				if mode.lc_caseInsensitiveContain(string: "SIMCard") {
-//					modes.append(.simCard)
-//				}
-//
-//				if mode.lc_caseInsensitiveSame(string: "Location") {
-//					modes.append(.local)
-//				}
-//
-//				if mode.lc_caseInsensitiveSame(string: "NBIOT") {
-//					modes.append(.nbIoT)
-//				}
-				
-                if mode.lc_caseInsensitiveSame(string: "Bluetooth") {
-                    modes.append(.ble)
+    class func lc_netConfigModes(wifiConfigMode: String, isIotDevice: Bool = false) -> [LCNetConfigMode] {
+        var modes = Set<LCNetConfigMode>()
+		if wifiConfigMode.count > 0 {
+			for mode in wifiConfigMode.components(separatedBy: ",") {
+                if isIotDevice {
+                    if mode == "bluetooth" {
+                        modes.insert(.iotBluetooth)
+                    }
+                    
+                    if mode == "bluetoothBatch" {
+                        modes.insert(.iotBluetooth)
+                    }
+                    
+                    if mode == "4G" {
+                        modes.insert(.iot4G)
+                    }
+                    
+                    if mode == "lan" {
+                        modes.insert(.iotLan)
+                    }
+                } else {
+                    if mode == "SmartConfig" {
+                        modes.insert(.smartConfig)
+                    }
+                    
+                    if mode == "SoundWave" {
+                        modes.insert(.soundWave)
+                    }
+                    
+                    if mode == "SoundWaveV2" {
+                        modes.insert(.soundWaveV2)
+                    }
+                    
+                    if mode == "SoftAP" {
+                        modes.insert(.softAp)
+                    }
+                    
+                    if mode == "LAN" {
+                        modes.insert(.lan)
+                    }
                 }
-                if mode.lc_caseInsensitiveSame(string: "iot4G") {
-                    modes.append(.iot4G)
-                }
-                if mode.lc_caseInsensitiveSame(string: "iotBluetooth") {
-                    modes.append(.iotBluetooth)
-                }
-                if mode.lc_caseInsensitiveSame(string: "iotWifi") {
-                    modes.append(.iotWifi)
-                }
-                if mode.lc_caseInsensitiveSame(string: "iotLan") {
-                    modes.append(.wired)
-                }
-                
 			}
-		} else {
-            modes.append(.wifi)
-            modes.append(.wired)
-            modes.append(.softAp)
-        }
-		
-
-	
-		return modes
+		}
+        return Array(modes)
 	}
 	
 	func lc_support5GWifi() -> Bool {
@@ -78,16 +65,10 @@ extension LCUserDeviceBindInfo {
 	}
 	
 	func lc_isSupportSoundWave() -> Bool {
-		//TEST::!!!
-		if LCAddDeviceTest.openTest {
-			return LCAddDeviceTest.testSoundWave
-		}
-		
 		return wifiConfigMode != nil && wifiConfigMode.lc_caseInsensitiveContain(string: "SoundWave")
 	}
 	
 	func lc_bindStatus() -> LCDeviceBindStatus {
-		
 		if bindStatus == nil || bindStatus.count == 0 || bindStatus.lc_caseInsensitiveContain(string: "unbind") {
 			return .unbind
 		}
@@ -115,20 +96,20 @@ extension LCUserDeviceBindInfo {
 		return type != nil && type.lc_caseInsensitiveContain(string: "ap")
 	}
 	
-	func lc_accessType() -> LCDeviceAccessType {
-		if accessType == nil || accessType.count == 0 {
-			return .paas
-		}
-		
-		var type = LCDeviceAccessType.paas
-		if accessType.lc_caseInsensitiveContain(string: "p2p") {
-			type = .p2p
-		} else if accessType.lc_caseInsensitiveContain(string: "easy4ip") {
-			type = .easy4ip
-		}
-		
-		return type
-	}
+//	func lc_accessType() -> LCDeviceAccessType {
+//		if accessType == nil || accessType.count == 0 {
+//			return .paas
+//		}
+//
+//		var type = LCDeviceAccessType.paas
+//		if accessType.lc_caseInsensitiveContain(string: "p2p") {
+//			type = .p2p
+//		} else if accessType.lc_caseInsensitiveContain(string: "easy4ip") {
+//			type = .easy4ip
+//		}
+//
+//		return type
+//	}
 }
 
 // MARK: Extesion String

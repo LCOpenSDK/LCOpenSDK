@@ -37,16 +37,8 @@ class LCWifiConnectFailureViewController: LCAddBaseViewController {
 	
 	func setupConnectFailureView() {
 		failureView = LCNetConnectFailureView.xibInstance()
-        
-        let manager = LCAddDeviceManager.sharedInstance
-//        if manager.netConfigMode == .wifi, manager.supportConfigModes.contains(.qrCode) {
-//            failureView.showQrcodeBtn = true
-//        }
-        
-        
 		failureView.setFailureType(type: failureType)
 		view.addSubview(failureView)
-		
 		failureView.snp.makeConstraints { make in
 			make.edges.equalTo(self.view)
 		}
@@ -132,9 +124,10 @@ class LCWifiConnectFailureViewController: LCAddBaseViewController {
 	// MARK: LCAddBaseVCProtocol
 	override func rightActionType() -> [LCAddBaseRightAction] {
 		var actions: [LCAddBaseRightAction] = [.restart]
-		if LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) {
-			actions.append(.switchToWired)
-		}
+        // TODO: 切换配网方式需要修改
+//		if LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) {
+//			actions.append(.switchToWired)
+//		}
 		
 		return actions
 	}

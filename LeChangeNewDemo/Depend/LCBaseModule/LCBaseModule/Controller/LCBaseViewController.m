@@ -6,7 +6,6 @@
 #import <LCBaseModule/LCBaseModule-Swift.h>
 #import <LCBaseModule/LCModuleConfig.h>
 #import <LCBaseModule/ILCBaseViewController.h>
-#import <LCBaseModule/LCContainerVC.h>
 #import <LCBaseModule/UINavigationController+LC.h>
 #import <LCBaseModule/LCBaseModule.h>
 #import <LCBaseModule/UIApplication+LeChange.h>
@@ -14,7 +13,7 @@
 #import <Masonry/Masonry.h>
 #import "LCNavBarPresenter.h"
 
-@interface LCBaseViewController ()<ILCBaseViewController,ILCContentVC>
+@interface LCBaseViewController ()<ILCBaseViewController>
 
 @property (strong, nonatomic) LCNavBarPresenter *navBarPresenter;
 
@@ -23,12 +22,6 @@
 @end
 
 @implementation LCBaseViewController
-
-- (void)dealloc {
-	NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
-    [[NSNotificationCenter defaultCenter]  removeObserver:self];
-}
-
 #pragma mark - 懒加载
 
 - (LCNavBarPresenter *)navBarPresenter {
@@ -71,13 +64,6 @@
 	NSString *cName = [NSString stringWithFormat:@"%@", [self class], nil];
 	NSLog(@"viewDidAppear------%@------", cName);
 	
-	// TDBug29570：横屏进入不允许操作，视频只在layout时进了，但是先进layout，再进didAppear
-	if ([UIApplication lc_isAppLandscape]) {
-		self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-	} else {
-		self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-	}
-	
 	[self viewDidAppearProcess];
 
     [self.navBarPresenter viewDidAppear];
@@ -99,9 +85,8 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.isAccessibilityElement = YES;
     button.accessibilityIdentifier = @"buttonInInitLeftNavItemOfBaseVC";
-    button.frame = CGRectMake(0, 0, 30, 30);
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-	button.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+	button.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     button.frame = CGRectMake(0, 0, 40, 40);
     button.tintColor = [UIColor lccolor_c2];
     [button setImage:image forState:UIControlStateNormal];
@@ -159,12 +144,7 @@
 }
 
 #pragma mark - 导航栏相关
-
-//为了兼容旧的代码的写法
 - (UINavigationItem *)navigationItem {
-    if ([self.parentViewController isKindOfClass:[LCContainerVC class]]) {
-        return self.navBarPresenter.customNavigationItem;
-    }
     return super.navigationItem;
 }
 

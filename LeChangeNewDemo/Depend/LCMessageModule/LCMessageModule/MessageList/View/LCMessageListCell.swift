@@ -62,7 +62,7 @@ class LCMessageListCell: UITableViewCell {
     
     //MARK: - Public Func
     public func updateData(_ messageItem:LCMessageItem) {
-        messageImv.lc_setMessageImage(withURL: messageItem.thumbUrl ?? "", placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: messageItem.deviceId ?? "", productId: messageItem.productId ?? "", key: messageItem.deviceId ?? "")
+        messageImv.lc_setMessageImage(withURL: messageItem.thumbUrl ?? "", placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: messageItem.deviceId ?? "", productId: messageItem.productId ?? "", playtoken: messageItem.playtoken ?? "", key: messageItem.deviceId ?? "")
         if let title = messageItem.title, title.count > 0 {
             titleLbl.text = messageItem.title
         }else {

@@ -237,8 +237,6 @@ using UInt = size_t;
 @import UIKit;
 #endif
 
-#import <LCAddDeviceModule/LCAddDeviceModule.h>
-
 #endif
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
@@ -319,8 +317,10 @@ SWIFT_CLASS("_TtC17LCAddDeviceModule19LCAddDeviceLogModel")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-enum LCNetConfigMode : NSInteger;
-enum LCNetConnectType : NSInteger;
+enum LCDeviceAccessType : NSInteger;
+@class LCUserDeviceBindInfo;
+@class LCError;
+@class LCBindDeviceSuccess;
 
 SWIFT_CLASS("_TtC17LCAddDeviceModule18LCAddDeviceManager")
 @interface LCAddDeviceManager : NSObject
@@ -339,12 +339,38 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LCAddDeviceM
 @property (nonatomic, copy) NSString * _Nullable regCode;
 /// NC吗【扫描解析出来】
 @property (nonatomic, copy) NSString * _Nullable ncCode;
-/// 配网模式
-@property (nonatomic) enum LCNetConfigMode netConfigMode;
 /// 是否是扫码进入
 @property (nonatomic) BOOL isEnterByQrcode;
-/// 网络连接类型
-@property (nonatomic) enum LCNetConnectType ncType;
+/// 支持有线添加
+- (BOOL)supportWired SWIFT_WARN_UNUSED_RESULT;
+/// 当前是有线添加
+- (BOOL)isWired SWIFT_WARN_UNUSED_RESULT;
+/// 支持软AP添加
+- (BOOL)supportSoftAP SWIFT_WARN_UNUSED_RESULT;
+/// 当前是软AP添加
+- (BOOL)isSoftAP SWIFT_WARN_UNUSED_RESULT;
+/// 支持无线添加
+- (BOOL)supportWifi SWIFT_WARN_UNUSED_RESULT;
+/// 当前是无线添加
+- (BOOL)isWireless SWIFT_WARN_UNUSED_RESULT;
+/// 是否支持5G频段的wifi
+@property (nonatomic) BOOL isSupport5GWifi;
+/// 是否支持声波配对方式
+@property (nonatomic) BOOL isSupportSoundWave;
+/// 是否在线
+@property (nonatomic) BOOL isOnline;
+/// 是否配件
+@property (nonatomic) BOOL isAccessory;
+/// 选中的网关
+@property (nonatomic, copy) NSString * _Nonnull gatewayId;
+/// 从网关入口添加配件时，进入扫码二维码页面，gatewayId被reset了
+@property (nonatomic) BOOL gatewayIdNeedReset;
+/// 设备接入类型
+@property (nonatomic) enum LCDeviceAccessType accessType;
+/// 设备品牌
+@property (nonatomic, copy) NSString * _Nonnull brand;
+/// 视频通道数（包括未接入的）
+@property (nonatomic, copy) NSString * _Nonnull channelNum;
 /// 设备初始化的密码
 @property (nonatomic, copy) NSString * _Nonnull initialPassword;
 @property (nonatomic, copy) NSString * _Nullable wifiSSID;
@@ -353,11 +379,37 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LCAddDeviceM
 @property (nonatomic) BOOL isEntryFromWifiConfig;
 /// 能力集
 @property (nonatomic, copy) NSString * _Nonnull abilities;
+/// 软Ap添加版本
+@property (nonatomic, copy) NSString * _Nonnull softAPModeWifiVersion;
+/// 软Ap热点名
+@property (nonatomic, copy) NSString * _Nonnull softAPModeWifiName;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-/// 判断当前的添加的设备，是否已经在局域网搜索到
-- (BOOL)isDeviceFindInLocalNetwork SWIFT_WARN_UNUSED_RESULT;
+- (void)reset;
+- (void)getUnBindDeviceInfoWithDeviceId:(NSString * _Nonnull)deviceId productId:(NSString * _Nullable)productId qrModel:(NSString * _Nullable)qrModel ncCode:(NSString * _Nullable)ncCode marketModel:(NSString * _Nullable)marketModel imeiCode:(NSString * _Nullable)imeiCode success:(void (^ _Nonnull)(LCUserDeviceBindInfo * _Nonnull, BOOL))success failure:(void (^ _Nonnull)(LCError * _Nonnull))failure;
+- (void)setupWithDeviceInfo:(LCUserDeviceBindInfo * _Nonnull)deviceInfo;
+- (void)refreshDataWithDeviceInfo:(LCUserDeviceBindInfo * _Nonnull)deviceInfo;
+- (void)getDeviceStatusWithSuccess:(void (^ _Nonnull)(LCUserDeviceBindInfo * _Nonnull))success failure:(void (^ _Nonnull)(LCError * _Nonnull))failure;
+- (void)stopGetDeviceStatus;
+/// 绑定设备
+/// \param devicePassword 设备密码
+///
+/// \param code 安全码【国内】
+///
+/// \param deviceKey 设备随机码【国内】
+///
+/// \param success 成功，返回相应的信息 LCBindDeviceSuccess
+///
+/// \param failure 失败
+///
+- (void)bindDeviceWithDevicePassword:(NSString * _Nonnull)devicePassword code:(NSString * _Nullable)code deviceKey:(NSString * _Nullable)deviceKey success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(LCError * _Nonnull))failure;
+- (void)addPlicyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(LCError * _Nonnull))failure;
+- (void)getDeviceInfoAfterBindWithSuccess:(void (^ _Nonnull)(LCBindDeviceSuccess * _Nonnull))success failure:(void (^ _Nonnull)(LCError * _Nonnull))failure;
 @end
 
+
+@interface LCAddDeviceManager (SWIFT_EXTENSION(LCAddDeviceModule))
+- (void)autoConnectHotSpotWithWifiName:(NSString * _Nullable)ssid password:(NSString * _Nullable)password completion:(void (^ _Nonnull)(BOOL))completion;
+@end
 
 
 SWIFT_CLASS("_TtC17LCAddDeviceModule17LCAddDeviceModule")
@@ -367,23 +419,12 @@ SWIFT_CLASS("_TtC17LCAddDeviceModule17LCAddDeviceModule")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class NSBundle;
 @class NSCoder;
-
-SWIFT_CLASS("_TtC17LCAddDeviceModule21LCAddDeviceSheetWebVC")
-@interface LCAddDeviceSheetWebVC : UIViewController
-- (void)viewDidLoad;
-- (void)viewWillAppear:(BOOL)animated;
-- (void)viewDidAppear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-@end
-
 
 SWIFT_CLASS("_TtC17LCAddDeviceModule13LCAppWifiCell")
 @interface LCAppWifiCell : UITableViewCell
-- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER SWIFT_AVAILABILITY(ios,introduced=3.0);
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 @end
 
 
@@ -439,52 +480,6 @@ SWIFT_CLASS("_TtC17LCAddDeviceModule20LCDeviceAddGuideCell")
 @end
 
 
-/// 引导页头部示例图片
-SWIFT_CLASS("_TtC17LCAddDeviceModule25LCDeviceAddGuideImageView")
-@interface LCDeviceAddGuideImageView : UIView <UIScrollViewDelegate>
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-@class TYCyclePagerView;
-@class TYCyclePagerViewLayout;
-
-@interface LCDeviceAddGuideImageView (SWIFT_EXTENSION(LCAddDeviceModule)) <TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
-- (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView * _Nonnull)pageView SWIFT_WARN_UNUSED_RESULT;
-- (UICollectionViewCell * _Nonnull)pagerView:(TYCyclePagerView * _Nonnull)pagerView cellForItemAtIndex:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
-- (TYCyclePagerViewLayout * _Nonnull)layoutForPagerView:(TYCyclePagerView * _Nonnull)pageView SWIFT_WARN_UNUSED_RESULT;
-@end
-
-
-/// 设备添加引导页
-SWIFT_CLASS("_TtC17LCAddDeviceModule20LCDeviceAddGuideView")
-@interface LCDeviceAddGuideView : UIView
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
-@end
-
-
-
-SWIFT_CLASS("_TtC17LCAddDeviceModule20LCIntroductionParser")
-@interface LCIntroductionParser : NSObject
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
-@end
-
-
-SWIFT_CLASS("_TtC17LCAddDeviceModule23LCIoTNetConfigBasicInfo")
-@interface LCIoTNetConfigBasicInfo : NSObject
-@property (nonatomic, copy) NSString * _Nonnull pid;
-@property (nonatomic, copy) NSString * _Nonnull sn;
-@property (nonatomic, copy) NSString * _Nonnull sc;
-@property (nonatomic) BOOL snVisible;
-@property (nonatomic, copy) NSString * _Nullable token;
-@property (nonatomic, copy) NSString * _Nullable deviceName;
-- (void)setValue:(id _Nullable)value forUndefinedKey:(NSString * _Nonnull)key;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
 SWIFT_CLASS("_TtC17LCAddDeviceModule22LCIotWiFiUnSupportView")
 @interface LCIotWiFiUnSupportView : UIView
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -492,63 +487,6 @@ SWIFT_CLASS("_TtC17LCAddDeviceModule22LCIotWiFiUnSupportView")
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
 
-
-
-/// 配网类型
-typedef SWIFT_ENUM(NSInteger, LCNetConfigMode, closed) {
-  LCNetConfigModeWifi = 0,
-  LCNetConfigModeWired = 1,
-  LCNetConfigModeSoftAp = 2,
-  LCNetConfigModeSimCard = 3,
-  LCNetConfigModeQrCode = 4,
-  LCNetConfigModeLocal = 5,
-/// < 猫眼类只支持本地配网
-  LCNetConfigModeNbIoT = 6,
-/// < NB
-  LCNetConfigModeBle = 7,
-/// iot软AP
-  LCNetConfigModeIotWifi = 8,
-/// iot蓝牙
-  LCNetConfigModeIotBluetooth = 9,
-/// iot4G
-  LCNetConfigModeIot4G = 10,
-};
-
-typedef SWIFT_ENUM(NSInteger, LCNetConfigStrategy, closed) {
-  LCNetConfigStrategyDefalult = 0,
-  LCNetConfigStrategyFromOMS = 1,
-  LCNetConfigStrategyFromNC = 2,
-  LCNetConfigStrategyFromIPCOther = 3,
-};
-
-/// 网络连接类型：对应NC码
-typedef SWIFT_ENUM(NSInteger, LCNetConnectType, closed) {
-/// 没有NC码的
-  LCNetConnectTypeNone = 0,
-/// 旧的声波算法
-  LCNetConnectTypeSoundWave = 1,
-/// 优化声波算法
-  LCNetConnectTypeSoundWaveV2 = 2,
-/// 软AP
-  LCNetConnectTypeSoftAp = 3,
-/// 蓝牙
-  LCNetConnectTypeBuleTooth = 4,
-};
-
-
-SWIFT_PROTOCOL("_TtP17LCAddDeviceModule26LCOMSConfigManagerProtocol_")
-@protocol LCOMSConfigManagerProtocol <LCServiceProtocol>
-/// 清除OMS缓存
-- (void)clearOMSCache;
-/// 获取OMS缓存路径
-- (NSString * _Nonnull)cacheFolderPath SWIFT_WARN_UNUSED_RESULT;
-/// 按市场型号检查/更新引导信息
-- (void)checkUpdateIntrodutionByMarketModel:(NSString * _Nonnull)model;
-/// 检查/更新设备型号
-- (void)checkUpdateDeviceModels;
-/// 预加载部分型号
-- (void)preloadIntroductions;
-@end
 
 
 SWIFT_PROTOCOL("_TtP17LCAddDeviceModule27LCOfflineWifiConfigProtocol_")
@@ -568,21 +506,6 @@ SWIFT_PROTOCOL("_TtP17LCAddDeviceModule27LCOfflineWifiConfigProtocol_")
 /// 成功后跳转处理：海外至主页
 - (void)backToMainController;
 @end
-
-
-/// 引导页头部示例图片
-SWIFT_CLASS("_TtC17LCAddDeviceModule17LCRouterResetView")
-@interface LCRouterResetView : UIView
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-
-SWIFT_CLASS("_TtC17LCAddDeviceModule20LCSoftAPConfigHelper")
-@interface LCSoftAPConfigHelper : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
 
 
 

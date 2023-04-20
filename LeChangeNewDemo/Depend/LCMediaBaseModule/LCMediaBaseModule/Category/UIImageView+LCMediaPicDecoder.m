@@ -6,14 +6,14 @@
 //
 
 #import "UIImageView+LCMediaPicDecoder.h"
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Utils.h>
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImage/SDImageCache.h>
 #import <LCNetworkModule/LCApplicationDataManager.h>
 
 @implementation UIImageView (LCMediaPicDecoder)
 
--(void)lcMedia_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key{
+- (void)lcMedia_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder deviceId:(NSString *)deviceId productId:(NSString *)productId playtoken:(NSString *)playtoken key:(NSString *)key{
     [self setImage:placeholder];
     if (!url || [url isEqualToString:@""]) {
         return;
@@ -37,13 +37,12 @@
             return;
         }
         NSData* dataOut = [[NSData alloc] init];
-        NSInteger iret = [[LCOpenSDK_Utils new] decryptPic:picData deviceID:deviceId productId:productId key:key token:LCApplicationDataManager.token bufOut:&dataOut];
-//                NSInteger iret = [[LCOpenSDK_Utils new] decryptPic:picData deviceID:deviceId key:key bufOut:&dataOut];
+        NSInteger iret = [[LCOpenSDK_Utils new] decryptPic:picData deviceID:deviceId productId:productId key:key playtoken:playtoken bufOut:&dataOut];
         NSLog(@"decrypt iret[%ld]", (long)iret);
         if (0 == iret) {
             UIImage* img = [UIImage imageWithData:[NSData dataWithBytes:[dataOut bytes] length:[dataOut length]]];
             [cache storeImage:img forKey:key_temp toDisk:YES completion:^{
-                
+
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setImage:img];

@@ -62,7 +62,7 @@ class LCWiFiConfigPresenter: ILCWiFiConfigPresenter {
     }
     
     func loadWiFiList() {
-        self.container?.table().lc_setEmyptImageName("common_pic_nointernet", andDescription: "device_manager_wifi_list_empty".lc_T)
+        self.container?.table().lc_setEmyptImageName("common_pic_nointernet", andDescription: "device_manager_wifi_list_empty".lc_T())
         
         func loadWifiListSuccess() {
             //获取已连接的wifi + 设备周围wifi成功时
@@ -76,7 +76,7 @@ class LCWiFiConfigPresenter: ILCWiFiConfigPresenter {
             //获取设备周围wifi失败时
             LCProgressHUD.hideAllHuds(self.container?.mainView())
             self.container?.refreshEnable(isEnable: true)
-            self.container?.table().lc_setEmyptImageName("common_pic_nointernet", andDescription: "mobile_common_get_info_failed".lc_T)
+            self.container?.table().lc_setEmyptImageName("common_pic_nointernet", andDescription: "mobile_common_get_info_failed".lc_T())
             self.wifiList.removeAll()
             self.container?.table().reloadData()
         }
@@ -149,12 +149,12 @@ class LCWiFiConfigPresenter: ILCWiFiConfigPresenter {
                   }
             } else {
                 self.canShowOtherLabel = true
-                LCProgressHUD.showMsg("mobile_common_get_info_failed".lc_T)
+                LCProgressHUD.showMsg("mobile_common_get_info_failed".lc_T())
                 loadWifiListFail()
             }
         }) { (error) in
             self.canShowOtherLabel = true
-            LCProgressHUD.showMsg("mobile_common_get_info_failed".lc_T)
+            LCProgressHUD.showMsg("mobile_common_get_info_failed".lc_T())
             loadWifiListFail()
         }
 
@@ -192,19 +192,20 @@ class LCWiFiConfigPresenter: ILCWiFiConfigPresenter {
     
     func connectHideWifi() {
         let vc = LCAddOtherWifiController(deviceId: self.deviceId)
-		vc.myTitle = "Device_AddDevice_Network_Config".lc_T
+        vc.vcStyle = .changeWifi
+		vc.myTitle = "Device_AddDevice_Network_Config".lc_T()
         self.container?.navigationVC()?.pushViewController(vc, animated: true)
     }
     
     func explain5GInfo() {
         let supportVc = LCWiFiUnsupportVC()
-		supportVc.myTitle = "Device_AddDevice_Network_Config".lc_T
+		supportVc.myTitle = "Device_AddDevice_Network_Config".lc_T()
         self.container?.navigationVC()?.pushViewController(supportVc, animated: true)
     }
     
     func explainWifiInfo() {
         let vc = LCWifiInfoExplainController()
-		vc.myTitle = "Device_AddDevice_Network_Config".lc_T
+		vc.myTitle = "Device_AddDevice_Network_Config".lc_T()
         self.container?.navigationVC()?.pushViewController(vc, animated: true)
     }
     

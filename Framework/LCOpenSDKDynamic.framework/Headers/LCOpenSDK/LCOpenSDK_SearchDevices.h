@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Define.h>
 
 @interface LCOpenSDK_SearchDeviceInfo : NSObject
 
@@ -84,6 +85,11 @@
 @property (nonatomic, assign) BOOL bNowUserName;
 // 登陆设备用户名（在修改设备IP时需要填写）
 @property (nonatomic, copy) NSString *nowUserName;
+
+// 登陆设备用户名（在修改设备IP时需要填写）
+@property (nonatomic, assign, readonly) LCDeviceInitStatus deviceInitStatus;
+
+- (LCDeviceInitType)deviceInitType;
 
 @end
 

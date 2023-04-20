@@ -139,10 +139,10 @@
         if ([item isKindOfClass:[LCCloudVideotapeInfo class]]) {
             LCCloudVideotapeInfo * info = (LCCloudVideotapeInfo *)item;
             NSString *pid = info.productId != nil ? info.productId : @"";
-            [cell loadVideotapImage:info.thumbUrl DeviceId:self.manager.currentDevice.deviceId ProductId:pid Key:self.manager.currentPsk];
+            [cell loadVideotapImage:info.thumbUrl deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playToken key:self.manager.currentPsk];
         }else{
             NSString *pid = self.manager.currentDevice.productId != nil ? self.manager.currentDevice.productId : @"";
-            [cell loadVideotapImage:nil DeviceId:self.manager.currentDevice.deviceId ProductId:pid Key:self.manager.currentPsk];
+            [cell loadVideotapImage:@"" deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playToken key:self.manager.currentPsk];
         }
     }
    
@@ -223,7 +223,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
 }
 
 @end

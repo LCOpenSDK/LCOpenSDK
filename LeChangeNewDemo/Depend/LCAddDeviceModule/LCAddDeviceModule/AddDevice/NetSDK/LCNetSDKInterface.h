@@ -31,7 +31,7 @@ typedef void(^LCNetSDKSearchDeviceCallback)(LCDeviceNetInfo *deviceInfo);
 
 + (void)logOpen:(NSString *)path;
 	
-+ (LCDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(LCDeviceNetInfo *)deviceNetInfo useIp:(BOOL)useIp;
++ (LCDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo useIp:(BOOL)useIp;
 
 /**
  通过NetSDK进行局域网搜索

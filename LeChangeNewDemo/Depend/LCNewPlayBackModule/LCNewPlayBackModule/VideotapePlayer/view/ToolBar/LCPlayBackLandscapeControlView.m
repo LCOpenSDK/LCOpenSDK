@@ -261,7 +261,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
 }
 
 @end

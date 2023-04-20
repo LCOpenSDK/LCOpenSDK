@@ -193,20 +193,20 @@
     }
     int numOfType = [self passwordStrength:self];
     if (numOfType < 2) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     //判断密码是否合法
     if ([self checkInvalidPassword:self]) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     if ([self checkSameCharacter:self]) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     if ([self checkSameCharacter:self]) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     return true;

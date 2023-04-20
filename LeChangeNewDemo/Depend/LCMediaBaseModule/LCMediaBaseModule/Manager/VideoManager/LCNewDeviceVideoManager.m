@@ -10,7 +10,6 @@ static LCNewDeviceVideoManager * manager = nil;
 @implementation LCNewDeviceVideoManager
 
 + (instancetype)shareInstance {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [LCNewDeviceVideoManager new];
@@ -29,6 +28,20 @@ static LCNewDeviceVideoManager * manager = nil;
     return manager;
 }
 
+- (void)reset {
+    manager.isPlay = NO;
+    manager.pausePlay = NO;
+    manager.isSD = NO;
+    manager.isSoundOn = YES;
+    manager.isFullScreen = NO;
+    manager.isOpenCloudStage = NO;
+    manager.isOpenAudioTalk = NO;
+    manager.isOpenRecoding = NO;
+    manager.isLockFullScreen = NO;
+    manager.playSpeed = 1;
+    manager.directionTouch = NO;
+}
+
 - (LCChannelInfo *)currentChannelInfo {
     if (self.currentChannelIndex == -1) {
         if (self.currentDevice.channels.count == 1) {
@@ -43,6 +56,10 @@ static LCNewDeviceVideoManager * manager = nil;
     return nil;
 }
 
+- (void)setCurrentDevice:(LCDeviceInfo *)currentDevice {
+    _currentDevice = currentDevice;
+}
+
 - (NSString *)currentPsk {
     if (!_currentPsk || _currentPsk.length == 0) {
        return self.currentDevice.deviceId;
@@ -50,9 +67,13 @@ static LCNewDeviceVideoManager * manager = nil;
     return _currentPsk;
 }
 
--(void)setIsFullScreen:(BOOL)isFullScreen{
+- (void)setIsFullScreen:(BOOL)isFullScreen {
     _isFullScreen = isFullScreen;
     self.getCurrentVC.navigationController.interactivePopGestureRecognizer.enabled = !isFullScreen;
+}
+
+- (void)setCurrentResolution:(LCCIResolutions *)currentResolution {
+    _currentResolution = currentResolution;
 }
 
 //获取当前屏幕显示的viewcontroller

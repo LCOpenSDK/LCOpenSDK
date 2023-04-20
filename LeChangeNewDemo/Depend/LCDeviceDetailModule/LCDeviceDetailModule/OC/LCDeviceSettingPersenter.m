@@ -152,9 +152,9 @@
     __block LCDeviceSwitchCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSwitchCell"];
     [cell setEnable:[self.deviceInfo.status isEqualToString:@"online"] ? YES : NO];
     cell.title = [NSString stringWithFormat:@"%@-%@", @"setting_device_deployment_switch".lc_T, self.channelInfo.channelName];
-    [LCDeviceManagerInterface bindDeviceChannelInfoWithDevice:self.deviceInfo.deviceId ChannelId:[self currentChannelID:indexPath] success:^(LCBindDeviceChannelInfo *_Nonnull info) {
-        [cell setSwitch:info.alarmStatus];
-    } failure:^(LCError *_Nonnull error) {
+    [LCDeviceManagerInterface getDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:@"motionDetect" success:^(BOOL isOpen) {
+        [cell setSwitch:isOpen];
+    } failure:^(LCError * _Nonnull error) {
         [cell setSwitch:NO];
         [LCProgressHUD showMsg:error.errorMessage];
     }];
@@ -184,9 +184,9 @@
 
 - (void)setDeviceAlarmStatus:(BOOL)value cell:(LCDeviceSwitchCell *)cell indexPath:(NSIndexPath *)indexPath {
     [LCProgressHUD showHudOnView:nil];
-    [LCDeviceHandleInterface modifyDeviceAlarmStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enable:value success:^{
+    [LCDeviceManagerInterface setDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:@"motionDetect" enable:value success:^(BOOL success) {
         [LCProgressHUD hideAllHuds:nil];
-    } failure:^(LCError *_Nonnull error) {
+    } failure:^(LCError * _Nonnull error) {
         [LCProgressHUD hideAllHuds:nil];
         [cell setSwitch:!value];
         [LCProgressHUD showMsg:error.errorMessage];
@@ -390,7 +390,7 @@
         channelId = nil;//self.channelInfo.channelId;
     }
     if (self.curDeviceName == nil || self.curDeviceName.length == 0) {
-        [LCProgressHUD showMsg:@"add_device_please_input_device_name".lc_T inView:self.viewController.view];
+        [LCProgressHUD showMsg:@"device_please_input_device_name".lc_T inView:self.viewController.view];
         return;
     }
     [LCDeviceManagerInterface modifyDeviceForDevice:self.deviceInfo.deviceId productId: self.deviceInfo.productId Channel:channelId NewName:self.curDeviceName success:^{

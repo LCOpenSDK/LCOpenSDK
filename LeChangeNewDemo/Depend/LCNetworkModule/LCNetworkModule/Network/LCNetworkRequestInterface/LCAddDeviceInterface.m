@@ -8,76 +8,6 @@
 
 @implementation LCAddDeviceInterface
 
-+ (void)getDeviceIntroductionForDeviceModel:(NSString *)deviceModel language:(NSString *)language success:(void (^)(LCOMSIntroductionInfo *introductions))success failure:(void (^)(LCError *error))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/deviceAddingProcessGuideInfoGet" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_MODEL_NAME: deviceModel, KEY_LANGUAGE: language } success:^(id _Nonnull objc) {
-        LCOMSIntroductionInfo *introductions = [LCOMSIntroductionInfo mj_objectWithKeyValues:objc];
-        if (introductions.updateTime == nil) {
-            introductions.updateTime = @"";
-        }
-        if (success) {
-            success(introductions);
-        }
-    } failure:^(LCError *_Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+(void)getIotDeviceIntroductionForProductID:(NSString *)productID communicate:(nullable NSString *)communicate language:(NSString *)language success:(void (^)(NSArray * guideInfos))success failure:(void (^)(LCError *error))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/getNetworkConfig" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_PRODUCT_ID: productID, @"communicate": communicate, KEY_LANGUAGE: language } success:^(id _Nonnull objc) {
-        NSMutableArray *guideInfos = [NSMutableArray array];
-        for (NSDictionary *dic in objc[@"steps"]) {
-            [guideInfos addObject:dic];
-        }
-        if (success) {
-            success(guideInfos);
-        }
-    } failure:^(LCError *_Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+ (void)checkDeviceIntroductionWithUpdateTime:(NSString *)updateTime success:(void (^)(BOOL isUpdated))success
-                       failure:(void (^)(LCError *error))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/deviceAddingProcessGuideInfoCheck" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_UPDATETIME: updateTime } success:^(id _Nonnull objc) {
-        BOOL update = [[objc objectForKey:@"isUpdated"] boolValue];
-        if (success) {
-            success(update);
-        }
-    } failure:^(LCError *_Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+ (void)queryAllProductWithDeviceType:(NSString *)deviceModel Success:(void (^)(NSDictionary *productList))success failure:(void (^)(LCError *error))failure {
-    if (deviceModel == nil || deviceModel.isNull) {
-        //默认写Camera
-        deviceModel = @"Camera";
-    }
-
-    [[LCNetworkRequestManager manager] lc_POST:@"/deviceModelList" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_TYPE: deviceModel } success:^(id _Nonnull objc) {
-        NSMutableArray <LCOMSDeviceType *> *omsModel = [LCOMSDeviceType mj_objectArrayWithKeyValuesArray:[objc objectForKey:@"configList"]];
-        NSArray <LCOMSDeviceType *> *modelArr = [NSArray arrayWithArray:omsModel];
-        NSString *updateTimeStr = @"";
-        if ([objc objectForKey:@"updateTime"] != nil) {
-            updateTimeStr = [objc objectForKey:@"updateTime"];
-        }
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:modelArr,@"deviceTypeConfigs",updateTimeStr,@"updateTime", nil];
-        if (success) {
-            success(dic);
-        }
-    } failure:^(LCError *_Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
 + (void)checkDeviceBindOrNotWithDevice:(NSString *)deviceId success:(void (^)(LCCheckDeviceBindOrNotInfo *))success failure:(void (^)(LCError *_Nonnull))failure
 {
     [[LCNetworkRequestManager manager] lc_POST:@"/checkDeviceBindOrNot" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_ID: deviceId } success:^(id _Nonnull objc) {
@@ -204,10 +134,11 @@
     [dic setObject:deviceId forKey:KEY_DEVICE_ID];
     if (deviceModel && ![@"" isEqualToString:deviceModel]) {
         [dic setObject:deviceModel forKey:KEY_DT];
+        [dic setObject:deviceModel forKey:KEY_DEVICE_MODEL_NAME];
     }
-    if (deviceName && ![@"" isEqualToString:deviceName]) {
-        [dic setObject:deviceName forKey:KEY_DEVICE_MODEL_NAME];
-    }
+//    if (deviceName && ![@"" isEqualToString:deviceName]) {
+//        [dic setObject:deviceName forKey:KEY_DEVICE_MODEL_NAME];
+//    }
     if (ncCode && ![@"" isEqualToString:ncCode]) {
         [dic setObject:ncCode forKey:KEY_NC_CODE];
     }

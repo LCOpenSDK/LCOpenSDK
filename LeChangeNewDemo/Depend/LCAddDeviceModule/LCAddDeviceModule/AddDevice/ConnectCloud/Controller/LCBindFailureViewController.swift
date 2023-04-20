@@ -42,7 +42,7 @@ class LCBindFailureViewController: LCErrorBaseViewController {
 	}
 	
 	override func confirmText() -> String {
-		return "common_confirm".lc_T
+		return "common_confirm".lc_T()
 	}
 	
 	override func doConfirm() {

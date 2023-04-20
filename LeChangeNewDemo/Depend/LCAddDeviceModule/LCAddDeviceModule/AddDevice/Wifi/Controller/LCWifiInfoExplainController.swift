@@ -33,7 +33,7 @@ class LCWifiInfoExplainController: LCErrorBaseViewController {
     }
     
     override func errorContent() -> String {
-        return "special_symbols_such_as_facial_expressions".lc_T
+        return "special_symbols_such_as_facial_expressions".lc_T()
     }
     
     override func icConfirmHidden() -> Bool {

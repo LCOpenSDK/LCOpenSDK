@@ -16,20 +16,19 @@ enum LCAddBaseRightAction: Int {
 	case switchToWired			//切换到有线
     case switchToSoftAp
 	case showHelp				//显示帮助页面h5
-    case switchToBlueTooth      //切换到蓝牙
     
-	func title(isWifiConfig: Bool = false) -> String {
+	func title() -> String {
         switch self {
         case .switchToWireless:
-            return isWifiConfig ? "add_device_switch_wireless_to_config".lc_T : "add_device_switch_to_wireless_add".lc_T
+            return "add_device_switch_wireless_to_config".lc_T()
         case .switchToWired:
-            return isWifiConfig ? "add_device_switch_wired_to_config".lc_T : "add_device_switch_to_wired_add".lc_T
+            return "add_device_switch_wired_to_config".lc_T()
         case .switchToSoftAp:
-            return "add_device_switch_to_softAP_add".lc_T
+            return "add_device_switch_to_softAP_add".lc_T()
         case .showHelp:
-            return "common_help".lc_T
+            return "common_help".lc_T()
         default:
-            return "add_device_restart".lc_T
+            return "add_device_restart".lc_T()
         }
 	}
 }
@@ -46,11 +45,6 @@ protocol LCAddBaseVCProtocol: NSObjectProtocol {
 	///
 	/// - Returns: true/false
 	func isLeftActionShowAlert() -> Bool
-	
-	/// 左键返回操作配置的提示文字
-	///
-	/// - Returns: String
-	func leftActionAlertText() -> String?
 	
 	/// 右键点击触发事件类型
 	///
@@ -73,14 +67,10 @@ protocol LCAddBaseVCProtocol: NSObjectProtocol {
 	/// - Parameter button: UIButton
 	func onRightAction(button: UIButton)
 	
-	// MARK: OMS更新
-	func needUpdateCurrentOMSIntroduction()
-	
 	// MARK: 其他基本操作
 	/// 退出添加流程：返回到进入添加流程的入口界面，需要区分国内、海外
 	///
 	/// - Parameters:
 	///   - showAlert: 是否显示提示框，默认为false
-	///   - backToMain: 是否需要返回到首页，默认为false
-	func baseExitAddDevice(showAlert: Bool, backToMain: Bool)
+	func baseExitAddDevice(showAlert: Bool)
 }

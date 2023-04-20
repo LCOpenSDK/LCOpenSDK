@@ -7,8 +7,6 @@
 #import <LCMediaBaseModule/UIColor+MediaBaseModule.h>
 #import <Masonry/Masonry.h>
 #import <LCMediaBaseModule/LCMediaBaseDefine.h>
-//#import "LCUIKit.h"
-//#import "LCToolKit.h"
 
 @interface LCNewVideotapePlayProcessView ()
 

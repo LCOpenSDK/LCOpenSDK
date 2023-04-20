@@ -26,7 +26,7 @@ class LCDeviceLockViewController: LCErrorBaseViewController {
 	}
 	
 	override func errorContent() -> String {
-		return "add_device_device_locked_please_reboot".lc_T
+		return "add_device_device_locked_please_reboot".lc_T()
 	}
 	
 	override func icConfirmHidden() -> Bool {

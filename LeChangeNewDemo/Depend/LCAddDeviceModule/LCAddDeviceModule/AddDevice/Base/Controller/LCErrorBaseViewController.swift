@@ -4,9 +4,9 @@
 
 import UIKit
 
-class LCErrorBaseViewController: LCAddBaseViewController, LCCommonErrorViewDelegate, LCErrorBaseVCProtocol {
+@objcMembers class LCErrorBaseViewController: LCAddBaseViewController, LCCommonErrorViewDelegate, LCErrorBaseVCProtocol {
 
-	public var errorView: LCCommonErrorView = LCCommonErrorView.xibInstance()
+    public var errorView: LCCommonErrorView = LCCommonErrorView.init()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,27 +23,25 @@ class LCErrorBaseViewController: LCAddBaseViewController, LCCommonErrorViewDeleg
 	func setupErrorView() {
 		errorView.delegate = self
 		view.addSubview(errorView)
-		
+        
 		errorView.snp.makeConstraints { make in
 			make.edges.equalTo(self.view)
 		}
 		
-		errorView.imageView.image = UIImage(named: errorImageName())
-		errorView.contentLabel.lc_setAttributedText(text: errorContent(), font: UIFont.lcFont_t2())
-		errorView.detailLabel.lc_setAttributedText(text: errorDescription(), font: UIFont.lcFont_t4())
-        errorView.contentLabel.textColor = UIColor.lccolor_c2()
-        errorView.detailLabel.textColor = UIColor.lccolor_c5()
-		errorView.confrimButton.setTitle(confirmText(), for: .normal)
-		errorView.confrimButton.isHidden = icConfirmHidden()
-        errorView.confrimButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
+		errorView.imageView.image = UIImage(lc_named: errorImageName())
+		errorView.titleLabel.lc_setAttributedText(text: errorContent(), font: UIFont.lcFont_t2())
+        errorView.titleLabel.textColor = UIColor.lccolor_c2()
+		errorView.tryAgainButton.setTitle(confirmText(), for: .normal)
+		errorView.tryAgainButton.isHidden = icConfirmHidden()
+        errorView.tryAgainButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
 		errorView.quitButton.setTitle(quitText(), for: .normal)
         errorView.quitButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
 		errorView.quitButton.isHidden = isQuitHidden()
         
         if lc_screenHeight < 667 {
-            errorView.contentLabel.lc_setAttributedText(text: errorContent(), font: UIFont.systemFont(ofSize: 13))
+            errorView.titleLabel.lc_setAttributedText(text: errorContent(), font: UIFont.systemFont(ofSize: 13))
         } else {
-            errorView.contentLabel.lc_setAttributedText(text: errorContent(), font: UIFont.lcFont_t2())
+            errorView.titleLabel.lc_setAttributedText(text: errorContent(), font: UIFont.lcFont_t2())
         }
 	}
 	
@@ -92,11 +90,11 @@ class LCErrorBaseViewController: LCAddBaseViewController, LCCommonErrorViewDeleg
 	}
 	
 	func confirmText() -> String {
-		return "add_device_confirm".lc_T
+		return "common_confirm".lc_T()
 	}
 	
 	func quitText() -> String {
-		return "add_device_quit".lc_T
+		return "add_device_quit".lc_T()
 	}
 	
 	func isQuitHidden() -> Bool {
@@ -122,19 +120,15 @@ class LCErrorBaseViewController: LCAddBaseViewController, LCCommonErrorViewDeleg
 
 extension LCErrorBaseViewController {
 	// MARK: LCCommonErrorViewDelegate
-	func errorViewOnConfirm(errorView: LCCommonErrorView) {
+	func errorViewOnTryAgain(errorView: LCCommonErrorView) {
 		doConfirm()
-	}
-	
-	func errorViewOnFAQ(errorView: LCCommonErrorView) {
-		doFAQ()
 	}
 	
 	func errorViewOnQuit(errorView: LCCommonErrorView) {
 		doQuit()
 	}
     
-    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
-        doBackRoot()
-    }
+//    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
+//        doBackRoot()
+//    }
 }

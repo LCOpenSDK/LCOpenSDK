@@ -6,21 +6,12 @@ import UIKit
 import DHScanner
 
 class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDelegate, LCIdentifyContainerProtocol {
-	
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    private var childScanVC: DHScannerViewController!
-    private var menuView: LCQRScanMenuView!
-	
-	private var presenter: LCIdentifyPresenter!
-	
-	@IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var tipLabel: UILabel!
-    @IBOutlet weak var switchBtn: UIButton!
-    @IBOutlet weak var scanWidth: NSLayoutConstraint!
     
-//    @IBOutlet weak var inputSnButton: UIButton!
-    @IBOutlet weak var inputSnView: UIView!
-    @IBOutlet weak var inputSnLabel: UILabel!
+    private var childScanVC: DHScannerViewController!
+    
+    private var menuView: LCQRScanMenuView!
+    
+    private var presenter: LCIdentifyPresenter!
     
     public static func storyboardInstance() -> LCQRScanViewController {
 		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.lc_addDeviceBundle())
@@ -31,7 +22,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 	}
 	
 	deinit {
-		presenter.stopSearchDevices()
+//		presenter.stopSearchDevices()
 		NotificationCenter.default.removeObserver(self)
 		LCAddDeviceManager.sharedInstance.gatewayIdNeedReset = true
         LCNetSDKHelper.stopNetSDKReport()
@@ -40,19 +31,15 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-		title = "add_device_title".lc_T
+        self.title = ""
 		setupScannerView()
         setupMenuView()
         setupCustomTips()
 		setupPresenter()
-        setupNaviRightItem()
-        setupInputSNButton()
 		addObserver()
-		setupCustomContents()
         setupNavBar()
 		//开启局域网搜索
-		presenter.startSearchDevices()
+// 		presenter.startSearchDevices()
 		
     }
 
@@ -64,13 +51,10 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        //每次都要重置
-        LCAddDeviceManager.sharedInstance.reset()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		switchBtn.isSelected = false
         self.navigationController?.navigationBar.isHidden = false
 	}
 	
@@ -78,55 +62,30 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 		super.viewDidAppear(animated)
 		
 		//开启局域网搜索
-		presenter.startSearchDevices()
-		
-		//更新失败，需要再次更新
-		LCOMSConfigManager.sharedManager.checkUpdateDeviceModels()
+//		presenter.startSearchDevices()
 	}
 	
 	override func onLeftNaviItemClick(_ button: UIButton) {
 		super.onLeftNaviItemClick(button)
-		presenter.stopSearchDevices()
+//		presenter.stopSearchDevices()
 	}
-	
-	func setupCustomContents() {
-        tipLabel.isHidden = true
-        
-        switchBtn.titleLabel?.font = UIFont.lcFont_t5()
-        switchBtn.setTitleColor(UIColor.white, for: .normal)
-        switchBtn.setTitle("add_device_falshlight_off".lc_T, for: .normal)
-        switchBtn.setTitle("add_device_falshlight_on".lc_T, for: .selected)
-        switchBtn.setImage(UIImage(named: "adddevice_icon_falshlight_n"), for: .normal)
-        switchBtn.setImage(UIImage(named: "adddevice_icon_falshlight_h"), for: .selected)
-        switchBtn.addTarget(self, action: #selector(onTorchAction), for: .touchUpInside)
-        switchBtn.setUIButtonImageUpWithTitleDownUI()
-	}
-	
+    
 	func setupPresenter() {
 		self.presenter = LCIdentifyPresenter()
 		self.presenter.setup(container: self)
 	}
 	
 	func setupScannerView() {
-		
 		childScanVC = DHScannerViewController()
 		childScanVC.delegate = self
         childScanVC.pureQRCode = true
 		childScanVC.viewStyle.animationViewType = .net
-		childScanVC.viewStyle.scanningImage = UIImage(named: "adddevice_qrcode_scanline")
-        topConstraint.constant = (view.bounds.height - (view.bounds.width - 100))/2 - 40
-		childScanVC.viewStyle.rectangleTop = topConstraint.constant
+		childScanVC.viewStyle.scanningImage = UIImage(lc_named: "adddevice_qrcode_scanline")
+		childScanVC.viewStyle.rectangleTop = 232
         if #available(iOS 13.0, *) {
             childScanVC.scannerType = .system
         }
-		//适配ipad显示
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			scanWidth.constant = view.bounds.width - 400
-		} else {
-            scanWidth.constant = view.bounds.width - 90
-		}
-
-		childScanVC.viewStyle.rectangleLeft = (view.bounds.width - scanWidth.constant) / 2.0
+        childScanVC.viewStyle.rectangleLeft = 45.0
 		childScanVC.viewStyle.showRectangleBorder = false
         childScanVC.viewStyle.cornerLineWith = 2
         childScanVC.viewStyle.cornerLineColor = UIColor.lccolor_c43().withAlphaComponent(0.7)
@@ -137,79 +96,81 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
         addChildViewController(childScanVC)
         view.addSubview(childScanVC.view)
         childScanVC.view.frame = view.bounds
-        
         view.sendSubview(toBack: childScanVC.view)
-        
-        switchBtn.snp.updateConstraints { make in
-            make.bottom.equalTo(self.view.snp.top).offset(topConstraint.constant + scanWidth.constant - 5.0)
-            make.height.equalTo(40.0)
-        }
 	}
     
     func setupCustomTips() {
-        
+        let switchBtn = LCButton.createButton(with: LCButtonTypeVertical)
+        switchBtn.titleLabel?.font = UIFont.lcFont_t6()
+        switchBtn.setTitleColor(UIColor.white, for: .normal)
+        switchBtn.setTitle("add_device_falshlight_off".lc_T(), for: .normal)
+        switchBtn.setTitle("add_device_falshlight_on".lc_T(), for: .selected)
+        switchBtn.setImage(UIImage(lc_named: "adddevice_icon_falshlight_n"), for: .normal)
+        switchBtn.setImage(UIImage(lc_named: "adddevice_icon_falshlight_h"), for: .selected)
+        switchBtn.addTarget(self, action: #selector(onTorchAction), for: .touchUpInside)
+        self.view.addSubview(switchBtn)
+        let width = self.view.bounds.width
+        switchBtn.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(width - 45*2 + 232 - 60 - 8)
+            make.height.equalTo(60)
+        }
         
         let container = UIView()
         container.backgroundColor = UIColor.clear
         container.layer.cornerRadius = 10
         container.clipsToBounds = true
         
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3);
+        let tmpview = UIView()
+        tmpview.backgroundColor = UIColor.black.withAlphaComponent(0.3);
         
         let tipLabel = UILabel()
         tipLabel.textColor = UIColor.lccolor_c43()
         tipLabel.font = UIFont.lcFont_t6()
-        tipLabel.text = "add_device_scan_device_qr_code_tip".lc_T
+        tipLabel.text = "add_device_scan_device_qr_code_tip".lc_T()
         tipLabel.numberOfLines = 2
         
         let qrcodeIconImg = UIImageView()
-        qrcodeIconImg.image = UIImage.init(named: "adddevice_qrcode_icon_tip")
+        qrcodeIconImg.image = UIImage(lc_named: "adddevice_qrcode_icon_tip")
         
         self.view.addSubview(container)
-        container.addSubview(view)
-        view.addSubview(tipLabel)
-        view.addSubview(qrcodeIconImg)
+        container.addSubview(tmpview)
+        tmpview.addSubview(tipLabel)
+        tmpview.addSubview(qrcodeIconImg)
         self.view.bringSubview(toFront: container)
-        
         container.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-//            make.bottom.equalTo(self.menuView.snp.top).offset(-63.5);
-            make.size.equalTo(CGSize(width: 275, height: 60))
-            make.top.equalTo(topConstraint.constant + scanWidth.constant + 40.0)
+            make.size.equalTo(CGSize(width: width - 45*2, height: 60))
+            make.top.equalTo(width - 45*2 + 232 + 21)
         }
-        view.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
+        tmpview.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
             make.height.equalToSuperview()
         }
         qrcodeIconImg.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(12)
             make.centerY.equalToSuperview()
             make.size.equalTo(CGSize(width: 59.5, height: 43))
         }
         tipLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.left.equalTo(qrcodeIconImg.snp.right).offset(6)
-            make.height.equalTo(36.5)
+            make.leading.equalTo(qrcodeIconImg.snp.trailing).offset(6)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
     
     func setupMenuView() {
-        let serialModel = QRScanMenuModel.init(title: "add_device_add_bySn".lc_T, imageName: "adddevice_icon_number", menuType: .serialNumber)
-        let photoAlbumModel = QRScanMenuModel.init(title: "add_device_add_byPhotoAlbum".lc_T, imageName: "adddevice_icon_photo", menuType: .photoAlbum)
+        let serialModel = QRScanMenuModel.init(title: "add_device_add_bySn".lc_T(), imageName: "adddevice_scan_input_sn", menuType: .serialNumber)
+        let photoAlbumModel = QRScanMenuModel.init(title: "add_device_add_byPhotoAlbum".lc_T(), imageName: "adddevice_icon_photo", menuType: .photoAlbum)
         menuView = LCQRScanMenuView.init(qrScanMenuModels: [serialModel, photoAlbumModel])
         menuView.delegate = self
         view.addSubview(menuView)
         
         menuView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
 			make.bottom.equalToSuperview().offset(-LC_bottomSafeMargin - 5)
             make.height.equalTo(110)
         }
-    }
-	
-    override func setupNaviRightItem() {
-        
     }
     
     fileprivate func setupNavBar() {
@@ -220,7 +181,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.lccolor_c43()
         titleLabel.font = UIFont.lcFont_t2()
-        titleLabel.text = "add_device_title".lc_T
+        titleLabel.text = "add_device_title".lc_T()
         let backBtn = UIButton.init(type: .custom)
         backBtn.setImage(UIImage.init(named: "common_icon_backarrow_white"), for: .normal)
         backBtn.addTarget(self, action: #selector(onLeftNaviItemClick(_:)), for: .touchUpInside)
@@ -245,18 +206,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
             make.centerY.equalToSuperview()
         }
     }
-    
-    func setupInputSNButton() {
-        inputSnView.isHidden = true
-        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(onInPutSnAction))
-        inputSnView.addGestureRecognizer(tapGes)
-        inputSnView.backgroundColor = UIColor.clear
-        inputSnView.layer.borderColor = UIColor.lccolor_c43().cgColor
-        inputSnView.layer.borderWidth = 1
-        inputSnView.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
-    }
 
-    
     @objc func onInPutSnAction() {
         LCAddDeviceManager.sharedInstance.isEnterByQrcode = false
         let vc = LCInputSNViewController.storyboardInstance()
@@ -306,14 +256,6 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 	func resumeIdenfity() {
 		self.childScanVC.resumeScanning()
 	}
-    
-    func showAddBoxGuidView(needShoeBox: @escaping ((Bool) -> Void)) {
-        let addBoxGuideView = LCAddBoxGudieView(frame: UIScreen.main.bounds) { (isShowAgain) in
-            needShoeBox(isShowAgain)
-            self.presenter.addOnlineDevice(devicePassword: "")
-        }
-        self.navigationVC()?.view.superview?.addSubview(addBoxGuideView!)
-    }
 	
 	func retry() {
 		
@@ -327,9 +269,10 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
 extension LCQRScanViewController {
 	func scanResult(text: String, outputImage: UIImage?) {
 		print(" \(NSStringFromClass(self.classForCoder))::Scan code \(text)")
+        //每次重新扫描都要重置
+        LCAddDeviceManager.sharedInstance.reset()
         
         addDeviceStartLog(text: text)
-        
 		_ = presenter.checkQRCode(codeString: text)
         LCAddDeviceManager.sharedInstance.isEnterByQrcode = true
 	}
@@ -347,7 +290,7 @@ extension LCQRScanViewController {
 	}
 	
 	@objc func enterBackground() {
-		switchBtn.isSelected = false
+
 	}
 }
 
@@ -393,10 +336,9 @@ extension LCQRScanViewController: LCQRScanMenuViewDelegate, UIImagePickerControl
                     LCProgressHUD.hideAllHuds(self.view)
                     self.scanResult(text: resultStr, outputImage: image)
                 }
-                
             }else {
                 LCProgressHUD.hideAllHuds(view)
-                LCProgressHUD.showMsg("add_device_scanning_error_tip".lc_T)
+                LCProgressHUD.showMsg("add_device_scanning_error_tip".lc_T())
             }
         }
     }

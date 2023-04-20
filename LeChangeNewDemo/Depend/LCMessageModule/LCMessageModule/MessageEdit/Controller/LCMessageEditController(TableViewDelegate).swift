@@ -21,7 +21,7 @@ extension LCMessageEditController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LCMessageEditCell.cellID(), for: indexPath) as! LCMessageEditCell
         if indexPath.row < self.presenter.messageInfos.count {
             let messageInfo = self.presenter.messageInfos[indexPath.row]
-            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId)
+            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId, playtoken: presenter.deviceInfo.playToken)
             messageItem.isSelected = presenter.selectedAlarmIds.contains(messageInfo.alarmId)
             cell.updateData(messageItem)
         }

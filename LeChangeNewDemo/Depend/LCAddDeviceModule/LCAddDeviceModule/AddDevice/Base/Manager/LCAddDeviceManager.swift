@@ -8,66 +8,106 @@ import LCBaseModule
 import LCNetworkModule
 import UIKit
 
+//非iot设备
+//LAN                      有线
+//SIMCard              Sim卡
+//SoftAP                 软AP
+//SoundWave         声波
+//SmartConfig        SmartConfig方式
+//QRCode                二维码
+//SoundWaveV2     声波V2版本，优化声波算法
+//
+//
+//iot设备
+//wifi
+//bluetooth              蓝牙
+//bluetoothBatch    蓝牙
+//4G                         4G卡
+//lan                         有线
+//vlog                       热点直连
+//sim                        SIM卡
+//accessory             配件
+//lanWeak                弱绑定 有线
+//EZ                          声波快连
 
 /// 配网类型
-@objc public enum LCNetConfigMode: Int {
-	case wifi
-	case wired
-	case softAp
-	case simCard
-    case qrCode
-	case local /**< 猫眼类只支持本地配网 */
-	case nbIoT /**< NB */
-    case ble    // 蓝牙
-//    case Bluetooth  //蓝牙-海外使用
-//    case blueTooth /**<蓝牙 */
-    /// iot有线
-//    case iotLan
-    /// iot软AP
-    case iotWifi
-    /// iot蓝牙
-    case iotBluetooth
-    /// iot4G
-    case iot4G
+public enum LCNetConfigMode: Int {
+    // 此处屏蔽掉的枚举类型为当前不支持类型
+    // 非IoT设备
+    case lan = 0//"LAN"
+//    case simCard = "SIMCard"
+    case softAp //= "SoftAP"
+    case soundWave //= "SoundWave"
+    case soundWaveV2 //= "SoundWaveV2"
+    case smartConfig //= "SmartConfig"
+//    case qrCode = "QRCode"
+    // IoT设备
+//    case iotWifi = "wifi"
+    case iotBluetoothBatch //= "bluetoothBatch"
+    case iotBluetooth //= "bluetooth"
+    case iot4G //= "4G"
+    case iotLan //= "lan"
+//    case vlog = "vlog"
+//    case sim = "sim"
+//    case accessory = "accessory" // 配件
+//    case lanWeak = "lanWeak"  // 弱绑定 有线
+//    case EZ = "EZ"  // 声波快连
     
     func name() -> String {
         switch self {
-        case .wifi:
-            return "wireless_add".lc_T
-        case .wired:
-            return "add_device_by_wired".lc_T
+        case .soundWave, .soundWaveV2, .smartConfig:
+            return "wireless_add".lc_T()
+        case .lan, .iotLan:
+            return "add_device_by_wired".lc_T()
         case .softAp:
-            return "soft_AP_addition".lc_T
-        case .simCard:
-            return "SIM卡添加"
-        case .qrCode:
-            return "二维码添加"
-        case .local:
-            return "本地配网"
-        case .nbIoT:
-            return "NB添加"
-        case .ble:
-            return "bluetooth_add".lc_T
-//        case .iotLan:
-//            return "iot_wired".lc_T
-        case .iotWifi:
-            return "iot_soft_AP".lc_T
-        case .iotBluetooth:
-            return "iot_bluetooth".lc_T
+            return "soft_AP_addition".lc_T()
+        case .iotBluetooth, .iotBluetoothBatch:
+            return "iot_bluetooth".lc_T()
         case .iot4G:
             return "4G"
-        default:
-            return ""
         }
     }
-}
-
-
-@objc public enum LCNetConfigStrategy: Int {
-    case defalult
-    case fromOMS
-    case fromNC
-    case fromIPCOther
+    
+    static func netConfigMode(type: String, isIOT: Bool) -> LCNetConfigMode {
+        if isIOT {
+            if type == "bluetoothBatch" {
+                return .iotBluetoothBatch
+            }
+            
+            if type == "bluetooth" {
+                return .iotBluetooth
+            }
+            
+            if type == "4G" {
+                return .iot4G
+            }
+            
+            if type == "lan" {
+                return .iotLan
+            }
+            
+            return .iotLan
+        } else {
+            if type == "LAN" {
+                return .lan
+            }
+            if type == "SoftAP" {
+                return .softAp
+            }
+            if type == "SoundWave" {
+                return .soundWave
+            }
+            if type == "SoundWaveV2" {
+                return .soundWaveV2
+            }
+            
+            if type == "SmartConfig" {
+                return .smartConfig
+            }
+            
+            return .lan
+        }
+    }
 }
 
 @objc public enum LCDeviceAccessType: Int {
@@ -76,84 +116,7 @@ import UIKit
 	case paas
 }
 
-/// 网络连接类型：对应NC码
-@objc public enum LCNetConnectType: Int {
-	
-	/// 没有NC码的
-	case none
-	
-	/// 旧的声波算法
-	case soundWave
-	
-	/// 优化声波算法
-	case soundWaveV2
-	
-	/// 软AP
-	case softAp
-	
-	/// 蓝牙
-	case buleTooth
-	
-	static func convert(byNcCode ncCode: String) -> LCNetConnectType {
-		var type: LCNetConnectType = .soundWave
-		let scanner = Scanner(string: ncCode)
-		var value: UInt32 = 0
-		scanner.scanHexInt32(&value)
-		
-		// 按照3位十六进制表示
-		// 按位与：二进制，最后一位为1即为新声波
-		if (value & 0x01) == 1 {
-			type = .soundWaveV2
-		} else {
-			type = .soundWave
-		}
-		
-		return type
-	}
-    
-    static func getWifiConfigModes(byNcCode ncCode: String) -> [LCNetConfigMode] {
-        
-        let scanner = Scanner(string: ncCode)
-        var value: UInt32 = 0
-        scanner.scanHexInt32(&value)
-        
-        var configModes: [LCNetConfigMode] = []
-        if (value & 0b100) == 0b100 {
-            configModes.append(.wifi)
-        }
-        
-        if (value & 0b1000) == 0b1000 {
-            configModes.append(.softAp)
-        }
-        
-        if (value & 0b10000) == 0b10000 {
-            configModes.append(.wired)
-        }
-        
-        if (value & 0b100000) == 0b100000 {
-//            configModes.append(.)//蓝牙？
-        }
-        
-        if (value & 0b1000000) == 0b1000000 {
-            configModes.append(.simCard)
-        }
-
-        if (value & 0b10000000) == 0b10000000 {
-            configModes.append(.local)
-        }
-
-        if (value & 0b100000000) == 0b100000000 {
-            configModes.append(.nbIoT)
-        }
-        
-        return configModes
-        
-        
-    }
-}
-
 public struct LCAddConfigTimeout {
-
 	static let wifiConnect: Int = 120
 	static let cloudConnect: Int = 60
 	
@@ -161,13 +124,9 @@ public struct LCAddConfigTimeout {
 	static let nbIoTCloudConnect: Int = 180
 	static let initialSearch: Int = 30
 	static let accessoryConnect: Int = 120
-	
-	/// p2p检查时间
-	static let p2pCheckTime: Int = 50
-	static let softApP2PCheckTime: Int = 100
 }
 
-@objc public class LCAddDeviceManager: NSObject {
+@objcMembers public class LCAddDeviceManager: NSObject {
 	
 	@objc public static let sharedInstance = LCAddDeviceManager()
 	
@@ -193,19 +152,44 @@ public struct LCAddConfigTimeout {
     @objc public var ncCode: String? = ""
 	
 	/// 配网模式
-    @objc public var netConfigMode: LCNetConfigMode = .wired
+    public var netConfigMode: LCNetConfigMode = .lan
     
     /// 是否是扫码进入
     @objc public var isEnterByQrcode: Bool = false
 	
-	/// 网络连接类型
-	@objc public var ncType: LCNetConnectType = .soundWave
-	
 	/// 支持的配网模式
 	public var supportConfigModes = [LCNetConfigMode]()
-	
-    public var netConfigStrategy: LCNetConfigStrategy = .defalult
     
+    /// 支持有线添加
+    public func supportWired() -> Bool {
+        return self.supportConfigModes.contains(.lan) || self.supportConfigModes.contains(.iotLan)
+    }
+    
+    /// 当前是有线添加
+    public func isWired() -> Bool {
+        return self.netConfigMode == .lan || self.netConfigMode == .iotLan
+    }
+    
+    /// 支持软AP添加
+    public func supportSoftAP() -> Bool {
+        return self.supportConfigModes.contains(.softAp)
+    }
+    
+    /// 当前是软AP添加
+    public func isSoftAP() -> Bool {
+        return self.netConfigMode == .softAp
+    }
+    
+    /// 支持无线添加
+    public func supportWifi() -> Bool {
+        return self.supportConfigModes.contains(.soundWave) || self.supportConfigModes.contains(.soundWaveV2) || self.supportConfigModes.contains(.smartConfig)
+    }
+    
+    /// 当前是无线添加
+    public func isWireless() -> Bool {
+        return self.netConfigMode == .soundWave || self.netConfigMode == .soundWaveV2 || self.netConfigMode == .smartConfig
+    }
+
 	/// 是否支持5G频段的wifi
 	public var isSupport5GWifi: Bool = false
 	
@@ -232,12 +216,6 @@ public struct LCAddConfigTimeout {
 	
 	/// 视频通道数（包括未接入的）
 	public var channelNum: String = ""
-	
-	/// 统计使用：用来区分是否包含了局域网搜索流程
-	public var isContainInitializeSearch: Bool = false
-	
-	/// 统计使用：用来区分是否走了配网流程，默认为true，只有扫码时设备在线的情况才不走
-	public var isContainNetConfig: Bool = true
 	
 	/// 设备初始化的密码
 	@objc public var initialPassword: String = ""
@@ -274,26 +252,16 @@ public struct LCAddConfigTimeout {
 	private var isInBinding: Bool = false
     /// 是否正在连接WiFi热点
     fileprivate var isConnectWiFiHotSpot: Bool = false
+    /// 软Ap添加版本
+    @objc public var softAPModeWifiVersion: String = ""
+    /// 软Ap热点名
+    @objc public var softAPModeWifiName: String = ""
     
     
 	// MARK: Methods
 	
 	public override init() {
 		super.init()
-	}
-	
-	/// 判断当前的添加的设备，是否已经在局域网搜索到
-	@objc public func isDeviceFindInLocalNetwork() -> Bool {
-		let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: deviceId)
-		return device != nil
-	}
-	
-	/// 获取当前操作的设备信息
-	///
-	/// - Returns: 设备信息
-	public func getLocalDevice() -> ISearchDeviceNetInfo? {
-		let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: deviceId)
-		return device
 	}
 	
 	public func reset() {
@@ -306,7 +274,7 @@ public struct LCAddConfigTimeout {
 		deviceMarketModel = ""
 		regCode = ""
 		deviceId = ""
-		netConfigMode = .wired
+		netConfigMode = .lan
 		initialPassword = ""
 		wifiSSID = ""
 		wifiPassword = ""
@@ -318,13 +286,11 @@ public struct LCAddConfigTimeout {
 		abilities = ""
 		brand = ""
 		isSupportSC = false
-		ncType = .soundWave
 		channelNum = ""
-		isContainInitializeSearch = false
-		isContainNetConfig = true
 		imeiCode = ""
         isManualInputSC = false
-        netConfigStrategy = .defalult
+        softAPModeWifiVersion = ""
+        softAPModeWifiName = ""
 	}
 	
     public func getUnBindDeviceInfo(deviceId: String, productId: String?, qrModel: String?, ncCode: String?, marketModel: String?, imeiCode: String?, success: @escaping (LCUserDeviceBindInfo, Bool) -> (), failure:@escaping (LCError) -> ()) {
@@ -343,18 +309,40 @@ public struct LCAddConfigTimeout {
     }
 
 	public func setup(deviceInfo: LCUserDeviceBindInfo) {
-        //之前的地方 可能已经被NC码写过  这里用接口中的wifiConfigMode覆盖
-        /*现在NC码判断在平台来做,客户端通过返回的wifiConfigMode判断*/
-//        //如果只有一个qrcode  那么不要去掉  否则 先清除
-//        if !(supportConfigModes.count == 1 && supportConfigModes.contains(.qrCode)) {
-//            supportConfigModes.removeAll()
-//        }
         supportConfigModes.removeAll()
-        supportConfigModes.append(contentsOf: deviceInfo.lc_netConfigModes())
-        
-        //如果平台返回的wifiConfigMode 有值  以平台为准
-        if let configModes = deviceInfo.wifiConfigMode, configModes.count > 0 {
-            self.netConfigStrategy = .fromOMS
+        // 设置支持配网方式
+        supportConfigModes.append(contentsOf: LCUserDeviceBindInfo.lc_netConfigModes(wifiConfigMode: deviceInfo.wifiConfigMode, isIotDevice: deviceInfo.isIotDevice()))
+        // 设置默认配网方式
+        if deviceInfo.isIotDevice() {
+            if let configMode = deviceInfo.defaultWifiConfigMode, configMode.length > 0 {
+                netConfigMode = LCNetConfigMode.netConfigMode(type: configMode, isIOT: true)
+            } else {
+                if supportConfigModes.contains(.iotLan) {
+                    netConfigMode = .iotLan
+                } else if supportConfigModes.contains(.iot4G) {
+                    netConfigMode = .iot4G
+                } else if supportConfigModes.contains(.iotBluetooth) {
+                    netConfigMode = .iotBluetooth
+                } else {
+                    netConfigMode = .iotLan
+                }
+            }
+        } else {
+            if let configMode = deviceInfo.defaultWifiConfigMode, configMode.length > 0 {
+                netConfigMode = LCNetConfigMode.netConfigMode(type: configMode, isIOT: false)
+            } else {
+                if supportConfigModes.contains(.softAp) {
+                    netConfigMode = .softAp
+                } else if supportConfigModes.contains(.soundWaveV2) {
+                    netConfigMode = .soundWaveV2
+                } else if supportConfigModes.contains(.soundWave) {
+                    netConfigMode = .soundWave
+                } else if supportConfigModes.contains(.smartConfig) {
+                    netConfigMode = .smartConfig
+                } else {
+                    netConfigMode = .lan
+                }
+            }
         }
         
 		isSupport5GWifi = deviceInfo.lc_support5GWifi()
@@ -366,31 +354,75 @@ public struct LCAddConfigTimeout {
 		brand = deviceInfo.brand
 		channelNum = deviceInfo.channelNum ?? ""
 		
-		//解析新的声波配对
-		if deviceInfo.wifiConfigMode.lc_caseInsensitiveContain(string: "SoundWaveV2") {
-			ncType = .soundWaveV2
-		}
-		
 		/*不在通用流程中解析SC码能力，只在手动输入时进行解析*/
 		//解析SC码
-		if deviceInfo.ability.lc_caseInsensitiveContain(string: "SCCode") ||
-			deviceInfo.wifiConfigMode.lc_caseInsensitiveContain(string: "SCCode") {
+		if deviceInfo.ability.lc_caseInsensitiveContain(string: "SCCode") {
 			isSupportSC = true
 		}
-       
-		//【*】特殊处理：根据NC码，是否支持声波配对
-		if ncType == .soundWaveV2 {
-			isSupportSoundWave = true
-		}
-		
-		//【*】特殊处理：1、支持SC码的，接入类型强制修改为paas; 2、接入配置为paas的，强制修改
-		if isSupportSC {
-			accessType = .paas
-		} else {
-			accessType = deviceInfo.lc_accessType()
-		}
 	}
-	
+    
+    public func refreshData(deviceInfo: LCUserDeviceBindInfo) {
+        isSupport5GWifi = deviceInfo.lc_support5GWifi()
+        isSupportSoundWave = deviceInfo.lc_isSupportSoundWave()
+        deviceModel = deviceInfo.deviceModel
+        isOnline = deviceInfo.lc_isOnline()
+        isAccessory = deviceInfo.lc_isAccesoryPart()
+        abilities = deviceInfo.ability
+        brand = deviceInfo.brand
+        channelNum = deviceInfo.channelNum ?? ""
+        
+        /*不在通用流程中解析SC码能力，只在手动输入时进行解析*/
+        //解析SC码
+        if deviceInfo.ability.lc_caseInsensitiveContain(string: "SCCode") {
+            isSupportSC = true
+        }
+    }
+    
+    
+    
+    // 切换配网方式到有线配网
+    public func changeNetConfigToWired() -> LCNetConfigMode {
+        var netConfig: LCNetConfigMode = .lan
+        if let productID = self.productId, productID.length > 0 {
+            netConfig = .iotLan
+        } else {
+            netConfig = .lan
+        }
+        let oldNetConfigMode = LCAddDeviceManager.sharedInstance.netConfigMode
+        LCAddDeviceManager.sharedInstance.netConfigMode = netConfig
+        return oldNetConfigMode
+    }
+    
+    // 切换配网方式到无线配网，返回原有配网方式
+    public func changeNetConfigToWireless() -> LCNetConfigMode {
+        var netConfig: LCNetConfigMode = .lan
+        if let productID = self.productId, productID.length > 0 {
+            if supportConfigModes.contains(.iot4G) {
+                netConfig = .iot4G
+            } else if supportConfigModes.contains(.iotBluetooth) {
+                netConfig = .iotBluetooth
+            }
+        } else {
+            if supportConfigModes.contains(.soundWaveV2) {
+                netConfig = .soundWaveV2
+            } else if supportConfigModes.contains(.soundWave) {
+                netConfig = .soundWave
+            } else if supportConfigModes.contains(.smartConfig) {
+                netConfig = .smartConfig
+            }
+        }
+        let oldNetConfigMode = LCAddDeviceManager.sharedInstance.netConfigMode
+        LCAddDeviceManager.sharedInstance.netConfigMode = netConfig
+        return oldNetConfigMode
+    }
+    
+    // 切换配网方式到有线配网
+    public func changeNetConfigToSoftAP() -> LCNetConfigMode {
+        let oldNetConfigMode = LCAddDeviceManager.sharedInstance.netConfigMode
+        LCAddDeviceManager.sharedInstance.netConfigMode = .softAp
+        return oldNetConfigMode
+    }
+
 	// MARK: - 获取在线状态
     public func getDeviceStatus(success: @escaping (LCUserDeviceBindInfo) -> (), failure: @escaping (LCError) -> ()) {
         statusQueue.async {
@@ -402,7 +434,7 @@ public struct LCAddConfigTimeout {
             self.isGettingStatus = true
             LCAddDeviceInterface.unBindDeviceInfo(forDevice: self.deviceId, productId: self.productId, deviceModel: self.deviceQRCodeModel, deviceName: self.deviceMarketModel ?? "", ncCode: self.ncCode ?? "", success: { (deviceInfo) in
                 // 更新设备状态
-                self.setup(deviceInfo: deviceInfo)
+                self.refreshData(deviceInfo: deviceInfo)
                 success(deviceInfo)
                 self.isGettingStatus = false
             }) { (error) in
@@ -428,8 +460,6 @@ public struct LCAddConfigTimeout {
 	public func bindDevice(devicePassword: String, code: String? = nil, deviceKey: String? = nil, success: @escaping () -> (), failure: @escaping (LCError) -> ()) {
 		//SMB使用code，且用明文处理
         LCAddDeviceInterface.bindDevice(withDevice: self.deviceId, productId: self.productId, code: devicePassword.count > 0 ? devicePassword : (code ?? ""), success: {
-            //发送更新列表通知
-            self.postUpdateDeviceNotification()
             success()
         }) { (error) in
             failure(error)
@@ -438,7 +468,6 @@ public struct LCAddConfigTimeout {
     
     public func addPlicy(success: @escaping () -> (), failure: @escaping (LCError) -> ()) {
         LCAddDeviceInterface.addPolicy(withDevice: self.deviceId) {
-            self.postUpdateDeviceNotification()
             success()
         } failure: { (error) in
             failure(error)
@@ -459,28 +488,6 @@ public struct LCAddConfigTimeout {
             failure(error)
         })
     }
-    
-	// MARK: - App引导文案
-	public func getIntroductionParser() -> LCIntroductionParser? {
-		guard self.deviceMarketModel != nil else {
-			return nil
-		}
-		
-		return LCOMSConfigManager.sharedManager.getIntroductionParser(marketModel: self.deviceMarketModel!)
-	}
-	
-	public func isIntroductionUpdating() -> Bool {
-		guard self.deviceMarketModel != nil else {
-			return false
-		}
-		
-		return LCOMSConfigManager.sharedManager.dicIntroductionStatus[self.deviceMarketModel!] ?? false
-	}
-	
-	// MARK: - 通知
-	public func postUpdateDeviceNotification(isWifiConfig: Bool = false) {
-		let did = gatewayId.count > 0 ? gatewayId : deviceId
-	}
 }
 
 extension LCAddDeviceManager {
@@ -505,12 +512,10 @@ extension LCAddDeviceManager {
             } else {
                 configuration = NEHotspotConfiguration(ssid: ssid!, passphrase: password!, isWEP: false)
             }
-
             NEHotspotConfigurationManager.shared.getConfiguredSSIDs { (wifiList) in
                 if wifiList.contains(ssid!) {
                     NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: ssid!)
                 }
-                
                 // 标记
                 self.isConnectWiFiHotSpot = true
                 NEHotspotConfigurationManager.shared.apply(configuration) { (error) in

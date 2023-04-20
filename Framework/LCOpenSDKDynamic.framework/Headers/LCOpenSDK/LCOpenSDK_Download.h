@@ -32,9 +32,9 @@
 /// @param psk device key    zh:设备密钥
 /// @param recordRegionId video recordRegionId    zh:录像recordRegionId
 /// @param type Cloud recording type; 1000: Alarm 2000: Timing    zh:云录像类型;1000:报警 2000:定时
-/// @param timeout API call timeout time    zh:接口调用超时时间
+/// @param useTls /** 是否使用TLS加密 默认不使用*/
 /// @return 0  succeeded,  -1 failed    zh:0 接口调用成功, -1 接口调用失败
-- (NSInteger)startDownload:(NSInteger)index filepath:(NSString*)filepath token:(NSString*)accessTok devID:(NSString*)deviceID channelID:(NSInteger)channelID psk:(NSString*)psk  recordRegionId:(NSString *)recordRegionId Type:(NSInteger)type Timeout:(NSInteger)timeout;
+- (NSInteger)startDownload:(NSInteger)index filepath:(NSString*)filepath token:(NSString*)accessTok devID:(NSString*)deviceID channelID:(NSInteger)channelID psk:(NSString*)psk  recordRegionId:(NSString *)recordRegionId Type:(NSInteger)type useTls:(BOOL)useTls;
 
 /// Start downloading device video    zh:开始下载设备录像
 /// @param index download index value    zh:下载索引值
@@ -44,8 +44,9 @@
 /// @param decryptKey video decryption key    zh:视频解密密钥
 /// @param fileID device recording file name    zh:设备录像文件名
 /// @param speed Download speed: 1/2/4/8/16, 1 means download at normal video playback speed    zh:下载速度：1/2/4/8/16，1表示按正常视频播放速度下载
+/// @param useTls /** 是否使用TLS加密 默认不使用*/
 /// @return 0 succeeded, -1 failed
-- (NSInteger)startDownload:(NSInteger)index filepath:(NSString*)filepath token:(NSString*)token devID:(NSString*)deviceID decryptKey:(NSString*)decryptKey fileID:(NSString*)fileID speed:(double)speed productId:(NSString *)productId playToken:(NSString *)playToken;
+- (NSInteger)startDownload:(NSInteger)index filepath:(NSString*)filepath token:(NSString*)token devID:(NSString*)deviceID decryptKey:(NSString*)decryptKey fileID:(NSString*)fileID speed:(double)speed productId:(NSString *)productId playToken:(NSString *)playToken useTls:(BOOL)useTls;
 
 /// Stop downloading cloud video    zh:停止下载云录像
 /// @param index download index value    zh:下载索引值

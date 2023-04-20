@@ -3,6 +3,7 @@
 //	通用的错误页面，适用于图片、文字、按钮固定的场景
 
 import UIKit
+import LCBaseModule
 
 protocol LCCommonErrorViewDelegate: NSObjectProtocol {
 	
@@ -10,160 +11,156 @@ protocol LCCommonErrorViewDelegate: NSObjectProtocol {
 	///
 	/// - Parameters:
 	///   - errorView: self
-	func errorViewOnConfirm(errorView: LCCommonErrorView)
+	func errorViewOnTryAgain(errorView: LCCommonErrorView)
 	
 	/// 退出点击事件
 	///
 	/// - Parameters:
 	///   - errorView: self
 	func errorViewOnQuit(errorView: LCCommonErrorView)
-	
-	/// FAQ点击事件
-	///
-	/// - Parameters:
-	///   - errorView: self
-	func errorViewOnFAQ(errorView: LCCommonErrorView)
     
-    /// 返回
-    ///
-    /// - Parameters:
-    ///   - errorView: self
-    func errorViewOnBackRoot(errorView: LCCommonErrorView)
 }
 
 class LCCommonErrorView: UIView {
-	
 	public weak var delegate: LCCommonErrorViewDelegate?
-
-	@IBOutlet weak var imageView: UIImageView!
-	@IBOutlet weak var contentLabel: UILabel!
-	@IBOutlet weak var detailLabel: UILabel!
-	@IBOutlet weak var confrimButton: UIButton!
-	@IBOutlet weak var faqButton: UIButton!
-	@IBOutlet weak var quitButton: UIButton!
-	@IBOutlet weak var faqContainerView: UIView!
-	@IBOutlet weak var faqContainerBottomConstraint: NSLayoutConstraint!
-	@IBOutlet weak var needHelpButton: UIButton!
-	
-	public static func xibInstance() -> LCCommonErrorView {
-        if let view = Bundle.lc_addDeviceBundle()?.loadNibNamed("LCCommonErrorView", owner: nil, options: nil)!.first as? LCCommonErrorView {
-            return view
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView.init(image: UIImage(lc_named: "adddevice_netsetting_guide_safe"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.lcFont_t1Bold()
+        label.numberOfLines = 0
+        label.textColor = UIColor.lccolor_c40()
+        label.textAlignment = .center
+        label.text = "add_device_initialize_failed".lc_T()
+        return label
+    }()
+    
+    lazy var descTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.lcFont_t3()
+        textView.textColor = UIColor.lccolor_c40()
+        textView.isEditable = false
+        textView.showsVerticalScrollIndicator = false
+        textView.showsHorizontalScrollIndicator = false
+        return textView
+    }()
+    
+    lazy var tryAgainButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.layer.cornerRadius = 22.5
+        btn.layer.masksToBounds = true
+        btn.backgroundColor = UIColor.lccolor_c0()
+        btn.titleLabel?.font = UIFont.lcFont_t3Bold()
+        btn.setTitle("add_device_cloud_try_again".lc_T(), for: .normal)
+        btn.setTitleColor(UIColor.lccolor_c43(), for: .normal)
+        btn.addTarget(self, action: #selector(onTryAgainAction(btn:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    lazy var quitButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.layer.cornerRadius = 22.5
+        btn.layer.masksToBounds = true
+        btn.layer.borderWidth = 1.0
+        btn.layer.borderColor = UIColor.lccolor_c0().cgColor
+        btn.backgroundColor = UIColor.lccolor_c43()
+        btn.titleLabel?.font = UIFont.lcFont_t3Bold()
+        btn.setTitle("add_device_cloud_quit".lc_T(), for: .normal)
+        btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+        btn.addTarget(self, action: #selector(onQuitAction(btn:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    init() {
+        super.init(frame: .zero)
+        setupViews()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupViews() {
+        self.backgroundColor = UIColor.lccolor_c43()
+        self.addSubview(imageView)
+        self.addSubview(titleLabel)
+        self.addSubview(descTextView)
+        self.addSubview(tryAgainButton)
+        self.addSubview(quitButton)
+        
+        self.imageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.top.equalToSuperview()
+            make.height.lessThanOrEqualTo(224)
         }
-		return LCCommonErrorView()
-	}
-	
-	override func awakeFromNib() {
-		super.awakeFromNib()
         
-        backgroundColor = UIColor.lccolor_c43()
+        self.titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.top.equalTo(self.imageView.snp.bottom).offset(30)
+        }
         
-        contentLabel.textColor = UIColor.lccolor_c2()
-        detailLabel.textColor = UIColor.lccolor_c5()
-		
-		faqContainerView.backgroundColor = UIColor.clear
-		needHelpButton.setTitle("add_device_i_need_help".lc_T, for: .normal)
-		confrimButton.setTitle("add_device_restart".lc_T, for: .normal)
-		quitButton.setTitle("add_device_quit_add_process".lc_T, for: .normal)
-		
-		//填充模式
-		imageView.contentMode = .scaleAspectFill
-		imageView.image = UIImage(named: "adddevice_fail_undetectable")
-		
-		//配置颜色、样式
-		confrimButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
-		confrimButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()
-        confrimButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
-		
-		quitButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
-		quitButton.layer.borderWidth = 0.5
-		quitButton.layer.borderColor = UIColor.lccolor_c5().cgColor
-        quitButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
+        self.quitButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(37.5)
+            make.trailing.equalToSuperview().offset(-37.5)
+            make.bottom.equalToSuperview().offset(-64)
+            make.height.equalTo(45)
+        }
         
-        needHelpButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
-		
-		//默认不显示detail、quit
-		detailLabel.text = nil
-		quitButton.isHidden = true
-		
-		setupConstraints()
-		
-		//开放平台暂时隐藏
-		needHelpButton.isHidden = true
-		faqContainerView.isHidden = true
+        self.tryAgainButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(37.5)
+            make.trailing.equalToSuperview().offset(-37.5)
+            make.bottom.equalTo(self.quitButton.snp.top).offset(-20)
+            make.height.equalTo(45)
+        }
+        
+        self.descTextView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(30)
+            make.bottom.equalTo(self.tryAgainButton.snp.top).offset(-30)
+        }
+    }
+
+	@objc func onTryAgainAction(btn: UIButton) {
+        delegate?.errorViewOnTryAgain(errorView: self)
 	}
 	
-	private func setupConstraints() {
-		imageView.snp.makeConstraints { make in
-			make.centerX.equalTo(self)
-			make.top.equalTo(self).offset(10)
-			make.height.equalTo(208)
-			make.width.lessThanOrEqualTo(250)
-		}
-		
-		contentLabel.snp.makeConstraints { make in
-			make.leading.equalTo(self).offset(10)
-			make.top.equalTo(imageView.snp.bottom).offset(5)
-			make.centerX.equalTo(self)
-		}
-		
-		detailLabel.snp.makeConstraints { make in
-			make.leading.equalTo(contentLabel)
-			make.top.equalTo(contentLabel.snp.bottom).offset(10)
-			make.centerX.equalTo(self)
-		}
-		
-		confrimButton.snp.makeConstraints { make in
-			make.leading.equalTo(contentLabel)
-			make.top.equalTo(detailLabel.snp.bottom).offset(15)
-			make.height.equalTo(45)
-			make.centerX.equalTo(self)
-		}
-		
-		quitButton.snp.makeConstraints { make in
-			make.leading.equalTo(confrimButton)
-			make.top.equalTo(detailLabel.snp.bottom).offset(20)
-			make.height.equalTo(45)
-			make.centerX.equalTo(self)
-		}
-		
-		if lc_isiPhoneX {
-			faqContainerBottomConstraint.constant += 15
-		}
-	}
-	
-	@IBAction func onConfirmAction(_ button: UIButton) {
-        delegate?.errorViewOnBackRoot(errorView: self)
-	}
-	
-	@IBAction func onQuitAction(_ sender: Any) {
+    @objc func onQuitAction(btn: Any) {
 		delegate?.errorViewOnQuit(errorView: self)
 	}
-	
-	@IBAction func onFAQAction(_ sender: Any) {
-		delegate?.errorViewOnFAQ(errorView: self)
-	}
-	
+
 	public func dismiss(animated: Bool) {
-		if animated {
-			let animation = CATransition()
-			animation.duration = 0.3
-			animation.type = kCATransitionFade
-			animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-			self.superview?.layer.add(animation, forKey: kCATransitionFade)
-		}
+//		if animated {
+//			let animation = CATransition()
+//			animation.duration = 0.3
+//			animation.type = kCATransitionFade
+//			animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//			self.superview?.layer.add(animation, forKey: kCATransitionFade)
+//		}
 		
 		self.removeFromSuperview()
 	}
 	
 	public func showOnView(superView: UIView, animated: Bool) {
-		if animated {
-			let animation = CATransition()
-			animation.duration = 0.3
-			animation.type = kCATransitionFade
-			animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-			superView.layer.add(animation, forKey: kCATransitionFade)
-		}
-		
+//		if animated {
+//			let animation = CATransition()
+//			animation.duration = 0.3
+//			animation.type = kCATransitionFade
+//			animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//			superView.layer.add(animation, forKey: kCATransitionFade)
+//		}
+//
 		superView.addSubview(self)
 	}
 	
@@ -183,7 +180,7 @@ class LCCommonErrorView: UIView {
 	}
 	
 	public func updateContentLabelConstraint(top: CGFloat) {
-		contentLabel.snp.updateConstraints { (make) in
+        titleLabel.snp.updateConstraints { (make) in
 			make.top.equalTo(imageView.snp.bottom).offset(top)
 		}
 	}

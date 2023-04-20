@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
 typedef enum : NSUInteger {
     NewBorderViewLeft,// 左
     NewBorderViewRight,// 右
-    NewBorderViewTop,// 上
+    NewBorderViewTop,// 上·
     NewBorderViewBottom// 下
 } NewBorderViewDirection;
 
@@ -66,7 +66,7 @@ typedef enum : NSUInteger {
 @interface LCNewLivePreviewPresenter : NSObject
 
 /// 容器
-@property (weak, nonatomic) UIViewController *container;
+@property (weak, nonatomic) LCNewLivePreviewViewController *liveContainer;
 
 /// 播放器
 @property (strong, nonatomic) LCOpenSDK_PlayRealWindow * playWindow;
@@ -85,9 +85,6 @@ typedef enum : NSUInteger {
 
 /// 加载等待框
 @property (strong, nonatomic) UIImageView *loadImageview;
-
-/// 容器
-@property (weak, nonatomic) LCNewLivePreviewViewController *liveContainer;
 
 ///// control
 @property (strong, nonatomic) LCButton * errorBtn;
@@ -132,10 +129,10 @@ typedef enum : NSUInteger {
 
 /**
  云台控制
-
  @param direction 云台方向
+ @param duration 移动持续时间
  */
--(void)ptzControlWith:(NSString *)direction Duration:(NSTimeInterval)duration;
+-(void)ptzControlWith:(NSString *)direction duration:(int)duration;
 
 /**
  获取录像历史记录列表
@@ -189,5 +186,6 @@ typedef enum : NSUInteger {
 -(void)hideBorderView;
 
 - (void)refreshBottomControlItems;
+- (void)refreshMiddleControlItems;
 
 @end

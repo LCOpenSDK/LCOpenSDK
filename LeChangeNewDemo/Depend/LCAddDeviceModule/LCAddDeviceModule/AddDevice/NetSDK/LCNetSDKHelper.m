@@ -52,7 +52,7 @@
                 if (error == -1) {
                     //设备不支持高安全等级登录
                     failure(@"-1");
-                }else {
+                } else {
                     NSString *description = [LCNetSDKInterface getErrorDescription:error];
                     failure(description);
                 }

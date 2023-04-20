@@ -14,68 +14,51 @@
 
 // UIWindowSceneGeometryPreferencesIOS 类是否包含interfaceOrientations属性.
 static NSNumber *bContainInterfaceOIvar;
-+ (void)lc_setOrientation:(UIInterfaceOrientationMask)orientation viewController:(UIViewController *)viewController {
++ (void)lc_setOrientation:(UIInterfaceOrientation)orientation viewController:(UIViewController *)viewController {
     if (@available(iOS 16.0, *)) {
+        UIInterfaceOrientationMask oriMask = UIInterfaceOrientationMaskPortrait;
+        if (orientation != UIDeviceOrientationPortrait && orientation != UIDeviceOrientationUnknown) {
+            oriMask = UIInterfaceOrientationMaskLandscapeRight;
+        }
         if (viewController) {
-            SEL selUpdateSupportedMethod = NSSelectorFromString(@"setNeedsUpdateOfSupportedInterfaceOrientations");
-            if ([viewController respondsToSelector:selUpdateSupportedMethod]) {
-                (((void (*)(id, SEL))[viewController methodForSelector:selUpdateSupportedMethod])(viewController, selUpdateSupportedMethod));
-            }
+            [viewController setNeedsUpdateOfSupportedInterfaceOrientations];
         }
         NSArray *array = [[UIApplication sharedApplication].connectedScenes allObjects];
         UIWindowScene *scene = (UIWindowScene *)[array firstObject];
-        Class GeometryPreferences = NSClassFromString(@"UIWindowSceneGeometryPreferencesIOS");
-        id geometryPreferences = [[GeometryPreferences alloc] init];
-        // 检查UIWindowSceneGeometryPreferencesIOS 类是否包含interfaceOrientations属性.
-        NSString *ivarStr = @"interfaceOrientations";
-        if (!bContainInterfaceOIvar) {
-            bContainInterfaceOIvar = [NSNumber numberWithBool:NO];
-            unsigned int count = 0;
-            Ivar *members = class_copyIvarList(GeometryPreferences, &count);
-            for(int i = 0; i < count; i++) {
-                Ivar ivar = members[i];
-                const char *memberName = ivar_getName(ivar);
-                NSString *memberStr = [[NSString alloc] initWithUTF8String:memberName];
-                if ([[NSString stringWithFormat:@"_%@", ivarStr] isEqualToString:memberStr]) {
-                    bContainInterfaceOIvar = [NSNumber numberWithBool:YES];
-                    break;
-                }
-            }
-            free(members);
-        }
-        if (!bContainInterfaceOIvar || !bContainInterfaceOIvar.boolValue) {
-            return;
-        }
-        [geometryPreferences setValue:@(orientation) forKey:@"interfaceOrientations"];
-        SEL selGeometryUpdateMethod = NSSelectorFromString(@"requestGeometryUpdateWithPreferences:errorHandler:");
-        void (^ErrorBlock)(NSError *error) = ^(NSError *error){
-            // 设置转屏失败
-        };
-        if ([scene respondsToSelector:selGeometryUpdateMethod]) {
-            (((void (*)(id, SEL,id,id))[scene methodForSelector:selGeometryUpdateMethod])(scene, selGeometryUpdateMethod,geometryPreferences,ErrorBlock));
-        }
+        UIWindowSceneGeometryPreferencesIOS *geometryPreferences = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:oriMask];
+        [scene requestGeometryUpdateWithPreferences:geometryPreferences errorHandler:^(NSError * _Nonnull error) {
+            NSLog(@"%@", [NSString stringWithFormat:@"ios 16 屏幕旋转失败 %@", error.description]);
+        }];
     } else {
-        // 强制旋转回来
-        if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-            SEL selector = NSSelectorFromString(@"setOrientation:");
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-            [invocation setSelector:selector];
-            [invocation setTarget:[UIDevice currentDevice]];
-            [invocation setArgument:&orientation atIndex:2];
-            [invocation invoke];
+        UIInterfaceOrientation deviceOri = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
+        UIInterfaceOrientation statusBarOri = [UIApplication sharedApplication].statusBarOrientation;
+        if (deviceOri == orientation && statusBarOri != deviceOri) {
+            [self private_setDeviceOrientation: statusBarOri];
         }
-        
+        [self private_setDeviceOrientation:orientation];
+    }
+}
+
++ (void)private_setDeviceOrientation:(UIInterfaceOrientation)orientation {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        [invocation setArgument:&orientation atIndex:2];
+        [invocation invoke];
     }
 }
 
 + (void)lc_setRotateToSatusBarOrientation:(UIViewController *)viewcontroller {
     UIInterfaceOrientation statusBarOri = [UIApplication sharedApplication].statusBarOrientation;
-
     if (UIInterfaceOrientationIsLandscape(statusBarOri)) {
-        [self lc_setOrientation:UIInterfaceOrientationMaskPortrait viewController:viewcontroller];
+        [self lc_setOrientation:UIInterfaceOrientationPortrait viewController:viewcontroller];
     } else {
-        [self lc_setOrientation:UIInterfaceOrientationMaskLandscapeRight viewController:viewcontroller];
+        [self lc_setOrientation:UIInterfaceOrientationLandscapeRight viewController:viewcontroller];
     }
 }
+
+
 
 @end

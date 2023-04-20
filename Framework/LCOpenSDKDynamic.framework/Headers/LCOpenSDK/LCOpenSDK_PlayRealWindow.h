@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return 0 success, -1 failure
 - (NSInteger)stopRtspReal:(BOOL)isKeepLastFrame;
 
+/// The gimbal controls   zh: 云台控制
+/// @param PTZControllerInfo model
+- (void)controlMovePTZ:(LCOpenSDK_PTZControllerInfo *)PTZControllerInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END

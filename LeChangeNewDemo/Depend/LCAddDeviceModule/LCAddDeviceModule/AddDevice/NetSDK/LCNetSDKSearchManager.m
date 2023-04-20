@@ -156,12 +156,6 @@
 				NSLog(@"%@ 在这次搜索中被移除", key);
 				[self.netInfoDic removeObjectForKey:key];
 			}
-//			else if (device.searchSequence != self.searchSequence)
-//			{
-//				//【*】21589：只有当前的搜索结束了，才将缓存中未搜索到的设备有效状态重置
-//				NSLog(@"LCNetSDKSearchManager:: 重置设备有效状态,设备 %@, 搜索序号： %ld, 当前序号：%ld", device.deviceSN, (long)device.searchSequence, (long)self.searchSequence);
-//				self.netInfoDic[key].isVaild = NO;
-//			}
 		}
 	});
 }

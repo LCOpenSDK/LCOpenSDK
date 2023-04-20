@@ -132,16 +132,10 @@ enum LCNetConnectFailureType: String {
 	}
 	
 	private func k5TypeButtons() -> [LCNetConnectFailureTuple] {
-		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_connect_router_failed".lc_T, .tryAgain),
-																	("add_device_connect_network_failed".lc_T, .continueToWait)]
+		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_connect_router_failed".lc_T(), .tryAgain),
+																	("add_device_connect_network_failed".lc_T(), .continueToWait)]
 		return LCNetConnectFailureType.commonButtons(config: config)
 	}
-    
-//    private func ipcGeneralTypeButtons() -> [LCNetConnectFailureTuple] {
-//        let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_connect_router_failed".lc_T, .tryAgain),
-//                                                                    ("add_device_add_by_wired".lc_T, .switchToWired)]
-//        return LCNetConnectFailureType.commonButtons(config: config)
-//    }
 	
 	private func overseasATypeButtons() -> [LCNetConnectFailureTuple] {
 		let config: [(LCLightButtonType, LCNetConnectFailureOperationType)] = [(.yellowTwinkling, .inputWifiPassword),
@@ -160,31 +154,27 @@ enum LCNetConnectFailureType: String {
 	}
 	
 	private func overseasDoorbellButtons() -> [LCNetConnectFailureTuple] {
-		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_try_again".lc_T, .tryAgain)]
+		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_try_again".lc_T(), .tryAgain)]
 		return LCNetConnectFailureType.commonButtons(config: config)
 	}
 	
 	private func commonTypeButtons(supportWired: Bool) -> [LCNetConnectFailureTuple] {
-//		var config: [(String, LCNetConnectFailureOperationType)] = [("add_device_try_again".lc_T, .tryAgain)]
-//		if supportWired {
-//			config.append(("add_device_add_by_wired".lc_T, .switchToWired))
-//		}
         //demo调整为重新开始
-		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_restart".lc_T, .quit)]
+		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_restart".lc_T(), .quit)]
         
 		return LCNetConnectFailureType.commonButtons(config: config)
 	}
 	
 	private func accessoryTypeButtons() -> [LCNetConnectFailureTuple] {
-		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_continue_to_wait".lc_T, .continueToWait),
-																 ("add_device_try_again".lc_T, .tryAgain),
-																 ("add_device_quit_add_process".lc_T, .quit)]
+		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_continue_to_wait".lc_T(), .continueToWait),
+																 ("add_device_try_again".lc_T(), .tryAgain),
+																 ("add_device_quit_add_process".lc_T(), .quit)]
 		return LCNetConnectFailureType.commonButtons(config: config)
 	}
 	
 	private func cloudTimeoutTypeButtons() -> [LCNetConnectFailureTuple] {
-		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_try_again".lc_T, .tryAgain),
-																	("add_device_quit_add_process".lc_T, .quit)]
+		let config: [(String, LCNetConnectFailureOperationType)] = [("add_device_try_again".lc_T(), .tryAgain),
+																	("add_device_quit_add_process".lc_T(), .quit)]
 		return LCNetConnectFailureType.commonButtons(config: config)
 	}
 	

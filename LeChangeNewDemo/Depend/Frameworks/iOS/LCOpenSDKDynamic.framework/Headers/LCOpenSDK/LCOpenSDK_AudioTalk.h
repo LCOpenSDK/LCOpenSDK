@@ -22,12 +22,12 @@
 - (id<LCOpenSDK_TalkerListener>)getListener;
 
 /// Play voice intercom   zh:播放语音对讲
-/// @param accessTok administrator token/user token   zh:管理员token／用户token
+/// @param accessToken administrator token/user token   zh:管理员token／用户token
 /// @param deviceID Device ID    zh:设备ID
 /// @param psk device key    zh:设备密钥
 /// @param isOpt Whether to use long link optimization    zh:是否使用长链接优化
 /// @return interface call returned   0 successful, -1 failed   zh:接口调用返回值    0, 成功 －1, 失败
-- (NSInteger)playTalk:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playTalk: instead");
+- (NSInteger)playTalk:(NSString*)accessToken devID:(NSString*)deviceID psk:(NSString*)psk optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playTalk: instead");
 
 /// Play voice intercom    zh:开始对讲
 /// @param paramTalk Intercom parameter model    zh:对讲参数模型

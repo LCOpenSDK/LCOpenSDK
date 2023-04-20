@@ -34,10 +34,11 @@ class LCMessageListController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupUI()
         initialData()
-        self.messageListTav.mj_header.beginRefreshing()
+        self.messageListTav.mj_header?.beginRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewWillAppear(animated)
     }
     
@@ -89,7 +90,7 @@ class LCMessageListController: UIViewController {
     }
     
     private func retry() {
-        self.messageListTav.mj_header.beginRefreshing()
+        self.messageListTav.mj_header?.beginRefreshing()
     }
     
     //MARK: - Lazy Var
@@ -157,12 +158,12 @@ extension LCMessageListController:ILCMessageListController {
     }
     
     func endRefresh() {
-        self.messageListTav.mj_header.endRefreshing()
-        self.messageListTav.mj_footer.endRefreshing()
+        self.messageListTav.mj_header?.endRefreshing()
+        self.messageListTav.mj_footer?.endRefreshing()
     }
     
     func showNoMoreData() {
-        self.messageListTav.mj_footer.endRefreshingWithNoMoreData()
+        self.messageListTav.mj_footer?.endRefreshingWithNoMoreData()
     }
     
     func showEmptyView() {
@@ -229,7 +230,7 @@ extension LCMessageListController: MMMessageCalendarViewDelegate {
         let currentDateStr = NSDate.lc_string(of: Date(), format: "yyyy-MM-dd")
         self.presenter.currentDate = selectedDate
         if (self.presenter.messageInfosDic[presenter.currentDateStr]?.count ?? 0) == 0 || messageCalendarView.dateStr == currentDateStr {
-            self.messageListTav.mj_header.beginRefreshing()
+            self.messageListTav.mj_header?.beginRefreshing()
         }else {
             self.reloadData()
         }

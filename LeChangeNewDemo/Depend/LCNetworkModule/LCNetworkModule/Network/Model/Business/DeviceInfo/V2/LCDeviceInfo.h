@@ -135,6 +135,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// 扩展字段：是否为多通道设备
 @property (assign, nonatomic, readonly) BOOL lc_isMultiChannelDevice;
 
+/// TLS可用
+@property (assign, nonatomic) BOOL tlsEnable;
+
+/**< 表示支持的配对模式：SmartConfig，SoundWave，SoftAP，LAN，SIMCard   */
+@property (copy, nonatomic) NSString *wifiConfigMode;
+//表示可让用户自行选择可用的配网模式
+@property (assign, nonatomic) BOOL wifiConfigModeOptional;
+@property (copy, nonatomic) NSString *softAPModeWifiName;
+@property (copy, nonatomic) NSString *softAPModeWifiVersion;
+@property (copy, nonatomic) NSString *scCode;
+@property (copy, nonatomic) NSString *wifiTransferMode;
 /// 对象转json字符串
 -(NSString *)transfromToJson;
 

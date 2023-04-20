@@ -33,7 +33,7 @@ class LCWifiConnectOnlineVC: LCBasicViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor = UIColor.lccolor_c7()
-		title = "mobile_common_network_config".lc_T
+		title = "mobile_common_network_config".lc_T()
         setupCustomContents()
         setupInputView()
         presenter?.setupSupportView()
@@ -43,7 +43,7 @@ class LCWifiConnectOnlineVC: LCBasicViewController {
         //创建返回按钮
         let backBtn = LCButton.createButton(with: LCButtonTypeCustom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        backBtn.setImage(UIImage(named: "common_icon_nav_back"), for: .normal)
+        backBtn.setImage(UIImage(lc_named: "common_icon_nav_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(navigationBarClick), for: .touchUpInside)
         self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: backBtn), animated: false)
     }
@@ -63,19 +63,19 @@ class LCWifiConnectOnlineVC: LCBasicViewController {
     }
 
     func setupCustomContents() {
-        imageView.image = LCAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(named: "adddevice_icon_wifipassword") : UIImage(named: "adddevice_icon_wifipassword_nosupport5g")
+        imageView.image = LCAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(lc_named: "adddevice_icon_wifipassword") : UIImage(lc_named: "adddevice_icon_wifipassword_nosupport5g")
         wifiNameLabel.text = nil
         wifiNameLabel.textColor = UIColor.lccolor_c2()
-        inputPwdLabel.text = "add_device_input_wifi_password".lc_T
+        inputPwdLabel.text = "add_device_input_wifi_password".lc_T()
         inputPwdLabel.textColor = UIColor.lccolor_c2()
-        wifiLabel.text = "add_device_wifi_ssid".lc_T
+        wifiLabel.text = "add_device_wifi_ssid".lc_T()
         wifiLabel.textColor = UIColor.lccolor_c5()
-        checkButton.setTitle("add_device_remember_password".lc_T, for: .normal)
+        checkButton.setTitle("add_device_remember_password".lc_T(), for: .normal)
         checkButton.setTitleColor(UIColor.lccolor_c5(), for: .normal)
-        supportTipButton.setTitle("add_device_device_not_support_5g".lc_T, for: .normal)
+        supportTipButton.setTitle("add_device_device_not_support_5g".lc_T(), for: .normal)
         supportTipButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
-        passwordInputView.textField.placeholder = "add_device_input_wifi_password".lc_T
-        nextButton.setTitle("device_manager_connect".lc_T, for: .normal)
+        passwordInputView.textField.placeholder = "add_device_input_wifi_password".lc_T()
+        nextButton.setTitle("device_manager_connect".lc_T(), for: .normal)
         nextButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
         passwordInputView.textField.textAlignment = .left
         passwordInputView.textField.font = UIFont.lcFont_t3()
@@ -84,8 +84,8 @@ class LCWifiConnectOnlineVC: LCBasicViewController {
         bottomLine.backgroundColor = UIColor.lccolor_c8()
         topLine.backgroundColor = UIColor.lccolor_c8()
 
-        checkButton.setImage(UIImage(named: "adddevice_box_checkbox"), for: .normal)
-        checkButton.setImage(UIImage(named: "adddevice_box_checkbox_checked"), for: .selected)
+        checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox"), for: .normal)
+        checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox_checked"), for: .selected)
 
         //按钮样式配置
         nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
@@ -137,16 +137,10 @@ class LCWifiConnectOnlineVC: LCBasicViewController {
         
         //解释器处理下一步
         self.presenter?.nextStepAction(wifiSSID: wifiSSID ?? "", wifiPassword: wifiPassword)
-        
-        
     }
-    
-
 }
 
 extension LCWifiConnectOnlineVC: UITextFieldDelegate {
-    
-    // MARK: UITextFieldDelegate
     @nonobjc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

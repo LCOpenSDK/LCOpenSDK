@@ -189,8 +189,7 @@
 
 //static NSString *lc_lastWifiName = nil;
 //void systemNetworkChanged(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
-void systemNetworkChanged()
-{
+void systemNetworkChanged() {
 	dispatch_queue_t queue = LCNetWorkHelper.sharedInstance.interfaceQueue;
 	dispatch_async(queue, ^{
 		NSString *wifiName = @"";
@@ -232,8 +231,7 @@ void systemNetworkChanged()
     return  _lc_lastWifiName;
 }
 
-- (NSString *)fetchSSIDInfo
-{
+- (NSString *)fetchSSIDInfo {
     NSArray *ifs = (__bridge id)CNCopySupportedInterfaces();
     NSLog(@"%s: Supported interfaces: %@", __func__, ifs);
     id info = nil;
@@ -245,8 +243,6 @@ void systemNetworkChanged()
             break;
         }
     }
-    
-    
     NSString *ssid = [[info objectForKey:@"SSID"] copy];
     
     return ssid;

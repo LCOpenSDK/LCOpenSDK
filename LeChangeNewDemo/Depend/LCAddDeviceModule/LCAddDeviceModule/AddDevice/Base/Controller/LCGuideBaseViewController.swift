@@ -13,7 +13,9 @@ class LCGuideBaseViewController: LCAddBaseViewController, LCGuideBaseVCProtocol,
 
         // Do any additional setup after loading the view.
 		self.view.addSubview(guideView)
-		guideView.frame = self.view.bounds
+        guideView.snp.makeConstraints { make in
+            make.edges.equalTo(self.view)
+        }
 		
 		//配置引导图：第一次设置图片需要配置默认图片
 		self.setupGuideView(setPlaceholder: true)
@@ -29,52 +31,11 @@ class LCGuideBaseViewController: LCAddBaseViewController, LCGuideBaseVCProtocol,
 	/// - Parameter setPlaceholder: 是否设置图片的默认图；默认false；数据更新后，不需要设置，
 	//							避免网络比较慢的情况下，从旧图片，切换到新图片中间过程会展示默认图的情况
 	internal func setupGuideView(setPlaceholder: Bool = false) {
-		guideView.delegate = self
-		
-		if tipImageUrl() != nil {
-			let placeHolder = setPlaceholder ? tipImageName() : nil
-			guideView.topImageView.lc_setImage(withUrl: tipImageUrl(), placeholderImage: placeHolder, toDisk: true)
-			
-		} else if let imageName = tipImageName() {
-			guideView.topImageView.image = UIImage(named: imageName)
-		} else {
-			guideView.topImageView = nil
-		}
-		guideView.topTipLabel.textColor = UIColor.lccolor_c2()
-        guideView.descriptionLabel.textColor = UIColor.lccolor_c5()
-        if lc_screenHeight < 667 {
-            guideView.errorButton.titleLabel?.font = UIFont.lcFont_t2()
-            guideView.topTipLabel.lc_setAttributedText(text: tipText(), font: UIFont.lcFont_t2())
-            guideView.descriptionLabel.lc_setAttributedText(text: descriptionText(), font: UIFont.lcFont_t5())
-        } else {
-            guideView.errorButton.titleLabel?.font = UIFont.lcFont_t1()
-            guideView.topTipLabel.lc_setAttributedText(text: tipText(), font: UIFont.lcFont_t1())
-            guideView.descriptionLabel.lc_setAttributedText(text: descriptionText(), font: UIFont.lcFont_t3())
-        }
-		
-		
-		guideView.setDetailButton(text: detailText(), useUnderline: false)
-		guideView.checkButton.setTitle(checkText(), for: .normal)
-		
-		guideView.nextButton.isHidden = isNextStepHidden()
-		guideView.nextButton.setTitle(nextStepText(), for: .normal)
-		
-		//文字异常处理：没有文字的确认和Reset按钮，不显示【防止可以点击】
-		if checkText() == nil || checkText()?.count == 0 {
-			guideView.setCheckHidden(hidden: true)
-		} else {
-			guideView.setCheckHidden(hidden: isCheckHidden())
-		}
-		
-		if detailText() == nil || detailText()?.count == 0 {
-			guideView.setDetailButtonHidden(hidden: true)
-		} else {
-			guideView.setDetailButtonHidden(hidden: isDetailHidden())
-		}
+
 	}
     
     internal func setGuideImage(uri: String) {
-        guideView.topImageView.lc_setImage(withUrl: uri)
+        guideView.topImageView.sd_setImage(with: URL(string: uri))
     }
     
     internal func setOperateText(text: String?) {
@@ -83,16 +44,6 @@ class LCGuideBaseViewController: LCAddBaseViewController, LCGuideBaseVCProtocol,
 	
 	internal func setNextButton(enable: Bool) {
 		guideView.nextButton.lc_enable = enable
-	}
-	
-	internal func setCheckButton(enable: Bool) {
-		guideView.checkButton.lc_enable = enable
-	
-		//复选按钮不可点击时，下一步按钮也需要不可点击
-		if enable == false {
-			guideView.checkButton.isSelected = false
-			guideView.nextButton.lc_enable = false
-		}
 	}
 	
 	// MARK: LCAddGuideViewDelegate
@@ -126,11 +77,7 @@ class LCGuideBaseViewController: LCAddBaseViewController, LCGuideBaseVCProtocol,
 	func detailText() -> String? {
 		return "Please input detail text..."
 	}
-	
-	func checkText() -> String? {
-		return "Plase input check text..."
-	}
-	
+
 	func detailImageUrl() -> String? {
 		return ""
 	}
@@ -144,7 +91,7 @@ class LCGuideBaseViewController: LCAddBaseViewController, LCGuideBaseVCProtocol,
 	}
 	
 	func nextStepText() -> String? {
-		return "common_next".lc_T
+		return "common_next".lc_T()
 	}
 	
 	func isNextStepHidden() -> Bool {

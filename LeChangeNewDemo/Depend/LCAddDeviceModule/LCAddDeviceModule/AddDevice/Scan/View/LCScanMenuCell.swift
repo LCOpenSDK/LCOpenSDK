@@ -24,7 +24,7 @@ class LCScanMenuCell: UIView {
     
     private func loadSubview(_ title: String, _ imageName: String) {
         cellImageView = UIImageView()
-        cellImageView.image = UIImage.init(named: imageName)
+        cellImageView.image = UIImage.init(lc_named: imageName)
         cellImageView.contentMode = .scaleAspectFit
         
         self.addSubview(cellImageView)

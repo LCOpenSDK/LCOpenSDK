@@ -15,46 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LCAddDeviceInterface : NSObject
 
 /**
- 获取OMS配置信息
- 
- @param deviceModel 设备市场型号
- @param success 成功回调
- @param failure 失败回调
-
- */
-+(void)getDeviceIntroductionForDeviceModel:(NSString *)deviceModel language:(NSString *)language success:(void (^)(LCOMSIntroductionInfo * introductions))success failure:(void (^)(LCError *error))failure;
-
-/**
- 获取iot设备配置信息
- 
- @param productID iot设备产品ID
- @param communicate 配网方式（4G，lan等）
- @param language 语言类型
- @param success 成功回调
- @param failure 失败回调
-
- */
-+(void)getIotDeviceIntroductionForProductID:(NSString *)productID communicate:(nullable NSString *)communicate language:(NSString *)language success:(void (^)(NSArray * guideInfos))success failure:(void (^)(LCError *error))failure;
-
-/**
-检查更新OMS配置信息
-
-@param updateTime 更新时间
-@param success 成功回调
-@param failure 失败回调
-
-*/
-+ (void)checkDeviceIntroductionWithUpdateTime:(NSString *)updateTime success:(void (^)(BOOL isUpdated))success
-                                      failure:(void (^)(LCError *error))failure;
-
-/**
- 获取全部产品信息
- @param success 成功回调
- @param failure 失败回调
- */
-+(void)queryAllProductWithDeviceType:(nullable NSString *)deviceModel Success:(void (^)(NSDictionary *productList))success failure:(void (^)(LCError *error))failure;
-
-/**
  查询设备绑定情况
 
  @param deviceId 需要查询的设备ID

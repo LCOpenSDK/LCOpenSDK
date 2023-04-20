@@ -35,7 +35,7 @@ class LCLightDetailViewController: LCAddBaseViewController, LCCommonErrorViewDel
     }
 	
 	private func setupErrorView() {
-		errorView = LCCommonErrorView.xibInstance()
+		errorView = LCCommonErrorView.init()
 		errorView.delegate = self
 		view.addSubview(errorView)
 		
@@ -45,7 +45,7 @@ class LCLightDetailViewController: LCAddBaseViewController, LCCommonErrorViewDel
 	}
 	
 	private func setupCustomContents() {
-		errorView.confrimButton.setTitle("add_devices_smartconfig_restart".lc_T, for: .normal)
+		errorView.tryAgainButton.setTitle("add_devices_smartconfig_restart".lc_T(), for: .normal)
 		setupWithOperationType()
 		setupWithFailureType()
 	}
@@ -56,18 +56,18 @@ class LCLightDetailViewController: LCAddBaseViewController, LCCommonErrorViewDel
 			return //避免作为子Controller引起未赋值问题
 		}
 		
-		var text = "add_device_red_light_rotate".lc_T
+		var text = "add_device_red_light_rotate".lc_T()
 		if operationType == .readLightRotateDetail {
-			text = "add_device_red_light_rotate".lc_T
+			text = "add_device_red_light_rotate".lc_T()
 		} else if operationType == .redLightTwinkleDetail {
-			text = "add_device_red_light_rotate".lc_T
+			text = "add_device_red_light_rotate".lc_T()
 		} else if operationType == .redLightConstantDetail {
-			text = "add_device_red_light_always".lc_T
+			text = "add_device_red_light_always".lc_T()
 		} else {
-			text = "add_device_red_light_always".lc_T
+			text = "add_device_red_light_always".lc_T()
 		}
 		
-		errorView.contentLabel.lc_setAttributedText(text: text, font: UIFont.lcFont_t2())
+		errorView.titleLabel.lc_setAttributedText(text: text, font: UIFont.lcFont_t2())
 	}
 	
 	/// 根据设备类型，设置详细说明和图片
@@ -78,26 +78,26 @@ class LCLightDetailViewController: LCAddBaseViewController, LCCommonErrorViewDel
 		
 		//默认显示的文案、图片
 		var imagename = "adddevice_netsetting_power"
-		var deatilText = "add_device_disconnect_power_and_restart".lc_T
+		var deatilText = "add_device_disconnect_power_and_restart".lc_T()
 	
 		//目前只有G1类型特殊
 		if failureType == .g1 {
 			imagename = "adddevice_failhrlp_g1"
-			deatilText = "add_device_g1_reset_tip".lc_T
+			deatilText = "add_device_g1_reset_tip".lc_T()
 		} else {
 			errorView.updateTopImageViewConstraint(top: 0, width: 375, height: 300)
 		}
 		
-		errorView.imageView.image = UIImage(named: imagename)
-		errorView.detailLabel.lc_setAttributedText(text: deatilText, font: UIFont.lcFont_t3())
+		errorView.imageView.image = UIImage(lc_named: imagename)
 	}
 	
 	// MARK: - LCAddBaseVCProtocol
 	override func rightActionType() -> [LCAddBaseRightAction] {
 		var actions: [LCAddBaseRightAction] = [.restart]
-		if LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) {
-			actions.append(.switchToWired)
-		}
+        // TODO: 切换配网方式需要修改
+//		if LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) {
+//			actions.append(.switchToWired)
+//		}
 		
 		return actions
 	}
@@ -105,19 +105,16 @@ class LCLightDetailViewController: LCAddBaseViewController, LCCommonErrorViewDel
 
 extension LCLightDetailViewController {
 	// MARK: - LCCommonErrorViewDelegate
-	func errorViewOnConfirm(errorView: LCCommonErrorView) {
+	func errorViewOnTryAgain(errorView: LCCommonErrorView) {
 		baseBackToAddDeviceRoot()
 	}
 	
-	func errorViewOnFAQ(errorView: LCCommonErrorView) {
-		basePushToFAQ()
-	}
 	
 	func errorViewOnQuit(errorView: LCCommonErrorView) {
 		baseExitAddDevice()
 	}
     
-    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
-        baseBackToAddDeviceRoot()
-    }
+//    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
+//        baseBackToAddDeviceRoot()
+//    }
 }

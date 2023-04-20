@@ -13,6 +13,5 @@
 #import <LCBaseModule/NSDate+Add.h>
 #import <LCBaseModule/LCStore.h>
 #import <LCBaseModule/NSString+AbilityAnalysis.h>
-#import <LCBaseModule/NSString+ScanResultAnalysis.h>
 
 #endif /* LCToolKit_h */

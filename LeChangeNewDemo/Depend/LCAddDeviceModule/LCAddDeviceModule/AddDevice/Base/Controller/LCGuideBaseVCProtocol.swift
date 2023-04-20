@@ -27,9 +27,6 @@ protocol LCGuideBaseVCProtocol: NSObjectProtocol {
 	
 	func isDetailHidden() -> Bool
 	
-	// MARK: 设置复选框按钮文字、隐藏/显示
-	func checkText() -> String?
-	
 	func isCheckHidden() -> Bool
 	
 	// MARK: 设置下一步按钮文字、隐藏/显示

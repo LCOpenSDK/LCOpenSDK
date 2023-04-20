@@ -56,6 +56,8 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, copy, nullable) NSString  *psk;
 //播放token
 @property (nonatomic, copy, nullable) NSString  *playToken;
+//TLS
+@property (nonatomic, assign) BOOL useTLS;
 
 @end
 
@@ -75,6 +77,9 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 
 /// 录像播放
 @interface LCOpenSDK_ParamRecord : LCOpenSDK_Param
+
+// 是否开启音频 默认开启
+@property (nonatomic, assign) BOOL        isOpenAudio;
 
 /**
  @abstract Initializes a new instance.
@@ -186,6 +191,15 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, copy)NSString *did;
 
 @property (nonatomic, copy)NSString *playToken;
+
+@end
+
+@interface LCOpenSDK_PTZControllerInfo : NSObject
+/// Direction of head rotation zh:云台转动方向
+@property (nonatomic, copy)NSString *operation;
+/// The head movement duration (ms) must be greater than 0. The device will rotate according to the set duration. If the duration is too long, the device will rotate once and reach the boundary
+/// zh:云台移动时长（ms)，时长必须大于0，设备会根据设置时长进行转动，时长过大会导致设备旋转一周到达边界
+@property (nonatomic,assign)int duration;
 
 @end
 

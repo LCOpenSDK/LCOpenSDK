@@ -333,13 +333,16 @@
         }
     } else {
         //本地录像正序
+        NSMutableSet *idSet = [NSMutableSet set];
         for (int a = 0; a < 24; a++) {
             NSMutableArray *tempAry = [NSMutableArray array];
             for (int b = 0; b < sortedArray.count; b++) {
                 id temp = sortedArray[b];
                 NSDate *beginTime = [temp valueForKey:@"beginDate"];
-                if (beginTime.hour == a) {
+                NSString *streamType = [temp valueForKey:@"streamType"];
+                if (beginTime.hour == a && ![streamType isEqualToString:@"extra1"]  && ![idSet containsObject:[temp valueForKey:@"recordId"]]) {
                     [tempAry addObject:temp];
+                    [idSet addObject:[temp valueForKey:@"recordId"]];
                 }
             }
             if (tempAry.count != 0) {

@@ -20,6 +20,7 @@
     [super awakeFromNib];
     // Initialization code
     self.moreTitleLab.text = @"play_history_show_more".lcMedia_T;
+    self.moreImageview.image = [UIImage imageNamed:@"more"];
 }
 
 -(void)setDetail:(NSString *)detail{
@@ -42,8 +43,8 @@
     }
 }
 
--(void)loadVideotapImage:(NSString *)url DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key{
-    [self.videoImageView lcMedia_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"common_defaultcover_big"] DeviceId:deviceId ProductId:productId Key:key];
+-(void)loadVideotapImage:(NSString *)url deviceId:(NSString *)deviceId productId:(NSString *)productId playtoken:(NSString *)playtoken key:(NSString *)key {
+    [self.videoImageView lcMedia_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"common_defaultcover_big"] deviceId:deviceId productId:productId playtoken:playtoken key:key];
 }
 
 @end

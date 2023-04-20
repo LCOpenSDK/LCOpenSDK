@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LCNetSDKSearchManager.h"
+#import "LCDeviceNetInfo.h"
 
 typedef void(^InitialSuccessHandle)(void);
 typedef void(^InitialFailHandle)(void);
@@ -26,7 +27,7 @@ typedef void(^InitialFailHandle)(void);
  */
 - (void)initialDeviceWithPassWord:(NSString *)pwdString
 						 isSoftAp:(BOOL)isSoftAp
-				  withInitialType:(LCDeviceInitType)initialType
+                    deviceNetInfo:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo
 				 withSuccessBlock:(InitialSuccessHandle)success
 				 withFailureBlock:(InitialFailHandle)fail;
 

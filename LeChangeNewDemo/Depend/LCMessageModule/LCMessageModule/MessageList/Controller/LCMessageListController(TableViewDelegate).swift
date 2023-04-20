@@ -17,7 +17,7 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LCMessageListCell.cellID(), for: indexPath) as! LCMessageListCell
         if indexPath.row < self.presenter.showMessageInfos.count {
             let messageInfo = self.presenter.showMessageInfos[indexPath.row]
-            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId)
+            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId, playtoken: presenter.deviceInfo.playToken)
             cell.updateData(messageItem)
         }
         return cell
@@ -35,7 +35,7 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
         guard let picUrl = messageInfo.picurlArray.first else {
             return
         }
-        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: presenter.deviceInfo.deviceId, containView: self.view)
+        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: presenter.deviceInfo.deviceId, playtoken:presenter.deviceInfo.playToken, containView: self.view)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -47,7 +47,7 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "mobile_common_delete".lc_T
+        return ""
     }
     
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {

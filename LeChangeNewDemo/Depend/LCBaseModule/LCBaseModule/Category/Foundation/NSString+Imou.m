@@ -60,14 +60,13 @@
 - (BOOL)isSupportCurrentLanguage {
 	NSString *currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
 	
-	NSArray *supportLanguages = @[@"en", @"zh-Hans", @"zh-Hant", @"ko", @"es", @"vi", @"pt", @"nl", @"cs", @"bg", @"de", @"ru", @"it", @"sr", @"da", @"nb", @"sv", @"fi", @"tr", @"pl", @"hu", @"fr", @"no", @"ja", @"tw", @"sk", @"th", @"ro", @"ar", @"uk"];
+	NSArray *supportLanguages = @[@"en", @"zh-Hans", @"zh-Hant"];
 	
 	for (NSString *supportLanguage in supportLanguages) {
 		if ([currentLanguage hasPrefix:supportLanguage]) {
 			return true;
 		}
 	}
-	
 	return false;
 }
 
@@ -92,16 +91,16 @@
 + (BOOL)lc_pwdVerifiers:(NSString *)password {
     int numOfType = [self passwordStrength:password];
     if (numOfType < 2) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     //判断密码是否合法
     if ([self checkInvalidPassword:password]) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];
         return false;
     }
     if ([self checkSameCharacter:password]) {
-        [LCProgressHUD showMsg:@"add_device_password_too_simple".lc_T];\
+        [LCProgressHUD showMsg:@"device_password_too_simple".lc_T];\
         return false;
     }
     return true;

@@ -14,11 +14,14 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - GTMBase64 (1.0.1)
   - KVOController (1.2.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
+  - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
   - ObjectMapper (3.5.3)
+  - SAMKeychain (1.5.3)
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
@@ -29,11 +32,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - GTMBase64 (~> 1.0.1)
   - KVOController (~> 1.2.0)
   - Masonry
   - MBProgressHUD (= 1.0.0)
+  - MJExtension
   - MJRefresh (~> 3.7.5)
   - ObjectMapper (~> 3.5.3)
+  - SAMKeychain (~> 1.5.3)
   - SDWebImage (~> 5.0.3)
   - SnapKit
   - ZXingObjC (~> 3.2.1)
@@ -41,26 +47,32 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - GTMBase64
     - KVOController
     - Masonry
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - ObjectMapper
+    - SAMKeychain
     - SDWebImage
     - SnapKit
     - ZXingObjC
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  GTMBase64: f0f91be06a7a20b84c8e4fee30c0430395091d82
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
-PODFILE CHECKSUM: 490c5bb0f12dac26cb3f1004eb80827207d60016
+PODFILE CHECKSUM: 70bcc262836ee8cf3b70fc1972df043e9d5078cf
 
 COCOAPODS: 1.11.3

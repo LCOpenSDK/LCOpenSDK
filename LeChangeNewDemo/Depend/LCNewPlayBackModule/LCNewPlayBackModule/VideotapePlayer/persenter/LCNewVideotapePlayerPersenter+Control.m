@@ -24,7 +24,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
 - (void)onFullScreen:(LCButton *)btn {
     self.videoManager.isFullScreen = !self.videoManager.isFullScreen;
     self.videoManager.isLockFullScreen = NO;
-    [UIDevice lc_setRotateToSatusBarOrientation:self.container];
+    [UIDevice lc_setRotateToSatusBarOrientation:self.container.navigationController];
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -32,13 +32,13 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         return;
     }
     if (self.videoManager.isSoundOn) {
+        self.videoManager.isSoundOn = NO;
         //关闭声音
         [self.playWindow stopAudio];
-        self.videoManager.isSoundOn = NO;
     } else {
+        self.videoManager.isSoundOn = YES;
         //开启声音
         [self.playWindow playAudio];
-        self.videoManager.isSoundOn = YES;
     }
 }
 
@@ -79,6 +79,14 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         self.videoManager.playSpeed ++;
         self.videoManager.isSoundOn = NO;
     }
+    
+    if (self.videoManager.isSoundOn) {
+        //开启声音
+        [self.playWindow playAudio];
+    } else {
+        //关闭声音
+        [self.playWindow stopAudio];
+    }
 }
 
 //停止播放
@@ -86,7 +94,6 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     [self.playWindow stopRecordStream:isKeepLastFrame];
     self.videoManager.isPlay = NO;
     self.videoManager.pausePlay = NO;
-    self.videoManager.isSoundOn = YES;
     if (clearOffset) {
         self.videoManager.currentPlayOffest = self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.beginDate : self.videoManager.localVideotapeInfo.beginDate;
     }
@@ -112,13 +119,14 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.offsetTime = offsetTime;
         param.recordType = self.videoManager.cloudVideotapeInfo.type;
         param.timeOut = 86400;
-        
+        param.useTLS = self.videoManager.currentDevice.tlsEnable;
         param.accessToken = LCApplicationDataManager.token;
         param.deviceID = self.videoManager.currentDevice.deviceId;
         param.channel = [self.videoManager.currentChannelInfo.channelId integerValue];
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
         param.productId = self.videoManager.currentDevice.productId;
+        param.isOpenAudio = self.videoManager.isSoundOn;
         NSInteger result = [self.playWindow playRecordStream:param];
 
         if (result != 0) {
@@ -130,7 +138,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.fileName = self.videoManager.localVideotapeInfo.recordId;
         param.offsetTime = offsetTime;
         param.isOpt = YES;
-        
+        param.useTLS = self.videoManager.currentDevice.tlsEnable;
         param.accessToken = LCApplicationDataManager.token;
         param.deviceID = self.videoManager.currentDevice.deviceId;
         param.productId = self.videoManager.currentDevice.productId;
@@ -138,7 +146,7 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
         param.psk = self.videoManager.currentPsk;
         param.playToken = self.videoManager.currentDevice.playToken;
         param.productId = self.videoManager.currentDevice.productId;
-        
+        param.isOpenAudio = self.videoManager.isSoundOn;
         NSInteger result = [self.playWindow playRecordStream:param];
 
         if (result != 0) {
@@ -156,7 +164,6 @@ static const void *kLCLivePreviewPresenterSavePath = @"LCLivePreviewPresenterSav
     }
     self.videoManager.isPlay = NO;
     self.videoManager.pausePlay = YES;
-    self.videoManager.isSoundOn = YES;
 }
 
 //恢复暂停播放

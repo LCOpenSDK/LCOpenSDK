@@ -4,7 +4,6 @@
 
 #import <UIKit/UIKit.h>
 #import <LCBaseModule/UIViewController+LCNavigationBar.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LCBasicViewController : UIViewController
@@ -14,10 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 //进入后台
 - (void)onResignActive:(id)sender;
-
-- (void)viewTap:(UITapGestureRecognizer *)tap;
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
 @end
 

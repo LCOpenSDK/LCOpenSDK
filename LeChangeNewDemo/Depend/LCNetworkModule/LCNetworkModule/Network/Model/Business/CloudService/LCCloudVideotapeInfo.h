@@ -23,6 +23,8 @@ typedef enum : NSUInteger {
 @property (strong,nonatomic) NSString * endTime;
 ///类型
 @property (strong,nonatomic) NSString * type;
+///流类型
+@property (strong,nonatomic) NSString * streamType;
 
 
 ///开始时间(仅用于排序，非网络获取)
@@ -58,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSString * deviceId;
 ///iot设备产品ID
 @property (strong,nonatomic) NSString * _Nullable productId;
+
+@property (strong,nonatomic) NSString * playtoken;
 ///通道号
 @property (strong,nonatomic) NSString * channelId;
 ///开始时间

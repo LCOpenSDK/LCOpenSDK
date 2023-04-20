@@ -8,38 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		0302988328F90E7C0038E6FE /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302988128F90E7C0038E6FE /* UINavigationController+Push.m */; };
+		0311271129E39EB900B333C6 /* LCAddDeviceModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0419D49D2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle */; };
 		032664B82903E29C0082EAC9 /* LCDeviceDetailModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */; };
 		0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */; };
 		03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */; };
 		03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */; };
-		036ABF04296BC6F500E2700A /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036ABF02296BC6EB00E2700A /* LCOpenSDKDynamic.framework */; };
-		036ABF05296BC6F500E2700A /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 036ABF02296BC6EB00E2700A /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		037976D128FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */; };
 		037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */; };
+		037ABAE22996373A003EF295 /* Video.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037ABAE12996373A003EF295 /* Video.xcassets */; };
 		03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE03A28F5618B00BCE307 /* LCDeviceDetailModule.framework */; };
-		0401AF47250A104200F8E1D6 /* AddDevice.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */; };
+		03C2EB0429ECE3D500DF84B0 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B8BB6F29E3E9C00085DE5D /* LCOpenSDKDynamic.framework */; };
+		03C2EB0529ECE3D500DF84B0 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03B8BB6F29E3E9C00085DE5D /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0401AF5B250A3D1000F8E1D6 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */; };
 		04092ACA28F42061006D861D /* LCMessageModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04092AC928F42061006D861D /* LCMessageModule.xcassets */; };
 		04092B0928F53E29006D861D /* LCMessageModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040929A128F3FFBA006D861D /* LCMessageModule.framework */; };
 		0419D4842508CA2000CE4528 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D4812508C9EB00CE4528 /* LCNetworkModule.framework */; };
-		0419D49E2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0419D49D2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle */; };
 		0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D49F2509D3BA00CE4528 /* LCAddDeviceModule.framework */; };
 		04424F9924EE5A3600BFCA2B /* LCModuleConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04424F9824EE5A3600BFCA2B /* LCModuleConfig.plist */; };
-		0469A4B924E277D400B3EBA5 /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0469A4B824E277D400B3EBA5 /* MJExtension.framework */; };
-		0469A4BB24E277DD00B3EBA5 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0469A4BA24E277DD00B3EBA5 /* Masonry.framework */; };
-		0469A4BD24E277ED00B3EBA5 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0469A4BC24E277EC00B3EBA5 /* SAMKeychain.framework */; };
-		0469A4C824E2796F00B3EBA5 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0469A4C724E2796E00B3EBA5 /* FMDB.framework */; };
-		0469A50924E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0469A50824E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework */; };
 		04871B1528F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04871B1428F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle */; };
 		04871BA728F27640009E0540 /* LCNewPlayBackModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871B5328F262BF009E0540 /* LCNewPlayBackModule.framework */; };
 		049EC47424F3D6D9008625A1 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049EC47324F3D6D9008625A1 /* NetworkExtension.framework */; };
 		04ADF5ED250F4251004028B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADF5EC250F4251004028B1 /* libc++.tbd */; };
 		04C4B72C28F11C5E00344C5C /* LCMediaBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04257C9F28E2C9F50062C0F1 /* LCMediaBaseModule.framework */; };
-		04C4B73E28F1230A00344C5C /* LCVideotapePlayProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B73C28F1230A00344C5C /* LCVideotapePlayProcessView.m */; };
 		04C4B75C28F1635300344C5C /* LCNewLivePreviewModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04257C2428E2A56A0062C0F1 /* LCNewLivePreviewModule.framework */; };
 		10040A5C2398FC5500F8BF9A /* LCLanguage.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10040A5E2398FC5500F8BF9A /* LCLanguage.strings */; };
 		101311CB2398F6EE000E1FB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 101311CA2398F6EE000E1FB7 /* AppDelegate.m */; };
-		101311D12398F6EE000E1FB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101311D02398F6EE000E1FB7 /* ViewController.m */; };
 		101311D42398F6EE000E1FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 101311D22398F6EE000E1FB7 /* Main.storyboard */; };
 		101311D62398F6F0000E1FB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101311D52398F6F0000E1FB7 /* Assets.xcassets */; };
 		101311D92398F6F0000E1FB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 101311D72398F6F0000E1FB7 /* LaunchScreen.storyboard */; };
@@ -50,16 +43,10 @@
 		102257A923BAE0CD00AF451B /* LCDeviceListChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102257A823BAE0CD00AF451B /* LCDeviceListChannelCell.m */; };
 		102257AF23BB38DF00AF451B /* LCRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 102257AB23BB38DB00AF451B /* LCRefreshHeader.m */; };
 		102257B023BB38DF00AF451B /* LCRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 102257AD23BB38DD00AF451B /* LCRefreshFooter.m */; };
-		1025A5EC23A72D6C00249C2F /* LCPTZControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1025A5EB23A72D6C00249C2F /* LCPTZControlView.m */; };
-		1025A60123A782FC00249C2F /* LCDeviceVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1025A60023A782FC00249C2F /* LCDeviceVideoManager.m */; };
 		10337AB5240DEE38001EE960 /* LCNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 10337AB4240DEE38001EE960 /* LCNetTool.m */; };
-		1036CE9923BDE77E002BBA7A /* LCPTZPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036CE9723BDE77C002BBA7A /* LCPTZPanel.m */; };
-		1036CE9C23BDE837002BBA7A /* Video.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1036CE9B23BDE836002BBA7A /* Video.xcassets */; };
-		1036CE9F23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036CE9E23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.m */; };
 		10520D1E23A32D1000B4564A /* LCAccountJointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520D1D23A32D1000B4564A /* LCAccountJointViewController.m */; };
 		10520D2123A32D5600B4564A /* LCAccountPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520D2023A32D5600B4564A /* LCAccountPresenter.m */; };
 		10520D2B23A3540700B4564A /* LCInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520D2A23A3540700B4564A /* LCInputTextField.m */; };
-		10520D3723A3652100B4564A /* LCLivePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520D3623A3652100B4564A /* LCLivePreviewViewController.m */; };
 		10520D3C23A366C700B4564A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D3B23A366C700B4564A /* CoreAudio.framework */; };
 		10520D3E23A366CE00B4564A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D3D23A366CE00B4564A /* MediaPlayer.framework */; };
 		10520D4023A366D700B4564A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D3F23A366D700B4564A /* AudioToolbox.framework */; };
@@ -70,40 +57,14 @@
 		10520D4A23A3670400B4564A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D4923A3670400B4564A /* AVFoundation.framework */; };
 		10520D4C23A3670C00B4564A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D4B23A3670C00B4564A /* CoreMedia.framework */; };
 		10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10520D4D23A3671B00B4564A /* libz.tbd */; };
-		10520DB823A37C4400B4564A /* LCVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520DB723A37C4400B4564A /* LCVideoControlView.m */; };
-		10520DBC23A38BFC00B4564A /* LCLivePreviewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 10520DBB23A38BFC00B4564A /* LCLivePreviewPresenter.m */; };
 		1069F7C4240F38BC00BD2383 /* InvalidPasswordList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1069F7C3240F38BC00BD2383 /* InvalidPasswordList.plist */; };
 		10912CA223B33DF90058403C /* account.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10912CA123B33DF90058403C /* account.xcassets */; };
-		10984DFC23CD9735001F0E39 /* LCVideotapeHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10984DFA23CD9735001F0E39 /* LCVideotapeHistoryCell.m */; };
-		10984DFD23CD9735001F0E39 /* LCVideotapeHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10984DFB23CD9735001F0E39 /* LCVideotapeHistoryCell.xib */; };
-		10A4BD6723D00549008A9397 /* LCVideotapeListHeardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A4BD6623D00549008A9397 /* LCVideotapeListHeardView.m */; };
-		10A4CB1223C453CC00B799BC /* UIImageView+LCPicDecrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A4CB1123C453CC00B799BC /* UIImageView+LCPicDecrypt.m */; };
 		10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BFCE4A23CC0DCE00B49003 /* QuartzCore.framework */; };
-		10C3DB4D23CDBCC800987DC1 /* LCVideoHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C3DB4C23CDBCC800987DC1 /* LCVideoHistoryView.m */; };
-		10C3DB5223CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C3DB5123CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.m */; };
 		10D29E332407FF17008891CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D29E322407FF17008891CC /* CoreLocation.framework */; };
-		10D531F723BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D531F623BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.m */; };
-		10D5320423C2BCF5003BA38B /* LCVideotapeListDateControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D5320323C2BCF5003BA38B /* LCVideotapeListDateControl.m */; };
-		10E08D3023C71A4A00A06DAA /* LCVideotapeDownloadStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E08D2F23C71A4A00A06DAA /* LCVideotapeDownloadStatusView.m */; };
-		10E60DE223C491300036D23D /* LCVideotapePlayerPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DE123C491300036D23D /* LCVideotapePlayerPersenter.m */; };
-		10E60DE923C491F20036D23D /* LCVideotapePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DE823C491F20036D23D /* LCVideotapePlayerViewController.m */; };
-		10E60DF023C496CE0036D23D /* LCVideotapePlayerPersenter+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DEF23C496CE0036D23D /* LCVideotapePlayerPersenter+Control.m */; };
-		10E60DF323C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DF223C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.m */; };
-		10E60DF623C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DF523C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.m */; };
-		10E60DF923C4A11D0036D23D /* LCDeviceVideotapePlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E60DF823C4A11D0036D23D /* LCDeviceVideotapePlayManager.m */; };
 		3F1F6473290FC2F900FF03FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F6475290FC2F900FF03FF /* InfoPlist.strings */; };
 		4EF54C2B2536F9CE002F960D /* LCBaseModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EF54C2A2536F9CE002F960D /* LCBaseModuleBundle.bundle */; };
-		8679C86E26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679C86D26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.m */; };
 		AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5737C04E6B040B6DEF489321 /* Pods_LeChangeDemo.framework */; };
-		B400736623C0DAC600922BC8 /* LCVideotapeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B400736423C0DAC600922BC8 /* LCVideotapeListCell.m */; };
-		B400736723C0DAC600922BC8 /* LCVideotapeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B400736523C0DAC600922BC8 /* LCVideotapeListCell.xib */; };
-		B402E9C223FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = B402E9C123FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.m */; };
 		B4369AE323FCC59B00B98CBD /* UIImageView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = B4369AE223FCC59B00B98CBD /* UIImageView+Circle.m */; };
-		B439BF4623FE1D1F008D8320 /* LCDatePick.m in Sources */ = {isa = PBXBuildFile; fileRef = B439BF4523FE1D1F008D8320 /* LCDatePick.m */; };
-		B4A29EC623BF809B00248A28 /* LCLandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A29EC523BF809B00248A28 /* LCLandscapeControlView.m */; };
-		B4A29ECD23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A29ECC23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.m */; };
-		B4A29ED423C0C67600248A28 /* LCVideotapeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A29ED323C0C67600248A28 /* LCVideotapeListViewController.m */; };
-		B4A29ED923C0C6BF00248A28 /* LCVideotapePersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A29ED823C0C6BF00248A28 /* LCVideotapePersenter.m */; };
 		B4DE85D023F913B1006C314A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DE85CF23F913B1006C314A /* SystemConfiguration.framework */; };
 		B4DE85D323F913DF006C314A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DE85D223F913DF006C314A /* ExternalAccessory.framework */; };
 		C95EBCEA269BD44800E5326E /* LCSubAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95EBCE9269BD44800E5326E /* LCSubAccountViewController.m */; };
@@ -218,13 +179,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		03804B242966696D0099CF33 /* Embed Frameworks */ = {
+		03C2EAE729E6397A00DF84B0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				036ABF05296BC6F500E2700A /* LCOpenSDKDynamic.framework in Embed Frameworks */,
+				03C2EB0529ECE3D500DF84B0 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,16 +197,17 @@
 		0302988128F90E7C0038E6FE /* UINavigationController+Push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Push.m"; sourceTree = "<group>"; };
 		0302988228F90E7C0038E6FE /* UINavigationController+Push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Push.h"; sourceTree = "<group>"; };
 		032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCDeviceDetailModuleBundle.bundle; path = Depend/Frameworks/iOS/LCDeviceDetailModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
+		0339E17729A5E30800056106 /* LCOpenApiErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCOpenApiErrorCode.h; sourceTree = "<group>"; };
 		0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DeviceDetail.xcassets; sourceTree = "<group>"; };
 		03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListViewController.swift; sourceTree = "<group>"; };
 		03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListPresenter.swift; sourceTree = "<group>"; };
 		0368EDEF28463E0000DDB53A /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		0368EDF928463E1C00DDB53A /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		036ABF02296BC6EB00E2700A /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCNewPlayBackModuleBundle.bundle; path = Depend/Frameworks/iOS/LCNewPlayBackModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCMessageModuleBundle.bundle; path = Depend/Frameworks/iOS/LCMessageModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
+		037ABAE12996373A003EF295 /* Video.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Video.xcassets; sourceTree = "<group>"; };
 		03ABE03528F5618B00BCE307 /* LCDeviceDetailModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCDeviceDetailModule.xcodeproj; path = Depend/LCDeviceDetailModule/LCDeviceDetailModule.xcodeproj; sourceTree = "<group>"; };
-		0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AddDevice.xcassets; sourceTree = "<group>"; };
+		03B8BB6F29E3E9C00085DE5D /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = Depend/Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
 		0409299728F3FFB9006D861D /* LCMessageModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCMessageModule.xcodeproj; path = Depend/LCMessageModule/LCMessageModule.xcodeproj; sourceTree = "<group>"; };
 		04092AC928F42061006D861D /* LCMessageModule.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LCMessageModule.xcassets; sourceTree = "<group>"; };
@@ -258,17 +220,10 @@
 		04257C1F28E2A56A0062C0F1 /* LCNewLivePreviewModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCNewLivePreviewModule.xcodeproj; path = Depend/LCNewLivePreviewModule/LCNewLivePreviewModule.xcodeproj; sourceTree = "<group>"; };
 		04257C9A28E2C9F50062C0F1 /* LCMediaBaseModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCMediaBaseModule.xcodeproj; path = Depend/LCMediaBaseModule/LCMediaBaseModule.xcodeproj; sourceTree = "<group>"; };
 		04424F9824EE5A3600BFCA2B /* LCModuleConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LCModuleConfig.plist; sourceTree = "<group>"; };
-		0469A4B824E277D400B3EBA5 /* MJExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJExtension.framework; path = Depend/Frameworks/iOS/MJExtension.framework; sourceTree = "<group>"; };
-		0469A4BA24E277DD00B3EBA5 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Depend/Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
-		0469A4BC24E277EC00B3EBA5 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Depend/Frameworks/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
-		0469A4C724E2796E00B3EBA5 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Depend/Frameworks/iOS/FMDB.framework; sourceTree = "<group>"; };
-		0469A50824E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebViewJavascriptBridge.framework; path = Depend/Frameworks/iOS/WebViewJavascriptBridge.framework; sourceTree = "<group>"; };
 		04871B1428F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCNewLivePreviewModuleBundle.bundle; path = Depend/Frameworks/iOS/LCNewLivePreviewModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		04871B4528F262BF009E0540 /* LCNewPlayBackModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCNewPlayBackModule.xcodeproj; path = Depend/LCNewPlayBackModule/LCNewPlayBackModule.xcodeproj; sourceTree = "<group>"; };
 		049EC47324F3D6D9008625A1 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		04ADF5EC250F4251004028B1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		04C4B73C28F1230A00344C5C /* LCVideotapePlayProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCVideotapePlayProcessView.m; sourceTree = "<group>"; };
-		04C4B73D28F1230A00344C5C /* LCVideotapePlayProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCVideotapePlayProcessView.h; sourceTree = "<group>"; };
 		10040A5D2398FC5500F8BF9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LCLanguage.strings; sourceTree = "<group>"; };
 		10040A5F2398FC7000F8BF9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		10040A602398FC7000F8BF9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -278,8 +233,6 @@
 		101311C62398F6EE000E1FB7 /* LeChangeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeChangeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101311C92398F6EE000E1FB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Global/AppDelegate.h; sourceTree = "<group>"; };
 		101311CA2398F6EE000E1FB7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Global/AppDelegate.m; sourceTree = "<group>"; };
-		101311CF2398F6EE000E1FB7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		101311D02398F6EE000E1FB7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		101311D32398F6EE000E1FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		101311D52398F6F0000E1FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		101311D82398F6F0000E1FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -295,17 +248,8 @@
 		102257AC23BB38DC00AF451B /* LCRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCRefreshFooter.h; sourceTree = "<group>"; };
 		102257AD23BB38DD00AF451B /* LCRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCRefreshFooter.m; sourceTree = "<group>"; };
 		102257AE23BB38DF00AF451B /* LCRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCRefreshHeader.h; sourceTree = "<group>"; };
-		1025A5EA23A72D6C00249C2F /* LCPTZControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCPTZControlView.h; sourceTree = "<group>"; };
-		1025A5EB23A72D6C00249C2F /* LCPTZControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCPTZControlView.m; sourceTree = "<group>"; };
-		1025A5FF23A782FC00249C2F /* LCDeviceVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCDeviceVideoManager.h; sourceTree = "<group>"; };
-		1025A60023A782FC00249C2F /* LCDeviceVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCDeviceVideoManager.m; sourceTree = "<group>"; };
 		10337AB3240DEE38001EE960 /* LCNetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetTool.h; sourceTree = "<group>"; };
 		10337AB4240DEE38001EE960 /* LCNetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetTool.m; sourceTree = "<group>"; };
-		1036CE9723BDE77C002BBA7A /* LCPTZPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCPTZPanel.m; sourceTree = "<group>"; };
-		1036CE9823BDE77E002BBA7A /* LCPTZPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCPTZPanel.h; sourceTree = "<group>"; };
-		1036CE9B23BDE836002BBA7A /* Video.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Video.xcassets; sourceTree = "<group>"; };
-		1036CE9D23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCLivePreviewPresenter+Control.h"; sourceTree = "<group>"; };
-		1036CE9E23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCLivePreviewPresenter+Control.m"; sourceTree = "<group>"; };
 		103C4F54240A3307004C1A7A /* LeChangeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LeChangeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		10520D1C23A32D1000B4564A /* LCAccountJointViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAccountJointViewController.h; sourceTree = "<group>"; };
 		10520D1D23A32D1000B4564A /* LCAccountJointViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAccountJointViewController.m; sourceTree = "<group>"; };
@@ -313,8 +257,6 @@
 		10520D2023A32D5600B4564A /* LCAccountPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAccountPresenter.m; sourceTree = "<group>"; };
 		10520D2923A3540700B4564A /* LCInputTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCInputTextField.h; sourceTree = "<group>"; };
 		10520D2A23A3540700B4564A /* LCInputTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCInputTextField.m; sourceTree = "<group>"; };
-		10520D3523A3652100B4564A /* LCLivePreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCLivePreviewViewController.h; sourceTree = "<group>"; };
-		10520D3623A3652100B4564A /* LCLivePreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCLivePreviewViewController.m; sourceTree = "<group>"; };
 		10520D3B23A366C700B4564A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		10520D3D23A366CE00B4564A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		10520D3F23A366D700B4564A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -325,45 +267,11 @@
 		10520D4923A3670400B4564A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		10520D4B23A3670C00B4564A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		10520D4D23A3671B00B4564A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		10520DB623A37C4400B4564A /* LCVideoControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideoControlView.h; sourceTree = "<group>"; };
-		10520DB723A37C4400B4564A /* LCVideoControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideoControlView.m; sourceTree = "<group>"; };
-		10520DBA23A38BFC00B4564A /* LCLivePreviewPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCLivePreviewPresenter.h; sourceTree = "<group>"; };
-		10520DBB23A38BFC00B4564A /* LCLivePreviewPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCLivePreviewPresenter.m; sourceTree = "<group>"; };
 		1069F7C3240F38BC00BD2383 /* InvalidPasswordList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InvalidPasswordList.plist; sourceTree = "<group>"; };
 		10912C9B23B337EE0058403C /* LCUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCUIKit.h; sourceTree = "<group>"; };
 		10912CA123B33DF90058403C /* account.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = account.xcassets; sourceTree = "<group>"; };
-		10912CBD23B44B600058403C /* UIDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDefine.h; sourceTree = "<group>"; };
-		10984DF923CD9735001F0E39 /* LCVideotapeHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeHistoryCell.h; sourceTree = "<group>"; };
-		10984DFA23CD9735001F0E39 /* LCVideotapeHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeHistoryCell.m; sourceTree = "<group>"; };
-		10984DFB23CD9735001F0E39 /* LCVideotapeHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCVideotapeHistoryCell.xib; sourceTree = "<group>"; };
-		10A4BD6523D00549008A9397 /* LCVideotapeListHeardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeListHeardView.h; sourceTree = "<group>"; };
-		10A4BD6623D00549008A9397 /* LCVideotapeListHeardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeListHeardView.m; sourceTree = "<group>"; };
-		10A4CB1023C453CC00B799BC /* UIImageView+LCPicDecrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LCPicDecrypt.h"; sourceTree = "<group>"; };
-		10A4CB1123C453CC00B799BC /* UIImageView+LCPicDecrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LCPicDecrypt.m"; sourceTree = "<group>"; };
 		10BFCE4A23CC0DCE00B49003 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		10C3DB4B23CDBCC800987DC1 /* LCVideoHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideoHistoryView.h; sourceTree = "<group>"; };
-		10C3DB4C23CDBCC800987DC1 /* LCVideoHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideoHistoryView.m; sourceTree = "<group>"; };
-		10C3DB5023CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCLivePreviewPresenter+VideotapeList.h"; sourceTree = "<group>"; };
-		10C3DB5123CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCLivePreviewPresenter+VideotapeList.m"; sourceTree = "<group>"; };
 		10D29E322407FF17008891CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		10D531F523BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCLivePreviewPresenter+SDKListener.h"; sourceTree = "<group>"; };
-		10D531F623BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCLivePreviewPresenter+SDKListener.m"; sourceTree = "<group>"; };
-		10D5320223C2BCF5003BA38B /* LCVideotapeListDateControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeListDateControl.h; sourceTree = "<group>"; };
-		10D5320323C2BCF5003BA38B /* LCVideotapeListDateControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeListDateControl.m; sourceTree = "<group>"; };
-		10E08D2E23C71A4A00A06DAA /* LCVideotapeDownloadStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeDownloadStatusView.h; sourceTree = "<group>"; };
-		10E08D2F23C71A4A00A06DAA /* LCVideotapeDownloadStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeDownloadStatusView.m; sourceTree = "<group>"; };
-		10E60DE023C491300036D23D /* LCVideotapePlayerPersenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapePlayerPersenter.h; sourceTree = "<group>"; };
-		10E60DE123C491300036D23D /* LCVideotapePlayerPersenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapePlayerPersenter.m; sourceTree = "<group>"; };
-		10E60DE723C491F20036D23D /* LCVideotapePlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapePlayerViewController.h; sourceTree = "<group>"; };
-		10E60DE823C491F20036D23D /* LCVideotapePlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapePlayerViewController.m; sourceTree = "<group>"; };
-		10E60DEE23C496CE0036D23D /* LCVideotapePlayerPersenter+Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCVideotapePlayerPersenter+Control.h"; sourceTree = "<group>"; };
-		10E60DEF23C496CE0036D23D /* LCVideotapePlayerPersenter+Control.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCVideotapePlayerPersenter+Control.m"; sourceTree = "<group>"; };
-		10E60DF123C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCVideotapePlayerPersenter+SDKListener.h"; sourceTree = "<group>"; };
-		10E60DF223C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCVideotapePlayerPersenter+SDKListener.m"; sourceTree = "<group>"; };
-		10E60DF423C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCVideotapePlayerPersenter+LandscapeControlView.h"; sourceTree = "<group>"; };
-		10E60DF523C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCVideotapePlayerPersenter+LandscapeControlView.m"; sourceTree = "<group>"; };
-		10E60DF723C4A11D0036D23D /* LCDeviceVideotapePlayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCDeviceVideotapePlayManager.h; sourceTree = "<group>"; };
-		10E60DF823C4A11D0036D23D /* LCDeviceVideotapePlayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCDeviceVideotapePlayManager.m; sourceTree = "<group>"; };
 		10F36D6123B5D2C40010D966 /* LCToolKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCToolKit.h; sourceTree = "<group>"; };
 		1317C10F9FF76B4FE615F1D9 /* libPods-LeChangeDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeChangeDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1F6474290FC2F900FF03FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -372,26 +280,9 @@
 		52DCC85086F0A581E0180B04 /* Pods-LeChangeDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeChangeDemoTests.release.xcconfig"; path = "Target Support Files/Pods-LeChangeDemoTests/Pods-LeChangeDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5737C04E6B040B6DEF489321 /* Pods_LeChangeDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeChangeDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80FB82E257A949D1701AA4DB /* libPods-LeChangeDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeChangeDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8679C86C26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCLandscapeControlView+Gesture.h"; sourceTree = "<group>"; };
-		8679C86D26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCLandscapeControlView+Gesture.m"; sourceTree = "<group>"; };
 		AAAA2DDC40A2E8149968A4CC /* Pods-LeChangeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeChangeDemo.release.xcconfig"; path = "Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo.release.xcconfig"; sourceTree = "<group>"; };
-		B400736323C0DAC600922BC8 /* LCVideotapeListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeListCell.h; sourceTree = "<group>"; };
-		B400736423C0DAC600922BC8 /* LCVideotapeListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeListCell.m; sourceTree = "<group>"; };
-		B400736523C0DAC600922BC8 /* LCVideotapeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCVideotapeListCell.xib; sourceTree = "<group>"; };
-		B402E9C023FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ChangeLineSpaceAndWordSpace.h"; sourceTree = "<group>"; };
-		B402E9C123FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ChangeLineSpaceAndWordSpace.m"; sourceTree = "<group>"; };
 		B4369AE123FCC59B00B98CBD /* UIImageView+Circle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Circle.h"; sourceTree = "<group>"; };
 		B4369AE223FCC59B00B98CBD /* UIImageView+Circle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Circle.m"; sourceTree = "<group>"; };
-		B439BF4423FE1D1F008D8320 /* LCDatePick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCDatePick.h; sourceTree = "<group>"; };
-		B439BF4523FE1D1F008D8320 /* LCDatePick.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCDatePick.m; sourceTree = "<group>"; };
-		B4A29EC423BF809B00248A28 /* LCLandscapeControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCLandscapeControlView.h; sourceTree = "<group>"; };
-		B4A29EC523BF809B00248A28 /* LCLandscapeControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCLandscapeControlView.m; sourceTree = "<group>"; };
-		B4A29ECB23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCLivePreviewPresenter+LandscapeControlView.h"; sourceTree = "<group>"; };
-		B4A29ECC23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LCLivePreviewPresenter+LandscapeControlView.m"; sourceTree = "<group>"; };
-		B4A29ED223C0C67600248A28 /* LCVideotapeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapeListViewController.h; sourceTree = "<group>"; };
-		B4A29ED323C0C67600248A28 /* LCVideotapeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapeListViewController.m; sourceTree = "<group>"; };
-		B4A29ED723C0C6BF00248A28 /* LCVideotapePersenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVideotapePersenter.h; sourceTree = "<group>"; };
-		B4A29ED823C0C6BF00248A28 /* LCVideotapePersenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVideotapePersenter.m; sourceTree = "<group>"; };
 		B4DE85CF23F913B1006C314A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B4DE85D123F913DF006C314A /* LeChangeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeChangeDemo.entitlements; sourceTree = "<group>"; };
 		B4DE85D223F913DF006C314A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -417,12 +308,6 @@
 				0419D4842508CA2000CE4528 /* LCNetworkModule.framework in Frameworks */,
 				049EC47424F3D6D9008625A1 /* NetworkExtension.framework in Frameworks */,
 				10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */,
-				0469A50924E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework in Frameworks */,
-				0469A4C824E2796F00B3EBA5 /* FMDB.framework in Frameworks */,
-				036ABF04296BC6F500E2700A /* LCOpenSDKDynamic.framework in Frameworks */,
-				0469A4BD24E277ED00B3EBA5 /* SAMKeychain.framework in Frameworks */,
-				0469A4BB24E277DD00B3EBA5 /* Masonry.framework in Frameworks */,
-				0469A4B924E277D400B3EBA5 /* MJExtension.framework in Frameworks */,
 				1018DC6524114BDC005C1B2B /* AddressBook.framework in Frameworks */,
 				10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */,
 				1018DC6324114BD3005C1B2B /* Contacts.framework in Frameworks */,
@@ -439,6 +324,7 @@
 				10520D3E23A366CE00B4564A /* MediaPlayer.framework in Frameworks */,
 				10520D3C23A366C700B4564A /* CoreAudio.framework in Frameworks */,
 				AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */,
+				03C2EB0429ECE3D500DF84B0 /* LCOpenSDKDynamic.framework in Frameworks */,
 				0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,7 +430,6 @@
 		10040A532398FA7D00F8BF9A /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				10040A722399091500F8BF9A /* UIDefine */,
 				10040A6B239901AA00F8BF9A /* PCH */,
 				10040A592398FBFE00F8BF9A /* LanguageConfig */,
 			);
@@ -565,14 +450,6 @@
 				10040A6C239901BD00F8BF9A /* LCPrefixHeader.pch */,
 			);
 			path = PCH;
-			sourceTree = "<group>";
-		};
-		10040A722399091500F8BF9A /* UIDefine */ = {
-			isa = PBXGroup;
-			children = (
-				10912CBD23B44B600058403C /* UIDefine.h */,
-			);
-			path = UIDefine;
 			sourceTree = "<group>";
 		};
 		101311BD2398F6EE000E1FB7 = {
@@ -612,11 +489,8 @@
 				10040A532398FA7D00F8BF9A /* Config */,
 				101311C92398F6EE000E1FB7 /* AppDelegate.h */,
 				101311CA2398F6EE000E1FB7 /* AppDelegate.m */,
-				101311CF2398F6EE000E1FB7 /* ViewController.h */,
-				101311D02398F6EE000E1FB7 /* ViewController.m */,
 				101311D22398F6EE000E1FB7 /* Main.storyboard */,
 				101311D52398F6F0000E1FB7 /* Assets.xcassets */,
-				0401AF40250A103C00F8E1D6 /* AddDevice.xcassets */,
 				0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */,
 				04092AC928F42061006D861D /* LCMessageModule.xcassets */,
 				101311D72398F6F0000E1FB7 /* LaunchScreen.storyboard */,
@@ -669,9 +543,10 @@
 		10520D0F23A32B9000B4564A /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				10520D3123A364B700B4564A /* DeviceView */,
+				037ABAE12996373A003EF295 /* Video.xcassets */,
 				10520D1023A32BB800B4564A /* Account */,
 				10040A522398FA5D00F8BF9A /* DeviceList */,
+				0339E17729A5E30800056106 /* LCOpenApiErrorCode.h */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -689,7 +564,6 @@
 		10520D1123A32BC800B4564A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				10520D2523A3365400B4564A /* Module */,
 				10520D1C23A32D1000B4564A /* LCAccountJointViewController.h */,
 				10520D1D23A32D1000B4564A /* LCAccountJointViewController.m */,
 				C95EBCE8269BD44800E5326E /* LCSubAccountViewController.h */,
@@ -707,76 +581,10 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		10520D2523A3365400B4564A /* Module */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Module;
-			sourceTree = "<group>";
-		};
-		10520D3123A364B700B4564A /* DeviceView */ = {
-			isa = PBXGroup;
-			children = (
-				B4A29ECE23C06B9A00248A28 /* Videotape */,
-				10520D3223A364CF00B4564A /* LivePreview */,
-			);
-			path = DeviceView;
-			sourceTree = "<group>";
-		};
-		10520D3223A364CF00B4564A /* LivePreview */ = {
-			isa = PBXGroup;
-			children = (
-				1025A5FF23A782FC00249C2F /* LCDeviceVideoManager.h */,
-				1025A60023A782FC00249C2F /* LCDeviceVideoManager.m */,
-				10520D3423A364EA00B4564A /* Presenter */,
-				10520D3323A364DF00B4564A /* View */,
-			);
-			path = LivePreview;
-			sourceTree = "<group>";
-		};
-		10520D3323A364DF00B4564A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1036CE9B23BDE836002BBA7A /* Video.xcassets */,
-				10520D3523A3652100B4564A /* LCLivePreviewViewController.h */,
-				10520D3623A3652100B4564A /* LCLivePreviewViewController.m */,
-				B4A29ED023C0708100248A28 /* PTZ */,
-				B4A29ECF23C0706400248A28 /* ToolBar */,
-				10F36D5B23B58F280010D966 /* Moudle */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		10520D3423A364EA00B4564A /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				10520DBA23A38BFC00B4564A /* LCLivePreviewPresenter.h */,
-				10520DBB23A38BFC00B4564A /* LCLivePreviewPresenter.m */,
-				1036CE9D23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.h */,
-				1036CE9E23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.m */,
-				10D531F523BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.h */,
-				10D531F623BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.m */,
-				B4A29ECB23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.h */,
-				B4A29ECC23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.m */,
-				10C3DB5023CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.h */,
-				10C3DB5123CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		10912C9523B335660058403C /* LCColor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LCColor;
-			sourceTree = "<group>";
-		};
 		10912C9623B335900058403C /* LCView */ = {
 			isa = PBXGroup;
 			children = (
-				B439BF4323FE1CC0008D8320 /* LCDatePick */,
 				102257AA23BB38C600AF451B /* LCRefresh */,
-				10C8594A23BA0EDE006DAB18 /* LCHUB */,
 				10912CA323B349EA0058403C /* LCTextField */,
 			);
 			path = LCView;
@@ -818,15 +626,6 @@
 			path = LCTextField;
 			sourceTree = "<group>";
 		};
-		10A4BD6423D00525008A9397 /* HeardView */ = {
-			isa = PBXGroup;
-			children = (
-				10A4BD6523D00549008A9397 /* LCVideotapeListHeardView.h */,
-				10A4BD6623D00549008A9397 /* LCVideotapeListHeardView.m */,
-			);
-			path = HeardView;
-			sourceTree = "<group>";
-		};
 		10C399C723A8A477005311D6 /* LCSuitModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -842,104 +641,8 @@
 				10912C9B23B337EE0058403C /* LCUIKit.h */,
 				10F36D6023B5CF4D0010D966 /* Category */,
 				10912C9623B335900058403C /* LCView */,
-				10912C9523B335660058403C /* LCColor */,
 			);
 			path = LCUIkit;
-			sourceTree = "<group>";
-		};
-		10C8594A23BA0EDE006DAB18 /* LCHUB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LCHUB;
-			sourceTree = "<group>";
-		};
-		10D5320123C2BCA7003BA38B /* dateControl */ = {
-			isa = PBXGroup;
-			children = (
-				10D5320223C2BCF5003BA38B /* LCVideotapeListDateControl.h */,
-				10D5320323C2BCF5003BA38B /* LCVideotapeListDateControl.m */,
-			);
-			path = dateControl;
-			sourceTree = "<group>";
-		};
-		10E60DE323C4915B0036D23D /* VideotapeList */ = {
-			isa = PBXGroup;
-			children = (
-				B4A29ED623C0C69B00248A28 /* persenter */,
-				B4A29ED523C0C68B00248A28 /* view */,
-			);
-			name = VideotapeList;
-			path = ../VideotapeList/VideotapeList;
-			sourceTree = "<group>";
-		};
-		10E60DE423C4916C0036D23D /* VideotapePlayer */ = {
-			isa = PBXGroup;
-			children = (
-				10E60DE623C4919B0036D23D /* view */,
-				10E60DE523C491810036D23D /* persenter */,
-				10E60DF723C4A11D0036D23D /* LCDeviceVideotapePlayManager.h */,
-				10E60DF823C4A11D0036D23D /* LCDeviceVideotapePlayManager.m */,
-			);
-			path = VideotapePlayer;
-			sourceTree = "<group>";
-		};
-		10E60DE523C491810036D23D /* persenter */ = {
-			isa = PBXGroup;
-			children = (
-				10E60DE023C491300036D23D /* LCVideotapePlayerPersenter.h */,
-				10E60DE123C491300036D23D /* LCVideotapePlayerPersenter.m */,
-				10E60DF123C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.h */,
-				10E60DF223C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.m */,
-				10E60DEE23C496CE0036D23D /* LCVideotapePlayerPersenter+Control.h */,
-				10E60DEF23C496CE0036D23D /* LCVideotapePlayerPersenter+Control.m */,
-				10E60DF423C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.h */,
-				10E60DF523C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.m */,
-			);
-			path = persenter;
-			sourceTree = "<group>";
-		};
-		10E60DE623C4919B0036D23D /* view */ = {
-			isa = PBXGroup;
-			children = (
-				10E60DEA23C492220036D23D /* ToolBar */,
-				10E60DE723C491F20036D23D /* LCVideotapePlayerViewController.h */,
-				10E60DE823C491F20036D23D /* LCVideotapePlayerViewController.m */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		10E60DEA23C492220036D23D /* ToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				10E08D2E23C71A4A00A06DAA /* LCVideotapeDownloadStatusView.h */,
-				10E08D2F23C71A4A00A06DAA /* LCVideotapeDownloadStatusView.m */,
-				04C4B73D28F1230A00344C5C /* LCVideotapePlayProcessView.h */,
-				04C4B73C28F1230A00344C5C /* LCVideotapePlayProcessView.m */,
-			);
-			path = ToolBar;
-			sourceTree = "<group>";
-		};
-		10F36D5423B58E8C0010D966 /* LCVideoHistoryList */ = {
-			isa = PBXGroup;
-			children = (
-				10984DF923CD9735001F0E39 /* LCVideotapeHistoryCell.h */,
-				10984DFA23CD9735001F0E39 /* LCVideotapeHistoryCell.m */,
-				10984DFB23CD9735001F0E39 /* LCVideotapeHistoryCell.xib */,
-				10C3DB4B23CDBCC800987DC1 /* LCVideoHistoryView.h */,
-				10C3DB4C23CDBCC800987DC1 /* LCVideoHistoryView.m */,
-			);
-			path = LCVideoHistoryList;
-			sourceTree = "<group>";
-		};
-		10F36D5B23B58F280010D966 /* Moudle */ = {
-			isa = PBXGroup;
-			children = (
-				1036CE9823BDE77E002BBA7A /* LCPTZPanel.h */,
-				1036CE9723BDE77C002BBA7A /* LCPTZPanel.m */,
-				10F36D5423B58E8C0010D966 /* LCVideoHistoryList */,
-			);
-			path = Moudle;
 			sourceTree = "<group>";
 		};
 		10F36D6023B5CF4D0010D966 /* Category */ = {
@@ -947,10 +650,6 @@
 			children = (
 				0302988228F90E7C0038E6FE /* UINavigationController+Push.h */,
 				0302988128F90E7C0038E6FE /* UINavigationController+Push.m */,
-				10A4CB1023C453CC00B799BC /* UIImageView+LCPicDecrypt.h */,
-				10A4CB1123C453CC00B799BC /* UIImageView+LCPicDecrypt.m */,
-				B402E9C023FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.h */,
-				B402E9C123FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.m */,
 				B4369AE123FCC59B00B98CBD /* UIImageView+Circle.h */,
 				B4369AE223FCC59B00B98CBD /* UIImageView+Circle.m */,
 			);
@@ -960,7 +659,7 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				036ABF02296BC6EB00E2700A /* LCOpenSDKDynamic.framework */,
+				03B8BB6F29E3E9C00085DE5D /* LCOpenSDKDynamic.framework */,
 				0368EDF928463E1C00DDB53A /* MetalKit.framework */,
 				0368EDEF28463E0000DDB53A /* Metal.framework */,
 				04ADF5EC250F4251004028B1 /* libc++.tbd */,
@@ -968,11 +667,6 @@
 				0419D49F2509D3BA00CE4528 /* LCAddDeviceModule.framework */,
 				0419D4572508B6D100CE4528 /* LCBaseModule.framework */,
 				049EC47324F3D6D9008625A1 /* NetworkExtension.framework */,
-				0469A50824E2C0FD00B3EBA5 /* WebViewJavascriptBridge.framework */,
-				0469A4C724E2796E00B3EBA5 /* FMDB.framework */,
-				0469A4BC24E277EC00B3EBA5 /* SAMKeychain.framework */,
-				0469A4BA24E277DD00B3EBA5 /* Masonry.framework */,
-				0469A4B824E277D400B3EBA5 /* MJExtension.framework */,
 				1018DC6424114BDC005C1B2B /* AddressBook.framework */,
 				1018DC6224114BD3005C1B2B /* Contacts.framework */,
 				10D29E322407FF17008891CC /* CoreLocation.framework */,
@@ -1009,25 +703,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		B400735F23C0DA2A00922BC8 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				B400736323C0DAC600922BC8 /* LCVideotapeListCell.h */,
-				B400736423C0DAC600922BC8 /* LCVideotapeListCell.m */,
-				B400736523C0DAC600922BC8 /* LCVideotapeListCell.xib */,
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
-		B439BF4323FE1CC0008D8320 /* LCDatePick */ = {
-			isa = PBXGroup;
-			children = (
-				B439BF4423FE1D1F008D8320 /* LCDatePick.h */,
-				B439BF4523FE1D1F008D8320 /* LCDatePick.m */,
-			);
-			path = LCDatePick;
-			sourceTree = "<group>";
-		};
 		B48FDE5A23F6A036009C22C0 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -1035,58 +710,6 @@
 				10337AB4240DEE38001EE960 /* LCNetTool.m */,
 			);
 			path = NetWork;
-			sourceTree = "<group>";
-		};
-		B4A29ECE23C06B9A00248A28 /* Videotape */ = {
-			isa = PBXGroup;
-			children = (
-				10E60DE423C4916C0036D23D /* VideotapePlayer */,
-				10E60DE323C4915B0036D23D /* VideotapeList */,
-			);
-			path = Videotape;
-			sourceTree = "<group>";
-		};
-		B4A29ECF23C0706400248A28 /* ToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				10520DB623A37C4400B4564A /* LCVideoControlView.h */,
-				10520DB723A37C4400B4564A /* LCVideoControlView.m */,
-				B4A29EC423BF809B00248A28 /* LCLandscapeControlView.h */,
-				B4A29EC523BF809B00248A28 /* LCLandscapeControlView.m */,
-				8679C86C26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.h */,
-				8679C86D26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.m */,
-			);
-			path = ToolBar;
-			sourceTree = "<group>";
-		};
-		B4A29ED023C0708100248A28 /* PTZ */ = {
-			isa = PBXGroup;
-			children = (
-				1025A5EA23A72D6C00249C2F /* LCPTZControlView.h */,
-				1025A5EB23A72D6C00249C2F /* LCPTZControlView.m */,
-			);
-			path = PTZ;
-			sourceTree = "<group>";
-		};
-		B4A29ED523C0C68B00248A28 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				10A4BD6423D00525008A9397 /* HeardView */,
-				10D5320123C2BCA7003BA38B /* dateControl */,
-				B400735F23C0DA2A00922BC8 /* cell */,
-				B4A29ED223C0C67600248A28 /* LCVideotapeListViewController.h */,
-				B4A29ED323C0C67600248A28 /* LCVideotapeListViewController.m */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		B4A29ED623C0C69B00248A28 /* persenter */ = {
-			isa = PBXGroup;
-			children = (
-				B4A29ED723C0C6BF00248A28 /* LCVideotapePersenter.h */,
-				B4A29ED823C0C6BF00248A28 /* LCVideotapePersenter.m */,
-			);
-			path = persenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1102,7 +725,7 @@
 				101311C42398F6EE000E1FB7 /* Resources */,
 				8603187026D5E82700FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */,
 				93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */,
-				03804B242966696D0099CF33 /* Embed Frameworks */,
+				03C2EAE729E6397A00DF84B0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1294,15 +917,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0311271129E39EB900B333C6 /* LCAddDeviceModuleBundle.bundle in Resources */,
 				101311D92398F6F0000E1FB7 /* LaunchScreen.storyboard in Resources */,
 				10912CA223B33DF90058403C /* account.xcassets in Resources */,
 				10040A5C2398FC5500F8BF9A /* LCLanguage.strings in Resources */,
 				4EF54C2B2536F9CE002F960D /* LCBaseModuleBundle.bundle in Resources */,
 				0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */,
-				B400736723C0DAC600922BC8 /* LCVideotapeListCell.xib in Resources */,
 				037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */,
-				1036CE9C23BDE837002BBA7A /* Video.xcassets in Resources */,
-				0419D49E2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle in Resources */,
 				3F1F6473290FC2F900FF03FF /* InfoPlist.strings in Resources */,
 				1069F7C4240F38BC00BD2383 /* InvalidPasswordList.plist in Resources */,
 				032664B82903E29C0082EAC9 /* LCDeviceDetailModuleBundle.bundle in Resources */,
@@ -1310,8 +931,7 @@
 				101311D62398F6F0000E1FB7 /* Assets.xcassets in Resources */,
 				101311D42398F6EE000E1FB7 /* Main.storyboard in Resources */,
 				04424F9924EE5A3600BFCA2B /* LCModuleConfig.plist in Resources */,
-				10984DFD23CD9735001F0E39 /* LCVideotapeHistoryCell.xib in Resources */,
-				0401AF47250A104200F8E1D6 /* AddDevice.xcassets in Resources */,
+				037ABAE22996373A003EF295 /* Video.xcassets in Resources */,
 				04092ACA28F42061006D861D /* LCMessageModule.xcassets in Resources */,
 				04871B1528F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle in Resources */,
 			);
@@ -1384,52 +1004,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				101311D12398F6EE000E1FB7 /* ViewController.m in Sources */,
 				10337AB5240DEE38001EE960 /* LCNetTool.m in Sources */,
-				04C4B73E28F1230A00344C5C /* LCVideotapePlayProcessView.m in Sources */,
-				10A4CB1223C453CC00B799BC /* UIImageView+LCPicDecrypt.m in Sources */,
-				8679C86E26AA4DC4002A90C5 /* LCLandscapeControlView+Gesture.m in Sources */,
 				0302988328F90E7C0038E6FE /* UINavigationController+Push.m in Sources */,
-				10520D3723A3652100B4564A /* LCLivePreviewViewController.m in Sources */,
-				10E60DF923C4A11D0036D23D /* LCDeviceVideotapePlayManager.m in Sources */,
 				102257AF23BB38DF00AF451B /* LCRefreshHeader.m in Sources */,
 				101311CB2398F6EE000E1FB7 /* AppDelegate.m in Sources */,
 				C95EBCEA269BD44800E5326E /* LCSubAccountViewController.m in Sources */,
 				10520D1E23A32D1000B4564A /* LCAccountJointViewController.m in Sources */,
-				10C3DB5223CDDE8E00987DC1 /* LCLivePreviewPresenter+VideotapeList.m in Sources */,
 				10520D2123A32D5600B4564A /* LCAccountPresenter.m in Sources */,
-				10E60DF023C496CE0036D23D /* LCVideotapePlayerPersenter+Control.m in Sources */,
 				03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */,
-				B400736623C0DAC600922BC8 /* LCVideotapeListCell.m in Sources */,
-				10E60DE923C491F20036D23D /* LCVideotapePlayerViewController.m in Sources */,
-				10E60DF623C4993E0036D23D /* LCVideotapePlayerPersenter+LandscapeControlView.m in Sources */,
-				10C3DB4D23CDBCC800987DC1 /* LCVideoHistoryView.m in Sources */,
-				10A4BD6723D00549008A9397 /* LCVideotapeListHeardView.m in Sources */,
-				1036CE9F23BDF73E002BBA7A /* LCLivePreviewPresenter+Control.m in Sources */,
-				10D531F723BEEE62003BA38B /* LCLivePreviewPresenter+SDKListener.m in Sources */,
 				102257A623BADFEF00AF451B /* LCDeviceListCell.m in Sources */,
-				1025A60123A782FC00249C2F /* LCDeviceVideoManager.m in Sources */,
-				10E08D3023C71A4A00A06DAA /* LCVideotapeDownloadStatusView.m in Sources */,
-				B4A29ECD23C0290B00248A28 /* LCLivePreviewPresenter+LandscapeControlView.m in Sources */,
-				B439BF4623FE1D1F008D8320 /* LCDatePick.m in Sources */,
-				10D5320423C2BCF5003BA38B /* LCVideotapeListDateControl.m in Sources */,
-				B4A29EC623BF809B00248A28 /* LCLandscapeControlView.m in Sources */,
-				B402E9C223FA429B005E6BEA /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
-				10520DBC23A38BFC00B4564A /* LCLivePreviewPresenter.m in Sources */,
 				B4369AE323FCC59B00B98CBD /* UIImageView+Circle.m in Sources */,
 				03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */,
-				B4A29ED923C0C6BF00248A28 /* LCVideotapePersenter.m in Sources */,
-				10E60DF323C4986B0036D23D /* LCVideotapePlayerPersenter+SDKListener.m in Sources */,
 				10520D2B23A3540700B4564A /* LCInputTextField.m in Sources */,
-				1036CE9923BDE77E002BBA7A /* LCPTZPanel.m in Sources */,
-				10E60DE223C491300036D23D /* LCVideotapePlayerPersenter.m in Sources */,
 				102257A923BAE0CD00AF451B /* LCDeviceListChannelCell.m in Sources */,
 				102257B023BB38DF00AF451B /* LCRefreshFooter.m in Sources */,
-				10520DB823A37C4400B4564A /* LCVideoControlView.m in Sources */,
 				101311DC2398F6F0000E1FB7 /* main.m in Sources */,
-				1025A5EC23A72D6C00249C2F /* LCPTZControlView.m in Sources */,
-				10984DFC23CD9735001F0E39 /* LCVideotapeHistoryCell.m in Sources */,
-				B4A29ED423C0C67600248A28 /* LCVideotapeListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,11 +1183,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LeChangeDemo/LeChangeDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = NE9RR4AYQ2;
+				CURRENT_PROJECT_VERSION = 2023.417.1131;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1636,7 +1226,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2023010601;
+				MARKETING_VERSION = 2023041702;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1696,7 +1286,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.imou.leopen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ImouOpenSDK_Dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "LeChangeDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1714,9 +1305,11 @@
 				CODE_SIGN_ENTITLEMENTS = LeChangeDemo/LeChangeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 2023.417.1131;
 				DEVELOPMENT_TEAM = NE9RR4AYQ2;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1761,7 +1354,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2023010601;
+				MARKETING_VERSION = 2023041702;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1822,6 +1415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imou.leopen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ImouOpenSDK_AppStore;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "LeChangeDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

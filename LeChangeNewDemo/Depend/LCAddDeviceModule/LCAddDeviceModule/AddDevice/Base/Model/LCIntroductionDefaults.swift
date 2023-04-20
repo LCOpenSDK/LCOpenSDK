@@ -93,61 +93,13 @@ struct LCOMSDoneInfo {
 	static let keyNBModePairDoneImageUrl = "ThirdPartyPlatformModeResultPromptImage"
 }
 
-/// SoftAP引导
-struct LCOMSSoftApGuideInfo {
-    var wifiName: String?
-    var wifiModelVersion: String?
-    var guideSteps: [LCOMSSoftApGuideStep] = [LCOMSSoftApGuideStep]()
-    
-    static let keyWifiName = "SoftAPModeWifiName"
-    static let keyWifiModelVersion = "SoftAPModeWifiVersion"
-}
-
-/// SoftAP引导：步骤
-struct LCOMSSoftApGuideStep {
-	var imageUrl: String?
-	var content: String?
-	
-	static let keySoftApGuideMaxStep: Int = 4
-	
-	static let keySoftApStepOneGuide = "SoftAPModeGuidingStepOneIntroduction"
-	static let keySoftApStepOneImageUrl = "SoftAPModeGuidingStepOneImage"
-	
-	static let keySoftApStepTwoGuide = "SoftAPModeGuidingStepTwoIntroduction"
-	static let keySoftApStepTwoImageUrl = "SoftAPModeGuidingStepTwoImage"
-	
-	static let keySoftApStepThreeGuide = "SoftAPModeGuidingStepThreeIntroduction"
-	static let keySoftApStepThreeImageUrl = "SoftAPModeGuidingStepThreeImage"
-	
-	static let keySoftApStepFourGuide = "SoftAPModeGuidingStepFourIntroduction"
-	static let keySoftApStepFourImageUrl = "SoftAPModeGuidingStepFourImage"
-}
-
-
-// MARK: - Local Guide
-struct LCOMSSLocalGuideInfo {
-	var content: String?
-	var imageUrl: String?
-	
-	static let keyLocalModeImageUrl = "LocationOperationImages"
-	static let keyLocalModeContent = "LocationOperationIntroduction"
-}
-
-// MARK: - NBIoT Guide
-struct LCOMSSNBIoTGuideInfo {
-	var imageUrl: String?
-	var content: String?
-
-	static let keyNBIoTModeImageUrl = "ThirdPartyPlatformModeGuidingLightImage"
-	static let keyNBIoTModeContent = "ThirdPartyPlatformModeConfigIntroduction"
-}
 
 // MARK: 默认值分类IPC
 ///通用IPC指示灯默认值
 struct LCIPCLightCheckDefault {
 	static let imagename = "adddevice_default_wps"
-	static let twinkleContent = "add_device_operation_by_instructions".lc_T
-	static let twinkleConfirm = "add_device_complete_related_operations".lc_T
+	static let twinkleContent = "add_device_operation_by_instructions".lc_T()
+	static let twinkleConfirm = "add_device_complete_related_operations".lc_T()
 }
 
 /// 通用IPC指示灯重置默认值
@@ -157,16 +109,12 @@ struct LCIPCLightResetDefault {
 	static let operation = ""
 }
 
-/// 通用IPC完成默认值
-struct LCIPCDoneDefault {
-	static let imagename = "adddevice_device_default"
-}
 
 // MARK: 默认值分类Hub
 /// Hub指示灯默认值
 struct LCOMSHubPairDoneDefault {
 	static let imagename = "adddevice_default_wps"
-	static let twinkleContent = "add_device_operation_by_instructions".lc_T
+	static let twinkleContent = "add_device_operation_by_instructions".lc_T()
 	static let twinkleConfirm = ""
 }
 
@@ -180,7 +128,7 @@ struct LCHubLightResetDefault {
 /// Hub配件指示灯默认值
 struct LCHubAccessoryLightCheckDefault {
 	static let imagename = "adddevice_default_wps"
-	static let twinkleContent = "add_device_operation_by_instructions".lc_T
+	static let twinkleContent = "add_device_operation_by_instructions".lc_T()
 	static let twinkleConfirm = ""
 }
 
@@ -194,16 +142,8 @@ struct LCHubAccessoryLightResetDefault {
 /// Hub配对完成默认值
 struct LCHubLightCheckDefault {
 	static let imagename = "adddevice_default"
-	static let content = "add_device_operation_by_instructions".lc_T
-	static let guide = "add_device_re_add".lc_T
-}
-
-// MARK: 默认值分类SoftAP
-/// SoftAp默认值
-struct LCOMSSoftApGuideDefault {
-	static let wifiname = "add_device_mode_xxxx".lc_T
-	static let imagename = "adddevice_common"
-	static let content = "add_device_operation_by_ap_instructions".lc_T
+	static let content = "add_device_operation_by_instructions".lc_T()
+	static let guide = "add_device_re_add".lc_T()
 }
 
 /// Soft重置默认值
@@ -216,16 +156,16 @@ struct LCSoftApResetDefault {
 /// SoftAp完成默认值
 struct LCOMSSoftAPDoneDefault {
 	static let imagename = "adddevice_default_success"
-	static let content = "add_device_operation_by_instructions".lc_T
-	static let guide = "add_device_complete_related_operations".lc_T
+	static let content = "add_device_operation_by_instructions".lc_T()
+	static let guide = "add_device_complete_related_operations".lc_T()
 }
 
 // MARK: 默认值分类 配件
 ///配件指示灯默认值
 struct LCAccessoryLightCheckDefault {
 	static let imagename = "adddevice_default_wps"
-	static let twinkleContent = "add_device_operation_by_instructions".lc_T
-	static let twinkleConfirm = "add_device_complete_related_operations".lc_T
+	static let twinkleContent = "add_device_operation_by_instructions".lc_T()
+	static let twinkleConfirm = "add_device_complete_related_operations".lc_T()
 }
 
 /// 配件指示灯重置默认值
@@ -243,13 +183,13 @@ struct LCAccessoryDoneDefault {
 ///MARK: 本地配网默认分类
 struct LCOMSSLocalGuideDefault {
 	static let imagename = "adddevice_netsetting_networkcable"
-	static let content = "distribution_network_not_completed".lc_T
+	static let content = "distribution_network_not_completed".lc_T()
 }
 
 ///MARK: NB配网默认分类
 struct LCOMSSNBGuideDefault {
 	static let imagename = "adddevice_default"
-	static let content = "please_check_yourself_first".lc_T
+	static let content = "please_check_yourself_first".lc_T()
 }
 
 

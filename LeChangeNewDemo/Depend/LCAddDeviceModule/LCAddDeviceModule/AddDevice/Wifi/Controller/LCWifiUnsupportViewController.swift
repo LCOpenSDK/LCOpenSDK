@@ -34,7 +34,7 @@ class LCWifiUnsupportViewController: LCErrorBaseViewController {
 	
 	override func errorContent() -> String {
         
-        return "add_device_device_not_support_5g".lc_T
+        return "add_device_device_not_support_5g".lc_T()
 //        return "不支持5G WIFI情况的详细图文说明"
 	}
 	

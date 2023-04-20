@@ -4,15 +4,17 @@
 
 import UIKit
 import SnapKit
+import LCOpenSDKDynamic
 
-class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerViewDelegate, LCCommonErrorViewDelegate {
+class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerViewDelegate {
 
 	@IBOutlet weak var topImageView: UIImageView!
 	@IBOutlet weak var cycleTimerView: LCCycleTimerView!
 	@IBOutlet weak var contentLabel: UILabel!
-	@IBOutlet weak var scanImageView: UIImageView!
-    @IBOutlet weak var labelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var labelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tryAgainBtn: UIButton!
+    @IBOutlet weak var startOverBtn: UIButton!
+    
+    var searchedDevice: LCOpenSDK_SearchDeviceInfo?
     
     public static func storyboardInstance() -> LCInitializeSearchViewController {
 		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.lc_addDeviceBundle())
@@ -20,29 +22,23 @@ class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerVie
 		return controller as! LCInitializeSearchViewController
 	}
 	
-	private lazy var errorView: LCCommonErrorView = {
-		let view = LCCommonErrorView.xibInstance()
-        view.contentMode = .scaleAspectFit
-		view.imageView.image = UIImage(named: "adddevice_fail_undetectable")
-		view.frame = self.view.bounds
-        if lc_screenHeight < 667 {
-            view.contentLabel.lc_setAttributedText(text: "add_device_detect_safe_network_config_failed".lc_T, font: UIFont.systemFont(ofSize: 18))
-            view.updateTopImageViewConstraint(top: 5, width: 220, height: 220)
-        } else {
-            view.contentLabel.lc_setAttributedText(text: "add_device_detect_safe_network_config_failed".lc_T, font: UIFont.lcFont_t1())
-        }
-		
-		view.delegate = self
-		return view
-	}()
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.lccolor_c43()
-        // Do any additional setup after loading the view.
+        self.title = ""
 		configCustomContents()
 		configCycleTimerView()
 		startSearchDevices()
+        
+        if let image = self.topImageView.image {
+            let height = (self.topImageView.frame.size.width / image.size.width) * image.size.height
+            self.topImageView.snp.remakeConstraints { make in
+                make.leading.equalToSuperview().offset(25)
+                make.trailing.equalToSuperview().offset(-25)
+                make.top.equalToSuperview()
+                make.width.equalTo(self.topImageView.frame.size.width)
+                make.height.equalTo(height)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,31 +53,26 @@ class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerVie
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		cycleTimerView.stopTimer()
-		stopScanAnimation()
-		
-		//由于页面是在父视图显示的，需要单独区分超时与未超时的情况
 	}
 	
 	public func startSearchDevices() {
 		self.cycleTimerView.startTimer()
-		startScanAnimation()
+        LCOpenSDK_SearchDevices.share().start(withDeviceId: LCAddDeviceManager.sharedInstance.deviceId, timeOut: 60*2) {[weak self] deviceInfo in
+            self?.searchedDevice = deviceInfo
+            
+            LCOpenSDK_SearchDevices.share().stop()
+        }
 	}
 	
 	private func configCustomContents() {
-//        topImageView.snp.updateConstraints { make in
-//            make.top.equalTo(self.customNavView.snp.bottom)
-//        }
-        
-        contentLabel.textColor = UIColor.lccolor_c2()
-        if lc_screenHeight < 667 {
-            labelTopConstraint.constant = 5
-            labelBottomConstraint.constant = 15
-            contentLabel.font = UIFont.systemFont(ofSize: 18)
-        }
-
-		contentLabel.text = "add_device_detecting_network_safety".lc_T
-		topImageView.image = UIImage(named: "adddevice_netsetting_detection")
-		scanImageView.image = UIImage(named: "adddevice_netsetting_detection_1")
+//#if DEBUG
+//        self.createDebugView()
+//#endif
+        self.contentLabel.text = "add_device_detecting_network_safety".lc_T()
+        self.tryAgainBtn.titleLabel?.text = "add_device_try_again".lc_T()
+        self.startOverBtn.titleLabel?.text = "add_device_re_add".lc_T()
+        self.startOverBtn.layer.borderWidth = 1.0
+        self.startOverBtn.layer.borderColor = UIColor.lccolor_c0().cgColor
 	}
 	
 	private func configCycleTimerView() {
@@ -89,25 +80,9 @@ class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerVie
 		cycleTimerView.delegate = self
 	}
 	
-	private func startScanAnimation() {
-		let animation = CABasicAnimation()
-		animation.fromValue = 0
-		animation.toValue = topImageView.bounds.height - scanImageView.bounds.height - 50
-		animation.repeatCount = MAXFLOAT
-		animation.duration = 3
-		animation.isRemovedOnCompletion = false
-		animation.autoreverses = true
-		animation.fillMode = kCAFillModeForwards
-		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-		scanImageView.layer.add(animation, forKey: "transform.translation.y")
-	}
-	
-	private func stopScanAnimation() {
-		scanImageView.layer.removeAllAnimations()
-	}
-
 	private func pushToInitializePasswordVC() {
 		let controller = LCInitializePasswordViewController.storyboardInstance()
+        controller.searchedDevice = searchedDevice
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
@@ -119,20 +94,40 @@ class LCInitializeSearchViewController: LCAddBaseViewController, LCCycleTimerVie
 	override func isLeftActionShowAlert() -> Bool {
 		return true
 	}
+    
+    @IBAction func tryAgain(_ sender: Any) {
+        tryAgainBtn.isHidden = true
+        startOverBtn.isHidden = true
+        cycleTimerView.isHidden = false
+        cycleTimerView.stopTimer()
+        cycleTimerView.startTimer()
+        contentLabel.text = "add_device_detecting_network_safety".lc_T()
+    }
+    
+    @IBAction func startOver(_ sender: Any) {
+        self.baseExitAddDevice()
+    }
+    
+    private func initializeFailure() {
+        tryAgainBtn.isHidden = false
+        startOverBtn.isHidden = false
+        cycleTimerView.isHidden = true
+        contentLabel.text = "add_device_initialize_failed".lc_T()
+    }
 }
 
 extension LCInitializeSearchViewController {
-	
 	func cycleTimerViewTimeout(cycleView: LCCycleTimerView) {
 		print(" \(NSStringFromClass(self.classForCoder)):: Capture timeout...")
-		errorView.showOnView(superView: self.view, animated: true)
-		
+        self.initializeFailure()
 	}
 	
 	func cycleTimerView(cycleView: LCCycleTimerView, tick: Int) {
-		let deviceId = LCAddDeviceManager.sharedInstance.deviceId
-		let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: deviceId)
-		guard device != nil else {
+        if self.searchedDevice == nil {
+            return
+        }
+        
+        guard let deviceInfo = self.searchedDevice  else {
 			return
 		}
 		
@@ -145,18 +140,12 @@ extension LCInitializeSearchViewController {
 		
 		// * 无初始化能力、已经初始化、支持SC，进入连接云平台界面
 		// * 未初始化进入初始化密码设置界面
-		if device!.deviceInitStatus == .noAbility || device!.deviceInitStatus == .init || LCAddDeviceManager.sharedInstance.isSupportSC {
+		if deviceInfo.deviceInitStatus == .noAbility || deviceInfo.deviceInitStatus == .init || LCAddDeviceManager.sharedInstance.isSupportSC {
 			//【*】软Ap：无初始化能力集，并且是国内的，跳转免密码选择wifi界面； 其他进入登录界面
 			//【*】新方案所有普通设备进入连接乐橙云平台界面
 			//【*】其他设备进入连接乐橙云平台界面
-			LCAddDeviceManager.sharedInstance.isContainInitializeSearch = true
-			
 			if LCAddDeviceManager.sharedInstance.netConfigMode == .softAp {
-				if device!.deviceInitStatus == .noAbility, LCModuleConfig.shareInstance().isChinaMainland {
-					self.pushToWifiSelectVcWithPassword()
-				} else {
-					self.pushToApLoginVC()
-				}
+                self.pushToApLoginVC()
 			} else {
 				self.basePushToConnectCloudVC(devicePassword: nil)
 			}
@@ -165,41 +154,56 @@ extension LCInitializeSearchViewController {
 		}
 	}
 	
-	/// 跳转wifi选择，内部填充admin
-	private func pushToWifiSelectVcWithPassword() {
-		let controller = LCApWifiSelectViewController.storyboardInstance()
-		controller.devicePassword = "admin"
-		self.navigationController?.pushViewController(controller, animated: true)
-	}
-	
 	private func pushToApLoginVC() {
 		let controller = LCAuthPasswordViewController.storyboardInstance()
 		controller.presenter = LCApAuthPasswordPresenter(container: controller)
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
-	
-	private func pushToAuthPasswordVC() {
-		let controller = LCAuthPasswordViewController.storyboardInstance()
-		controller.presenter = LCAuthPasswordPresenter(container: controller)
-		self.navigationController?.pushViewController(controller, animated: true)
-	}
-
-	// MARK: LCCommonErrorViewDelegate
-	func errorViewOnConfirm(errorView: LCCommonErrorView) {
-		errorView.dismiss(animated: true)
-		startSearchDevices()
-		
-	}
-	
-	func errorViewOnFAQ(errorView: LCCommonErrorView) {
-		basePushToFAQ()
-	}
-	
-	func errorViewOnQuit(errorView: LCCommonErrorView) {
-		baseExitAddDevice()
-	}
-    
-    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
-        baseBackToAddDeviceRoot()
-    }
 }
+
+
+// MARK: - Debug
+//extension LCInitializeSearchViewController {
+//    private func createDebugView() {
+//        let debug_Success: UIButton = {
+//            let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 40))
+//            btn.backgroundColor = UIColor.white
+//            btn.titleLabel?.font = UIFont.lcFont_t3()
+//            btn.setTitle("连接云平台".lc_T(), for: .normal)
+//            btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+//            btn.addTarget(self, action: #selector(debugSuccess), for: .touchUpInside)
+//            return btn
+//        }()
+//
+//        let debug_Failure: UIButton = {
+//            let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 40))
+//            btn.backgroundColor = UIColor.white
+//            btn.titleLabel?.font = UIFont.lcFont_t3()
+//            btn.setTitle("设置密码".lc_T(), for: .normal)
+//            btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+//            btn.addTarget(self, action: #selector(debugFailure), for: .touchUpInside)
+//            return btn
+//        }()
+//
+//        self.view.addSubview(debug_Success)
+//        self.view.addSubview(debug_Failure)
+//
+//        debug_Failure.snp.makeConstraints({ (make) in
+//            make.centerX.equalTo(self.view)
+//            make.bottom.equalTo(self.view).offset(-LC_bottomSafeMargin)
+//        })
+//
+//        debug_Success.snp.makeConstraints({ (make) in
+//            make.centerX.equalTo(self.view)
+//            make.bottom.equalTo(debug_Failure.snp.top).offset(-10)
+//        })
+//    }
+//
+//    @objc private func debugSuccess() {
+//        self.basePushToConnectCloudVC(devicePassword: nil)
+//    }
+//
+//    @objc private func debugFailure() {
+//        self.pushToInitializePasswordVC()
+//    }
+//}

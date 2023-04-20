@@ -92,11 +92,8 @@
         UIBarButtonItem *spacer = [self spaceItemWithWidth:-5];
         [batItems addObject:spacer];
         
-        [oneView sizeToFit];
         UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:oneView];
-#if DEBUG
-        //oneView.backgroundColor = [UIColor greenColor];
-#endif
+
         [batItems addObject:barItem];
     }
     return batItems;

@@ -5,7 +5,6 @@
 #import "LCNavBarPresenter.h"
 #import <Masonry/Masonry.h>
 #import <LCBaseModule/LCBaseModule.h>
-#import "LCContainerVC.h"
 @implementation LCNavBarPresenter
 {
     UIView *_lineView;
@@ -27,13 +26,6 @@
 }
 
 #pragma mark - 懒加载
-- (LCContainerVC *)containerVC {
-    if ([self.viewController.parentViewController isKindOfClass:[LCContainerVC class]]) {
-        return (LCContainerVC *)self.viewController.parentViewController;
-    }
-    return nil;
-}
-
 - (UINavigationItem *)customNavigationItem {
     if (!_customNavigationItem) {
         _customNavigationItem = [[LCNavigationItem alloc]init];

@@ -47,32 +47,11 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
 		// Do any additional setup after loading the view.
         self.setupView()
 		self.setupPresenter()
-		
-		//【*】如果平台未加载成功过，仍需要重新更新数据
-		dataSource.append(contentsOf: LCOMSConfigManager.sharedManager.types)//【*】每个类型加上通用
-        
-		if LCOMSConfigManager.sharedManager.isUpdatedSuccessfully == false {
-			LCOMSConfigManager.sharedManager.checkUpdateDeviceModels()
-		}
-		
-		self.addModelsUpdatedObserver()
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
-	}
-	
-	func addModelsUpdatedObserver() {
-		NotificationCenter.default.addObserver(self, selector: #selector(omsModelsUpdated), name: NSNotification.Name(rawValue: "LCNotificationOMSIModelsUpdated"), object: nil)
-	}
-	
-	@objc func omsModelsUpdated() {
-		if LCOMSConfigManager.sharedManager.types.count > 0 {
-			self.dataSource.removeAll()
-			self.dataSource.append(contentsOf: LCOMSConfigManager.sharedManager.types)
-			
-		}
 	}
 	
     func setupView() {
@@ -88,7 +67,7 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
         
         self.modelTip.textColor = UIColor.lccolor_c30()
         self.sureButton.backgroundColor = UIColor.lccolor_c10()
-        self.sureButton.setTitle("Button_Confirm".lc_T, for: .normal)
+        self.sureButton.setTitle("Button_Confirm".lc_T(), for: .normal)
         self.sureButton.layer.cornerRadius = 22.5
         self.sureButton.layer.masksToBounds = true
         self.sureButton.addTarget(self, action: #selector(sureAction), for: .touchUpInside)
@@ -99,10 +78,10 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
         self.topTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.modelTip)
             make.right.equalTo(self.modelTip)
-            make.top.equalTo(self.modelTip.snp_bottom).offset(15)
+            make.top.equalTo(self.modelTip.snp.bottom).offset(15)
         }
         let style = NSMutableParagraphStyle.init()
-        let str = NSMutableAttributedString(string: "add_device_lechange_tip".lc_T, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
+        let str = NSMutableAttributedString(string: "add_device_lechange_tip".lc_T(), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
         str.addAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: NSMakeRange(0, 19))
         str.addAttributes([NSAttributedStringKey.paragraphStyle:style], range: NSMakeRange(0, str.length))
         self.topTipLabel.attributedText = str
@@ -113,32 +92,32 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
         self.secTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.topTipLabel)
             make.right.equalTo(self.topTipLabel)
-            make.top.equalTo(self.topTipLabel.snp_bottom).offset(15)
+            make.top.equalTo(self.topTipLabel.snp.bottom).offset(15)
         }
-        let secStr = NSMutableAttributedString(string: "add_device_un_Imou_tip".lc_T, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
+        let secStr = NSMutableAttributedString(string: "add_device_un_Imou_tip".lc_T(), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
         secStr.addAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: NSMakeRange(0, 17))
         secStr.addAttributes([NSAttributedStringKey.paragraphStyle:style], range: NSMakeRange(0, secStr.length))
         self.secTipLabel.attributedText = secStr
         
         self.imageTipLabel = UILabel.init()
-        self.imageTipLabel.text = "add_device_image_tip".lc_T
+        self.imageTipLabel.text = "add_device_image_tip".lc_T()
         self.imageTipLabel.font = UIFont.lcFont_f2Bold()
         self.view.addSubview(self.imageTipLabel)
         self.imageTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.topTipLabel)
             make.right.equalTo(self.topTipLabel)
-            make.top.equalTo(self.secTipLabel.snp_bottom).offset(15)
+            make.top.equalTo(self.secTipLabel.snp.bottom).offset(15)
         }
         
         self.tipImageView = UIImageView.init()
-        self.tipImageView.image = UIImage.init(named: "adddevice_tip_image")
+        self.tipImageView.image = UIImage(lc_named: "adddevice_tip_image")
         self.tipImageView.contentMode = .scaleToFill
         self.view.addSubview(self.tipImageView)
         self.tipImageView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
-            make.top.equalTo(self.imageTipLabel.snp_bottom)
-            make.height.equalTo(self.tipImageView.snp_width).multipliedBy(0.57)
+            make.top.equalTo(self.imageTipLabel.snp.bottom)
+            make.height.equalTo(self.tipImageView.snp.width).multipliedBy(0.57)
         }
         
     }
@@ -168,13 +147,13 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
     @objc func sureAction(_ sender: UIButton) {
         //没有选中按钮
         if !self.inputBtn.isSelected && !self.otherModelBtn.isSelected {
-            LCProgressHUD.showMsg("please_select_a_device_type".lc_T)
+            LCProgressHUD.showMsg("please_select_a_device_type".lc_T())
             return
         }
         //选中输入按钮
         if self.inputBtn.isSelected {
             if self.inputModelField.text?.count == 0 {
-                LCProgressHUD.showMsg("please_enter_the_device_type".lc_T)
+                LCProgressHUD.showMsg("please_enter_the_device_type".lc_T())
                 return
             } else {
                 // 添加productId
@@ -219,9 +198,6 @@ class LCSelectModelViewController: LCAddBaseViewController,LCIdentifyContainerPr
 		
 	}
     
-    func showAddBoxGuidView(needShoeBox: @escaping ((Bool) -> Void)) {
-        
-    }
 	
 	func retry() {
 		

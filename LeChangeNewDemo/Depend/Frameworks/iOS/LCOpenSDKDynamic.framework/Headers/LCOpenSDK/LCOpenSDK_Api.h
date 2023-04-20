@@ -36,14 +36,6 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
 /// @return LCOpenSDK_ Api pointer
 - (id _Nonnull)initOpenApi:(LCOpenSDK_ApiParam *_Nonnull)apiParam;
 
-/// LCOpenSDK_ Api request return value. zh:LCOpenSDK_Api请求返回值
-/// @param req Structured request body.  zh:结构化请求体
-/// @param resp structured return body.  zh:结构化返回体
-/// @param timeout timeout
-/// @return 0, interface call succeeded  zh:  0, 接口调用成功
-///         - 1, interface call failed   zh: -1, 接口调用失败
-- (NSInteger)request:(void *_Nonnull)req resp:(void *_Nonnull)resp timeout:(NSInteger)timeout;
-
 /// De initialize LCOpenSDK_ Api Interface   zh:反初始化LCOpenSDK_Api接口
 - (void)uninitOpenApi;
 

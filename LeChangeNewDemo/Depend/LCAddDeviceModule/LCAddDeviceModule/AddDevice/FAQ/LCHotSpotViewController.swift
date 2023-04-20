@@ -13,7 +13,7 @@ class LCHotSpotViewController: LCAddBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "add_device_title".lc_T
+        self.title = "add_device_title".lc_T()
         
         configureSubviews()
         configureConstraints()
@@ -46,21 +46,18 @@ class LCHotSpotViewController: LCAddBaseViewController {
         self.view.addSubview(mainTipLabel)
         self.view.addSubview(littleTipLabel)
         
-        imageView.image = UIImage(named: "adddevice_pic_serialnumber")
+        imageView.image = UIImage(lc_named: "adddevice_pic_serialnumber")
         
         mainTipLabel.numberOfLines = 5
         mainTipLabel.textAlignment = .center
         mainTipLabel.textColor = UIColor.lccolor_c2()
         mainTipLabel.font = UIFont.lcFont_t1()
-        mainTipLabel.text = "add_devices_tip_about_wifi_pwd".lc_T
+        mainTipLabel.text = "add_devices_tip_about_wifi_pwd".lc_T()
         
         littleTipLabel.numberOfLines = 2
         littleTipLabel.font = UIFont.lcFont_t5()
         littleTipLabel.textAlignment = .center
-		
-		//SMB不显示
 		littleTipLabel.text = nil
-//        littleTipLabel.lc_setAttributedTextColor(text: "add_devices_sc_hotspot_password_contact_tips".lc_T + LCModuleConfig.shareInstance().serviceCall(), length: "add_devices_sc_hotspot_password_contact_tips".lc_T.count, color1: UIColor.lccolor_c5(), color2: UIColor.lccolor_c0())
         
     }
 

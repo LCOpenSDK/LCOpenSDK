@@ -18,12 +18,10 @@ class LCNetConnectFailureView: UIView {
 	
 	@IBOutlet weak var contentLabel: UILabel!
 	@IBOutlet weak var detailLabel: UILabel!
-	@IBOutlet weak var scollView: UIScrollView!
-	@IBOutlet weak var faqContainerView: UIView!
-	@IBOutlet weak var faqContainerBottomConstraint: NSLayoutConstraint!
-	@IBOutlet weak var needHelpButton: UIButton!
-	
-	private var buttonHeight = CGFloat(45)
+    @IBOutlet weak var tryAgainBtn: UIButton!
+    @IBOutlet weak var quiteBtn: UIButton!
+    
+    private var buttonHeight = CGFloat(45)
 	private var buttonVerticalSpace = CGFloat(10)
 	
 	private var buttonTuples = [LCNetConnectFailureTuple]()
@@ -41,31 +39,17 @@ class LCNetConnectFailureView: UIView {
 	override func awakeFromNib() {
 		super.awakeFromNib()
         backgroundColor = UIColor.lccolor_c43()
-		faqContainerView.backgroundColor = UIColor.clear
-		needHelpButton.setTitle("add_device_i_need_help".lc_T, for: .normal)
-        needHelpButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
-	
-		scollView.bounces = false
-        scollView.showsVerticalScrollIndicator = false
-		if lc_isiPhoneX {
-			faqContainerBottomConstraint.constant += 15
-		}
-		
-		imageView.image = UIImage(named: "adddevice_failhrlp_default")
-		contentLabel.text = "add_device_connect_timeout".lc_T
+		contentLabel.text = "add_device_connect_timeout".lc_T()
         contentLabel.textColor = UIColor.lccolor_c2()
-		detailLabel.text = "add_device_operation_by_voice_or_light".lc_T
+		detailLabel.text = "add_device_operation_by_voice_or_light".lc_T()
         detailLabel.textColor = UIColor.lccolor_c5()
         
-        
-		
-		//开放平台隐藏needHelp
-		needHelpButton.isHidden = true
+        quiteBtn.layer.borderWidth = 1.0
+        quiteBtn.layer.borderColor = UIColor.lccolor_c0().cgColor
 	}
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		layoutButtons()
 	}
 	
 	public static func xibInstance() -> LCNetConnectFailureView {
@@ -84,14 +68,14 @@ class LCNetConnectFailureView: UIView {
 		failureType = type
 		
 		if failureType == .commonWithWired || failureType == .commonWithoutWired {
-			detailLabel.text = "add_device_try_again_or_use_other_way".lc_T
+			detailLabel.text = "add_device_try_again_or_use_other_way".lc_T()
 		} else if failureType == .accessory {
-            contentLabel.text = "add_device_connect_timeout".lc_T
+            contentLabel.text = "add_device_connect_timeout".lc_T()
         } else if failureType == .cloudTimeout {
-            contentLabel.text = "add_device_config_failed".lc_T
+            contentLabel.text = "add_device_config_failed".lc_T()
         } else {
-			contentLabel.text = "add_device_connect_timeout".lc_T
-			detailLabel.text = "add_device_operation_by_voice_or_light".lc_T
+			contentLabel.text = "add_device_connect_timeout".lc_T()
+			detailLabel.text = "add_device_operation_by_voice_or_light".lc_T()
 		}
 
 		buttonTuples.removeAll()
@@ -101,15 +85,6 @@ class LCNetConnectFailureView: UIView {
             button.lightType = .qrCodeBtn
             buttonTuples.insert((button, .qrCode), at: 0)
         }
-
-		var tag = 0
-		for tuple in buttonTuples {
-			tuple.button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-			tuple.button.titleLabel?.font = UIFont.lcFont_t4()
-			tuple.button.tag = tag
-			tag += 1
-			scollView.addSubview(tuple.button)
-		}
 	}
 
 	/// 通用按钮配置（不包含指示灯）
@@ -129,41 +104,10 @@ class LCNetConnectFailureView: UIView {
 			tuple.button.tag = tag
 			tag += 1
 			buttons.append(tuple.button)
-			scollView.addSubview(tuple.button)
 		}
 		
 		return buttons
 	}
-
-	// MARK: Layout subviews
-	private func layoutButtons() {
-		
-		let scrollHeight = scollView.bounds.height
-		let height = CGFloat(buttonTuples.count) * buttonHeight + CGFloat(buttonTuples.count - 1) * buttonVerticalSpace
-		if height > scrollHeight {
-			scollView.contentSize = CGSize(width: scollView.bounds.width, height: height)
-		} else {
-			//居中
-			//y = (scrollHeight - height) / 2
-		}
-		
-        var topView: UIView = self.detailLabel
-		for tuple in buttonTuples {
-            tuple.button.snp.makeConstraints { (make) in
-                make.left.equalTo(0.0)
-                make.width.equalTo(self.scollView)
-                make.height.equalTo(self.buttonHeight)
-                make.top.equalTo((topView.snp.bottom)).offset(buttonVerticalSpace)
-                
-                if tuple == buttonTuples.last! {
-                    make.bottom.equalTo(self.scollView)
-                    make.right.equalTo(self.scollView)
-                }
-            }
-            topView = tuple.button
-		}
-
-    }
 
 	// MARK: Actions
 	@objc private func buttonClicked(button: UIButton) {
@@ -174,10 +118,6 @@ class LCNetConnectFailureView: UIView {
 		let tuple = buttonTuples[button.tag]
 		print(" \(NSStringFromClass(self.classForCoder)):: OperationType:\(tuple.operation)")
 		action?(failureType, tuple.operation)
-	}
-	
-	@IBAction func onHelpAction(_ sender: Any) {
-		help?()
 	}
 }
 

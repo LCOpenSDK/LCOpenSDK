@@ -21,7 +21,7 @@ import UIKit
 	@objc public var timeout: (() -> ())?
 	
 	/// 线条宽度
-	@objc public var progressWidth: CGFloat = 3 {
+	@objc public var progressWidth: CGFloat = 0 {
 		didSet {
 			bottomLayer.lineWidth = progressWidth
 			progressLayer.lineWidth = progressWidth
@@ -183,23 +183,23 @@ import UIKit
 		
 		timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		timer!.schedule(deadline: DispatchTime.now(), repeating: .milliseconds(Int(interval)), leeway: .microseconds(10))
-		timer!.setEventHandler {
+		timer!.setEventHandler { [weak self] in
 			//print(" \(NSStringFromClass(self.classForCoder))::\(self.currentTime)-\(self.millisecondsCount)-\(self)")
 			
-			if self.isStarted, Int(self.millisecondsCount / 1_000) >= self.maxTime {
-				self.timeoutProcess()
-				self.delegate?.cycleTimerViewTimeout(cycleView: self)
+			if self?.isStarted == true, Int((self?.millisecondsCount ?? 0) / 1_000) >= (self?.maxTime ?? 0) {
+				self?.timeoutProcess()
+				self?.delegate?.cycleTimerViewTimeout(cycleView: (self ?? LCCycleTimerView()))
 				return
 			}
 			
-			self.drawProgressPath()
-			self.millisecondsCount += interval
-			self.currentTime = Int(self.millisecondsCount / 1_000)
-			self.updateProgressText()
+			self?.drawProgressPath()
+			self?.millisecondsCount += interval
+			self?.currentTime = Int((self?.millisecondsCount ?? 0) / 1_000)
+			self?.updateProgressText()
 			
 			//传出时间（第一次、整数秒回调）
-			if self.millisecondsCount <= interval || Int(self.millisecondsCount) % 1_000 == 0 {
-				self.delegate?.cycleTimerView(cycleView: self, tick: self.currentTime)
+			if (self?.millisecondsCount ?? 0) <= interval || Int(self?.millisecondsCount ?? 0) % 1_000 == 0 {
+				self?.delegate?.cycleTimerView(cycleView: (self ?? LCCycleTimerView()), tick: (self?.currentTime ?? 0))
 			}
 		}
 		

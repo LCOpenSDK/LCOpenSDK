@@ -31,7 +31,7 @@ class LCAddByQRCodeVC: LCAddBaseViewController, ILCAddByQRCodeView {
         let label = UILabel()
         label.font = UIFont.lcFont_t1()
         label.textColor = UIColor.lccolor_c2()
-        label.text = "add_device_qrcode_title_tip".lc_T
+        label.text = "add_device_qrcode_title_tip".lc_T()
         return label
     }()
     
@@ -39,7 +39,7 @@ class LCAddByQRCodeVC: LCAddBaseViewController, ILCAddByQRCodeView {
         let label = UILabel()
         label.font = UIFont.lcFont_t5()
         label.textColor = UIColor.lccolor_c5()
-        label.text = "add_device_qrcode_msg_tip".lc_T
+        label.text = "add_device_qrcode_msg_tip".lc_T()
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -47,7 +47,7 @@ class LCAddByQRCodeVC: LCAddBaseViewController, ILCAddByQRCodeView {
     
     lazy var nextBtn: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setTitle("common_next".lc_T, for: .normal)
+        btn.setTitle("common_next".lc_T(), for: .normal)
         btn.lc_setRadius(5.0)
         btn.backgroundColor = UIColor.lccolor_c1()
         btn.setTitleColor(UIColor.lccolor_c43(), for: .normal)
@@ -91,7 +91,7 @@ class LCAddByQRCodeVC: LCAddBaseViewController, ILCAddByQRCodeView {
             make.centerX.equalTo(self.scrollView)
         }
         
-        let tipImageView = UIImageView(image: UIImage(named: "adddevice_pic_scanqrcode"))
+        let tipImageView = UIImageView(image: UIImage(lc_named: "adddevice_pic_scanqrcode"))
         scrollView.addSubview(tipImageView)
         tipImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)

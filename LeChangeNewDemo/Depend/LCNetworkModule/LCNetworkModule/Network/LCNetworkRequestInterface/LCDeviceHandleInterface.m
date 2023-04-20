@@ -107,17 +107,6 @@
     }];
 }
 
-+ (void)modifyDeviceAlarmStatus:(NSString *)deviceId channelId:(NSString *)channelId enable:(BOOL)enable success:(void (^)(void))success failure:(void (^)(LCError *error))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/modifyDeviceAlarmStatus" parameters:@{ KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID: deviceId, KEY_CHANNEL_ID: channelId, KEY_ENABLE: @(enable) } success:^(id _Nonnull objc) {
-        if (success) {
-            success();
-        }
-    } failure:^(LCError *error) {
-        //开发者应自行处理错误
-        failure(error);
-    }];
-}
-
 + (void)deviceAlarmPlan:(NSString *)deviceId channelId:(NSString *)channelId success:(void (^)(LCAlarmPlan *plan))success failure:(void (^)(LCError *error))failure {
     [[LCNetworkRequestManager manager] lc_POST:@"/deviceAlarmPlan" parameters:@{KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID: deviceId, KEY_CHANNEL_ID: channelId } success:^(id _Nonnull objc) {
         LCAlarmPlan *plan = [LCAlarmPlan mj_objectWithKeyValues:objc];

@@ -3,7 +3,6 @@
 //
 
 #import "UINavigationController+Push.h"
-#import "LCVideotapeListViewController.h"
 #import "LCSubAccountViewController.h"
 #import "LeChangeDemo-Swift.h"
 #import <LCDeviceDetailModule/LCDeviceDetailModule.h>
@@ -49,22 +48,6 @@
     [self pushViewController:videotapePlay animated:YES];
 }
 
-/**
- 跳转到全部录像界面
- */
-- (void)pushToVideotapeListPageWithType:(NSInteger)type {
-    LCVideotapeListViewController *videotape = [[LCVideotapeListViewController alloc] init];
-    videotape.defaultType = type;
-    [self pushViewController:videotape animated:YES];
-}
-/**
- 跳转云服务
- */
-- (void)pushToCloudService {
-    UIViewController *cloudService = [(UIViewController *)[NSClassFromString(@"LCWebViewController") alloc] init];
-    cloudService.title = @"cloud_service".lc_T;
-    [self pushViewController:cloudService animated:YES];
-}
 
 /**
  跳转设置主页面

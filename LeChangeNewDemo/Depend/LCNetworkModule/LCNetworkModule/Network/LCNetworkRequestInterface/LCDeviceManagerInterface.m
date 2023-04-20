@@ -21,6 +21,18 @@
     }];
 }
 
++ (void)setDeviceCameraStatus:(nonnull NSString *)deviceId channelId:(nonnull NSString *)channelId enableType:(nonnull NSString *)enableType enable:(BOOL)enable success:(void (^)(BOOL success))success failure:(void (^)(LCError *error))failure {
+    [[LCNetworkRequestManager manager] lc_POST:@"/setDeviceCameraStatus" parameters:@{ KEY_TOKEN: [LCApplicationDataManager token], KEY_DEVICE_ID: deviceId, KEY_CHANNEL_ID: channelId, KEY_ENABLETYPE: enableType, KEY_ENABLE: @(enable)} success:^(__nullable id objc) {
+        if (success) {
+            success(YES);
+        }
+    } failure:^(LCError *_Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 + (void)unBindDeviceWithDevice:(NSString *)deviceId productId:(nullable NSString *)productId success:(void (^)(void))success failure:(void (^)(LCError *_Nonnull))failure {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
    [params addEntriesFromDictionary:@{KEY_TOKEN: [LCApplicationDataManager managerToken],
@@ -93,19 +105,6 @@
     [[LCNetworkRequestManager manager] lc_POST:@"/modifyDeviceName" parameters:params success:^(id _Nonnull objc) {
         if (success) {
             success();
-        }
-    } failure:^(LCError *_Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+ (void)bindDeviceChannelInfoWithDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(LCBindDeviceChannelInfo *_Nonnull))success failure:(void (^)(LCError *_Nonnull))failure {
-    [[LCNetworkRequestManager manager] lc_POST:@"/bindDeviceChannelInfo" parameters:@{ KEY_TOKEN: [LCApplicationDataManager token], KEY_DEVICE_ID: deviceId, KEY_CHANNEL_ID: channelId } success:^(id _Nonnull objc) {
-        LCBindDeviceChannelInfo *info = [LCBindDeviceChannelInfo mj_objectWithKeyValues:objc];
-        if (success) {
-            success(info);
         }
     } failure:^(LCError *_Nonnull error) {
         if (failure) {

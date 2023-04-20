@@ -54,7 +54,7 @@
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:day]];
     NSString * endStr = @"";
     endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:day]];
-    [[LCNetworkRequestManager manager] lc_POST:@"/queryLocalRecords" parameters:@{KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID:deviceId,KEY_CHANNEL_ID:channelId,KEY_BEGIN_TIME:startStr,KEY_END_TIME:endStr,KEY_QUERYRANGE:query} success:^(id  _Nonnull objc) {
+    [[LCNetworkRequestManager manager] lc_POST:@"/queryLocalRecords" parameters:@{KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID:deviceId,KEY_CHANNEL_ID:channelId,KEY_BEGIN_TIME:startStr,KEY_END_TIME:endStr,KEY_QUERYRANGE:query,KEY_TYPE:@"All"} success:^(id  _Nonnull objc) {
         NSMutableArray <LCLocalVideotapeInfo *> *infos = [LCLocalVideotapeInfo mj_objectArrayWithKeyValuesArray:[objc objectForKey:@"records"]];
         if (success) {
             success(infos);
@@ -71,7 +71,7 @@
     //起始条数
     NSString * query = [NSString stringWithFormat:@"%d-%d",start,end];
     
-    [[LCNetworkRequestManager manager] lc_POST:@"/queryLocalRecords" parameters:@{KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID:deviceId,KEY_CHANNEL_ID:channelId,KEY_BEGIN_TIME:startTime,KEY_END_TIME:endTime,KEY_QUERYRANGE:query,KEY_COUNT:count} success:^(id  _Nonnull objc) {
+    [[LCNetworkRequestManager manager] lc_POST:@"/queryLocalRecords" parameters:@{KEY_TOKEN:[LCApplicationDataManager token],KEY_DEVICE_ID:deviceId,KEY_CHANNEL_ID:channelId,KEY_BEGIN_TIME:startTime,KEY_END_TIME:endTime,KEY_QUERYRANGE:query,KEY_COUNT:count,KEY_TYPE:@"All"} success:^(id  _Nonnull objc) {
         NSMutableArray <LCLocalVideotapeInfo *> *infos = [LCLocalVideotapeInfo mj_objectArrayWithKeyValuesArray:[objc objectForKey:@"records"]];
         if (success) {
             success(infos);

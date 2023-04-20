@@ -8,14 +8,18 @@ class LCWiFiConfigListCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var wifiImageView: UIImageView!
-    @IBOutlet weak var selectImageView: UIImageView!
+    @IBOutlet weak var lockImageView: UIImageView!
     
     public func configView(status: LCWifiInfo) {
         nameLabel.textColor = UIColor.lccolor_c2()
         setWifiName(status: status)
         setWifiImage(status: status)
-        selectImageView.image = UIImage(named: "wifi_connect")
-//        setSelectImage(status: status)
+        lockImageView.image = UIImage(lc_named: "wifi_lock")
+        if status.auth == "OPEN" {
+            lockImageView.isHidden = true
+        } else {
+            lockImageView.isHidden = false
+        }
     }
     
     private func setWifiName(status: LCWifiInfo) {
@@ -23,27 +27,19 @@ class LCWiFiConfigListCell: UITableViewCell {
     }
     
     private func setWifiImage(status: LCWifiInfo) {
-        
         var imageName = ""
-		
 		//不使用拼接方式处理图片，防止资源被清除
         switch status.intensity {
         case 0:
-			imageName = status.auth == "OPEN" ? "wifi_bad_unlock" : "wifi_bad_lock"
+			imageName = "wifi_bad_unlock"
         case 1, 2:
-			imageName = status.auth == "OPEN" ? "wifi_weak_unlock" : "wifi_weak_lock"
+			imageName = "wifi_weak_unlock"
         case 3:
-			imageName = status.auth == "OPEN" ? "wifi_good_unlock" : "wifi_good_lock"
+			imageName = "wifi_good_unlock"
         default:
-			imageName = status.auth == "OPEN" ? "wifi_nice_unlock" : "wifi_nice_lock"
+			imageName = "wifi_nice_unlock"
         }
-        
-        wifiImageView.image = UIImage(named: imageName)
-    }
-    
-    private func setSelectImage(status: LCWifiInfo) {
-        //LinkStatus：0未连接，1连接中，2已连接。
-        selectImageView.isHidden = Int(status.linkStatus.rawValue) != 2
+        wifiImageView.image = UIImage(lc_named: imageName)
     }
 
 }

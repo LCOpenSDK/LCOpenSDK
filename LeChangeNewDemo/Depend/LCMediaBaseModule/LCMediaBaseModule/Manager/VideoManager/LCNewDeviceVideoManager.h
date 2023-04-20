@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LCMediaBaseModule/VPVideoDefines.h>
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Define.h>
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 #import <LCNetworkModule/LCDeviceInfo.h>
 
 #define RTSP_Result_String(enum) [@[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"99", @"100" ] objectAtIndex:enum]
@@ -69,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 转变方向按钮是否在拖动中
 @property (nonatomic, assign) BOOL directionTouch;
+
+/// 重置播放状态
+- (void)reset;
 
 @end
 

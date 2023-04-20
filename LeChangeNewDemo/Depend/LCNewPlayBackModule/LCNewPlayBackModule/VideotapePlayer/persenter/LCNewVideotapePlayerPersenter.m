@@ -359,7 +359,6 @@
     UIView *tempView = [self.playWindow getWindowView];
     self.errorBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.errorBtn setImage:LC_IMAGENAMED(@"videotape_icon_replay") forState:UIControlStateNormal];
-    //    [replayBtn setTitle:@"play_module_video_replay_description".lcMedia_T forState:UIControlStateSelected];
     [self.container.view addSubview:self.errorBtn];
     [self.errorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(tempView.mas_centerX);
@@ -385,7 +384,6 @@
 
     self.bigPlayBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.bigPlayBtn setImage:LC_IMAGENAMED(@"videotape_icon_play_big") forState:UIControlStateNormal];
-    //    [replayBtn setTitle:@"" forState:UIControlStateNormal];
     [self.container.view addSubview:self.bigPlayBtn];
     [self.bigPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(tempView.mas_centerX);

@@ -3,17 +3,10 @@
 //
 
 #import "UINavigationController+LC.h"
-#import <LCBaseModule/LCContainerVC.h>
 
 @implementation UINavigationController (LC)
-- (nullable  UIViewController *)lc_topViewController
-{
+- (nullable  UIViewController *)lc_topViewController {
     UIViewController *vc = [self topViewController];
-    if([vc isKindOfClass:[LCContainerVC class]])
-    {
-        LCContainerVC *containerVC = (LCContainerVC *)vc;
-        return containerVC.contentViewController;
-    }
     return vc;
 }
 

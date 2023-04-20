@@ -37,11 +37,10 @@
     [[LCLogManager shareInstance] startFileLog];
     
     self.window = [[UIWindow alloc] initWithFrame:SCREEN_BOUNDS];
-    [self.window makeKeyAndVisible];
-
     LCAccountJointViewController *vc = [LCAccountJointViewController new];
-    LCBasicNavigationController *navi = [[LCBasicNavigationController alloc] initWithRootViewController:vc];
+    LCNavigationController *navi = [[LCNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navi;
+    [self.window makeKeyAndVisible];
     [LCNetTool lc_ObserveNetStatus:^(LCNetStatus status) {
         
     }];
@@ -71,6 +70,10 @@
     }
     
     return YES;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 #pragma mark - Check Jailbreak

@@ -27,14 +27,15 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
     LCOnlineStatusUpgrading,    /**< 升级中 */
 };
 
-/************* LCBasicDevice *************/
-@interface LCBasicDevice : NSObject
 
+@interface LCIntroductionContentItem: NSObject
+@property (nonatomic, copy) NSString *introductionName; /**< String 必须 引导提示名称，app自定义，用于区分，统计好后发给平台录入 */
+@property (nonatomic, copy) NSString *introductionContent; /**< String 必须 引导提示内容 */
 @end
 
 /*************** LCDevice ***************/
 
-@interface LCDevice : LCBasicDevice<NSCopying, NSCoding>
+@interface LCDevice : NSObject<NSCopying, NSCoding>
 //ID，也是序列号
 @property (nonatomic, copy)   NSString        *deviceID;
 //bindid ,分组id
@@ -115,7 +116,7 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 
 /**************** LCChannel ****************/
 
-@interface LCChannel : LCBasicDevice<NSCopying, NSCoding>
+@interface LCChannel : NSObject<NSCopying, NSCoding>
 
 //封面图地址
 @property (nonatomic, copy)   NSString  *picurl;
@@ -307,7 +308,7 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 @property (nonatomic, copy)     NSString    *deviceCatalog; /**设备分类【NVR/DVR/HCVR/IPC/SD/IHG】*/
 @property (nonatomic, assign)   int         type; /** 型号分类（0-配件 1-设备） */
 @property (nonatomic, copy)     NSString    *modelName; /** 型号名称（设备外部型号） */
-@property (nonatomic, strong)   NSArray     *wifiConfigMode; /** 设备支持的WIFI配置方式数组，可有多种方式，以排在前面的方式为优先 */
+@property (nonatomic, strong)   NSArray     *wifiConfigMode; /** 设备支持的WIFI配置方式数组，可有多种方式*/
 @property (nonatomic, strong)   NSArray     *faqs;/** 存放NSDictionary类型 {@"picUrl":@"帮助图片URL", @"caption":@"文字说明"} */
 @property (nonatomic, copy)     NSString    *brand;/**< 设备品牌*/
 @property (nonatomic, strong)   NSArray     *moreDesc;/**< 存放NSDictionary类型 {@"picUrl":@"帮助图片URL", @"caption":@"文字说明"} */
@@ -747,7 +748,7 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 @end
 
 //AD2空气探测器
-@interface LCAirDetection : LCBasicDevice <NSCopying, NSCoding>
+@interface LCAirDetection : NSObject <NSCopying, NSCoding>
 
 @property (nonatomic, copy) NSString *type; //温度temperature / 湿度humidity / PM2.5 / VOC
 @property (nonatomic, copy) NSString *value; //数据值
@@ -757,7 +758,7 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 
 @end
 //空气探测器报表数据
-@interface LCAirDetectReportData : LCBasicDevice <NSCopying, NSCoding>
+@interface LCAirDetectReportData : NSObject <NSCopying, NSCoding>
 
 @property (nonatomic, copy) NSString *utcTime; //20180423T101326Z
 @property (nonatomic, copy) NSString *value; //数据值(平均值)
@@ -770,7 +771,7 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 
 @end
 //空气探测器指标项配置信息
-@interface LCAirDetectAllData : LCBasicDevice <NSCopying, NSCoding>
+@interface LCAirDetectAllData : NSObject <NSCopying, NSCoding>
 
 @property (nonatomic, copy) NSString *type;//数据类型
 @property (nonatomic, copy) NSString *minRange;//取值最小范围
@@ -794,7 +795,27 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 //MARK: 设备添加融合
 /// 设备添加用户获取的设备信息
 @interface LCUserDeviceBindInfo: NSObject
-
+/// 非iot设备
+/// LAN：有线
+/// SIMCard：Sim卡
+/// SoftAP：软AP
+/// SoundWave：声波
+/// SmartConfig：SmartConfig方式
+/// QRCode：二维码
+/// SoundWaveV2：声波V2版本，优化声波算法
+///
+/// iot设备
+/// wifi
+/// bluetooth       蓝牙
+/// bluetoothBatch  蓝牙
+/// 4G
+/// lan             有线
+/// vlog            热点直连
+/// sim
+/// accessory       配件
+/// lanWeak         弱绑定 有线
+/// EZ              声波快连
+/// 
 /// 如果productId不为空，设备为iot设备
 /// iot设备共用属性
 // 设备在平台是否存在："exist":存在,"notExist":不存在
@@ -808,14 +829,13 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 // 设备SN
 @property (nonatomic, copy) NSString *deviceId;
 
-/// 非iot设备属性
-@property (nonatomic, copy) NSString *wifiConfigMode; /**< 表示支持的配对模式：SmartConfig，SoundWave，SoftAP，LAN，SIMCard   */
-@property (nonatomic) BOOL surpport; /**< 是否支持该设备，true:支持,false:不支持  */
+@property (nonatomic, copy) NSString *wifiConfigMode; /**< 表示支持的配对模式：SmartConfig,SoundWave,SoundWaveV2,SoftAP,LAN,SIMCard,Bluetooth,   */
+@property (nonatomic) BOOL support; /**< 是否支持该设备，true:支持,false:不支持  */
 @property (nonatomic, copy) NSString *wifiTransferMode; /**< 可选 表示无线支持频段的序列，逗号隔开：2.4Ghz,5Ghz  */
 @property (nonatomic, copy) NSString *deviceModel; /**< 可选 设备型号   */
 @property (nonatomic, copy) NSString *ability; /**<  可选 设备能力项，逗号隔开，如AlarmMD,AudioTalk,AlarmPIR,WLAN,VVP2P; */
 @property (nonatomic, copy) NSString *catalog; /**< 可选 设备大类【NVR/DVR/HCVR/IPC/SD/IHG/ARC】  */
-@property (nonatomic, copy) NSString *accessType; /**< 设备接入类型，PaaS-表示Paas程序接入、Lechange-表示乐橙非PaaS设备、Easy4IP表示Easy4IP程序设备、P2P表示P2P程序设   */
+//@property (nonatomic, copy) NSString *accessType; /**< 设备接入类型，PaaS-表示Paas程序接入、Lechange-表示乐橙非PaaS设备、Easy4IP表示Easy4IP程序设备、P2P表示P2P程序设   */
 @property (nonatomic, copy) NSString *brand; /**< 设备品牌信息：国内：lechange-乐橙设备，general-通用设备, 海外：imou-乐橙设备，general-通用设备   */
 @property (nonatomic, copy) NSString *family; /**< 设备系列：'A'、'C'、'K'、'SE'等;服务中没有则返回空''   */
 @property (nonatomic, copy) NSString *modelName; /**< 可选 型号名称（设备外部型号，app展示使用，可选）  */
@@ -845,13 +865,16 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 @property (nonatomic, copy) NSString *productId;
 // 产品型号
 @property (nonatomic, copy) NSString *productModel;
-// 配网方式：wifi、bluetooth、4G、lan-有线、vlog-热点直连、sim、accessory-配件，多个时逗号隔开
-@property (nonatomic, copy) NSString *networkMode;
 // 默认配网方式
 @property (nonatomic, copy) NSString *defaultWifiConfigMode;
 
+@property (nonatomic, copy) NSString *softAPModeWifiName;
+@property (nonatomic, copy) NSString *softAPModeWifiVersion;
+@property (nonatomic, copy) NSString *wifiConfigModeOptional;
+
 /// iot设备
 - (BOOL)isIotDevice;
+
 
 @end
 
@@ -998,3 +1021,4 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 @property (nonatomic, copy) NSString *localTime;    /** 开锁设备本地时间，时间格式为yyyyMMddTHHmmss  */
 
 @end
+

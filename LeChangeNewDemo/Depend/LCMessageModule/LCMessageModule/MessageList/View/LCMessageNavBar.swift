@@ -77,7 +77,7 @@ class LCMessageNavBar: UIView {
     lazy var titleLbl:UILabel = {
         let label = UILabel()
         label.textColor = UIColor.lc_color(withHexString: "#2c2c2c")
-        label.font = UIFont.systemFont(ofSize: 16.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
         label.textAlignment = .center
         return label
     }()

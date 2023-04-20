@@ -87,23 +87,23 @@ enum LCLightButtonType {
 	func imageNameAndTitle() -> (imageName: String, title: String) {
         switch self {
         case .redTwinkling:
-            return ("adddevice_light_redflash", "add_device_red_light_twinkle".lc_T)
+            return ("adddevice_light_redflash", "add_device_red_light_twinkle".lc_T())
         case .redRotate:
-            return ("adddevice_light_redflash", "add_device_red_light_rotate".lc_T)
+            return ("adddevice_light_redflash", "add_device_red_light_rotate".lc_T())
         case .greenConstant:
-            return ("adddevice_light_greenalways", "add_device_green_light_always".lc_T)
+            return ("adddevice_light_greenalways", "add_device_green_light_always".lc_T())
         case .greenTwinkling:
-            return ("adddevice_light_greenflash", "add_device_green_light_twinkle".lc_T)
+            return ("adddevice_light_greenflash", "add_device_green_light_twinkle".lc_T())
         case .yellowTwinkling:
-            return ("adddevice_light_yellowflash", "add_device_yellow_light_twinkle".lc_T)
+            return ("adddevice_light_yellowflash", "add_device_yellow_light_twinkle".lc_T())
         case .greenBlueConstant:
-            return ("adddevice_light_greenalways", "add_device_green_blue_light_always".lc_T)
+            return ("adddevice_light_greenalways", "add_device_green_blue_light_always".lc_T())
         case .blueConstant:
-            return ("adddevice_light_bluealways", "add_device_blue_light_always".lc_T)
+            return ("adddevice_light_bluealways", "add_device_blue_light_always".lc_T())
         case .qrCodeBtn:
-            return ("adddevice_icon_code", "add_device_timeout_add_by_qrcode".lc_T)
+            return ("adddevice_icon_code", "add_device_timeout_add_by_qrcode".lc_T())
         default:
-            return ("adddevice_light_redalways", "add_device_red_light_always".lc_T)
+            return ("adddevice_light_redalways", "add_device_red_light_always".lc_T())
         }
 	}
 }
@@ -201,6 +201,6 @@ class LCLightButton: UIButton {
 	public func autoSet() {
 		setTitleColor(lightType.color(), for: .normal)
 		setTitle(lightType.imageNameAndTitle().title, for: .normal)
-		dotImageView.image = UIImage(named: lightType.imageNameAndTitle().imageName)
+		dotImageView.image = UIImage(lc_named: lightType.imageNameAndTitle().imageName)
 	}
 }

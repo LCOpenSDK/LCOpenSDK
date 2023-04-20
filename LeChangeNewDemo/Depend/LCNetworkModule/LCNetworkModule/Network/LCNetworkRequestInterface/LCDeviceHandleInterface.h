@@ -66,9 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param success Successful callback (Return the capture access address)
  @param failure Failure callback
  */
-+ (void)controlMovePTZWithDevice:(NSString *)deviceId Channel:(NSString *)channelId Operation:(NSString *)operation Duration:(NSInteger)duration success:(void (^)(NSString *picUrlString))success
-                         failure:(void (^)(LCError *error))failure;
-
++ (void)controlMovePTZWithDevice:(NSString *)deviceId Channel:(NSString *)channelId Operation:(NSString *)operation Duration:(NSInteger)duration success:(void (^)(NSString *picUrlString))success failure:(void (^)(LCError *error))failure;
 /**
  获取设备周边WiFi信息
 
@@ -134,26 +132,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)upgradeDevice:(NSString *)deviceId success:(void (^)(void))success
               failure:(void (^)(LCError *error))failure;
-
-/**
- 设置动检开关
-
- @param deviceId 设备序列号
- @param channelId 通道号
- @param enable 是否生效
- @param success 成功回调
- @param failure 失败回调
- 
- Set the dynamic check switch
- 
- @param deviceId Device Serial Number
- @param channelId Channel number
- @param enable Whether to take effect
- @param success Successful callback
- @param failure Failure callback
- */
-+ (void)modifyDeviceAlarmStatus:(NSString *)deviceId channelId:(NSString *)channelId enable:(BOOL)enable success:(void (^)(void))success
-                        failure:(void (^)(LCError *error))failure;
 
 /**
  获取动检计划

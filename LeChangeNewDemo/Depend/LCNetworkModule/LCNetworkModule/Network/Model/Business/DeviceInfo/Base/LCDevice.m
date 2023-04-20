@@ -4,12 +4,6 @@
 
 #import "LCDevice.h"
 
-#pragma mark - 设备基类
-
-@implementation LCBasicDevice
-
-@end
-
 #pragma mark - Device
 
 @implementation LCDevice
@@ -683,7 +677,7 @@
         self.bindStatus = @"";
         self.bindStatus = @"";
         self.catalog = @"";
-        self.accessType = @"";
+//        self.accessType = @"";
         self.brand = @"";
         self.family = @"";
         self.modelName = @"";
@@ -694,7 +688,7 @@
 }
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"deviceModel":@"deviceCodeModel",@"surpport":@"support",@"modelName":@"deviceModelName"};
+    return @{@"deviceModel":@"deviceCodeModel",@"modelName":@"deviceModelName"};
 }
 
 /// iot设备
@@ -822,3 +816,5 @@
 @implementation NVMChannelMode
 @end
 
+@implementation LCIntroductionContentItem
+@end

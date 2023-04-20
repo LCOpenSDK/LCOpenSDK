@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		032664B32903E2870082EAC9 /* LCDeviceSettingArrowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ABE07A28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib */; };
 		032664B92903E2CA0082EAC9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0309D37129025F900088B9D5 /* Info.plist */; };
+		03A1C8C429D46BE9003B2793 /* LCAddDeviceModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1C8C329D46BE8003B2793 /* LCAddDeviceModule.framework */; };
 		03ABE02928F5614C00BCE307 /* LCDeviceDetailModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03ABE03D28F561D000BCE307 /* LCDeviceSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ABE03B28F561D000BCE307 /* LCDeviceSettingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03ABE03E28F561D000BCE307 /* LCDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ABE03C28F561D000BCE307 /* LCDeviceSettingViewController.m */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		0309D37129025F900088B9D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		032664AB2903DF510082EAC9 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCDeviceDetailModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		03A1C8C329D46BE8003B2793 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCAddDeviceModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ABE02528F5614C00BCE307 /* LCDeviceDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCDeviceDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCDeviceDetailModule.h; sourceTree = "<group>"; };
 		03ABE03B28F561D000BCE307 /* LCDeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceSettingViewController.h; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				03ABE05428F5657600BCE307 /* Masonry.framework in Frameworks */,
 				03ABE09C28F56ABE00BCE307 /* LCMediaBaseModule.framework in Frameworks */,
 				03ABE04828F5645100BCE307 /* LCBaseModule.framework in Frameworks */,
+				03A1C8C429D46BE9003B2793 /* LCAddDeviceModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,26 +205,11 @@
 		03ABE04528F5639D00BCE307 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				03C2EAEB29E8DFBB00DF84B0 /* model */,
+				03C2EAEA29E8DF5F00DF84B0 /* presenter */,
+				03C2EAE929E8DF5400DF84B0 /* views */,
+				03C2EAE829E8DF4C00DF84B0 /* vc */,
 				03ADDC7D28F688E500E385B4 /* LCTimeperiodVC */,
-				03ADDC6928F6607800E385B4 /* LCTableViewAdapter.swift */,
-				03ABE0A328F5A56F00BCE307 /* LCFormatCardController.swift */,
-				03ABE0A428F5A56F00BCE307 /* LCFormatCardModel.swift */,
-				03ABE08E28F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift */,
-				03ABE08C28F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift */,
-				03ABE08F28F56A2C00BCE307 /* LCSubImageTableViewCell.swift */,
-				03ABE08B28F56A2C00BCE307 /* LCSwitchTableViewCell.swift */,
-				03ABE08928F56A2C00BCE307 /* LCTableFooterView.swift */,
-				03ABE08828F56A2C00BCE307 /* LCTableViewCell.swift */,
-				03ABE08D28F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift */,
-				03ABE08A28F56A2C00BCE307 /* LCTableViewSectionModel.swift */,
-				03ABE06E28F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift */,
-				03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */,
-				03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */,
-				03ABE06328F5682500BCE307 /* LCDeviceDetailPresenter.swift */,
-				03ABE06428F5682500BCE307 /* LCMotionDetectionPresenter.swift */,
-				03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */,
-				03ABE07328F569FB00BCE307 /* LCMemoryManagementView.swift */,
-				03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -229,6 +217,7 @@
 		03ABE04628F5645100BCE307 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03A1C8C329D46BE8003B2793 /* LCAddDeviceModule.framework */,
 				03ABE09B28F56ABE00BCE307 /* LCMediaBaseModule.framework */,
 				03ABE09828F56A4A00BCE307 /* LCNetworkModule.framework */,
 				03ABE05B28F5671900BCE307 /* SnapKit.framework */,
@@ -262,6 +251,53 @@
 				03ADDC8228F688E500E385B4 /* LCTimeSetPresenter.swift */,
 			);
 			path = presenter;
+			sourceTree = "<group>";
+		};
+		03C2EAE829E8DF4C00DF84B0 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */,
+				03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */,
+				03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		03C2EAE929E8DF5400DF84B0 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE08E28F56A2C00BCE307 /* LCDeviceTopTableViewCell.swift */,
+				03ABE08C28F56A2C00BCE307 /* LCLocalStorageTableViewCell.swift */,
+				03ABE08F28F56A2C00BCE307 /* LCSubImageTableViewCell.swift */,
+				03ABE08B28F56A2C00BCE307 /* LCSwitchTableViewCell.swift */,
+				03ABE08928F56A2C00BCE307 /* LCTableFooterView.swift */,
+				03ABE08828F56A2C00BCE307 /* LCTableViewCell.swift */,
+				03ABE08D28F56A2C00BCE307 /* LCTableViewSectionHeaderView.swift */,
+				03ABE07328F569FB00BCE307 /* LCMemoryManagementView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		03C2EAEA29E8DF5F00DF84B0 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				03ABE0A328F5A56F00BCE307 /* LCFormatCardController.swift */,
+				03ABE0A428F5A56F00BCE307 /* LCFormatCardModel.swift */,
+				03ABE06328F5682500BCE307 /* LCDeviceDetailPresenter.swift */,
+				03ABE06428F5682500BCE307 /* LCMotionDetectionPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		03C2EAEB29E8DFBB00DF84B0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				03ADDC6928F6607800E385B4 /* LCTableViewAdapter.swift */,
+				03ABE08A28F56A2C00BCE307 /* LCTableViewSectionModel.swift */,
+				03ABE06E28F569A000BCE307 /* LCDeviceDetailTableViewAdapter.swift */,
+				03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -10,10 +10,7 @@ import LCBaseModule.LCModule
 	public func moduleInit() {
 		loadCustomClass()
 		registerQRScanVC()
-		registerOfflineWifiConfig()
 		registerOfflineWifiConfigByDeviceId()
-		registerOfflineWifiConfigHelper()
-		registerOMSConfigManager()
         registerOnlineWifiConfig()
 	}
 	
@@ -45,118 +42,6 @@ import LCBaseModule.LCModule
 		}
 	}
 
-	
-	func registerOfflineWifiConfig() {
-		LCRouter.registerURLPattern(RouterUrl_AddDevice_OfflineWifiConfig) { (routerParameters) -> Any? in
-			
-			//进入前先重置已保存的信息
-			LCAddDeviceManager.sharedInstance.reset()
-			LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig = true
-			
-			//开启局域网搜索功能
-			LCNetSDKSearchManager.sharedInstance().startSearch()
-			
-			if let params = routerParameters as? [String: Any], let dicUserInfo = params[LCRouterParameterUserInfo] as? [String: Any] {
-				if let device = dicUserInfo["deviceInfo"] as? LCUserDeviceBindInfo {
-					LCAddDeviceManager.sharedInstance.setup(deviceInfo: device)
-					
-					// 离线配网增加SC
-					if let ability = device.ability {
-						let abilities: [String] = ability.split(separator: ",").compactMap { "\($0)" }
-						LCAddDeviceManager.sharedInstance.isSupportSC = abilities.enumerated().contains { (_, item) -> Bool in
-							return item.lowercased() == "SCCode".lowercased()
-						}
-					}
-					
-				} else {
-					LCAddDeviceManager.sharedInstance.supportConfigModes = [.wifi, .wired]
-				}
-				
-				if let marketModel = dicUserInfo["deviceMarketModel"] as? String {
-					LCAddDeviceManager.sharedInstance.deviceMarketModel = marketModel
-					
-					//更新引导信息
-					//LCOMSConfigManager.sharedManager.checkUpdateIntrodution(byMarketModel: marketModel)
-				}
-
-				if let deviceId = dicUserInfo["deviceId"] as? String {
-					LCAddDeviceManager.sharedInstance.deviceId = deviceId
-				}
-                
-                if let scCode = dicUserInfo["scCode"] as? String {
-                    LCAddDeviceManager.sharedInstance.initialPassword = scCode
-                }
-			}
-			
-			//根据类型进入不同的模式
-			let controller = self.parserNetConfigMode(modes: LCAddDeviceManager.sharedInstance.supportConfigModes)
-			return controller
-		}
-	}
-	
-	func registerOfflineWifiConfigByDeviceId() {
-		LCRouter.registerURLPattern(RouterUrl_AddDevice_OfflineWifiConfigByDeviceId, toHandler: { routerParameters in
-			if let dicUserInfo = routerParameters?[LCRouterParameterUserInfo] as? [String: Any] {
-				guard let deviceId = dicUserInfo["deviceId"] as? String else {
-					return
-				}
-
-				//进入前先重置已保存的信息
-				LCAddDeviceManager.sharedInstance.reset()
-				LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig = true
-
-				//开启局域网搜索功能
-				LCNetSDKSearchManager.sharedInstance().startSearch()
-
-				//更新引导信息
-				let marketModel = dicUserInfo["deviceMarketModel"] as? String
-				if marketModel != nil {
-					LCAddDeviceManager.sharedInstance.deviceMarketModel = marketModel
-					LCOMSConfigManager.sharedManager.checkUpdateIntrodution(byMarketModel: marketModel!)
-				}
-
-                if let scCode = dicUserInfo["scCode"] as? String {
-                    LCAddDeviceManager.sharedInstance.initialPassword = scCode
-                }
-
-				// 查询设备信息
-				LCProgressHUD.show(on: nil)
-                let productId = dicUserInfo["productId"] as? String
-                
-				LCAddDeviceManager.sharedInstance.deviceId = deviceId
-                LCAddDeviceManager.sharedInstance.productId = productId
-                
-                LCAddDeviceManager.sharedInstance.getUnBindDeviceInfo(deviceId: deviceId, productId: productId, qrModel: nil, ncCode: nil, marketModel: marketModel, imeiCode: nil, success: { deviceInfo, _ in
-					LCProgressHUD.hideAllHuds(nil)
-					let controller = self.parserNetConfigMode(modes: deviceInfo.lc_netConfigModes())
-					let naviVc = dicUserInfo["navigation"] as? UINavigationController
-					naviVc?.pushViewController(controller, animated: true)
-				}) { error in
-					LCProgressHUD.hideAllHuds(nil)
-                    error.showTips()
-					print("❌❌❌ \(Date()) \(NSStringFromClass(self.classForCoder))::")
-				}
-			}
-		})
-	}
-	
-	// MARK: Register Manager
-	func registerOMSConfigManager() {
-		LCModule.registerService(LCOMSConfigManagerProtocol.self, implClass: LCOMSConfigManager.self)
-	}
-	
-	// MARK: OfflineWifiConfig
-	private func registerOfflineWifiConfigHelper() {
-		//加载海外离线配网功能
-		if let cls = NSClassFromString("LCOverseasOfflineWifiConfig") {
-			LCModule.registerService(LCOfflineWifiConfigProtocol.self, implClass: cls)
-		}
-        
-        if let cls = NSClassFromString("LCOfflineWifiConfig") {
-			LCModule.registerService(LCOfflineWifiConfigProtocol.self, implClass: cls)
-		}
-	}
-    
     // MARK: 在线设备配网
     private func registerOnlineWifiConfig() {
         LCRouter.registerURLPattern(RouterUrl_Device_OnlineWifiConfig) { (routerParameters) -> Any? in
@@ -177,41 +62,82 @@ import LCBaseModule.LCModule
             return nil
         }
     }
+    
+	func registerOfflineWifiConfigByDeviceId() {
+		LCRouter.registerURLPattern(RouterUrl_AddDevice_OfflineWifiConfigByDeviceId) { (routerParameters) -> Any? in
+			if let dicUserInfo = routerParameters?[LCRouterParameterUserInfo] as? [String: Any] {
+				guard let deviceId = dicUserInfo["deviceId"] as? String else {
+					return
+				}
+				//进入前先重置已保存的信息
+				LCAddDeviceManager.sharedInstance.reset()
+				LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig = true
+				// 更新引导信息
+				let deviceModel = dicUserInfo["deviceModel"] as? String
+				if deviceModel != nil {
+					LCAddDeviceManager.sharedInstance.deviceMarketModel = deviceModel
+				}
+                // 支持SCCode能力
+                if (dicUserInfo["ability"] as? String)?.contains("SCCode") == true {
+                    LCAddDeviceManager.sharedInstance.isSupportSC = true
+                    LCAddDeviceManager.sharedInstance.initialPassword = ""
+                }
+                
+                if let softAPModeWifiName = dicUserInfo["softAPModeWifiName"] as? String {
+                    LCAddDeviceManager.sharedInstance.softAPModeWifiName = softAPModeWifiName
+                }
+                
+                if let softAPModeWifiVersion = dicUserInfo["softAPModeWifiVersion"] as? String {
+                    LCAddDeviceManager.sharedInstance.softAPModeWifiVersion = softAPModeWifiVersion
+                }
 
+				// 查询设备信息
+                let productId = dicUserInfo["productId"] as? String
+				LCAddDeviceManager.sharedInstance.deviceId = deviceId
+                LCAddDeviceManager.sharedInstance.productId = productId
+                
+                let model = LCUserDeviceBindInfo()
+                model.deviceId = deviceId
+                model.productId = productId
+                model.wifiTransferMode = dicUserInfo["wifiConfigMode"] as? String
+                model.wifiConfigMode = dicUserInfo["wifiConfigMode"] as? String
+                model.deviceModel = dicUserInfo["deviceModel"] as? String
+                model.status = dicUserInfo["status"] as? String
+//                model.type = ""
+                model.ability = dicUserInfo["ability"] as? String
+                model.brand = dicUserInfo["brand"] as? String
+                LCAddDeviceManager.sharedInstance.setup(deviceInfo: model)
+                //进入配网流程标识
+                let pid = LCAddDeviceManager.sharedInstance.productId ?? ""
+                if pid.count > 0 {
+                    if LCAddDeviceManager.sharedInstance.netConfigMode == .iotLan || LCAddDeviceManager.sharedInstance.netConfigMode == .iot4G {
+                        return LCPowerGuideViewController.init()
+                    } else {
+                        let wifiVc = LCIoTWifiConfigViewController.storyboardInstance()
+                        wifiVc.wifiConfigBlock = { // wifi 信息配置完成，跳转引导流程
+                            let guideVc = LCDeviceAddGuideViewController.init(productID: LCAddDeviceManager.sharedInstance.productId ?? "")
+                            wifiVc.navigationController?.pushViewController(guideVc, animated: true)
+                        }
+                        return wifiVc
+                    }
+                } else {
+                    return self.parserNetConfigMode(modes: LCUserDeviceBindInfo.lc_netConfigModes(wifiConfigMode: "", isIotDevice: (productId != nil && productId!.length > 0)))
+                }
+			}
+            return nil
+		}
+	}
     
 	private func parserNetConfigMode(modes: [LCNetConfigMode]) -> UIViewController {
-		var controller: UIViewController
-		let manager = LCAddDeviceManager.sharedInstance
-        
-//		if modes.contains(.nbIoT) {
-//			manager.netConfigMode = .nbIoT
-//			if manager.imeiCode.count == 0 {
-//				controller = LCInputIMEIViewController.storyboardInstance()
-//			} else {
-//				controller = LCNBCheckViewController()
-//			}
-//		} else if modes.contains(.local) {
-//			manager.netConfigMode = .local
-//			controller = LCLocalNetGuideViewController()
-//		} else if modes.contains(.simCard) {
-        
-//		} else
-        if modes.contains(.softAp) {
-			manager.netConfigMode = .softAp
-			let vc = LCApGuideViewController()
-			controller = vc
-		} else if modes.contains(.wifi) {
-			manager.netConfigMode = .wifi
-			controller = LCPowerGuideViewController()
-        } else if modes.contains(.wired) {
-            manager.netConfigMode = .wired
-            controller = LCPowerGuideViewController()
+        let manager = LCAddDeviceManager.sharedInstance
+        if manager.netConfigMode == .softAp || manager.netConfigMode == .lan || manager.netConfigMode == .iotLan || manager.netConfigMode == .iot4G || manager.netConfigMode == .soundWave || manager.netConfigMode == .soundWaveV2 || manager.netConfigMode == .smartConfig {
+            return LCPowerGuideViewController()
         } else {
-			controller = LCPowerGuideViewController()
-			manager.netConfigMode = .wifi
-		}
-		
-		return controller
+            let controller = LCWifiPasswordViewController.storyboardInstance()
+            let presenter = LCWifiPasswordPresenter(container: controller)
+            controller.setup(presenter: presenter)
+            return controller
+        }
 	}
 
 }

@@ -49,11 +49,10 @@ class LCBindByOtherViewController: LCAddBaseViewController {
 		bindAccountLabel.lc_setAttributedText(text: text, font: UIFont.boldSystemFont(ofSize: 15))
         bindAccountLabel.textColor = UIColor.lccolor_c2()
 		
-		warmTipLabel.text = "add_device_kindly_reminder".lc_T
-		warmTipTextView.text = "add_device_unbind_warm_tip".lc_T
+		warmTipLabel.text = "add_device_kindly_reminder".lc_T()
         warmTipTextView.textColor = UIColor.lccolor_c5()
 		
-		imageView.image = UIImage(named: "adddevice_icon_device_default_new")
+		imageView.image = UIImage(lc_named: "adddevice_icon_device_default_new")
         imageView.contentMode = .scaleAspectFit
 		
 		//SMB：色值修改、隐藏提示

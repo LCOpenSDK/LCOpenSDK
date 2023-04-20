@@ -40,7 +40,7 @@ class LCInputSNViewController: LCAddBaseViewController, LCIdentifyContainerProto
 	override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.lccolor_c43()
-		self.title = "add_device_title".lc_T
+		self.title = "add_device_title".lc_T()
 		setupCustomContens()
 //        self.btnNaviRight.isHidden = true
         // Do any additional setup after loading the view.
@@ -108,12 +108,8 @@ class LCInputSNViewController: LCAddBaseViewController, LCIdentifyContainerProto
 	
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-		
 		//每次都要重置
 		LCAddDeviceManager.sharedInstance.reset()
-		
-		//开启局域网搜索
-		LCNetSDKSearchManager.sharedInstance()?.startSearch()
     }
     
 	override func viewDidDisappear(_ animated: Bool) {
@@ -127,16 +123,16 @@ class LCInputSNViewController: LCAddBaseViewController, LCIdentifyContainerProto
 	
 	private func setupCustomContens() {
         
-		snTipLabel.text = "add_device_input_sn_under_device".lc_T
-		inputSnTextField.placeholder = "add_device_input_sn".lc_T
-		nextStepButton.setTitle("common_next".lc_T, for: .normal)
-		inputScTextField.placeholder = "add_device_input_sccode".lc_T
+		snTipLabel.text = "add_device_input_sn_under_device".lc_T()
+		inputSnTextField.placeholder = "add_device_input_sn".lc_T()
+		nextStepButton.setTitle("common_next".lc_T(), for: .normal)
+		inputScTextField.placeholder = "add_device_input_sccode".lc_T()
 		
 		//SMB特性：不显示乐盒
 		boxTipLabel.text = ""
-		scTipLabel.text = "add_device_without_input_sccode_tip".lc_T
+		scTipLabel.text = "add_device_without_input_sccode_tip".lc_T()
 		
-		qrCodeImageView.image = UIImage(named: "adddevice_pic_serialnumber")
+		qrCodeImageView.image = UIImage(lc_named: "adddevice_pic_serialnumber")
 	}
 	
 	private func setupTextFiledStyle(textField: UITextField) {
@@ -203,10 +199,6 @@ class LCInputSNViewController: LCAddBaseViewController, LCIdentifyContainerProto
 		
 	}
     
-    func showAddBoxGuidView(needShoeBox: @escaping ((Bool) -> Void)) {
-        
-    }
-	
 	func retry() {
 		
 	}

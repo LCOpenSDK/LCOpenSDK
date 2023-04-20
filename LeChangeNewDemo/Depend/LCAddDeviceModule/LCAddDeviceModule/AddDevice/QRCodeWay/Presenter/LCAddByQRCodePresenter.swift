@@ -40,7 +40,6 @@ class LCAddByQRCodePresenter: NSObject, ILCAddByQRCodePresenter {
     func goNext() {
         let controller = LCWifiConnectViewController.storyboardInstance()
         controller.showPlayAudio = false
-        controller.descriptionContent = ""
         self.container?.navigationController?.pushViewController(controller, animated: true)
     }
     

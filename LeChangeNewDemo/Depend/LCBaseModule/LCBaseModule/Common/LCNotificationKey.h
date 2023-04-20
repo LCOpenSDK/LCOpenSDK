@@ -89,38 +89,6 @@ UIKIT_EXTERN NSString *const LCNotificationBuyShareSuccess;
 UIKIT_EXTERN NSString *const LCNotificationModifyLoginPasword; /**< 修改登录密码通知 */
 UIKIT_EXTERN NSString *const LCNotificationGetPushStatusSuccess;
 
-
-UIKIT_EXTERN NSString *const LCNotificationWXPay;
-
-UIKIT_EXTERN NSString *const LCNotificationNeedUpdateP2PService; /**< 需要更新p2p服务通知 */
-
-//帐号操作成功通知
-UIKIT_EXTERN NSString *const LCNotificationThirdBindAccountSuccess; /**< 第三方账号绑定手机/邮箱通知 */
-UIKIT_EXTERN NSString *const LCNotificationChangeAccountSuccess; /**< 更换账号手机/邮箱通知 */
-UIKIT_EXTERN NSString *const LCNotificationEmailBindPhoneSuccess; /**< 邮箱绑定手机号通知 */
-UIKIT_EXTERN NSString *const LCNotificationEmailUnbindSuccess; /**< 邮箱解绑通知 */
-//查询白光相机警笛与白光灯状态
-UIKIT_EXTERN NSString *const LCNotificationDeviceSirenChanged;
-UIKIT_EXTERN NSString *const LCNotificationDeviceWhiteLightChanged;
-UIKIT_EXTERN NSString *const LCNotificationDeviceSearchLightChanged;
-UIKIT_EXTERN NSString *const LCNotificationDeviceSearchLightModeChanged;
-
-// 修改了增值服务套餐刷新预览页增值服务数据
-UIKIT_EXTERN NSString *const LCNotificationDeviceAddedServicesChanged;
-
-//H5交互中web通知native
-UIKIT_EXTERN NSString *const LCNotificationDeviceWebNoticeNative;
-
-//云存储支付成功（旧的JS桥接中使用）
-UIKIT_EXTERN NSString *const LCNotificationCloudStoragePaySuccess;
-
-//云存储更新成功（支付成功后，查询状态，新的使用）
-UIKIT_EXTERN NSString *const LCNotificationCloudStorageUpdated;
-
-/// 设备添加融合OMS
-UIKIT_EXTERN NSString *const LCNotificationOMSIntrodutionUpdated;
-UIKIT_EXTERN NSString *const LCNotificationOMSIModelsUpdated;
-
 UIKIT_EXTERN NSString *const LCNotificationADDDeviceSuccess;
 
 /// 网关情景模式推送

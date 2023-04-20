@@ -20,8 +20,8 @@ class LCWiFiConfigHeader: UITableViewHeaderFooterView {
     
     public var isAddNetwordTitle: Bool = true {
         didSet {
-            descButton.setImage(isAddNetwordTitle ? UIImage(named: "adddevice_icon_help") :  UIImage(named: ""), for: .normal)
-            descButton.setTitle(isAddNetwordTitle ? "device_manager_select_wifi".lc_T : "device_manager_connected_wifi".lc_T, for: .normal)
+            descButton.setImage(isAddNetwordTitle ? UIImage(lc_named: "adddevice_icon_help") :  UIImage(lc_named: ""), for: .normal)
+            descButton.setTitle(isAddNetwordTitle ? "device_manager_select_wifi".lc_T() : "device_manager_connected_wifi".lc_T(), for: .normal)
 //            widthConstraint?.update(offset: isAddNetwordTitle ? 130 : 100)
             if isAddNetwordTitle {
                 descButton.addTarget(self, action: #selector(wifiHelpClicked), for: .touchUpInside)
@@ -84,7 +84,7 @@ class LCWiFiConfigHeader: UITableViewHeaderFooterView {
     
     lazy var titleImageView: UIImageView = {
         let titleImageView = UIImageView()
-        titleImageView.image = UIImage(named: "adddevice_icon_wifipassword")
+        titleImageView.image = UIImage(lc_named: "adddevice_icon_wifipassword")
         
         return titleImageView
     }()
@@ -93,14 +93,14 @@ class LCWiFiConfigHeader: UITableViewHeaderFooterView {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.lcFont_t5()
 //        titleLabel.textColor = UIColor.lccolor_c8()
-        titleLabel.text = "add_device_device_not_support_5g".lc_T
+        titleLabel.text = "add_device_device_not_support_5g".lc_T()
         
         return titleLabel
     }()
     
     lazy var iconImageView: UIImageView = {
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage(named: "adddevice_icon_help")
+        iconImageView.image = UIImage(lc_named: "adddevice_icon_help")
         let tap = UITapGestureRecognizer(target: self, action: #selector(iconDidClicked))
         iconImageView.addGestureRecognizer(tap)
         iconImageView.isUserInteractionEnabled = true
@@ -113,7 +113,7 @@ class LCWiFiConfigHeader: UITableViewHeaderFooterView {
         descButton.titleLabel?.textAlignment = .left
         descButton.setTitleColor(UIColor.black, for: .normal)
         descButton.titleLabel?.font = UIFont.lcFont_t5()
-        descButton.setTitle("device_manager_connected_wifi".lc_T, for: .normal)
+        descButton.setTitle("device_manager_connected_wifi".lc_T(), for: .normal)
         return descButton
     }()
     

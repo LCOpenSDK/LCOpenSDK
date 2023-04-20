@@ -4,6 +4,7 @@
 
 import UIKit
 import MediaPlayer
+import LCOpenSDKDynamic
 
 class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDelegate, LCWifiConnectFailureVCProtocol {
     
@@ -16,53 +17,55 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
     }
     
     var showPlayAudio: Bool = true
-    var descriptionContent: String = "add_device_adjust_phone_volume_to_hear_bugu".lc_T
-    let tipContent: String = "add_device_listen_wifi_pwd_error_tip".lc_T
+    let config: LCOpenSDK_ConfigWIfi = LCOpenSDK_ConfigWIfi()
+    var searchedDvice: LCOpenSDK_SearchDeviceInfo?
     
-    lazy var wifiPassWordBtn: UIButton = {
-        let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 22))
-        btn.backgroundColor = UIColor.clear
-        btn.titleLabel?.font = UIFont.lcFont_t3()
-        if lc_screenHeight < 667 {
-            btn.titleLabel?.font = UIFont.lcFont_t5()
-        }
-        
-        btn.setTitle(tipContent, for: .normal)
-        btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
-        btn.addTarget(self, action: #selector(jumpWifiPassword), for: .touchUpInside)
-        return btn
-    }()
-    
-    @IBOutlet weak var wifiStrengthView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cycleTimerView: LCCycleTimerView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var tryAgainBtn: UIButton!
+    @IBOutlet weak var startOverBtn: UIButton!
     
-    private var audioPlayer: AVAudioPlayer?
+//    private var audioPlayer: AVAudioPlayer?
     private var isDeviceFound: Bool = false
     private var failureVc: LCWifiConnectFailureViewController?
     
-    /// 开启音频前手机的音量
-    private var defaultVolume: Float = 0.5
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.lccolor_c43()
-        
-        // Do any additional setup after loading the view.
-		imageView.image = UIImage(named: "adddevice_netsetting_connectrouter")
+        startOverBtn.layer.borderWidth = 1.0
+        startOverBtn.layer.borderColor = UIColor.init(red: 0xf1/255.0, green: 0xd0/255.0, blue: 0x00/255.0, alpha: 1.0).cgColor
         setupCustumContents()
         configCycleTimerView()
-        configWifiStrengthView()
         registerNotification()
         startSmartConfig()
+        self.contentLabel.text = "add_device_connect_router_please_wait".lc_T()
+        self.detailLabel.text = "add_device_connect_router_please_alert".lc_T()
+        self.tryAgainBtn.setTitle("add_device_try_again".lc_T(), for: .normal)
+        self.startOverBtn.setTitle("add_device_re_add".lc_T(), for: .normal)
         
+        if let image = self.imageView.image {
+            let height = (self.imageView.frame.size.width / image.size.width) * image.size.height
+            self.imageView.snp.remakeConstraints { make in
+                make.leading.equalToSuperview().offset(25)
+                make.trailing.equalToSuperview().offset(-25)
+                make.top.equalToSuperview()
+                make.width.equalTo(self.imageView.frame.size.width)
+                make.height.equalTo(height)
+            }
+        }
+    }
+    
+    override func leftActionType() -> LCAddBaseLeftAction {
+        return .quit
+    }
+    
+    override func isLeftActionShowAlert() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,8 +79,6 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
 		//恢复默认的音频类型
 		try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
         stopSmartConfig()
-        stopAudio()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,27 +97,9 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
     }
     
     private func setupCustumContents() {
-        contentLabel.textColor = UIColor.lccolor_c2()
-        detailLabel.textColor = UIColor.lccolor_c5()
-        let content = "add_device_connect_router_please_wait".lc_T
-        contentLabel.lc_setAttributedText(text: content, font: UIFont.lcFont_t1())
-        
-        let detail = descriptionContent
-        detailLabel.lc_setAttributedText(text: detail, font: UIFont.lcFont_t3())
-        
-        if lc_screenHeight < 667 {
-            contentLabel.lc_setAttributedText(text: content, font: UIFont.lcFont_t2())
-            detailLabel.lc_setAttributedText(text: detail, font: UIFont.lcFont_t5())
-        }
-        
-        ///国内乐橙配对路由器等待页面下方增加提示语，并能跳转到输入WIFI密码页面
-        if LCModuleConfig.shareInstance().isChinaMainland {
-            self.view.addSubview(wifiPassWordBtn)
-            wifiPassWordBtn.snp.makeConstraints({ (make) in
-                make.centerX.equalTo(self.view)
-                make.bottom.equalTo(self.view).offset(-LC_bottomSafeMargin)
-            })
-        }
+//#if DEBUG
+//        self.createDebugView()
+//#endif
     }
     
     @objc private func jumpWifiPassword() {
@@ -135,109 +118,58 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
         weak var weakSelf = self
         cycleTimerView.timeout = {
             weakSelf?.stopSmartConfig()
-            weakSelf?.stopAudio()
         }
-    }
-    
-    private func configWifiStrengthView() {
-        let imageNames = ["adddevice_netsetting_connectrouter_1",
-                          "adddevice_netsetting_connectrouter_2",
-                          "adddevice_netsetting_connectrouter_3",
-                          "adddevice_netsetting_connectrouter_4"]
-        
-        var images = [UIImage]()
-        for name in imageNames {
-            if let image = UIImage(named: name) {
-                images.append(image)
-            }
-        }
-        
-        wifiStrengthView.animationImages = images
-        wifiStrengthView.animationDuration = 1.5
-        wifiStrengthView.animationRepeatCount = 0
     }
     
     private func registerNotification() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleInterruption(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
-        
     }
     
     // MARK: - handleInterruption
-    
     @objc func handleInterruption(_ notification: Notification) {
         guard let interruptionType = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt else {
             return
         }
-        if interruptionType == AVAudioSessionInterruptionType.began.rawValue {
+//        if interruptionType == AVAudioSessionInterruptionType.began.rawValue {
             // started
-            self.audioPlayer?.pause()
-        } else if interruptionType == AVAudioSessionInterruptionType.ended.rawValue {
-            self.audioPlayer?.play()
-        }
-        
+//            self.audioPlayer?.pause()
+//        } else if interruptionType == AVAudioSessionInterruptionType.ended.rawValue {
+//            self.audioPlayer?.play()
+//        }
     }
     
     // MARK: - SmartConfig
     private func startSmartConfig() {
-        
         if cycleTimerView.currentTime > 0, cycleTimerView.currentTime < cycleTimerView.maxTime {
             cycleTimerView.resumeTimer()
         } else {
             cycleTimerView.startTimer()
         }
-        
-        wifiStrengthView.startAnimating()
 		smartConfig(openAudio: showPlayAudio)
     }
 	
     private func stopSmartConfig() {
-        LCSmartConfig.shareInstance().stop()
+        self.config.configWifiStop()
         cycleTimerView.stopTimer()
-        wifiStrengthView.stopAnimating()
     }
     
     // MARK: - Audio
 	private func smartConfig(openAudio: Bool) {
 		let manager = LCAddDeviceManager.sharedInstance
-		let fskMode: LCFSKMode = manager.ncType == .soundWaveV2 ? .new : .old
-        let wavePath = LCSmartConfig.shareInstance().start(withDevice: manager.deviceId,
-                                                ssid: manager.wifiSSID,
-                                            password: manager.wifiPassword,
-                                            security: "",
-                                            fskMode: fskMode)
-		//不需要开启音频，直接return
-		if openAudio == false {
-			return
-		}
-
-        if self.audioPlayer == nil {
-            if let path = wavePath, path.count > 0 {
-                let fileUrl = URL(fileURLWithPath: path)
-                self.audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl)
-                self.audioPlayer?.numberOfLoops = -1
-                self.audioPlayer?.prepareToPlay()
-            }
+        let fskMode: LCFSKMode = manager.supportConfigModes.contains(.soundWaveV2) ? .new : .old
+        let wavePath = self.config.configWifiStart(manager.deviceId, ssid: manager.wifiSSID ?? "", password: manager.wifiPassword, secure: "", voiceFreq: 11000, txMode: Int(fskMode.rawValue))
+        LCOpenSDK_SearchDevices.share().start(withDeviceId: manager.deviceId, timeOut: 60*2) {[weak self] deviceInfo in
+            self?.searchedDvice = deviceInfo
+            LCOpenSDK_SearchDevices.share().stop()
         }
-
-        self.audioPlayer?.play()
     }
-    
-    private func stopAudio() {
-        self.audioPlayer?.stop()
-        self.audioPlayer = nil
-    }
-    
     
     // MARK: - Find Device Process
 	private func findDevice() {
         print(" \(NSStringFromClass(self.classForCoder))::Device found...")
 		isDeviceFound = true
         stopSmartConfig()
-        stopAudio()
-        uploadWifiPairInfo()
 		LCAddDeviceManager.sharedInstance.stopGetDeviceStatus()
-		
 		//【*】在线或者支持sc码的，配网后，直接跳转连接云平台即可
 		//【*】其他需要跳转旧的初始化流程
 		if LCAddDeviceManager.sharedInstance.isSupportSC {
@@ -247,21 +179,6 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
 		}
     }
     
-    //上报WIFI配对信息
-    private func uploadWifiPairInfo() {
-		
-		/* SMB 不上报 */
-    }
-    
-    // MARK: - LCAddBaseVCProtocol
-    override func leftActionType() -> LCAddBaseLeftAction {
-        return .quit
-    }
-    
-    override func isLeftActionShowAlert() -> Bool {
-        return true
-    }
-    
     override func isRightActionHidden() -> Bool {
         return false
     }
@@ -269,19 +186,44 @@ class LCWifiConnectViewController: LCAddBaseViewController, LCCycleTimerViewDele
     override func rightActionType() -> [LCAddBaseRightAction] {
         if failureVc != nil {
             var actions: [LCAddBaseRightAction] = [.restart]
-            if LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) &&
-                LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wifi) {
-                if LCAddDeviceManager.sharedInstance.netConfigMode == .wifi {
+            if LCAddDeviceManager.sharedInstance.supportWired() &&
+                LCAddDeviceManager.sharedInstance.supportWifi() {
+                if LCAddDeviceManager.sharedInstance.netConfigMode == .soundWave || LCAddDeviceManager.sharedInstance.netConfigMode == .soundWaveV2 || LCAddDeviceManager.sharedInstance.netConfigMode == .smartConfig {
                     actions.append(.switchToWired)
-                } else if LCAddDeviceManager.sharedInstance.netConfigMode == .wired {
+                } else if LCAddDeviceManager.sharedInstance.netConfigMode == .lan {
                     actions.append(.switchToWireless)
                 }
             }
-            
             return actions
         } else {
             return [.restart]
         }
+    }
+    
+    @IBAction func tryAgain(_ sender: Any) {
+        self.cycleTimerView.currentTime = 0
+        self.contentLabel.text = "add_device_connect_router_please_wait".lc_T()
+        self.detailLabel.text = "add_device_connect_router_please_alert".lc_T()
+        self.tryAgainBtn.isHidden = true
+        self.startOverBtn.isHidden = true
+        self.cycleTimerView.isHidden = false
+        self.imageView.image = UIImage(lc_named: "adddevice_netsetting_guide_luyou")
+        cycleTimerView.stopTimer()
+        cycleTimerView.startTimer()
+        smartConfig(openAudio: showPlayAudio)
+    }
+    
+    @IBAction func startOver(_ sender: Any) {
+        self.baseBackToAddDeviceRoot()
+    }
+    
+    private func wifiConnectFailure() {
+        self.tryAgainBtn.isHidden = false
+        self.startOverBtn.isHidden = false
+        self.contentLabel.text = "add_device_connect_router_failed".lc_T()
+        self.detailLabel.text = ""
+        self.imageView.image = UIImage(lc_named: "adddevice_netsetting_guide_wifi_failure")
+        self.cycleTimerView.isHidden = true
     }
 }
 
@@ -289,14 +231,12 @@ extension LCWifiConnectViewController {
     
     // MARK: - LCCycleTimerViewDelegate
     func cycleTimerView(cycleView: LCCycleTimerView, tick: Int) {
-        let deviceId = LCAddDeviceManager.sharedInstance.deviceId
-        let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: deviceId)
 		guard isDeviceFound == false else {
 			return
 		}
 		
 		//【*】判断局域网是否搜索到
-        if device != nil, deviceId == LCAddDeviceManager.sharedInstance.deviceId {
+        if self.searchedDvice != nil {
             findDevice()
         }
 		
@@ -306,9 +246,6 @@ extension LCWifiConnectViewController {
 		}
 		
 		LCAddDeviceManager.sharedInstance.getDeviceStatus(success: { (bindInfo) in
-			
-			print(" \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
-			
 			//【*】保证设备已注册成功
 			guard bindInfo.lc_isExisted() else {
 				return
@@ -330,32 +267,7 @@ extension LCWifiConnectViewController {
     }
     
     func cycleTimerViewTimeout(cycleView: LCCycleTimerView) {
-        if failureVc == nil {
-            failureVc = LCWifiConnectFailureViewController()
-            failureVc?.delegate = self
-        }
-		
-		//【*】默认使用旧的错误类型
-		//【*】SoftAp流程，如果配置了，使用新的
-		let parser = LCAddDeviceManager.sharedInstance.getIntroductionParser()
-		var type: LCNetConnectFailureType? = parser?.errorType
-		if LCAddDeviceManager.sharedInstance.netConfigMode == .softAp, let softApErrorType = parser?.softApErrorType {
-			type = softApErrorType
-		}
-		
-		if type != nil, type != .ipcGeneral {
-            failureVc?.failureType = type!
-        } else {
-            failureVc?.failureType = LCAddDeviceManager.sharedInstance.supportConfigModes.contains(.wired) ? .commonWithWired : .commonWithoutWired
-        }
-        
-        //【！测试】
-        if LCAddDeviceTest.openTest {
-            failureVc?.failureType = testFailureType()
-        }
-        
-        self.failureVc?.showOnParent(controller: self)
-		
+        self.wifiConnectFailure()
     }
 }
 
@@ -364,22 +276,72 @@ extension LCWifiConnectViewController {
     func reconnectWifiAction(controller: LCWifiConnectFailureViewController) {
         self.startSmartConfig()
 		smartConfig(openAudio: showPlayAudio)
-		
     }
 }
 
-
-// MARK: - Test
-extension LCWifiConnectViewController {
-    
-    private func testFailureType() -> LCNetConnectFailureType {
-        var type: LCNetConnectFailureType = .commonWithoutWired
-        let allTypes: [LCNetConnectFailureType] = [.tp1, .tp1s, .g1, .door, .overseasA, .overseasC,
-                                                   .overseasDoorbell, .commonWithWired, .commonWithoutWired,
-                                                   .accessory, .cloudTimeout]
-        LCAddDeviceTest.failureIndex = (LCAddDeviceTest.failureIndex % (allTypes.count - 1)) + 1
-        type = allTypes[LCAddDeviceTest.failureIndex ]
-        
-        return type
-    }
-}
+// MARK: - Debug
+//extension LCWifiConnectViewController {
+//    private func createDebugView() {
+//        let debug_Success: UIButton = {
+//            let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 40))
+//            btn.backgroundColor = UIColor.white
+//            btn.titleLabel?.font = UIFont.lcFont_t3()
+//            btn.setTitle("路由器成功".lc_T(), for: .normal)
+//            btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+//            btn.addTarget(self, action: #selector(debugSuccess), for: .touchUpInside)
+//            return btn
+//        }()
+//
+//        let debug_Failure: UIButton = {
+//            let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 40))
+//            btn.backgroundColor = UIColor.white
+//            btn.titleLabel?.font = UIFont.lcFont_t3()
+//            btn.setTitle("路由器失败".lc_T(), for: .normal)
+//            btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+//            btn.addTarget(self, action: #selector(debugFailure), for: .touchUpInside)
+//            return btn
+//        }()
+//
+//        let debug_initialize: UIButton = {
+//            let btn: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 40))
+//            btn.backgroundColor = UIColor.white
+//            btn.titleLabel?.font = UIFont.lcFont_t3()
+//            btn.setTitle("初始化".lc_T(), for: .normal)
+//            btn.setTitleColor(UIColor.lccolor_c0(), for: .normal)
+//            btn.addTarget(self, action: #selector(debugInitialize), for: .touchUpInside)
+//            return btn
+//        }()
+//
+//
+//        self.view.addSubview(debug_Success)
+//        self.view.addSubview(debug_Failure)
+//        self.view.addSubview(debug_initialize)
+//
+//        debug_Failure.snp.makeConstraints({ (make) in
+//            make.centerX.equalTo(self.view)
+//            make.bottom.equalTo(self.view).offset(-LC_bottomSafeMargin)
+//        })
+//
+//        debug_Success.snp.makeConstraints({ (make) in
+//            make.centerX.equalTo(self.view)
+//            make.bottom.equalTo(debug_Failure.snp.top).offset(-10)
+//        })
+//
+//        debug_initialize.snp.makeConstraints({ (make) in
+//            make.centerX.equalTo(self.view)
+//            make.bottom.equalTo(debug_Success.snp.top).offset(-10)
+//        })
+//    }
+//
+//    @objc private func debugSuccess() {
+//        basePushToConnectCloudVC()
+//    }
+//
+//    @objc private func debugFailure() {
+//        self.wifiConnectFailure()
+//    }
+//
+//    @objc private func debugInitialize() {
+//        basePushToInitializeSearchVC()
+//    }
+//}

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import LCOpenSDKDynamic
 
 struct AddOtherWifiModel {
     var devicePassword: String
@@ -16,10 +17,10 @@ enum LCAddOtherWifiControllerStyle {
 }
 
 class LCAddOtherWifiController: LCAddBaseViewController {
-    
+    public var searchedDevice: LCOpenSDK_SearchDeviceInfo?
 	/// 设备密码：设备添加过程中获取 
     public var devicePassword: String = "admin"
-    public var myTitle: String = "add_device_title".lc_T
+    public var myTitle: String = "add_device_title".lc_T()
 	
     // MARK: - life cycle
     
@@ -127,10 +128,9 @@ class LCAddOtherWifiController: LCAddBaseViewController {
         
         switch vcStyle {
         case .changeWifi:
-            
             let connectSession = LCWifiConnectSession()
             connectSession.ssid = ssid ?? ""
-            connectSession.bssid = ""
+            connectSession.bssid = ssid ?? ""
             connectSession.linkEnable = LCLinkHandle(rawValue: LCLinkHandle.RawValue(truncating: NSNumber(booleanLiteral: true)))
             connectSession.password = pwd ?? ""
             LCDeviceHandleInterface.controlDeviceWifi(for: deviceId ?? "", connestSession: connectSession, success: {
@@ -139,7 +139,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
                 
             }
 
-            LCProgressHUD.showMsg("device_manager_wifi_connetting_tip".lc_T, duration: 3.0)
+            LCProgressHUD.showMsg("device_manager_wifi_connetting_tip".lc_T(), duration: 3.0)
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -147,20 +147,18 @@ class LCAddOtherWifiController: LCAddBaseViewController {
             LCProgressHUD.show(on: self.view)
             if LCAddDeviceManager.sharedInstance.isSupportSC {
                 let dId = LCAddDeviceManager.sharedInstance.deviceId
-                let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: dId)
-
-                guard device != nil else {
+                guard self.searchedDevice != nil else {
                     LCProgressHUD.hideAllHuds(self.view)
-                    LCProgressHUD.showMsg("add_device_connect_failed".lc_T)
+                    LCProgressHUD.showMsg("add_device_connect_failed".lc_T())
                     return
                 }
-                if device?.deviceInitStatus == .unInit {
-                    LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: 12, netcardName:"" , deviceIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: true, handler: { result in
+                if self.searchedDevice?.deviceInitStatus == .unInit {
+                    LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: 12, netcardName:"" , deviceIp: self.searchedDevice?.ip ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: true, handler: { result in
                         LCProgressHUD.hideAllHuds(self.view)
                         if result == 0 {
                             self.pushToConnectCloud()
                         }else{
-                            LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T)
+                            LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T())
                         }
                     }, timeout: 5000 * 2)
                 } else {
@@ -180,7 +178,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
         
         
         
-        LCNetSDKHelper.loginDevice(byIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", port: Int(LCAddDeviceManager.sharedInstance.getLocalDevice()?.port ?? 37777), username: "admin", password: devicePassword) { loginHandle in
+        LCNetSDKHelper.loginDevice(byIp: self.searchedDevice?.ip ?? "", port: Int(self.searchedDevice?.port ?? 37777), username: "admin", password: devicePassword) { loginHandle in
             
             
             if !LCNetSDKInterface.querySupportWlanConfigV3(loginHandle) {
@@ -191,7 +189,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
                     netcardName = model.netcardName ?? ""
                 }
             }
-            LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: Int32(encryptionAuthority), netcardName:netcardName , deviceIp: LCAddDeviceManager.sharedInstance.getLocalDevice()?.deviceIP ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: false, handler: { result in
+            LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: Int32(encryptionAuthority), netcardName:netcardName , deviceIp: self.searchedDevice?.ip ?? "", devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: false, handler: { result in
                 LCProgressHUD.hideAllHuds(self.view)
                 self.pushToConnectCloud()
             }, timeout: 5000 * 2)
@@ -235,14 +233,14 @@ class LCAddOtherWifiController: LCAddBaseViewController {
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         // todo: word
-        nameLabel.text = "名称:".lc_T
+        nameLabel.text = "name1".lc_T()
         
         return nameLabel
     }()
     
     lazy var nameTextField: LCTextField = {
         let textField = LCTextField()
-        textField.placeholder = "add_device_enter_wifi_password".lc_T
+        textField.placeholder = "add_device_enter_wifi_password".lc_T()
         textField.font = UIFont.lcFont_t2()
         textField.customClearButton = true
         textField.textColor = UIColor.lccolor_c40()
@@ -279,7 +277,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
     lazy var passwordLabel: UILabel = {
         let passwordLabel = UILabel()
         // todo: word
-        passwordLabel.text = "password1".lc_T
+        passwordLabel.text = "password1".lc_T()
         
         return passwordLabel
     }()
@@ -287,16 +285,16 @@ class LCAddOtherWifiController: LCAddBaseViewController {
     lazy var passwordInputView: LCInputView = {
         let inputView = LCInputView()
 		inputView.openBtnState = true
-		inputView.textField.placeholder = "add_device_input_wifi_password".lc_T
+		inputView.textField.placeholder = "add_device_input_wifi_password".lc_T()
         return inputView
     }()
     
     lazy var descBtn: UIButton = {
         let descBtn = UIButton()
         descBtn.titleLabel?.font = UIFont.lcFont_t5()
-        descBtn.setTitle("add_device_device_not_support_5g".lc_T, for: .normal)
+        descBtn.setTitle("add_device_device_not_support_5g".lc_T(), for: .normal)
         descBtn.setTitleColor(UIColor.lccolor_c42(), for: .normal)
-        descBtn.setImage(UIImage(named: "adddevice_icon_help"), for: .normal)
+        descBtn.setImage(UIImage(lc_named: "adddevice_icon_help"), for: .normal)
         descBtn.addTarget(self, action: #selector(descBtnClicked), for: .touchUpInside)
         descBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 162, 0, 0)
         descBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20)
@@ -308,7 +306,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
         let nextBtn = UIButton()
         nextBtn.isEnabled = false
         nextBtn.backgroundColor = UIColor.lccolor_c42()
-        nextBtn.setTitle("NextStep".lc_T, for: .normal)
+        nextBtn.setTitle("common_next".lc_T(), for: .normal)
         nextBtn.setTitleColor(UIColor.lccolor_c43(), for: .normal)
         nextBtn.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
         
@@ -317,7 +315,7 @@ class LCAddOtherWifiController: LCAddBaseViewController {
 
     // MARK: - private let
     
-    private var vcStyle: LCAddOtherWifiControllerStyle = .newWifi
+    public var vcStyle: LCAddOtherWifiControllerStyle = .newWifi
     private var deviceId: String?
     
     private let topPadding: CGFloat = 10.0

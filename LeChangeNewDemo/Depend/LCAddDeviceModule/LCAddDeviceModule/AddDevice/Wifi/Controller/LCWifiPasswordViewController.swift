@@ -9,26 +9,18 @@ import AFNetworking
 
 class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate {
 
-	@IBOutlet weak var imageView: UIImageView!
-	@IBOutlet weak var inputPwdLabel: UILabel!
-	@IBOutlet weak var wifiLabel: UILabel!
-	@IBOutlet weak var wifiNameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var wifiNameLabel: UILabel!
 	@IBOutlet weak var passwordInputView: LCInputView!
 	@IBOutlet weak var checkButton: UIButton!
 	@IBOutlet weak var nextButton: UIButton!
-	@IBOutlet weak var supportView: UIView!
 	@IBOutlet weak var supportTipButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
-	@IBOutlet weak var autoKeyboardView: LCAutoKeyboardView!
+	@IBOutlet weak var autoKeyboardView: UIView!
     @IBOutlet weak var switchWifiBtn: UIButton!
-    @IBOutlet weak var wifiNameTrailToSuperView: NSLayoutConstraint!
-	@IBOutlet weak var wifiDetectButton: UIButton!
-    @IBOutlet weak var topLine: UIView!
-    @IBOutlet weak var bottomLine: UIView!
     
     private var isSelected: Bool = false
     private var presenter: LCWifiPasswordPresenterProtocol?
-	@IBOutlet weak var checkWidthConstraint: NSLayoutConstraint!
 	
 	public static func storyboardInstance() -> LCWifiPasswordViewController {
 		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.lc_addDeviceBundle())
@@ -45,15 +37,8 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
         
         //通过Presenter设置
         self.presenter?.setupSupportView()
-		
-		
-		autoKeyboardView.relatedView = nextButton
-
-		if LCAddDeviceManager.sharedInstance.netConfigMode == .softAp {
-			switchWifiBtn.isHidden = true
-			wifiNameTrailToSuperView.constant = 15
-            
-		}
+        
+        self.title = ""
 	}
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,13 +66,7 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 		//重写左键返回，上一步如果是检查WIFI入口进来的，需要返回到更上一级【由于有自动检查的步骤】
 		var checkWifiVc: UIViewController?
 		var controllers = baseStackContainControllers()
-		for vc in controllers {
-			if let container = vc as? LCContainerVC, container.contentViewController is LCWifiCheckViewController {
-				checkWifiVc = vc
-				break
-			}
-		}
-		
+
 		if checkWifiVc != nil {
 			let index = controllers.index(of: checkWifiVc!)
 			controllers.remove(at: index!)
@@ -99,8 +78,8 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 	
 	func baseStackContainControllers() -> [UIViewController] {
 		var controllers: [UIViewController] = [UIViewController]()
-		if let naviVc = self.navigationController as? LCNavigationController, let stackControllers = naviVc.lc_viewContainers() {
-			controllers.append(contentsOf: stackControllers)
+		if let naviVc = self.navigationController as? LCNavigationController {
+			controllers.append(contentsOf: naviVc.viewControllers)
 		}
 		return controllers
 	}
@@ -110,30 +89,29 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
     }
 
 	func setupCustomContents() {
+        if LCAddDeviceManager.sharedInstance.isSupport5GWifi {
+            supportTipButton.isHidden = true
+            helpButton.isHidden = true
+        }
 		wifiNameLabel.text = nil
-		inputPwdLabel.text = "add_device_input_wifi_password".lc_T
-		wifiLabel.text = "add_device_wifi_ssid".lc_T
-		checkButton.setTitle("add_device_remember_password".lc_T, for: .normal)
-		supportTipButton.setTitle("add_device_device_not_support_5g".lc_T, for: .normal)
-		passwordInputView.textField.placeholder = "add_device_input_wifi_password".lc_T
-		nextButton.setTitle("common_next".lc_T, for: .normal)
-        passwordInputView.tfUnSecureImg = UIImage(named: "login_icon_openeye_click")
-        passwordInputView.tfSecureImg = UIImage(named: "login_icon_closeeye_click")
+		checkButton.setTitle("add_device_remember_password".lc_T(), for: .normal)
+		supportTipButton.setTitle("add_device_iot_wifi_2_4g_only".lc_T(), for: .normal)
+		passwordInputView.textField.placeholder = "add_device_input_wifi_password".lc_T()
+		nextButton.setTitle("common_next".lc_T(), for: .normal)
+        passwordInputView.tfUnSecureImg = UIImage(lc_named: "login_icon_openeye_click")
+        passwordInputView.tfSecureImg = UIImage(lc_named: "login_icon_closeeye_click")
+        titleLabel.text = "add_device_connect_wifi".lc_T()
         
         //设置颜色规范
 		passwordInputView.textField.textColor = UIColor.lccolor_c2()
+        passwordInputView.switchEnable = true;
 		wifiNameLabel.textColor = UIColor.lccolor_c2()
-        wifiLabel.textColor = UIColor.lccolor_c5()
-        inputPwdLabel.textColor = UIColor.lccolor_c2()
         supportTipButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
         checkButton.setTitleColor(UIColor.lccolor_c5(), for: .normal)
-        topLine.backgroundColor = UIColor.lccolor_c8()
-        bottomLine.backgroundColor = UIColor.lccolor_c8()
         
-		switchWifiBtn.setImage(UIImage(named: "adddevice_icon_switchwifi"), for: .normal)
-		checkButton.setImage(UIImage(named: "adddevice_box_checkbox"), for: .normal)
-		checkButton.setImage(UIImage(named: "adddevice_box_checkbox_checked"), for: .selected)
-		imageView.image = UIImage(named: "adddevice_icon_wifipassword")
+		switchWifiBtn.setImage(UIImage(lc_named: "adddevice_wifi_refresh"), for: .normal)
+		checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox"), for: .normal)
+		checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox_checked"), for: .selected)
 		
 		//按钮样式配置
 		nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
@@ -143,20 +121,13 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 		//支持多行显示
 		checkButton.titleLabel?.numberOfLines = 2
 		supportTipButton.titleLabel?.numberOfLines = 2
-		supportView.backgroundColor = UIColor.clear
-		
-        wifiDetectButton.isHidden = true
 
 	}
 	
 	func setupInputView() {
-        helpButton.setImage(UIImage.init(named: "adddevice_icon_help"), for: UIControlState.normal)
-		passwordInputView.backgroundColor = UIColor.clear
+        helpButton.setImage(UIImage(lc_named: "adddevice_icon_help"), for: UIControlState.normal)
 		passwordInputView.textField.returnKeyType = .done
 		passwordInputView.textField.delegate = self
-		
-		//密码国内默认为明文，可点击隐藏，海外默认为暗文
-		passwordInputView.openBtnState = LCModuleConfig.shareInstance().isChinaMainland
 	}
 	
 	// MARK: Actions
@@ -173,23 +144,18 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 	
     @IBAction func onWifiSwitchAction(_ sender: Any) {
         print("LCWifiPasswordViewController onWifiSwitchAction")
-        let url = URL.init(string: UIApplicationOpenSettingsURLString)!
-        if #available(iOS 10.0, *) {
-            //先判断是否有iOS10SDK的方法，如果有，则实现iOS10的跳转
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
+        if UIApplication.shared.canOpenURL(URL(string: "prefs:root=WIFI")!) {
+            UIApplication.shared.open(URL(string: "prefs:root=WIFI")!)
         } else {
-            // Fallback on earlier versions
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
-            }
+            UIApplication.shared.open(URL(string: "App-Prefs:root=WIFI")!)
         }
     }
     
     @IBAction func onSupportTipAction(_ sender: Any) {
-		let supportVc = LCWiFiUnsupportVC()
-		self.navigationController?.pushViewController(supportVc, animated: true)
+        let sheet = LCSheetGuideView(title: "add_device_connect_2_4g_wifi".lc_T(), message: "add_device_connect_2_4g_wifi_explain".lc_T(), image: nil, cancelButtonTitle: "Alert_Title_Button_Confirm1".lc_T())
+        sheet.show()
+//		let supportVc = LCWiFiUnsupportVC()
+//		self.navigationController?.pushViewController(supportVc, animated: true)
 	}
 	
 	@IBAction func onNextAction(_ sender: Any) {
@@ -198,13 +164,13 @@ class LCWifiPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
             let status = CLLocationManager.authorizationStatus()
             if status == .denied {
                 //弹框提示
-                LCProgressHUD.showMsg("turn_on_mobile_phone_positioning".lc_T)
+                LCProgressHUD.showMsg("turn_on_mobile_phone_positioning".lc_T())
                 return
             }
         }
         
 		if LCNetWorkHelper.sharedInstance().emNetworkStatus != AFNetworkReachabilityStatus.reachableViaWiFi.rawValue {
-			LCProgressHUD.showMsg("add_devices_smartconfig_msg_no_wifi".lc_T)
+			LCProgressHUD.showMsg("add_devices_smartconfig_msg_no_wifi".lc_T())
 		} else {
 			
 			self.view.endEditing(true)

@@ -51,9 +51,7 @@ static LCUserManager *userManager = nil;
 {
     // config
     NSString *configfilepath = [LCFileManager userConfigFilePath];
-    NSString *configStr = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:configfilepath]
-                                                   encoding:NSUTF8StringEncoding
-                                                      error:NULL];
+    NSString *configStr = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:configfilepath] encoding:NSUTF8StringEncoding error:NULL];
     
     NSData *desData = [GTMBase64 decodeString:configStr];
     NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:desData];

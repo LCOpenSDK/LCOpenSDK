@@ -26,7 +26,7 @@
 
 @end
 
-@interface LCNewLivePreviewPresenter ()<LCOpenSDK_TouchListener, LCOpenSDK_PlayRealListener>
+@interface LCNewLivePreviewPresenter ()<LCOpenSDK_TouchListener, LCOpenSDK_PlayRealListener, LCOpenSDK_TalkerListener>
 
 /// 中间控制能力数组
 @property (strong, nonatomic) NSMutableArray *middleControlList;
@@ -38,12 +38,18 @@
 
 @implementation LCNewLivePreviewPresenter
 
-- (void)ptzControlWith:(NSString *)direction Duration:(NSTimeInterval)duration {
-    [LCDeviceHandleInterface controlMovePTZWithDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId Channel:[LCNewDeviceVideoManager shareInstance].currentDevice.channels[[LCNewDeviceVideoManager shareInstance].currentChannelIndex].channelId Operation:direction Duration:duration success:^(NSString *_Nonnull picUrlString) {
-        NSLog(@"PTZ8888:%@", picUrlString);
-    } failure:^(LCError *_Nonnull error) {
-        NSLog(@"");
-    }];
+- (void)ptzControlWith:(NSString *)direction duration:(int)duration {
+    // iot设备不支持云台长连接接口
+    if ([LCNewDeviceVideoManager shareInstance].currentDevice.deviceId != nil && [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId.length > 0) {
+        [LCDeviceHandleInterface controlMovePTZWithDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId Channel:[LCNewDeviceVideoManager shareInstance].currentDevice.channels[[LCNewDeviceVideoManager shareInstance].currentChannelIndex].channelId Operation:direction Duration:duration success:^(NSString * _Nonnull picUrlString) {
+        } failure:^(LCError * _Nonnull error) {
+        }];
+    } else {
+        LCOpenSDK_PTZControllerInfo *PTZControllerInfo = [[LCOpenSDK_PTZControllerInfo alloc]init];
+        PTZControllerInfo.operation = direction;
+        PTZControllerInfo.duration = duration;
+        [self.playWindow controlMovePTZ:PTZControllerInfo];
+    }
 }
 
 - (LCNewDeviceVideoManager *)videoManager {
@@ -68,6 +74,65 @@
     return middleControlList;
 }
 
+- (void)refreshMiddleControlItems {
+    for (LCButton *btn in self.middleControlList) {
+        switch (btn.tag) {
+            case LCNewLivePreviewControlPlay:
+                break;
+            case LCNewLivePreviewControlClarity:
+                [self.qualityView removeFromSuperview];
+                self.qualityView = nil;
+                if ([self.videoManager.currentChannelInfo.resolutions count] > 0) {
+                    LCCIResolutions *currentRlution = self.videoManager.currentResolution;
+                    if (!currentRlution) {
+                        currentRlution = [self.videoManager.currentChannelInfo.resolutions firstObject];
+                    }
+                    [btn setTitle:currentRlution.name forState:UIControlStateNormal];
+                    [btn setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+                    weakSelf(btn)
+                    weakSelf(self)
+                    [btn.KVOController observe:self.videoManager keyPath:@"currentResolution" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                        if (change[@"new"]) {
+                            LCCIResolutions *NResolution = (LCCIResolutions *)change[@"new"];
+                            [weakbtn setTitle:NResolution.name forState:UIControlStateNormal];
+                        }
+                    }];
+
+                    [btn setTouchUpInsideblock:^(LCButton * _Nonnull btn) {
+                        [weakself qualitySelect:btn];
+                    }];
+                } else {
+                    BOOL isSD = self.videoManager.isSD;
+                    NSString *imagename = isSD ? @"live_video_icon_sd" : @"live_video_icon_hd";
+                    [btn setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
+                    [btn setTitle:@"" forState:UIControlStateNormal];
+                    //监听管理者状态
+                    weakSelf(btn)
+                    weakSelf(self)
+                    [btn.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                        if (![change[@"new"] boolValue]) {
+                            //高清
+                            [weakbtn setImage:LC_IMAGENAMED(@"live_video_icon_hd") forState:UIControlStateNormal];
+                        } else {
+                            [weakbtn setImage:LC_IMAGENAMED(@"live_video_icon_sd") forState:UIControlStateNormal];
+                        }
+                    }];
+                    btn.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+                        [weakself onQuality:btn];
+                    };
+                }
+                break;
+            case LCNewLivePreviewControlVoice:
+                break;
+            case LCNewLivePreviewControlFullScreen:
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
 // TODO:后期需要根据能力集检查然后进行填充
 - (NSMutableArray *)getBottomControlItems {
     NSMutableArray *bottomControlList = [NSMutableArray array];
@@ -85,10 +150,9 @@
         switch (btn.tag) {
             case LCNewLivePreviewControlPTZ:
                 // easy4ip设备默认可对讲
-                if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"] || [self.videoManager.currentDevice.catalog isEqualToString:@"Doorbell"]) {
                     btn.enabled = NO;
                 }
-                
                 //监听管理者状态，判断云台能力
                 if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
                     if ([self.videoManager.currentChannelInfo.ability isSupportPTZ] || [self.videoManager.currentChannelInfo.ability isSupportPT] || [self.videoManager.currentChannelInfo.ability isSupportPT1]) {
@@ -155,33 +219,28 @@
         case LCNewLivePreviewControlClarity: {
             
             if ([self.videoManager.currentChannelInfo.resolutions count] > 0) {
-                
                 LCCIResolutions *currentRlution = self.videoManager.currentResolution;
                 if (!currentRlution) {
                     currentRlution = [self.videoManager.currentChannelInfo.resolutions firstObject];
                 }
-                
                 [item setTitle:currentRlution.name forState:UIControlStateNormal];
+                [item setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
                 
                 [item.KVOController observe:self.videoManager keyPath:@"currentResolution" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                    
                     if (change[@"new"]) {
-                        
                         LCCIResolutions *NResolution = (LCCIResolutions *)change[@"new"];
                         [weakItem setTitle:NResolution.name forState:UIControlStateNormal];
                     }
                 }];
                 
                 [item setTouchUpInsideblock:^(LCButton * _Nonnull btn) {
-                    
                     [weakself qualitySelect:btn];
                 }];
-            }else{
-                
+            } else {
                 BOOL isSD = self.videoManager.isSD;
                 NSString *imagename = isSD ? @"live_video_icon_sd" : @"live_video_icon_hd";
                 [item setImage:LC_IMAGENAMED(imagename) forState:UIControlStateNormal];
-                
+                [item setTitle:@"" forState:UIControlStateNormal];
                 //监听管理者状态
                 [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isSD" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                     if (![change[@"new"] boolValue]) {
@@ -252,29 +311,13 @@
         case LCNewLivePreviewControlPTZ: {
             //云台
             [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
-            // easy4ip设备默认可对讲
-            if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
-                item.enabled = NO;
-                return item;
-            }
-            
-            //监听管理者状态，判断云台能力
-            if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
-                if ([self.videoManager.currentChannelInfo.ability isSupportPTZ] || [self.videoManager.currentChannelInfo.ability isSupportPT] || [self.videoManager.currentChannelInfo.ability isSupportPT1]) {
-                    item.enabled = YES;
-                    return item;
-                }
-            }
-            if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
-                if ([self.videoManager.currentDevice.ability isSupportPTZ] || [self.videoManager.currentDevice.ability isSupportPT] || [self.videoManager.currentDevice.ability isSupportPT1]) {
-                    item.enabled = YES;
-                    return item;
-                }
-            }
+            item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+                [weakself onPtz:btn];
+            };
             //监听管理者状态，判断云台能力
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
-                    if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+                    if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"] || [self.videoManager.currentDevice.catalog isEqualToString:@"Doorbell"]) {
                         weakItem.enabled = NO;
                     } else {
                         weakItem.enabled = YES;
@@ -288,9 +331,24 @@
                     [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
                 }
             }];
-            item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-                [weakself onPtz:btn];
-            };
+            //监听管理者状态，判断云台能力
+            if ([self.videoManager.currentDevice.catalog isEqualToString:@"NVR"]) {
+                if ([self.videoManager.currentChannelInfo.ability isSupportPTZ] || [self.videoManager.currentChannelInfo.ability isSupportPT] || [self.videoManager.currentChannelInfo.ability isSupportPT1]) {
+                    item.enabled = YES;
+                    return item;
+                }
+            }
+            if ([self.videoManager.currentDevice.catalog isEqualToString:@"IPC"]) {
+                if ([self.videoManager.currentDevice.ability isSupportPTZ] || [self.videoManager.currentDevice.ability isSupportPT] || [self.videoManager.currentDevice.ability isSupportPT1]) {
+                    item.enabled = YES;
+                    return item;
+                }
+            }
+            
+            if ([self.videoManager.currentDevice.accessType isEqualToString:@"Easy4IP"] || [self.videoManager.currentDevice.catalog isEqualToString:@"Doorbell"]) {
+                item.enabled = NO;
+                return item;
+            }
         }
         break;
         case LCNewLivePreviewControlSnap: {
@@ -522,7 +580,7 @@
     UIView *tempView = [self.playWindow getWindowView];
     self.errorBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.errorBtn setImage:LC_IMAGENAMED(@"videotape_icon_replay") forState:UIControlStateNormal];
-    [self.container.view addSubview:self.errorBtn];
+    [self.liveContainer.view addSubview:self.errorBtn];
     [self.errorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(tempView.mas_centerX);
         make.centerY.mas_equalTo(tempView.mas_centerY).offset(-10);
@@ -532,7 +590,7 @@
     self.errorBtn.hidden = YES;
 
     self.errorMsgLab = [UILabel new];
-    [self.container.view addSubview:self.errorMsgLab];
+    [self.liveContainer.view addSubview:self.errorMsgLab];
     self.errorMsgLab.textColor = [UIColor whiteColor];
     self.errorMsgLab.font = [UIFont lcFont_t3];
     self.errorMsgLab.textAlignment = NSTextAlignmentCenter;
@@ -548,7 +606,7 @@
     self.bigPlayBtn = [LCButton createButtonWithType:LCButtonTypeVertical];
     [self.bigPlayBtn setImage:LC_IMAGENAMED(@"videotape_icon_play_big") forState:UIControlStateNormal];
     //    [replayBtn setTitle:@"" forState:UIControlStateNormal];
-    [self.container.view addSubview:self.bigPlayBtn];
+    [self.liveContainer.view addSubview:self.bigPlayBtn];
     [self.bigPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(tempView.mas_centerX);
         make.centerY.mas_equalTo(tempView.mas_centerY);
@@ -639,7 +697,7 @@
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *_Nonnull textField) {
         textField.placeholder = @"";
     }];
-    [self.container presentViewController:alertController animated:YES completion:nil];
+    [self.liveContainer presentViewController:alertController animated:YES completion:nil];
 }
 
 //MARK: - Cover
@@ -671,7 +729,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
 }
 
 -(void)setVideoType{
@@ -702,9 +760,8 @@
         [[self.playWindow getWindowView] addSubview:_videoTypeLabel];
         _videoTypeLabel.hidden = YES;
         [_videoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-           
             make.height.mas_equalTo(30);
-            make.right.equalTo([self.playWindow getWindowView]);
+            make.top.right.equalTo([self.playWindow getWindowView]);
         }];
     }
     
@@ -796,6 +853,18 @@
         }];
     }
     return _borderIVRight;
+}
+
+- (void)onAudioReceive:(Byte *)pData dataLen:(int)dataLen audioFormat:(int)audioFormat sampleRate:(int)sampleRate sampleDepth:(int)sampleDepth {
+    
+}
+
+- (void)onAudioRecord:(Byte *)pData dataLen:(int)dataLen audioFormat:(int)audioFormat sampleRate:(int)sampleRate sampleDepth:(int)sampleDepth {
+    
+}
+
+- (void)onTalkResult:(NSString *)error TYPE:(NSInteger)type {
+    
 }
 
 @end

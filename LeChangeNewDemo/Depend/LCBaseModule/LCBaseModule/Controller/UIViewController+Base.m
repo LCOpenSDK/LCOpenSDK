@@ -3,10 +3,10 @@
 //
 
 #import <LCBaseModule/UIViewController+Base.h>
-#import <LCBaseModule/LCContainerVC.h>
 #import <LCBaseModule/LCModuleConfig.h>
 #import "UINavigationController+LC.h"
 #import <LCBaseModule/LCBaseModule-Swift.h>
+#import <LCBaseModule/LCNavigationController.h>
 #import <objc/runtime.h>
 
 @implementation UIViewController (Base)
@@ -83,15 +83,12 @@ static const void *IsRotateLockedKey = &IsRotateLockedKey;
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
         UITabBarController *tabBarController = (UITabBarController *)rootViewController;
         return [self topCurViewController:tabBarController.selectedViewController];
-    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationController = (UINavigationController *)rootViewController;
+    } else if ([rootViewController isKindOfClass:[LCNavigationController class]]) {
+        LCNavigationController *navigationController = (LCNavigationController *)rootViewController;
         return [self topCurViewController:navigationController.visibleViewController];
     } else if (rootViewController.presentedViewController) {
         UIViewController *presentedViewController = rootViewController.presentedViewController;
         return [self topCurViewController:presentedViewController];
-    } else if ([rootViewController isKindOfClass:[LCContainerVC class]]) {
-        LCContainerVC *containVC = (LCContainerVC *)rootViewController;
-        return containVC.contentViewController;
     } else {
         return rootViewController;
     }

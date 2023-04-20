@@ -25,7 +25,6 @@
 }
 
 - (void)viewTap:(UITapGestureRecognizer *)tap{
-    [super viewTap:tap];
     self.presenter.endEdit = YES;
 }
 

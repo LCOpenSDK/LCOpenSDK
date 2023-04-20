@@ -24,7 +24,10 @@ target 'LeChangeDemo' do
   pod 'AFNetworking'
   pod 'MBProgressHUD', '1.0.0'
   pod 'ObjectMapper', '~> 3.5.3'
+  pod 'MJExtension'
+  pod 'SAMKeychain', '~> 1.5.3'
+  pod 'GTMBase64', '~> 1.0.1'
   # Pods for LeChangeDemo
-#  pod 'LCOpenSDK', '~> 3.12.01'
+  # pod 'LCOpenSDK', '~> 3.12.02'
 
 end

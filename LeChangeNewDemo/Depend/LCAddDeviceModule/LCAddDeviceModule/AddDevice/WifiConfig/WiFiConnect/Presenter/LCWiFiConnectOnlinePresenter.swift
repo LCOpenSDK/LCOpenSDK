@@ -73,7 +73,7 @@ class LCWiFiConnectOnlinePresenter: ILCWiFiConnectOnlinePresenter {
         }) { (error) in
             print("NetworkSettings：",Date.init(),"\(#function):: 连接失败 password：\(connectSession.password),bssid：\(connectSession.bssid),linkEnable：\(connectSession.linkEnable),ssid：\(connectSession.ssid)")
         }
-        LCProgressHUD.showMsg("device_manager_wifi_connetting_tip".lc_T, duration: 3.0)
+        LCProgressHUD.showMsg("device_manager_wifi_connetting_tip".lc_T(), duration: 3.0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.container?.navigationController?.popViewController(animated: true)
             

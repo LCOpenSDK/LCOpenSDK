@@ -10,8 +10,9 @@
  */
 #import <UIKit/UIKit.h>
 #import <LCBaseModule/UIViewController+Base.h>
+#import <LCBaseModule/LCBasicViewController.h>
 
-@interface LCBaseViewController : UIViewController
+@interface LCBaseViewController : LCBasicViewController
 
 /**
  是否隐藏系统导航栏底部的线

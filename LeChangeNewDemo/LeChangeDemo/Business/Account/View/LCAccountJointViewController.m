@@ -192,6 +192,10 @@
     }
 }
 
+- (void)viewTap:(UITapGestureRecognizer *)tap {
+    [self.view endEditing:YES];
+}
+
 - (void)titleTapAction:(UITapGestureRecognizer *)sender {
     [self setSwitchStatus:YES];
 }

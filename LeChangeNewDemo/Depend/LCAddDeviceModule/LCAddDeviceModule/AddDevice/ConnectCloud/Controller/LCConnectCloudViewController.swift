@@ -21,12 +21,9 @@ class LCConnectCloudViewController: LCAddBaseViewController, LCCycleTimerViewDel
 	
 	@IBOutlet weak var cycleTimerView: LCCycleTimerView!
 	@IBOutlet weak var contentLabel: UILabel!
-	@IBOutlet weak var topAnimateView: UIImageView!
 	@IBOutlet weak var cloudImageView: UIImageView!
-	@IBOutlet weak var leftCloudAnimateView: UIImageView!
-	@IBOutlet weak var rightCloudAnimateView: UIImageView!
-	
-	/// 超时的页面
+
+    /// 超时的页面
 	private lazy var timeoutVc: LCConnectCloudTimeoutViewController = {
 		let controller = LCConnectCloudTimeoutViewController()
 		controller.delegate = self
@@ -49,17 +46,34 @@ class LCConnectCloudViewController: LCAddBaseViewController, LCCycleTimerViewDel
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor = UIColor.lccolor_c43()
-		// Do any additional setup after loading the view.
-		configTopConnectView()
-		configCustomContents()
+        self.title = ""
+        self.contentLabel.text = "add_device_connect_cloud_please_wait".lc_T()
 		configCycleTimerView()
 
 		//开始倒计时
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 			self.startConnecting()
 		}
-		
+        
+        if let image = self.cloudImageView.image {
+            let height = (self.cloudImageView.frame.size.width / image.size.width) * image.size.height
+            self.cloudImageView.snp.remakeConstraints { make in
+                make.leading.equalToSuperview().offset(25)
+                make.trailing.equalToSuperview().offset(-25)
+                make.top.equalToSuperview()
+                make.width.equalTo(self.cloudImageView.frame.size.width)
+                make.height.equalTo(height)
+            }
+        }
 	}
+    
+    override func leftActionType() -> LCAddBaseLeftAction {
+        return .quit
+    }
+    
+    override func isLeftActionShowAlert() -> Bool {
+        return true
+    }
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
@@ -69,109 +83,28 @@ class LCConnectCloudViewController: LCAddBaseViewController, LCCycleTimerViewDel
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		stopConnecting()
-		
-		//由于页面是在父视图显示的，需要单独区分超时与未超时的情况
-
-	}
-	
-	private func configTopConnectView() {
-		var images = [UIImage]()
-        if let image1 = UIImage(named: "adddevice_netsetting_connectcloud_1") {
-            images.append(image1)
-        }
-        if let image2 = UIImage(named: "adddevice_netsetting_connectcloud_2") {
-            images.append(image2)
-        }
-        if let image3 = UIImage(named: "adddevice_netsetting_connectcloud_3") {
-            images.append(image3)
-        }
-        
-		topAnimateView.animationImages = images
-		topAnimateView.animationDuration = 2
-		cloudImageView.image = UIImage(named: "adddevice_netsetting_cloudserver")
-	}
-	
-	private func configCustomContents() {
-		contentLabel.text = "add_device_connect_cloud_please_wait".lc_T
-        contentLabel.textColor = UIColor.lccolor_c2()
 	}
 	
 	private func configCycleTimerView() {
-		switch LCAddDeviceManager.sharedInstance.netConfigMode {
-		case .softAp:
-			cycleTimerView.maxTime = LCAddConfigTimeout.softApCloudConnect
-			
-//		case .nbIoT:
-//			cycleTimerView.maxTime = LCAddConfigTimeout.nbIoTCloudConnect
-			
-		default:
-			cycleTimerView.maxTime = LCAddConfigTimeout.cloudConnect
-		}
-		
+        cycleTimerView.maxTime = 120
 		cycleTimerView.delegate = self
 	}
 	
 	// MARK: Timer
 	private func startConnecting() {
 		cycleTimerView.startTimer()
-		startAnimation()
 	}
 	
 	private func stopConnecting() {
 		cycleTimerView.stopTimer()
-		stopAnimation()
-	}
-	
-	// MARK: Animations
-	private func startAnimation() {
-		topAnimateView.startAnimating()
-		addCloudAnimation(onView: leftCloudAnimateView, toX: 25)
-		addCloudAnimation(onView: rightCloudAnimateView, toX: 35)
-	}
-	
-	private func stopAnimation() {
-		topAnimateView.stopAnimating()
-		leftCloudAnimateView.layer.removeAllAnimations()
-		rightCloudAnimateView.layer.removeAllAnimations()
-	}
-	
-	private func addCloudAnimation(onView view: UIView, toX: CGFloat) {
-		let transAnimation = CABasicAnimation(keyPath: "transform.translation.x")
-		transAnimation.fromValue = 0
-		transAnimation.toValue = toX
-
-		let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
-		scaleAnimation.fromValue = 1
-		scaleAnimation.toValue = 0.9
-		
-		let animationGroup = CAAnimationGroup()
-		animationGroup.duration = 3
-		animationGroup.repeatCount = MAXFLOAT
-		animationGroup.autoreverses = true
-		animationGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-		animationGroup.animations = [transAnimation, scaleAnimation]
-	
-		view.layer.add(animationGroup, forKey: nil)
-	}
-
-	// MARK: LCAddBaseVCProtocol
-	override func leftActionType() -> LCAddBaseLeftAction {
-		return .quit
-	}
-	
-	override func isLeftActionShowAlert() -> Bool {
-		return true
-	}
-	
-	override func rightActionType() -> [LCAddBaseRightAction] {
-		return [.restart]
 	}
 }
 
 // MARK: CycleTimerViewDelegate
 extension LCConnectCloudViewController {
 	func cycleTimerViewTimeout(cycleView: LCCycleTimerView) {
-		handleTimeout()
+
+        handleTimeout()
 	}
 	
 	func cycleTimerView(cycleView: LCCycleTimerView, tick: Int) {
@@ -187,46 +120,52 @@ extension LCConnectCloudViewController {
 			return
 		}
 		
-		LCAddDeviceManager.sharedInstance.getDeviceStatus(success: { (bindInfo) in
-			
-			print(" \(NSStringFromClass(self.classForCoder)):: Time:\(cycleView.currentTime), deviceType:\(bindInfo.lc_accessType().rawValue), existed:\(bindInfo.lc_isExisted()), onlineStatus:\(bindInfo.lc_isOnline())")
-			
-			guard cycleView.currentTime < cycleView.maxTime else {
-				return
-			}
-			
-			//【*】保证设备已注册成功
-			guard bindInfo.lc_isExisted() else {
-                NSLog("数据库不存在此设备，联系后台检查")
-				return
-			}
-			
-			// 【*】SMB: 设备不支持，跳转不支持的界面
-			if bindInfo.surpport == false {
-				self.stopConnecting()
-				LCAddDeviceManager.sharedInstance.stopGetDeviceStatus()
-				self.isHandlingOnline = false
-				let controller = LCDeviceUnsupportViewController()
-				controller.backToSacn = true
-				self.navigationController?.pushViewController(controller, animated: true)
-				return
-			}
-			
-			// 【*】SMB: 设备在线，直接进行绑定
-			if bindInfo.lc_isOnline() {
-				print(" \(NSStringFromClass(self.classForCoder)):: DMS is online, start to bind...")
-				self.handleOnline()
-			}
-			
-		}) { (error) in
-			print(" \(NSStringFromClass(self.classForCoder))::\(error.description)")
-			
-			//解释器处理了错误【内部跳转页面等】，停止计时
-            
-			if cycleView.currentTime < cycleView.maxTime, self.bindPresenter.bindUnsuccessfullyProcessed(error: error, type: self.getFailureType()) {
-				self.stopConnecting()
-			}
-		}
+        if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig {
+            let info = LCDeviceInfo()
+            info.deviceId = LCAddDeviceManager.sharedInstance.deviceId
+            info.productId = LCAddDeviceManager.sharedInstance.productId ?? ""
+            let deviceArr = NSArray.init(array: [info])
+            LCDeviceManagerInterface.listDeviceDetailBatch(deviceArr as! [LCDeviceInfo], success: {[weak self] (deviceInfoArr) in
+                let deviceInfo = deviceInfoArr[0] as? LCDeviceInfo
+                if deviceInfo?.status == "online" {
+                    self?.handleOnline()
+                }
+            }, failure: { (error) in
+            })
+        } else {
+            LCAddDeviceManager.sharedInstance.getDeviceStatus(success: { [weak self] (bindInfo) in
+                guard cycleView.currentTime < cycleView.maxTime else {
+                    return
+                }
+                //【*】保证设备已注册成功
+                guard bindInfo.lc_isExisted() else {
+                    NSLog("数据库不存在此设备，联系后台检查")
+                    return
+                }
+                // 【*】SMB: 设备不支持，跳转不支持的界面
+                if bindInfo.support == false {
+                    self?.stopConnecting()
+                    LCAddDeviceManager.sharedInstance.stopGetDeviceStatus()
+                    self?.isHandlingOnline = false
+                    let controller = LCDeviceUnsupportViewController()
+                    controller.backToSacn = true
+                    self?.navigationController?.pushViewController(controller, animated: true)
+                    return
+                }
+                
+                // 【*】SMB: 设备在线，直接进行绑定
+                if bindInfo.lc_isOnline() {
+                    print("DMS is online, start to bind...")
+                    self?.handleOnline()
+                }
+                
+            }) { [weak self] (error) in
+                print("\(error.description)")
+                if cycleView.currentTime < cycleView.maxTime, self?.bindPresenter.bindUnsuccessfullyProcessed(error: error, type: self?.getFailureType() ?? .accessory ) == true {
+                    self?.stopConnecting()
+                }
+            }
+        }
 	}
 	
 	// MARK: Handle online/timeout
@@ -240,36 +179,18 @@ extension LCConnectCloudViewController {
 		
 		if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig {
 			handleOfflineWifiConfig()
-			return
-		}
-	
-		
-		// 【*】国内如果没有RD、Auth能力集，直接绑定
-		handleOnlineLechange()
+        } else {
+            handleOnlineLechange()
+        }
 	}
 	
 	func handleOfflineWifiConfig() {
 		stopConnecting()
-		LCProgressHUD.showMsg("add_device_config_done".lc_T)
+		LCProgressHUD.showMsg("add_device_config_done".lc_T())
 		LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig = false
-		LCAddDeviceManager.sharedInstance.postUpdateDeviceNotification(isWifiConfig: true)
-		
-		self.baseExitAddDevice(showAlert: false, backToMain: true)
+		self.baseExitAddDevice(showAlert: false)
 	}
-	
-	func handleOnlineOverseas() {
-		// 【*】有初始化流程缓存的密码，直接进行绑定【软AP走之前的步骤，肯定会有密码，如果未设置则APP异常】
-		// 【*】没有初始化流程缓存的密码，进入密码输入界面
-		if let password = deviceInitialPassword, password.count > 0 {
-			self.bindDevice(password: password)
-		} else {
-			self.stopConnecting()
-			let controller = LCAuthPasswordViewController.storyboardInstance()
-            controller.presenter = LCAuthPasswordPresenter(container: controller)
-			self.navigationController?.pushViewController(controller, animated: true)
-		}
-	}
-	
+
 	func handleOnlineLechange() {
 		//【*】有Auth能力集：没有缓存密码，进入密码验证；有缓存密码，直接绑定
 		//【*】有Reg能力集的，没有缓存安全码，进入安全码验证
@@ -285,7 +206,6 @@ extension LCConnectCloudViewController {
 				self.navigationController?.pushViewController(controller, animated: true)
 			}
         } else if manager.abilities.contains("RegCode") {
-			
 			//Code存在时，直接进行绑定，不存在时弹出验证框
             if let code = LCAddDeviceManager.sharedInstance.regCode, code.count != 0 {
                 //调用添加接口
@@ -302,7 +222,7 @@ extension LCConnectCloudViewController {
 	}
 	
 	func bindDevice(password: String) {
-		self.contentLabel.text = "add_device_binding_to_account".lc_T
+		self.contentLabel.text = "add_device_binding_to_account".lc_T()
 		
 		//【*】正在进行绑定操作，不需要处理
 		if self.isInBinding {
@@ -310,35 +230,29 @@ extension LCConnectCloudViewController {
 		}
 		
 		self.isInBinding = true
-		//【*】成功计时范围内才处理
-		//【*】失败，在计时范围内，处理特定的错误码
 		let code = LCAddDeviceManager.sharedInstance.regCode ?? ""
-
 		LCAddDeviceManager.sharedInstance.bindDevice(devicePassword: password, code: code, deviceKey: "", success: {
-            LCAddDeviceManager.sharedInstance.addPlicy {
+            LCAddDeviceManager.sharedInstance.addPlicy { [weak self] in
                 LCAddDeviceManager.sharedInstance.getDeviceInfoAfterBind(success: { (successInfo) in
-                    if self.cycleTimerView.currentTime < self.cycleTimerView.maxTime {
-                        self.bindPresenter.deviceBindedProcessed(successInfo: successInfo)
-                        self.stopConnecting()
+                    if self?.cycleTimerView.currentTime ?? 0 < self?.cycleTimerView.maxTime ?? 0 {
+                        self?.bindPresenter.deviceBindedProcessed(successInfo: successInfo)
+                        self?.stopConnecting()
                     }
-                    self.isInBinding = false
-                    self.isHandlingOnline = false
+                    self?.isInBinding = false
+                    self?.isHandlingOnline = false
                 }) { (error) in
                     
                 }
             } failure: { (error) in
-                
             }
-		}) { (error) in
-			if self.cycleTimerView.currentTime < self.cycleTimerView.maxTime {
-				//解释器处理了错误【内部跳转页面等】，停止计时
-				if self.bindPresenter.bindUnsuccessfullyProcessed(error: error, type: self.getFailureType()) {
-					self.stopConnecting()
+		}) { [weak self] (error) in
+			if self?.cycleTimerView.currentTime ?? 0 < self?.cycleTimerView.maxTime ?? 0 {
+                if self?.bindPresenter.bindUnsuccessfullyProcessed(error: error, type: self?.getFailureType() ?? .accessory) == true {
+					self?.stopConnecting()
 				}
 			}
-
-			self.isHandlingOnline = false
-			self.isInBinding = false
+			self?.isHandlingOnline = false
+			self?.isInBinding = false
 		}
 	}
 	
@@ -351,14 +265,12 @@ extension LCConnectCloudViewController {
         
 		//离线配网超时，进入入口页
 		if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig {
-			LCProgressHUD.showMsg("add_device_config_failed_please_retry".lc_T)
+			LCProgressHUD.showMsg("add_device_config_failed_please_retry".lc_T())
 			baseExitToOfflineWifiConfigRoot()
 			return
 		}
-		
-		timeoutVc.failureType = getFailureType()
-		timeoutVc.showOnParent(controller: self)
-		
+        
+        self.navigationController?.pushViewController(self.timeoutVc, animated: true)
 	}
 
 	
@@ -372,16 +284,6 @@ extension LCConnectCloudViewController {
 		let manager = LCAddDeviceManager.sharedInstance
 		if manager.netConfigMode == .softAp {
 			failureType = LCModuleConfig.shareInstance().isChinaMainland ? .door : .overseasDoorbell
-			
-			//【*】OMS配置了类型
-			if let omsType = manager.getIntroductionParser()?.softApErrorType {
-				failureType = omsType
-			}
-			
-			//【测试】
-			if LCAddDeviceTest.openTest {
-				failureType = LCAddDeviceTest.apConnectTimeoutType
-			}
 		} else {
 			failureType = .cloudTimeout
 		}
@@ -400,7 +302,6 @@ extension LCConnectCloudViewController {
 
 // MARK: LCBindContainerProtocol
 extension LCConnectCloudViewController: LCBindContainerProtocol {
-	
 	func navigationVC() -> UINavigationController? {
 		return self.navigationController
 	}
@@ -412,19 +313,16 @@ extension LCConnectCloudViewController: LCBindContainerProtocol {
 	func mainController() -> UIViewController {
 		return self
 	}
-	
-	func retry() {
-		self.startConnecting()
-		
-	}
 }
 
 // MARK: LCConnectCloudTimeoutVCDelegate
 extension LCConnectCloudViewController: LCConnectCloudTimeoutVCDelegate {
-	
-	func cloudTimeOutReconnectAction(controller: LCConnectCloudTimeoutViewController) {
-		self.timeoutVc.dismiss()
+	func cloudTimeOutReconnectAction() {
+        self.navigationController?.popViewController(animated: true)
 		self.startConnecting()
-		
 	}
+    
+    func cloudTimeOutQuitAction() {
+        self.baseExitAddDevice()
+    }
 }

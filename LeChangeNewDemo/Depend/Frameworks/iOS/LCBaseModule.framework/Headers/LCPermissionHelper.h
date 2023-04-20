@@ -27,12 +27,6 @@
  */
 + (void)requestAlbumPermission:(void (^)(BOOL granted))completion;
 
-/**
- 判断、申请通讯录权限，写入、读取时使用，g结果通过completion回调出来
- 
- @param completion grand为YES时表示有权限，NO表示无权限
- */
-+ (void)requestContacePermission:(void (^)(BOOL granted))completion complete:(void(^)(NSInteger index))complete;
 
 /**
 判断、申请定位
@@ -46,15 +40,5 @@
  */
 
 + (void)showUnPermissionLocationAlert:(NSString *)message;
-
-/**
- FaceID权限, 这里只提供一个被拒之后的弹窗, 跳转系统设置
- */
-+ (void)showUnPermissionFaceIDAlert;
-
-/// 检查是否开启了推送
-/// @param completion grand为YES时表示有权限，NO表示无权限
-
-+ (void)checkCurrentNotificationStatus:(void (^)(BOOL granted))completion;
 
 @end

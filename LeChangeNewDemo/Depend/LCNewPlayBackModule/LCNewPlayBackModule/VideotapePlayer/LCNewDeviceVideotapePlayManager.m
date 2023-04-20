@@ -77,14 +77,14 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
     //开始下载进程
     if (self.cloudVideotapeInfo) {
         //开始下载云
-        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId channelID:[info.channelId integerValue] psk:self.currentPsk recordRegionId:info.recordId Type:self.cloudVideotapeInfo.type Timeout:60];
+        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId channelID:[info.channelId integerValue] psk:self.currentPsk recordRegionId:info.recordId Type:self.cloudVideotapeInfo.type useTls:[self currentDevice].tlsEnable];
         if (result != 0) {
             NSLog(@"下载云录像返回码：%ld",(long)result);
         }
 
     } else {
         //开始下载设备录像
-        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId decryptKey:self.currentPsk fileID:info.recordId speed:2 productId:self.currentDevice.productId playToken:self.currentDevice.playToken];
+        NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownload:info.index filepath:info.localPath token:[LCApplicationDataManager token] devID:info.deviceId decryptKey:self.currentPsk fileID:info.recordId speed:2 productId:self.currentDevice.productId playToken:self.currentDevice.playToken useTls:[self currentDevice].tlsEnable];
         if (result != 0) {
             NSLog(@"下载设备录像返回码：%ld",(long)result);
         }
@@ -135,29 +135,35 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
             [self _saveToAlbumWithPath:info.localPath];
         }
     }
-    NSLog(@"dddddddd%@", info);
     [self didChangeValueForKey:@"downloadQueue"];
 }
 
 - (void)_saveToAlbumWithPath:(NSString *)path {
     /* 延时保存相册，因为下载成功之后stopDownload方法在另一个线程，所以转码可能还不成功*/
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSURL *dowmloadRUL = [NSURL fileURLWithPath:path];
-//        [PHAsset deleteFormCameraRoll:dowmloadRUL success:^{
-//        } failure:^(NSError *error) {
-//            NSLog(@"删除失败:%@", error.description);
-//        }];
-        [PHAsset saveVideoAtURL:dowmloadRUL success:^(void) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            NSURL *dowmloadRUL = [NSURL fileURLWithPath:path];
+            [PHAsset deleteFormCameraRoll:dowmloadRUL success:^{
+            } failure:^(NSError *error) {
+                NSLog(@"删除失败:%@", error.description);
+            }];
+            [PHAsset saveVideoAtURL:dowmloadRUL success:^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"保存成功");
+                    [LCProgressHUD showMsg:@"mobile_common_data_download_success".lcMedia_T];
+                });
+            } failure:^(NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"保存失败:%@", error.description);
+                    [LCProgressHUD showMsg:@"mobile_common_data_download_fail".lcMedia_T];
+                });
+            }];
+        } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"保存成功");
-                [LCProgressHUD showMsg:@"mobile_common_data_download_success".lcMedia_T];
-            });
-        } failure:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"保存失败:%@", error.description);
+                NSLog(@"保存失败: 视频转码还没成功");
                 [LCProgressHUD showMsg:@"mobile_common_data_download_fail".lcMedia_T];
             });
-        }];
+        }
     });
 }
 
@@ -203,7 +209,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
 
 - (void)onDownloadState:(NSInteger)index code:(NSString *)code type:(NSInteger)type {
     NSInteger codeInteger = [code integerValue];
-    NSLog(@"录像下载回调INDEX:%ld******TYEP:%ld*******CODE:%@", (long)index, (long)type, code);
+    NSLog(@"录像下载回调INDEX:%ld  TYEP:%ld  CODE:%@", (long)index, (long)type, code);
     if (type == 0) {
         //设备录像下载
         switch (codeInteger) {

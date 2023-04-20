@@ -6,6 +6,7 @@
 #import <LCMediaBaseModule/UIImageView+LCMediaPicDecoder.h>
 #import <LCNetworkModule/LCCloudVideotapeInfo.h>
 #import <LCMediaBaseModule/LCMediaBaseDefine.h>
+#import <LCMediaBaseModule/LCNewDeviceVideoManager.h>
 
 @implementation LCNewVideotapeListCell
 
@@ -29,7 +30,7 @@
 - (void)configCloudVideotape {
     LCCloudVideotapeInfo *info = (LCCloudVideotapeInfo *)self.model;
     NSString *pid = info.productId != nil ? info.productId : @"";
-    [self.picImgview lcMedia_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") DeviceId:info.deviceId ProductId:pid Key:info.deviceId];
+    [self.picImgview lcMedia_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") deviceId:info.deviceId productId:pid playtoken:[LCNewDeviceVideoManager shareInstance].currentDevice.playToken key:info.deviceId];
     self.startTimeLab.text = [[info.beginTime componentsSeparatedByString:@" "] objectAtIndex:1];
     self.durationTimeLab.text = [info durationTime];
 }

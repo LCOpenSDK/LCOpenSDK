@@ -27,18 +27,18 @@ class LCWiFiConfigVC: LCBasicViewController {
         //创建返回按钮
         let backBtn = LCButton.createButton(with: LCButtonTypeCustom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        backBtn.setImage(UIImage(named: "common_icon_nav_back"), for: .normal)
+        backBtn.setImage(UIImage(lc_named: "common_icon_nav_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(navigationBarClick), for: .touchUpInside)
         self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: backBtn), animated: false)
         
         //创建返回按钮
         self.refreshButton = LCButton.createButton(with: LCButtonTypeCustom)
         self.refreshButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.refreshButton?.setImage(UIImage(named: "common_image_nav_refresh"), for: .normal)
+        self.refreshButton?.setImage(UIImage(lc_named: "common_image_nav_refresh"), for: .normal)
         self.refreshButton?.addTarget(self, action: #selector(refreshAction), for: .touchUpInside)
         self.navigationItem.setRightBarButton(UIBarButtonItem(customView: self.refreshButton!), animated: false)
         
-        title = "mobile_common_network_config".lc_T
+        title = "mobile_common_network_config".lc_T()
         //获取数据
         presenter = LCWiFiConfigPresenter.init(deviceId: self.deviceId)
         presenter.setContainer(container: self)
@@ -94,12 +94,12 @@ extension LCWiFiConfigVC: ILCWiFiConfigContainer {
     func refreshEnable(isEnable: Bool) {
         if !isEnable {
             self.refreshButton?.isEnabled = false
-            var img = UIImage(named: "common_image_nav_refresh_disable")
+            var img = UIImage(lc_named: "common_image_nav_refresh_disable")
             img = img?.withRenderingMode(.alwaysOriginal)
             self.refreshButton?.setImage(img, for: .normal)
         } else {
             self.refreshButton?.isEnabled = true
-            var img = UIImage(named: "common_image_nav_refresh")
+            var img = UIImage(lc_named: "common_image_nav_refresh")
             img = img?.withRenderingMode(.alwaysOriginal)
             self.refreshButton?.setImage(img, for: .normal)
         }
@@ -126,7 +126,7 @@ extension LCWiFiConfigVC: UITableViewDataSource {
             return cell!
         } else {
             let cell = UITableViewCell()
-            cell.textLabel?.text = "其他..."
+            cell.textLabel?.text = "hidden_wifi_other".lc_T()
             cell.textLabel?.textColor = UIColor.lccolor_c0()
             cell.selectionStyle = .none
             return cell
@@ -166,7 +166,7 @@ extension LCWiFiConfigVC: UITableViewDelegate {
                 return nil
             }
             header.delegate = self
-            header.titleImageView.image = LCAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(named: "adddevice_icon_wifipassword") : UIImage(named: "adddevice_icon_wifipassword_nosupport5g")
+            header.titleImageView.image = LCAddDeviceManager.sharedInstance.isSupport5GWifi ? UIImage(lc_named: "adddevice_icon_wifipassword") : UIImage(lc_named: "adddevice_icon_wifipassword_nosupport5g")
             header.titleLabel.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
             header.iconImageView.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
             header.descButton.isHidden = !presenter.hasConfigedWifi()
@@ -179,14 +179,14 @@ extension LCWiFiConfigVC: UITableViewDelegate {
             headerview.clipsToBounds = true
             headerLabel.font = UIFont.lcFont_t5()
             headerLabel.textAlignment = .left
-            headerLabel.text = ((section == 0) ? "device_manager_connected_wifi".lc_T : "device_manager_select_wifi".lc_T)
+            headerLabel.text = ((section == 0) ? "device_manager_connected_wifi".lc_T() : "device_manager_select_wifi".lc_T())
             headerview.addSubview(headerLabel)
             headerLabel.snp.makeConstraints { (make) in
                 make.centerY.equalTo(headerview)
                 make.left.equalTo(headerview).offset(16)
             }
             let iconImage = UIImageView()
-            iconImage.image = UIImage(named: "adddevice_icon_help")
+            iconImage.image = UIImage(lc_named: "adddevice_icon_help")
             iconImage.isUserInteractionEnabled = true
             headerview.addSubview(iconImage)
             iconImage.snp.makeConstraints { (make) in

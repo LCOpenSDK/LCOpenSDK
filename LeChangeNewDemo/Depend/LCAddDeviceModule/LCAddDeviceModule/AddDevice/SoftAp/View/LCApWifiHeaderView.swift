@@ -4,79 +4,57 @@
 
 import UIKit
 
-protocol LCApWifiHeaderViewDelegate: class {
-    func iconClicked(headView: LCApWifiHeaderView)
-}
-
 class LCApWifiHeaderView: UIView {
-    
-    weak var delegate: LCApWifiHeaderViewDelegate?
-    
-    // MARK: - life cycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    @IBOutlet weak var imageView2G: UIImageView!
+    @IBOutlet weak var label2G: UILabel!
+    @IBOutlet weak var label5G: UILabel!
+    @IBOutlet weak var imageView5G: UIImageView!
+    @IBOutlet weak var wifiSupportLabel: UILabel!
+    @IBOutlet weak var helpImageView: UIImageView!
+    @IBOutlet weak var selectWifiHelp: UIImageView!
+    @IBOutlet weak var selectwifiTip: UILabel!
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         loadSubviews()
+        helpImageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(helpClicked)))
+        selectWifiHelp.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(selectHelpClicked)))
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - private method
-    
-    private func loadSubviews() {
-        backgroundColor = UIColor.lccolor_c7()
-        indicatorView.hidesWhenStopped = true
-        
-        addSubview(headerLabel)
-        headerLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self)
-            make.left.equalTo(self).offset(16)
+    public static func xibInstance() -> LCApWifiHeaderView {
+        if let view = Bundle.lc_addDeviceBundle()?.loadNibNamed("LCApWifiHeaderView", owner: nil, options: nil)!.first as? LCApWifiHeaderView {
+            return view
         }
-        
-        addSubview(iconImageView)
-        iconImageView.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self)
-            make.left.equalTo(headerLabel.snp.right).offset(2)
-        }
-        
-        addSubview(indicatorView)
-        indicatorView.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self)
-            make.left.equalTo(iconImageView.snp.right).offset(3)
-        }
-    }
-    
-    @objc func iconClicked() {
-        delegate?.iconClicked(headView: self)
+        return LCApWifiHeaderView()
     }
 
-    // MARK: - lazy ui
-    
-    lazy var headerLabel: UILabel = {
-        let headerLabel = UILabel()
-        headerLabel.font = UIFont.lcFont_t2()
-        headerLabel.textColor = UIColor.lccolor_c2()
-        headerLabel.text = "add_device_choose_wifi".lc_T
+    private func loadSubviews() {
+        helpImageView.isUserInteractionEnabled = true
+        selectWifiHelp.isUserInteractionEnabled = true
+        self.selectwifiTip.text = "add_device_softap_wifi_select".lc_T()
+        self.wifiSupportLabel.text = "add_device_device_unsupport_5G".lc_T()
         
-        return headerLabel
-    }()
+        if LCAddDeviceManager.sharedInstance.isSupport5GWifi {
+            self.imageView2G.image = UIImage(lc_named: "adddevice_wifi_support")
+            self.imageView5G.image = UIImage(lc_named: "adddevice_wifi_support")
+            self.wifiSupportLabel.isHidden = true
+            self.helpImageView.isHidden = true
+        } else {
+            self.imageView2G.image = UIImage(lc_named: "adddevice_wifi_support")
+            self.imageView5G.image = UIImage(lc_named: "adddevice_wifi_unsupport")
+            self.wifiSupportLabel.isHidden = false
+            self.helpImageView.isHidden = false
+        }
+    }
     
-    lazy var iconImageView: UIImageView = {
-        let iconImage = UIImageView()
-        iconImage.image = UIImage(named: "adddevice_icon_help")
-        iconImage.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(iconClicked))
-        iconImage.addGestureRecognizer(tap)
-        
-        return iconImage
-    }()
+    @objc func helpClicked() {
+        let sheet = LCSheetGuideView(title: "add_device_connect_2_4g_wifi".lc_T(), message: "add_device_connect_2_4g_wifi_explain".lc_T(), image: nil, cancelButtonTitle: "Alert_Title_Button_Confirm1".lc_T())
+             sheet.show()
+    }
     
-    lazy var indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView()
-        
-        return indicatorView
-    }()
+    @objc func selectHelpClicked() {
+        let sheet = LCSheetGuideView(title: "Alert_Title_Notice2".lc_T(), message:"special_symbols_such_as_facial_expressions".lc_T(), image: nil, cancelButtonTitle: "Alert_Title_Button_Confirm1".lc_T())
+        sheet.show()
+    }
+    
 }

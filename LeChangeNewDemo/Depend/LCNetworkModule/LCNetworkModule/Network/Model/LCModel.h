@@ -19,7 +19,6 @@
 #import "LCCheckDeviceBindOrNotInfo.h"
 
 //设备信息相关V2
-#import "LCBindDeviceChannelInfo.h"
 #import "LCDeviceVersionInfo.h"
 
 //录像

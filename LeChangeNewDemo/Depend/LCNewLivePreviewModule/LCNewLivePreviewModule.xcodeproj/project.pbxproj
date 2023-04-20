@@ -604,6 +604,8 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -646,6 +648,8 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

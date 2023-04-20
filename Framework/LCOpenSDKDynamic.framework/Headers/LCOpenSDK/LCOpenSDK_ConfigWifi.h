@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, LC_ConfigWifi_Event)
     LC_ConfigWifi_Event_Timeout       = 4,    //Pairing error   zh:配对错误
 };
 
-typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* userData);
+typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* _Nullable userData);
 @interface LCOpenSDK_ConfigWIfi : NSObject
 
 /// Start smartConfig distribution network    zh:开始smartConfig配网
@@ -29,7 +29,7 @@ typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* us
 /// @param voiceFreq (acoustic frequency, which needs to be differentiated according to the type of equipment. For example: 11000 for general use, 17000 for TP7C)    zh:(声波频率，需要根据设备类型区分。例如：普通11000，TP7C 17000)
 /// @param txMode  zh:波形发送方式(0--新的fsk发送方式，1--老的fsk发送方式，2--新的和老的fsk波形发送方式)
 ///  @return 0 succeeded, -1 failed    zh: 0 成功, -1 失败
-- (NSString *)configWifiStart:(NSString * _Nonnull)devId
+- (NSString * _Nullable)configWifiStart:(NSString * _Nonnull)devId
                         ssid:(NSString * _Nonnull)ssid
                     password:(NSString * _Nullable)pwd
                       secure:(NSString * _Nullable)security
@@ -53,7 +53,7 @@ typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* us
 /// @param voiceFreq (声波频率，需要根据设备类型区分。例如：普通11000，TP7C 17000)
 //  @return  0, 接口调用成功
 //          -1, 接口调用失败
-- (NSInteger)configWifiStart:(NSString*)devId ssid:(NSString*)ssid password:(NSString*)pwd secure:(NSString*)security voiceFreq:(NSInteger)voiceFreq DEPRECATED_MSG_ATTRIBUTE("use configWifiStart:ssid:password:secure:voiceFreq:txMode: instead");
+- (NSInteger)configWifiStart:(NSString * _Nonnull)devId ssid:(NSString * _Nonnull)ssid password:(NSString * _Nonnull)pwd secure:(NSString * _Nullable)security voiceFreq:(NSInteger)voiceFreq DEPRECATED_MSG_ATTRIBUTE("use configWifiStart:ssid:password:secure:voiceFreq:txMode: instead");
 
 @end
 #endif

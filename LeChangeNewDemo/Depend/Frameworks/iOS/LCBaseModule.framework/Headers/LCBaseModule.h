@@ -18,10 +18,8 @@ FOUNDATION_EXPORT const unsigned char LCBaseModuleVersionString[];
 #import <LCBaseModule/LCModuleConfig.h>
 #import <LCBaseModule/ILCBaseViewController.h>
 #import <LCBaseModule/LCNavigationController.h>
-#import <LCBaseModule/LCContainerVC.h>
 #import <LCBaseModule/LCClientEventLogHelper.h>
 #import <LCBaseModule/LCBasicViewController.h>
-#import <LCBaseModule/LCBasicNavigationController.h>
 #import <LCBaseModule/LCBasicPresenter.h>
 
 //Helper
@@ -34,12 +32,12 @@ FOUNDATION_EXPORT const unsigned char LCBaseModuleVersionString[];
 //View
 #import <LCBaseModule/LCProgressHUD.h>
 #import <LCBaseModule/LCActivityIndicatorView.h>
-#import <LCBaseModule/LCWebViewController.h>
 #import <LCBaseModule/LCInputView.h>
 #import <LCBaseModule/LCTextField.h>
 #import <LCBaseModule/LCCTextField.h>
 #import <LCBaseModule/LCNavigationItem.h>
 #import <LCBaseModule/LCSheetView.h>
+#import <LCBaseModule/LCSheetGuideView.h>
 #import <LCBaseModule/LCButton.h>
 
 //Commmon
@@ -53,7 +51,6 @@ FOUNDATION_EXPORT const unsigned char LCBaseModuleVersionString[];
 #import <LCBaseModule/LCFileManager.h>
 
 //Category
-#import <LCBaseModule/UIImageView+LeChange.h>
 #import <LCBaseModule/UIColor+LeChange.h>
 #import <LCBaseModule/UIScrollView+Tips.h>
 #import <LCBaseModule/NSString+Imou.h>

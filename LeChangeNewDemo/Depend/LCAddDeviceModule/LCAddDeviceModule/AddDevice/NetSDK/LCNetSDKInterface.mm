@@ -27,13 +27,13 @@
 }
 
 + (void)initSDK {
-    [LCOpenSDK_Netsdk initSDKWithCallback:^(long loginHandle, NSString *ip, NSInteger port) {
-        if ([LCNetSDKInterface sharedInstance].disconnectCallback) {
-            [LCNetSDKInterface sharedInstance].disconnectCallback(loginHandle, ip, port);
-            // 发送断开连接通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LCNotificationLocalNetworkDisconnect" object:nil userInfo:@{@"IP":ip}];
-        }
-    }];
+//    [LCOpenSDK_Netsdk initSDKWithCallback:^(long loginHandle, NSString *ip, NSInteger port) {
+//        if ([LCNetSDKInterface sharedInstance].disconnectCallback) {
+//            [LCNetSDKInterface sharedInstance].disconnectCallback(loginHandle, ip, port);
+//            // 发送断开连接通知
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"LCNotificationLocalNetworkDisconnect" object:nil userInfo:@{@"IP":ip}];
+//        }
+//    }];
 }
 
 + (void)startNetSDKReportByRequestId:(NSString *)requestId{
@@ -69,7 +69,7 @@
 	_disconnectCallback = callback;
 }
 
-+ (LCDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(LCDeviceNetInfo *)deviceNetInfo useIp:(BOOL)useIp {
++ (LCDeviceInfoLogModel *)initDevAccount:(NSString *)password device:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo useIp:(BOOL)useIp {
 	if(useIp) {
 		return [self private_initDevAccountUseIp:password device:deviceNetInfo];
 	}
@@ -77,12 +77,12 @@
 	return [self private_initDevAccount:password device:deviceNetInfo];
 }
 
-+ (LCDeviceInfoLogModel *)private_initDevAccount:(NSString *)password device:(LCDeviceNetInfo *)deviceNetInfo {
++ (LCDeviceInfoLogModel *)private_initDevAccount:(NSString *)password device:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo {
 	if(password.length == 0) {
 		return nil;
 	}
-	
-    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:false];
+    BOOL ret = [LCOpenSDK_DeviceInit initDev:deviceNetInfo.mac byPwdResetWay:deviceNetInfo.byPWDResetWay initStatus:deviceNetInfo.initStatus passWord:password ip:nil];
+//    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:false];
 
 	return [self setupModelData:deviceNetInfo isSuccess:ret];
 }
@@ -97,22 +97,22 @@
     return netsdkDevInfo;
 }
 
-+ (LCDeviceInfoLogModel *)private_initDevAccountUseIp:(NSString *)password device:(LCDeviceNetInfo *)deviceNetInfo {
-	if(deviceNetInfo.deviceIP.length == 0 || password.length == 0) {
++ (LCDeviceInfoLogModel *)private_initDevAccountUseIp:(NSString *)password device:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo {
+	if(deviceNetInfo.ip.length == 0 || password.length == 0) {
 		return nil;
 	}
 	
-    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:true];
-	
+//    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:true];
+    BOOL ret = [LCOpenSDK_DeviceInit initDev:deviceNetInfo.mac byPwdResetWay:deviceNetInfo.byPWDResetWay initStatus:deviceNetInfo.initStatus passWord:password ip:deviceNetInfo.ip];
     return [self setupModelData:deviceNetInfo isSuccess:ret];
 }
 
 //上报设备初始化log需要
-+ (LCDeviceInfoLogModel *)setupModelData:(LCDeviceNetInfo *)deviceNetInfo isSuccess:(BOOL)isSuccess
++ (LCDeviceInfoLogModel *)setupModelData:(LCOpenSDK_SearchDeviceInfo *)deviceNetInfo isSuccess:(BOOL)isSuccess
 {
     LCDeviceInfoLogModel *model = [[LCDeviceInfoLogModel alloc]init];
     model.isSuccess         = isSuccess;
-    model.mac               = deviceNetInfo.deviceMac;
+    model.mac               = deviceNetInfo.mac;
     model.pwdResetWay       = deviceNetInfo.byPWDResetWay;
     model.isNewDeviceVersion = !(deviceNetInfo.deviceInitType == LCDeviceInitTypeOldDevice);
     model.isEffectiveIP     = deviceNetInfo.deviceInitType == LCDeviceInitTypeIPEnable;
@@ -278,8 +278,6 @@
     
     return strError;
 }
-
-
 
 @end
 

@@ -110,11 +110,13 @@
 }
 
 - (void)onPlayBegan:(NSInteger)index {
+    weakSelf(self);
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.videoManager.playStatus = 1001;
-        [self saveThumbImage];
-        [self hideVideoLoadImage];
-        [self setVideoType];
+        weakself.videoManager.playStatus = 1001;
+        [weakself saveThumbImage];
+        [weakself hideVideoLoadImage];
+        [weakself setVideoType];
+        [weakself hideErrorBtn];
     });
 }
 

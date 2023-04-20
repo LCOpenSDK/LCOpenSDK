@@ -81,10 +81,9 @@
     return (LCIPType)self.ipVersion;
 }
 
-- (LCDeviceInitType)deviceInitType
-{
-    int bySpecialAbility = self.specialAbility;
-    int flag = (bySpecialAbility >> 2)&0B11;
+- (LCDeviceInitType)deviceInitType {
+    NSInteger bySpecialAbility = self.specialAbility;
+    NSInteger flag = (bySpecialAbility >> 2)&0B11;
     if (flag == 0B00) {
         //老设备
         return LCDeviceInitTypeOldDevice;

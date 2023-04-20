@@ -31,7 +31,7 @@ class LCDeviceUnsupportViewController: LCErrorBaseViewController {
 	}
 	
 	override func errorContent() -> String {
-		return "add_devices_device_unsupport".lc_T
+		return "add_devices_device_unsupport".lc_T()
 	}
 	
 	override func errorDescription() -> String? {

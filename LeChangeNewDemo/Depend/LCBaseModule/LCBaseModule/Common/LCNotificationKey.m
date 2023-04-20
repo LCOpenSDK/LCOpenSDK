@@ -88,32 +88,6 @@ NSString *const LCNotificationModifyLoginPasword = @"LCNotificationModifyLoginPa
 NSString *const LCNotificationGetPushStatusSuccess = @"LCNotificationGetPushStatusSuccess";
 NSString *const kLCShowHomePageChannelAndApMessage = @"kLCShowHomePageChannelAndApMessage";
 
-NSString *const LCNotificationWXPay = @"LCNotificationWXPay";
-
-NSString *const LCNotificationNeedUpdateP2PService = @"LCNotificationNeedUpdateP2PService";
-//帐号操作成功通知
-NSString *const LCNotificationThirdBindAccountSuccess = @"LCNotificationThirdBindAccountSuccess";
-NSString *const LCNotificationChangeAccountSuccess = @"LCNotificationChangeAccountSuccess";
-NSString *const LCNotificationEmailBindPhoneSuccess = @"LCNotificationEmailBindPhoneSuccess";
-NSString *const LCNotificationEmailUnbindSuccess = @"LCNotificationEmailUnbindSuccess";
-//查询白光相机警笛与白光灯状态
-NSString *const LCNotificationDeviceWhiteLightChanged =    @"LCNotificationDeviceWhiteLightChanged";
-NSString *const LCNotificationDeviceSirenChanged =    @"LCNotificationDeviceSirenChanged";
-NSString *const LCNotificationDeviceSearchLightChanged =    @"LCNotificationDeviceSearchLightChanged";
-NSString *const LCNotificationDeviceSearchLightModeChanged =    @"LCNotificationDeviceSearchLightModeChanged";
-
-/// 修改了增值服务套餐刷新预览页增值服务数据
-NSString *const LCNotificationDeviceAddedServicesChanged = @"LCNotificationDeviceAddedServicesChanged";
-
-NSString *const LCNotificationDeviceWebNoticeNative = @"LCNotificationDeviceWebNoticeNative";
-NSString *const LCNotificationCloudStoragePaySuccess = @"paySuccess";
-NSString *const LCNotificationCloudStorageUpdated = @"LCNotificationCloudStorageUpdated";
-
-/// 设备添加融合OMS
-NSString *const LCNotificationOMSIntrodutionUpdated = @"LCNotificationOMSIntrodutionUpdated";
-NSString *const LCNotificationOMSIModelsUpdated = @"LCNotificationOMSIModelsUpdated";
-
-
 NSString *const LCNotificationADDDeviceSuccess = @"LCNotificationADDDeviceSuccess";
 
 /// 网关情景模式推送

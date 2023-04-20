@@ -39,12 +39,12 @@ class LCAuthRegCodeViewController: LCAddBaseViewController, UITextFieldDelegate,
         
         tipLabel.textColor = UIColor.lccolor_c2()
         
-		imageView.image = UIImage(named: "adddevice_pic_safetycode")
+		imageView.image = UIImage(lc_named: "adddevice_pic_safetycode")
 		
 		inputCodeTxf.backgroundColor = UIColor.lccolor_c43()
 		inputCodeTxf.layer.borderColor = UIColor.lccolor_c8().cgColor
 		inputCodeTxf.layer.borderWidth = 0.5
-		inputCodeTxf.placeholder = "add_device_input_safe_code".lc_T
+		inputCodeTxf.placeholder = "add_device_input_safe_code".lc_T()
 		
 		nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
 		nextButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()

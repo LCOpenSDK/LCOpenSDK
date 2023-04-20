@@ -11,6 +11,7 @@
 		0302986E28F90B360038E6FE /* UINavigationController+Pop.h in Headers */ = {isa = PBXBuildFile; fileRef = 0302986C28F90B360038E6FE /* UINavigationController+Pop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03287CC328F19E5E00FFD051 /* LCAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03287CC228F19E5E00FFD051 /* LCAlertView.swift */; };
 		03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */; };
+		034E6B16299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */; };
 		0360251729090F3100E5475B /* UIViewController+LCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */; };
 		0360251829090F3100E5475B /* UIViewController+LCNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03636CCB28DEF63500FE1B59 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03636CCA28DEF63500FE1B59 /* MJRefresh.framework */; };
@@ -20,19 +21,19 @@
 		03ADDC6D28F66AE300E385B4 /* UIImageView+Surface.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ADDC6B28F66AE300E385B4 /* UIImageView+Surface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03ADDC6E28F66AE300E385B4 /* UIImageView+Surface.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC6C28F66AE300E385B4 /* UIImageView+Surface.m */; };
 		03E8BF27286420E400C91BA5 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E8BF26286420E400C91BA5 /* SnapKit.framework */; };
+		03EF18A229B5E1C700052A44 /* LCSheetGuideView.h in Headers */ = {isa = PBXBuildFile; fileRef = 03EF18A029B5E1C700052A44 /* LCSheetGuideView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03EF18A329B5E1C700052A44 /* LCSheetGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EF18A129B5E1C700052A44 /* LCSheetGuideView.m */; };
 		03FCF87028FD53D400C4CBB2 /* UINavigationBar+EX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCF86F28FD53D400C4CBB2 /* UINavigationBar+EX.swift */; };
 		04424FC324EFBE2700BFCA2B /* LCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04424FC124EFBE2600BFCA2B /* LCButton.m */; };
 		04424FC424EFBE2700BFCA2B /* LCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 04424FC224EFBE2600BFCA2B /* LCButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04424FC724EFBF4000BFCA2B /* UIView+BorderColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 04424FC524EFBF4000BFCA2B /* UIView+BorderColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04424FC824EFBF4000BFCA2B /* UIView+BorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04424FC624EFBF4000BFCA2B /* UIView+BorderColor.m */; };
 		04424FCC24EFC31E00BFCA2B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04424FCB24EFC31E00BFCA2B /* Masonry.framework */; };
-		045FE39924E38DC200A422EA /* NSString+ScanResultAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE39124E38DC100A422EA /* NSString+ScanResultAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE39A24E38DC200A422EA /* NSDate+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE39224E38DC100A422EA /* NSDate+Add.m */; };
 		045FE39B24E38DC200A422EA /* NSString+Verify.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE39324E38DC100A422EA /* NSString+Verify.m */; };
 		045FE39C24E38DC200A422EA /* NSString+Verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE39424E38DC200A422EA /* NSString+Verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE39D24E38DC200A422EA /* NSDate+Add.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE39524E38DC200A422EA /* NSDate+Add.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE39E24E38DC200A422EA /* NSString+AbilityAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE39624E38DC200A422EA /* NSString+AbilityAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		045FE39F24E38DC200A422EA /* NSString+ScanResultAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE39724E38DC200A422EA /* NSString+ScanResultAnalysis.m */; };
 		045FE3A024E38DC200A422EA /* NSString+AbilityAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE39824E38DC200A422EA /* NSString+AbilityAnalysis.m */; };
 		045FE3A324E38DD200A422EA /* UIImage+Compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE3A124E38DD200A422EA /* UIImage+Compress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE3A424E38DD200A422EA /* UIImage+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE3A224E38DD200A422EA /* UIImage+Compress.m */; };
@@ -52,10 +53,8 @@
 		0491867A24E3FF1F00651E0F /* LCSheetView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0491867824E3FF1F00651E0F /* LCSheetView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049EC45524F38EEA008625A1 /* LCBasicPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 049EC44E24F38EEA008625A1 /* LCBasicPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049EC45624F38EEA008625A1 /* LCBasicPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 049EC44F24F38EEA008625A1 /* LCBasicPresenter.m */; };
-		049EC45724F38EEA008625A1 /* LCBasicNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 049EC45124F38EEA008625A1 /* LCBasicNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049EC45824F38EEA008625A1 /* LCBasicViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 049EC45224F38EEA008625A1 /* LCBasicViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049EC45924F38EEA008625A1 /* LCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049EC45324F38EEA008625A1 /* LCBasicViewController.m */; };
-		049EC45A24F38EEA008625A1 /* LCBasicNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049EC45424F38EEA008625A1 /* LCBasicNavigationController.m */; };
 		04B098282515AAED001CFB1A /* LCLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B098262515AAED001CFB1A /* LCLogManager.m */; };
 		04B098292515AAED001CFB1A /* LCLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B098272515AAED001CFB1A /* LCLogManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04B0982D2515AB4F001CFB1A /* LCUDIDTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B0982B2515AB4E001CFB1A /* LCUDIDTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,8 +119,6 @@
 		3E2A20FA21ECBC0200B60748 /* UISearchBar+Lechange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A20F821ECBC0200B60748 /* UISearchBar+Lechange.m */; };
 		3EAED7F521B7AC2C00C7E8B7 /* LCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAED7F021B7AC2C00C7E8B7 /* LCNavigationController.m */; };
 		3EAED7F621B7AC2C00C7E8B7 /* LCNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EAED7F121B7AC2C00C7E8B7 /* LCNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3EAED7F721B7AC2C00C7E8B7 /* LCContainerVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EAED7F321B7AC2C00C7E8B7 /* LCContainerVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3EAED7F821B7AC2C00C7E8B7 /* LCContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAED7F421B7AC2C00C7E8B7 /* LCContainerVC.m */; };
 		3EAED87321BA69B300C7E8B7 /* UINavigationController+LC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EAED87121BA69B300C7E8B7 /* UINavigationController+LC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAED87421BA69B300C7E8B7 /* UINavigationController+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAED87221BA69B300C7E8B7 /* UINavigationController+LC.m */; };
 		3EEF511721F2CB1C00367093 /* UIViewController+Base.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEF511521F2CB1C00367093 /* UIViewController+Base.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -146,14 +143,10 @@
 		4E0C7CCA2227B10600FC64A4 /* LCMobileInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CC82227B10500FC64A4 /* LCMobileInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E0C7CCD2227B21300FC64A4 /* UIDevice+IPhoneModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CCB2227B21300FC64A4 /* UIDevice+IPhoneModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E0C7CCE2227B21300FC64A4 /* UIDevice+IPhoneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CCC2227B21300FC64A4 /* UIDevice+IPhoneModel.m */; };
-		4E0C7CD12227B24C00FC64A4 /* LCWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CCF2227B24C00FC64A4 /* LCWebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E0C7CD22227B24C00FC64A4 /* LCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CD02227B24C00FC64A4 /* LCWebViewController.m */; };
 		4E0C7CDD2227B33C00FC64A4 /* NSData+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CD92227B33B00FC64A4 /* NSData+SHA256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E0C7CDE2227B33C00FC64A4 /* NSData+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CDA2227B33B00FC64A4 /* NSData+SHA256.m */; };
 		4E0C7CDF2227B33C00FC64A4 /* NSString+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CDB2227B33B00FC64A4 /* NSString+SHA256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E0C7CE02227B33C00FC64A4 /* NSString+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CDC2227B33C00FC64A4 /* NSString+SHA256.m */; };
-		4E15103D212A8C8400B6F62B /* UIImageView+LeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E15103B212A8C8300B6F62B /* UIImageView+LeChange.m */; };
-		4E15103E212A8C8400B6F62B /* UIImageView+LeChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E15103C212A8C8400B6F62B /* UIImageView+LeChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E37A1862123F83D003FB5B8 /* IBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1832123F83D003FB5B8 /* IBaseModel.swift */; };
 		4E37A1872123F83D003FB5B8 /* IBasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1842123F83D003FB5B8 /* IBasePresenter.swift */; };
 		4E37A1882123F83D003FB5B8 /* IBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1852123F83D003FB5B8 /* IBaseView.swift */; };
@@ -191,7 +184,6 @@
 		4E64B438212661A3002404AF /* LCUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E64B436212661A3002404AF /* LCUserManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E64B439212661A3002404AF /* LCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E64B437212661A3002404AF /* LCUserManager.m */; };
 		4E6DA4B3242D9293006CAFEE /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DA4B2242D9293006CAFEE /* Array+Unique.swift */; };
-		4E8543DF244FF37B00BF2FBE /* WebViewJavascriptBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8543DD244FF09500BF2FBE /* WebViewJavascriptBridge.framework */; };
 		4E8F010C212AD9D900B631E4 /* UIColor+LeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F010A212AD9D900B631E4 /* UIColor+LeChange.m */; };
 		4E8F010D212AD9D900B631E4 /* UIColor+LeChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E8F010B212AD9D900B631E4 /* UIColor+LeChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E8F0133212B950300B631E4 /* LCBaseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F0132212B950300B631E4 /* LCBaseModule.swift */; };
@@ -262,6 +254,7 @@
 		0302986C28F90B360038E6FE /* UINavigationController+Pop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Pop.h"; sourceTree = "<group>"; };
 		03287CC228F19E5E00FFD051 /* LCAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAlertView.swift; sourceTree = "<group>"; };
 		03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebViewJavascriptBridge_WK_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LCNavigationBar.m"; sourceTree = "<group>"; };
 		0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LCNavigationBar.h"; sourceTree = "<group>"; };
 		03636CCA28DEF63500FE1B59 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,19 +264,19 @@
 		03ADDC6B28F66AE300E385B4 /* UIImageView+Surface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Surface.h"; sourceTree = "<group>"; };
 		03ADDC6C28F66AE300E385B4 /* UIImageView+Surface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Surface.m"; sourceTree = "<group>"; };
 		03E8BF26286420E400C91BA5 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03EF18A029B5E1C700052A44 /* LCSheetGuideView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCSheetGuideView.h; sourceTree = "<group>"; };
+		03EF18A129B5E1C700052A44 /* LCSheetGuideView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCSheetGuideView.m; sourceTree = "<group>"; };
 		03FCF86F28FD53D400C4CBB2 /* UINavigationBar+EX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+EX.swift"; sourceTree = "<group>"; };
 		04424FC124EFBE2600BFCA2B /* LCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCButton.m; sourceTree = "<group>"; };
 		04424FC224EFBE2600BFCA2B /* LCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCButton.h; sourceTree = "<group>"; };
 		04424FC524EFBF4000BFCA2B /* UIView+BorderColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BorderColor.h"; sourceTree = "<group>"; };
 		04424FC624EFBF4000BFCA2B /* UIView+BorderColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BorderColor.m"; sourceTree = "<group>"; };
 		04424FCB24EFC31E00BFCA2B /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
-		045FE39124E38DC100A422EA /* NSString+ScanResultAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ScanResultAnalysis.h"; sourceTree = "<group>"; };
 		045FE39224E38DC100A422EA /* NSDate+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Add.m"; sourceTree = "<group>"; };
 		045FE39324E38DC100A422EA /* NSString+Verify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Verify.m"; sourceTree = "<group>"; };
 		045FE39424E38DC200A422EA /* NSString+Verify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Verify.h"; sourceTree = "<group>"; };
 		045FE39524E38DC200A422EA /* NSDate+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Add.h"; sourceTree = "<group>"; };
 		045FE39624E38DC200A422EA /* NSString+AbilityAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AbilityAnalysis.h"; sourceTree = "<group>"; };
-		045FE39724E38DC200A422EA /* NSString+ScanResultAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ScanResultAnalysis.m"; sourceTree = "<group>"; };
 		045FE39824E38DC200A422EA /* NSString+AbilityAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AbilityAnalysis.m"; sourceTree = "<group>"; };
 		045FE3A124E38DD200A422EA /* UIImage+Compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compress.h"; sourceTree = "<group>"; };
 		045FE3A224E38DD200A422EA /* UIImage+Compress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compress.m"; sourceTree = "<group>"; };
@@ -303,10 +296,8 @@
 		0491867824E3FF1F00651E0F /* LCSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSheetView.h; sourceTree = "<group>"; };
 		049EC44E24F38EEA008625A1 /* LCBasicPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCBasicPresenter.h; sourceTree = "<group>"; };
 		049EC44F24F38EEA008625A1 /* LCBasicPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCBasicPresenter.m; sourceTree = "<group>"; };
-		049EC45124F38EEA008625A1 /* LCBasicNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCBasicNavigationController.h; sourceTree = "<group>"; };
 		049EC45224F38EEA008625A1 /* LCBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCBasicViewController.h; sourceTree = "<group>"; };
 		049EC45324F38EEA008625A1 /* LCBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCBasicViewController.m; sourceTree = "<group>"; };
-		049EC45424F38EEA008625A1 /* LCBasicNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCBasicNavigationController.m; sourceTree = "<group>"; };
 		04B098262515AAED001CFB1A /* LCLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLogManager.m; sourceTree = "<group>"; };
 		04B098272515AAED001CFB1A /* LCLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLogManager.h; sourceTree = "<group>"; };
 		04B0982B2515AB4E001CFB1A /* LCUDIDTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUDIDTool.h; sourceTree = "<group>"; };
@@ -373,8 +364,6 @@
 		3E2A20F821ECBC0200B60748 /* UISearchBar+Lechange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+Lechange.m"; sourceTree = "<group>"; };
 		3EAED7F021B7AC2C00C7E8B7 /* LCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNavigationController.m; sourceTree = "<group>"; };
 		3EAED7F121B7AC2C00C7E8B7 /* LCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNavigationController.h; sourceTree = "<group>"; };
-		3EAED7F321B7AC2C00C7E8B7 /* LCContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCContainerVC.h; sourceTree = "<group>"; };
-		3EAED7F421B7AC2C00C7E8B7 /* LCContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCContainerVC.m; sourceTree = "<group>"; };
 		3EAED87121BA69B300C7E8B7 /* UINavigationController+LC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LC.h"; sourceTree = "<group>"; };
 		3EAED87221BA69B300C7E8B7 /* UINavigationController+LC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LC.m"; sourceTree = "<group>"; };
 		3EEF511521F2CB1C00367093 /* UIViewController+Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Base.h"; sourceTree = "<group>"; };
@@ -399,14 +388,10 @@
 		4E0C7CC82227B10500FC64A4 /* LCMobileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMobileInfo.h; sourceTree = "<group>"; };
 		4E0C7CCB2227B21300FC64A4 /* UIDevice+IPhoneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IPhoneModel.h"; sourceTree = "<group>"; };
 		4E0C7CCC2227B21300FC64A4 /* UIDevice+IPhoneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IPhoneModel.m"; sourceTree = "<group>"; };
-		4E0C7CCF2227B24C00FC64A4 /* LCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCWebViewController.h; sourceTree = "<group>"; };
-		4E0C7CD02227B24C00FC64A4 /* LCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCWebViewController.m; sourceTree = "<group>"; };
 		4E0C7CD92227B33B00FC64A4 /* NSData+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA256.h"; sourceTree = "<group>"; };
 		4E0C7CDA2227B33B00FC64A4 /* NSData+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA256.m"; sourceTree = "<group>"; };
 		4E0C7CDB2227B33B00FC64A4 /* NSString+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA256.h"; sourceTree = "<group>"; };
 		4E0C7CDC2227B33C00FC64A4 /* NSString+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA256.m"; sourceTree = "<group>"; };
-		4E15103B212A8C8300B6F62B /* UIImageView+LeChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LeChange.m"; sourceTree = "<group>"; };
-		4E15103C212A8C8400B6F62B /* UIImageView+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LeChange.h"; sourceTree = "<group>"; };
 		4E37A1832123F83D003FB5B8 /* IBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBaseModel.swift; sourceTree = "<group>"; };
 		4E37A1842123F83D003FB5B8 /* IBasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBasePresenter.swift; sourceTree = "<group>"; };
 		4E37A1852123F83D003FB5B8 /* IBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBaseView.swift; sourceTree = "<group>"; };
@@ -445,7 +430,6 @@
 		4E64B436212661A3002404AF /* LCUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserManager.h; sourceTree = "<group>"; };
 		4E64B437212661A3002404AF /* LCUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserManager.m; sourceTree = "<group>"; };
 		4E6DA4B2242D9293006CAFEE /* Array+Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
-		4E8543DD244FF09500BF2FBE /* WebViewJavascriptBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebViewJavascriptBridge.framework; path = ../Frameworks/iOS/WebViewJavascriptBridge.framework; sourceTree = "<group>"; };
 		4E8F010A212AD9D900B631E4 /* UIColor+LeChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LeChange.m"; sourceTree = "<group>"; };
 		4E8F010B212AD9D900B631E4 /* UIColor+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LeChange.h"; sourceTree = "<group>"; };
 		4E8F0132212B950300B631E4 /* LCBaseModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBaseModule.swift; sourceTree = "<group>"; };
@@ -516,12 +500,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				03636CCB28DEF63500FE1B59 /* MJRefresh.framework in Frameworks */,
+				034E6B16299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework in Frameworks */,
 				03ABE0EA28F5B8B300BCE307 /* MBProgressHUD.framework in Frameworks */,
 				04424FCC24EFC31E00BFCA2B /* Masonry.framework in Frameworks */,
 				03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 				03ABE05828F565C300BCE307 /* Masonry.framework in Frameworks */,
 				0469A4E124E2824E00B3EBA5 /* GTMBase64.framework in Frameworks */,
-				4E8543DF244FF37B00BF2FBE /* WebViewJavascriptBridge.framework in Frameworks */,
 				03E8BF27286420E400C91BA5 /* SnapKit.framework in Frameworks */,
 				3FFFDECF29013FD100CB48EC /* KVOController.framework in Frameworks */,
 			);
@@ -575,8 +559,6 @@
 			children = (
 				049EC45224F38EEA008625A1 /* LCBasicViewController.h */,
 				049EC45324F38EEA008625A1 /* LCBasicViewController.m */,
-				049EC45124F38EEA008625A1 /* LCBasicNavigationController.h */,
-				049EC45424F38EEA008625A1 /* LCBasicNavigationController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -676,8 +658,6 @@
 		3EAED7F221B7AC2C00C7E8B7 /* LCContainerVC */ = {
 			isa = PBXGroup;
 			children = (
-				3EAED7F321B7AC2C00C7E8B7 /* LCContainerVC.h */,
-				3EAED7F421B7AC2C00C7E8B7 /* LCContainerVC.m */,
 				3EEF512C21F3097500367093 /* LCNavigationItem.h */,
 				3EEF512D21F3097500367093 /* LCNavigationItem.m */,
 				3EEF513721F56A7D00367093 /* LCNavBarPresenter.h */,
@@ -698,6 +678,7 @@
 		4E081E4E21254EE800D6D66F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */,
 				03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */,
 				3FFFDECE29013FD100CB48EC /* KVOController.framework */,
 				03ABE0E928F5B8B300BCE307 /* MBProgressHUD.framework */,
@@ -706,7 +687,6 @@
 				03E8BF26286420E400C91BA5 /* SnapKit.framework */,
 				04424FCB24EFC31E00BFCA2B /* Masonry.framework */,
 				0469A4E024E2824E00B3EBA5 /* GTMBase64.framework */,
-				4E8543DD244FF09500BF2FBE /* WebViewJavascriptBridge.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -751,8 +731,6 @@
 				045FE39224E38DC100A422EA /* NSDate+Add.m */,
 				045FE39624E38DC200A422EA /* NSString+AbilityAnalysis.h */,
 				045FE39824E38DC200A422EA /* NSString+AbilityAnalysis.m */,
-				045FE39124E38DC100A422EA /* NSString+ScanResultAnalysis.h */,
-				045FE39724E38DC200A422EA /* NSString+ScanResultAnalysis.m */,
 				045FE39424E38DC200A422EA /* NSString+Verify.h */,
 				045FE39324E38DC100A422EA /* NSString+Verify.m */,
 			);
@@ -816,6 +794,8 @@
 				0491867724E3FF1F00651E0F /* LCSheetView.m */,
 				04424FC224EFBE2600BFCA2B /* LCButton.h */,
 				04424FC124EFBE2600BFCA2B /* LCButton.m */,
+				03EF18A029B5E1C700052A44 /* LCSheetGuideView.h */,
+				03EF18A129B5E1C700052A44 /* LCSheetGuideView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -880,8 +860,6 @@
 				3E0DC2DF214CD77D0009078F /* UIFont+Imou.m */,
 				35500637229650CD00A51FEE /* UIImage+LCGIF.h */,
 				35500638229650CD00A51FEE /* UIImage+LCGIF.m */,
-				4E15103C212A8C8400B6F62B /* UIImageView+LeChange.h */,
-				4E15103B212A8C8300B6F62B /* UIImageView+LeChange.m */,
 				03ADDC6B28F66AE300E385B4 /* UIImageView+Surface.h */,
 				03ADDC6C28F66AE300E385B4 /* UIImageView+Surface.m */,
 				4EF75D69212AD909006D8A97 /* UIScrollView+Tips.h */,
@@ -987,8 +965,6 @@
 				4E081E3A21252FB200D6D66F /* LCBaseViewController.h */,
 				4E081E3921252FB200D6D66F /* LCBaseViewController.m */,
 				4E081E3B21252FB200D6D66F /* ILCBaseViewController.h */,
-				4E0C7CCF2227B24C00FC64A4 /* LCWebViewController.h */,
-				4E0C7CD02227B24C00FC64A4 /* LCWebViewController.m */,
 				3EEF511521F2CB1C00367093 /* UIViewController+Base.h */,
 				3EEF511621F2CB1C00367093 /* UIViewController+Base.m */,
 			);
@@ -1078,16 +1054,13 @@
 				4E50D92E21265A8E00F37EFC /* LCFileManager.h in Headers */,
 				4EF75D6B212AD909006D8A97 /* UIScrollView+Tips.h in Headers */,
 				4E8F010D212AD9D900B631E4 /* UIColor+LeChange.h in Headers */,
-				4E15103E212A8C8400B6F62B /* UIImageView+LeChange.h in Headers */,
 				3E0DC2E0214CD77D0009078F /* UIFont+Imou.h in Headers */,
 				3EAED7F621B7AC2C00C7E8B7 /* LCNavigationController.h in Headers */,
-				3EAED7F721B7AC2C00C7E8B7 /* LCContainerVC.h in Headers */,
 				3EAED87321BA69B300C7E8B7 /* UINavigationController+LC.h in Headers */,
 				4E0C7CCD2227B21300FC64A4 /* UIDevice+IPhoneModel.h in Headers */,
 				4E0C7CCA2227B10600FC64A4 /* LCMobileInfo.h in Headers */,
 				4E0C7CDF2227B33C00FC64A4 /* NSString+SHA256.h in Headers */,
 				4E0C7CDD2227B33C00FC64A4 /* NSData+SHA256.h in Headers */,
-				4E0C7CD12227B24C00FC64A4 /* LCWebViewController.h in Headers */,
 				35500639229650CE00A51FEE /* UIImage+LCGIF.h in Headers */,
 				4EC51A63229BB82B00B5A082 /* LCNetWorkHelper.h in Headers */,
 				3E2A20F921ECBC0200B60748 /* UISearchBar+Lechange.h in Headers */,
@@ -1111,7 +1084,6 @@
 				0469A48D24E2701D00B3EBA5 /* LCError+LeChange.h in Headers */,
 				0469A49424E270B500B3EBA5 /* LCErrorCode.h in Headers */,
 				0469A49224E270B500B3EBA5 /* LCError.h in Headers */,
-				045FE39924E38DC200A422EA /* NSString+ScanResultAnalysis.h in Headers */,
 				045FE3A324E38DD200A422EA /* UIImage+Compress.h in Headers */,
 				045FE39E24E38DC200A422EA /* NSString+AbilityAnalysis.h in Headers */,
 				045FE39C24E38DC200A422EA /* NSString+Verify.h in Headers */,
@@ -1139,7 +1111,6 @@
 				0491867A24E3FF1F00651E0F /* LCSheetView.h in Headers */,
 				04424FC424EFBE2700BFCA2B /* LCButton.h in Headers */,
 				049EC45524F38EEA008625A1 /* LCBasicPresenter.h in Headers */,
-				049EC45724F38EEA008625A1 /* LCBasicNavigationController.h in Headers */,
 				049EC45824F38EEA008625A1 /* LCBasicViewController.h in Headers */,
 				3EEF513921F56A7D00367093 /* LCNavBarPresenter.h in Headers */,
 				04E9D1592522B75A00503F62 /* LCRouter.h in Headers */,
@@ -1161,6 +1132,7 @@
 				0360251829090F3100E5475B /* UIViewController+LCNavigationBar.h in Headers */,
 				03ADDC6D28F66AE300E385B4 /* UIImageView+Surface.h in Headers */,
 				3F4476782901379400613D87 /* LCApWifiInfo.h in Headers */,
+				03EF18A229B5E1C700052A44 /* LCSheetGuideView.h in Headers */,
 				4E3E8B4C213FEC080085B5E5 /* IVideoDecrytionAlertHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1335,7 +1307,6 @@
 				03287CC328F19E5E00FFD051 /* LCAlertView.swift in Sources */,
 				045FE3A024E38DC200A422EA /* NSString+AbilityAnalysis.m in Sources */,
 				049EC45624F38EEA008625A1 /* LCBasicPresenter.m in Sources */,
-				045FE39F24E38DC200A422EA /* NSString+ScanResultAnalysis.m in Sources */,
 				4E8F010C212AD9D900B631E4 /* UIColor+LeChange.m in Sources */,
 				3EEF512F21F3097500367093 /* LCNavigationItem.m in Sources */,
 				0302986D28F90B360038E6FE /* UINavigationController+Pop.m in Sources */,
@@ -1379,7 +1350,6 @@
 				3EEF513A21F56A7D00367093 /* LCNavBarPresenter.m in Sources */,
 				04CC843425188630009EB27E /* NSData+LeChange.m in Sources */,
 				8FDB92BC242F73410014D8E6 /* UIDevice+lc_IP.m in Sources */,
-				3EAED7F821B7AC2C00C7E8B7 /* LCContainerVC.m in Sources */,
 				04E9D1572522B75A00503F62 /* LCModule.m in Sources */,
 				3EAED7F521B7AC2C00C7E8B7 /* LCNavigationController.m in Sources */,
 				8FDB92DF242F735B0014D8E6 /* UIImage+Ex.swift in Sources */,
@@ -1393,7 +1363,6 @@
 				04D4197D24EAA00A00A80B56 /* LCPublicMethod.swift in Sources */,
 				8FDB92E1242F735B0014D8E6 /* UIStoryboard+Ex.swift in Sources */,
 				0469A48E24E2701D00B3EBA5 /* LCError+LeChange.m in Sources */,
-				4E15103D212A8C8400B6F62B /* UIImageView+LeChange.m in Sources */,
 				8F3FA11721E983280008294E /* UIWindow+LeChange.m in Sources */,
 				04CC844225188646009EB27E /* NSDate+LeChange.m in Sources */,
 				8FDB92AA242F73050014D8E6 /* UITableView+LeChange.m in Sources */,
@@ -1426,12 +1395,12 @@
 				8FDB92BA242F73410014D8E6 /* String+InterceptEx.swift in Sources */,
 				8FDB92D9242F735B0014D8E6 /* Dictionary+Ex.swift in Sources */,
 				4E50D9062125A8A600F37EFC /* LCAlertController.m in Sources */,
+				03EF18A329B5E1C700052A44 /* LCSheetGuideView.m in Sources */,
 				4E37A1862123F83D003FB5B8 /* IBaseModel.swift in Sources */,
 				045FE39A24E38DC200A422EA /* NSDate+Add.m in Sources */,
 				8FDB92AE242F73050014D8E6 /* UIViewController+LeChange.m in Sources */,
 				8FDB92B0242F73050014D8E6 /* UIButton+Helper.m in Sources */,
 				3F3472AE28FD76A000DB9EB5 /* NSBundle+AssociatedBundle.m in Sources */,
-				4E0C7CD22227B24C00FC64A4 /* LCWebViewController.m in Sources */,
 				04CC84272518861F009EB27E /* NSString+LeChange.m in Sources */,
 				0491862424E395DE00651E0F /* LCQRCode.m in Sources */,
 				04CC843F25188646009EB27E /* NSArray+LeChange.m in Sources */,
@@ -1439,7 +1408,6 @@
 				8FDB931B2431808F0014D8E6 /* UIView+CornerRadius.swift in Sources */,
 				8FDB93182431808F0014D8E6 /* UIFont+Ex.swift in Sources */,
 				04CC84562518883E009EB27E /* LCDateFormatter.m in Sources */,
-				049EC45A24F38EEA008625A1 /* LCBasicNavigationController.m in Sources */,
 				3E2A20FA21ECBC0200B60748 /* UISearchBar+Lechange.m in Sources */,
 				04CC841E2518860B009EB27E /* UILabel+LeChange.m in Sources */,
 				038BDF1B28FEC555004B3F33 /* UINavigationController+BarItem.swift in Sources */,
@@ -1665,6 +1633,11 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/Masonry",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/MBProgressHUD",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/GTMBase64",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/WebViewJavascriptBridge(WK)",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/Masonry",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCBaseModule/Support Files/LCBaseModule.pch";
@@ -1719,6 +1692,11 @@
 					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
 					"$(POD_SEARCH_FRAMEWORK_PATH)/MBProgressHUD",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/GTMBase64",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/WebViewJavascriptBridge(WK)",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(POD_SEARCH_FRAMEWORK_PATH)/Masonry",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCBaseModule/Support Files/LCBaseModule.pch";

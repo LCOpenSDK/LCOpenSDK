@@ -1,5 +1,5 @@
 //
-//  LCLandscapeControlView+Gesture.m
+//  LCPlayBackLandscapeControlView+Gesture.m
 //  LeChangeDemo
 //
 //  Created by jiangbin on 2021/7/23.
@@ -7,7 +7,7 @@
 //
 
 #import "LCPlayBackLandscapeControlView+Gesture.h"
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayWindow.h>
+#import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 
 #define TAG_PTZ_PAN        1687
 #define TAG_PTZ_PINCH      1689

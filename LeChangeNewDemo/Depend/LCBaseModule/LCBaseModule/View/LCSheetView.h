@@ -50,13 +50,9 @@ typedef void(^LCSheetViewClickedBlock)(NSInteger index);
 /// 设置带属性的消息
 @property (nonatomic, copy) NSAttributedString *attrMessage;
 
-/// 显示按钮背景
-@property (nonatomic, assign) BOOL showButtonBackground;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id<LCSheetViewDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... ;
 
-
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<MMSheetViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... ;
-
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<MMSheetViewDelegate>*/)delegate cancelButton:(NSString *)cancelTitle otherButtons:(NSArray*)otherTitles;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id<LCSheetViewDelegate>)delegate cancelButton:(NSString *)cancelTitle otherButtons:(NSArray*)otherTitles;
 
 - (void)show;
 - (void)showAtView:(UIView *)view;
@@ -64,22 +60,9 @@ typedef void(^LCSheetViewClickedBlock)(NSInteger index);
 
 //*************************
 
-/// 按钮背景颜色，在showButtonBackground为YES时生效
-@property (strong, nonatomic)UIColor *buttonBgColor;
-@property (strong, nonatomic)UIColor *separateLineColor;
-@property (strong, nonatomic)UIColor *titleColor;
-@property (strong, nonatomic)UIFont *titleFont;
-@property (strong, nonatomic)UIFont *msgFont;
-@property (strong, nonatomic)UIColor *msgColor;
-@property (strong, nonatomic)UIColor *containerBgColor;
-@property (strong, nonatomic)UIFont *btnFont;
-@property (strong, nonatomic)UIColor *btnTitleColor;
-@property (strong, nonatomic)UIColor *cancleTitleColor;
-
 @property (nonatomic)CGFloat paddingTop;    //标题的上边距
 @property (nonatomic)CGFloat paddingBetwennTiltAndMsg; //标题和消息的垂直间距
 @property (nonatomic)CGFloat paddingMsgBottom;  //消息的下边距
-@property (nonatomic)CGFloat paddingBetwennCancleAndOther; //取消按钮和其它按钮的间距
 @property (nonatomic)CGFloat buttonPaddingTop; //按钮与上部的距离，在标题、消息都为空时有效，默认为0
 
 ///////////////////////////

@@ -10,8 +10,6 @@
 
 @implementation LCNewLivePreviewPresenter (LandscapeControlView)
 
-//LCLandscapeControlViewDelegate
-
 - (NSString *)currentTitle {
     if (self.videoManager.currentDevice.channelNum > 0 && self.videoManager.currentChannelInfo != nil) {
         return self.videoManager.currentChannelInfo.channelName;
@@ -176,6 +174,9 @@
                     item.enabled = NO;
                     return item;
                 }
+            } else if ([self.videoManager.currentDevice.catalog isEqualToString:@"Doorbell"]) {
+                item.enabled = NO;
+                return item;
             }
             [item.KVOController observe:self.videoManager keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {

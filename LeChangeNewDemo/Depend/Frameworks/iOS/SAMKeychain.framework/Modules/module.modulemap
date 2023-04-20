@@ -1,6 +1,0 @@
-framework module SAMKeychain {
-  umbrella header "SAMKeychain.h"
-
-  export *
-  module * { export * }
-}

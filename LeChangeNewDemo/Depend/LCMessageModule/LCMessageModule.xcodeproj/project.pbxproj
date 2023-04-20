@@ -795,6 +795,10 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
+					"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD",
+					"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh",
+					"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage",
+					"${PODS_CONFIGURATION_BUILD_DIR}/Masonry",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -838,6 +842,10 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
+					"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD",
+					"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh",
+					"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage",
+					"${PODS_CONFIGURATION_BUILD_DIR}/Masonry",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

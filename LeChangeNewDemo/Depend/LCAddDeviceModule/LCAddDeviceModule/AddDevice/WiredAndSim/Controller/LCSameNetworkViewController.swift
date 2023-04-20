@@ -36,7 +36,7 @@ class LCSameNetworkViewController: LCGuideBaseViewController {
 
 	// MARK: LCGuideBaseVCProtocol
 	override func tipText() -> String? {
-		return "add_device_same_network_tip".lc_T
+		return "add_device_same_network_tip".lc_T()
 	}
 	
 	override func tipImageName() -> String? {
@@ -46,11 +46,7 @@ class LCSameNetworkViewController: LCGuideBaseViewController {
 	override func tipImageUrl() -> String? {
 		return nil
 	}
-	
-	override func checkText() -> String? {
-		return "add_device_confirm_same_network".lc_T
-	}
-	
+
 	override func isCheckHidden() -> Bool {
 		return false
 	}
@@ -68,7 +64,7 @@ class LCSameNetworkViewController: LCGuideBaseViewController {
 				basePushToInitializeSearchVC()
 			}
 		} else {
-			LCProgressHUD.showMsg("add_devices_smartconfig_msg_no_wifi".lc_T)
+			LCProgressHUD.showMsg("add_devices_smartconfig_msg_no_wifi".lc_T())
 		}
 		
 	}

@@ -3,10 +3,25 @@
 //
 
 import UIKit
+import LCOpenSDKDynamic
 
-class LCApWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
+protocol LCAPWifiPasswordPresenterProtocol {
+    var container: LCAPWifiPasswordViewController? {
+        set get
+    }
+    
+    init(container: LCAPWifiPasswordViewController)
+    
+    func updateContainerViewByNetwork()
+
+    func setupSupportView()
+    
+    func nextStepAction(wifiSSID: String, wifiPassword: String?)
+}
+
+class LCApWifiPasswordPresenter: NSObject, LCAPWifiPasswordPresenterProtocol {
 	
-    var container: LCWifiPasswordViewController?
+    var container: LCAPWifiPasswordViewController?
 	
 	/// 设备密码
     var devicePassword: String = "admin"
@@ -22,7 +37,9 @@ class LCApWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
     
     var scDeviceIsInited: Bool = false
     
-    required init(container: LCWifiPasswordViewController) {
+    var serachedDevice: LCOpenSDK_SearchDeviceInfo?
+    
+    required init(container: LCAPWifiPasswordViewController) {
         self.container = container
     }
 	
@@ -48,49 +65,45 @@ class LCApWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
 	}
 	
     func setupSupportView() {
-		//软AP不显示5g提示及wifi检测
-        self.container?.supportView.isHidden = true
-		container?.checkWidthConstraint.constant = 250
-		container?.wifiDetectButton.isHidden = true
+		
     }
     
     func nextStepAction(wifiSSID: String, wifiPassword: String?) {
         //连接wifi
-        let deviceId = LCAddDeviceManager.sharedInstance.deviceId
-        let device = LCNetSDKSearchManager.sharedInstance().getNetInfo(byID: deviceId)
+        let device = self.serachedDevice
         guard device != nil else {
-			LCProgressHUD.showMsg("add_device_connect_failed".lc_T)
+			LCProgressHUD.showMsg("add_device_connect_failed".lc_T())
             return
         }
         
         LCProgressHUD.show(on: self.container?.view)
         
         if true == LCAddDeviceManager.sharedInstance.isSupportSC && false == self.scDeviceIsInited {
-            LCNetSDKHelper.startSoftAPConfig(wifiSSID, wifiPwd: wifiPassword, wifiEncry: Int32(self.encryptionAuthority), netcardName: self.netcardName, deviceIp: device!.deviceIP, devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: true, handler: { result in
+            LCNetSDKHelper.startSoftAPConfig(wifiSSID, wifiPwd: wifiPassword, wifiEncry: Int32(self.encryptionAuthority), netcardName: self.netcardName, deviceIp: device!.ip, devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: true, handler: { result in
                 LCProgressHUD.hideAllHuds(self.container?.view)
                 if result == 0 {
                     self.devicePassword = LCAddDeviceManager.sharedInstance.initialPassword
                     self.connectWifiSuccessProcess()
                 }else{
-                    LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T)
+                    LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T())
                 }
             }, timeout: 5000 * 2)
         } else {
-            LCNetSDKHelper.loginWithHighLevelSecurity(byIp: device!.deviceIP, port: Int(device!.port), username: "admin", password: devicePassword, success: { (handle) in
+            LCNetSDKHelper.loginWithHighLevelSecurity(byIp: device!.ip, port: Int(device!.port), username: "admin", password: devicePassword, success: { (handle) in
                 let ssid = wifiSSID
                 let pwd = wifiPassword
-                LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: Int32(self.encryptionAuthority), netcardName: self.netcardName, deviceIp: device!.deviceIP, devicePwd: LCAddDeviceManager.sharedInstance.regCode, isSC: false, handler: { result in
+                LCNetSDKHelper.startSoftAPConfig(ssid, wifiPwd: pwd, wifiEncry: Int32(self.encryptionAuthority), netcardName: self.netcardName, deviceIp: device!.ip, devicePwd: self.devicePassword, isSC: false, handler: { result in
                     LCProgressHUD.hideAllHuds(self.container?.view)
                     if result == 0 {
                         self.devicePassword = LCAddDeviceManager.sharedInstance.initialPassword
                         self.connectWifiSuccessProcess()
                     }else{
-                        LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T)
+                        LCProgressHUD.showMsg("distribution_network_failure_retry".lc_T())
                     }
                 }, timeout: 5000 * 2)
             }) { (description) in
                 LCProgressHUD.hideAllHuds(self.container?.view)
-                LCProgressHUD.showMsg("add_device_connect_failed".lc_T)
+                LCProgressHUD.showMsg("add_device_connect_failed".lc_T())
             }
         }
     }

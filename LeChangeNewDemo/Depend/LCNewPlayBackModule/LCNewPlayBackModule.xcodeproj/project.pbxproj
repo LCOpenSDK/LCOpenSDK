@@ -187,8 +187,8 @@
 		04871B5728F263C6009E0540 /* persenter */ = {
 			isa = PBXGroup;
 			children = (
-				04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */,
 				04871B5928F263C6009E0540 /* LCNewVideotapePersenter.h */,
+				04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */,
 			);
 			path = persenter;
 			sourceTree = "<group>";
@@ -198,9 +198,9 @@
 			children = (
 				04871B5B28F263C6009E0540 /* dateControl */,
 				04871B5E28F263C6009E0540 /* LCNewVideotapeListViewController.h */,
+				04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */,
 				04871B5F28F263C6009E0540 /* HeardView */,
 				04871B6228F263C6009E0540 /* cell */,
-				04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -669,6 +669,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -713,6 +714,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetWorking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

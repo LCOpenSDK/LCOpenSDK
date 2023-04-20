@@ -92,7 +92,7 @@
     [portrait setTintColor:[UIColor lc_colorWithHexString:@"#FFFFFF"]];
     [portrait setImage:LC_IMAGENAMED(@"common_icon_backarrow_white") forState:UIControlStateNormal];
     [portrait mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(topView.mas_left).offset(15);
+        make.left.mas_equalTo(topView.mas_left).offset(20);
         make.centerY.mas_equalTo(topView.mas_centerY);
     }];
     portrait.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
@@ -173,7 +173,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
 }
 
 @end

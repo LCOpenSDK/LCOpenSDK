@@ -338,7 +338,7 @@
 
 - (void)pushToLogin {
 //    LCBasicViewController *loginVC =  [(LCBasicViewController *)[NSClassFromString(@"LCAccountJointViewController") alloc] init];
-//    LCBasicNavigationController *navi = [[LCBasicNavigationController alloc] initWithRootViewController:loginVC];
+//    LCNavigationController *navi = [[LCNavigationController alloc] initWithRootViewController:loginVC];
 //    [UIApplication sharedApplication].keyWindow.rootViewController = navi;
 }
 

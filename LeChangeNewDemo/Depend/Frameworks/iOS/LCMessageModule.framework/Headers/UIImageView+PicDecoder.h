@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备Id
  @param key 解密密钥
  */
--(void)lc_setMessageImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key;
+- (void)lc_setMessageImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder deviceId:(NSString *)deviceId productId:(NSString *)productId playtoken:(NSString *)playtoken key:(NSString *)key;
 
 @end
 

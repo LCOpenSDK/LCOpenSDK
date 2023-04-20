@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 //获取设备使能开关状态
 + (void)getDeviceCameraStatus:(nonnull NSString *)deviceId channelId:(nonnull NSString *)channelId enableType:(nonnull NSString *)enableType success:(void (^)(BOOL isOpen))success failure:(void (^)(LCError *error))failure;
 
+//设置设备使能开关状态
++ (void)setDeviceCameraStatus:(nonnull NSString *)deviceId channelId:(nonnull NSString *)channelId enableType:(nonnull NSString *)enableType enable:(BOOL)enable success:(void (^)(BOOL success))success failure:(void (^)(LCError *error))failure;
+
 /**
  解绑设备
 
@@ -52,18 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)modifyDeviceForDevice:(NSString *)deviceId productId:(nullable NSString *)productId Channel:(nullable NSString *)channelId NewName:(NSString *)name success:(void (^)(void))success
                       failure:(void (^)(LCError *error))failure;
-
-
-/**
- 获取单个设备通道信息
-
- @param deviceId 设备序列号
- @param channelId 通道号
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)bindDeviceChannelInfoWithDevice:(NSString *)deviceId ChannelId:(NSString *)channelId success:(void (^)(LCBindDeviceChannelInfo *info))success
-                                failure:(void (^)(LCError *error))failure;
 
 /**
  获取设备版本和可升级信息

@@ -1,5 +1,5 @@
 //
-//  LCLandscapeControlView+Gesture.m
+//  LCNewLandscapeControlView+Gesture.m
 //  LeChangeDemo
 //
 //  Created by jiangbin on 2021/7/23.

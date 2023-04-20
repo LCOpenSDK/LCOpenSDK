@@ -5,111 +5,6 @@
   Created by imou on 2019/12/5.
   Copyright © 2019 Imou. All rights reserved.
 */
-
-//夏令时
-"0" = "(UTC-12:00)国际日期变更线西";
-"1" = "(UTC-11:00)协调世界时-11";
-"10" = "(UTC-06:00)萨斯碦彻温";
-"100" = "(UTC+13:00)萨摩亚群岛";
-"11" = "(UTC-06:00)中部时间(美国和加拿大)";
-"12" = "(UTC-06:00)中美洲";
-"13" = "(UTC-05:00)波哥大,利马,基多";
-"14" = "(UTC-05:00)东部时间(美国和加拿大)";
-"15" = "(UTC-05:00)印第安那州(东部)";
-"16" = "(UTC-04:00)加拉加斯";
-"17" = "(UTC-04:00)大西洋时间(加拿大)";
-"18" = "(UTC-04:00)库亚巴";
-"19" = "(UTC-04:00)乔治敦,拉巴斯,玛瑙斯,圣胡安";
-"2" = "(UTC-10:00)夏威夷";
-"20" = "(UTC-04:00)圣地亚哥";
-"21" = "(UTC-04:00)亚松森";
-"22" = "(UTC-03:30)纽芬兰";
-"23" = "(UTC-03:00)巴西利亚";
-"24" = "(UTC-03:00)布宜诺斯艾利斯";
-"25" = "(UTC-03:00)格陵兰";
-"26" = "(UTC-03:00)卡宴,福塔雷萨";
-"27" = "(UTC-03:00)蒙德维的亚";
-"28" = "(UTC-03:00)萨尔瓦多";
-"29" = "(UTC-02:00)协调世界时-02";
-"3" = "(UTC-09:00)阿拉斯加";
-"30" = "(UTC-02:00)中大西洋";
-"31" = "(UTC-01:00)佛得角群岛";
-"32" = "(UTC-01:00)亚速尔群岛";
-"33" = "(UTC+00:00)都柏林,爱丁堡,里斯本,伦敦";
-"34" = "(UTC+00:00)卡萨布兰卡";
-"35" = "(UTC+00:00)蒙罗威亚,雷克雅未克";
-"36" = "(UTC+00:00)协调世界时";
-"37" = "(UTC+01:00)的黎波里";
-"38" = "(UTC+01:00)阿姆斯特丹,柏林,伯尔尼,罗马,斯特哥尔摩,维亚纳";
-"39" = "(UTC+01:00)贝尔格莱德,布拉德斯拉法,布达佩斯,卢布尔雅纳,布拉格";
-"4" = "(UTC-08:00)太平洋时间(美国和加拿大)";
-"40" = "(UTC+01:00)布鲁塞尔,哥本哈根,马德里,巴黎";
-"41" = "(UTC+01:00)萨拉热窝,斯科普里,华沙,萨格勒布";
-"42" = "(UTC+01:00)温得和克";
-"43" = "(UTC+01:00)中非西部";
-"44" = "(UTC+02:00)贝鲁特";
-"45" = "(UTC+02:00)大马士革";
-"46" = "(UTC+02:00)东欧";
-"47" = "(UTC+02:00)哈拉雷,比勒陀利亚";
-"48" = "(UTC+02:00)赫尔辛基,基铺,里加,索菲亚,塔林,维尔纽斯";
-"49" = "(UTC+02:00)开罗";
-"5" = "(UTC-08:00)下加利福尼亚州";
-"50" = "(UTC+02:00)雅典,布加勒斯特";
-"51" = "(UTC+02:00)耶路撒冷";
-"52" = "(UTC+03:00)伊斯坦布尔";
-"53" = "(UTC+03:00)阿曼";
-"54" = "(UTC+03:00)巴格达";
-"55" = "(UTC+03:00)加里宁格勒,明斯克";
-"56" = "(UTC+03:00)科威特,利雅得";
-"57" = "(UTC+03:00)内罗毕";
-"58" = "(UTC+03:30)德黑兰";
-"59" = "(UTC+04:00)阿布扎比,马斯科特";
-"6" = "(UTC-07:00)奇瓦瓦,拉巴斯,马萨特兰";
-"60" = "(UTC+04:00)埃里温";
-"61" = "(UTC+04:00)巴库";
-"62" = "(UTC+04:00)第比利斯";
-"63" = "(UTC+04:00)路易港";
-"64" = "(UTC+03:00)莫斯科,圣彼得堡,伏尔加格勒";
-"65" = "(UTC+04:30)喀布尔";
-"66" = "(UTC+05:00)阿斯哈巴德,喀什干";
-"67" = "(UTC+05:00)伊斯兰堡,卡拉奇";
-"68" = "(UTC+05:30)清奈,加尔各答,孟买,新德里";
-"69" = "(UTC+05:30)斯里加亚渥灯普拉";
-"7" = "(UTC-07:00)山地时间(美国和加拿大)";
-"70" = "(UTC+05:45)加德满都";
-"71" = "(UTC+06:00)阿斯塔纳";
-"72" = "(UTC+06:00)达卡";
-"73" = "(UTC+06:00)叶卡捷琳堡";
-"74" = "(UTC+06:30)仰光";
-"75" = "(UTC+07:00)曼谷,河内,雅加达";
-"76" = "(UTC+07:00)新西伯利亚";
-"77" = "(UTC+08:00)北京,重庆,香港特别行政区,乌鲁木齐";
-"78" = "(UTC+08:00)吉隆坡,新加坡";
-"79" = "(UTC+08:00)克拉斯诺亚尔斯克";
-"8" = "(UTC-07:00)亚利桑那";
-"80" = "(UTC+08:00)帕斯";
-"81" = "(UTC+08:00)台北";
-"82" = "(UTC+08:00)乌兰巴托";
-"83" = "(UTC+09:00)大阪,札幌,东京";
-"84" = "(UTC+09:00)首尔";
-"85" = "(UTC+09:00)伊尔库茨克";
-"86" = "(UTC+09:30)阿德莱德";
-"87" = "(UTC+09:30)达尔文";
-"88" = "(UTC+10:00)布里斯班";
-"89" = "(UTC+10:00)关岛,莫尔兹比港";
-"9" = "(UTC-06:00)瓜达拉哈拉,墨西哥城,蒙特雷";
-"90" = "(UTC+10:00)霍巴特";
-"91" = "(UTC+10:00)堪培拉,墨尔本,悉尼";
-"92" = "(UTC+10:00)雅库茨克";
-"93" = "(UTC+11:00)符拉迪沃斯托克";
-"94" = "(UTC+11:00)所罗门群岛,新哈利多尼亚";
-"95" = "(UTC+12:00)奥克兰,惠灵顿";
-"96" = "(UTC+12:00)斐济";
-"97" = "(UTC+12:00)马加丹";
-"98" = "(UTC+12:00)协调世界时+12";
-"99" = "(UTC+13:00)努库阿洛法";
-
-//选择开放平台
 "Choose_Plantform_PageControl_Oversea" = "海外";
 "Choose_Plantform_PageControl_Inland" = "国内";
 "Choose_Plantform_Injoint_Inland" = "对接乐橙国内开放平台";
@@ -123,19 +18,9 @@
 "Choose_Plantform_HOST_Alert" = "非法URL";
 "Choose_Plantform_APPID_Alert" = "请输入正确的App ID";
 "Choose_Plantform_SubAccount_Alert" = "请输入正确的子账户";
-"Choose_Plantform_Host_Api_Alert" = "请输入正确的开放平台HTTP API网关开发地址";
-
 "Choose_Plantform_Alert" = "提示:\n请登录乐橙开放平台网站https://open.lechange.com，注册成为乐橙开发者账号，登录网站并创建应用后得到App ID和App Secret";
 "Choose_Plantform_Alert_oversea" = "提示:\n请登录乐橙开放平台网站https://openapi.easy4ip.com,注册成为乐橙开发者账号，登录网站并创建应用后得到App ID和App Secret";
-"Choose_Plantform_Law" = "《合规性法律条款》";
-
-//选择对接模式
-"Choose_Injonit_Mode_Title" = "选择对接模式";
-"Choose_Injonit_Mode_ManagerMode" = "管理员模式对接";
-"Choose_Injonit_Mode_About_Manager" = "了解管理员模式";
 "Choose_Injonit_Mode_Phone_Alert" = "请输入正确的邮箱地址";
-
-//用户登录注册
 "User_Mode_Login_Title" = "登录";
 "User_Mode_Login_Register" = "注册";
 "User_Mode_Account_Login" = "账户登录";
@@ -146,24 +31,14 @@
 "User_Mode_Register_Phone_SMS_Fail" = "验证码下发失败";
 "User_Mode_Register_Fail" = "注册失败";
 "regist_user_account_success" = "注册子账号成功";
-
-//设备列表
 "device_manager_list_no_device" = "暂无设备，请点击右上角的\"+\"添加设备";
 "device_manager_list_title" = "乐橙";
-
 "footer_no_more_data" = "已经全部加载完毕";
 "footer_refresh" = "正在加载更多的数据...";
-
-
-
-//Button
 "Button_Confirm" = "确定";
 "Button_Title_Get_Code" = "获取验证码";
 "Button_Title_Reget_Code" = "重新获取验证码";
 "Button_Title_Get_Code_Count_Down" = "%ld秒后重新获取";
-"" = "";
-
-//Alert
 "Alert_Title_Notice" = "提示";
 "Alert_Title_Notice1" = "提醒";
 "Alert_Title_Notice2" = "注意";
@@ -171,9 +46,6 @@
 "Alert_Title_Button_Confirm1" = "知道了";
 "Alert_Title_Button_Cancle" = "取消";
 "mobile_common_permission_apply" = "权限申请";
-
-
-//common
 "mobile_common_bec_device_offline" = "设备离线";
 "mobile_common_delete" = "删除";
 "mobile_common_release_to_load" = "松开立即加载更多";
@@ -185,29 +57,19 @@
 "common_cancel" = "取消";
 "common_confirm" = "确定";
 "common_retry" = "重试";
-"common_help" = "帮助";
-
-//权限申请
-
 "mobile_common_permission_explain_album" = "请开启相册访问权限，以修改头像及封面图，保存照片到本地相册。";
 "mobile_common_permission_explain_camera" = "请开启相机访问权限，以正常使用拍照，扫描二维码等功能";
 "mobile_common_permission_explain_record_audio" = "请开启麦克风访问权限，以正常使用对讲等功能";
-
-
-//直播页面
 "livepreview_localization_success"="保存成功";
 "livepreview_localization_fail"="保存失败";
 "livepreview_localization_unable"="无法保存到本地";
 "livepreview_result_close_talk_first"="请先关闭对讲功能";
 "play_module_video_replay_description" = "播放异常，点击刷新";
-
 "device_mid_open_talk_success" = "对讲开启，请说话";
 "play_module_video_close_talk" = "对讲关闭";
 "device_mid_close_talk_failed" = "关闭对讲失败";
 "play_module_video_preview_talk_failed" = "打开对讲失败";
 "play_history_show_more" = "查看更多";
-
-//全部录像页面
 "play_module_cloud_record" = "云录像";
 "play_module_device_record" = "本地录像";
 "play_module_none_record" = "今日暂无录像，查看更多>";
@@ -233,8 +95,6 @@
 "play_module_video_media_start_record" = "开始录制";
 "play_module_media_play_record_failed" = "录制失败";
 "device_manager_no_cloud_storage" = "未开通云存储服务";
-
-//设定页面
 "setting_device_version" = "程序版本";
 "setting_device_update" = "开始升级";
 "setting_device_deployment" = "布防设置";
@@ -244,7 +104,6 @@
 "setting_device_serial_number" = "序列号";
 "setting_device_thumb" = "预览图设置";
 "setting_device_edit_name_placeholder" = "请输入名称";
-
 "setting_device_delete_alert" = "确认删除？";
 "setting_device_now_version" = "当前版本";
 "setting_device_updateing" = "正在升级";
@@ -262,188 +121,21 @@
 "setting_device_alarm_alert" = "默认开启7*24小时提醒时段，更多设置请点击“设备详情-布防设置-布防时间段设置”";
 "setting_device_alarm_alert_close" = "移动检测关闭后，您将不再接收到设备的报警消息和报警录像";
 "setting_device_update_alert" = "升级过程持续几分钟，升级时请务必保证设备不断电";
-"add_device_password_too_simple" = "密码过于简单";
-
-//添加设备
-"add_device_detecting_network_safety" = "正在检测网络安全配置，请稍候...";
-"add_device_confirm_same_network" = "已确认连上同一网络";
-"add_device_remember_password" = "记住密码";
-"add_device_device_not_support_5g" = "该设备不支持5GWiFi";
-"add_device_wifi_ssid" = "WiFi网络:";
-"add_device_input_wifi_password" = "请输入WiFi密码";
-"Add_Device_Title" = "设备添加";
-"add_device_without_input_sccode_tip" = "*如标签上无安全验证码，则无需输入";
-"add_device_plug_power" = "请将设备接通电源";
-"add_device_adjust_phone_volume" = "请调大手机音量\n并将手机喇叭对准设备麦克风";
-"add_device_will_hear_bugu" = "即将听到“布谷，布谷”声";
-"add_device_connect_router_please_wait" = "正在连接路由器，请稍候...";
-"add_device_adjust_phone_volume_to_hear_bugu" = "请调大手机音量，并将手机喇叭对准设备麦克风，确认听到“布谷，布谷”声";
-"add_device_try_again" = "再试一次";
-"add_device_config_fail" = "配置失败";
-"device_manager_input_wifi_password" = "请输入SSID";
-"add_device_detect_safe_network_config_failed" = "无法检测网络安全配置\n请确认手机和设备连接到同一网络";
-"add_device_name_for_device" = "请给设备取个名字吧!";
-"add_device_add_volume_tip" = "请调大手机音量";
-"add_device_connect_and_goto_next" = "连接后将自动下一步";
-"add_device_switch_to_wireless_add" = "切换至无线添加";
-"add_device_switch_to_wired_add" = "切换至有线添加";
-"add_device_restart" = "重新开始";
-"add_device_config_not_complete_tip" = "你还未完成配置，如果退出后，你将重新开始配置流程。";
-"add_device_tip_not_support_5g" = "1.您的摄像机暂不支持5G Hz频段Wi-Fi,如您使用的是双频路由器，请让手机和摄像机连接到2.4G Hz频段Wi-Fi的信号下。\n 2.如您不确定手机和摄像机当前所连接的Wi-Fi频段,您可查看路由器相关说明书，进入路由器设置页面进行确认。";
-"add_device_listen_wifi_pwd_error_tip" = "听到设备提示WIFI密码错误？";
-"add_device_connect_cloud_please_wait" = "正在连接云平台，请稍候...";
-"add_device_binding_to_account" = "正在绑定设备到帐户，请稍候...";
-"add_device_operation_by_instructions" = "请按照设备使用说明书进行操作";
-"add_device_complete_related_operations" = "已完成相关操作";
-"add_device_device_bind_by_other" = "抱歉，您的设备已被%@绑定，您可向其申请共享使用，或联系解绑设备";
-"add_device_by_wireless" = "无线添加";
-"add_device_by_wired" = "有线添加";
-"add_device_summer_chooes_startTime" = "请选择开始时间";
-"add_device_summer_chooes_endTime" = "请选择结束时间";
-"add_device_summer_start_end_1_hour" = "开始时间与结束时间不得小于一个小时";
-"add_device_summer_choose_time" = "请设置时间";
-"add_device_summer_not_timezone" = "未设置时区可能导致云存储等服务出现异常";
-"add_device_summer_start_early_end" = "开始时间不得大于结束时间";
-"message_pushconfig_timesettip" = "开始时间和结束时间不能相同";
-"add_device_please_input_RCCode" = "请输入正确的安全验证码";
-"device_manager_encryption_password_rule" = "必须为8-32位数字、字母和符号组合的密码（区分大小写）";
-
-"add_device_disconnect_power_and_restart" = "请将设备断电并重新连接电源后点击“重新开始”";
-"add_device_g1_reset_tip" = "用顶针长按设备背部reset孔直至设备正面指示灯熄灭后点击”重新开始“";
-"add_device_red_light" = "红灯长亮";
-"add_device_green_light" = "绿灯长亮";
-"add_device_green_blue_light" = "绿/蓝灯长亮";
-"add_device_blue_light" = "蓝灯长亮";
-
-"add_device_title" = "设备添加";
-"add_device_falshlight_off" = "轻触照亮";
-"add_device_falshlight_on" = "轻触关闭";
-"add_device_scan_device_qr_code" = "请扫描设备机身上的二维码";
-"add_device_add_bySn" = "序列号添加";
-"add_device_add_byPhotoAlbum" = "相册";
-"add_device_input_sn" = "请输入设备序列号";
-"add_device_input_sn_under_device" = "请输入设备机身标签上的序列号(S/N)和安全码";
-"add_device_input_sccode" = "请输入设备安全验证码";
-"add_device_confrim_to_quit" = "确定退出";
-"add_device_not_complete_tip" = "您还未完成配置，如果退出，你将可能重新开始配置流程";
-"device_manager_wifi_connetting_tip" = "WIFI连接中，请稍后刷新查看";
-"mobile_common_network_config" = "网络配置";
-"device_manager_connect" = "连接";
-"device_manager_wifi_list_empty" = "暂无WiFi";
-"mobile_common_get_info_failed" = "获取失败";
-"Device_AddDevice_Network_Config" = "网络配置";
-"device_manager_connected_wifi" = "当前WiFi网络:";
-"device_manager_select_wifi" = "选取网络";
-"add_device_connect_failed" = "连接失败";
-"add_device_kindly_reminder" = "温馨提示";
-"add_device_input_device_password" = "请输入设备密码";
-"Device_AddDevice_Scan_RDCode_Tip" = "请遮挡住部分条形码后，再尝试用手机扫描二维码，识别速度更快哦";
-"add_device_password_initial_tip" = "1.如您曾在乐橙客户端或其他客户端设置过设备密码，并遗忘密码，可将设备恢复默认配置后再重新添加设备，以设置新的设备密码。\n2.如您未曾设置过设备密码，且您的设备标签上带有”安全码“字样，请输入设备标签上的8位安全码即可。";
-"add_device_device_locked_please_reboot" = "抱歉，设备密码尝试过多，您的设备已被锁定，请断电重启设备。";
-"add_device_input_safe_code" = "请确认手机已连上设备所要连接的Wi-Fi";
-"add_device_switch_wireless_to_config" = "切换至无线方式";
-"add_device_switch_wired_to_config" = "切换至有线方式";
-"add_device_switch_to_softAP_add" = "切换至软AP添加";
-"add_device_quit_add_process" = "退出添加";
-"device_manager_network_config" = "网络配置";
-"add_device_connect_router_failed" = "連接路由器失敗";
-"add_device_connect_network_failed" = "接入网络失敗";
-"add_device_add_by_wired" = "有线添加";
-"add_device_continue_to_wait" = "继续等待";
-"add_device_red_light_twinkle" = "红灯闪烁";
-"add_device_red_light_rotate" = "红灯旋转";
-"add_device_green_light_always" = "绿灯长亮";
-"add_device_green_light_twinkle" = "绿灯闪烁";
-"add_device_yellow_light_twinkle" = "黄灯闪烁";
-"add_device_green_blue_light_always" = "绿灯/蓝灯常亮";
-"add_device_blue_light_always" = "蓝灯常亮";
-"add_device_timeout_add_by_qrcode" = "二维码添加";
-"add_device_red_light_always" = "红灯长亮";
-"Device_AddDevice_Confirm_Box_Working" = "添加前,请确保乐盒能正常工作:";
-"Device_AddDevice_Plug_Power_Box_White_Light" = "① 插上电源,乐盒指示灯显示为白色";
-"Device_AddDevice_Connect_Available_Network" = "② 连上可用网络";
-"Device_AddDevice_No_Reminder" = "  下次不再提醒";
-"Device_AddDevice_Has_Confirm_Add" = "已确认, 开始添加";
-"add_device_i_need_help" = "我需要帮助";
-"add_device_connect_timeout" = "连接超时";
-"add_device_operation_by_voice_or_light" = "请按照设备指示灯或语音提示进行选择操作";
-"add_device_config_failed" = "配置失败";
-"device_common_operate_fail_try_again" = "操作失败，请重试";
-"add_device_device_bind_by_yourself" = "该设备已在您帐户下";
-"add_device_please_input_device_name" = "请输入设备名称 ";
-"add_device_add_successfully" = "添加成功!";
-"add_device_done" = "完成";
-"add_devices_time_zone_quit_hint" = "未设置时区可能导致云端储存等服务异常";
-"add_device_operation_by_voice_tip" = "请按照设备语音操作";
-"add_device_config_done" = "配置完成";
-"add_device_config_failed_please_retry" = "配置失败，请重新开始";
-"add_devices_tip_about_wifi_pwd" = "设备的热点密码为设备安全码，找到设备标签上带有”设备安全码“的字样，输入设备标签上的8位设备安全码即可";
-"add_device_initialize_failed" = "检测网络安全配置失败";
-"add_device_set_device_password_for_safety" = "为加强安全防护，请设置您的设备密码";
-"common_button_next_step" = "下一步";
-"add_device_define_device_password_tip" = "设备密码是乐橙创新的安全加固策略，旨在更好地保障您设备的信息安全。只有使用正确的设备密码，才能够获取设备的音视频信息。\n当您将摄像机接入NVR等设备时，需要您手动输入该密码，请您妥善保管；如您遗忘密码，可将设备恢复默认配置后再添加至帐号，以设置新的设备密码";
-"mobile_common_device_password_rule_tip" = "8-32位数字、字母、符合组合（区分大小写) ";
-"add_device_input_imei_under_device" = "请输入设备机身标签上的IMEI号";
-"add_device_input_imei_by_user_tip" = "*IMEI号为15-17位数字";
-"add_device_qrcode_title_tip" = "请将二维码正对摄像头镜头";
-"add_device_qrcode_msg_tip" = "距离保持在10-30cm,前后缓慢移动\n听到“二维码扫描成功”的语音提示后点击下一步";
-"add_device_same_network_tip" = "请将手机和设备连接到同一网络";
-"add_devices_smartconfig_msg_no_wifi" = "请将手机连接WIFI";
-"add_device_confirm_power_and_sim" = "请将设备接通电源，并插入SIM卡";
-"add_device_confirm_insert_sim" = "已插入SIM卡";
-"mobile_common_permission_explain_access_location_usage" = "请开启定位信息权限，以正常使用基于地理位置的服务和WiFi连接相关功能。";
-"add_device_plug_cable_to_device" = "请将设备插入网线";
-"add_devices_smartconfig_restart" = "重新开始";
-"add_device_tip_not_support_5g_1" = "1.您的摄像机暂不支持5G Hz频段Wi-Fi,如您使用的是双频路由器，请让手机和摄像机连接到2.4G Hz频段Wi-Fi的信号下。";
-"add_device_tip_not_support_5g_2" = "2.如您不确定手机和摄像机当前所连接的Wi-Fi频段,您可查看路由器相关说明书，进入路由器设置页面进行确认。";
-"add_device_keep_phone_close_to_device" = "将手机尽可能靠近设备";
-"add_device_adjust_phone_volume_to_hear_volume" = "请调大手机音量，并将手机喇叭对准设备麦克风，确认听到声波";
-"add_device_will_hear_volume" = "即将听到声波";
-"add_device_adjust_phone_volume_to_hear_bugu" = "请调大手机音量，并将手机喇叭对准设备麦克风，确认听到“布谷，布谷”声";
-"add_device_confirm_to_connect_correct_wifi" = "请确认手机已连上设备所要连接的WiFi";
-"add_device_goto_connect_wifi" = "点击选择wifi网络";
-"add_device_connect_failed_and_retry" = "登录失败，请重试";
-"login_user_locked" = "用户被锁定";
-"login_user_or_pwd_error" = "用戶名或密碼錯誤";
-"add_device_password_error_and_will_lock" = "密码错误，连续错误5次后设备将被锁定";
-"add_device_connect_error_and_quit_retry" = "连接异常,请退出重试";
-"ip_device_connect_and_goto_next" = "连接后，继续下一个步骤";
-"add_device_wait_to_connect_wifi" = "请等待系统自动连接";
-"add_device_connect_goto_select_wifi" = "点击去选择WiFi网络";
-"device_manager_copy_success" = "复制成功";
-"add_device_wait_to_connect_wifi_failed" = "自动连接失败，请进入手机的WiFi设置，连接上名为\"%@\"的热点，然后返回此页面";
-"add_device_about_wifi_pwd" = "关于热点密码";
-"add_device_choose_wifi" = "选取WiFi网络:";
-"add_device_scanning_error_tip" = "未检测到二维码信息";
-"add_devices_device_unsupport" = "抱歉，暂不支持添加该型号设备";
-"add_devices_scan_code_failed" = "扫描失败！";
-"mobile_common_bec_common_tip" = "未知情况，请重试！";
-"add_device_input_corrent_sc_tip" = "请输入正确的安全验证码";
+"device_password_too_simple" = "密码过于简单";
+"device_please_input_device_name" = "请输入设备名称 ";
 "no_usable_network" = "无可用网络";
-"add_device_quit_add_process" = "退出添加";
 "device_settings_wifi_config_save_failed" = "保存失敗";
-"add_device_operation_by_ap_instructions" = "请按照设备使用说明书进行操作";
 "mobile_common_common_ignore" = "忽略";
 "go_to_setting" = "去设置";
-"add_device_re_add" = "重新添加";
-"add_device_mode_xxxx" = "设备型号-XXXX";
-"add_device_try_again_or_use_other_way" = "请再试一次，或选择其他方式添加设备";
 "Device_AddDevice_Add_Help" = "帮助";
 "loaded_net_failure_and_retry"  =  "网络不给力，轻触页面重新加载";
 "play_module_video_collection_title" = "收藏点";
-"add_device_enter_wifi_password" = "请输入网络名称";
 "NextStep" = "下一步";
-"add_device_wait_to_connect_wifi_failed_sc" = "自动连接失败，进入手机的WiFi设置，连接上名为\"%@\"的热点，然后返回此页面，热点密码为";
 "device_delete_success"="删除成功.";
 "home_empty_channel"="暂无通道";
-"add_device_lechange_tip" = "乐橙设备建议通过输入设备型号进行配网；乐橙设备型号通常以“TP、TF、TC、TD”开头。\n如：TP2、TP7、TF1T";
-"add_device_un_Imou_tip" = "非乐橙设备建议选择其他型号进行配网；非乐橙设备型号通常以“IPC、DH”开头。\n如：IPC-HFW1225M-1、DH-NVR1104HS";
-"add_device_image_tip" = "标签示意图如下:";
 "video_tape_download_warnning" = "录像下载未完成，退出将取消下载，是否退出？";
 "add_device_nb_tip2" = "如果删除设备后重新添加需要断电重连";
 "device_detail_cloud_storage" = "云存储";
-
-// 布防时间段  ------》 start
 "device_manager_monday" = "周一";
 "device_manager_tuesday" = "周二";
 "device_manager_wednesday" = "周三";
@@ -478,28 +170,7 @@
 "device_manager_defence_time1" = "检测时间段";
 "device_manager_defence_setting" = "布防设置";
 "device_manager_no_more_than_six_periods" = "最多只能添加6条时间段";
-// 布防时间段  ------》 end
 
-"distribution_network_failure_retry" = "配网失败，请重试";
-"soft_AP_addition" = "软AP添加";
-"SIM_card_adding" = "SIM卡添加";
-"local_distribution_network" = "本地配网";
-"NB_add" = "NB添加";
-"bluetooth_add" = "蓝牙添加";
-"iot_wired" = "iot有线";
-"iot_soft_AP" = "iot软AP";
-"iot_bluetooth" = "iot蓝牙";
-"distribution_network_not_completed" = "抱歉，您的设备未完成配网流程。请先在设备上配网完成后再用手机添加";
-"please_check_yourself_first" = "请先按设备的自检/消音按钮";
-"automatic_connection_failed" = "自动连接失败";
-"please_select_a_device_type" = "请选择设备类型";
-"please_enter_the_device_type" = "请输入设备类型";
-"incomplete_QR_code_information" = "二维码信息不完整，请尝试手动添加设备";
-"security_verification_code" = "安全验证码";
-"device_bluetooth_distribution_network" = "设备蓝牙配网中。。。";
-"equipment_distribution_network_succeeded" = "设备配网成功";
-"device_distribution_network_failure_retry" = "设备配网失败，请重试\n";
-"turn_on_mobile_phone_positioning" = "请开启手机定位信息权限";
 "card" = "卡";
 "fingerprint" = "指纹";
 "password" = "密码";
@@ -511,8 +182,6 @@
 "dont_prompt_again" = "不再提示";
 "time_selector" = "时间选择器";
 "selected_date_must_depend_month" = "选择日期必须依赖月份";
-"last_one" = "最后一个";
-"cloud_service" = "云服务";
 "save_setting" = "存储设置";
 "devices_setting_up" = "设备设置";
 "local_storage_abnormal" = "存储异常";
@@ -521,7 +190,6 @@
 "local_storage" = "本地存储";
 "no_SD_card" = "无SD卡";
 "setting_of_deployment_time_period" = "布防时间段设置";
-
 "storage_normal" = "存储正常";
 "storage_exception" = "内置存储已损坏\n建议格式化";
 "storage_format" = "正在格式化，请稍后...";
@@ -535,7 +203,6 @@
 "used_size_zero" = "0GB";
 "used_size_formatting" = "GB  已使用0.00GB";
 "Alert_Title_Button_Formatting" = "格式化";
-
 "message_module_delete_message_tip" = "删除消息";
 "message_module_delete_message_confirm" = "是否删除所选消息?";
 "message_module_cancel" = "取消";
@@ -546,39 +213,12 @@
 "loading_failure" = "加载失败，";
 "click_retry" = "点击重试";
 "no_support_detection" = "该设备不支持动检";
-// 设备添加优化专项
-"add_device_scan_device_qr_code_tip" = "添加设备时，请扫描设备标签/机身\n上的二维码";
-"add_device_connect_to_wifi"="请连接设备需要连接的Wi-Fi";
-"device_manager_wifi_name_ssid"="点击切换或手动输入Wi-Fi名称";
-"device_manager_please_set_wifi_password"="请输入Wi-Fi密码";
-"permisssion_request_location_ssid_message"="“Demo”想访问您的位置，以便在添加设备时获取SSID。点击设置以允许访问。";
-"device_add_wifi_name" = "Wi-Fi名称";
-"add_device_iot_wifi_2_4g_only"="仅支持2.4G网络";
-"device_add_wifi_password" = "Wi-Fi密码";
-"common_permission_request"="权限请求";
-"permisssion_request_photos_message"="\"Demo\"想要访问您的照片以便您选择和保存图像。点击设置以允许访问。";
-"permisssion_request_faceid_message"="\"Demo\"希望访问您的面部ID以便您使用其登录。点击设置以允许访问。";
-"mobile_common_permission_explain_contact" = "请开启联系人访问权限，以正常使用添加通讯录好友的功能";
-"permisssion_request_microphone_message"="请开启麦克风访问权限，以正常使用对讲、自定义语音录制等功能";
-"common_i_know" = "知道了";
-"add_device_connect_2_4g_wifi"="请将您的设备连接到2.4GHz Wi-Fi网络 ";
-"add_device_connect_2_4g_wifi_explain_1"="1.您的设备暂不支持5G Hz频段Wi-Fi，如您使用的是双频路由器，请让手机和设备连接到2.4G Hz频段Wi-Fi的信号下。";
-"add_device_connect_2_4g_wifi_tips_2"="2.如您不确定手机和设备当前所连接的Wi-Fi频段,您可查看路由器相关说明书，进入路由器设置页面进行确认。";
-"add_device_softap_connect_device_hotspot_fail"="连接失败，请重试";
-"add_device_softap_connect_hotspot_title"="开启设备热点";
-"add_device_softap_connect_hotspot_des"="请进入手机的Wi-Fi设置，连接到如图所示热点，然后返回此页面";
-"add_device_softap_connect_hotspot_next"="跳转至Wi-Fi设置";
-"add_device_scan_bind_by_yourself"="该设备已在您账户下";
-
-// 2022.10.29
 "message_list_none"="暂无消息";
-"special_symbols_such_as_facial_expressions" = "如您的wifi名称中有表情等特殊符号，如🌹❤️😊❄️可能会导致您的设备无法正常连接，建议删除wifi名称内的特殊符号。";
 "password1" = "密码:";
 "connection_failure_prompt" = "如您自动连接失败，请尝试打开wifi列表，不保存密码，尝试重新输入密码";
 "wireless_add" = "无线添加";
 "get_the_added_process_information_is_empty" = "获取添加流程信息为空";
 "the_mobile_phone_has_been_jailbroken" = "您的手机已越狱，继续运行有风险";
-"add_device_save_password"="记住密码";
-"add_device_bluetooth_linking"="设备蓝牙配网中。。。";
 "common_set" = "设置";
-"hidden_wifi_other"="  其他...";
+"Add_Device_Title" = "设备添加";
+"mobile_common_network_config" = "网络配置";

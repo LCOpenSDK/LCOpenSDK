@@ -30,7 +30,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     self.LandScapeQualityView.hidden = YES;
     self.videoManager.currentResolution = self.videoManager.currentResolution;
     self.videoManager.isFullScreen = !self.videoManager.isFullScreen;
-    [UIDevice lc_setRotateToSatusBarOrientation:self.container];
+    [UIDevice lc_setRotateToSatusBarOrientation:self.liveContainer.navigationController];
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -38,14 +38,15 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
         //对讲与音频只能保持一者运行
         [LCProgressHUD showMsg:@"livepreview_result_close_talk_first".lcMedia_T];
     }
+    self.videoManager.isSoundOn = !self.videoManager.isSoundOn;
+    
     if (self.videoManager.isSoundOn) {
-        //关闭声音
-        [self.playWindow stopAudio];
-    } else {
         //开启声音
         [self.playWindow playAudio];
+    } else {
+        //关闭声音
+        [self.playWindow stopAudio];
     }
-    self.videoManager.isSoundOn = !self.videoManager.isSoundOn;
 }
 
 - (void)onPlay:(LCButton *)btn {
@@ -66,7 +67,6 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     [self hideVideoLoadImage];
     [self showPlayBtn];
     self.videoManager.isPlay = NO;
-    self.videoManager.isSoundOn = YES;
     [self.talker stopTalk];
     self.videoManager.isOpenAudioTalk = NO;
     [self.playWindow stopRtspReal:isKeepLastFrame];
@@ -80,6 +80,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     [self.playWindow stopAudio];
     LCOpenSDK_ParamReal *param = [[LCOpenSDK_ParamReal alloc]init];
     param.isOpt = YES;
+    param.useTLS = self.videoManager.currentDevice.tlsEnable;
     param.accessToken = [LCApplicationDataManager token];
     param.deviceID = self.videoManager.currentDevice.deviceId;
     param.productId = self.videoManager.currentDevice.productId;
@@ -109,10 +110,8 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
 }
 
 - (void)qualitySelect:(LCButton *)btn {
-    
     [btn setTitle:@"" forState:UIControlStateNormal];
     if (!self.qualityView) {
-        
         NSInteger btnCount = self.videoManager.currentChannelInfo.resolutions.count;
         self.qualityView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, btn.superview.frame.origin.y + 30 - 30*btnCount, 30, 30 *btnCount)];
         
@@ -126,7 +125,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
             [qualityBtn addTarget:self action:@selector(qualityBtn:) forControlEvents:UIControlEventTouchUpInside];
             [self.qualityView addSubview:qualityBtn];
         }
-        [self.container.view addSubview:self.qualityView];
+        [self.liveContainer.view addSubview:self.qualityView];
     }
     self.qualityView.hidden = NO;
 }
@@ -149,7 +148,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
             [qualityBtn addTarget:self action:@selector(qualityBtnLandscape:) forControlEvents:UIControlEventTouchUpInside];
             [self.LandScapeQualityView addSubview:qualityBtn];
         }
-        [self.container.view addSubview:self.LandScapeQualityView];
+        [self.liveContainer.view addSubview:self.LandScapeQualityView];
     }
     self.LandScapeQualityView.hidden = NO;
 }
@@ -196,6 +195,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     param.imageSize = NResolution.imageSize;
     param.productId = self.videoManager.currentDevice.productId;
     param.isOpenAudio = self.videoManager.isSoundOn;
+    param.useTLS = self.videoManager.currentDevice.tlsEnable;
     [self.playWindow playRtspReal:param];
 }
 
@@ -227,6 +227,7 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
     param.playToken = self.videoManager.currentDevice.playToken;
     param.productId = self.videoManager.currentDevice.productId;
     param.isOpenAudio = self.videoManager.isSoundOn;
+    param.useTLS = self.videoManager.currentDevice.tlsEnable;
     [self.playWindow playRtspReal:param];
     
 }
@@ -315,14 +316,14 @@ static const void *kLCNewLivePreviewPresenterSavePath = @"LCNewLivePreviewPresen
         param.playToken = self.videoManager.currentDevice.playToken;
         param.talkType = @"talk";
         param.productId = self.videoManager.currentDevice.productId;
-        
+        param.useTLS = self.videoManager.currentDevice.tlsEnable;
         NSInteger result = [self.talker playTalk:param];
         if (result != 0) {
             //错误处理
         }
     } else {
         //结束对讲，此处result 返回永远返回0
-        NSInteger result = [self.talker stopTalk];
+        [self.talker stopTalk];
         [LCProgressHUD showMsg:@"play_module_video_close_talk".lcMedia_T];
         [self.talker setListener:nil];
         self.talker = nil;

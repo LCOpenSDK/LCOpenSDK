@@ -18,15 +18,18 @@ class LCMessageItem: NSObject {
     
     var productId:String?
     
+    var playtoken:String?
+    
     var thumbUrl:String?
     
     //cell是否被选中(编辑页使用)
     var isSelected:Bool = false
     
-    init(_ messageInfo:LCMessageInfo, deviceId:String, productId:String?) {
+    init(_ messageInfo:LCMessageInfo, deviceId:String, productId:String?, playtoken:String?) {
         super.init()
         self.deviceId = deviceId
         self.productId = productId
+        self.playtoken = playtoken
         let msgType:String? = messageInfo.msgType
         self.title = (msgType?.count ?? 0) > 0 ? msgType : "message_module_other".lcMessage_T
         self.thumbUrl = messageInfo.thumbUrl

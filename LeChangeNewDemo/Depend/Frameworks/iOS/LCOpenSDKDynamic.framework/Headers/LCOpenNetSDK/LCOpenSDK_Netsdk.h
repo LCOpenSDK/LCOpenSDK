@@ -13,10 +13,8 @@
 @class LCDeviceResetPWDInfo;
 @class LCNetsdkProductDefinition;
 
-typedef void(^LCNetSDKDisconnetCallback)(long loginHandle, NSString *ip, NSInteger port);
-typedef void(^LCNetSDKLogOpenCallback)(const char *szLogBuffer, unsigned int nLogSize, long dwUser);
-
-void safe_strcpy(char *__dst, const char *__src);
+typedef void(^LCNetSDKDisconnetCallback)(long loginHandle, NSString * _Nonnull ip, NSInteger port);
+typedef void(^LCNetSDKLogOpenCallback)(const char * _Nonnull szLogBuffer, unsigned int nLogSize, long dwUser);
 
 @interface LCOpenSDK_Netsdk : NSObject
 
@@ -25,7 +23,7 @@ void safe_strcpy(char *__dst, const char *__src);
 ///  init netsdk
 /// @param callback  netsdk连接断开回调
 /// @param callback  netsdk connection disconnection callback
-+ (void)initSDKWithCallback:(LCNetSDKDisconnetCallback)callback;
++ (void)initSDKWithCallback:(LCNetSDKDisconnetCallback _Nullable)callback;
 
 /// 开启日志
 ///  open log
@@ -33,7 +31,7 @@ void safe_strcpy(char *__dst, const char *__src);
 /// @param path  log path
 /// @param logCallback 日志回调
 /// @param logCallback  log callback
-+ (void)logOpen:(NSString *)path callback:(LCNetSDKLogOpenCallback)logCallback;
++ (void)logOpen:(NSString *_Nullable)path callback:(LCNetSDKLogOpenCallback _Nullable)logCallback;
 
 /// 关闭日志
 /// close log
@@ -45,7 +43,7 @@ void safe_strcpy(char *__dst, const char *__src);
 /// init device
 /// @param deviceNetInfo device info
 /// @param isUseIp  Whether to use  IP mode
-+ (BOOL)initDevAccountWithDevInfo:(LCNetsdkDevInfo *)deviceNetInfo useIp:(BOOL)isUseIp;
+//+ (BOOL)initDevAccountWithDevInfo:(LCNetsdkDevInfo *_Nullable)deviceNetInfo useIp:(BOOL)isUseIp;
 
 /// 登出设备
 /// @param loginHandle 句柄
@@ -71,7 +69,7 @@ void safe_strcpy(char *__dst, const char *__src);
 /// @param phoneIp  phone ip
 /// @return 重置后的密码信息
 /// @return Password information after reset
-+ (LCDevicePWDResetInfo *)resetPassword:(NSString *)password device:(LCNetsdkDevInfo *)device securityCode:(NSString *)securityCode contact:(NSString *)contact useAsPreset:(BOOL)useAsPreset byPhoneIp:(NSString *)phoneIp;
++ (LCDevicePWDResetInfo *_Nullable)resetPassword:(NSString *_Nullable)password device:(LCNetsdkDevInfo *_Nullable)device securityCode:(NSString *_Nullable)securityCode contact:(NSString *_Nullable)contact useAsPreset:(BOOL)useAsPreset byPhoneIp:(NSString *_Nullable)phoneIp;
 
 /// 异步查询设备支持的密码重置方式
 /// Password reset mode supported by asynchronous query device
@@ -80,14 +78,14 @@ void safe_strcpy(char *__dst, const char *__src);
 /// @param phoneIp 手机ip，可以为空
 /// @param phoneIp Mobile IP, can be empty
 /// @return result
-+ (LCDeviceResetPWDInfo *)queryPasswordResetType:(LCNetsdkDevInfo *)device byPhoneIp:(NSString *)phoneIp;
++ (LCDeviceResetPWDInfo *_Nullable)queryPasswordResetType:(LCNetsdkDevInfo *_Nonnull)device byPhoneIp:(NSString *_Nullable)phoneIp;
 
 #pragma mark - Production
 
 /// 获取设备信息
 /// get device definition info
 /// @param loginHandle 句柄
-+ (LCNetsdkProductDefinition *)queryProductDefinitionInfo:(long)loginHandle;
++ (LCNetsdkProductDefinition *_Nullable)queryProductDefinitionInfo:(long)loginHandle;
 
 /// 获取是否具有云台权限
 /// Get whether you have PTZ permission
@@ -99,16 +97,16 @@ void safe_strcpy(char *__dst, const char *__src);
 //MARK: - LCNetsdkDevInfo
 @interface LCNetsdkDevInfo : NSObject
 // 序列号
-@property (nonatomic, copy)NSString *deviceSN;
+@property (nonatomic, copy)NSString * _Nonnull deviceSN;
 
 // 设备IP
-@property (nonatomic, copy)NSString *deviceIP;
+@property (nonatomic, copy)NSString * _Nullable deviceIP;
 
 // 登陆设备密码
-@property (nonatomic,   copy) NSString *passWord;
+@property (nonatomic,   copy) NSString * _Nullable passWord;
 
 // mac地址
-@property (nonatomic, copy) NSString *deviceMac;
+@property (nonatomic, copy) NSString * _Nullable deviceMac;
 
 //设备初始化状态，按位确定初始化状态
 // bit0~1：0-老设备，没有初始化功能 1-未初始化账号 2-已初始化账户
@@ -134,7 +132,7 @@ void safe_strcpy(char *__dst, const char *__src);
 @property (nonatomic, assign) BOOL isSuccess;
 
 /// 错误码
-@property (nonatomic, copy) NSString *errorStr;
+@property (nonatomic, copy) NSString * _Nullable errorStr;
 
 @property (nonatomic, assign) unsigned int erroCode;
 

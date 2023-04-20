@@ -126,8 +126,14 @@ typedef NS_ENUM(NSInteger, HLS_STATE)
     STATE_HLS_SEEK_FAILD,            //定位失败
     STATE_HLS_ABORT_DONE,
     STATE_HLS_RESUME_DONE,
+    //Time out
+    STATE_HLS_DOWNLOAD_TIMEOUT,     /* 下载超时 */
+    STATE_HLS_DOWNLOAD_INDEX_FAILED, /* 下载索引失败 */
+    STATE_HLS_SLICE_DONE,             /* 此信号只有下载的时候关注，播放的时候忽略 */
+    STATE_HLS_PAUSE_DONE,
     //Incorrect key
     STATE_HLS_KEY_MISMATCH = 11,     //密钥不正确
+    STATE_HLS_FRAME_EXTRACT_BEGIN = 12,    /* 开始抽帧 */
     //Failed to draw frames. The app needs to set the playback speed to 1
     STATE_HLS_EXTRACT_FAILED = 13,   //抽帧失败需要app设置播放速度为1
     //Wrong device login password

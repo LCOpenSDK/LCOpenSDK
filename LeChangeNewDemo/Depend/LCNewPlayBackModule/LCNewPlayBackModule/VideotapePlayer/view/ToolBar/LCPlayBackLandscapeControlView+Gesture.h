@@ -1,5 +1,5 @@
 //
-//  LCLandscapeControlView+Gesture.h
+//  LCPlayBackLandscapeControlView+Gesture.h
 //  LeChangeDemo
 //
 //  Created by jiangbin on 2021/7/23.

@@ -4,11 +4,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
-    LCInputViewBtnDirectionRight,
-    LCInputViewBtnDirectionLeft
-} LCInputViewBtnDirection;
-
 @class LCTextField;
 
 @interface LCInputView : UIView<UITextFieldDelegate>
@@ -16,8 +11,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong, readonly) LCTextField *textField; /**< 子控件UITextField */
 
 @property (nonatomic, strong, readonly) UIButton *rightBtn; /**< 显示明暗文按钮 */
-
-@property (nonatomic) LCInputViewBtnDirection btnDirection;/**< 显示明暗文按钮 */
 
 @property (nonatomic, assign) BOOL openBtnState;//设置明暗文按钮状态；
 

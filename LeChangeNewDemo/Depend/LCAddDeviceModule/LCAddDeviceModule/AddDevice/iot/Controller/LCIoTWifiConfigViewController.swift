@@ -33,13 +33,13 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         let checkButton = UIButton.init(type: .custom)
         checkButton.titleLabel?.font = UIFont.lcFont_t5()
         checkButton.titleLabel?.lineBreakMode = .byWordWrapping
-        checkButton.setTitle("add_device_remember_password".lc_T, for: .normal)
+        checkButton.setTitle("add_device_remember_password".lc_T(), for: .normal)
         checkButton.contentHorizontalAlignment = .left
         checkButton.titleLabel?.textAlignment = .left
         checkButton.setTitleColor(UIColor.lccolor_c41(), for: .normal)
         checkButton.alpha = 1
-        checkButton.setImage(UIImage(named: "common_icon_unchoosed"), for: .normal)
-        checkButton.setImage(UIImage(named: "adddevice_checkbox_small_seleted_n"), for: .selected)
+        checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox"), for: .normal)
+        checkButton.setImage(UIImage(lc_named: "adddevice_box_checkbox_checked"), for: .selected)
         checkButton.addTarget(self, action: #selector(onCheckAction), for: UIControlEvents.touchUpInside)
         return checkButton
     }()
@@ -124,7 +124,7 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if self.wifiNameTextField.text == "" {
-                LCProgressHUD.showMsg("add_device_connect_to_wifi".lc_T, duration: 1.5)
+                LCProgressHUD.showMsg("add_device_connect_wifi".lc_T(), duration: 1.5)
             }
         }
     }
@@ -143,7 +143,7 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
     }
 
     func alert() {
-        LCPermissionHelper.showUnPermissionLocationAlert("permisssion_request_location_ssid_message".lc_T)
+        LCPermissionHelper.showUnPermissionLocationAlert("permisssion_request_location_ssid_message".lc_T())
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -156,21 +156,20 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
 
     func baseStackContainControllers() -> [UIViewController] {
         var controllers: [UIViewController] = [UIViewController]()
-        if let naviVc = self.navigationController as? LCNavigationController, let stackControllers = naviVc.lc_viewContainers() {
-            controllers.append(contentsOf: stackControllers)
+        if let naviVc = self.navigationController as? LCNavigationController {
+            controllers.append(contentsOf: naviVc.viewControllers)
         }
         return controllers
     }
 
     func setupCustomContents() {
         wifiNameTextField.text = nil
-        inputPwdLabel.text = "add_device_connect_to_wifi".lc_T
+        inputPwdLabel.text = "add_device_connect_wifi".lc_T()
         inputPwdLabel.numberOfLines = 0
-//        wifiLabel.text = "device_manager_wifi_name".lc_T
-        wifiNameTextField.placeholder = "device_add_wifi_name".lc_T
+        wifiNameTextField.placeholder = "device_add_wifi_name".lc_T()
         wifiNameTextField.font = .lcFont_t3()
         
-        supportTipButton.setTitle("add_device_iot_wifi_2_4g_only".lc_T, for: .normal)
+        supportTipButton.setTitle("add_device_iot_wifi_2_4g_only".lc_T(), for: .normal)
         supportTipButton.snp.updateConstraints { (make) in
             make.leading.equalTo(supportView)
             make.width.lessThanOrEqualTo(lc_scaleSize(260))
@@ -180,9 +179,8 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         }
 
         wifiNameTextField.delegate = self
-//        passwordLab.text = "device_manager_wifi_psw".lc_T
-        passwordInputView.textField.placeholder = "device_add_wifi_password".lc_T
-        nextButton.setTitle("common_next".lc_T, for: .normal)
+        passwordInputView.textField.placeholder = "device_add_wifi_password".lc_T()
+        nextButton.setTitle("common_next".lc_T(), for: .normal)
 
         // 设置颜色规范
         passwordInputView.textField.textColor = UIColor.lccolor_c40()
@@ -198,8 +196,8 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         supportTipButton.setTitleColor(UIColor.lccolor_c41(), for: .normal)
         supportTipButton.titleLabel?.font = UIFont.lcFont_t5()
         isBarShadowHidden = true
-        passwordInputView.tfUnSecureImg = UIImage(named: "common_icon_close_small")
-        passwordInputView.tfSecureImg = UIImage(named: "adddevice_common_icon_open_small")
+        passwordInputView.tfUnSecureImg = UIImage(lc_named: "common_icon_close_small")
+        passwordInputView.tfSecureImg = UIImage(lc_named: "adddevice_common_icon_open_small")
 //        btnNaviRight.isHidden = true
 
         wifiNameView.lc_setRadius(10)
@@ -207,8 +205,8 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         passwordBackgroundView.lc_setRadius(10)
         nextButton.lc_setRadius(22.5)
 
-        switchWifiBtn.setImage(UIImage(named: "common_btn_switch"), for: .normal)
-        doubltBtn.setImage(UIImage(named: "common_btn_doubt"), for: .normal)
+        switchWifiBtn.setImage(UIImage(lc_named: "adddevice_wifi_refresh"), for: .normal)
+        doubltBtn.setImage(UIImage(lc_named: "common_btn_doubt"), for: .normal)
         
         // 按钮样式配置
         nextButton.lc_setRadius(22.5)
@@ -222,7 +220,7 @@ class LCIoTWifiConfigViewController: LCAddBaseViewController {
         view.addSubview(checkButton)
         checkButton.sizeToFit()
         checkButton.snp.remakeConstraints { (make) in
-            make.leading.equalTo(passwordInputView)
+            make.leading.equalTo(passwordInputView).offset(5)
             make.top.equalTo(passwordInputView.snp.bottom).offset(10)
             make.height.equalTo(22)
             make.width.equalTo(160)

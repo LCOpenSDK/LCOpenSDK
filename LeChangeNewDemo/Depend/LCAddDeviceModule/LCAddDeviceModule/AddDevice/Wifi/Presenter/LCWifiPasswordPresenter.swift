@@ -82,29 +82,24 @@ class LCWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
 	}
 	
     func setupSupportView() {
-        container?.supportView.isHidden = LCAddDeviceManager.sharedInstance.isSupport5GWifi
-		
 		if LCAddDeviceManager.sharedInstance.isSupport5GWifi {
-			container?.checkWidthConstraint.constant = 250
-			container?.imageView.image = UIImage(named: "adddevice_icon_wifipassword")
 		} else {
-			container?.imageView.image = UIImage(named: "adddevice_icon_wifipassword_nosupport5g")
 		}
     }
     
     func nextStepAction(wifiSSID: String, wifiPassword: String?) {
         // iot设备
         if let productId = LCAddDeviceManager.sharedInstance.productId, productId.length > 0 {
-            LCProgressHUD.show(on: self.container?.view, tip: "device_bluetooth_distribution_network".lc_T)
+            LCProgressHUD.show(on: self.container?.view, tip: "device_bluetooth_distribution_network".lc_T())
             LCOpenSDK_Bluetooth.startAsyncBLEConfig(wifiSSID, wifiPwd: wifiPassword ?? "", productId: productId, deviceId: LCAddDeviceManager.sharedInstance.deviceId) { success, errorMessage in
                 LCProgressHUD.hideAllHuds(self.container?.view)
                 if success {
-                    LCProgressHUD.showMsg("equipment_distribution_network_succeeded".lc_T)
+                    LCProgressHUD.showMsg("equipment_distribution_network_succeeded".lc_T())
                     let controller = LCConnectCloudViewController.storyboardInstance()
                     controller.deviceInitialPassword = LCAddDeviceManager.sharedInstance.initialPassword
                     self.container?.navigationController?.pushViewController(controller, animated: true)
                 } else {
-                    LCProgressHUD.showMsg("device_distribution_network_failure_retry".lc_T + errorMessage, duration: 5)
+                    LCProgressHUD.showMsg("device_distribution_network_failure_retry".lc_T() + (errorMessage ?? ""), duration: 5)
                 }
             }
         } else {

@@ -18,23 +18,16 @@ class LCAuthPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 	}
     
     public var presenter: LCAuthPasswordPresenterProtocol?
-	
-    @IBOutlet weak var inputTipLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var passwordInputView: LCInputView!
-    @IBOutlet weak var bottomLine: UIView!
-    @IBOutlet weak var topLine: UIView!
-    @IBOutlet weak var warmTipView: UIView!
 	@IBOutlet weak var tipLabel: UILabel!
-	@IBOutlet weak var detailTextView: UITextView!
 	@IBOutlet weak var nextButton: UIButton!
-	@IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
-	
-	override func viewDidLoad() {
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var tipImageView: UIImageView!
+    override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = ""
 		setupContents()
-		
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,67 +38,21 @@ class LCAuthPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 	private func setupContents() {
 		view.backgroundColor = UIColor.lccolor_c43()
         
-		//SMB：色值修改
-		tipLabel.text = "add_device_kindly_reminder".lc_T
-		tipLabel.textColor = UIColor.lccolor_c0() //UIColor.lccolor_c2()
-		nextButton.setTitle("common_next".lc_T, for: .normal)
-		
-		
-		inputTipLabel.text = "add_device_input_device_password".lc_T
-        inputTipLabel.textColor = UIColor.lccolor_c2()
-		passwordInputView.textField.placeholder = "add_device_input_device_password".lc_T
-		passwordInputView.backgroundColor = UIColor.lccolor_c43()
-		
-		nextButton.layer.cornerRadius = LCModuleConfig.shareInstance().commonButtonCornerRadius()
-		nextButton.backgroundColor = LCModuleConfig.shareInstance().commonButtonColor()
+        titleLabel.text = "add_device_input_device_password".lc_T()
+        passwordInputView.textField.placeholder = "add_device_input_device_password".lc_T()
+		tipLabel.text = "add_device_kindly_reminder".lc_T()
+		nextButton.setTitle("common_next".lc_T(), for: .normal)
         nextButton.lc_enable = false
-        nextButton.setTitleColor(UIColor.lccolor_c43(), for: .normal)
-        
-        topLine.backgroundColor = UIColor.lccolor_c8()
-        bottomLine.backgroundColor = UIColor.lccolor_c8()
-		
-		//设置TextView，dataDetectorTypes为何无效？？
-		detailTextView.delegate = self
-		detailTextView.isUserInteractionEnabled = true
-		detailTextView.isEditable = false
-		detailTextView.isSelectable = true
-		detailTextView.dataDetectorTypes = .link
-        detailTextView.textColor = UIColor.lccolor_c5()
-		
-		let style = NSMutableParagraphStyle()
-		style.lineBreakMode = NSLineBreakMode.byWordWrapping
-		style.lineSpacing = 5
-		let attr1: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: style,
-													NSAttributedStringKey.foregroundColor: UIColor.lccolor_c5(),
-													NSAttributedStringKey.font: UIFont.lcFont_t6()]
-		
-		let text = "add_device_password_initial_tip".lc_T
-		let rang1 = NSMakeRange(0, text.count)
-		let attrText = NSMutableAttributedString(string: text)
-		attrText.addAttributes(attr1, range: rang1)
-		
-		if LCModuleConfig.shareInstance().isChinaMainland, LCModuleConfig.shareInstance().addDevice_showServiceCall() {
-			let phoneNumber = LCModuleConfig.shareInstance().serviceCall() ?? ""
-			let rang2 = NSMakeRange(0, phoneNumber.count)
-			let attr2: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: style,
-														NSAttributedStringKey.link: "serviceCall",
-														NSAttributedStringKey.foregroundColor: UIColor.lccolor_c32(),
-														//NSAttributedStringKey.underlineStyle: 1,
-														NSAttributedStringKey.font: UIFont.lcFont_t6()]
-			let attrPhone = NSMutableAttributedString(string: phoneNumber)
-			attrPhone.addAttributes(attr2, range: rang2)
-			attrText.append(attrPhone)
-		}
-		
-		detailTextView.attributedText = attrText
-		detailTextView.scrollRangeToVisible(NSMakeRange(0, 0))
-		let rect = attrText.string.boundingRect(with: CGSize(width: view.bounds.width - 30, height: view.bounds.height),
-												options: NSStringDrawingOptions.usesLineFragmentOrigin,
-												attributes: attr1,
-												context: nil)
-		textViewHeightConstraint.constant = rect.height + 30
-		
-		//验证密码不需要限制
+        detailLabel.text = "add_device_auth_password_tip".lc_T()
+        if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig {
+            titleLabel.text = "add_device_input_device_sc".lc_T()
+            passwordInputView.textField.placeholder = "add_device_input_device_sc_tip".lc_T()
+            detailLabel.text = "add_device_input_device_sc_alert".lc_T()
+        }
+        self.tipImageView.image = UIImage(lc_named: "adddevice_failure_safety_code")
+        if !NSString.lc_currentLanguageCode().contains("zh") {
+            self.tipImageView.image = UIImage(lc_named: "adddevice_failure_safety_code_en")
+        }
         passwordInputView.textField.delegate = self
         passwordInputView.textField.keyboardType = .asciiCapable
         passwordInputView.textField.returnKeyType = .done
@@ -113,17 +60,20 @@ class LCAuthPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
             let password = text ?? ""
             self.nextButton.lc_enable = password.count > 0
         }
+        
+        if let image = self.tipImageView.image {
+            let height = (self.tipImageView.frame.size.width / image.size.width) * image.size.height
+            self.tipImageView.snp.updateConstraints { make in
+                make.height.equalTo(height)
+            }
+        }
 	}
     
 	@IBAction func onNextAction(_ sender: Any) {
 		let password = passwordInputView.textField.text ?? ""
-		let device = LCAddDeviceManager.sharedInstance.getLocalDevice()
-		
 		passwordInputView?.textField.resignFirstResponder()
-		
 		//如果是AP是在线的，可能局域网搜索不到，无法用netsdk方式进行检验
-		presenter?.nextStepAction(password: password, device: device, deviceId: LCAddDeviceManager.sharedInstance.deviceId)
-		
+		presenter?.nextStepAction(password: password, deviceId: LCAddDeviceManager.sharedInstance.deviceId)
     }
 
 	// MARK: LCAddBaseVCProtocol
@@ -137,27 +87,6 @@ class LCAuthPasswordViewController: LCAddBaseViewController, UITextFieldDelegate
 	
 	override func rightActionType() -> [LCAddBaseRightAction] {
 		return [.restart]
-	}
-}
-
-extension LCAuthPasswordViewController {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-	
-	func textView(_ textView: UITextView, shouldInteractWith txtViewURL: URL, in characterRange: NSRange) -> Bool {
-		if txtViewURL.absoluteString == "serviceCall" {
-			let phone = "telprompt://" + LCModuleConfig.shareInstance().serviceCall()
-			if let url = URL(string: phone) {
-				UIApplication.shared.openURL(url)
-			}
-			
-			return true
-		}
-		
-		return false
 	}
 }
 

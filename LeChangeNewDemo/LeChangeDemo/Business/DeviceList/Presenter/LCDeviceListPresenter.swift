@@ -15,21 +15,30 @@ import LCNewLivePreviewModule
     var openDevices = [LCDeviceInfo]() {
         didSet {
             self.p2pPredrilling()
+            self.mtsPreKeepalive()
         }
     }
     /// containter
     weak var listContainer: LCDeviceListViewController?
     
-    let livePreviewVC = LCNewLivePreviewViewController()
+    lazy var livePreviewVC: LCNewLivePreviewViewController = {
+        return LCNewLivePreviewViewController()
+    }()
     
     /// 当前是否在网络请求中
     var isRefreshing: Bool = false
     /// p2p预打洞设备
     var p2pDevices: Set<String> = Set<String>()
+    /// p2p预打洞设备
+    var mtsKeepDevices: Set<String> = Set<String>()
     
     var pageIndex = 1
     let pageSize = 10
 
+    deinit {
+        NSLog(" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.classForCoder))
+    }
+    
     func initSDK() {
         print("\(LCApplicationDataManager.sdkHost())" + "\(LCApplicationDataManager.sdkHost())")
         let param = LCOpenSDK_ApiParam()
@@ -48,7 +57,6 @@ import LCNewLivePreviewModule
     }
     
     func refreshData() {
-        // TODO： 判断是否在上拉 yes：return
         if self.isRefreshing {
             self.listContainer?.deviceListView.mj_header?.endRefreshing()
             return
@@ -122,18 +130,31 @@ import LCNewLivePreviewModule
     // p2p预打洞
     func p2pPredrilling()  {
         var jsonArray = [LCOpenSDK_P2PDeviceInfo]()
-        self.openDevices.forEach { device in
-            if self.p2pDevices.contains(device.deviceId) == false && device.status == "online" {
+        self.openDevices.forEach {[weak self] device in
+            if self?.p2pDevices.contains(device.deviceId) == false && device.status == "online" {
                 let info = LCOpenSDK_P2PDeviceInfo()
                 info.playToken = device.playToken
                 info.did = device.deviceId
                 jsonArray.append(info)
-                self.p2pDevices.insert(device.deviceId)
+                self?.p2pDevices.insert(device.deviceId)
             }
         }
         if jsonArray.count > 0 {
             LCOpenSDK_LoginManager.shareMyInstance().addDevices(LCApplicationDataManager.token(), devices: jsonArray)
         }
+    }
+    
+    // MTS预连接
+    func mtsPreKeepalive()  {
+        var datas = Array<Dictionary<String, String>>()
+        self.openDevices.forEach {[weak self] device in
+            if self?.mtsKeepDevices.contains(device.deviceId) == false && device.status == "online" {
+                datas.append(["playtoken":device.playToken, "deviceId":device.deviceId, "productId":device.productId, "key":""])
+                self?.mtsKeepDevices.insert(device.deviceId)
+            }
+        }
+        
+        LCOpenSDK_Utils.mtsPreKeepalive(datas, token: LCApplicationDataManager.token())
     }
 }
 
@@ -145,32 +166,31 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LCDeviceListCell", for: indexPath)
         (cell as? LCDeviceListCell)?.deviceInfo = self.openDevices[indexPath.row]
-        (cell as? LCDeviceListCell)?.resultBlock = { info, channelIndex, index in
-            LCDeviceVideoManager.shareInstance().currentDevice = info
+        (cell as? LCDeviceListCell)?.resultBlock = {[weak self] info, channelIndex, index in
+            LCNewDeviceVideoManager.shareInstance().reset()
             LCNewDeviceVideoManager.shareInstance().currentDevice = info
-            LCDeviceVideoManager.shareInstance().currentChannelIndex = -1
             LCNewDeviceVideoManager.shareInstance().currentChannelIndex = -1
             if index == 0 {
-                LCDeviceVideoManager.shareInstance().currentChannelIndex = channelIndex
                 LCNewDeviceVideoManager.shareInstance().currentChannelIndex = channelIndex
-                if info.catalog.uppercased() == "NVR" &&  LCDeviceVideoManager.shareInstance().currentChannelInfo.status != "online" {
+                if info.catalog.uppercased() == "NVR" &&  LCNewDeviceVideoManager.shareInstance().currentChannelInfo.status != "online" {
                     return
                 }
                 if info.catalog.uppercased() == "IPC" && info.status != "online" {
                     return
                 }
-                
-                self.listContainer?.navigationController?.pushViewController(self.livePreviewVC, animated: true)
+                if let vc = self?.livePreviewVC {
+                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
+                }
             } else if index == 1 {
                 var channleId = ""
-                if self.openDevices[indexPath.row].channels.count > channelIndex {
-                    channleId = self.openDevices[indexPath.row].channels[channelIndex].channelId
+                if self?.openDevices[indexPath.row].channels.count ?? -1 > channelIndex {
+                    channleId = self?.openDevices[indexPath.row].channels[channelIndex].channelId ?? "-1"
                 }
-                self.listContainer?.navigationController?.push(toDeviceSettingPage: self.openDevices[indexPath.row], selectedChannelId:channleId)
+                self?.listContainer?.navigationController?.push(toDeviceSettingPage: self?.openDevices[indexPath.row] ?? LCDeviceInfo(), selectedChannelId:channleId)
             } else if index == 2 {
                 let deviceJson = info.transfromToJson()
                 let userInfo = ["deviceJson": deviceJson, "index":channelIndex] as [String : Any]
-                self.listContainer?.navigationController?.push(toMessagePage: userInfo)
+                self?.listContainer?.navigationController?.push(toMessagePage: userInfo)
             }
         }
         return cell

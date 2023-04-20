@@ -18,10 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param deviceId device ID    zh:设备ID
 /// @param finshed callback after the completion of the distribution network, success or not errorMessage failure error prompt    zh:配网完成后回调，success 是否成功  errorMessage 失败错误提示
 + (void)startAsyncBLEConfig:(NSString *)wifiName
-                    wifiPwd:(NSString *)wifiPwd
+                    wifiPwd:(NSString *_Nullable)wifiPwd
                   productId:(NSString *)productId
                    deviceId:(NSString *)deviceId
-                    finshed:(void(^)(BOOL success, NSString *errorMessage))finshed;
+                    finshed:(void(^_Nullable)(BOOL success, NSString *_Nullable errorMessage))finshed;
 
 @end
 

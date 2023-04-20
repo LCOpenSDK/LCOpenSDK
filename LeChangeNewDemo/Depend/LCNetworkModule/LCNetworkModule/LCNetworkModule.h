@@ -20,7 +20,6 @@
 #import <LCNetworkModule/LCDeviceOnlineInfo.h>
 #import <LCNetworkModule/LCDeviceInfo.h>
 #import <LCNetworkModule/LCDeviceVersionInfo.h>
-#import <LCNetworkModule/LCBindDeviceChannelInfo.h>
 #import <LCNetworkModule/LCAlarmPlan.h>
 #import <LCNetworkModule/LCAroundWifiInfo.h>
 #import <LCNetworkModule/LCCloudVideotapeInfo.h>

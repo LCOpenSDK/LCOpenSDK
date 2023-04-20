@@ -26,19 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pushToLeChanegMainPage;
 
 /**
- 跳转到全部录像界面 0:云录像 1:本地录像
- */
-- (void)pushToVideotapeListPageWithType:(NSInteger)type;
-
-/**
  跳转录像播放
  */
 - (void)pushToVideotapePlay;
-
-/**
- 跳转云服务
- */
-- (void)pushToCloudService;
 
 /**
  跳转设置

@@ -10,10 +10,10 @@ class LCResetDeviceViewController: LCAddBaseViewController, LCCommonErrorViewDel
 	public var imageUrl: String?
 	
 	/// 默认图片
-	public var placeholderImage: String = "adddevice_icon_commondevice"
+	public var placeholderImage: String = ""
 	
 	/// 重置内容
-	public var resetContent: String? = "add_device_operation_by_instructions".lc_T
+	public var resetContent: String? = "add_device_operation_by_instructions".lc_T()
 	
 	private var errorView: LCCommonErrorView!
 	
@@ -31,7 +31,7 @@ class LCResetDeviceViewController: LCAddBaseViewController, LCCommonErrorViewDel
 	}
 	
 	private func setupErrorView() {
-		errorView = LCCommonErrorView.xibInstance()
+		errorView = LCCommonErrorView.init()
 		errorView.delegate = self
 		
 		// 【*】调整图片显示模式，以免风络图片过大，造成显示异常
@@ -52,9 +52,9 @@ class LCResetDeviceViewController: LCAddBaseViewController, LCCommonErrorViewDel
 	}
 	
 	private func setupCustomContents() {
-		errorView.confrimButton.isHidden = true
-		errorView.imageView.lc_setImage(withUrl: imageUrl, placeholderImage: placeholderImage, toDisk: true)
-		errorView.contentLabel.lc_setAttributedText(text: resetContent, font: UIFont.lcFont_t2())
+		errorView.tryAgainButton.isHidden = true
+        errorView.imageView.sd_setImage(with: URL(string: imageUrl ?? ""), placeholderImage: UIImage(lc_named: placeholderImage), context: nil)
+		errorView.titleLabel.lc_setAttributedText(text: resetContent, font: UIFont.lcFont_t2())
 	}
 	
 	// MARK: - LCAddBaseVCProtocol
@@ -65,19 +65,11 @@ class LCResetDeviceViewController: LCAddBaseViewController, LCCommonErrorViewDel
 
 extension LCResetDeviceViewController {
 	// MARK: - LCCommonErrorViewDelegate
-	func errorViewOnConfirm(errorView: LCCommonErrorView) {
+	func errorViewOnTryAgain(errorView: LCCommonErrorView) {
 		
-	}
-	
-	func errorViewOnFAQ(errorView: LCCommonErrorView) {
-		basePushToFAQ()
 	}
 	
 	func errorViewOnQuit(errorView: LCCommonErrorView) {
 		
 	}
-    
-    func errorViewOnBackRoot(errorView: LCCommonErrorView) {
-
-    }
 }

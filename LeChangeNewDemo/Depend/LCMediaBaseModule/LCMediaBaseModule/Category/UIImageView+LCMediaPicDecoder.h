@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param deviceId 设备Id
  @param key 解密密钥
  */
--(void)lcMedia_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder DeviceId:(NSString *)deviceId ProductId:(NSString *)productId Key:(NSString *)key;
+-(void)lcMedia_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder deviceId:(NSString *)deviceId productId:(NSString *)productId playtoken:(NSString *)playtoken key:(NSString *)key;
 
 /**
  获取缩略图（如果远程URL为空则从本地加载，若本地也没有则使用默认图）

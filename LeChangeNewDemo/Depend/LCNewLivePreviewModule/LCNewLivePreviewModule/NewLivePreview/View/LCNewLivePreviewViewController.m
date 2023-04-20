@@ -55,28 +55,35 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        if ([window isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
+            window.hidden = YES;
+        }
+    }
     
+    [self.persenter refreshMiddleControlItems];
     [self.persenter refreshBottomControlItems];
     // 开始拉流
     if ([self.persenter.videoManager.currentDevice.status isEqualToString:@"online"] || [self.persenter.videoManager.currentDevice.status isEqualToString:@"sleep"]) {
         [self.persenter startPlay];
     }
-    
+
     UIImageView *defaultImageView = [[self.persenter.playWindow getWindowView] viewWithTag:10000];
     defaultImageView.hidden = NO;
     [defaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].currentChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].currentChannelInfo.channelId];
     self.persenter.videoTypeLabel.hidden = YES;
-    
+
     NSString *titleStr = self.persenter.videoManager.currentDevice.name;
     if (self.persenter.videoManager.currentDevice.channelNum > 0 &&   self.persenter.videoManager.currentChannelInfo != nil) {
         titleStr = self.persenter.videoManager.currentChannelInfo.channelName;
     }
     self.title = titleStr;
     [self.landscapeControlView refreshTitle:titleStr];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
-    
+
     if (self.persenter.historyView != nil) {
         [self.persenter.historyView removeFromSuperview];
         self.persenter.historyView = nil;
@@ -125,7 +132,7 @@
         [self configFullScreenUI];
         self.navigationController.navigationBar.hidden = YES;
     } else {
-        
+
         self.navigationController.navigationBar.hidden = NO;
         //延时操作导致横屏尺寸不对修复
         [self configPortraitScreenUI];
@@ -141,14 +148,13 @@
     if (!_persenter) {
         _persenter = [LCNewLivePreviewPresenter new];
         _persenter.liveContainer  = self;
-        _persenter.container = self;
     }
     return _persenter;
 }
 
 - (void)setupView {
     self.view.backgroundColor = [UIColor lccolor_c8];
-    
+
     weakSelf(self);
     [self lcCreatNavigationBarWith:LCNAVIGATION_STYLE_LIVE buttonClickBlock:^(NSInteger index) {
         if (index == 0) {
@@ -165,7 +171,7 @@
             [self.navigationController pushViewController:deviceDetail animated:YES];
         }
     }];
-    
+
     //初始化播放窗口
     UIView * tempView = [self.persenter.playWindow getWindowView];
     [self.view addSubview:tempView];
@@ -182,8 +188,8 @@
     middleView.tag = 1;
     [self.view addSubview:middleView];
     [middleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([self.persenter.playWindow getWindowView].mas_bottom);
-        make.right.left.mas_equalTo(self.view);
+        make.top.mas_equalTo([weakself.persenter.playWindow getWindowView].mas_bottom);
+        make.right.left.mas_equalTo(weakself.view);
     }];
     middleView.items = [self.persenter getMiddleControlItems];
 
@@ -194,11 +200,11 @@
     [self.view addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(middleView.mas_bottom);
-        make.width.mas_equalTo(self.view.mas_width);
-        make.left.mas_equalTo(self.view);
+        make.width.mas_equalTo(weakself.view.mas_width);
+        make.left.mas_equalTo(weakself.view);
     }];
     bottomView.items = [self.persenter getBottomControlItems];
-    
+
     ///创建云台
     LCNewPTZControlView * ptzControlView = [[LCNewPTZControlView alloc] initWithDirection:self.persenter.videoManager.currentDevice.ability.isSupportPTZ?LCNewPTZControlSupportEight:(self.persenter.videoManager.currentDevice.ability.isSupportPT?LCNewPTZControlSupportEight:LCNewPTZControlSupportFour)];
     ptzControlView.tag = 999;
@@ -207,79 +213,56 @@
     [self.view addSubview:ptzControlView];
     [ptzControlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bottomView.mas_bottom);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.width.mas_equalTo(self.view.mas_width);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
+        make.left.mas_equalTo(weakself.view.mas_left);
+        make.width.mas_equalTo(weakself.view.mas_width);
+        make.bottom.mas_equalTo(weakself.view.mas_bottom);
     }];
     //竖屏云台操作回调
     ptzControlView.panel.resultBlock = ^(VPDirection direction, double scale, NSTimeInterval timeInterval) {
         if (direction == VPDirectionUnknown) {
-            [self.persenter hideBorderView];
+            [weakself.persenter hideBorderView];
             self.persenter.videoManager.directionTouch = NO;
-        }else{
-            self.persenter.videoManager.directionTouch = YES;
+        } else {
+            weakself.persenter.videoManager.directionTouch = YES;
         }
-        [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
+        [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] duration:timeInterval];
     };
 
     LCNewLandscapeControlView * landscapeControlView = [LCNewLandscapeControlView new];
     landscapeControlView.delegate = self.persenter;
     [self.view addSubview:landscapeControlView];
     [landscapeControlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(self.view);
+        make.top.left.bottom.right.mas_equalTo(weakself.view);
     }];
     landscapeControlView.hidden = YES;
     landscapeControlView.presenter = self.persenter;
     self.landscapeControlView = landscapeControlView;
-    
+
     [self.persenter configBigPlay];
-    
+
     //横屏云台
     LCNewPTZPanel * landscapePtz = [[LCNewPTZPanel alloc] initWithFrame:CGRectMake(0, 0, 100, 100) style:self.persenter.videoManager.currentDevice.ability.isSupportPTZ?LCNewPTZPanelStyle8Direction:(self.persenter.videoManager.currentDevice.ability.isSupportPT?LCNewPTZPanelStyle8Direction:LCNewPTZPanelStyle4Direction)];
     landscapePtz.tag = 998;
     [landscapePtz configLandscapeUI];
     landscapePtz.alpha = 0;
     [landscapeControlView addSubview:landscapePtz];
+    weakSelf(landscapeControlView);
     [landscapePtz mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(150);
-        make.left.mas_equalTo(landscapeControlView.mas_left).offset(15);
-        make.centerY.mas_equalTo(landscapeControlView.mas_centerY);
+        make.left.mas_equalTo(weaklandscapeControlView.mas_left).offset(15);
+        make.centerY.mas_equalTo(weaklandscapeControlView.mas_centerY);
     }];
-    
+
     //横屏云台操作回调
     landscapePtz.resultBlock = ^(VPDirection direction, double scale, NSTimeInterval timeInterval) {
         if (direction == VPDirectionUnknown) {
-            [self.persenter hideBorderView];
-            self.persenter.videoManager.directionTouch = NO;
+            [weakself.persenter hideBorderView];
+            weakself.persenter.videoManager.directionTouch = NO;
         }else{
-            self.persenter.videoManager.directionTouch = YES;
+            weakself.persenter.videoManager.directionTouch = YES;
         }
-        [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] Duration:timeInterval];
+        [weakself.persenter ptzControlWith:[NSString stringWithFormat:@"%ld",direction] duration:timeInterval];
     };
-    
-//    [self.KVOController observe:self.persenter.videoManager keyPath:@"isFullScreen" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
-//        if ([change[@"new"] boolValue]) {
-//            //全屏
-//            landscapeControlView.hidden = NO;
-//            bottomView.hidden = YES;
-//            middleView.hidden = YES;
-////            [weakself configFullScreenUI];
-//            weakself.navigationController.navigationBar.hidden = YES;
-//        }else{
-//            weakself.navigationController.navigationBar.hidden = NO;
-////            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////                //延迟 0.1秒执行，防止navi高度未正确取值导致UI错误
-////                [weakself configPortraitScreenUI];
-////            });
-//
-//            //延时操作导致横屏尺寸不对修复
-////            [weakself configPortraitScreenUI];
-//            landscapeControlView.hidden = YES;
-//            bottomView.hidden = NO;
-//            middleView.hidden = NO;
-//        }
-//    }];
-
     //加载Loading
     [self.persenter showVideoLoadImage];
 }
@@ -322,7 +305,7 @@
         self.persenter.videoManager.isFullScreen = !self.persenter.videoManager.isFullScreen;
         self.persenter.videoManager.isLockFullScreen = NO;
     }
-    
+
     return YES;
 }
 
@@ -333,8 +316,9 @@
 - (void)configFullScreenUI {
    UIView * playWindow =  [self.persenter.playWindow getWindowView];
     [self.view updateConstraintsIfNeeded];
+    weakSelf(self);
     [playWindow mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(self.view);
+        make.top.left.mas_equalTo(weakself.view);
         make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
         make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
     }];
@@ -343,20 +327,15 @@
 - (void)configPortraitScreenUI {
     UIView * playWindow =  [self.persenter.playWindow getWindowView];
     [self.view updateConstraintsIfNeeded];
+    weakSelf(self);
     [playWindow mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view);
-        make.left.mas_equalTo(self.view);
-        make.width.mas_equalTo(self.view);
+        make.top.mas_equalTo(weakself.view);
+        make.left.mas_equalTo(weakself.view);
+        make.width.mas_equalTo(weakself.view);
         make.height.mas_equalTo(211);
     }];
 }
 
-
-//-(void)onActive:(id)sender{
-//    if ([[self.navigationController.viewControllers lastObject] isKindOfClass:[self class]]) {
-//        [self.persenter onActive:sender];
-//    }
-//}
 - (void)onResignActive:(id)sender {
     [self.persenter onResignActive:sender];
 }
@@ -367,11 +346,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakself.persenter.playWindow setWindowFrame:[weakself.persenter.playWindow getWindowView].frame];
     });
-    
 }
 
 - (void)dealloc {
-    NSLog(@" %@:: dealloc", NSStringFromClass([self class]));
+    NSLog(@" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.class));
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     [self.persenter.playWindow uninitPlayWindow];
 }
