@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="LCApWifiHeaderView" customModule="LCAddDeviceModule">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="247"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_select_wifi" translatesAutoresizingMaskIntoConstraints="NO" id="h13-1Q-Gkh">
+                    <rect key="frame" x="134" y="8" width="125" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="6mb-dK-rkz"/>
+                        <constraint firstAttribute="height" constant="125" id="GAt-BE-3Ep"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_wifi_support" translatesAutoresizingMaskIntoConstraints="NO" id="zBB-5f-IoS">
+                    <rect key="frame" x="138" y="143" width="17" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="ePo-rU-1EA"/>
+                        <constraint firstAttribute="width" constant="17" id="u2d-Rb-STA"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_wifi_unsupport" translatesAutoresizingMaskIntoConstraints="NO" id="Oon-Mm-Ste">
+                    <rect key="frame" x="210.66666666666666" y="143" width="17" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="STy-eR-rTN"/>
+                        <constraint firstAttribute="width" constant="17" id="cAG-2j-JZh"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.4G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBX-6B-7LO">
+                    <rect key="frame" x="157" y="143" width="36.666666666666657" height="20.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-VA-J7M">
+                    <rect key="frame" x="229.66666666666666" y="143" width="22.666666666666657" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选取Wi-Fi网络" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sco-vI-dtx">
+                    <rect key="frame" x="24.999999999999993" y="227.66666666666666" width="79.333333333333314" height="14.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该设备不支持5G Wi-Fi " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOM-xN-onc">
+                    <rect key="frame" x="115" y="171.33333333333334" width="147" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_icon_help" translatesAutoresizingMaskIntoConstraints="NO" id="STS-RU-8Ra">
+                    <rect key="frame" x="112.33333333333333" y="227.33333333333334" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="2iX-W3-eT6"/>
+                        <constraint firstAttribute="width" constant="15" id="9a0-U0-0L8"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_icon_help" translatesAutoresizingMaskIntoConstraints="NO" id="0Sx-Vk-vbQ">
+                    <rect key="frame" x="270" y="172.33333333333334" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="6Z8-yD-HGH"/>
+                        <constraint firstAttribute="width" constant="15" id="S2l-GT-UM0"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YOM-xN-onc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-8" id="5IU-fe-0CQ"/>
+                <constraint firstItem="h13-1Q-Gkh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ftr-TF-FxW"/>
+                <constraint firstItem="h13-1Q-Gkh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Imc-TV-Pne"/>
+                <constraint firstItem="zBB-5f-IoS" firstAttribute="leading" secondItem="h13-1Q-Gkh" secondAttribute="leading" constant="4" id="Mwu-Fi-Anj"/>
+                <constraint firstItem="BJp-VA-J7M" firstAttribute="leading" secondItem="Oon-Mm-Ste" secondAttribute="trailing" constant="2" id="NTr-6f-acP"/>
+                <constraint firstItem="STS-RU-8Ra" firstAttribute="centerY" secondItem="sco-vI-dtx" secondAttribute="centerY" id="QbM-J7-Mmj"/>
+                <constraint firstItem="dBX-6B-7LO" firstAttribute="leading" secondItem="zBB-5f-IoS" secondAttribute="trailing" constant="2" id="QsO-Hd-TWn"/>
+                <constraint firstItem="Oon-Mm-Ste" firstAttribute="top" secondItem="zBB-5f-IoS" secondAttribute="top" id="Tfl-ez-xNa"/>
+                <constraint firstItem="0Sx-Vk-vbQ" firstAttribute="centerY" secondItem="YOM-xN-onc" secondAttribute="centerY" id="WZc-bG-3F6"/>
+                <constraint firstItem="YOM-xN-onc" firstAttribute="top" secondItem="dBX-6B-7LO" secondAttribute="bottom" constant="8" id="Yyg-ju-tdf"/>
+                <constraint firstItem="zBB-5f-IoS" firstAttribute="top" secondItem="h13-1Q-Gkh" secondAttribute="bottom" constant="10" id="gZx-uz-xVK"/>
+                <constraint firstAttribute="bottom" secondItem="sco-vI-dtx" secondAttribute="bottom" constant="5" id="jSQ-0x-lbe"/>
+                <constraint firstItem="BJp-VA-J7M" firstAttribute="top" secondItem="zBB-5f-IoS" secondAttribute="top" id="pNe-ol-vjD"/>
+                <constraint firstItem="0Sx-Vk-vbQ" firstAttribute="leading" secondItem="YOM-xN-onc" secondAttribute="trailing" constant="8" id="q7P-uw-QWR"/>
+                <constraint firstItem="sco-vI-dtx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="sWd-5P-5dU"/>
+                <constraint firstItem="Oon-Mm-Ste" firstAttribute="leading" secondItem="dBX-6B-7LO" secondAttribute="trailing" constant="17" id="vp2-wy-fxB"/>
+                <constraint firstItem="dBX-6B-7LO" firstAttribute="top" secondItem="zBB-5f-IoS" secondAttribute="top" id="xHx-a3-OGB"/>
+                <constraint firstItem="STS-RU-8Ra" firstAttribute="leading" secondItem="sco-vI-dtx" secondAttribute="trailing" constant="8" id="xPP-cO-uZn"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="helpImageView" destination="0Sx-Vk-vbQ" id="J85-1h-T7J"/>
+                <outlet property="imageView2G" destination="zBB-5f-IoS" id="4z1-QZ-naz"/>
+                <outlet property="imageView5G" destination="Oon-Mm-Ste" id="C0n-Kb-5Mz"/>
+                <outlet property="label2G" destination="dBX-6B-7LO" id="prY-t9-6sW"/>
+                <outlet property="label5G" destination="BJp-VA-J7M" id="Ptb-Pz-p2O"/>
+                <outlet property="selectWifiHelp" destination="STS-RU-8Ra" id="2C6-AO-t1b"/>
+                <outlet property="selectwifiTip" destination="sco-vI-dtx" id="AUy-po-puY"/>
+                <outlet property="wifiSupportLabel" destination="YOM-xN-onc" id="8tA-ME-b9c"/>
+            </connections>
+            <point key="canvasLocation" x="30" y="-42"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="adddevice_icon_help" width="30" height="30"/>
+        <image name="adddevice_select_wifi" width="250" height="250"/>
+        <image name="adddevice_wifi_support" width="34" height="34"/>
+        <image name="adddevice_wifi_unsupport" width="34" height="34"/>
+    </resources>
+</document>

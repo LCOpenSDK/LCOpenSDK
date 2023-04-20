@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LCAddGuideView" customModule="LCAddDeviceModule">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adddevice_netsetting_guide" translatesAutoresizingMaskIntoConstraints="NO" id="eq0-lz-gRI">
+                    <rect key="frame" x="25" y="0.0" width="343" height="400"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进入配网模式" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6U1-zf-aVq" userLabel="Top Title">
+                    <rect key="frame" x="25" y="430" width="343" height="24"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxn-Ly-azJ">
+                    <rect key="frame" x="37.666666666666657" y="777" width="318" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.57138218399999996" blue="0.0047691579009999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="BnA-V0-uDR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="下一步">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                            <real key="value" value="22.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.maskToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onNextAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Mgt-3J-dia"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8b-dh-yeA">
+                    <rect key="frame" x="25" y="730" width="343" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="未见绿灯闪烁">
+                        <color key="titleColor" red="0.95686274509803915" green="0.60784313725490191" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onDetailAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="yzB-Fe-WX6"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXA-YO-cPu">
+                    <rect key="frame" x="25" y="469" width="343" height="67.333333333333371"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">1、将设备接通至电源
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="16" name="PingFangSC-Regular"/>
+                                <font key="NSOriginalFont" metaFont="system" size="16"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="2、等待设备/指示灯呈现闪烁状态，然后点击下一步">
+                            <attributes>
+                                <color key="NSColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="16" name="PingFangSC-Regular"/>
+                                <font key="NSOriginalFont" metaFont="system" size="16"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dxn-Ly-azJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37.5" id="1Db-hp-OGn"/>
+                <constraint firstItem="y8b-dh-yeA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="6PO-Qq-KTM"/>
+                <constraint firstAttribute="trailing" secondItem="dxn-Ly-azJ" secondAttribute="trailing" constant="37.5" id="9wm-tt-WGt"/>
+                <constraint firstItem="eq0-lz-gRI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="Gx1-Ce-tG7"/>
+                <constraint firstItem="bXA-YO-cPu" firstAttribute="top" secondItem="6U1-zf-aVq" secondAttribute="bottom" constant="15" id="ND4-CE-uI6"/>
+                <constraint firstItem="6U1-zf-aVq" firstAttribute="top" secondItem="eq0-lz-gRI" secondAttribute="bottom" constant="30" id="O4b-Gd-BJU"/>
+                <constraint firstAttribute="trailing" secondItem="6U1-zf-aVq" secondAttribute="trailing" constant="25" id="Q4p-da-xYe"/>
+                <constraint firstAttribute="trailing" secondItem="bXA-YO-cPu" secondAttribute="trailing" constant="25" id="bsb-mT-23h"/>
+                <constraint firstItem="dxn-Ly-azJ" firstAttribute="top" secondItem="y8b-dh-yeA" secondAttribute="bottom" constant="15" id="lk7-vp-HKn"/>
+                <constraint firstItem="eq0-lz-gRI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rOZ-6E-jOy"/>
+                <constraint firstAttribute="bottom" secondItem="dxn-Ly-azJ" secondAttribute="bottom" constant="30" id="vCp-3y-3M3"/>
+                <constraint firstItem="6U1-zf-aVq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="viB-Xj-Xzu"/>
+                <constraint firstItem="bXA-YO-cPu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="y3D-Ow-Mfo"/>
+                <constraint firstAttribute="trailing" secondItem="eq0-lz-gRI" secondAttribute="trailing" constant="25" id="z77-xe-fh9"/>
+                <constraint firstAttribute="trailing" secondItem="y8b-dh-yeA" secondAttribute="trailing" constant="25" id="zLY-Ny-SpL"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionLabel" destination="bXA-YO-cPu" id="iK8-6Y-8n3"/>
+                <outlet property="detailButton" destination="y8b-dh-yeA" id="974-bt-QAi"/>
+                <outlet property="nextButton" destination="dxn-Ly-azJ" id="l4C-5d-JXf"/>
+                <outlet property="nextButtonBottomConstraint" destination="vCp-3y-3M3" id="DBN-9q-UNz"/>
+                <outlet property="topImageView" destination="eq0-lz-gRI" id="C55-C7-C5v"/>
+                <outlet property="topTipLabel" destination="6U1-zf-aVq" id="FCN-AB-343"/>
+            </connections>
+            <point key="canvasLocation" x="-754.39999999999998" y="139.880059970015"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="adddevice_netsetting_guide" width="650" height="400"/>
+    </resources>
+</document>
