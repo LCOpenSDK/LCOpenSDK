@@ -34,6 +34,8 @@
 @property (nonatomic, strong) UIView *debugView;
 @property (nonatomic, strong) UISwitch *debugSwitch;
 
+@property (nonatomic, strong) NSURLSession *session;
+
 @end
 
 @implementation LCAccountJointViewController

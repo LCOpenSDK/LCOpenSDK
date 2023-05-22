@@ -85,8 +85,6 @@
 		4E451153242B75F000AF8AF6 /* LCAuthPassworHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BF242B75EF00AF8AF6 /* LCAuthPassworHelper.swift */; };
 		4E451154242B75F000AF8AF6 /* LCHotSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C1242B75EF00AF8AF6 /* LCHotSpotViewController.swift */; };
 		4E451155242B75F000AF8AF6 /* LCAddFAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C2242B75EF00AF8AF6 /* LCAddFAQViewController.swift */; };
-		4E451156242B75F000AF8AF6 /* LCOfflineWifiConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C4242B75EF00AF8AF6 /* LCOfflineWifiConfigProtocol.swift */; };
-		4E451157242B75F000AF8AF6 /* LCOfflineWifiConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C5242B75EF00AF8AF6 /* LCOfflineWifiConfigHelper.swift */; };
 		4E45115A242B75F000AF8AF6 /* LCSameNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CB242B75EF00AF8AF6 /* LCSameNetworkViewController.swift */; };
 		4E45115C242B75F000AF8AF6 /* LCPowerGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CD242B75EF00AF8AF6 /* LCPowerGuideViewController.swift */; };
 		4E45115D242B75F000AF8AF6 /* LCWiredOrSIMGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CE242B75EF00AF8AF6 /* LCWiredOrSIMGuideViewController.swift */; };
@@ -222,8 +220,6 @@
 		4E4510BF242B75EF00AF8AF6 /* LCAuthPassworHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAuthPassworHelper.swift; sourceTree = "<group>"; };
 		4E4510C1242B75EF00AF8AF6 /* LCHotSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCHotSpotViewController.swift; sourceTree = "<group>"; };
 		4E4510C2242B75EF00AF8AF6 /* LCAddFAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddFAQViewController.swift; sourceTree = "<group>"; };
-		4E4510C4242B75EF00AF8AF6 /* LCOfflineWifiConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCOfflineWifiConfigProtocol.swift; sourceTree = "<group>"; };
-		4E4510C5242B75EF00AF8AF6 /* LCOfflineWifiConfigHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCOfflineWifiConfigHelper.swift; sourceTree = "<group>"; };
 		4E4510CB242B75EF00AF8AF6 /* LCSameNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSameNetworkViewController.swift; sourceTree = "<group>"; };
 		4E4510CD242B75EF00AF8AF6 /* LCPowerGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCPowerGuideViewController.swift; sourceTree = "<group>"; };
 		4E4510CE242B75EF00AF8AF6 /* LCWiredOrSIMGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiredOrSIMGuideViewController.swift; sourceTree = "<group>"; };
@@ -680,15 +676,6 @@
 			path = FAQ;
 			sourceTree = "<group>";
 		};
-		4E4510C3242B75EF00AF8AF6 /* OfflineWifiConfig */ = {
-			isa = PBXGroup;
-			children = (
-				4E4510C4242B75EF00AF8AF6 /* LCOfflineWifiConfigProtocol.swift */,
-				4E4510C5242B75EF00AF8AF6 /* LCOfflineWifiConfigHelper.swift */,
-			);
-			path = OfflineWifiConfig;
-			sourceTree = "<group>";
-		};
 		4E4510C9242B75EF00AF8AF6 /* WiredAndSim */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,7 +765,6 @@
 				4E4510C0242B75EF00AF8AF6 /* FAQ */,
 				4E451083242B75EE00AF8AF6 /* Initialize */,
 				4E45103A242B75ED00AF8AF6 /* NetSDK */,
-				4E4510C3242B75EF00AF8AF6 /* OfflineWifiConfig */,
 				4E45108D242B75EE00AF8AF6 /* QRCodeWay */,
 				4E45105B242B75ED00AF8AF6 /* Scan */,
 				4E451096242B75EE00AF8AF6 /* SoftAp */,
@@ -1073,7 +1059,6 @@
 				4E451149242B75F000AF8AF6 /* LCWifiConnectViewController.swift in Sources */,
 				8F6B0054244D677400EAE734 /* LCAddOtherWifiController.swift in Sources */,
 				4E451134242B75F000AF8AF6 /* LCAddByQRCodeVC.swift in Sources */,
-				4E451156242B75F000AF8AF6 /* LCOfflineWifiConfigProtocol.swift in Sources */,
 				8F6B0068244DA2CE00EAE734 /* LCWifiConnectOnlineVC.swift in Sources */,
 				4E451122242B75F000AF8AF6 /* LCBindSuccessViewController.swift in Sources */,
 				4E451127242B75F000AF8AF6 /* LCAuthPasswordPresenter.swift in Sources */,
@@ -1113,7 +1098,6 @@
 				4E451111242B75F000AF8AF6 /* LCIdentifyPresenter.swift in Sources */,
 				4E451140242B75F000AF8AF6 /* LCApWifiHeaderView.swift in Sources */,
 				4E451139242B75F000AF8AF6 /* LCApGuideViewController.swift in Sources */,
-				4E451157242B75F000AF8AF6 /* LCOfflineWifiConfigHelper.swift in Sources */,
 				4E4510F6242B75F000AF8AF6 /* LCDeviceInfoLogModel.m in Sources */,
 				8F6B004F244D677400EAE734 /* LCWiFiConfigPresenter.swift in Sources */,
 				4E451173242B75F000AF8AF6 /* LCLightButton.swift in Sources */,

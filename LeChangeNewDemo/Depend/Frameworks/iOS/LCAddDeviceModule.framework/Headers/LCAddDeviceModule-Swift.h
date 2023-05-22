@@ -489,25 +489,6 @@ SWIFT_CLASS("_TtC17LCAddDeviceModule22LCIotWiFiUnSupportView")
 
 
 
-SWIFT_PROTOCOL("_TtP17LCAddDeviceModule27LCOfflineWifiConfigProtocol_")
-@protocol LCOfflineWifiConfigProtocol <LCServiceProtocol>
-/// 根据设备id和设备密码更新服务端的设备密码
-/// \param deviceId 设备id
-///
-/// \param devicePassword 设备密码
-///
-- (void)updateDeviceInfoWithDeviceId:(NSString * _Nonnull)deviceId byPassword:(NSString * _Nonnull)devicePassword;
-/// 保存设备密码至本地缓存
-/// \param deviceId 设备id
-///
-/// \param password 设备密码
-///
-- (void)savePasswordInCacheWithDeviceId:(NSString * _Nonnull)deviceId password:(NSString * _Nonnull)password;
-/// 成功后跳转处理：海外至主页
-- (void)backToMainController;
-@end
-
-
 
 @class UIFont;
 

@@ -114,9 +114,14 @@ import LCBaseModule.LCModule
                         return LCPowerGuideViewController.init()
                     } else {
                         let wifiVc = LCIoTWifiConfigViewController.storyboardInstance()
-                        wifiVc.wifiConfigBlock = { // wifi 信息配置完成，跳转引导流程
-                            let guideVc = LCDeviceAddGuideViewController.init(productID: LCAddDeviceManager.sharedInstance.productId ?? "")
-                            wifiVc.navigationController?.pushViewController(guideVc, animated: true)
+                        wifiVc.wifiConfigBlock = {[weak wifiVc] in // wifi 信息配置完成，跳转引导流程
+                            if LCAddDeviceManager.sharedInstance.netConfigMode == .wifi {
+                                let guideVc = LCApGuideViewController()
+                                wifiVc?.navigationController?.pushViewController(guideVc, animated: true)
+                            } else {
+                                let guideVc = LCDeviceAddGuideViewController.init(productID: LCAddDeviceManager.sharedInstance.productId ?? "")
+                                wifiVc?.navigationController?.pushViewController(guideVc, animated: true)
+                            }
                         }
                         return wifiVc
                     }

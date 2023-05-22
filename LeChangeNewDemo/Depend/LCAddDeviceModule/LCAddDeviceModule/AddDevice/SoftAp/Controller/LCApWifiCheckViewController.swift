@@ -145,21 +145,29 @@ class LCApWifiCheckViewController: LCAddBaseViewController, LCAddGuideViewDelega
     }
 
 	@objc private func checkWifi() {
-		// 防止多次Push
-		if isWifiChecked == true {
-			return
-		}
+        if let productId = LCAddDeviceManager.sharedInstance.productId, productId.length > 0 {
+            self.startSearchingWithWifi()
+        } else {
+            self.startSearchingWithAp()
+        }
+	}
+    
+    func startSearchingWithAp() {
+        // 防止多次Push
+        if isWifiChecked == true {
+            return
+        }
         
-		self.isWifiChecked = true
+        self.isWifiChecked = true
 
         LCOpenSDK_SearchDevices.share().start(withDeviceId: LCAddDeviceManager.sharedInstance.deviceId, timeOut: 120) {[weak self] searchDeviceInfo in
             self?.searchedDevice = searchDeviceInfo
             LCOpenSDK_SearchDevices.share().stop()
         }
 
-		//WIFI连接上后，搜索2s，判断初始化状态：
+        //WIFI连接上后，搜索2s，判断初始化状态：
         LCProgressHUD.show(on: self.view)
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if let device = self.searchedDevice {
                 if true == LCAddDeviceManager.sharedInstance.isSupportSC {
                     self.pushScDeviceNextPage(deviceIsInited: device.deviceInitStatus == .init)
@@ -204,21 +212,43 @@ class LCApWifiCheckViewController: LCAddBaseViewController, LCAddGuideViewDelega
                     LCProgressHUD.hideAllHuds(self.view)
                 }
             }
-		}
-	}
+        }
+    }
+    
+    func startSearchingWithWifi() {
+        // 防止多次Push
+        if isWifiChecked == true {
+            return
+        }
+        
+        self.isWifiChecked = true
+        
+        LCProgressHUD.show(on: self.view)
+        LCOpenSDK_IotApConfig.startAsyncIotApConfig((LCAddDeviceManager.sharedInstance.wifiSSID ?? ""), wifiPwd: LCAddDeviceManager.sharedInstance.wifiPassword, productId: (LCAddDeviceManager.sharedInstance.productId ?? ""), deviceId: LCAddDeviceManager.sharedInstance.deviceId) {[weak self] success, errorMessage in
+            LCProgressHUD.hideAllHuds(self?.view)
+            self?.isWifiChecked = false
+            if success == false {
+                print("设备配网失败")
+            } else {
+               // 链接云平台
+                self?.basePushToConnectCloudVC()
+            }
+        }
+    }
+    
     // MARK: sc设备软AP配网
     func autoConnectHotspot() {
         //SC设备软AP配网
         let predicateWifiName = getApWifiName()
         LCProgressHUD.show(on: self.view)
         LCAddDeviceManager.sharedInstance.autoConnectHotSpot(wifiName: predicateWifiName, password: LCAddDeviceManager.sharedInstance.initialPassword, completion: { (success) in
-            LCProgressHUD.hideAllHuds(self.view)
             if success {
                 LCMobileInfo.sharedInstance().wifissid = predicateWifiName
                 self.autoConnectHotSpotFailed = false
                 self.checkWifi()
                 print("连接sc设备热点成功")
             } else {
+                LCProgressHUD.hideAllHuds(self.view)
                 print("\(NSStringFromClass(self.classForCoder))...连接热点失败")
                 self.autoConnectHotSpotFailed = true
             }

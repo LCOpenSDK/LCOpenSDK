@@ -47,6 +47,7 @@ public enum LCNetConfigMode: Int {
     case iotBluetooth //= "bluetooth"
     case iot4G //= "4G"
     case iotLan //= "lan"
+    case wifi
 //    case vlog = "vlog"
 //    case sim = "sim"
 //    case accessory = "accessory" // 配件
@@ -65,6 +66,8 @@ public enum LCNetConfigMode: Int {
             return "iot_bluetooth".lc_T()
         case .iot4G:
             return "4G"
+        case .wifi:
+            return "wifi"
         }
     }
     
@@ -84,6 +87,10 @@ public enum LCNetConfigMode: Int {
             
             if type == "lan" {
                 return .iotLan
+            }
+            
+            if type == "wifi" {
+                return .wifi
             }
             
             return .iotLan
@@ -297,7 +304,8 @@ public struct LCAddConfigTimeout {
         LCAddDeviceInterface.unBindDeviceInfo(forDevice: deviceId, productId: productId, deviceModel: qrModel, deviceName: marketModel ?? "", ncCode:ncCode ?? "", success: { (deviceInfo) in
             self.deviceQRCodeModel = qrModel
             self.deviceMarketModel = marketModel
-            self.deviceId = deviceId
+            self.deviceId = deviceInfo.deviceId.uppercased()
+            self.productId = deviceInfo.productId
             self.imeiCode = imeiCode ?? ""
             self.ncCode = ncCode ?? ""
             self.setup(deviceInfo: deviceInfo)
@@ -317,12 +325,12 @@ public struct LCAddConfigTimeout {
             if let configMode = deviceInfo.defaultWifiConfigMode, configMode.length > 0 {
                 netConfigMode = LCNetConfigMode.netConfigMode(type: configMode, isIOT: true)
             } else {
-                if supportConfigModes.contains(.iotLan) {
-                    netConfigMode = .iotLan
+                if supportConfigModes.contains(.iotBluetooth) {
+                    netConfigMode = .iotBluetooth
+                } else if supportConfigModes.contains(.wifi) {
+                    netConfigMode = .wifi
                 } else if supportConfigModes.contains(.iot4G) {
                     netConfigMode = .iot4G
-                } else if supportConfigModes.contains(.iotBluetooth) {
-                    netConfigMode = .iotBluetooth
                 } else {
                     netConfigMode = .iotLan
                 }
@@ -378,8 +386,6 @@ public struct LCAddConfigTimeout {
         }
     }
     
-    
-    
     // 切换配网方式到有线配网
     public func changeNetConfigToWired() -> LCNetConfigMode {
         var netConfig: LCNetConfigMode = .lan
@@ -401,6 +407,8 @@ public struct LCAddConfigTimeout {
                 netConfig = .iot4G
             } else if supportConfigModes.contains(.iotBluetooth) {
                 netConfig = .iotBluetooth
+            } else if supportConfigModes.contains(.wifi) {
+                netConfig = .wifi
             }
         } else {
             if supportConfigModes.contains(.soundWaveV2) {
@@ -430,7 +438,6 @@ public struct LCAddConfigTimeout {
                 print(" \(NSStringFromClass(self.classForCoder))::Return getting status...")
                 return
             }
-            
             self.isGettingStatus = true
             LCAddDeviceInterface.unBindDeviceInfo(forDevice: self.deviceId, productId: self.productId, deviceModel: self.deviceQRCodeModel, deviceName: self.deviceMarketModel ?? "", ncCode: self.ncCode ?? "", success: { (deviceInfo) in
                 // 更新设备状态

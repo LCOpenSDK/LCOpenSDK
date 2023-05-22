@@ -60,10 +60,14 @@ extension LCApGuideViewController: LCAddGuideViewDelegate {
 	
 	func goLastStep() {
         // 离线配网，支持sc，且sc为空时，需要用户手动输入sc
-        if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig && LCAddDeviceManager.sharedInstance.isSupportSC && LCAddDeviceManager.sharedInstance.initialPassword.length == 0 {
-            let controller = LCAuthPasswordViewController.storyboardInstance()
-            controller.presenter = LCApAuthPasswordPresenter(container: controller)
-            self.navigationController?.pushViewController(controller, animated: true)
+        if LCAddDeviceManager.sharedInstance.isEntryFromWifiConfig {
+            // iot视频类设备都是TCM设备，都有SC码，非ioT设备支持SCCode
+            if LCAddDeviceManager.sharedInstance.productId?.isEmpty != true ||
+                LCAddDeviceManager.sharedInstance.isSupportSC && LCAddDeviceManager.sharedInstance.initialPassword.length == 0 {
+                let controller = LCAuthPasswordViewController.storyboardInstance()
+                controller.presenter = LCApAuthPasswordPresenter(container: controller)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         } else {
             let controller = LCApWifiCheckViewController()
             navigationController?.pushViewController(controller, animated: true)

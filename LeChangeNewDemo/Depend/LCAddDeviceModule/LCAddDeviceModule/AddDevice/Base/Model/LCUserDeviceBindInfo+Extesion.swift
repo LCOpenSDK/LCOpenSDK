@@ -31,6 +31,10 @@ extension LCUserDeviceBindInfo {
                     if mode == "lan" {
                         modes.insert(.iotLan)
                     }
+                    
+                    if mode == "wifi" {
+                        modes.insert(.wifi)
+                    }
                 } else {
                     if mode == "SmartConfig" {
                         modes.insert(.smartConfig)

@@ -55,7 +55,7 @@ class LCDeviceAddGuideViewController: LCAddBaseViewController, LCAddGuideViewDel
     }
 
     private func goNextStep() {
-        if LCAddDeviceManager.sharedInstance.netConfigMode == .iotBluetooth {
+        if LCAddDeviceManager.sharedInstance.netConfigMode == .iotBluetooth || LCAddDeviceManager.sharedInstance.netConfigMode == .wifi {
             let controller = LCDeviceLightCheckViewController()
             controller.productId = productId
             self.navigationController?.pushViewController(controller, animated: true)

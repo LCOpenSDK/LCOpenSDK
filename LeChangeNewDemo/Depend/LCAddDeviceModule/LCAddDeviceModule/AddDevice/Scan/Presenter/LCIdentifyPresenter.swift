@@ -157,10 +157,6 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
             if self.container == nil {
                 return
             }
-            
-            //【*】保存deviceId，并全部转换成大写
-            LCAddDeviceManager.sharedInstance.deviceId = deviceId.uppercased()
-            LCAddDeviceManager.sharedInstance.productId = productId
             // 进入添加流程
             self.addDeviceStep(deviceInfo: deviceInfo, p2pStatus: p2pStatus, qrModel: qrModel, marketModel: marketModel, manualCheckCode: manualCheckCode, deviceId: deviceId)
             
@@ -242,9 +238,14 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
                 self.container?.navigationVC()?.pushViewController(guideVc, animated: true)
             } else {
                 let wifiVc = LCIoTWifiConfigViewController.storyboardInstance()
-                wifiVc.wifiConfigBlock = { // wifi 信息配置完成，跳转引导流程
-                    let guideVc = LCDeviceAddGuideViewController.init(productID: LCAddDeviceManager.sharedInstance.productId ?? "")
-                    wifiVc.navigationController?.pushViewController(guideVc, animated: true)
+                wifiVc.wifiConfigBlock = {[weak wifiVc] in // wifi 信息配置完成，跳转引导流程
+                    if LCAddDeviceManager.sharedInstance.netConfigMode == .wifi {
+                        let guideVc = LCApGuideViewController()
+                        wifiVc?.navigationController?.pushViewController(guideVc, animated: true)
+                    } else {
+                        let guideVc = LCDeviceAddGuideViewController.init(productID: LCAddDeviceManager.sharedInstance.productId ?? "")
+                        wifiVc?.navigationController?.pushViewController(guideVc, animated: true)
+                    }
                 }
                 self.container?.navigationVC()?.pushViewController(wifiVc, animated: true)
             }
