@@ -11,9 +11,6 @@
 /// collection
 @property (strong, nonatomic) UICollectionView *channelList;
 
-/// collect布局
-@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
-
 /// titleLab
 @property (strong, nonatomic) UILabel *titleLab;
 
@@ -57,6 +54,22 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (UICollectionViewFlowLayout *)collectionViewLayout:(BOOL)isHorizontal {
+    if (isHorizontal) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
+        return layout;
+    } else {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
+        return layout;
+    }
 }
 
 - (void)setupView {
@@ -109,11 +122,7 @@
         }
     };
 
-    self.layout = [[UICollectionViewFlowLayout alloc] init];
-    [self.layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    self.layout.minimumLineSpacing = 10;
-    self.layout.minimumInteritemSpacing = 10;
-    self.channelList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:_layout];
+    self.channelList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:[self collectionViewLayout:YES]];
     [content addSubview:self.channelList];
     [self.channelList mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(content).offset(50);
@@ -193,6 +202,11 @@
         self.channelList.hidden = NO;
         self.messageIcon.hidden = YES;
         self.maskView.hidden = YES;
+        if (self.deviceInfo.channels.count <= 2) {
+            self.channelList.collectionViewLayout = [self collectionViewLayout:NO];
+        } else {
+            self.channelList.collectionViewLayout = [self collectionViewLayout:YES];
+        }
         [self.channelList reloadData];
     } else {
         self.channelList.hidden = YES;
@@ -273,7 +287,11 @@
 - (CGSize)getCollectionCellSize {
     if ([self.deviceInfo.catalog isEqualToString:@""] || self.deviceInfo.lc_isMultiChannelDevice) {
         //多通道
-        return CGSizeMake(153, 114);
+        if (self.deviceInfo.channels.count <= 2) {
+            return CGSizeMake((self.frame.size.width - 70.0)/2.0, 114);
+        } else {
+            return CGSizeMake(153, 114);
+        }
     }
     return self.channelList.frame.size;
 }

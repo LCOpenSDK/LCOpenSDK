@@ -7,6 +7,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LCNewLivePreviewPresenter (Control)
+//上下屏
+- (void)onUpDownScreen:(LCButton *)btn;
+
+//画中画屏
+- (void)onPictureInScreen:(LCButton *)btn;
 
 //全屏
 - (void)onFullScreen:(LCButton *)btn;
@@ -21,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)onPlay:(nullable LCButton *)btn;
 
 //点击云台
-- (void)onPtz:(LCButton *)btn;
+- (void)onPtz:(nullable LCButton *)btn;
 
 //点击抓图
 - (void)onSnap:(LCButton *)btn;
@@ -40,10 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)startPlay;
 
-/**
- 点击锁定全屏
- */
--(void)onLockFullScreen:(LCButton *)btn;
+- (void)uninitPlayWindow;
 
 @end
 

@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy)NSString *msgType;
 
+@property(nonatomic, copy)NSString *labelType;
+
 @property(nonatomic, copy)NSString *deviceId;
 
 @property(nonatomic, strong)NSArray<NSString *> *picurlArray;

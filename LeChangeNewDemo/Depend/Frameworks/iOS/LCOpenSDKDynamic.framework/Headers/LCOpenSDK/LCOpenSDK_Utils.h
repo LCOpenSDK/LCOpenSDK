@@ -77,7 +77,9 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
 
-
+/// mts streaming establishes a long connection in advance to increase the streaming speed    zh:mts拉流提前建立长连接，提高拉流速度
+/// @param deviceDatas device data that needs to establish a long connection    zh:需要建立长连接的设备数据
+/// @param token user token
 + (void)mtsPreKeepalive:(NSArray *)deviceDatas token:(NSString *)token;
 
 @end

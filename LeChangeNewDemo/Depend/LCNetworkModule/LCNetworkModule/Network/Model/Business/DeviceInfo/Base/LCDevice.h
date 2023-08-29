@@ -168,8 +168,6 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 /****************** 附加属性，以lc_开头 *****************/
 //设备地理位置，不用缓存
 @property (nonatomic, strong) NSMutableDictionary *lc_userInfo;
-//是否画面翻转
-@property (nonatomic, assign) BOOL      isFrameReversed;
 // 1表示别人分享给自己的设备，2表示别人授权给自己的设备
 @property (nonatomic, assign) int       lc_shareState;
 //设备语音交互开关状态，不用缓存，0：未知，1：开，2：关

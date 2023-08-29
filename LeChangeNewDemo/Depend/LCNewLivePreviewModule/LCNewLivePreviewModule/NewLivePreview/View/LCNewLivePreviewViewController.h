@@ -8,9 +8,22 @@
 NS_ASSUME_NONNULL_BEGIN
 @class LCNewLandscapeControlView;
 @class LCDeviceInfo;
+@class LCNewVideoControlView;
+@class LCNewPTZControlView;
+@class LCNewPTZPanel;
 @interface LCNewLivePreviewViewController : LCBaseViewController
 
-@property (nonatomic, strong) LCNewLandscapeControlView *landscapeControlView;
+@property (nonatomic, strong, readonly) LCNewLandscapeControlView *landscapeControlView;
+
+@property (nonatomic, strong, readonly) LCNewVideoControlView *middleControlView;
+
+@property (nonatomic, strong, readonly) LCNewVideoControlView *bottomControlView;
+
+@property (nonatomic, strong, readonly) LCNewPTZControlView *ptzControlView;
+
+@property (nonatomic, strong, readonly) LCNewPTZPanel * landscapePtzControlView;
+
+@property (nonatomic, strong, readonly) LCNewVideoControlView *upDownControlView;
 
 -(void)configDevice:(LCDeviceInfo *)device channelIndex:(NSInteger)index;
 
@@ -25,9 +38,13 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)hidePtz;
 
 /**
- 适配横屏布局
+ 适配上下屏布局
  */
--(void)configFullScreenUI;
+- (void)configUpDownScreenUI;
+/**
+ 适配竖屏布局
+ */
+- (void)configPortraitScreenUI;
 
 @end
 

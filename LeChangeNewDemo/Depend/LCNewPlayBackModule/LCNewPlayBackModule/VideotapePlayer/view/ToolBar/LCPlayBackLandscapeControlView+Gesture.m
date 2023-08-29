@@ -8,6 +8,7 @@
 
 #import "LCPlayBackLandscapeControlView+Gesture.h"
 #import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
+#import "LCNewVideotapePlayerPersenter.h"
 
 #define TAG_PTZ_PAN        1687
 #define TAG_PTZ_PINCH      1689
@@ -115,6 +116,23 @@
 
 #pragma mark - 单击
 - (void)doSingleTap:(UITapGestureRecognizer *)recognizer {
+    if (self.presenter.subPlayWindow != nil) {
+        UIView *subPlayView = [self.presenter.subPlayWindow getWindowView];
+        UIView *mainPlayView = [self.presenter.mainPlayWindow getWindowView];
+        UIView *responsePlayView = subPlayView;
+        if (subPlayView.frame.size.width > mainPlayView.frame.size.width) {
+            responsePlayView = mainPlayView;
+        }
+        CGPoint point2 = [recognizer locationInView:responsePlayView];
+        if (point2.x >= 0 && point2.x <= responsePlayView.frame.size.width && point2.y >= 0 && point2.y <= responsePlayView.frame.size.height) {
+            if ([[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID isEqualToString:@"0"]) {
+                [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"1";
+            } else {
+                [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"0";
+            }
+            return;
+        }
+    }
     [self changeAlpha];
 }
 

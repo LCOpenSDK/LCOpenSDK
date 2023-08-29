@@ -231,6 +231,7 @@ using UInt = size_t;
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreFoundation;
+@import Foundation;
 @import LCBaseModule;
 @import ObjectiveC;
 @import UIKit;
@@ -255,6 +256,7 @@ using UInt = size_t;
 
 #if defined(__OBJC__)
 
+
 @class NSString;
 @class NSArray;
 @class NSBundle;
@@ -272,8 +274,24 @@ SWIFT_CLASS("_TtC20LCDeviceDetailModule18LCDefenceTimeSetVC")
 @end
 
 
-@class LCDeviceDetailVC;
 @class LCDeviceInfo;
+
+SWIFT_CLASS("_TtC20LCDeviceDetailModule42LCDeviceDetailCameraNameEditViewController")
+@interface LCDeviceDetailCameraNameEditViewController : LCBasicViewController
+@property (nonatomic, weak) LCDeviceInfo * _Nullable deviceInfo;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
++ (LCDeviceDetailCameraNameEditViewController * _Nonnull)xibInstance SWIFT_WARN_UNUSED_RESULT;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (void)viewDidLoad;
+@end
+
+@class UITextField;
+
+@interface LCDeviceDetailCameraNameEditViewController (SWIFT_EXTENSION(LCDeviceDetailModule)) <UITextFieldDelegate>
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class LCDeviceDetailVC;
 
 SWIFT_CLASS("_TtC20LCDeviceDetailModule23LCDeviceDetailPresenter")
 @interface LCDeviceDetailPresenter : NSObject

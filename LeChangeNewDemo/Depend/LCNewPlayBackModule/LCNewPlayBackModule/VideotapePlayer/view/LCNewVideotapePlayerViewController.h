@@ -4,17 +4,18 @@
 
 #import <UIKit/UIKit.h>
 #import <LCBaseModule/LCBaseModule.h>
+#import "LCPlayBackLandscapeControlView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, LCNewVideotapePlayerFromType) {
-    LCNewVideotapePlayerFromTypeCloud,
-    LCNewVideotapePlayerFromTypeLocal
-};
-
 @interface LCNewVideotapePlayerViewController : LCBaseViewController
 
-@property (nonatomic, assign) LCNewVideotapePlayerFromType fromType;
+/// 横屏控制器
+@property (strong, nonatomic) LCPlayBackLandscapeControlView *landscapeControlView;
+
+- (void)configUpDownScreenUI;
+
+- (void)configPortraitScreenUI;
 
 @end
 

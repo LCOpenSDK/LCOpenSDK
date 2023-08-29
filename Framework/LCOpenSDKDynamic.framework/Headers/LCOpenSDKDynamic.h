@@ -44,3 +44,6 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayFileListener.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_TouchListener.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_IotApConfig.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayGroupManager.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DownloadParam.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayRecordParam.h>

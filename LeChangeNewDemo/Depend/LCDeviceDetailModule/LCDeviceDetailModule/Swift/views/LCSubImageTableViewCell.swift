@@ -51,7 +51,7 @@ import SDWebImage
     }()
 
     lazy var arrow: UIImageView = {
-        let imageView = UIImageView.init(image: UIImage.init(named: "common_btn_next"))
+        let imageView = UIImageView.init(image: UIImage.lc_IMAGENAMED("common_btn_next", withBundleName: "LCDeviceDetailModuleBundle"))
         return imageView
     }()
     

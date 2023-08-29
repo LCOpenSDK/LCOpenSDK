@@ -211,8 +211,6 @@
     }];
 }
 
-
-
 + (void)queryMemorySDCardForDevice:(NSString *)deviceId success:(void (^)(NSDictionary *storage))success failure:(void (^)(LCError *_Nonnull))failure {
     [[LCNetworkRequestManager manager] lc_POST:@"/deviceStorage" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_ID: deviceId} success:^(NSDictionary *objc) {
         if (success) {

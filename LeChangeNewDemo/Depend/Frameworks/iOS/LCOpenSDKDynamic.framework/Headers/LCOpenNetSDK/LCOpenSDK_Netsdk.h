@@ -19,77 +19,53 @@ typedef void(^LCNetSDKLogOpenCallback)(const char * _Nonnull szLogBuffer, unsign
 @interface LCOpenSDK_Netsdk : NSObject
 
 
-/// 初始化 netsdk
-///  init netsdk
-/// @param callback  netsdk连接断开回调
-/// @param callback  netsdk connection disconnection callback
+///  init netsdk  zh: 初始化 netsdk
+/// @param callback  netsdk connection disconnection callback  zh: netsdk连接断开回调
 + (void)initSDKWithCallback:(LCNetSDKDisconnetCallback _Nullable)callback;
 
-/// 开启日志
-///  open log
-/// @param path  日志存放路径
-/// @param path  log path
-/// @param logCallback 日志回调
-/// @param logCallback  log callback
+///  open log   zh:开启日志
+/// @param path  log path   zh:日志存放路径
+/// @param logCallback  log callback   zh:日志回调
 + (void)logOpen:(NSString *_Nullable)path callback:(LCNetSDKLogOpenCallback _Nullable)logCallback;
 
-/// 关闭日志
-/// close log
+/// close log    zh:关闭日志
 + (void)logClose;
 
-/// 初始化设备
-/// @param deviceNetInfo 设备信息
-/// @param isUseIp 是否使用ip的方式
-/// init device
-/// @param deviceNetInfo device info
-/// @param isUseIp  Whether to use  IP mode
+/// init device     zh:初始化设备
+/// @param deviceNetInfo device info    zh:设备信息
+/// @param isUseIp  Whether to use  IP mode    zh:是否使用ip的方式
 //+ (BOOL)initDevAccountWithDevInfo:(LCNetsdkDevInfo *_Nullable)deviceNetInfo useIp:(BOOL)isUseIp;
 
-/// 登出设备
-/// @param loginHandle 句柄
-/// logout device
-/// @param loginHandle login handle
+/// login handle    zh:登出设备
+/// @param loginHandle login handle    zh:句柄
 + (void)logout:(long)loginHandle;
 
 //MARK: Device Password Reset
 
-/// 重置设备密码
-/// reset device password
-/// @param password 密码
-/// @param password password
-/// @param device 设备信息
-/// @param device device info
-/// @param securityCode 安全码
-/// @param securityCode security Code
-/// @param contact 接收验证码的手机/邮箱
-/// @param contact Mobile phone/email receiving verification code
-/// @param useAsPreset 是否设置为预留联系方式
-/// @param useAsPreset Set as Reserved Contact Method
-/// @param phoneIp 手机ip
-/// @param phoneIp  phone ip
-/// @return 重置后的密码信息
-/// @return Password information after reset
+/// reset device password    zh:重置设备密码
+/// @param password password    zh:密码
+/// @param device device info    zh:设备信息
+/// @param securityCode security Code    zh:安全码
+/// @param contact Mobile phone/email receiving verification code    zh:接收验证码的手机/邮箱
+/// @param useAsPreset Set as Reserved Contact Method    zh:是否设置为预留联系方式
+/// @param phoneIp  phone ip    zh:手机ip
+/// @return Password information after reset    zh:重置后的密码信息
 + (LCDevicePWDResetInfo *_Nullable)resetPassword:(NSString *_Nullable)password device:(LCNetsdkDevInfo *_Nullable)device securityCode:(NSString *_Nullable)securityCode contact:(NSString *_Nullable)contact useAsPreset:(BOOL)useAsPreset byPhoneIp:(NSString *_Nullable)phoneIp;
 
-/// 异步查询设备支持的密码重置方式
-/// Password reset mode supported by asynchronous query device
-/// @param device 设备
-/// @param device
-/// @param phoneIp 手机ip，可以为空
-/// @param phoneIp Mobile IP, can be empty
+/// Password reset mode supported by asynchronous query device    zh:异步查询设备支持的密码重置方式
+/// @param device  device info   zh:设备
+/// @param phoneIp Mobile IP, can be empty   zh:手机ip，可以为空
 /// @return result
 + (LCDeviceResetPWDInfo *_Nullable)queryPasswordResetType:(LCNetsdkDevInfo *_Nonnull)device byPhoneIp:(NSString *_Nullable)phoneIp;
 
 #pragma mark - Production
 
-/// 获取设备信息
-/// get device definition info
-/// @param loginHandle 句柄
+/// get device definition info   zh:获取设备信息
+/// @param loginHandle  login handle   zh:句柄
 + (LCNetsdkProductDefinition *_Nullable)queryProductDefinitionInfo:(long)loginHandle;
 
-/// 获取是否具有云台权限
-/// Get whether you have PTZ permission
-/// @param loginHandle 句柄
+/// Get whether you have PTZ permission   zh:获取是否具有云台权限
+/// @param loginHandle login handle   zh:句柄
 + (BOOL)queryDevicePtzAuth:(long)loginHandle;
 
 @end

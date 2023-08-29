@@ -115,7 +115,7 @@
      [self.imageView lc_setThumbImageWithURL:channelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:channelInfo.deviceId ChannelId:channelInfo.channelId];
     self.nameLable.text = channelInfo.channelName;
     //仅在多通道设备上加名称显示
-    self.nameLable.hidden = ([self.deviceInfo.catalog isEqualToString:@"NVR"]) ? NO : YES;
+    self.nameLable.hidden = ([self.deviceInfo.catalog isEqualToString:@"NVR"] || self.deviceInfo.multiFlag) ? NO : YES;
     if ([@"online" isEqualToString:self.channelInfo.status] && [@"online" isEqualToString:self.deviceInfo.status]) {
         self.playImg.hidden = NO;
         self.maskView.hidden = YES;
@@ -140,8 +140,6 @@
             self.offlineLab.text = @"mobile_common_bec_device_offline".lc_T;
         }
     }
-    
-//    self.userInteractionEnabled = [channelInfo.status isEqualToString:@"online"];
 }
 
 - (void)clickMessage {

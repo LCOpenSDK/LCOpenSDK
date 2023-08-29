@@ -31,12 +31,12 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
 /// @return LCOpenSDK_Api single case
 + (LCOpenSDK_Api *_Nonnull)shareMyInstance;
 
-/// Initialize LCOpenSDK_ Api         zh:初始化LCOpenSDK_Api
+/// Initialize LCOpenSDK_Api         zh:初始化LCOpenSDK_Api
 /// @param apiParam parameter model   zh:参数模型
 /// @return LCOpenSDK_ Api pointer
 - (id _Nonnull)initOpenApi:(LCOpenSDK_ApiParam *_Nonnull)apiParam;
 
-/// De initialize LCOpenSDK_ Api Interface   zh:反初始化LCOpenSDK_Api接口
+/// De initialize LCOpenSDK_Api Interface   zh:反初始化LCOpenSDK_Api接口
 - (void)uninitOpenApi;
 
 /// Get SDK version number information  zh:获取SDK版本号信息

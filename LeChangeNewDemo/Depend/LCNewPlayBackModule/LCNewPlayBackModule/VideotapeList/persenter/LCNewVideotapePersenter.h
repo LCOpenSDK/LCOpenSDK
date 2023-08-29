@@ -8,11 +8,11 @@
 #import <LCNetworkModule/LCCloudVideotapeInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class LCNewVideotapePlayerViewController;
 @interface LCNewVideotapePersenter : NSObject<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /// 容器
-@property (weak, nonatomic) UIViewController *container;
+@property (weak, nonatomic) LCNewVideotapePlayerViewController *container;
 
 /// 当前是否在编辑状态
 @property (nonatomic) BOOL isEdit;

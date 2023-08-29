@@ -102,6 +102,7 @@
 "setting_device_device_name" = "Device Name";
 "setting_device_device_info_title" = "Device Details";
 "setting_device_device_model" = "Device Model";
+"setting_device_camera_name" = "Camera Name";
 "setting_device_serial_number" = "S/N";
 "setting_device_thumb" = "Cover Image Setting";
 "setting_device_edit_name_placeholder" = "Please input device name.";

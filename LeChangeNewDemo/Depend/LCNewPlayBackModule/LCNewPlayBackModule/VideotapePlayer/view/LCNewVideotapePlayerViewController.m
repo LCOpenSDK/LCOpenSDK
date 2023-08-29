@@ -22,6 +22,18 @@
 /// persenter
 @property (strong, nonatomic) LCNewVideotapePlayerPersenter *persenter;
 
+@property (strong, nonatomic) LCPlayBackVideoControlView *middleView;
+
+@property (strong, nonatomic) UIView *bottomControlView;
+
+@property (strong, nonatomic) LCNewVideotapeDownloadStatusView *downloadStatusView;
+
+@property (strong, nonatomic) LCButton *snapBtn;
+
+@property (strong, nonatomic) LCButton *pvrBtn;
+
+@property (strong, nonatomic) LCButton *downBtn;
+
 @end
 
 @implementation LCNewVideotapePlayerViewController
@@ -29,31 +41,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.extendedLayoutIncludesOpaqueBars = YES;
-    NSString *titleStr = self.persenter.videoManager.currentDevice.name;
-    if (self.persenter.videoManager.currentChannelInfo != nil) {
-        titleStr = self.persenter.videoManager.currentChannelInfo.channelName;
-    }
+    NSString *titleStr = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.name;
     self.title = titleStr;
     [self setupView];
+    weakSelf(self);
+    [self.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"displayChannelID" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself changeDisplayWindow:[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID];
+        });
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //进入该页面自动播放
-    self.persenter.videoManager.isPlay = NO;
+    [LCNewDeviceVideotapePlayManager shareInstance].isPlay = NO;
     [self.persenter onPlay:nil];
     weakSelf(self);
     [self lcCreatNavigationBarWith:LCNAVIGATION_STYLE_DEFAULT buttonClickBlock:^(NSInteger index) {
         if (index == 0) {
             ///下载中
-            if ([self isDownLoadVideo]) {
-                [LCAlertController showWithTitle:@"add_device_confrim_to_quit".lcMedia_T message:@"video_tape_download_warnning".lcMedia_T cancelButtonTitle:@"common_cancel".lcMedia_T otherButtonTitle:@"common_confirm".lcMedia_T handler:^(NSInteger index) {
+            if ([weakself isDownLoadVideo]) {
+                [LCAlertController showWithTitle:@"device_manager_exit".lcMedia_T message:@"video_tape_download_warnning".lcMedia_T cancelButtonTitle:@"common_cancel".lcMedia_T otherButtonTitle:@"common_confirm".lcMedia_T handler:^(NSInteger index) {
                     if (index == 1) {
-                        if ([self isDownLoadVideo]) {
-                            [self.persenter stopDownload];
-                            [self willChangeValueForKey:@"downloadQueue"];
-                            self.persenter.videoManager.currentDownloadInfo.donwloadStatus = LCVideotapeDownloadStatusCancle;
-                            [self didChangeValueForKey:@"downloadQueue"];
+                        if ([weakself isDownLoadVideo]) {
+                            [weakself.persenter stopDownloadAll];
                         }
                         [weakself.navigationController popViewControllerAnimated:YES];
                     }
@@ -66,40 +78,47 @@
             //跳转设置
         }
     }];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushToLogin) name:@"NEEDLOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onResignActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
-   
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(onActive:)
-//                                                 name:UIApplicationDidBecomeActiveNotification
-//                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange:) name:@"NETCHANGE" object:nil];
-}
-
-- (void)netChange:(NSNotification *)notic {
-    [self.persenter startPlay:0];
+    
+    if (self.persenter.displayStyle == LCPlayWindowDisplayStyleUpDownScreen) {
+        [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor blackColor] titleColor:[UIColor whiteColor]];
+    }
 }
 
 - (BOOL)isDownLoadVideo {
-    LCVideotapeDownloadState status = self.persenter.videoManager.currentDownloadInfo.donwloadStatus;
-    if (status == LCVideotapeDownloadStatusBegin || status == LCVideotapeDownloadStatusPartDownload) {
-        return YES;
-    } else {
-        return NO;
+    for (LCNewVideotapeDownloadInfo *info in [LCNewDeviceVideotapePlayManager shareInstance].downloadQueue.allValues) {
+        LCVideotapeDownloadState status = info.donwloadStatus;
+        if (status == LCVideotapeDownloadStatusBegin || status == LCVideotapeDownloadStatusPartDownload) {
+            return YES;
+        }
     }
+    return NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //退出该页面停止播放
-    self.persenter.videoManager.isPlay = YES;
+    [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES;
     [self.persenter stopPlay:NO clearOffset:YES];
-    self.persenter.videoManager.playSpeed = 1;
-    self.persenter = nil;
+    [LCNewDeviceVideotapePlayManager shareInstance].playSpeed = 1;
     
+    if (self.persenter.displayStyle == LCPlayWindowDisplayStyleUpDownScreen) {
+        [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
+    }
+    
+    if ([self isDownLoadVideo]) {
+        [LCAlertController showWithTitle:@"device_manager_exit".lcMedia_T message:@"video_tape_download_warnning".lcMedia_T cancelButtonTitle:@"common_cancel".lcMedia_T otherButtonTitle:@"common_confirm".lcMedia_T handler:^(NSInteger index) {
+            if (index == 1) {
+                if ([self isDownLoadVideo]) {
+                    [self.persenter stopDownloadAll];
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -107,7 +126,7 @@
     NSLog(@" %@:: viewDidDisappear", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // 退出设置，下次默认打开声音
-    self.persenter.videoManager.isSoundOn = YES;
+    [LCNewDeviceVideotapePlayManager shareInstance].isSoundOn = YES;
 }
 
 - (LCNewVideotapePlayerPersenter *)persenter {
@@ -118,89 +137,259 @@
     return _persenter;
 }
 
+- (NSInteger)downloadTotalSize {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
+        if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo) {
+            return [[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.size integerValue] + [[LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.size integerValue];
+        } else {
+            return [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.fileLength * 2;
+        }
+    } else {
+        return [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.size integerValue] : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.fileLength;
+    }
+}
+
 - (void)setupView {
     weakSelf(self);
     self.view.backgroundColor = [UIColor lccolor_c8];
+    [self configPlayWindow];
+    [self.persenter loadStatusView];
+    [self configMiddleControlView];
+    [self configBottomControlView];
+    
+    self.downloadStatusView = [LCNewVideotapeDownloadStatusView showDownloadStatusInView:self.view Size:[self downloadTotalSize]];
+    self.downloadStatusView.alpha = 0;
+    self.downloadStatusView.backgroundColor = [UIColor whiteColor];
+    self.downloadStatusView.cancleBlock = ^{
+        [weakself.persenter stopDownloadAll];
+    };
+    [self setCornerRadius:15 addRectCorners: UIRectCornerTopLeft | UIRectCornerTopRight withView:self.downloadStatusView];
+
+    [self.downloadStatusView.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"downloadQueue" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+        NSDictionary <NSString *, LCNewVideotapeDownloadInfo*>*info = [[LCNewDeviceVideotapePlayManager shareInstance] downloadQueue];
+//        if ([LCNewDeviceVideotapePlayManager shareInstance].downloadQueue.allValues.count >= 2) {
+//            LCNewVideotapeDownloadInfo *info1 = [LCNewDeviceVideotapePlayManager shareInstance].downloadQueue.allValues[0];
+//            LCNewVideotapeDownloadInfo *info2 = [LCNewDeviceVideotapePlayManager shareInstance].downloadQueue.allValues[1];
+//            NSLog(@"donwloadStatus === %ld %ld   %ld %ld", info1.index, info1.donwloadStatus, info2.index, info2.donwloadStatus);
+//        }
+        LCVideotapeDownloadState donwloadStatus = [[LCNewDeviceVideotapePlayManager shareInstance] downloadStates];
+        NSLog(@"下载状态:%ld", donwloadStatus);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakself.downBtn.enabled = YES;
+            if (donwloadStatus == LCVideotapeDownloadStatusFail || donwloadStatus == LCVideotapeDownloadStatusCancle || donwloadStatus == LCVideotapeDownloadStatusTimeout || donwloadStatus == LCVideotapeDownloadStatusKeyError || donwloadStatus == LCVideotapeDownloadStatusEnd) {
+                //SDK当下载失败或下载完成时，隐藏状态图
+                [weakself.downloadStatusView dismiss];
+                weakself.downloadStatusView.recieve = 0;
+                weakself.downloadStatusView.totalRevieve = 0;
+            } else {
+                weakself.downloadStatusView.alpha = 1;
+                weakself.downloadStatusView.recieve = [LCNewDeviceVideotapePlayManager shareInstance].recieve;
+            }
+        });
+    }];
+
+    self.landscapeControlView = [LCPlayBackLandscapeControlView new];
+    self.landscapeControlView.delegate = self.persenter;
+    self.landscapeControlView.isNeedProcess = YES;
+    [self.view addSubview:self.landscapeControlView];
+    [self.landscapeControlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.bottom.trailing.mas_equalTo(self.view);
+    }];
+    self.landscapeControlView.hidden = YES;
+    self.landscapeControlView.presenter = self.persenter;
+    [self.landscapeControlView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
+
+    [self.persenter configBigPlay];
+
+    //根据SDK的onPlayerTime改变进度条
+    [self.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"currentPlayOffest" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+        [weakself.middleView.processView setCurrentDate:change[@"new"]];
+        [weakself.landscapeControlView setCurrentDate:change[@"new"]];
+    }];
+}
+
+/// 切换大屏展示window
+- (void)changeDisplayWindow:(NSString *)displayWindowId {
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] isMulti] == NO) {
+        return;
+    }
+    UIView * player1 =  [self.persenter.mainPlayWindow getWindowView];
+    UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
+    NSUInteger player1Index = [self.view.subviews indexOfObject:player1];
+    NSUInteger player2Index = [self.view.subviews indexOfObject:player2];
+    [self.view exchangeSubviewAtIndex:player1Index withSubviewAtIndex:player2Index];
+    if ([displayWindowId isEqualToString:[[LCNewDeviceVideotapePlayManager shareInstance] mobileCameraID]]) {
+//        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(self.view);
+//            make.leading.mas_equalTo(self.view);
+//            make.width.mas_equalTo(self.view);
+//            make.height.mas_equalTo(211);
+//        }];
+//        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.mas_equalTo(player1.mas_bottom);
+//            make.leading.mas_equalTo(player1.mas_leading);
+//            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+//            make.height.mas_equalTo(70);
+//        }];
+        
+        [self.persenter windowBorder:player2 hidden:NO];
+        [self.persenter windowBorder:player1 hidden:YES];
+        
+//        self.persenter.subCameraNameLabel.hidden = YES;
+//        self.persenter.cameraNameLabel.hidden = NO;
+    } else {
+//        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(self.view);
+//            make.leading.mas_equalTo(self.view);
+//            make.width.mas_equalTo(self.view);
+//            make.height.mas_equalTo(211);
+//        }];
+//        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.mas_equalTo(player2.mas_bottom);
+//            make.leading.mas_equalTo(player2.mas_leading);
+//            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+//            make.height.mas_equalTo(70);
+//        }];
+        
+        [self.persenter windowBorder:player2 hidden:YES];
+        [self.persenter windowBorder:player1 hidden:NO];
+        
+//        self.persenter.subCameraNameLabel.hidden = NO;
+//        self.persenter.cameraNameLabel.hidden = YES;
+    }
+    
+    if (self.persenter.displayStyle == LCPlayWindowDisplayStyleFullScreen) {
+        [self configFullScreenUI];
+    } else if (self.persenter.displayStyle == LCPlayWindowDisplayStylePictureInScreen) {
+        [self configPortraitScreenUI];
+    }
+}
+
+
+- (void)configPlayWindow {
     //初始化播放窗口
-    [self.persenter.playWindow getScale];
-    UIView *tempView = [self.persenter.playWindow getWindowView];
-    [self.view addSubview:tempView];
-    [tempView updateConstraintsIfNeeded];
-    [tempView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *player1 = [self.persenter.mainPlayWindow getWindowView];
+    [self.view addSubview:player1];
+    [player1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view);
         make.leading.mas_equalTo(self.view);
         make.width.mas_equalTo(self.view.mas_width);
         make.height.mas_equalTo(211);
     }];
+    
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        UIView * player2 = [self.persenter.subPlayWindow getWindowView];
+        [self.view addSubview:player2];
+        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(player1.mas_bottom);
+            make.leading.mas_equalTo(player1.mas_leading);
+            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+            make.height.mas_equalTo(70);
+        }];
+        [player1 addSubview:self.persenter.cameraNameLabel];
+        [player2 addSubview:self.persenter.subCameraNameLabel];
+        
+        [self.persenter.cameraNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(15);
+            make.top.mas_equalTo(8);
+            make.width.mas_equalTo(68);
+            make.height.mas_equalTo(26);
+        }];
+        
+        [self.persenter.subCameraNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(15);
+            make.top.mas_equalTo(8);
+            make.width.mas_equalTo(68);
+            make.height.mas_equalTo(26);
+        }];
+        
+        if ([[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID isEqualToString:[[LCNewDeviceVideotapePlayManager shareInstance] fixedCameraID]]) {
+            self.persenter.subCameraNameLabel.hidden = NO;
+            self.persenter.cameraNameLabel.hidden = YES;
+            [self changeDisplayWindow:[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID];
+        } else {
+            self.persenter.subCameraNameLabel.hidden = YES;
+            self.persenter.cameraNameLabel.hidden = NO;
+        }
+    }
+}
 
-    [self.persenter loadStatusView];
-
+- (void)configMiddleControlView {
     //创建中间控制栏
-    LCPlayBackVideoControlView *middleView = [LCPlayBackVideoControlView new];
-    middleView.isNeedProcess = YES;
-    middleView.tag = 1;
-    middleView.backgroundColor = [UIColor clearColor];
-    [tempView addSubview:middleView];
+    self.middleView = [LCPlayBackVideoControlView new];
+    self.middleView.isNeedProcess = YES;
+    self.middleView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.middleView];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
+    gradientLayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
     gradientLayer.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor clearColor].CGColor, (__bridge id)[UIColor blackColor].CGColor, nil];
     gradientLayer.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:1], nil];
     gradientLayer.startPoint = CGPointMake(0.0, 0);
     gradientLayer.endPoint = CGPointMake(0.0, 1);
-    [middleView.layer addSublayer:gradientLayer];
+    [self.middleView.layer addSublayer:gradientLayer];
     
-    middleView.items = @[[self.persenter getItemWithType:LCNewVideotapePlayerControlPlay], [self.persenter getItemWithType:LCNewVideotapePlayerControlVoice], [self.persenter getItemWithType:LCNewVideotapePlayerControlFullScreen]];
-    //[self.persenter getMiddleControlItems];
-    [middleView.processView setStartDate:self.persenter.videoManager.cloudVideotapeInfo ? self.persenter.videoManager.cloudVideotapeInfo.beginDate : self.persenter.videoManager.localVideotapeInfo.beginDate EndDate:self.persenter.videoManager.cloudVideotapeInfo ? self.persenter.videoManager.cloudVideotapeInfo.endDate : self.persenter.videoManager.localVideotapeInfo.endDate];
-    middleView.processView.valueChangeEndBlock = ^(float offset, NSDate *_Nonnull currentStartTiem) {
-        [weakself.persenter onChangeOffset:offset];
+    self.middleView.items = @[[self.persenter getItemWithType:LCNewVideotapePlayerControlPlay], [self.persenter getItemWithType:LCNewVideotapePlayerControlVoice], [self.persenter getItemWithType:LCNewVideotapePlayerControlFullScreen]];
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        self.middleView.items = @[[self.persenter getItemWithType:LCNewVideotapePlayerControlPlay], [self.persenter getItemWithType:LCNewVideotapePlayerControlVoice], [self.persenter getItemWithType:LCNewVideotapePlayerControlUpDown], [self.persenter getItemWithType:LCNewVideotapePlayerControlFullScreen]];
+    }
+    [self.middleView.processView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
+    weakSelf(self);
+    self.middleView.processView.valueChangeEndBlock = ^(float offset, NSDate *_Nonnull currentStartTiem) {
+        [weakself.persenter onChangeOffset:offset playDate:currentStartTiem];
     };
-    
-    [middleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(tempView.mas_bottom);
-        make.leading.trailing.mas_equalTo(tempView);
-        make.height.mas_equalTo(80);
+    UIView *player1 = [self.persenter.mainPlayWindow getWindowView];
+    [self.middleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(player1);
+        make.leading.trailing.mas_equalTo(self.view);
+        make.height.mas_equalTo(60);
+    }];
+}
+
+- (void)configBottomControlView {
+    UIView *player1 = [self.persenter.mainPlayWindow getWindowView];
+    self.bottomControlView = [[UIView alloc] init];
+    self.bottomControlView.backgroundColor = [UIColor lccolor_c7];
+    [self.view addSubview:self.bottomControlView];
+    [self.bottomControlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.mas_equalTo(self.view);
+        make.top.mas_equalTo(player1.mas_bottom);
     }];
     
     CGFloat funcItemNum = [self isCanChangePlayTimes] ? 3 : 2;
-    
     CGFloat leading = (self.view.frame.size.width - 55.0 * funcItemNum) / (funcItemNum + 1);
-
-    LCButton *snapBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlSnap];
-    snapBtn.tag = 101;
-    [self.view addSubview:snapBtn];
-    [snapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.mas_equalTo(self.view).offset(leading);
+    self.snapBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlSnap];
+    [self.bottomControlView addSubview:self.snapBtn];
+    [self.snapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_equalTo(self.bottomControlView).offset(leading);
         make.height.width.mas_equalTo(55);
-        make.top.mas_equalTo(tempView.mas_bottom).offset(178);
+        make.top.mas_equalTo(self.bottomControlView).offset(178);
     }];
-
-    LCButton *pvrBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlPVR];
-    pvrBtn.tag = 102;
-    [self.view addSubview:pvrBtn];
-    [pvrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.mas_equalTo(snapBtn.mas_trailing).offset(leading);
+    
+    self.pvrBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlPVR];
+    [self.bottomControlView addSubview:self.pvrBtn];
+    [self.pvrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_equalTo(self.snapBtn.mas_trailing).offset(leading);
         make.height.width.mas_equalTo(55);
-        make.top.mas_equalTo(snapBtn);
+        make.top.mas_equalTo(self.snapBtn);
     }];
     
     if ([self isCanChangePlayTimes]) {
         LCButton *timesBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlTimes];
         timesBtn.tag = 103;
-        [self.view addSubview:timesBtn];
+        [self.bottomControlView addSubview:timesBtn];
         [timesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.mas_equalTo(pvrBtn.mas_trailing).offset(leading);
+            make.leading.mas_equalTo(self.pvrBtn.mas_trailing).offset(leading);
             make.height.width.mas_equalTo(55);
-            make.top.mas_equalTo(pvrBtn);
+            make.top.mas_equalTo(self.pvrBtn);
         }];
     }
-
-    LCButton *downBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlDownload];
-    [downBtn setTitle:@"videotape_download".lcMedia_T forState:UIControlStateNormal];
-    [downBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:141.0/255.0 blue:0.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    downBtn.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:downBtn];
-    [downBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    self.downBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlDownload];
+    [self.downBtn setTitle:@"videotape_download".lcMedia_T forState:UIControlStateNormal];
+    [self.downBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:141.0/255.0 blue:0.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    self.downBtn.backgroundColor = [UIColor whiteColor];
+    [self.bottomControlView addSubview:self.downBtn];
+    [self.downBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.mas_equalTo(self.view);
         if (kIs_iPhoneX) {
             make.height.mas_equalTo(68 + 34);
@@ -209,93 +398,34 @@
         }
         make.centerX.equalTo(self.view);
     }];
-    downBtn.hidden = NO;
-    [self setCornerRadius:15 addRectCorners: UIRectCornerTopLeft | UIRectCornerTopRight withView:downBtn];
-    
-
-    LCNewVideotapeDownloadStatusView *statusView = [LCNewVideotapeDownloadStatusView showDownloadStatusInView:self.view Size:self.persenter.videoManager.cloudVideotapeInfo ? [self.persenter.videoManager.cloudVideotapeInfo.size integerValue] : self.persenter.videoManager.localVideotapeInfo.fileLength];
-    statusView.alpha = 0;
-    statusView.backgroundColor = [UIColor whiteColor]; //whiteColor
-    statusView.tag = 105;
-    statusView.cancleBlock = ^{
-        [weakself.persenter stopDownload];
-    };
-    [self setCornerRadius:15 addRectCorners: UIRectCornerTopLeft | UIRectCornerTopRight withView:statusView];
-    
-    [statusView.KVOController observe:self.persenter.videoManager keyPath:@"downloadQueue" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        LCNewVideotapeDownloadInfo *info = [weakself.persenter.videoManager currentDownloadInfo];
-        if (![info.recordId isEqualToString:weakself.persenter.videoManager.currentVideotapeId]) {
-            return;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            downBtn.enabled = YES;
-            NSLog(@"下载信息%@", info);
-            if (info.donwloadStatus != -1) {
-                NSLog(@"下载状态:%ld", info.donwloadStatus);
-            }
-            if (info.donwloadStatus == LCVideotapeDownloadStatusFail || info.donwloadStatus == LCVideotapeDownloadStatusCancle || info.donwloadStatus == LCVideotapeDownloadStatusTimeout || info.donwloadStatus == LCVideotapeDownloadStatusKeyError || info.donwloadStatus == LCVideotapeDownloadStatusEnd) {
-                //SDK当下载失败或下载完成时，隐藏状态图
-                [statusView dismiss];
-                statusView.recieve = 0;
-                statusView.totalRevieve = 0;
-                NSLog(@"隐藏下载进度条%ld", info.donwloadStatus);
-            } else {
-                NSLog(@"展示下载进度条");
-                NSLog(@"下载状态:%ld", info.donwloadStatus);
-                statusView.alpha = 1;
-                statusView.recieve = info.recieve;
-            }
-        });
-        
-    }];
-
-    LCPlayBackLandscapeControlView *landscapeControlView = [LCPlayBackLandscapeControlView new];
-    landscapeControlView.delegate = self.persenter;
-    landscapeControlView.isNeedProcess = YES;
-    [self.view addSubview:landscapeControlView];
-    [landscapeControlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(self.view);
-    }];
-    landscapeControlView.hidden = YES;
-    landscapeControlView.presenter = self.persenter;
-    self.persenter.landscapeControlView = landscapeControlView;
-    [landscapeControlView setStartDate:self.persenter.videoManager.cloudVideotapeInfo ? self.persenter.videoManager.cloudVideotapeInfo.beginDate : self.persenter.videoManager.localVideotapeInfo.beginDate EndDate:self.persenter.videoManager.cloudVideotapeInfo ? self.persenter.videoManager.cloudVideotapeInfo.endDate : self.persenter.videoManager.localVideotapeInfo.endDate];
-    
-    [self.persenter configBigPlay];
-
-    //根据SDK的onPlayerTime改变进度条
-    [self.KVOController observe:self.persenter.videoManager keyPath:@"currentPlayOffest" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        [middleView.processView setCurrentDate:change[@"new"]];
-        [landscapeControlView setCurrentDate:change[@"new"]];
-    }];
+    self.downBtn.hidden = NO;
+    [self setCornerRadius:15 addRectCorners: UIRectCornerTopLeft | UIRectCornerTopRight withView:self.downBtn];
 }
 
 /// 是否可倍速播放
 - (BOOL)isCanChangePlayTimes {
-    if (self.persenter.videoManager.cloudVideotapeInfo != nil) {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo != nil) {
         //云录像都支持倍速
         return YES;
     } else {
-        return [self.persenter.videoManager.currentDevice.ability containsString:@"LRRF"];
+        return [[LCNewDeviceVideotapePlayManager shareInstance].currentDevice.ability containsString:@"LRRF"];
     }
 }
 
 - (BOOL)shouldAutorotate {
-    if (self.persenter.videoManager.isFullScreen && self.persenter.videoManager.isLockFullScreen) {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen) {
         return NO;
     }
     
-    if (!self.persenter.videoManager.isFullScreen &&
+    if (![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen &&
         ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft ||
          [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
-        self.persenter.videoManager.isFullScreen = !self.persenter.videoManager.isFullScreen;
-        self.persenter.videoManager.isLockFullScreen = NO;
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
     }
 
-    if (self.persenter.videoManager.isFullScreen && [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen && [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
         //横转竖
-        self.persenter.videoManager.isFullScreen = !self.persenter.videoManager.isFullScreen;
-        self.persenter.videoManager.isLockFullScreen = NO;
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
     }
 
     return YES;
@@ -306,23 +436,240 @@
 }
 
 - (void)configFullScreenUI {
-    UIView *playWindow =  [self.persenter.playWindow getWindowView];
-    [self.view updateConstraintsIfNeeded];
-    [playWindow mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.right.bottom.left.mas_equalTo(self.view);
-        make.height.mas_equalTo(self.view);
-        make.width.mas_equalTo(self.view);
+    [self setupNavigationBarIsBlack:NO];
+    self.persenter.displayStyle = LCPlayWindowDisplayStyleFullScreen;
+    self.landscapeControlView.hidden = NO;
+    [self.landscapeControlView hiddenTopView:NO];
+    [self.landscapeControlView setFullScreenLayout:YES];
+    self.downloadStatusView.hidden = YES;
+    self.middleView.hidden = YES;
+    self.bottomControlView.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
+    self.view.backgroundColor = [UIColor lccolor_c8];
+    UIView *player1 =  [self.persenter.mainPlayWindow getWindowView];
+    [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.mas_equalTo(self.view);
+        make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
+        make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
+    }];
+    UIView * player2 = [self.persenter.subPlayWindow getWindowView];
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        if ([[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID isEqualToString:[[LCNewDeviceVideotapePlayManager shareInstance] fixedCameraID]]) {
+            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.leading.mas_equalTo(self.view);
+                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
+            }];
+            
+            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(player2.mas_bottom);
+                make.leading.mas_equalTo(player2.mas_leading);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT*0.333 : SCREEN_WIDTH*0.333);
+                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+            }];
+            self.persenter.subCameraNameLabel.hidden = NO;
+            self.persenter.cameraNameLabel.hidden = YES;
+        } else {
+            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.leading.mas_equalTo(self.view);
+                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
+            }];
+            
+            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(player1.mas_bottom);
+                make.leading.mas_equalTo(player1.mas_leading);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT*0.333 : SCREEN_WIDTH*0.333);
+                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+            }];
+            
+            self.persenter.subCameraNameLabel.hidden = YES;
+            self.persenter.cameraNameLabel.hidden = NO;
+        }
+    }
+    
+    [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.trailing.bottom.mas_equalTo(self.view);
+    }];
+    
+    [self.persenter.errorBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+
+    [self.persenter.bigPlayBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
     }];
 }
 
 - (void)configPortraitScreenUI {
-    UIView *playWindow =  [self.persenter.playWindow getWindowView];
-    [self.view updateConstraintsIfNeeded];
-    [playWindow mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self setupNavigationBarIsBlack:NO];
+    self.persenter.displayStyle = LCPlayWindowDisplayStylePictureInScreen;
+    self.landscapeControlView.hidden = YES;
+    [self.landscapeControlView hiddenTopView:YES];
+    self.middleView.hidden = NO;
+    self.downloadStatusView.hidden = NO;
+    self.bottomControlView.hidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
+    self.view.backgroundColor = [UIColor lccolor_c8];
+    UIView *player1 =  [self.persenter.mainPlayWindow getWindowView];
+    [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view);
-        make.left.mas_equalTo(self.view);
+        make.leading.mas_equalTo(self.view);
         make.width.mas_equalTo(self.view);
         make.height.mas_equalTo(211);
+    }];
+    
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        UIView * player2 = [self.persenter.subPlayWindow getWindowView];
+        if ([[LCNewDeviceVideotapePlayManager shareInstance].displayChannelID isEqualToString:[[LCNewDeviceVideotapePlayManager shareInstance] fixedCameraID]]) {
+            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.view);
+                make.leading.mas_equalTo(self.view);
+                make.width.mas_equalTo(self.view);
+                make.height.mas_equalTo(211);
+            }];
+            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(player2.mas_bottom);
+                make.leading.mas_equalTo(player2.mas_leading);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+                make.height.mas_equalTo(70);
+            }];
+            self.persenter.subCameraNameLabel.hidden = NO;
+            self.persenter.cameraNameLabel.hidden = YES;
+        } else {
+            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.view);
+                make.leading.mas_equalTo(self.view);
+                make.width.mas_equalTo(self.view);
+                make.height.mas_equalTo(211);
+            }];
+            
+            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(player1.mas_bottom);
+                make.leading.mas_equalTo(player1.mas_leading);
+                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
+                make.height.mas_equalTo(70);
+            }];
+            self.persenter.subCameraNameLabel.hidden = YES;
+            self.persenter.cameraNameLabel.hidden = NO;
+        }
+    }
+    
+    [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.mas_equalTo(self.view);
+        make.width.mas_equalTo(self.view);
+        make.height.mas_equalTo(211);
+    }];
+    
+    [self.persenter.errorBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(70);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+
+    [self.persenter.bigPlayBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(70);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+}
+
+- (void)configUpDownScreenUI {
+    [self setupNavigationBarIsBlack:YES];
+    self.persenter.displayStyle = LCPlayWindowDisplayStyleUpDownScreen;
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor blackColor] titleColor:[UIColor whiteColor]];
+    self.landscapeControlView.hidden = NO;
+    [self.landscapeControlView hiddenTopView:YES];
+    [self.landscapeControlView setFullScreenLayout:NO];
+    self.downloadStatusView.hidden = YES;
+    self.bottomControlView.hidden = YES;
+    self.middleView.hidden = YES;
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
+        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view).offset(63);
+            make.leading.mas_equalTo(self.view);
+            make.width.mas_equalTo(self.view);
+            make.height.mas_equalTo(211);
+        }];
+        
+        UIView * player1 =  [self.persenter.mainPlayWindow getWindowView];
+        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(player2.mas_bottom).offset(10);
+            make.leading.mas_equalTo(player2.mas_leading);
+            make.width.mas_equalTo(self.view);
+            make.height.mas_equalTo(211);
+        }];
+        
+        self.persenter.subCameraNameLabel.hidden = NO;
+        self.persenter.cameraNameLabel.hidden = NO;
+    } else {
+        UIView * player1 =  [self.persenter.mainPlayWindow getWindowView];
+        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view).offset(63);
+            make.leading.mas_equalTo(self.view);
+            make.width.mas_equalTo(self.view);
+            make.height.mas_equalTo(211);
+        }];
+    }
+
+    
+    [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view).offset(-110);
+    }];
+    
+    [self.persenter.errorBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view).offset(-110);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+
+    [self.persenter.bigPlayBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view).offset(-110);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+}
+
+- (void)setupNavigationBarIsBlack:(BOOL)black {
+    weakSelf(self);
+    LCNAVIGATION_STYLE style = LCNAVIGATION_STYLE_DEFAULT;
+    if (black) {
+        style = LCNAVIGATION_STYLE_DEFAULT_BLACK;
+    }
+    [self lcCreatNavigationBarWith:style buttonClickBlock:^(NSInteger index) {
+        if (index == 0) {
+            ///下载中
+            if ([weakself isDownLoadVideo]) {
+                [LCAlertController showWithTitle:@"device_manager_exit".lcMedia_T message:@"video_tape_download_warnning".lcMedia_T cancelButtonTitle:@"common_cancel".lcMedia_T otherButtonTitle:@"common_confirm".lcMedia_T handler:^(NSInteger index) {
+                    if (index == 1) {
+                        if ([weakself isDownLoadVideo]) {
+                            [weakself.persenter stopDownloadAll];
+                        }
+                        [weakself.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            } else {
+                [weakself.navigationController popViewControllerAnimated:YES];
+            }
+            
+        } else {
+            //跳转设置
+        }
     }];
 }
 
@@ -336,45 +683,19 @@
     [self.persenter onResignActive:sender];
 }
 
-- (void)pushToLogin {
-//    LCBasicViewController *loginVC =  [(LCBasicViewController *)[NSClassFromString(@"LCAccountJointViewController") alloc] init];
-//    LCNavigationController *navi = [[LCNavigationController alloc] initWithRootViewController:loginVC];
-//    [UIApplication sharedApplication].keyWindow.rootViewController = navi;
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.persenter.playWindow setWindowFrame:[self.persenter.playWindow getWindowView].frame];
-    });
+    [self.persenter.mainPlayWindow setWindowFrame:[self.persenter.mainPlayWindow getWindowView].frame];
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        [self.persenter.subPlayWindow setWindowFrame:[self.persenter.subPlayWindow getWindowView].frame];
+    }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
-{
-    UIView *statusView = [self.view viewWithTag:105];
-    UIView *middleView = [self.view viewWithTag: 1];
-    UIView *snapBtn = [self.view viewWithTag: 101];
-    UIView *pvrBtn = [self.view viewWithTag: 102];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
     if (size.width > size.height) {
-        //全屏
-        //statusView.hidden = NO
-        self.persenter.landscapeControlView.hidden = NO;
-        statusView.hidden = YES;
-        snapBtn.hidden = YES;
-        pvrBtn.hidden = YES;
-        middleView.hidden = YES;
         [self configFullScreenUI];
-        self.navigationController.navigationBar.hidden = YES;
     } else {
-        //竖屏
-        self.navigationController.navigationBar.hidden = NO;
-        //延时操作导致横屏尺寸不对修复
         [self configPortraitScreenUI];
-        self.persenter.landscapeControlView.hidden = YES;
-        snapBtn.hidden = NO;
-        pvrBtn.hidden = NO;
-        middleView.hidden = NO;
-        statusView.hidden = NO;
     }
 }
 

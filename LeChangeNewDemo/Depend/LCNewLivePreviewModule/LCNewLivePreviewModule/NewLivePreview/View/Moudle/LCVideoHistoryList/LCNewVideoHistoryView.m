@@ -161,6 +161,14 @@
     }
 }
 
+- (void)setDataArray:(NSMutableArray *)dataArray {
+    if (dataArray.count > 0 && [[LCNewDeviceVideoManager shareInstance] isMulti] && [dataArray[0] isKindOfClass:[LCCloudVideotapeInfo class]]) {
+        _dataArray = [[dataArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.channelId == '0'"]] mutableCopy];
+    } else {
+        _dataArray = dataArray;
+    }
+}
+
 //MARK: - Public Methods
 -(void)reloadData:(NSMutableArray *)dataArys{
     if (!self.videotapeList||dataArys.count==0) {

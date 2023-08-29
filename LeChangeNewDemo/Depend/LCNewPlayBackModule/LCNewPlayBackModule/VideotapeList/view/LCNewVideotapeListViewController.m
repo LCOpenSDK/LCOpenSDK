@@ -115,12 +115,6 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:@"LCNewPlayBackModuleBundle" ofType:@"bundle"];
         NSBundle *mediaBundle = [NSBundle bundleWithPath:path];
         [_cloudVideoList registerNib:[UINib nibWithNibName:@"LCNewVideotapeListCell" bundle:mediaBundle] forCellWithReuseIdentifier:@"LCNewVideotapeListCell"];
-       
-        //云存储过期或未开通
-        if (![self.persenter.videoManager.currentChannelInfo.storageStrategyStatus isEqualToString:@"using"]) {
-             [_cloudVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"device_manager_no_cloud_storage".lcMedia_T];
-        }
-        
         _cloudVideoList.mj_header = [LCMediaRefreshHeader headerWithRefreshingBlock:^{
             [weakself.persenter refreshCloudVideoListWithDate:weakself.dateControl.nowDate];
         }];

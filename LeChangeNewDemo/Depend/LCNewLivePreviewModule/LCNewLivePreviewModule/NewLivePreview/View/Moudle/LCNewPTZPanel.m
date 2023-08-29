@@ -324,7 +324,7 @@
     }
 }
 
--(void)configLandscapeUI {
+- (void)configLandscapeUI {
     
     isLandscape = YES;
     

@@ -14,17 +14,72 @@ import SnapKit
     public var tableView: UITableView = UITableView.init(frame: .zero, style: .grouped)
     
     lazy var topView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 83))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 84))
         view.backgroundColor = UIColor.lccolor_c8()
+        
+        let contentView = UIView(frame: CGRect(x: (self.view.frame.size.width - 250)/2.0, y: 17, width: 250, height: 50))
+        contentView.backgroundColor = UIColor.lc_color(withHexString: "#E5E5E5")
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 15
+        view.addSubview(contentView)
+        
+        let bt1 = UIButton(type: .custom)
+        bt1.layer.masksToBounds = true
+        bt1.layer.cornerRadius = 10
+        bt1.backgroundColor = UIColor.lccolor_c0()
+        bt1.setTitleColor(.lccolor_c41(), for: .normal)
+        bt1.setTitleColor(.white, for: .selected)
+        bt1.frame = CGRect(x: 5, y: 5, width: 120, height: 40)
+        bt1.isSelected = true
+        bt1.tag = 100
+        bt1.setTitle("移动镜头", for: .normal)
+        bt1.titleLabel?.font = .systemFont(ofSize: 14)
+        bt1.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        
+        let bt2 = UIButton(type: .custom)
+        bt2.layer.masksToBounds = true
+        bt2.layer.cornerRadius = 10
+        bt2.backgroundColor = .clear
+        bt2.setTitleColor(.lccolor_c41(), for: .normal)
+        bt2.setTitleColor(.white, for: .selected)
+        bt2.frame = CGRect(x: 125, y: 5, width: 120, height: 40)
+        bt2.setTitle("固定镜头", for: .normal)
+        bt2.titleLabel?.font = .systemFont(ofSize: 14)
+        bt2.tag = 101
+        bt2.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        
+        contentView.addSubview(bt1)
+        contentView.addSubview(bt2)
+        
         return view
     }()
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight.bold)
-        label.text = "device_manager_defence_setting".lc_T
-        return label
-    }()
+    @objc func btnClick(btn: UIButton) {
+        let selected = self.view.viewWithTag(btn.tag) as? UIButton
+        if (selected?.isSelected == true) {
+            return;
+        }
+        
+        if btn.tag == 100 {
+            let otherBtn = self.view.viewWithTag(101) as? UIButton
+            btn.isSelected = true
+            otherBtn?.isSelected = false
+            btn.backgroundColor = .lccolor_c0()
+            otherBtn?.backgroundColor = .clear
+            self.presenter?.selectedChannelId = "0"
+        }
+        
+        if btn.tag == 101 {
+            let otherBtn = self.view.viewWithTag(100) as? UIButton
+            btn.isSelected = true
+            otherBtn?.isSelected = false
+            btn.backgroundColor = .lccolor_c0()
+            otherBtn?.backgroundColor = .clear
+            self.presenter?.selectedChannelId = "1"
+        }
+        
+        self.presenter?.updateMotionDetectionStatus()
+    }
     
     deinit {
         
@@ -32,14 +87,12 @@ import SnapKit
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.topView.addSubview(titleLabel)
-        titleLabel.snp.remakeConstraints { (make) in
-            make.top.bottom.trailing.equalToSuperview()
-            make.leading.equalToSuperview().offset(25)
-        }
+        self.title = "device_manager_defence_setting".lc_T
         
         self.setupTableView()
-        self.tableView.tableHeaderView = self.topView
+        if (self.presenter?.deviceInfo.multiFlag == true) {
+            self.tableView.tableHeaderView = self.topView
+        }
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

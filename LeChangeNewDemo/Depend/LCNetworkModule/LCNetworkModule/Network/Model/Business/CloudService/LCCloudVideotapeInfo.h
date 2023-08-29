@@ -76,11 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) EncryptMode  encryptMode;
 ///录像类型
 @property (nonatomic) NSInteger type;
-
-
-
-
-
+///标记双目相机两个摄像头同一时间段内录取的两段视频
+@property (strong,nonatomic) NSString *pairKey;
 ///索引(仅用于删除)
 @property (strong,nonatomic) NSIndexPath * index;
 

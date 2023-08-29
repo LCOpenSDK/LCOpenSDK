@@ -11,6 +11,7 @@
 #import <LCMediaBaseModule/VPVideoDefines.h>
 #import "LCNewDeviceVideotapePlayManager.h"
 #import "LCPlayBackLandscapeControlView.h"
+#import "LCNewVideotapePlayerViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,29 +21,42 @@ typedef enum : NSUInteger {
     LCNewVideotapePlayerControlTimes,///播放速度
     LCNewVideotapePlayerControlVoice,///音频
     LCNewVideotapePlayerControlFullScreen,///全屏
+    LCNewVideotapePlayerControlUpDown,///上下屏
+    LCNewVideotapePlayerControlPortrait,///竖屏
     LCNewVideotapePlayerControlSnap,///截图
     LCNewVideotapePlayerControlPVR,///录制
     LCNewVideotapePlayerControlDownload///下载
 } LCNewVideotapePlayerControlType;
 
+typedef enum : NSUInteger {
+    LCPlayWindowDisplayStyleFullScreen,// 全屏
+    LCPlayWindowDisplayStyleUpDownScreen,// 上下屏
+    LCPlayWindowDisplayStylePictureInScreen// 画中画
+} LCPlayWindowDisplayStyle;
+
+
+
 @interface LCNewVideotapePlayerPersenter : NSObject
 
 /// 容器
-@property (weak, nonatomic) UIViewController *container;
+@property (weak, nonatomic) LCNewVideotapePlayerViewController *container;
 
 /// 播放器
-@property (copy, nonatomic) LCOpenSDK_PlayBackWindow * playWindow;
+@property (strong, nonatomic) LCOpenSDK_PlayBackWindow *mainPlayWindow;
+
+/// 子播放窗口播放器
+@property (strong, nonatomic) LCOpenSDK_PlayBackWindow *subPlayWindow;
+
+/// 播放窗口
+@property (strong, nonatomic) UILabel *cameraNameLabel;
+
+/// 子播放窗口
+@property (strong, nonatomic) UILabel *subCameraNameLabel;
 
 /// 加载动画
 @property (strong, nonatomic) UIImageView *loadImageview;
 
-/// 录像信息
-@property (strong, nonatomic) LCNewDeviceVideotapePlayManager * videoManager;
-
-/// 横屏控制器
-@property (weak, nonatomic) LCPlayBackLandscapeControlView *landscapeControlView;
-
-@property (nonatomic) NSInteger  sssdate;
+@property (nonatomic) long  sssdate;
 
 /// 重播按钮
 @property (strong, nonatomic) LCButton *bigPlayBtn;
@@ -54,6 +68,12 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) UILabel * errorMsgLab;
 
 @property (nonatomic, strong) UILabel *videoTypeLabel;
+@property (nonatomic, strong) UILabel *subVideoTypeLabel;
+
+/// displayStyle
+@property (nonatomic) LCPlayWindowDisplayStyle displayStyle;
+
+@property (nonatomic, assign) long groupId;
 
 /**
  获取中间控制视图的子模块
@@ -61,13 +81,6 @@ typedef enum : NSUInteger {
  @return 子模块列表
  */
 -(NSMutableArray *)getMiddleControlItems;
-
-/**
- 获取底部控制视图的子模块
- 
- @return 子模块列表
- */
--(NSMutableArray *)getBottomControlItems;
 
 /**
  根据Type获取按钮控件
@@ -78,7 +91,7 @@ typedef enum : NSUInteger {
 
 //MARK: - Public Methods
 
--(void)stopDownload;
+-(void)stopDownloadAll;
 
 /**
  进入前台处理
@@ -113,6 +126,8 @@ typedef enum : NSUInteger {
 
 /// 设置拉流方式
 -(void)setVideoType;
+
+- (void)windowBorder:(UIView *)view hidden:(BOOL)hidden;
 
 @end
 

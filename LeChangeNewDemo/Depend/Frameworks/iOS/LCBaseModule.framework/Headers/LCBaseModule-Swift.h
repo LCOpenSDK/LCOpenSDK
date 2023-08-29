@@ -260,12 +260,6 @@ using UInt = size_t;
 @end
 
 
-
-/// Presenter需要实现的基础协议
-SWIFT_PROTOCOL("_TtP12LCBaseModule14IBasePresenter_")
-@protocol IBasePresenter
-@end
-
 @class NSString;
 @class NSCoder;
 

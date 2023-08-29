@@ -42,21 +42,31 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
             return
         }
         
-        //去除白空格
-        
-        let code = codeString.trimmingCharacters(in: CharacterSet.whitespaces)
-        if LCModuleConfig.shareInstance().isChinaMainland {
-            if self.isPureRDCode(code: code) {
-                return
-            }
-        } else {
-            if self.isValidOverseasCode(code: code) == false {
-                return
-            }
-        }
         
         let qrCode = LCQRCode()
-        qrCode.pharseQRCode(code)
+        if codeString.lc_caseInsensitiveContain(string: "https") {
+            // 网关
+            let strings = codeString.components(separatedBy: " ")
+            if strings.count >= 3 {
+                qrCode.deviceSN = strings[2]
+            }
+            if strings.count >= 4 {
+                qrCode.scCode = strings[3]
+            }
+        } else {
+            //去除白空格
+            let code = codeString.trimmingCharacters(in: CharacterSet.whitespaces)
+            if LCModuleConfig.shareInstance().isChinaMainland {
+                if self.isPureRDCode(code: code) {
+                    return
+                }
+            } else {
+                if self.isValidOverseasCode(code: code) == false {
+                    return
+                }
+            }
+            qrCode.pharseQRCode(code)
+        }
         
         //V3.15.0 序列号二维码规则字母 + 数字，长度 10 - 32位 否则进入手动输入页面
         //如果http或者https开头的

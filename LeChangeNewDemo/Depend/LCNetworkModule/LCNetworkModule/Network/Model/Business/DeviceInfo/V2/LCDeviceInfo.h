@@ -53,11 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 遮罩状态，on-打开 off-关闭
 @property (strong, nonatomic) NSString *cameraStatus;
 
-/// 云存储状态 notExist:未开通套餐，using：开通云存储且没有过期， expired：套餐过期
-@property (strong, nonatomic) NSString *storageStrategyStatus;
-
 /// 设备属于自己；"share"：通过乐橙app共享给此用户；"auth"：通过乐橙PC客户端授权给此用户；"shareAndAuth"：通过乐橙app共享给此用户以及通过乐橙PC客户端授权给此用户；
 @property (strong, nonatomic) NSString *shareStatus;
+
+/// 是否移动镜头
+@property (assign, nonatomic) BOOL movable;
 
 @end
 
@@ -137,6 +137,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// TLS可用
 @property (assign, nonatomic) BOOL tlsEnable;
+
+/// 是否多目相机
+@property (assign, nonatomic) BOOL multiFlag;
 
 /**< 表示支持的配对模式：SmartConfig，SoundWave，SoftAP，LAN，SIMCard   */
 @property (copy, nonatomic) NSString *wifiConfigMode;

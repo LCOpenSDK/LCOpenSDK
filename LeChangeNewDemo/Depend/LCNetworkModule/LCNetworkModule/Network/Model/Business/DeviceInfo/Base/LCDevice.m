@@ -288,7 +288,6 @@
     channel.publicExpire = self.publicExpire;
     channel.publicToken = self.publicToken;
     channel.lastOffLineTime = self.lastOffLineTime;
-    channel.isFrameReversed = self.isFrameReversed;
     channel.csType = self.csType;
     channel.lc_shareState = self.lc_shareState;
     channel.encryptInfo = self.encryptInfo;
@@ -315,7 +314,6 @@
     [aCoder encodeInt:self.remindStatus forKey:@"remindStatus"];
     [aCoder encodeInt64:self.publicExpire forKey:@"publicExpire"];
     [aCoder encodeObject:self.publicToken forKey:@"publicToken"];
-    [aCoder encodeBool:self.isFrameReversed forKey:@"isFrameReversed"];
     [aCoder encodeInt:self.csType forKey:@"csType"];
     [aCoder encodeInt:self.lc_shareState forKey:@"lc_shareState"];
     [aCoder encodeObject:self.encryptInfo forKey:@"encryptInfo"];
@@ -343,7 +341,6 @@
         self.remindStatus = [aDecoder decodeIntForKey:@"remindStatus"];
         self.publicExpire = [aDecoder decodeInt64ForKey:@"publicExpire"];
         self.publicToken = [aDecoder decodeObjectForKey:@"publicToken"];
-        self.isFrameReversed = [aDecoder decodeBoolForKey:@"isFrameReversed"];
         self.csType = [aDecoder decodeIntForKey:@"csType"];
         self.lc_shareState = [aDecoder decodeIntForKey:@"lc_shareState"];
         self.encryptInfo = [aDecoder decodeObjectForKey:@"encryptInfo"];

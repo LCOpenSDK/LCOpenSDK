@@ -40,8 +40,6 @@ class LCMessageItem: NSObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = formatter.date(from: localDate)
-//        let date = NSDate.init(timeIntervalSince1970: timeInter)
-//        let timeStr = NSDate.lc_string(ofTimeInterval: timeInter, format: "HH:mm:ss")
         let timeStr = (date as? NSDate)?.string(withFormat: "HH:mm:ss")
         return timeStr
     }

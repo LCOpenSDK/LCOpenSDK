@@ -20,9 +20,9 @@
 //底部控制按钮
 @property (strong, nonatomic) NSMutableArray *items;
 
-@property (strong,nonatomic)UILabel * startLab;
-
-@property (strong,nonatomic)UILabel * endLab;
+//@property (strong,nonatomic)UILabel * startLab;
+//
+//@property (strong,nonatomic)UILabel * endLab;
 
 //单击手势
 @property(nonatomic, strong) UITapGestureRecognizer *clickGesture;
@@ -93,6 +93,8 @@
     [portrait setImage:LC_IMAGENAMED(@"common_icon_backarrow_white") forState:UIControlStateNormal];
     [portrait mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(topView.mas_left).offset(20);
+        make.width.mas_equalTo(50);
+        make.height.mas_equalTo(40);
         make.centerY.mas_equalTo(topView.mas_centerY);
     }];
     portrait.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
@@ -116,33 +118,8 @@
     bottomView.backgroundColor = [UIColor lc_colorWithHexString:@"#7F000000"];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(54);
+        make.height.mas_equalTo(70);
     }];
-    
-    self.startLab = [UILabel new];
-    self.startLab.hidden = YES;
-    [bottomView addSubview:self.startLab];
-    self.startLab.textAlignment = NSTextAlignmentCenter;
-    self.startLab.textColor = [UIColor lc_colorWithHexString:@"#FFFFFF"];
-    self.startLab.adjustsFontSizeToFitWidth = YES;
-    [self.startLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(bottomView);
-        make.left.mas_equalTo(bottomView).offset(20);
-        make.width.mas_equalTo(80);
-    }];
-    
-    self.endLab = [UILabel new];
-    self.endLab.hidden = YES;
-    self.endLab.textAlignment = NSTextAlignmentCenter;
-    self.endLab.textColor = [UIColor lc_colorWithHexString:@"#FFFFFF"];
-    [bottomView addSubview:self.endLab];
-    self.endLab.adjustsFontSizeToFitWidth = YES;
-    [self.endLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(bottomView);
-        make.right.mas_equalTo(bottomView).offset(-20);
-        make.width.mas_equalTo(80);
-    }];
-    
     
     int index = 0;
     while (index<self.items.count) {
@@ -152,20 +129,9 @@
     }
     [self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:30 leadSpacing:120 tailSpacing:120];
     [self.items mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(bottomView.mas_centerY);
+        make.top.mas_equalTo(bottomView.mas_top).offset(10);
         make.width.height.mas_equalTo(30);
     }];
-}
-
--(void)setStartDate:(NSDate *)startDate EndDate:(NSDate *)endDate{
-    
-//    self.startLab.text = [startDate stringWithFormat:@"HH:mm:ss"];
-//    self.endLab.text = [endDate stringWithFormat:@"HH:mm:ss"];
-}
-
--(void)setCurrentDate:(NSDate *)currentDate{
-    _currentDate = currentDate;
-//    self.startLab.text = [currentDate stringWithFormat:@"HH:mm:ss"];
 }
 
 - (void)refreshTitle:(NSString *)title {

@@ -147,9 +147,6 @@
 		4E0C7CDE2227B33C00FC64A4 /* NSData+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CDA2227B33B00FC64A4 /* NSData+SHA256.m */; };
 		4E0C7CDF2227B33C00FC64A4 /* NSString+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0C7CDB2227B33B00FC64A4 /* NSString+SHA256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E0C7CE02227B33C00FC64A4 /* NSString+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C7CDC2227B33C00FC64A4 /* NSString+SHA256.m */; };
-		4E37A1862123F83D003FB5B8 /* IBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1832123F83D003FB5B8 /* IBaseModel.swift */; };
-		4E37A1872123F83D003FB5B8 /* IBasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1842123F83D003FB5B8 /* IBasePresenter.swift */; };
-		4E37A1882123F83D003FB5B8 /* IBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37A1852123F83D003FB5B8 /* IBaseView.swift */; };
 		4E3E8B4C213FEC080085B5E5 /* IVideoDecrytionAlertHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E3E8B4B213FEBA40085B5E5 /* IVideoDecrytionAlertHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E451191242B7D4600AF8AF6 /* UITextField+LeChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45118B242B7D4600AF8AF6 /* UITextField+LeChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E451192242B7D4600AF8AF6 /* LCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45118C242B7D4600AF8AF6 /* LCTextField.m */; };
@@ -392,9 +389,6 @@
 		4E0C7CDA2227B33B00FC64A4 /* NSData+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA256.m"; sourceTree = "<group>"; };
 		4E0C7CDB2227B33B00FC64A4 /* NSString+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA256.h"; sourceTree = "<group>"; };
 		4E0C7CDC2227B33C00FC64A4 /* NSString+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA256.m"; sourceTree = "<group>"; };
-		4E37A1832123F83D003FB5B8 /* IBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBaseModel.swift; sourceTree = "<group>"; };
-		4E37A1842123F83D003FB5B8 /* IBasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBasePresenter.swift; sourceTree = "<group>"; };
-		4E37A1852123F83D003FB5B8 /* IBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBaseView.swift; sourceTree = "<group>"; };
 		4E3E8B4B213FEBA40085B5E5 /* IVideoDecrytionAlertHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVideoDecrytionAlertHelper.h; sourceTree = "<group>"; };
 		4E45118B242B7D4600AF8AF6 /* UITextField+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LeChange.h"; sourceTree = "<group>"; };
 		4E45118C242B7D4600AF8AF6 /* LCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTextField.m; sourceTree = "<group>"; };
@@ -737,16 +731,6 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		4E37A1822123F6EE003FB5B8 /* MVPBaseProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				4E37A1832123F83D003FB5B8 /* IBaseModel.swift */,
-				4E37A1842123F83D003FB5B8 /* IBasePresenter.swift */,
-				4E37A1852123F83D003FB5B8 /* IBaseView.swift */,
-			);
-			path = MVPBaseProtocol;
-			sourceTree = "<group>";
-		};
 		4E45118A242B7D1400AF8AF6 /* Input */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,7 +925,6 @@
 				4E50D8FE2125A84700F37EFC /* Helper */,
 				4E50D927212658FE00F37EFC /* Manager */,
 				4E9B4A6F2123C08300A1D322 /* Module */,
-				4E37A1822123F6EE003FB5B8 /* MVPBaseProtocol */,
 				4E9B4A552123B47E00A1D322 /* Support Files */,
 				4E50D9032125A89D00F37EFC /* View */,
 			);
@@ -1336,7 +1319,6 @@
 				4E0C7CCE2227B21300FC64A4 /* UIDevice+IPhoneModel.m in Sources */,
 				4E50D9022125A86B00F37EFC /* LCSetJurisdictionHelper.m in Sources */,
 				8FDB92AF242F73050014D8E6 /* UINavigationController+Imou.m in Sources */,
-				4E37A1882123F83D003FB5B8 /* IBaseView.swift in Sources */,
 				8FDB92E0242F735B0014D8E6 /* Date+Ex.swift in Sources */,
 				04CC841C2518860B009EB27E /* UIApplication+LeChange.m in Sources */,
 				04CC843625188630009EB27E /* NSData+Base64.m in Sources */,
@@ -1375,7 +1357,6 @@
 				04CC84282518861F009EB27E /* NSString+MD5.m in Sources */,
 				4E0C7CE02227B33C00FC64A4 /* NSString+SHA256.m in Sources */,
 				4E451193242B7D4600AF8AF6 /* UITextField+LeChange.m in Sources */,
-				4E37A1872123F83D003FB5B8 /* IBasePresenter.swift in Sources */,
 				4E081E3821252F8E00D6D66F /* LCModuleConfig.m in Sources */,
 				4E0C7CDE2227B33C00FC64A4 /* NSData+SHA256.m in Sources */,
 				8FDB93192431808F0014D8E6 /* UIScreen+Ex.swift in Sources */,
@@ -1396,7 +1377,6 @@
 				8FDB92D9242F735B0014D8E6 /* Dictionary+Ex.swift in Sources */,
 				4E50D9062125A8A600F37EFC /* LCAlertController.m in Sources */,
 				03EF18A329B5E1C700052A44 /* LCSheetGuideView.m in Sources */,
-				4E37A1862123F83D003FB5B8 /* IBaseModel.swift in Sources */,
 				045FE39A24E38DC200A422EA /* NSDate+Add.m in Sources */,
 				8FDB92AE242F73050014D8E6 /* UIViewController+LeChange.m in Sources */,
 				8FDB92B0242F73050014D8E6 /* UIButton+Helper.m in Sources */,

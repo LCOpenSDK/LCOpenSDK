@@ -105,8 +105,8 @@ import LCBaseModule
             self.formatBtn.isHidden = false
             statusLabel.text = "storage_normal".lc_T
             //memorySize()
-            self.total = ((dic[AnyHashable("totalBytes")] as? Float) ?? 0.0)/(1024*1024*1024)
-            self.used = ((dic[AnyHashable("usedBytes")] as? Float) ?? 0.0)/(1024*1024*1024)
+            self.total = Float(((dic[AnyHashable("totalBytes")] as? Double) ?? 0.0)/(1024.0*1024*1024))
+            self.used = Float(((dic[AnyHashable("usedBytes")] as? Double) ?? 0.0)/(1024.0*1024*1024))
             let useable = total - used
             var useableSt:String = ""
             var usedSt:String = ""

@@ -104,6 +104,8 @@ static NSMutableDictionary *deviceInfosPool;
 + (NSString *)token {
     NSString *subAccountToken = [[NSUserDefaults standardUserDefaults] objectForKey:SUBACCOUNTTOKEN];
     return subAccountToken;
+//    NSString *managerToken = [[NSUserDefaults standardUserDefaults] objectForKey:MANAGERTOKEN];
+//    return managerToken;
 }
 
 + (NSString *)managerToken {

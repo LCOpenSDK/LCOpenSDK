@@ -11,13 +11,13 @@
 		0311271129E39EB900B333C6 /* LCAddDeviceModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0419D49D2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle */; };
 		032664B82903E29C0082EAC9 /* LCDeviceDetailModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */; };
 		0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */; };
+		034504E62A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */; };
+		034504E72A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */; };
 		03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */; };
 		037976D128FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */; };
 		037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */; };
 		037ABAE22996373A003EF295 /* Video.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037ABAE12996373A003EF295 /* Video.xcassets */; };
-		03AA3B272A1B0A63008F3359 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AA3B252A1B0A48008F3359 /* LCOpenSDKDynamic.framework */; };
-		03AA3B282A1B0A64008F3359 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03AA3B252A1B0A48008F3359 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE03A28F5618B00BCE307 /* LCDeviceDetailModule.framework */; };
 		0401AF5B250A3D1000F8E1D6 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */; };
 		04092ACA28F42061006D861D /* LCMessageModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04092AC928F42061006D861D /* LCMessageModule.xcassets */; };
@@ -185,7 +185,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				03AA3B282A1B0A64008F3359 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
+				034504E72A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +199,7 @@
 		032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCDeviceDetailModuleBundle.bundle; path = Depend/Frameworks/iOS/LCDeviceDetailModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		0339E17729A5E30800056106 /* LCOpenApiErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCOpenApiErrorCode.h; sourceTree = "<group>"; };
 		0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DeviceDetail.xcassets; sourceTree = "<group>"; };
+		034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListViewController.swift; sourceTree = "<group>"; };
 		03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListPresenter.swift; sourceTree = "<group>"; };
 		0368EDEF28463E0000DDB53A /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
@@ -206,7 +207,6 @@
 		037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCNewPlayBackModuleBundle.bundle; path = Depend/Frameworks/iOS/LCNewPlayBackModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCMessageModuleBundle.bundle; path = Depend/Frameworks/iOS/LCMessageModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037ABAE12996373A003EF295 /* Video.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Video.xcassets; sourceTree = "<group>"; };
-		03AA3B252A1B0A48008F3359 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03ABE03528F5618B00BCE307 /* LCDeviceDetailModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCDeviceDetailModule.xcodeproj; path = Depend/LCDeviceDetailModule/LCDeviceDetailModule.xcodeproj; sourceTree = "<group>"; };
 		0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = Depend/Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
 		0409299728F3FFB9006D861D /* LCMessageModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCMessageModule.xcodeproj; path = Depend/LCMessageModule/LCMessageModule.xcodeproj; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 				10520D3E23A366CE00B4564A /* MediaPlayer.framework in Frameworks */,
 				10520D3C23A366C700B4564A /* CoreAudio.framework in Frameworks */,
 				AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */,
-				03AA3B272A1B0A63008F3359 /* LCOpenSDKDynamic.framework in Frameworks */,
+				034504E62A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Frameworks */,
 				0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,7 +659,7 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03AA3B252A1B0A48008F3359 /* LCOpenSDKDynamic.framework */,
+				034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */,
 				0368EDF928463E1C00DDB53A /* MetalKit.framework */,
 				0368EDEF28463E0000DDB53A /* Metal.framework */,
 				04ADF5EC250F4251004028B1 /* libc++.tbd */,
@@ -1186,7 +1186,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.0426.1116;
+				CURRENT_PROJECT_VERSION = 2023.0805.1747;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
@@ -1226,7 +1226,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2023042701;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1307,7 +1307,7 @@
 				"CODE_SIGN_IDENTITY[sdk=*]" = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.0426.1116;
+				CURRENT_PROJECT_VERSION = 2023.0805.1747;
 				DEVELOPMENT_TEAM = NE9RR4AYQ2;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
@@ -1321,6 +1321,7 @@
 					"$(PROJECT_DIR)/Depend/Resource",
 					"$(PROJECT_DIR)/Depend/Frameworks/iOS",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeChangeDemo/Config/PCH/LCPrefixHeader.pch";
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
@@ -1354,7 +1355,7 @@
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 2023042701;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1415,8 +1416,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imou.leopen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ImouOpenSDK_AppStore;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_AppStore;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_AdHoc;
 				SWIFT_OBJC_BRIDGING_HEADER = "LeChangeDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64e armv7 armv7s arm64";

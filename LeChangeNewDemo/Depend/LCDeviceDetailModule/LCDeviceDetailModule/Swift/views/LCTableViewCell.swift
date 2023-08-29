@@ -88,7 +88,7 @@ public class LCTableViewCell: UITableViewCell, UITableViewCellProtocol {
     }()
 
     lazy var arrow: UIImageView = {  //箭头
-        let imageView = UIImageView.init(image: UIImage.init(named: "common_btn_next"))
+        let imageView = UIImageView.init(image: UIImage.lc_IMAGENAMED("common_btn_next", withBundleName: "LCDeviceDetailModuleBundle"))
         return imageView
     }()
     

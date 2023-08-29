@@ -17,7 +17,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
     [self addGestureRecognizer:tap];

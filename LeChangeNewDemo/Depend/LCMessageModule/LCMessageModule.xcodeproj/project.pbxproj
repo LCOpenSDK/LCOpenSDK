@@ -29,12 +29,10 @@
 		04092AE928F50885006D861D /* MMCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AE728F50885006D861D /* MMCalendarCell.m */; };
 		04092AEA28F50885006D861D /* MMCalendarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AE828F50885006D861D /* MMCalendarCell.h */; };
 		04092AEC28F5088F006D861D /* MMCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04092AEB28F5088F006D861D /* MMCalendarCell.xib */; };
-		04092AEF28F50D73006D861D /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04092AEE28F50D73006D861D /* Masonry.framework */; };
 		04092AF228F51095006D861D /* NSString+MessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AF028F51095006D861D /* NSString+MessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04092AF328F51095006D861D /* NSString+MessageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AF128F51095006D861D /* NSString+MessageModule.m */; };
 		04092AF628F51312006D861D /* NSDate+MessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AF428F51312006D861D /* NSDate+MessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04092AF728F51312006D861D /* NSDate+MessageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AF528F51312006D861D /* NSDate+MessageModule.m */; };
-		04092AF928F5145D006D861D /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04092AF828F5145D006D861D /* MBProgressHUD.framework */; };
 		04092AFC28F515BD006D861D /* LCMessageProcessHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 04092AFA28F515BD006D861D /* LCMessageProcessHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04092AFD28F515BD006D861D /* LCMessageProcessHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04092AFB28F515BD006D861D /* LCMessageProcessHUD.m */; };
 		04092B0528F5244D006D861D /* LCMessageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04092B0428F5244D006D861D /* LCMessageDefine.swift */; };
@@ -99,12 +97,10 @@
 		04092AE728F50885006D861D /* MMCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCalendarCell.m; sourceTree = "<group>"; };
 		04092AE828F50885006D861D /* MMCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCalendarCell.h; sourceTree = "<group>"; };
 		04092AEB28F5088F006D861D /* MMCalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMCalendarCell.xib; sourceTree = "<group>"; };
-		04092AEE28F50D73006D861D /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../../../Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
 		04092AF028F51095006D861D /* NSString+MessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MessageModule.h"; sourceTree = "<group>"; };
 		04092AF128F51095006D861D /* NSString+MessageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MessageModule.m"; sourceTree = "<group>"; };
 		04092AF428F51312006D861D /* NSDate+MessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+MessageModule.h"; sourceTree = "<group>"; };
 		04092AF528F51312006D861D /* NSDate+MessageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MessageModule.m"; sourceTree = "<group>"; };
-		04092AF828F5145D006D861D /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = ../../../Frameworks/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		04092AFA28F515BD006D861D /* LCMessageProcessHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageProcessHUD.h; sourceTree = "<group>"; };
 		04092AFB28F515BD006D861D /* LCMessageProcessHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageProcessHUD.m; sourceTree = "<group>"; };
 		04092B0428F5244D006D861D /* LCMessageDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageDefine.swift; sourceTree = "<group>"; };
@@ -140,10 +136,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0485D7CB28FE4AB500835A7F /* LCNetworkModule.framework in Frameworks */,
-				04092AF928F5145D006D861D /* MBProgressHUD.framework in Frameworks */,
 				0420903428F6E34E00800D39 /* SDWebImage.framework in Frameworks */,
 				03401B362906FBA300F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
-				04092AEF28F50D73006D861D /* Masonry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,15 +174,12 @@
 			isa = PBXGroup;
 			children = (
 				0409298E28F3FFB9006D861D /* LCMessageModule.h */,
-				0420900D28F6961B00800D39 /* Model */,
 				04092B0628F53BEB006D861D /* Router */,
 				04092AFF28F521FC006D861D /* Define */,
 				04092AD528F507A7006D861D /* View */,
 				04092AC428F41CC2006D861D /* Category */,
-				04092AB828F4126A006D861D /* Extension */,
 				040929AA28F400E2006D861D /* MessageList */,
 				0420907928F9050E00800D39 /* MessageEdit */,
-				04092AED28F50D34006D861D /* Frameworks */,
 				0409298F28F3FFB9006D861D /* LCMessageModule.docc */,
 			);
 			path = LCMessageModule;
@@ -252,13 +243,6 @@
 			path = LCMessageModuleBundle;
 			sourceTree = "<group>";
 		};
-		04092AB828F4126A006D861D /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		04092AC428F41CC2006D861D /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,15 +286,6 @@
 			path = CalendarView;
 			sourceTree = "<group>";
 		};
-		04092AED28F50D34006D861D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				04092AF828F5145D006D861D /* MBProgressHUD.framework */,
-				04092AEE28F50D73006D861D /* Masonry.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
 		04092AFE28F515C5006D861D /* ProcessHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,13 +309,6 @@
 				04092B0728F53C07006D861D /* LCMessageRouter.swift */,
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		0420900D28F6961B00800D39 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0420903228F6E34E00800D39 /* Frameworks */ = {

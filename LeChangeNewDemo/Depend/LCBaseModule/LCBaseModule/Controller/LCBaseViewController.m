@@ -72,11 +72,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-	NSString* cName = [NSString stringWithFormat:@"%@", [self class], nil];
-	NSLog(@"viewDidDisappear------%@------", cName);
-	
 	[self viewDidDisapperProcess];
-
 }
 
 #pragma mark - Left Navigation Item

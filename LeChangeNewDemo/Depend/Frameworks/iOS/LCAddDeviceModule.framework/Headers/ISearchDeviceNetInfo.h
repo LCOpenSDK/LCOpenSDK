@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <LCOpenSDKDynamic/LCOpenSDKDynamic.h>
 
+
 @protocol ISearchDeviceNetInfo <NSObject>
 @property (nonatomic, assign) NSInteger searchSequence; /**< 搜索的序号，用来标记是属于哪次搜索 */
 @property (nonatomic, assign) BOOL isVaild;//是否有效  非NETSDK返回数据  用于上层标记在一个周期内有没有收到该设备数据

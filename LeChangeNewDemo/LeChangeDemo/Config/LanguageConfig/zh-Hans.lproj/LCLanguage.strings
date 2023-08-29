@@ -101,6 +101,7 @@
 "setting_device_device_name" = "设备名称";
 "setting_device_device_info_title" = "设备详情";
 "setting_device_device_model" = "设备型号";
+"setting_device_camera_name" = "镜头名称";
 "setting_device_serial_number" = "序列号";
 "setting_device_thumb" = "预览图设置";
 "setting_device_edit_name_placeholder" = "请输入名称";

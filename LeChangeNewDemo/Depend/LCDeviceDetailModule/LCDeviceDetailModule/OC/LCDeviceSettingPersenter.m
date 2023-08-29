@@ -13,6 +13,7 @@
 #import <LCBaseModule/LCBasicPresenter.h>
 #import <KVOController/KVOController.h>
 #import <Masonry/Masonry.h>
+#import "LCDeviceDetailModule/LCDeviceDetailModule-Swift.h"
 
 @interface LCDeviceSettingPersenter ()<UIImagePickerControllerDelegate, UITextFieldDelegate>
 
@@ -67,6 +68,9 @@
         if ([self isMultipleChannels]) {
             return 1;
         }
+        if ([self.deviceInfo multiFlag]) {
+            return 4;
+        }
         return 3;
     }
     if (self.style == LCDeviceSettingStyleVersionUp) {
@@ -77,6 +81,9 @@
     }
     if (self.style == LCDeviceSettingStyleDeviceNameEdit) {
         return 1;
+    }
+    if (self.style == CDeviceSettingStyleCameraNameEdit) {
+        return 2;
     }
     return 0;
 }
@@ -109,9 +116,9 @@
 - (UITableViewCell *)getDeviceInfoPageSetCellForIndex:(NSIndexPath *)indexPath TableView:(UITableView *)tableview {
     __weak typeof(self) weakSelf = self;
     if (indexPath.row == 0) {
-        LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell"];
+        LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell" forIndexPath:indexPath];
         cell.title = @"setting_device_device_name".lc_T;
-        cell.subtitle = self.deviceInfo.name;//[self isMultipleChannels] ? self.channelInfo.channelName : self.deviceInfo.name;
+        cell.subtitle = self.deviceInfo.name;
         cell.block = ^(NSInteger index) {
             LCDeviceSettingPersenter *presenter = [[LCDeviceSettingPersenter alloc] initDeviceInfo:weakSelf.deviceInfo channelId:weakSelf.channelInfo.channelId];
             presenter.style = LCDeviceSettingStyleDeviceNameEdit;
@@ -121,38 +128,80 @@
             deviceSetting.title = @"setting_device_device_info_title".lc_T;
             [weakSelf.viewController.navigationController pushViewController:deviceSetting animated:YES];
         };
+        [cell setArrowImage:[UIImage LC_IMAGENAMED:@"common_btn_next" withBundleName:@"LCDeviceDetailModuleBundle"]];
         cell.deviceSnapHidden = YES;
         return cell;
-    } else if (indexPath.row == 1) {
-        LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell"];
-        LCDeviceSettingSubtitleCellModel *model = [[LCDeviceSettingSubtitleCellModel alloc] init];
-        model.title = @"setting_device_device_model".lc_T;
-        model.subtitle = self.deviceInfo.deviceModel;
-        cell.model = model;
-        return cell;
+    }
+    if ([self.deviceInfo multiFlag]) {
+        if (indexPath.row == 1) {
+            LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell" forIndexPath:indexPath];
+            cell.title = @"setting_device_camera_name".lc_T;
+            [cell setArrowImage:[UIImage LC_IMAGENAMED:@"common_btn_next" withBundleName:@"LCDeviceDetailModuleBundle"]];
+            cell.deviceSnapHidden = YES;
+            cell.block = ^(NSInteger index) {
+                LCDeviceDetailCameraNameEditViewController *viewController = [LCDeviceDetailCameraNameEditViewController xibInstance];
+                viewController.deviceInfo = weakSelf.deviceInfo;
+                [weakSelf.viewController.navigationController pushViewController:viewController animated:YES];
+            };
+            return cell;
+        } else if (indexPath.row == 2) {
+            LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell" forIndexPath:indexPath];
+            LCDeviceSettingSubtitleCellModel *model = [[LCDeviceSettingSubtitleCellModel alloc] init];
+            model.title = @"setting_device_device_model".lc_T;
+            model.subtitle = self.deviceInfo.deviceModel;
+            cell.model = model;
+            return cell;
+        } else {
+            LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell" forIndexPath:indexPath];
+            cell.title = @"setting_device_serial_number".lc_T;
+            cell.subtitle = self.deviceInfo.deviceId;
+            [cell setArrowImage:[UIImage imageNamed:@"setting_icon_copy"]];
+            cell.block = ^(NSInteger index) {
+                if (index == 1) {
+                    UIPasteboard *board = [UIPasteboard generalPasteboard];
+                    board.string = self.deviceInfo.deviceId;
+                    [LCProgressHUD showMsg:@"setting_device_had_paste".lc_T];
+                }
+            };
+            cell.deviceSnapHidden = YES;
+            return cell;
+        }
     } else {
-        LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell"];
-        cell.title = @"setting_device_serial_number".lc_T;
-        cell.subtitle = self.deviceInfo.deviceId;
-        [cell setArrowImage:[UIImage imageNamed:@"setting_icon_copy"]];
-        cell.block = ^(NSInteger index) {
-            if (index == 1) {
-                UIPasteboard *board = [UIPasteboard generalPasteboard];
-                board.string = self.deviceInfo.deviceId;
-                [LCProgressHUD showMsg:@"setting_device_had_paste".lc_T];
-            }
-        };
-        cell.deviceSnapHidden = YES;
-        return cell;
+        if (indexPath.row == 1) {
+            LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell" forIndexPath:indexPath];
+            LCDeviceSettingSubtitleCellModel *model = [[LCDeviceSettingSubtitleCellModel alloc] init];
+            model.title = @"setting_device_device_model".lc_T;
+            model.subtitle = self.deviceInfo.deviceModel;
+            cell.model = model;
+            return cell;
+        } else {
+            LCDeviceSettingArrowCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingArrowCell" forIndexPath:indexPath];
+            cell.title = @"setting_device_serial_number".lc_T;
+            cell.subtitle = self.deviceInfo.deviceId;
+            [cell setArrowImage:[UIImage imageNamed:@"setting_icon_copy"]];
+            cell.block = ^(NSInteger index) {
+                if (index == 1) {
+                    UIPasteboard *board = [UIPasteboard generalPasteboard];
+                    board.string = self.deviceInfo.deviceId;
+                    [LCProgressHUD showMsg:@"setting_device_had_paste".lc_T];
+                }
+            };
+            cell.deviceSnapHidden = YES;
+            return cell;
+        }
     }
 }
 
 - (LCDeviceSwitchCell *)getDeployPageCellForIndex:(NSIndexPath *)indexPath TableView:(UITableView *)tableview {
     __weak typeof(self) weakself = self;
-    __block LCDeviceSwitchCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSwitchCell"];
+    __block LCDeviceSwitchCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSwitchCell" forIndexPath:indexPath];
     [cell setEnable:[self.deviceInfo.status isEqualToString:@"online"] ? YES : NO];
     cell.title = [NSString stringWithFormat:@"%@-%@", @"setting_device_deployment_switch".lc_T, self.channelInfo.channelName];
-    [LCDeviceManagerInterface getDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:@"motionDetect" success:^(BOOL isOpen) {
+    NSString *enableType = @"motionDetect";
+    if (self.deviceInfo.multiFlag == true) {
+        enableType = @"crMotionDetect";
+    }
+    [LCDeviceManagerInterface getDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:enableType success:^(BOOL isOpen) {
         [cell setSwitch:isOpen];
     } failure:^(LCError * _Nonnull error) {
         [cell setSwitch:NO];
@@ -184,7 +233,11 @@
 
 - (void)setDeviceAlarmStatus:(BOOL)value cell:(LCDeviceSwitchCell *)cell indexPath:(NSIndexPath *)indexPath {
     [LCProgressHUD showHudOnView:nil];
-    [LCDeviceManagerInterface setDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:@"motionDetect" enable:value success:^(BOOL success) {
+    NSString *enableType = @"motionDetect";
+    if (self.deviceInfo.multiFlag == true) {
+        enableType = @"crMotionDetect";
+    }
+    [LCDeviceManagerInterface setDeviceCameraStatus:self.deviceInfo.deviceId channelId:[self currentChannelID:indexPath] enableType:enableType enable:value success:^(BOOL success) {
         [LCProgressHUD hideAllHuds:nil];
     } failure:^(LCError * _Nonnull error) {
         [LCProgressHUD hideAllHuds:nil];
@@ -195,7 +248,7 @@
 
 - (LCDeviceSettingSubtitleCell *)getVersionPageCellForIndex:(NSIndexPath *)indexPath TableView:(UITableView *)tableview {
     __weak typeof(self) weakself = self;
-    LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell"];
+    LCDeviceSettingSubtitleCell *cell = [tableview dequeueReusableCellWithIdentifier:@"LCDeviceSettingSubtitleCell" forIndexPath:indexPath];
     if (indexPath.row == 0) {
         LCDeviceSettingSubtitleCellModel *model = [[LCDeviceSettingSubtitleCellModel alloc] init];
         model.title = @"setting_device_now_version".lc_T;
@@ -287,7 +340,7 @@
 }
 
 - (UITableViewCell *)getEditNamelForIndex:(NSIndexPath *)indexPath TableView:(UITableView *)tableview {
-    UITableViewCell *cell = [tableview dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    UITableViewCell *cell = [tableview dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     LCCTextField *textField = [LCCTextField lcTextFieldWithResult:^(NSString *_Nonnull result) {
         result = [result vaildDeviceName];
         if (result.length == 0 || result == nil) {
@@ -334,10 +387,7 @@
         TO DEV:此处的名称输入限制开发者可以根据自己的需要进行处理，设备对名称并不限制
     **/
     
-    if (![string isEqualToString:@""] && temp.length > 40) {
-        return NO;
-    }
-    if (![string isEqualToString:@""] && result.length > 10) {
+    if (![string isEqualToString:@""] && result.length > 64) {
         return NO;
     }
     if (![string isEqualToString:@""] && ![string isVaildDeviceName]) {
@@ -361,7 +411,7 @@
 
 //多通设备的通道
 - (BOOL)isMultipleChannels {
-    if ([self.deviceInfo.channelNum intValue] > 1) {
+    if ([self.deviceInfo.channelNum intValue] > 1 && self.deviceInfo.multiFlag == NO) {
         return YES;
     }
     return NO;
@@ -387,7 +437,7 @@
     if (channelNum == 1) {
         channelId = [LCModuleConfig shareInstance].isChinaMainland ? @"0" : nil;
     } else {
-        channelId = nil;//self.channelInfo.channelId;
+        channelId = nil;
     }
     if (self.curDeviceName == nil || self.curDeviceName.length == 0) {
         [LCProgressHUD showMsg:@"device_please_input_device_name".lc_T inView:self.viewController.view];
@@ -401,14 +451,8 @@
             weakself.deviceInfo.channels[0].channelName = self.curDeviceName;
             NSLog(@"DeviceDetails：%s更改单通道设备名成功：%@", __FUNCTION__, self.curDeviceName);
         } else {
-//            if ([self isMultipleChannels]) {
-//                weakself.channelInfo.channelName = weakself.channelInfo.channelName;//self.curDeviceName;
-//                weakself.deviceInfo.name = self.curDeviceName;
-//                NSLog(@"DeviceDetails：%s更改多通道设备名成功：%@", __FUNCTION__, self.curDeviceName);
-//            } else {
-                weakself.deviceInfo.name = self.curDeviceName;
-                NSLog(@"DeviceDetails：%s更改多通道设备名成功：%@", __FUNCTION__, self.curDeviceName);
-//            }
+            weakself.deviceInfo.name = self.curDeviceName;
+            NSLog(@"DeviceDetails：%s更改多通道设备名成功：%@", __FUNCTION__, self.curDeviceName);
         }
         
         NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];

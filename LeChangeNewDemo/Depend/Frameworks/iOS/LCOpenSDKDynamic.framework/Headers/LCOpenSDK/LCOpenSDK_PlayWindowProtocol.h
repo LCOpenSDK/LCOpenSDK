@@ -19,6 +19,10 @@
 /// @param index Playback Window Index    zh:播放窗口索引
 - (id)initPlayWindow:(CGRect)frame Index:(NSInteger)index;
 
+/// window index    zh:窗口索引
+/// @return Playback Window Index
+- (NSInteger)index;
+
 /// De initialize the playback window    zh:反初始化播放窗口
 - (void)uninitPlayWindow;
 

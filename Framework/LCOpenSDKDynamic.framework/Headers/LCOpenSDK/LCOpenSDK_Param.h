@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
     LCOpenSDK_EnhanceMode_Level5 = 4
 };
 
-@interface LCOpenSDK_Param : NSObject
+@interface LCOpenSDK_Param : NSObject <NSCopying>
 
 //管理员token/用户token
 @property (nonatomic, copy, nonnull)  NSString  *accessToken;
@@ -58,11 +58,13 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, copy, nullable) NSString  *playToken;
 //TLS
 @property (nonatomic, assign) BOOL useTLS;
+//是否展示播放window, 默认展示
+@property (nonatomic, assign) BOOL showWindow;
 
 @end
 
 /// 实时播放
-@interface LCOpenSDK_ParamReal : LCOpenSDK_Param
+@interface LCOpenSDK_ParamReal : LCOpenSDK_Param <NSCopying>
 
 // 流媒体HD/SD模式
 @property (nonatomic, assign) DEFINITION_MODE  defiMode;
@@ -72,98 +74,13 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, assign) NSInteger        imageSize;
 // 是否开启音频 默认开启
 @property (nonatomic, assign) BOOL        isOpenAudio;
-
-@end
-
-/// 录像播放
-@interface LCOpenSDK_ParamRecord : LCOpenSDK_Param
-
-// 是否开启音频 默认开启
-@property (nonatomic, assign) BOOL        isOpenAudio;
-
-/**
- @abstract Initializes a new instance.
-
- @warning This class does not support initialization methods. Please use its subclass(LCOpenSDK_ParamDeviceRecord/LCOpenSDK_ParamCloudRecord).
- */
-- (instancetype)init __attribute__((unavailable("Please use its subclass(LCOpenSDK_ParamDeviceRecord/LCOpenSDK_ParamCloudRecord) instead")));
-
-/**
- @abstract Allocates memory and initializes a new instance into it.
-
- @warning This class does not support initialization methods. Please use its subclass(LCOpenSDK_ParamDeviceRecord/LCOpenSDK_ParamCloudRecord).
- */
-+ (instancetype)new __attribute__((unavailable("Please use its subclass(LCOpenSDK_ParamDeviceRecord/LCOpenSDK_ParamCloudRecord) instead")));;
-
-@end
-
-/// 本地文件播放
-@interface LCOpenSDK_ParamDeviceRecord : LCOpenSDK_ParamRecord
-/// Initializes a new instance.
-- (instancetype)init;
-
-/// Allocates memory and initializes a new instance into it.
-+ (instancetype)new;
-// 设备本地录像文件名
-@property (nonatomic, copy, nonnull) NSString  *fileName;
-// 开始时间
-@property (nonatomic) long                      beginTime;
-// 结束时间
-@property (nonatomic) long                      endTime;
-// 偏移时间
-@property (nonatomic) double                    offsetTime;
-// 是否使用长链接优化
-@property (nonatomic) BOOL                      isOpt;
-// 流媒体HD/SD模式
-@property (nonatomic) DEFINITION_MODE           defiMode;
-
-@end
-
-/// 本地文件按文件名
-@interface LCOpenSDK_ParamDeviceRecordFileName : LCOpenSDK_Param
-// 设备本地录像文件名
-@property (nonatomic, copy, nonnull) NSString  *fileName;
-// 偏移时间
-@property (nonatomic) double                    offsetTime;
-// 是否使用长链接优化
-@property (nonatomic) BOOL                      isOpt;
-
-@end
-
-/// 本地文件按时间
-@interface LCOpenSDK_ParamDeviceRecordUTCTime : LCOpenSDK_Param
-
-// 流媒体HD/SD模式
-@property (nonatomic) DEFINITION_MODE  defiMode;
-// 开始时间
-@property (nonatomic) long             beginTime;
-// 结束时间
-@property (nonatomic) long             endTime;
-// 是否使用长链接优化
-@property (nonatomic) BOOL             isOpt;
-
-@end
-
-/// 云录像
-@interface LCOpenSDK_ParamCloudRecord : LCOpenSDK_ParamRecord
-
-- (instancetype)init;
-
-+ (instancetype)new;
-
-// 录像ID
-@property (nonatomic, copy, nonnull) NSString *recordRegionID;
-// 偏移时间
-@property (nonatomic) double                   offsetTime;
-// 录像类型
-@property (nonatomic) RECORD_TYPE              recordType;
-// 超时时间
-@property (nonatomic) NSInteger                timeOut;
+// 是否辅助帧默认关闭
+@property (nonatomic, assign) BOOL        isAssistFrame;
 
 @end
 
 /// 对讲(设备级对讲，通道为-1,通道级为对应通道号)
-@interface LCOpenSDK_ParamTalk : LCOpenSDK_Param
+@interface LCOpenSDK_ParamTalk : LCOpenSDK_Param <NSCopying>
 
 // 是否使用长链接优化
 @property (nonatomic) BOOL  isOpt;
@@ -196,10 +113,10 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 
 @interface LCOpenSDK_PTZControllerInfo : NSObject
 /// Direction of head rotation zh:云台转动方向
-@property (nonatomic, copy)NSString *operation;
+@property (nonatomic, copy) NSString *operation;
 /// The head movement duration (ms) must be greater than 0. The device will rotate according to the set duration. If the duration is too long, the device will rotate once and reach the boundary
 /// zh:云台移动时长（ms)，时长必须大于0，设备会根据设置时长进行转动，时长过大会导致设备旋转一周到达边界
-@property (nonatomic,assign)int duration;
+@property (nonatomic,assign) int duration;
 
 @end
 

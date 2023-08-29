@@ -86,7 +86,11 @@ class LCMessageListController: UIViewController {
     }
     
     private func initialData() {
-        navBar.configTitle(self.presenter.channelInfo.channelName)
+        if (self.presenter.deviceInfo.multiFlag) {
+            navBar.configTitle(self.presenter.deviceInfo.name)
+        } else {
+            navBar.configTitle(self.presenter.channelInfo.channelName)
+        }
     }
     
     private func retry() {

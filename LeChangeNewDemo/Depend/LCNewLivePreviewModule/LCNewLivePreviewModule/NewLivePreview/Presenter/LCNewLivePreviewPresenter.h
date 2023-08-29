@@ -18,6 +18,8 @@ typedef enum : NSUInteger {
     LCNewLivePreviewControlPlay,///播放/暂停
     LCNewLivePreviewControlClarity,///清晰度
     LCNewLivePreviewControlVoice,///音频
+    LCNewLivePreviewControlUpDownScreen,///上下屏
+    LCNewLivePreviewControlPictureInScreen,///画中画
     LCNewLivePreviewControlFullScreen,///全屏
     LCNewLivePreviewControlPTZ,///云台
     LCNewLivePreviewControlSnap,///截图
@@ -33,6 +35,12 @@ typedef enum : NSUInteger {
     NewBorderViewTop,// 上·
     NewBorderViewBottom// 下
 } NewBorderViewDirection;
+
+typedef enum : NSUInteger {
+    LCPlayWindowDisplayStyleFullScreen,// 全屏
+    LCPlayWindowDisplayStyleUpDownScreen,// 上下屏
+    LCPlayWindowDisplayStylePictureInScreen// 画中画
+} LCPlayWindowDisplayStyle;
 
 @interface LCNewLivePreviewControlItem : NSObject
 
@@ -68,17 +76,25 @@ typedef enum : NSUInteger {
 /// 容器
 @property (weak, nonatomic) LCNewLivePreviewViewController *liveContainer;
 
-/// 播放器
+/// 播放窗口
 @property (strong, nonatomic) LCOpenSDK_PlayRealWindow * playWindow;
+
+/// 子播放窗口播放器
+@property (strong, nonatomic) LCOpenSDK_PlayRealWindow * subPlayWindow;
+
+/// 播放窗口
+@property (strong, nonatomic) UILabel *cameraNameLabel;
+
+/// 子播放窗口
+@property (strong, nonatomic) UILabel *subCameraNameLabel;
+
+
 
 ///对讲
 @property (strong, nonatomic) LCOpenSDK_AudioTalk *talker;
 
 ///录像文件列表
 @property (strong, nonatomic) NSMutableArray *videotapeList;
-
-/// 视频播放管理者
-@property (weak, nonatomic) LCNewDeviceVideoManager *videoManager;
 
 /// 重播按钮
 @property (strong, nonatomic) LCButton *bigPlayBtn;
@@ -95,6 +111,8 @@ typedef enum : NSUInteger {
 /// defaultImageView
 @property (strong, nonatomic) UIImageView *defaultImageView;
 
+@property (strong, nonatomic) UIImageView *subDefaultImageView;
+
 @property (weak, nonatomic) LCNewVideoHistoryView *historyView;
 
 @property (nonatomic, strong) UIView *qualityView;
@@ -102,6 +120,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIView *LandScapeQualityView;
 
 @property (nonatomic, strong) UILabel *videoTypeLabel;
+
+@property (nonatomic, strong) UILabel *subVideoTypeLabel;
 /// 边界警告视图，上
 @property (nonatomic, strong) UIImageView *borderIVTop;
 /// 边界警告视图，下
@@ -110,6 +130,10 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIImageView *borderIVLeft;
 /// 边界警告视图，右
 @property (nonatomic, strong) UIImageView *borderIVRight;
+/// displayStyle
+@property (nonatomic) LCPlayWindowDisplayStyle displayStyle;
+
+@property (nonatomic, assign) long groupId;
 
 //MARK: - Public Methods
 
@@ -118,7 +142,7 @@ typedef enum : NSUInteger {
 
  @return 子模块列表
  */
--(NSMutableArray *)getMiddleControlItems;
+- (NSMutableArray *)getMiddleControlItems:(BOOL)isMultiple;
 
 /**
  获取底部控制视图的子模块
@@ -126,6 +150,13 @@ typedef enum : NSUInteger {
  @return 子模块列表
  */
 -(NSMutableArray *)getBottomControlItems;
+
+/**
+ 获取底部控制视图的子模块
+ 
+ @return 子模块列表
+ */
+-(NSMutableArray *)getUpDownControlItems;
 
 /**
  云台控制
@@ -187,5 +218,9 @@ typedef enum : NSUInteger {
 
 - (void)refreshBottomControlItems;
 - (void)refreshMiddleControlItems;
+
+- (void)windowBorder:(UIView *)view hidden:(BOOL)hidden;
+
+- (void)loadStatusView;
 
 @end

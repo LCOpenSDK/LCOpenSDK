@@ -7,6 +7,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface LCNewVideotapePlayerPersenter (Control)
+/// 上下屏
+- (void)onUpDownScreen:(LCButton *)btn;
+
+/// 竖屏
+- (void)onPortraitScreen:(LCButton *)btn;
+
 /// 全屏
 /// @param btn btn description
 - (void)onFullScreen:(LCButton *)btn;
@@ -30,14 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击录制
 - (void)onRecording;
 
-/// 点击锁定全屏
-/// @param btn btn description
--(void)onLockFullScreen:(LCButton *)btn;
-
-/// 点击下载
-/// @param btn btn description
-- (void)onDownload:(LCButton *)btn;
-
 /// 暂停播放
 - (void)pausePlay;
 
@@ -46,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 改变进度
 /// @param offsetTime offsetTime description
--(void)onChangeOffset:(NSInteger)offsetTime;
+-(void)onChangeOffset:(NSInteger)offsetTime playDate:(NSDate *)playDate;
 
 /// 开始播放
 /// @param offsetTime offsetTime description

@@ -21,29 +21,21 @@
 /// @return Listener pointer   zh:监听对象指针
 - (id<LCOpenSDK_TalkerListener>)getListener;
 
-/// Play voice intercom   zh:播放语音对讲
-/// @param accessToken administrator token/user token   zh:管理员token／用户token
-/// @param deviceID Device ID    zh:设备ID
-/// @param psk device key    zh:设备密钥
-/// @param isOpt Whether to use long link optimization    zh:是否使用长链接优化
-/// @return interface call returned   0 successful, -1 failed   zh:接口调用返回值    0, 成功 －1, 失败
-- (NSInteger)playTalk:(NSString*)accessToken devID:(NSString*)deviceID psk:(NSString*)psk optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playTalk: instead");
-
 /// Play voice intercom    zh:开始对讲
 /// @param paramTalk Intercom parameter model    zh:对讲参数模型
-/// @return interface call returned  0 successful,  -1 failed     zh:0 接口调用成功, -1接口调用失败
+/// @return interface call returned  0 successful,  -1 failed
 - (NSInteger)playTalk:(LCOpenSDK_ParamTalk *)paramTalk;
 
 /// Stop voice intercom    zh:停止对讲
-/// @return interface call returns  0 success, -1 failure    zh:接口调用返回值  0 成功, -1 失败
+/// @return interface call returns  0 success, -1 failure
 - (NSInteger)stopTalk;
 
 /// Turn on sound    zh:开启声音
-/// @return interface call returns  0 success, -1 failure    zh:接口调用返回值  0 成功, -1 失败
+/// @return interface call returns  0 success, -1 failure
 - (NSInteger)playSound;
 
 /// Turn sound off    zh:关闭声音
-/// @return interface call returns  0 success, -1 failure    zh:接口调用返回值  0 成功, -1 失败
+/// @return interface call returns  0 success, -1 failure
 - (NSInteger)stopSound;
 
 @end

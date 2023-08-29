@@ -42,6 +42,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param PTZControllerInfo model
 - (void)controlMovePTZ:(LCOpenSDK_PTZControllerInfo *)PTZControllerInfo;
 
+/// Add the play window to the group    zh:将播放窗口加入到分组中
+/// @param groupId group id    zh:视频播放组Id
+/// @param isGroupBase group base     zh:分组基准
+- (BOOL)addToPlayGroup:(long)groupId isGroupBase:(BOOL)isGroupBase;
+
+/// hide video rendering    zh:隐藏视频渲染
+/// @param hidden hidden
+- (void)hideVideoRender:(BOOL)hidden;
+
 @end
 
 NS_ASSUME_NONNULL_END

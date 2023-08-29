@@ -30,10 +30,10 @@ static const void *KEY_RIGHTBTN = @"navigitionrightBtn";
     UIImage *backImage = [UIImage imageNamed:(@"common_icon_nav_back")];
     UIImageView *backImageView = [[UIImageView alloc] initWithImage:backImage];
     LCButton *backBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 30, 30);
+    backBtn.frame = CGRectMake(0, 0, 50, 44);
     backBtn.tag = 9000;
     [backBtn addTarget:self action:@selector(navigationBarClick:) forControlEvents:UIControlEventTouchUpInside];
-    backImageView.frame = CGRectMake(0, (30-backImage.size.height)/2.0, backImage.size.width, backImage.size.height);
+    backImageView.frame = CGRectMake(0, (44-backImage.size.height)/2.0, backImage.size.width, backImage.size.height);
     [backBtn addSubview:backImageView];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [self.navigationItem setLeftBarButtonItem:backItem];
@@ -46,9 +46,8 @@ static const void *KEY_RIGHTBTN = @"navigitionrightBtn";
     lightBtn.tag = 9001;
 //    [lightBtn setImage:[UIImage imageNamed:@"login_icon_user"] forState:UIControlStateNormal];
     lightBtn.hidden = YES;
-    lightBtn.frame = CGRectMake(0, 0, 30, 30);
+    lightBtn.frame = CGRectMake(0, 0, 50, 44);
     [lightBtn addTarget:self action:@selector(navigationBarClick:) forControlEvents:UIControlEventTouchUpInside];
-    rightImageView.frame = CGRectMake(30-rightImage.size.width, (30-rightImage.size.height)/2.0, rightImage.size.width, rightImage.size.height);
     [lightBtn addSubview:rightImageView];
     UIBarButtonItem *lightItem = [[UIBarButtonItem alloc] initWithCustomView:lightBtn];
     [self.navigationItem setRightBarButtonItem:lightItem];
@@ -62,32 +61,40 @@ static const void *KEY_RIGHTBTN = @"navigitionrightBtn";
             backBtn.tintColor = [UIColor lccolor_c60];
         }
         break;
+        case LCNAVIGATION_STYLE_DEFAULT_BLACK: {
+            backBtn.tintColor = [UIColor lccolor_c43];
+            backImageView.image = [UIImage imageNamed:(@"common_icon_backarrow_white")];
+        }
+        break;
         case LCNAVIGATION_STYLE_LIGHT: {
             lightBtn.hidden = NO;
             backBtn.tintColor = [UIColor lccolor_c60];
             rightImageView.image = [UIImage imageNamed:(@"nav_flashlight_off")];
-//            [lightBtn setImage:[UIImage imageNamed:(@"nav_flashlight_off")] forState:UIControlStateNormal];
         }
         break;
         case LCNAVIGATION_STYLE_DEVICELIST: {
             lightBtn.hidden = NO;
             backBtn.tintColor = [UIColor lccolor_c60];
             rightImageView.image = [UIImage imageNamed:(@"common_icon_nav_adddevice")];
-//            [lightBtn setImage:[UIImage imageNamed:(@"common_icon_nav_adddevice")] forState:UIControlStateNormal];
         }
         break;
         case LCNAVIGATION_STYLE_LIVE: {
             lightBtn.hidden = NO;
             backBtn.tintColor = [UIColor lccolor_c60];
             rightImageView.image = [UIImage imageNamed:(@"home_icon_device_setting")];
-//            [lightBtn setImage:[UIImage imageNamed:(@"home_icon_device_setting")] forState:UIControlStateNormal];
+        }
+        break;
+        case LCNAVIGATION_STYLE_LIVE_BLACK: {
+            lightBtn.hidden = NO;
+            backBtn.tintColor = [UIColor lccolor_c43];
+            backImageView.image = [UIImage imageNamed:(@"common_icon_backarrow_white")];
+            rightImageView.image = [UIImage imageNamed:(@"home_icon_device_setting_w")];
         }
         break;
         case LCNAVIGATION_STYLE_SUBMIT: {
             lightBtn.hidden = NO;
             backBtn.tintColor = [UIColor lccolor_c60];
             rightImageView.image = [UIImage imageNamed:(@"setting_icon_check")];
-//            [lightBtn setImage:[UIImage imageNamed:(@"setting_icon_check")] forState:UIControlStateNormal];
         }
         break;
 
@@ -95,7 +102,7 @@ static const void *KEY_RIGHTBTN = @"navigitionrightBtn";
             break;
     }
     
-    rightImageView.frame = CGRectMake(30-rightImageView.image.size.width, (30-rightImageView.image.size.height)/2.0, rightImageView.image.size.width, rightImageView.image.size.height);
+    rightImageView.frame = CGRectMake(50-rightImageView.image.size.width, (44-rightImageView.image.size.height)/2.0, rightImageView.image.size.width, rightImageView.image.size.height);
 }
 
 //MARK: - Private Methods

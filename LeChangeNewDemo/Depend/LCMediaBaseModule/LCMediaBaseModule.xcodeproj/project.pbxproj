@@ -120,7 +120,6 @@
 			children = (
 				04871BB728F28279009E0540 /* View */,
 				04871BA828F2790B009E0540 /* Manager */,
-				04C4B73628F11FCE00344C5C /* CustomView */,
 				04257CAD28E2CA9F0062C0F1 /* Define */,
 				04257CA028E2CA3C0062C0F1 /* Category */,
 				04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */,
@@ -219,13 +218,6 @@
 				04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */,
 			);
 			path = RefreshView;
-			sourceTree = "<group>";
-		};
-		04C4B73628F11FCE00344C5C /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

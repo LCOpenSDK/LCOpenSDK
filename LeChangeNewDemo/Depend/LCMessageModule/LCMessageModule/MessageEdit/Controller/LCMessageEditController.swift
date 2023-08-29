@@ -72,7 +72,7 @@ class LCMessageEditController: UIViewController {
     
     //MARK: - @objc func
     @objc func deleteClick() {
-        LCAlertView.lc_ShowAlert(title: "message_module_delete_message_tip".lcMessage_T, detail: "message_module_delete_message_confirm".lcMessage_T, confirmString: "message_module_confirm_delete".lcMessage_T, cancelString: "message_module_cancel".lcMessage_T) { isConfirmSelected in
+        LCAlertView.lc_ShowAlert(title: "message_module_delete_message_tip".lcMessage_T, detail: "message_module_delete_message_confirm".lcMessage_T, confirmString: "mobile_common_delete".lcMessage_T, cancelString: "message_module_cancel".lcMessage_T) { isConfirmSelected in
             if isConfirmSelected {
                 self.presenter.deleteMessageAlarms()
             }

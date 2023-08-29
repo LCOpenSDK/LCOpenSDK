@@ -10,10 +10,6 @@
 
 @interface LCNewVideotapePlayProcessView ()
 
-//@property (strong,nonatomic)UILabel * startLab;
-
-//@property (strong,nonatomic)UILabel * endLab;
-
 @property (strong,nonatomic)NSDate * endDate;
 
 @property (strong,nonatomic)NSDate * startDate;
@@ -28,16 +24,11 @@
 - (void)setStartDate:(NSDate *)startDate EndDate:(NSDate *)endDate {
     self.endDate = endDate;
     self.startDate = startDate;
-//    self.startLab.text = [self.startDate stringWithFormat:@"HH:mm:ss"];
-//    self.endLab.text = [self.endDate stringWithFormat:@"HH:mm:ss"];
     NSTimeInterval during = [self.endDate timeIntervalSinceDate:self.startDate];
     self.silder.maximumValue = during;//将最大值设置为差值
 }
 
 - (void)configFullScreenUI {
-//    self.backgroundColor = [UIColor lc_colorWithHexString:@"#00FFFFFF"];
-//    [self.startLab setHidden:YES];
-//    [self.endLab setHidden:YES];
     [self.silder mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(self);
         make.centerY.mas_equalTo(self);
@@ -45,17 +36,6 @@
 }
 
 - (void)configPortraitScreenUI {
-//   self.backgroundColor = [UIColor lc_colorWithHexString:@"#3E3E3E"];
-//    [self.startLab mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.bottom.mas_equalTo(self);
-//        make.width.mas_equalTo(45);
-//    }];
-    
-//    [self.endLab mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.right.bottom.mas_equalTo(self);
-//        make.width.mas_equalTo(45);
-//    }];
-    
     [self.silder mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.mas_equalTo(self.mas_leading).offset(5);
         make.trailing.mas_equalTo(self.mas_trailing).offset(-5);
@@ -125,7 +105,7 @@
     }
     _currentDate = currentDate;
     //如果当前不在滑动中
-    if (self.canRefreshSlider) {
+    if (self.canRefreshSlider && self.startDate) {
         //获取当前解码时间相对于开始时间的偏移量
         NSTimeInterval offest = [currentDate timeIntervalSinceDate:self.startDate];
         NSLog(@"异常跳针OFF:%f",offest);

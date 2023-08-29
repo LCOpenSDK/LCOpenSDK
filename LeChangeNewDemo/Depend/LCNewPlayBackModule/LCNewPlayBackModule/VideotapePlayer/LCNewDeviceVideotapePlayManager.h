@@ -32,24 +32,62 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LCNewDeviceVideotapePlayManager : LCNewDeviceVideoManager
+@interface LCNewDeviceVideotapePlayManager : NSObject
 
-+ (instancetype)manager;
++ (instancetype)shareInstance;
 
 /// 云录像信息
 @property (strong, nonatomic) LCCloudVideotapeInfo *cloudVideotapeInfo;
 
+/// 子通道云录像信息
+@property (strong, nonatomic) LCCloudVideotapeInfo *subCloudVideotapeInfo;
+
 /// 本地录像信息
 @property (strong, nonatomic) LCLocalVideotapeInfo *localVideotapeInfo;
 
-/// 当前播放偏移量
-@property (strong,nonatomic) NSDate * currentPlayOffest;
+/// 存在子window
+@property (assign, nonatomic, readonly) BOOL existSubWindow;
 
-/// 当前videotapeid
-@property (strong,nonatomic) NSString * currentVideotapeId;
+/// 当前播放偏移量
+@property (strong, nonatomic) NSDate * currentPlayOffest;
 
 /// 下载队列
 @property (strong, nonatomic) NSMutableDictionary<NSString *, LCNewVideotapeDownloadInfo *> *downloadQueue;
+
+@property (assign, nonatomic, readonly) LCVideotapeDownloadState downloadStates;
+
+@property (assign, nonatomic, readonly) NSInteger recieve;
+
+/// 播放按钮是否处于开启状态（仅是按钮状态，不代表拉流成功）
+@property (nonatomic) BOOL isPlay;
+
+/// 是否处于暂停状态
+@property (nonatomic) BOOL pausePlay;
+
+/// 播放状态（视频拉流状态）
+@property (nonatomic) RTSP_STATE playStatus;
+
+/// 播放速度（视频拉流状态）
+@property (nonatomic) NSInteger playSpeed;
+
+/// 是否打开音频
+@property (nonatomic) BOOL isSoundOn;
+
+/// 是否全屏
+@property (nonatomic) BOOL isFullScreen;
+
+/// 是否开启录制
+@property (nonatomic) BOOL isOpenRecoding;
+
+/// 大窗口播放通道ID
+@property (nonatomic, strong) NSString *displayChannelID;
+
+/// 是否为SD质量
+@property (nonatomic) BOOL isSD;
+
+/// 当前解密密钥
+@property (strong, nonatomic) NSString * currentPsk;
+
 
 /**
  开始下载当前录像
@@ -61,14 +99,22 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return 录像信息
  */
-- (LCNewVideotapeDownloadInfo *)currentDownloadInfo;
+//- (LCNewVideotapeDownloadInfo *)currentDownloadInfo;
 
 /**
  取消录像下载
-
- @param recordId 录像id
  */
-- (void)cancleDownload:(NSString *)recordId;
+- (void)cancleDownloadAll;
+
+- (LCDeviceInfo *)currentDevice;
+
+- (BOOL)isMulti;
+
+/// 固定通道id
+- (NSString *)fixedCameraID;
+
+/// 移动通道id
+- (NSString *)mobileCameraID;
 
 @end
 

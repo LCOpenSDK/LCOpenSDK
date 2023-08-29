@@ -29,6 +29,6 @@ target 'LeChangeDemo' do
   pod 'SAMKeychain', '~> 1.5.3'
   pod 'GTMBase64', '~> 1.0.1'
   # Pods for LeChangeDemo
-  # pod 'LCOpenSDK', '~> 3.12.03'
+  # pod 'LCOpenSDK', '~> 3.12.05'
 
 end

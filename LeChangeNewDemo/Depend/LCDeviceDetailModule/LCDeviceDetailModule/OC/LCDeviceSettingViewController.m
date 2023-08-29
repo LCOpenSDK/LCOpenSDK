@@ -70,15 +70,15 @@
 - (void)setupView {
     __weak typeof(self) weakSelf = self;
     self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
-    self.listView.dataSource = self.presenter;
-    self.listView.tag = 999;
-    self.listView.delegate = self.presenter;
-    [self.listView registerClass:NSClassFromString(@"LCDeviceSwitchCell") forCellReuseIdentifier:@"LCDeviceSwitchCell"];
-    [self.listView registerClass:NSClassFromString(@"UITableViewCell") forCellReuseIdentifier:@"UITableViewCell"];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"LCDeviceDetailModuleBundle" ofType:@"bundle"];
     NSBundle *detailBundle = [NSBundle bundleWithPath:path];
+    [self.listView registerClass:NSClassFromString(@"LCDeviceSwitchCell") forCellReuseIdentifier:@"LCDeviceSwitchCell"];
     [self.listView registerNib:[UINib nibWithNibName:@"LCDeviceSettingArrowCell" bundle:detailBundle] forCellReuseIdentifier:@"LCDeviceSettingArrowCell"];
     [self.listView registerClass:NSClassFromString(@"LCDeviceSettingSubtitleCell") forCellReuseIdentifier:@"LCDeviceSettingSubtitleCell"];
+    [self.listView registerClass:NSClassFromString(@"UITableViewCell") forCellReuseIdentifier:@"UITableViewCell"];
+    
+    self.listView.dataSource = self.presenter;
+    self.listView.delegate = self.presenter;
     [self.view addSubview:self.listView];
     self.listView.rowHeight = UITableViewAutomaticDimension;
     self.listView.estimatedRowHeight = 100.0f;

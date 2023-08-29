@@ -56,9 +56,9 @@
 - (void)setView {
     weakSelf(self);
     
-    self.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];//lc_colorWithHexString:@"#4da7f3"];
+    self.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
     self.lab = [UILabel new];
-    self.lab.text = @"mobile_common_data_downloading1".lcMedia_T;//[NSString stringWithFormat:@"mobile_common_data_downloading".lcMedia_T, self.totalRevieve / (1024.0 * 1024.0), self.size / (1024.0 * 1024.0)];
+    self.lab.text = @"mobile_common_data_downloading1".lcMedia_T;
     [self addSubview:_lab];
     _lab.font = [UIFont fontWithName:@"pingFang SC" size:16.0f];
     _lab.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0];
@@ -100,7 +100,6 @@
     [self addSubview:self.processView];
     [self.processView setProgressTintColor:[UIColor colorWithRed:241.0/255.0 green:141.0/255.0 blue:0.0/255.0 alpha:1.0]];
     [self.processView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //make.left.mas_equalTo(weakself.xiaImage.mas_left);
         make.leading.mas_equalTo(25);
         make.top.mas_equalTo(weakself.lab.mas_bottom).offset(12);
         make.right.mas_equalTo(weakself.closeBtn.mas_left);
@@ -130,9 +129,6 @@
 
 - (void)setRecieve:(NSInteger)recieve {
     _recieve = recieve;
-//    if (recieve == 0) {
-//        self.totalRevieve = 0;
-//    }
     if (recieve == 0) {
         return;
     }

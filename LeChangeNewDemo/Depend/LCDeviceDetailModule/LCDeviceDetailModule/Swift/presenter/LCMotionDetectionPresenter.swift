@@ -23,7 +23,7 @@ import LCNetworkModule
     var selectedChannelInfo: LCChannelInfo?
     
     lazy var adapter: LCMotionDetectionTableViewAdapter = {
-        let adapter = LCMotionDetectionTableViewAdapter(deviceInfo: self.deviceInfo, selectedChannelId: self.selectedChannelId, presenter: self)
+        let adapter = LCMotionDetectionTableViewAdapter(deviceInfo: self.deviceInfo, presenter: self)
         return adapter
     }()
     
@@ -35,12 +35,19 @@ import LCNetworkModule
     /// 更新动检状态
     ///Update motion detection status
     func updateMotionDetectionStatus() {
-        LCDeviceManagerInterface.getDeviceCameraStatus(self.deviceInfo.deviceId, channelId: self.selectedChannelId, enableType: "motionDetect") {[weak self] on in
+        LCProgressHUD.show(on: self.viewController?.view)
+        var enableType = "motionDetect"
+        if self.deviceInfo.multiFlag == true {
+            enableType = "crMotionDetect"
+        }
+        LCDeviceManagerInterface.getDeviceCameraStatus(self.deviceInfo.deviceId, channelId: self.selectedChannelId, enableType: enableType) {[weak self] on in
             let indexPath = self?.adapter.updateMotionDetectionStatue(isOpen: on, isLoading: false) ?? IndexPath(row: 0, section: 0)
             self?.viewController?.tableView.reloadRows(at: [indexPath], with: .none)
+            LCProgressHUD.hideAllHuds(self?.viewController?.view)
         } failure: {[weak self] error in
             let indexPath = self?.adapter.updateMotionDetectionStatue(isOpen: false, isLoading: false) ?? IndexPath(row: 0, section: 0)
             self?.viewController?.tableView.reloadRows(at: [indexPath], with: .none)
+            LCProgressHUD.hideAllHuds(self?.viewController?.view)
         }
     }
     
@@ -86,7 +93,11 @@ import LCNetworkModule
     /// - Parameter open: true or false
     private func deviceAlarmRequest(open: Bool) {
         LCProgressHUD.show(on: self.viewController?.view)
-        LCDeviceManagerInterface.setDeviceCameraStatus(self.deviceInfo.deviceId, channelId: self.selectedChannelId, enableType: "motionDetect", enable: open) { [weak self] success in
+        var enableType = "motionDetect"
+        if self.deviceInfo.multiFlag == true {
+            enableType = "crMotionDetect"
+        }
+        LCDeviceManagerInterface.setDeviceCameraStatus(self.deviceInfo.deviceId, channelId: self.selectedChannelId, enableType: enableType, enable: open) { [weak self] success in
             LCProgressHUD.hideAllHuds(self?.viewController?.view)
             let indexPath = self?.adapter.updateMotionDetectionStatue(isOpen: open, isLoading: false) ?? IndexPath(row: 0, section: 0)
             self?.viewController?.tableView.reloadRows(at: [indexPath], with: .none)

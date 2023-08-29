@@ -31,9 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 播放速度（视频拉流状态）
 @property (nonatomic) NSInteger playSpeed;
 
-/// 是否为SD质量
-@property (nonatomic) BOOL isSD;
-
 /// 是否打开音频
 @property (nonatomic) BOOL isSoundOn;
 
@@ -49,20 +46,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否开启录制
 @property (nonatomic) BOOL isOpenRecoding;
 
-/// 是否锁定全屏
-@property (nonatomic) BOOL isLockFullScreen;
-
-/// 当前通道索引
-@property (nonatomic) NSInteger currentChannelIndex;
+/// 大窗口播放通道ID
+@property (nonatomic, strong) NSString *displayChannelID;
 
 /// 当前播放设备
-@property (strong,nonatomic) LCDeviceInfo * currentDevice;
+@property (strong, nonatomic) LCDeviceInfo *currentDevice;
 
 /// 当前通道
-@property (strong,nonatomic,readonly) LCChannelInfo * currentChannelInfo;
+@property (strong, nonatomic) LCChannelInfo *mainChannelInfo;
+
+/// 子通道
+@property (strong, nonatomic, readonly) LCChannelInfo * __nullable subChannelInfo;
 
 /// 当前解密密钥
-@property (strong,nonatomic) NSString * currentPsk;
+@property (strong, nonatomic) NSString * currentPsk;
+
+/// 是否为SD质量
+@property (nonatomic) BOOL isSD;
 
 /// 当前播放码流，与设备能力相关
 @property (nonatomic, strong) LCCIResolutions *currentResolution;
@@ -70,8 +70,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 转变方向按钮是否在拖动中
 @property (nonatomic, assign) BOOL directionTouch;
 
+
 /// 重置播放状态
 - (void)reset;
+
+/// 是否多目相机
+- (BOOL)isMulti;
 
 @end
 

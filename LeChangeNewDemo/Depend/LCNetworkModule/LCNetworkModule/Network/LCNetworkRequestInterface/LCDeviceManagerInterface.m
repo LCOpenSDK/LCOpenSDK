@@ -113,6 +113,24 @@
     }];
 }
 
++ (void)modifyDeviceCameraNameForDevice:(NSString *)deviceId productId:(nullable NSString *)productId fixedCameraName:(nullable NSString *)fixedName fixedCameraID:(nullable NSString *)fixedID mobileCameraName:(NSString *)mobileName mobileCameraId:(NSString *)mobileId success:(void (^)(void))success failure:(void (^)(LCError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addEntriesFromDictionary:@{KEY_TOKEN: [LCApplicationDataManager token], KEY_DEVICE_ID: deviceId, KEY_PRODUCT_ID: productId ? productId : @"", @"channels":@[@{@"name": mobileName, @"channelId":mobileId}, @{@"name": fixedName, @"channelId":fixedID}]}];
+   
+   if (productId != nil && [productId isKindOfClass:[NSString class]] && productId.length > 0) {
+       [params setObject:productId forKey:KEY_PRODUCT_ID];
+   }
+    [[LCNetworkRequestManager manager] lc_POST:@"/modifyDeviceCameraName" parameters:params success:^(id _Nonnull objc) {
+        if (success) {
+            success();
+        }
+    } failure:^(LCError *_Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 + (void)deviceVersionForDevices:(NSArray *)devices success:(void (^)(NSMutableArray<LCDeviceVersionInfo *> *_Nonnull))success failure:(void (^)(LCError *_Nonnull))failure {
     NSString * str = @"";
     for (NSString * device in devices) {

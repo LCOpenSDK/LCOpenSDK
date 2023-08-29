@@ -61,30 +61,13 @@
         
     }];
     
-    [[LCNetWorkHelper sharedInstance] checkNetwork]; //检测网络，接口已修改为异步，不影响程序启动流程
-    
-    if ([self isCanExplorerForCydiaUrlScheme]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [LCProgressHUD showMsg:@"the_mobile_phone_has_been_jailbroken".lc_T];
-        });
-    }
+    [[LCNetWorkHelper sharedInstance] checkNetwork];
     
     return YES;
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-#pragma mark - Check Jailbreak
-- (BOOL)isCanExplorerForCydiaUrlScheme {
-    NSURL *url = [NSURL URLWithString:@"cydia://"];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        NSLog(@" %@:: The device is jail broken!", NSStringFromClass([self class]));
-        return YES;
-    }
-    
-    return NO;
 }
 
 @end

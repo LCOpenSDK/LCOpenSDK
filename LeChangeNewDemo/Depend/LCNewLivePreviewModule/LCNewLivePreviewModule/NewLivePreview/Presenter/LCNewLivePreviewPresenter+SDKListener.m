@@ -9,8 +9,31 @@
 #import <LCBaseModule/LCProgressHUD.h>
 #import <LCMediaBaseModule/UIImageView+LCMediaPicDecoder.h>
 #import <LCMediaBaseModule/NSString+MediaBaseModule.h>
+#import <objc/runtime.h>
 
 @implementation LCNewLivePreviewPresenter (SDKListener)
+
+- (NSMutableSet *)getPlayBeganSet {
+    NSMutableSet *set = nil;
+    @synchronized (self) {
+        set = objc_getAssociatedObject(self, @"playBeganSet");
+    }
+    return set;
+}
+
+- (NSMutableSet *)setPlayBeganSet:(id)index {
+    NSMutableSet *set = nil;
+    @synchronized (self) {
+        set = objc_getAssociatedObject(self, @"playBeganSet");
+        if (set == nil) {
+            set = [[NSMutableSet alloc] init];
+        }
+        [set addObject:index];
+        objc_setAssociatedObject(self, @"playBeganSet", set, OBJC_ASSOCIATION_RETAIN);
+    }
+    return set;
+}
+
 /**
  *  视频开始加载回调
  *
@@ -44,20 +67,20 @@
 - (void)onPlayFail:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index {
     // play
     weakSelf(self);
-    NSLog(@"LIVE_PLAY-CODE:%@,TYPE:%ld", code, type);
+    NSLog(@"LIVE_PLAY-CODE: %@, TYPE: %ld, INDEX: %ld", code, type, index);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (99 == type) {
             //请求超时处理
-            self.videoManager.isPlay = NO;
+            [LCNewDeviceVideoManager shareInstance].isPlay = NO;
             [self showErrorBtn];
         }
         if (type == 5) {
             //不处理
             if ([code integerValue] == STATE_LCHTTP_KEY_ERROR) {
                 [self showErrorBtn];
-                if (![self.videoManager.currentPsk isEqualToString:self.videoManager.currentDevice.deviceId]) {
+                if (![[LCNewDeviceVideoManager shareInstance].currentPsk isEqualToString:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId]) {
                     //自定义id时先改成默认的设备ID重试
-                    self.videoManager.currentPsk = @"";
+                    [LCNewDeviceVideoManager shareInstance].currentPsk = @"";
                     [self hideErrorBtn];
                     [self onPlay:nil];
                 } else {
@@ -68,7 +91,7 @@
             }
         }
         if (type == 0) {
-            self.videoManager.playStatus = [code integerValue];
+            [LCNewDeviceVideoManager shareInstance].playStatus = [code integerValue];
             if ([RTSP_Result_String(STATE_RTSP_KEY_MISMATCH) isEqualToString:code]) {
                 [weakself showErrorBtn];
                 [weakself showPSKAlert];
@@ -102,7 +125,7 @@
         case LCOpenSDK_DirectionRight_down:
             break;
         default:
-            if (!self.videoManager.directionTouch) {
+            if (![LCNewDeviceVideoManager shareInstance].directionTouch) {
                 [self hideBorderView];
             }
             break;
@@ -110,14 +133,24 @@
 }
 
 - (void)onPlayBegan:(NSInteger)index {
-    weakSelf(self);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakself.videoManager.playStatus = 1001;
-        [weakself saveThumbImage];
-        [weakself hideVideoLoadImage];
-        [weakself setVideoType];
-        [weakself hideErrorBtn];
-    });
+    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
+        [self setPlayBeganSet:@(index)];
+        if ([self getPlayBeganSet].count == 2) {
+            [self.subPlayWindow hideVideoRender:NO];
+            [self.playWindow hideVideoRender:NO];
+            [LCNewDeviceVideoManager shareInstance].playStatus = 1001;
+            [self hideVideoLoadImage];
+            [self setVideoType];
+            [self hideErrorBtn];
+            [self saveThumbImage];
+        }
+    } else {
+        [LCNewDeviceVideoManager shareInstance].playStatus = 1001;
+        [self saveThumbImage];
+        [self hideVideoLoadImage];
+        [self setVideoType];
+        [self hideErrorBtn];
+    }
 }
 
 //audio
@@ -129,7 +162,7 @@
         [LCProgressHUD hideAllHuds:nil];
         if (99 == type) {   //网络请求失败
             dispatch_async(dispatch_get_main_queue(), ^{
-                weakself.videoManager.isOpenAudioTalk = NO;
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
                 [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
             });
             return;
@@ -142,16 +175,20 @@
         if (nil != error && [RTSP_Result_String(STATE_RTSP_PLAY_READY) isEqualToString:error]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 //对讲连接成功建立
-                self.videoManager.isOpenAudioTalk = YES;
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = YES;
                 [LCProgressHUD showMsg:@"device_mid_open_talk_success".lcMedia_T];
             });
             return;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
-            weakself.videoManager.isOpenAudioTalk = NO;
+            [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
         });
     });
+}
+
+- (void)onReceiveData:(NSInteger)len Index:(NSInteger)index {
+    
 }
 
 - (void)saveThumbImage {
@@ -169,7 +206,9 @@
     NSString *strDate = [dataFormat stringFromDate:[NSDate date]];
     NSString *datePath = [picDirectory stringByAppendingPathComponent:strDate];
     NSString *picPath = [datePath stringByAppendingString:@".jpg"];
+    NSString *pic2Path = [datePath stringByAppendingString:@"_0.jpg"];
     NSLog(@"test jpg name[%@]\n", picPath);
+    NSLog(@"test jpg name[%@]\n", pic2Path);
 
     NSFileManager *fileManage = [NSFileManager defaultManager];
     NSError *pErr;
@@ -186,10 +225,18 @@
                                attributes:nil
                                     error:&pErr];
     }
-    [self.playWindow snapShot:picPath];
+    NSInteger res = [self.playWindow snapShot:picPath];
+    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
+        res = [self.subPlayWindow snapShot:pic2Path];
+        NSLog(@"");
+    }
     UIImage *image = [UIImage imageWithContentsOfFile:picPath];
+    UIImage *image2 = [UIImage imageWithContentsOfFile:pic2Path];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[UIImageView new] lc_storeImage:image ForDeviceId:self.videoManager.currentDevice.deviceId ChannelId:self.videoManager.currentChannelInfo.channelId];
+        [[UIImageView new] lc_storeImage:image ForDeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId];
+        if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
+            [[UIImageView new] lc_storeImage:image2 ForDeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId];
+        }
     });
 }
 

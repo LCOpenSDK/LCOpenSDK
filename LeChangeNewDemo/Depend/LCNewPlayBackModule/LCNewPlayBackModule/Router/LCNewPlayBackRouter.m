@@ -43,27 +43,34 @@ static NSString * const pbVideotapePlayer = @"LCNewPlayBackRouter_VideotapePlaye
     [LCRouter registerURLPattern:pbVideotapePlayer toObjectHandler:^id(NSDictionary *routerParameters) {
         NSDictionary *userInfo = routerParameters[LCRouterParameterUserInfo];
         NSString *cloudVideoJson = (NSString *)userInfo[@"cloudVideoJson"];
+        NSString *subCloudVideoJson = (NSString *)userInfo[@"subCloudVideoJson"];
+        NSString *selectedChannelId = (NSString *)userInfo[@"selectedChannelId"];
         NSString *localVideoJson = (NSString *)userInfo[@"localVideoJson"];
-        
+
         if (cloudVideoJson != nil) {
             LCCloudVideotapeInfo *cloudInfo = [LCCloudVideotapeInfo jsonToObject:cloudVideoJson];
             if (cloudInfo != nil) {
-                [LCNewDeviceVideotapePlayManager manager].cloudVideotapeInfo = cloudInfo;
+                [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo = cloudInfo;
+            }
+        }
+        
+        if (subCloudVideoJson != nil) {
+            LCCloudVideotapeInfo *cloudInfo = [LCCloudVideotapeInfo jsonToObject:subCloudVideoJson];
+            if (cloudInfo != nil) {
+                [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo = cloudInfo;
             }
         }
         
         if (localVideoJson != nil) {
             LCLocalVideotapeInfo *localInfo = [LCLocalVideotapeInfo jsonToObject:localVideoJson];
             if (localInfo != nil) {
-                [LCNewDeviceVideotapePlayManager manager].localVideotapeInfo = localInfo;
+                [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo = localInfo;
             }
         }
         
         LCNewVideotapePlayerViewController *videotapePlayerVC = [[LCNewVideotapePlayerViewController alloc] init];
-        if (cloudVideoJson != nil && localVideoJson == nil) {
-            videotapePlayerVC.fromType = LCNewVideotapePlayerFromTypeCloud;
-        } else {
-            videotapePlayerVC.fromType = LCNewVideotapePlayerFromTypeLocal;
+        if (selectedChannelId != nil) {
+            [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = selectedChannelId;
         }
         return videotapePlayerVC;
     }];

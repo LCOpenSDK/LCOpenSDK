@@ -57,6 +57,9 @@
 		03ADDC9228F688E500E385B4 /* LCTimeSlotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8728F688E500E385B4 /* LCTimeSlotHeaderView.swift */; };
 		03ADDC9328F688E500E385B4 /* LCDeviceBasePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8828F688E500E385B4 /* LCDeviceBasePickerView.swift */; };
 		03ADDC9428F688E500E385B4 /* LCTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADDC8928F688E500E385B4 /* LCTimeSlot.swift */; };
+		03CE095C2A723AD900C3C488 /* asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03CE095B2A723AD900C3C488 /* asset.xcassets */; };
+		03CE095E2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE095D2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift */; };
+		03CE09602A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CE095F2A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,9 @@
 		03ADDC8728F688E500E385B4 /* LCTimeSlotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSlotHeaderView.swift; sourceTree = "<group>"; };
 		03ADDC8828F688E500E385B4 /* LCDeviceBasePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceBasePickerView.swift; sourceTree = "<group>"; };
 		03ADDC8928F688E500E385B4 /* LCTimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTimeSlot.swift; sourceTree = "<group>"; };
+		03CE095B2A723AD900C3C488 /* asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = asset.xcassets; sourceTree = "<group>"; };
+		03CE095D2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceDetailCameraNameEditViewController.swift; sourceTree = "<group>"; };
+		03CE095F2A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCDeviceDetailCameraNameEditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,7 @@
 		03ABE02728F5614C00BCE307 /* LCDeviceDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				03CE09542A7214E300C3C488 /* res */,
 				03ABE04528F5639D00BCE307 /* Swift */,
 				03ABE04428F5639200BCE307 /* OC */,
 				03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */,
@@ -259,6 +266,7 @@
 				03ABE07428F569FB00BCE307 /* LCFormatCardViewController.swift */,
 				03ABE06C28F5698700BCE307 /* LCDeviceDetailVC.swift */,
 				03ABE07228F569FB00BCE307 /* LCMotionDetectionVC.swift */,
+				03CE095D2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -298,6 +306,15 @@
 				03ABE06F28F569A000BCE307 /* LCMotionDetectionTableViewAdapter.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		03CE09542A7214E300C3C488 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				03CE095B2A723AD900C3C488 /* asset.xcassets */,
+				03CE095F2A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +416,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CE095C2A723AD900C3C488 /* asset.xcassets in Resources */,
+				03CE09602A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib in Resources */,
 				032664B92903E2CA0082EAC9 /* Info.plist in Resources */,
 				032664B32903E2870082EAC9 /* LCDeviceSettingArrowCell.xib in Resources */,
 			);
@@ -493,6 +512,7 @@
 				03ABE09128F56A2C00BCE307 /* LCTableFooterView.swift in Sources */,
 				03ADDC8B28F688E500E385B4 /* LCWeekDayProcessView.swift in Sources */,
 				03ABE08128F56A1400BCE307 /* LCDeviceSettingSubtitleCell.m in Sources */,
+				03CE095E2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift in Sources */,
 				03ABE07C28F56A0900BCE307 /* LCDeviceSettingArrowCell.m in Sources */,
 				03ADDC8C28F688E500E385B4 /* LCDefenceTimeSetVC.swift in Sources */,
 				03ADDC9428F688E500E385B4 /* LCTimeSlot.swift in Sources */,

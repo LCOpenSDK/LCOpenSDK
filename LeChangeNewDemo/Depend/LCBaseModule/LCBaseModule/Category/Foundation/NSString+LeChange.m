@@ -296,22 +296,23 @@
     
     NSString *newIp = @"";
     // 如果获取到的路由器 ip 跟本机地址 address不在同一网段，需要处理ip地址（解决从蜂窝网络，首次连接上wifi时获取到的ip有可能不对的问题）
-    int index = 0;
     NSArray *addressArray = [address componentsSeparatedByString:@"."];
     NSArray *IPArray = [ip componentsSeparatedByString:@"."];
-    if (addressArray.count == IPArray.count) {
-        for (int i = 0; i < 4; i++) {
-            if (i != 3) {
-                if (addressArray[i] == IPArray[i]) {
-                    newIp = [newIp stringByAppendingString:[NSString stringWithFormat:@"%@.", IPArray[i]]];
+    if (addressArray.count >= 3 && IPArray.count >= 3 && (![addressArray[0] isEqualToString:IPArray[0]] || ![addressArray[1] isEqualToString:IPArray[1]] || ![addressArray[2] isEqualToString:IPArray[2]]) ) {
+        if (addressArray.count == IPArray.count) {
+            for (int i = 0; i < 4; i++) {
+                if (i != 3) {
+                    if (addressArray[i] == IPArray[i]) {
+                        newIp = [newIp stringByAppendingString:[NSString stringWithFormat:@"%@.", IPArray[i]]];
+                    } else {
+                        newIp = [newIp stringByAppendingString:[NSString stringWithFormat:@"%@.", addressArray[i]]];
+                    }
                 } else {
-                    newIp = [newIp stringByAppendingString:[NSString stringWithFormat:@"%@.", addressArray[i]]];
+                    newIp = [newIp stringByAppendingString:@"1"];
                 }
-            } else {
-                newIp = [newIp stringByAppendingString:@"1"];
             }
+            return newIp;
         }
-        return newIp;
     }
     
     return ip;

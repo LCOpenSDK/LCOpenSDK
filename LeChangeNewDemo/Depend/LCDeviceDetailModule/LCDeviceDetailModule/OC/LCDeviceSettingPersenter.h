@@ -11,7 +11,8 @@ typedef enum : NSUInteger {
     LCDeviceSettingStyleDeploy,//设定布防详情  Set deployment details
     LCDeviceSettingStyleDeviceDetailInfo,//设备详细信息  Device Details
     LCDeviceSettingStyleDeviceNameEdit,//名称设定  The name of the set
-    LCDeviceSettingStyleDeviceSnap//缩略图设定  Thumbnail Settings
+    LCDeviceSettingStyleDeviceSnap,//缩略图设定  Thumbnail Settings
+    CDeviceSettingStyleCameraNameEdit//镜头名称设定  The camera name of the set
 } LCDeviceSettingStyle;
 
 @interface LCDeviceSettingPersenter : NSObject<UITableViewDelegate,UITableViewDataSource>

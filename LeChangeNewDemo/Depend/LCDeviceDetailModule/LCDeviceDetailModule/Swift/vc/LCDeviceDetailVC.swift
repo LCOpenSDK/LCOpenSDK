@@ -43,7 +43,7 @@ import SnapKit
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.tableFooterView = LCTableFooterView.getTableFooterView(width: self.view.frame.size.width, deleteAction: {
-            LCAlertView.lc_ShowAlert(title: "Alert_Title_Notice".lc_T, detail: "setting_device_delete_alert".lc_T, confirmString: "Alert_Title_Button_Confirm".lc_T, cancelString: "Alert_Title_Button_Cancle".lc_T) { isConfirmSelected in
+            LCAlertView.lc_ShowAlert(title: "Alert_Title_Notice".lc_T, detail: "setting_device_delete_alert".lc_T, confirmString: "mobile_common_delete".lc_T, cancelString: "Alert_Title_Button_Cancle".lc_T) { isConfirmSelected in
                 if isConfirmSelected {
                     self.presenter?.deleteDevice()
                 }

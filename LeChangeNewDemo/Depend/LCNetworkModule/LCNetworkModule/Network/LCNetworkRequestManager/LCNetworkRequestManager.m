@@ -25,13 +25,6 @@
 
 //MARK: - Public Methods
 - (void)lc_POST:(NSString *)URLString parameters:(id)parameters success:(requestSuccessBlock)success failure:(requestFailBlock)failure {
-//    //检查Token有效性
-//    if ([LCApplicationDataManager token] && ![LCApplicationDataManager isVaildToken]) {
-//        ///无效直接跳转登录页
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NEEDLOGIN" object:nil];
-//    }else{
-//        [self post:URLString parameters:parameters success:success failure:failure];
-//    }
     [self post:URLString parameters:parameters success:success failure:failure];
 }
 
@@ -55,9 +48,9 @@
     [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
     //发起网络请求
     NSURLSessionDataTask *task = [self.sessionManager dataTaskWithRequest:request uploadProgress:^(NSProgress *_Nonnull uploadProgress) {
-        NSLog(@"");
+        
     } downloadProgress:^(NSProgress *_Nonnull downloadProgress) {
-        NSLog(@"");
+        
     } completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject, NSError *_Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {

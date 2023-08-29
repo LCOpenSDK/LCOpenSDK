@@ -16,15 +16,12 @@ class LCMotionDetectionTableViewAdapter {
     
     var deviceInfo: LCDeviceInfo
     
-    var selectedChannelId: String
-    
     weak var presenter: LCMotionDetectionPresenter?
     
     weak var tableview: UITableView?
     
-    init(deviceInfo: LCDeviceInfo, selectedChannelId: String, presenter: LCMotionDetectionPresenter? = nil) {
+    init(deviceInfo: LCDeviceInfo, presenter: LCMotionDetectionPresenter? = nil) {
         self.deviceInfo = deviceInfo
-        self.selectedChannelId = selectedChannelId
         self.presenter = presenter
         
         self.sectionsModel = [
@@ -40,7 +37,7 @@ class LCMotionDetectionTableViewAdapter {
             
             [LCTableViewCellModel(icon: nil, title: "setting_of_deployment_time_period".lc_T, height: 70, showArrow: true, selectAction: { [weak self] in
                 if let stongSelf = self {
-                    stongSelf.presenter?.pushToMotionDetectionTimesPage(deviceInfo: stongSelf.deviceInfo, selectedChannelId: stongSelf.selectedChannelId)
+                    stongSelf.presenter?.pushToMotionDetectionTimesPage(deviceInfo: stongSelf.deviceInfo, selectedChannelId: stongSelf.presenter?.selectedChannelId ?? "")
                 }
             })]
         ]

@@ -131,6 +131,9 @@ public class LCAlertView: UIView {
         confirmBtn.backgroundColor = UIColor.lccolor_c0()
         confirmBtn.layer.cornerRadius = 22.5
         confirmBtn.layer.masksToBounds = true
+        if (confirmTitle == "mobile_common_delete".lc_T) {
+            confirmBtn.backgroundColor = UIColor.lc_color(withHexString: "#FF4F4F")
+        }
         self.addSubview(confirmBtn)
         confirmBtn.touchUpInsideblock = { [weak self]
             btn in

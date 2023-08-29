@@ -115,6 +115,23 @@
 
 #pragma mark - 单击
 - (void)doSingleTap:(UITapGestureRecognizer *)recognizer {
+    if (self.presenter.subPlayWindow != nil) {
+        UIView *subPlayView = [self.presenter.subPlayWindow getWindowView];
+        UIView *mainPlayView = [self.presenter.playWindow getWindowView];
+        UIView *responsePlayView = subPlayView;
+        if (subPlayView.frame.size.width > mainPlayView.frame.size.width) {
+            responsePlayView = mainPlayView;
+        }
+        CGPoint point2 = [recognizer locationInView:responsePlayView];
+        if (point2.x >= 0 && point2.x <= responsePlayView.frame.size.width && point2.y >= 0 && point2.y <= responsePlayView.frame.size.height) {
+            if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:@"0"]) {
+                [LCNewDeviceVideoManager shareInstance].displayChannelID = @"1";
+            } else {
+                [LCNewDeviceVideoManager shareInstance].displayChannelID = @"0";
+            }
+            return;
+        }
+    }
     [self changeAlpha];
 }
 

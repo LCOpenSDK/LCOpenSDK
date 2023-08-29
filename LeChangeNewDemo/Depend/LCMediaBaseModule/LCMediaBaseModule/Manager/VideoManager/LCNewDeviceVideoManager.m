@@ -21,7 +21,6 @@ static LCNewDeviceVideoManager * manager = nil;
         manager.isOpenCloudStage = NO;
         manager.isOpenAudioTalk = NO;
         manager.isOpenRecoding = NO;
-        manager.isLockFullScreen = NO;
         manager.playSpeed = 1;
         manager.directionTouch = NO;
     });
@@ -37,27 +36,8 @@ static LCNewDeviceVideoManager * manager = nil;
     manager.isOpenCloudStage = NO;
     manager.isOpenAudioTalk = NO;
     manager.isOpenRecoding = NO;
-    manager.isLockFullScreen = NO;
     manager.playSpeed = 1;
     manager.directionTouch = NO;
-}
-
-- (LCChannelInfo *)currentChannelInfo {
-    if (self.currentChannelIndex == -1) {
-        if (self.currentDevice.channels.count == 1) {
-            return self.currentDevice.channels[0];
-        }
-        return nil;
-    }
-    if (self.currentDevice.channels.count > 0) {
-        LCChannelInfo *channel = self.currentDevice.channels[self.currentChannelIndex];
-        return channel;
-    }
-    return nil;
-}
-
-- (void)setCurrentDevice:(LCDeviceInfo *)currentDevice {
-    _currentDevice = currentDevice;
 }
 
 - (NSString *)currentPsk {
@@ -65,6 +45,21 @@ static LCNewDeviceVideoManager * manager = nil;
        return self.currentDevice.deviceId;
     }
     return _currentPsk;
+}
+
+- (LCChannelInfo *)subChannelInfo {
+    if (self.currentDevice.multiFlag) {
+        for (LCChannelInfo *channel in self.currentDevice.channels) {
+            if (channel.movable == NO) {
+                return channel;
+            }
+        }
+    }
+    return nil;
+}
+
+- (BOOL)isMulti {
+    return self.currentDevice.multiFlag == YES && self.subChannelInfo != nil;
 }
 
 - (void)setIsFullScreen:(BOOL)isFullScreen {

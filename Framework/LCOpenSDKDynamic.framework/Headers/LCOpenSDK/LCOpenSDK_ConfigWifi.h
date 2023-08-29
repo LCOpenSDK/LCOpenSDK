@@ -25,7 +25,7 @@ typedef void (^LCOpenSDK_ConfigWifiCallBack)(LC_ConfigWifi_Event event, void* _N
 /// @param devId device ID    zh:设备ID
 /// @param ssid Wifi SSID    zh:Wifi的SSID
 /// @param pwd Wifi password    zh:Wifi密码
-/// @param security (optional, default @ "")    zh:(选填，默认@"")
+/// @param security (safety code，optional, default @ "")    zh:(设备安全码，选填，默认@"")
 /// @param voiceFreq (acoustic frequency, which needs to be differentiated according to the type of equipment. For example: 11000 for general use, 17000 for TP7C)    zh:(声波频率，需要根据设备类型区分。例如：普通11000，TP7C 17000)
 /// @param txMode  zh:波形发送方式(0--新的fsk发送方式，1--老的fsk发送方式，2--新的和老的fsk波形发送方式)
 ///  @return 0 succeeded, -1 failed    zh: 0 成功, -1 失败

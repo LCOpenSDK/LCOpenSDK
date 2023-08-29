@@ -21,9 +21,9 @@ import LCNewLivePreviewModule
     /// containter
     weak var listContainer: LCDeviceListViewController?
     
-    lazy var livePreviewVC: LCNewLivePreviewViewController = {
-        return LCNewLivePreviewViewController()
-    }()
+//    lazy var livePreviewVC: LCNewLivePreviewViewController = {
+//        return LCNewLivePreviewViewController()
+//    }()
     
     /// 当前是否在网络请求中
     var isRefreshing: Bool = false
@@ -52,7 +52,7 @@ import LCNewLivePreviewModule
     
     func initSDKLog() {
         let logInfo = LCOpenSDK_LogInfo()
-        logInfo.levelType = LogLevelTypeDebug
+        logInfo.levelType = LogLevelTypeALL
         LCOpenSDK_Log.shareInstance().setLogInfo(logInfo)
     }
     
@@ -120,7 +120,11 @@ import LCNewLivePreviewModule
     func getTableViewCellHeight(info: LCDeviceInfo) -> CGFloat {
         if info.channels.count > 1 {
             //多通道设备
-            return 315.0
+            if info.channels.count <= 2 {
+                return 200.0
+            } else {
+                return 315.0
+            }
         } else {
             //单通道设备
             return 260.0
@@ -149,7 +153,7 @@ import LCNewLivePreviewModule
         var datas = Array<Dictionary<String, String>>()
         self.openDevices.forEach {[weak self] device in
             if self?.mtsKeepDevices.contains(device.deviceId) == false && device.status == "online" {
-                datas.append(["playtoken":device.playToken, "deviceId":device.deviceId, "productId":device.productId, "key":""])
+                datas.append(["playtoken":device.playToken, "deviceId":device.deviceId, "productId":device.productId])
                 self?.mtsKeepDevices.insert(device.deviceId)
             }
         }
@@ -169,18 +173,26 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
         (cell as? LCDeviceListCell)?.resultBlock = {[weak self] info, channelIndex, index in
             LCNewDeviceVideoManager.shareInstance().reset()
             LCNewDeviceVideoManager.shareInstance().currentDevice = info
-            LCNewDeviceVideoManager.shareInstance().currentChannelIndex = -1
+            /// 多目相机
+            if (info.channels.count > 0) {
+                if (info.multiFlag == true) {
+                    LCNewDeviceVideoManager.shareInstance().mainChannelInfo = info.channels[0]
+                    LCNewDeviceVideoManager.shareInstance().displayChannelID = info.channels[channelIndex].channelId
+                } else {
+                    LCNewDeviceVideoManager.shareInstance().mainChannelInfo = info.channels[channelIndex]
+                    LCNewDeviceVideoManager.shareInstance().displayChannelID = info.channels[channelIndex].channelId
+                }
+            }
             if index == 0 {
-                LCNewDeviceVideoManager.shareInstance().currentChannelIndex = channelIndex
-                if info.catalog.uppercased() == "NVR" &&  LCNewDeviceVideoManager.shareInstance().currentChannelInfo.status != "online" {
+                if info.catalog.uppercased() == "NVR" &&  LCNewDeviceVideoManager.shareInstance().mainChannelInfo.status != "online" {
                     return
                 }
                 if info.catalog.uppercased() == "IPC" && info.status != "online" {
                     return
                 }
-                if let vc = self?.livePreviewVC {
-                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
-                }
+//                if let vc = self?.livePreviewVC {
+                    self?.listContainer?.navigationController?.pushViewController(LCNewLivePreviewViewController(), animated: true)
+//                }
             } else if index == 1 {
                 var channleId = ""
                 if self?.openDevices[indexPath.row].channels.count ?? -1 > channelIndex {

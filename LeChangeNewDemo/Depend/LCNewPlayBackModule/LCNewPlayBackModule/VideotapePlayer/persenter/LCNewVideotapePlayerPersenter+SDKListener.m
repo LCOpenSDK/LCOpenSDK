@@ -6,33 +6,62 @@
 #import "LCNewVideotapePlayerPersenter+Control.h"
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Define.h>
 #import <LCMediaBaseModule/LCMediaBaseDefine.h>
+#import <objc/runtime.h>
 
 #define HLS_Result_String(enum) [@[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"11"] objectAtIndex:enum]
 
 @implementation LCNewVideotapePlayerPersenter (SDKListener)
 
+- (NSMutableSet *)getPlayBeganSet {
+    NSMutableSet *set = nil;
+    @synchronized (self) {
+        set = objc_getAssociatedObject(self, @"playBeganSet");
+    }
+    return set;
+}
+
+- (NSMutableSet *)setPlayBeganSet:(id)index {
+    NSMutableSet *set = nil;
+    @synchronized (self) {
+        set = objc_getAssociatedObject(self, @"playBeganSet");
+        if (set == nil) {
+            set = [[NSMutableSet alloc] init];
+        }
+        [set addObject:index];
+        objc_setAssociatedObject(self, @"playBeganSet", set, OBJC_ASSOCIATION_RETAIN);
+    }
+    return set;
+}
 
 - (void)onPlayLoading:(NSInteger)index
 {
     
 }
 
-- (void)onPlayBegan:(NSInteger)index
-{
-    weakSelf(self);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakself loadPlaySpeed];
-        [weakself hideVideoLoadImage];
-        [weakself hideErrorBtn];
-        weakself.videoManager.isPlay = YES; //暂停时直接拖动进度条也会触发播放
-        weakself.videoManager.playStatus = 1001;
-        [weakself setVideoType];
-    });
+- (void)onPlayBegan:(NSInteger)index {
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] isMulti]) {
+        [self setPlayBeganSet:@(index)];
+        if ([self getPlayBeganSet].count == 2) {
+            [self.subPlayWindow hideVideoRender:NO];
+            [self.mainPlayWindow hideVideoRender:NO];
+            [self hideVideoLoadImage];
+            [self hideErrorBtn];
+            [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
+            [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
+            [self setVideoType];
+        }
+    } else {
+        [self hideVideoLoadImage];
+        [self hideErrorBtn];
+        [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
+        [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
+        [self setVideoType];
+    }
 }
 
 - (void)onPlayStop:(NSInteger)index
 {
-    if (self.videoManager.isOpenRecoding) {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
         [self onRecording]; //关闭已开启的
     }
 }
@@ -46,16 +75,19 @@
 {
     weakSelf(self);
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.videoManager.isOpenRecoding) {
+        if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
             [weakself onRecording];
         }
-        [weakself.playWindow stopRecordStream:YES];
-        weakself.videoManager.playStatus = STATE_RTSP_FILE_PLAY_OVER;
-        weakself.videoManager.isPlay = NO;
-        weakself.videoManager.pausePlay = YES;
+        [weakself.mainPlayWindow stopRecordStream:YES];
+        if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+            [weakself.subPlayWindow stopRecordStream:YES];
+        }
+        [LCNewDeviceVideotapePlayManager shareInstance].playStatus = STATE_RTSP_FILE_PLAY_OVER;
+        [LCNewDeviceVideotapePlayManager shareInstance].isPlay = NO;
+        [LCNewDeviceVideotapePlayManager shareInstance].pausePlay = YES;
         //最后结束时刻精准到最后一秒
-        if ([self.videoManager.currentPlayOffest timeIntervalSinceDate:self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.endDate : self.videoManager.localVideotapeInfo.endDate] < 0) {
-            self.videoManager.currentPlayOffest = self.videoManager.cloudVideotapeInfo ? self.videoManager.cloudVideotapeInfo.endDate : self.videoManager.localVideotapeInfo.endDate;
+        if ([[LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest timeIntervalSinceDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate] < 0) {
+            [LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate;
         }
         [weakself hideVideoLoadImage];
         [weakself showPlayBtn];
@@ -66,10 +98,13 @@
 {
     // play
     weakSelf(self);
-    if (self.videoManager.isOpenRecoding) {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
         [weakself onRecording]; //关闭已开启的
     }
-    [self.playWindow stopRecordStream:false];
+    [self.mainPlayWindow stopRecordStream:false];
+    if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+        [self.subPlayWindow stopRecordStream:false];
+    }
     [self hideVideoLoadImage];
     NSLog(@"TEST设备录像回调code = %@, type = %ld", code, (long)type);
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -79,14 +114,17 @@
             (type == RESULT_PROTO_TYPE_HLS && ([code integerValue] == STATE_HLS_KEY_MISMATCH || [code integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH)) ) {
             //本地录像解密失败
             [weakself showErrorBtn];
-            if (![weakself.videoManager.currentPsk isEqualToString:self.videoManager.currentDevice.deviceId]) {
+            if (![[LCNewDeviceVideotapePlayManager shareInstance].currentPsk isEqualToString:[LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId]) {
                 //自定义id时先改成默认的设备ID重试
-                weakself.videoManager.currentPsk = self.videoManager.currentDevice.deviceId;
+                [LCNewDeviceVideotapePlayManager shareInstance].currentPsk = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
                 [weakself hideErrorBtn];
                 [weakself onPlay:nil];
             }else{
                 [weakself showPSKAlert:[code integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH isPlay:YES];
-                [self.playWindow stopRecordStream:YES];
+                [self.mainPlayWindow stopRecordStream:YES];
+                if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+                    [self.subPlayWindow stopRecordStream:YES];
+                }
             }
         }else {
             [self showErrorBtn];
@@ -117,6 +155,10 @@
 //开始播放时间
 - (void)onPlayerTime:(long)time Index:(NSInteger)index {
     weakSelf(self);
+    if (self.sssdate >= time) {
+        NSLog(@"播放时间:%ld  当前时间:%ld", time, self.sssdate);
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         NSInteger ooo = time - weakself.sssdate;
         NSLog(@"异常跳针NOR:%ld", ooo);
@@ -124,7 +166,7 @@
             NSLog(@"异常跳针前次：%ld，本次：%ld", self.sssdate, time);
         }
         weakself.sssdate = time;
-        weakself.videoManager.currentPlayOffest = [NSDate dateWithTimeIntervalSince1970:time];
+        [LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest = [NSDate dateWithTimeIntervalSince1970:time];
     });
 }
 

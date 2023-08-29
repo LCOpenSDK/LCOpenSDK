@@ -48,7 +48,7 @@ import LCAddDeviceModule
     /// Determine whether it is  a multi-channel device
     /// - Returns: true or false
     func isMultipleChannels() -> Bool {
-        if self.deviceInfo.channelNum.intValue() > 1 {
+        if self.deviceInfo.channelNum.intValue() > 1 && self.deviceInfo.multiFlag == false {
             return true
         }
         

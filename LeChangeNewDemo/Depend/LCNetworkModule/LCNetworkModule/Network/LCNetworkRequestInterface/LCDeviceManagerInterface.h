@@ -57,6 +57,20 @@ NS_ASSUME_NONNULL_BEGIN
                       failure:(void (^)(LCError *error))failure;
 
 /**
+ 修改双目相机镜头名
+
+ @param deviceId 设备序列号
+ @param productId iot设备产品ID，iot设备必传
+ @param fixedCameraName 固定镜头名字
+ @param fixedCameraID 固定镜头id
+ @param mobileCameraName 移动镜头名
+ @param mobileCameraId 移动镜头id
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)modifyDeviceCameraNameForDevice:(NSString *)deviceId productId:(nullable NSString *)productId fixedCameraName:(nullable NSString *)fixedName fixedCameraID:(nullable NSString *)fixedID mobileCameraName:(NSString *)mobileName mobileCameraId:(NSString *)mobileId success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
+
+/**
  获取设备版本和可升级信息
 
  @param devices 设备列表

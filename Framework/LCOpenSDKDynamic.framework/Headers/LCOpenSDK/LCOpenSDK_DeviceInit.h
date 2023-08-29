@@ -12,11 +12,11 @@ typedef struct {
     char        mac[64];
     char        ip[64];
     int         port;
-    // status 0: Device initialization is not supported
-    // status 1: Device initialization is supported and not initialized
-    // status 2: Device initialization is supported and initialized
-    int         status;     //0:不支持设备初始化  1:支持设备初始化且未初始化   2:支持设备初始化且已初始化
-}LCOPENSDK_DEVICE_INIT_INFO;
+    // status 0: Device initialization is not supported    zh:不支持设备初始化
+    // status 1: Device initialization is supported and not initialized    zh:支持设备初始化且未初始化
+    // status 2: Device initialization is supported and initialized    zh:支持设备初始化且已初始化
+    int         status;
+} LCOPENSDK_DEVICE_INIT_INFO;
 
 @interface LCOpenSDK_DeviceInit : NSObject
 
@@ -43,7 +43,6 @@ typedef struct {
 + (long)loginDeviceByIP:(NSString *_Nonnull)devIP port:(NSInteger)port username:(NSString *_Nonnull)username password:(NSString *_Nonnull)password highLevelSecurity:(BOOL)security errorCode:(int *_Nullable)errorCode;
 
 //MARK: - DEPRECATED METHOD
-
 /// 初始化设备 （废弃方法）
 /// @param mac device mac address
 /// @param password device password

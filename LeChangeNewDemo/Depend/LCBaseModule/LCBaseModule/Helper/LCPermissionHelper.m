@@ -22,45 +22,47 @@
 	
 - (void)requestAlwaysLocationPermissions:(BOOL)always completion:(void (^)(BOOL granted))completion {
     //先判断总定位服务是否可用(设置-->隐私-->定位服务，而不是app自己的定位服务)
-    if (![CLLocationManager locationServicesEnabled]) {
-        if (completion) {
-            completion(NO);
-        }
-    }
-    BOOL locationEnable = [CLLocationManager locationServicesEnabled];
-    if (!self.locationManager) {
-        self.locationManager = [[CLLocationManager alloc] init];
-    }
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (!locationEnable || (status < 3 && status > 0)) {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if (![CLLocationManager locationServicesEnabled]) {
             if (completion) {
                 completion(NO);
             }
-        } else if (status == kCLAuthorizationStatusNotDetermined){
-            //获取授权认证
-            if (always) {
-                [self.locationManager requestAlwaysAuthorization];
+        }
+        BOOL locationEnable = [CLLocationManager locationServicesEnabled];
+        if (!self.locationManager) {
+            self.locationManager = [[CLLocationManager alloc] init];
+        }
+        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!locationEnable || (status < 3 && status > 0)) {
+                if (completion) {
+                    completion(NO);
+                }
+            } else if (status == kCLAuthorizationStatusNotDetermined){
+                //获取授权认证
+                if (always) {
+                    [self.locationManager requestAlwaysAuthorization];
+                } else {
+                    [self.locationManager requestWhenInUseAuthorization]; //使用时开启定位
+                }
             } else {
-                [self.locationManager requestWhenInUseAuthorization]; //使用时开启定位
-            }
-        } else {
-            if (always) {
-                if (status == kCLAuthorizationStatusAuthorizedAlways) {
-                    if (completion) {
-                        completion(YES);
+                if (always) {
+                    if (status == kCLAuthorizationStatusAuthorizedAlways) {
+                        if (completion) {
+                            completion(YES);
+                        }
+                    } else {
+                        if (completion) {
+                            completion(NO);
+                        }
                     }
                 } else {
                     if (completion) {
-                        completion(NO);
+                        completion(YES);
                     }
                 }
-            } else {
-                if (completion) {
-                    completion(YES);
-                }
             }
-        }
+        });
     });
 }
 

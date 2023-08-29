@@ -10,7 +10,7 @@
 #define LCOpenSDK_LCOpenSDK_PlayWindow_h
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "LCOpenSDK_Param.h"
+#import "LCOpenSDK_PlayRecordParam.h"
 #import "LCOpenSDK_EventListener.h"
 #import "LCOpenSDK_Define.h"
 
@@ -45,20 +45,20 @@
 /// Set whether the gesture operation event of the playback window is captured by the upper layer window    zh:设置播放窗口手势操作事件是否被上层窗口捕获
 /// @param flag  Yes/NO
 - (void)openTouchListener:(BOOL)flag;
-/**
- *  播放实时视频
- *
- *  @param accessTok 管理员token/用户token
- *  @param deviceID  设备ID
- *  @param psk       设备密钥
- *  @param chn       通道ID
- *  @param defiMode  流媒体HD/SD模式
- *  @param opt       是否使用长链接优化
- *
- *  @return 0, 接口调用成功
- *         -1, 接口调用失败
- */
-- (NSInteger)playRtspReal:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk channel:(NSInteger)chn definition:(NSInteger)defiMode optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playRtspReal: instead");
+///**
+// *  播放实时视频
+// *
+// *  @param accessTok 管理员token/用户token
+// *  @param deviceID  设备ID
+// *  @param psk       设备密钥
+// *  @param chn       通道ID
+// *  @param defiMode  流媒体HD/SD模式
+// *  @param opt       是否使用长链接优化
+// *
+// *  @return 0, 接口调用成功
+// *         -1, 接口调用失败
+// */
+//- (NSInteger)playRtspReal:(NSString*)accessTok devID:(NSString*)deviceID psk:(NSString*)psk channel:(NSInteger)chn definition:(NSInteger)defiMode optimize:(BOOL)isOpt DEPRECATED_MSG_ATTRIBUTE("use playRtspReal: instead");
 
 /**
 *  播放实时视频
@@ -272,6 +272,15 @@
  * 设置去噪模式等级
  */
 - (void)setSEnhanceMode:(LCOpenSDK_EnhanceMode)mode;
+
+/// Add the play window to the group    zh:将播放窗口加入到分组中
+/// @param groupId group id    zh:视频播放组Id
+/// @param isGroupBase group base     zh:分组基准
+- (BOOL)addToPlayGroup:(long)groupId isGroupBase:(BOOL)isGroupBase;
+
+/// hide video rendering    zh:隐藏视频渲染
+/// @param hidden hidden
+- (void)hideVideoRender:(BOOL)hidden;
 
 @end
 #endif
