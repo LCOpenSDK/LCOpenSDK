@@ -385,7 +385,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setAllStorageStrategy:(nonnull NSString *)deviceId channelId:(nullable NSString *)channelId isOpen:(BOOL)open success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
 
 
+/**
+ 接听门口机/门铃呼叫*/
++ (void)doorbellCallAnswer:(nonnull NSString *)deviceId success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
 
+/**
+ 挂断门口机/门铃的呼叫
+ */
++ (void)doorbellCallHangUp:(nonnull NSString *)deviceId success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
+
+//挂断可视对讲的呼叫
++ (void)deviceCallRefuse:(nonnull NSString *)deviceId productId:(nonnull NSString *)productId success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

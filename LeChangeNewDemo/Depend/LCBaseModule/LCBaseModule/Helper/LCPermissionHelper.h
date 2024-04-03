@@ -19,7 +19,12 @@
  @param completion grand为YES时表示有权限，NO表示无权限
  */
 + (void)requestCameraPermission:(void (^)(BOOL granted))completion;
-
+/**
+ 判断、申请摄像头和麦克风权限，可视对讲时使用，结果通过completion回调出来
+ 
+ @param completion grand为YES时表示有权限，NO表示无权限
+ */
++ (void)requestCameraAndAudioPermission:(void (^)(BOOL granted))completion;
 /**
  判断、申请相册权限，导出时使用，结果通过completion回调出来
  

@@ -12,8 +12,9 @@
 #import <LCAddDeviceModule/LCAddDeviceModule-Swift.h>
 #import <LCNewPlayBackModule/LCNewPlayBackRouter.h>
 #import <LCMessageModule/LCMessageModule-Swift.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_BuryPoint.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <LCOpenSDK_BuryPointProtocol>
 
 @property (strong, nonatomic) LCPermissionHelper *helper;
 
@@ -63,11 +64,19 @@
     
     [[LCNetWorkHelper sharedInstance] checkNetwork];
     
+    // 添加埋点回调监听
+//    [LCOpenSDK_BuryPoint addBuryPointListener:self];
+//    [LCOpenSDK_BuryPoint setRequestID:@"123456"];
+    
     return YES;
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
+
+//- (void)buryPoint:(nonnull NSString *)jsonString {
+//    NSLog(@"buryPoint =====> %@", jsonString);
+//}
 
 @end

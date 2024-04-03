@@ -27,19 +27,23 @@ import LCBaseModule.LCModule
 	
 	// MARK: Register Router
 	func registerQRScanVC() {
-		LCRouter.registerURLPattern(RouterUrl_AddDevice_QRScanVC) { (routerParameters) -> Any? in
-			let controller = LCQRScanViewController.storyboardInstance()		
-			//进入前先重置已保存的信息
-			LCAddDeviceManager.sharedInstance.reset()
-			
-			if let params = routerParameters as? [String: Any], let dicUserInfo = params[LCRouterParameterUserInfo] as? [String: Any] {
-				if let gatewayId = dicUserInfo["gatewayId"] as? String {
-					LCAddDeviceManager.sharedInstance.gatewayId = gatewayId
-					LCAddDeviceManager.sharedInstance.gatewayIdNeedReset = false
-				}
-			}
-			return controller
-		}
+        LCPermissionHelper.requestCameraPermission { granted in
+            if granted {
+                LCRouter.registerURLPattern(RouterUrl_AddDevice_QRScanVC) { (routerParameters) -> Any? in
+                    let controller = LCQRScanViewController.storyboardInstance()
+                    //进入前先重置已保存的信息
+                    LCAddDeviceManager.sharedInstance.reset()
+                    
+                    if let params = routerParameters as? [String: Any], let dicUserInfo = params[LCRouterParameterUserInfo] as? [String: Any] {
+                        if let gatewayId = dicUserInfo["gatewayId"] as? String {
+                            LCAddDeviceManager.sharedInstance.gatewayId = gatewayId
+                            LCAddDeviceManager.sharedInstance.gatewayIdNeedReset = false
+                        }
+                    }
+                    return controller
+                }
+            }
+        }
 	}
 
     // MARK: 在线设备配网

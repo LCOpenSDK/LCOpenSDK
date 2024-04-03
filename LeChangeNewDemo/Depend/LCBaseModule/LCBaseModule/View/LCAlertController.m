@@ -8,7 +8,7 @@
 #import <LCBaseModule/UIFont+Imou.h>
 #import <Masonry/Masonry.h>
 #import <LCBaseModule/LCBaseModule-Swift.h>
-
+#import <LCBaseModule/UIColor+HexString.h>
 @interface LCAlertController ()
 
 @property (nonatomic, copy) LCAlertControllerHandler handler;
@@ -30,16 +30,19 @@
             subview.alpha = 0;
         }
     }
-    alertController.view.layer.cornerRadius = 7.5;
+    alertController.view.layer.cornerRadius = 15;
 
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.backgroundColor = UIColor.lccolor_c3;
+//    cancelButton.backgroundColor = UIColor.lccolor_c3;
+    cancelButton.layer.borderWidth = 0.5;
+    cancelButton.layer.borderColor = [[UIColor lc_colorWithHexString:@"#D9D9D9"] CGColor];
     [cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
-    [cancelButton setTitleColor:UIColor.lccolor_c43 forState:UIControlStateNormal];
+    cancelButton.titleLabel.font = [UIFont lcFont_t3];
+    [cancelButton setTitleColor:UIColor.lccolor_c40 forState:UIControlStateNormal];
     [alertController.view addSubview:cancelButton];
     cancelButton.layer.cornerRadius = 22.5;
     [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-20);
+        make.bottom.mas_equalTo(-25);
         make.height.mas_equalTo(45);
         make.left.mas_equalTo(25);
         make.right.mas_equalTo(alertController.view.mas_centerX).offset(-7.5);
@@ -52,15 +55,15 @@
     UIButton *otherBUtton = [UIButton buttonWithType:UIButtonTypeCustom];
     otherBUtton.backgroundColor = UIColor.lccolor_c1;
     [otherBUtton setTitle:otherButtonTitle forState:UIControlStateNormal];
+    otherBUtton.titleLabel.font = [UIFont lcFont_t3Bold];
     [otherBUtton setTitleColor:UIColor.lccolor_c43 forState:UIControlStateNormal];
     otherBUtton.layer.cornerRadius = 22.5;
     otherBUtton.tag = 1;
-    otherBUtton.titleLabel.font = UIFont.lcFont_f3;
     [alertController.view addSubview:otherBUtton];
     [otherBUtton addTarget:alertController action:@selector(didPressButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [otherBUtton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-20);
+        make.bottom.mas_equalTo(-25);
         make.height.mas_equalTo(45);
         make.left.mas_equalTo(alertController.view.mas_centerX).offset(7.5);
         make.right.mas_equalTo(-25);
@@ -68,26 +71,34 @@
 
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = title;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = UIColor.lccolor_c2;
     titleLabel.font = [UIFont lcFont_t1Bold];
     [alertController.view addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(35);
+        make.top.mas_equalTo(25);
         make.left.mas_equalTo(25);
         make.right.mas_equalTo(-25);
     }];
-
+    
     UILabel *messageLabel = [[UILabel alloc] init];
-    messageLabel.text = message;
+//    messageLabel.text = message;
     messageLabel.textColor = UIColor.lccolor_c2;
     messageLabel.font = [UIFont lcFont_t4];
     messageLabel.numberOfLines = 0;
+    
+    NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+    style.lineSpacing  = 12-(messageLabel.font.lineHeight - messageLabel.font.pointSize);
+    NSMutableDictionary *attributes  = [NSMutableDictionary dictionary];
+    [attributes setObject:style forKey:NSParagraphStyleAttributeName];
+    messageLabel.attributedText = [[NSAttributedString alloc] initWithString:message attributes:attributes];
+    
     [alertController.view addSubview:messageLabel];
     [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(titleLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(titleLabel.mas_bottom).offset(20);
         make.left.mas_equalTo(25);
         make.right.mas_equalTo(-25);
-        make.bottom.mas_equalTo(cancelButton.mas_top).offset(-15);
+        make.bottom.mas_equalTo(cancelButton.mas_top).offset(-20);
         make.height.mas_greaterThanOrEqualTo(30);
     }];
 

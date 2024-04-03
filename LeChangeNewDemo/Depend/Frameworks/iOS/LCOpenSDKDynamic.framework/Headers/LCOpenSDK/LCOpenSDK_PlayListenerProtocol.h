@@ -8,6 +8,7 @@
 
 #ifndef LCOpenSDK_PlayListenerProtocol_h
 #define LCOpenSDK_PlayListenerProtocol_h
+@class LCOpenSDK_Err;
 
 @protocol LCOpenSDK_PlayListenerProtocol <NSObject>
 
@@ -28,7 +29,7 @@
 /// @param code error code
 /// @param type 0 RTSP, 1 HLS, 99 OPENAPI
 /// @param index Playback Window Index     zh:播放窗口索引值
-- (void)onPlayFail:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index;
+- (void)onPlayFail:(NSString *)errCode errMsg:(NSString *)errMsg Type:(NSInteger)type Index:(NSInteger)index;
 
 /// resolution changed    zh:分辨率改变时回调
 /// @param width width

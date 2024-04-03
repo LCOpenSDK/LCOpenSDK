@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)lc_setRotateToSatusBarOrientation:(UIViewController *)viewcontroller;
 
++ (void)lc_setOrientation:(UIInterfaceOrientation)orientation viewController:(UIViewController *)viewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

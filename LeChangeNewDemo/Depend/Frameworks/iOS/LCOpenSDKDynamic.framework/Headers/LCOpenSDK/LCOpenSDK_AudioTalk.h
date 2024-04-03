@@ -37,6 +37,22 @@
 /// Turn sound off    zh:关闭声音
 /// @return interface call returns  0 success, -1 failure
 - (NSInteger)stopSound;
-
+/// Play voice intercom    zh:可视对讲
+/// @param paramTalk Intercom parameter model videoSampleCfg    zh:paramTalk 对讲参数模型 videoSampleCfg 视频对讲参数模型
+/// @return interface call returned  0 successful,  -1 failed
+- (NSInteger)playVisualTalk:(LCOpenSDK_ParamTalk *)paramTalk videoSampleCfg:(LCOpenSDK_MediaVideoSampleConfigParam *)videoSampleCfg;
+/// Turn sound off    zh:视频对讲使能
+/// /// @param isEnable    zh:是否开启视频对讲使能，true 开启，false 关闭
+/// @return interface call returns  0 success, -1 failure
+- (BOOL)enableTalkVideo:(BOOL)isEnable;
+/// Turn sound off    zh:关闭声音
+/// @return interface call returns  0 success, -1 failure
+-(BOOL)pushMediaData:(int)type mediaData:(NSData *)data datalen:(int)datalen needSoftEncode:(BOOL)softEncode;
+/// Turn sound off    zh:开启音频采集
+/// @return interface call returns  0 success, -1 failure
+- (int)startSampleAudio;
+/// Turn sound off    zh:关闭音频采集
+/// @return interface call returns  0 success, -1 failure
+- (int)stopSampleAudio;
 @end
 #endif

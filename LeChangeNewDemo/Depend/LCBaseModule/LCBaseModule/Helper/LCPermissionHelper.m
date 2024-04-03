@@ -108,6 +108,51 @@
 	}
 }
 
++ (void)requestCameraAndAudioPermission:(void (^)(BOOL granted))completion {
+    //申请摄像头权限
+    AVAuthorizationStatus audioAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    AVAuthorizationStatus cameraAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (cameraAuthStatus == AVAuthorizationStatusAuthorized && audioAuthStatus == AVAuthorizationStatusAuthorized) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(true);
+        });
+    } else if ((cameraAuthStatus == AVAuthorizationStatusAuthorized || cameraAuthStatus == AVAuthorizationStatusDenied) && audioAuthStatus == AVAuthorizationStatusAuthorized) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+                        completion(granted);
+                    }];
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [LCSetJurisdictionHelper setJurisdictionAlertView:@"mobile_common_permission_apply".lc_T  message:@"mobile_common_permission_explain_camera".lc_T];
+                        completion(false);
+                    });
+                    completion(false);
+                }
+            });
+        }];
+    } else if (cameraAuthStatus == AVAuthorizationStatusAuthorized && (audioAuthStatus == AVAuthorizationStatusNotDetermined || audioAuthStatus == AVAuthorizationStatusDenied)) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                        completion(granted);
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [LCSetJurisdictionHelper setJurisdictionAlertView:@"mobile_common_permission_apply".lc_T message:@"mobile_common_permission_explain_record_audio".lc_T];
+                        completion(false);
+                    });
+                }
+            });
+        }];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [LCSetJurisdictionHelper setJurisdictionAlertView:@"mobile_common_permission_apply".lc_T  message:@"请开启相机访问权限，以正常使用拍照、扫描二维码等功能\n请开启麦克风访问权限，以正常使用对讲等功能".lc_T];
+            completion(false);
+        });
+    }
+}
+
 + (void)requestAlbumPermission:(void (^)(BOOL granted))completion {
 	//申请相册访问权限
 	PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];

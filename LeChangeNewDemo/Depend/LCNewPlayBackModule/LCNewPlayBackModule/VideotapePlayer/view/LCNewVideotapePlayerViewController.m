@@ -413,20 +413,20 @@
 }
 
 - (BOOL)shouldAutorotate {
-    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen) {
-        return NO;
-    }
-    
-    if (![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen &&
-        ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft ||
-         [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
-        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
-    }
-
-    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen && [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
-        //横转竖
-        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
-    }
+//    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen) {
+//        return NO;
+//    }
+//    
+//    if (![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen &&
+//        ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft ||
+//         [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
+//        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
+//    }
+//
+//    if ([LCNewDeviceVideotapePlayManager shareInstance].isFullScreen && [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
+//        //横转竖
+//        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
+//    }
 
     return YES;
 }

@@ -4,31 +4,34 @@
   use_frameworks!
 
 post_install do |installer|
-    installer.generated_projects.each do |project|
-          project.targets.each do |target|
-              target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
-               end
-          end
-   end
+  installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+             end
+        end
+  end
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+  end
 end
 
 target 'LeChangeDemo' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
-  pod 'KVOController', '~> 1.2.0'
-  pod 'ZXingObjC', '~> 3.2.1'
-  pod 'SnapKit'
-  pod 'SDWebImage', '~> 5.0.3'
-  pod 'MJRefresh', '~> 3.7.5'
-  pod 'Masonry'
-  pod 'AFNetworking'
-  pod 'MBProgressHUD', '1.0.0'
-  pod 'ObjectMapper', '~> 3.5.3'
-  pod 'MJExtension'
-  pod 'SAMKeychain', '~> 1.5.3'
-  pod 'GTMBase64', '~> 1.0.1'
+#  pod 'KVOController', '~> 1.2.0'
+#  pod 'ZXingObjC', '~> 3.2.1'
+#  pod 'SnapKit'
+#  pod 'SDWebImage', '~> 5.0.3'
+#  pod 'MJRefresh', '~> 3.7.5'
+#  pod 'Masonry'
+#  pod 'AFNetworking'
+#  pod 'MBProgressHUD', '1.0.0'
+#  pod 'ObjectMapper', '~> 3.5.3'
+#  pod 'MJExtension'
+#  pod 'SAMKeychain', '~> 1.5.3'
+#  pod 'GTMBase64', '~> 1.0.1'
   # Pods for LeChangeDemo
-  # pod 'LCOpenSDK', '~> 3.12.05'
+  # pod 'LCOpenSDK', '~> 3.12.06'
 
 end

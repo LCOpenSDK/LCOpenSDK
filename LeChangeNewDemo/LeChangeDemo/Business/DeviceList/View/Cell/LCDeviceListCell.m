@@ -22,6 +22,8 @@
 
 /// 设置按钮
 @property (strong, nonatomic) LCButton *setIcon;
+//模拟接听呼叫按钮
+@property (strong, nonatomic) LCButton *acceptBtn;
 
 /// emptyLabel
 @property (strong, nonatomic) UILabel *emptyLabel;
@@ -90,6 +92,7 @@
     self.titleLab = titleLab;
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(content).offset(15);
+        make.width.mas_equalTo(150);
     }];
     
     LCButton *setIcon = [LCButton createButtonWithType:LCButtonTypeCustom];
@@ -121,7 +124,30 @@
             weakself.resultBlock(weakself.deviceInfo, 0, 2);
         }
     };
-
+    
+    self.acceptBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
+    [content addSubview:self.acceptBtn];
+    self.acceptBtn.selected = YES;
+    self.acceptBtn.layer.masksToBounds = YES;
+    self.acceptBtn.layer.cornerRadius = 8;
+    [self.acceptBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(titleLab.mas_centerY);
+        make.width.mas_greaterThanOrEqualTo(111);
+        make.height.mas_equalTo(26);
+        make.trailing.mas_equalTo(messageIcon.mas_leading).offset(-10);
+    }];
+    [self.acceptBtn setTitle:@"模拟接听呼叫" forState:UIControlStateNormal];
+    [self.acceptBtn setImage:LC_IMAGENAMED(@"home_icon_device_phone") forState:UIControlStateNormal];
+    [self.acceptBtn setTitleColor:[UIColor lccolor_c11] forState:UIControlStateSelected];
+    self.acceptBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    self.acceptBtn.backgroundColor = [UIColor lc_colorWithHexString:@"#13C69A" alpha:0.14];
+    [self.acceptBtn setTitleColor:[UIColor lccolor_c11] forState:UIControlStateNormal];
+    self.acceptBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
+        if (weakself.resultBlock) {
+            weakself.resultBlock(weakself.deviceInfo, 0, 3);
+        }
+    };
+    
     self.channelList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:[self collectionViewLayout:YES]];
     [content addSubview:self.channelList];
     [self.channelList mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -243,6 +269,7 @@
             self.playImg.hidden = YES;
         }
     }
+    [self.acceptBtn setHidden: ![self.deviceInfo.ability containsString:@"BidirectionalVideoTalk"]];
     
     [self setNeedsLayout];
     [self setNeedsUpdateConstraints];

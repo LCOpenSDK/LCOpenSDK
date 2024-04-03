@@ -109,6 +109,11 @@ typedef NS_ENUM(NSInteger, LCHTTP_STATE)
     STATE_LCHTTP_CLIENT_ERROR       = 1000000,   //客户端内部错误，一般代码逻辑错误
     //The client key is inconsistent with the server key
     STATE_LCHTTP_KEY_ERROR          = 1000005,   //客户端密钥和服务端密钥不一致
+    
+    STATE_LCHTTP_LIVE_FINISH              =    16390,    //live结束消息
+    
+    STATE_LCHTTP_LIVE_COUNT_DOWN          =    16392,    //休眠倒计时通知消息code
+    STATE_LCHTTP_HUNG_UP                 = 503034,      //本次对讲已被接听且已挂断
 };
 
 #pragma mark -  when type == OC_RESULT_PROTO_TYPE_HLS, code enum
@@ -273,6 +278,28 @@ typedef NS_ENUM(NSUInteger, LCDeviceInitStatus) {
     LCDeviceInitStatusUnInit = 0,
     LCDeviceInitStatusInit,
     LCDeviceInitStatusNoAbility     /**没有能力集*/
+};
+
+
+typedef NS_ENUM(NSUInteger, BleLockErrorCode) {
+    BleLockErrorCodeCommonOk = 0,                  // 200 OK
+    BleLockErrorCodeCommonUnKnow = 1,             // 未知错误
+    BleLockErrorCodeCommonTimeOut = 2,            //请求超时
+    BleLockErrorCodeCommonResolveDataError = 3,  //解析frameData异常
+    BleLockErrorCodeCommonSendDataError = 4,     //发送data异常
+    /***************************************蓝牙连接错误*********************************************/
+    BleLockErrorCodeSearchError = 1001,            //蓝牙搜索失败
+    BleLockErrorCodeConnectError = 1002,           //蓝牙连接失败
+    BleLockErrorCodeConnectBindError = 1003,      //蓝牙绑定入网失败
+    BleLockErrorCodeConnectLoginError = 1004,     //蓝牙登录失败
+    BleLockErrorCodeConnectAuthorizeError = 1005, //蓝牙未授权
+    /***************************************门禁业务模块错误*****************************************/
+    BleLockErrorCodeAccessRemoteUnlockErrorOne = 3001,      //强制锁定状态
+    BleLockErrorCodeAccessRemoteUnlockErrorTwo = 3002,      //管理员界面
+    BleLockErrorCodeAccessRemoteUnlockErrorThree = 3003,    //禁用状态
+    BleLockErrorCodeAccessRemoteUnlockErrorFour = 3004,     //随机数错误
+    BleLockErrorCodeAccessRemoteUnlockErrorFive = 3005,     //非法用户
+    BleLockErrorCodeAccessRemoteUnlockErrorSix = 3006     //其他错误
 };
 
 #endif /* LCOpenSDK_Define_h */

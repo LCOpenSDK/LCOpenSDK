@@ -382,7 +382,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *temp = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSString *result = [textField.text filterCharactor:temp withRegex:@"[^\u4e00-\u9fa5]"];
+    NSString *result = [textField.text filterCharactor:temp withRegex:@"[^a-zA-Z0-9\\-\\u4e00-\\u9fa5\\_\\@\\s]"];
     /*
         TO DEV:此处的名称输入限制开发者可以根据自己的需要进行处理，设备对名称并不限制
     **/
@@ -390,9 +390,9 @@
     if (![string isEqualToString:@""] && result.length > 64) {
         return NO;
     }
-    if (![string isEqualToString:@""] && ![string isVaildDeviceName]) {
-        return NO;
-    }
+//    if (![string isEqualToString:@""] && ![string isVaildDeviceName]) {
+//        return NO;
+//    }
     if (temp.length == 0) {
         self.viewController.navigationItem.rightBarButtonItem.enabled = NO;
     } else {

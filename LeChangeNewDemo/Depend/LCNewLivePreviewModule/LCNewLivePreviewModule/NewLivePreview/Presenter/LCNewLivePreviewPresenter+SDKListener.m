@@ -63,11 +63,16 @@
 - (void)onRecordStop:(NSInteger)error Index:(NSInteger)index {
     
 }
-
-- (void)onPlayFail:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index {
+- (void)onPlayFail:(NSString *)errCode errMsg:(NSString *)errMsg Type:(NSInteger)type Index:(NSInteger)index {
     // play
     weakSelf(self);
-    NSLog(@"LIVE_PLAY-CODE: %@, TYPE: %ld, INDEX: %ld", code, type, index);
+    if (errMsg.length > 0 || errMsg != nil) {
+        self.errorMsgLab.text = errMsg;
+    } else {
+        self.errorMsgLab.text = @"play_module_video_replay_description".lcMedia_T;
+    }
+    NSLog(@"LIVE_PLAY-CODE: %@, TYPE: %ld, INDEX: %ld", errCode, type, index);
+//    self.errorMsgLab.text = errMsg;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (99 == type) {
             //请求超时处理
@@ -76,7 +81,7 @@
         }
         if (type == 5) {
             //不处理
-            if ([code integerValue] == STATE_LCHTTP_KEY_ERROR) {
+            if ([errCode integerValue] == STATE_LCHTTP_KEY_ERROR) {
                 [self showErrorBtn];
                 if (![[LCNewDeviceVideoManager shareInstance].currentPsk isEqualToString:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId]) {
                     //自定义id时先改成默认的设备ID重试
@@ -91,8 +96,8 @@
             }
         }
         if (type == 0) {
-            [LCNewDeviceVideoManager shareInstance].playStatus = [code integerValue];
-            if ([RTSP_Result_String(STATE_RTSP_KEY_MISMATCH) isEqualToString:code]) {
+            [LCNewDeviceVideoManager shareInstance].playStatus = [errCode integerValue];
+            if ([RTSP_Result_String(STATE_RTSP_KEY_MISMATCH) isEqualToString:errCode]) {
                 [weakself showErrorBtn];
                 [weakself showPSKAlert];
             } else {
@@ -101,6 +106,7 @@
         }
     });
 }
+
 - (void)onPtzLimit:(LCOpenSDK_Direction)direction
 {
     switch (direction) {
@@ -179,11 +185,17 @@
                 [LCProgressHUD showMsg:@"device_mid_open_talk_success".lcMedia_T];
             });
             return;
+        } else if (nil != error && [error intValue] == STATE_LCHTTP_HUNG_UP) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LCProgressHUD showMsg:@"对讲挂断".lcMedia_T];
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
+            });
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
-            [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
-        });
     });
 }
 

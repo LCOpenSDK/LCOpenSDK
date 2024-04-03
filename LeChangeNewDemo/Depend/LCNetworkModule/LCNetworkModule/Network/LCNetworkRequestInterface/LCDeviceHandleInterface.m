@@ -347,4 +347,95 @@
     }];
 }
 
+/**
+ 接听门口机/门铃呼叫
+ #
+
+ token       String    是            管理员accessToken
+ deviceId    String    是            设备序列号
+ */
++ (void)doorbellCallAnswer:(nonnull NSString *)deviceId success:(void (^)(void))success failure:(void (^)(LCError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+   [params addEntriesFromDictionary:@{KEY_TOKEN: [LCApplicationDataManager managerToken],
+                                      KEY_DEVICE_ID: deviceId
+                                    }];
+    [[LCNetworkRequestManager manager] lc_POST:@"/doorbellCallAnswer" parameters:params success:^(id _Nonnull objc) {
+        if ([objc[@"code"] intValue] == 0) {
+            if (success) {
+                success();
+            }
+        } else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    } failure:^(LCError *_Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+/**
+ 挂断门口机/门铃的呼叫
+ #
+
+ token       String    是            管理员accessToken
+ deviceId    String    是            设备序列号
+ */
++ (void)doorbellCallHangUp:(nonnull NSString *)deviceId success:(void (^)(void))success failure:(void (^)(LCError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+   [params addEntriesFromDictionary:@{KEY_TOKEN: [LCApplicationDataManager managerToken],
+                                      KEY_DEVICE_ID: deviceId
+                                    }];
+    [[LCNetworkRequestManager manager] lc_POST:@"/doorbellCallHangUp" parameters:params success:^(id _Nonnull objc) {
+        if ([objc[@"code"] intValue] == 0) {
+            if (success) {
+                success();
+            }
+        } else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    } failure:^(LCError *_Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+/**
+ 挂断可视对讲设别的呼叫
+ #
+
+ token       String    是            管理员accessToken
+ deviceId    String    是            设备序列号
+ productId   String    是            设备产品Id
+ */
++ (void)deviceCallRefuse:(nonnull NSString *)deviceId productId:(nonnull NSString *)productId success:(void (^)(void))success failure:(void (^)(LCError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+   [params addEntriesFromDictionary:@{KEY_TOKEN: [LCApplicationDataManager managerToken],
+                                      KEY_DEVICE_ID: deviceId,
+                                      KEY_PRODUCT_ID: productId
+                                    }];
+    [[LCNetworkRequestManager manager] lc_POST:@"/deviceCallRefuse" parameters:params success:^(id _Nonnull objc) {
+        if ([objc[@"code"] intValue] == 0) {
+            if (success) {
+                success();
+            }
+        } else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    } failure:^(LCError *_Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
+
 @end

@@ -12,7 +12,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
     private var menuView: LCQRScanMenuView!
     
     private var presenter: LCIdentifyPresenter!
-    
+
     public static func storyboardInstance() -> LCQRScanViewController {
 		let storyboard = UIStoryboard(name: "AddDevice", bundle: Bundle.lc_addDeviceBundle())
         if let controller = storyboard.instantiateViewController(withIdentifier: "LCQRScanViewController") as? LCQRScanViewController {
@@ -20,7 +20,8 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
         }
 		return LCQRScanViewController()
 	}
-	
+    var bindToken: NSString = ""
+    var loginToken: NSString = ""
 	deinit {
 //		presenter.stopSearchDevices()
 		NotificationCenter.default.removeObserver(self)
@@ -208,9 +209,9 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
     }
 
     @objc func onInPutSnAction() {
-        LCAddDeviceManager.sharedInstance.isEnterByQrcode = false
-        let vc = LCInputSNViewController.storyboardInstance()
-        navigationVC()?.pushViewController(vc, animated: true)
+                LCAddDeviceManager.sharedInstance.isEnterByQrcode = false
+                let vc = LCInputSNViewController.storyboardInstance()
+                navigationVC()?.pushViewController(vc, animated: true)
     }
     
     func onPhotoAlbumAction() {
@@ -218,7 +219,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
             guard granted else {
                 return
             }
-            
+
             let albumPicker = UIImagePickerController()
             albumPicker.delegate = self
             albumPicker.modalPresentationStyle = .currentContext
@@ -226,7 +227,7 @@ class LCQRScanViewController: LCAddBaseViewController, DHScannerViewControllerDe
             albumPicker.isToolbarHidden = true
             albumPicker.allowsEditing = true
             albumPicker.sourceType = .photoLibrary
-            
+
             self.present(albumPicker, animated: true, completion: nil)
         })
     }

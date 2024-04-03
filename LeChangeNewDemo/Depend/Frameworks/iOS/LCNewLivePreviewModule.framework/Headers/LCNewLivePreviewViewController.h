@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) LCNewVideoControlView *upDownControlView;
 
+@property (nonatomic, assign) BOOL isFirstIntoVC;
 -(void)configDevice:(LCDeviceInfo *)device channelIndex:(NSInteger)index;
 
 /**
@@ -45,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
  适配竖屏布局
  */
 - (void)configPortraitScreenUI;
+
+- (void)configFullScreenUI;
 
 @end
 

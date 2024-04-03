@@ -4,3 +4,8 @@ framework module LCNewLivePreviewModule {
   export *
   module * { export * }
 }
+
+module LCNewLivePreviewModule.Swift {
+  header "LCNewLivePreviewModule-Swift.h"
+  requires objc
+}

@@ -166,7 +166,7 @@ class LCCommonErrorView: UIView {
 	
 	// MARK: Update constraint
 	public func updateTopImageViewConstraint(top: CGFloat, width: CGFloat? = nil, height: CGFloat? = nil) {
-		imageView.snp.updateConstraints { make in
+		imageView.snp.remakeConstraints { make in
 			make.top.equalTo(self).offset(top)
 			
 			if width != nil {
@@ -176,6 +176,7 @@ class LCCommonErrorView: UIView {
 			if height != nil {
 				make.height.equalTo(height!)
 			}
+            make.centerX.equalToSuperview()
 		}
 	}
 	

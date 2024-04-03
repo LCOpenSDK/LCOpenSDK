@@ -85,7 +85,7 @@ static LCNetSDKInitialManager *_instance = nil;
 			//定时器对象
 			__block dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
 			//从现在开始，每0.5秒执行一次
-			dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC), 0);
+			dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC), 0);
 			//定时器回调
 			dispatch_source_set_event_handler(timer, ^{
 				NSLog(@"CGD定时器-----%@",[NSThread currentThread]);

@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
     ENCRTPT_NONE,              // 不支持的加密方式
     //Insufficient buffer length
     ENCRYPT_BUFFER_LACK,       // 缓冲区长度不够
+    //device key error
+    ENCRYPT_Device_Key,       // 设备密码错误
     //Internal Error
     ENCRYPT_INSIDE_ERROR = 99  // 内部错误
 };
@@ -40,6 +42,7 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 3.indicating that the picture is not encrypted    zh:3, 表示图片非加密
 /// 4.Unsupported encryption method    zh:4, 不支持的加密方式
 /// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
+/// 6.device key error   zh:5, 设备密码错误
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID key:(NSString*)key bufOut:(NSData**)pDestBufOut;
 
@@ -57,6 +60,7 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 3.indicating that the picture is not encrypted    zh:3, 表示图片非加密
 /// 4.Unsupported encryption method    zh:4, 不支持的加密方式
 /// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
+/// 6.device key error   zh:5, 设备密码错误
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key token:(NSString *)token bufOut:(NSData**)pDestBufOut;
 
@@ -74,6 +78,7 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 3.indicating that the picture is not encrypted    zh:3, 表示图片非加密
 /// 4.Unsupported encryption method    zh:4, 不支持的加密方式
 /// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
+/// 6.device key error   zh:5, 设备密码错误
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
 

@@ -666,6 +666,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNetworkModuleBundle;
+				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -673,7 +674,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 arm64e arm7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -693,6 +693,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCNetworkModuleBundle;
+				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -700,7 +701,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 arm64e arm7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -842,16 +842,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/../Frameworks/iOS",
-					"$(POD_SEARCH_FRAMEWORK_PATH)",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
-					"$(SRCROOT)/../Merge",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJExtension",
-				);
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Frameworks/iOS";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
 				INFOPLIST_FILE = "LCNetworkModule/Support Files/Info.plist";
@@ -873,7 +865,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -894,16 +885,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/../Frameworks/iOS",
-					"$(POD_SEARCH_FRAMEWORK_PATH)",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/SnapKit",
-					"$(SRCROOT)/../Merge",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/AFNetWorking",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJExtension",
-				);
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Frameworks/iOS";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
 				INFOPLIST_FILE = "LCNetworkModule/Support Files/Info.plist";
@@ -924,7 +907,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Release;
 		};

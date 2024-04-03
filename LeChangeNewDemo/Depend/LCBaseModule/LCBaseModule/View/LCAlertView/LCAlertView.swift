@@ -80,7 +80,7 @@ public class LCAlertView: UIView {
         let titleLabel = UILabel()
         self.addSubview(titleLabel)
         titleLabel.text = self.title
-        titleLabel.textColor = UIColor(red: 44.0/255.0, green: 44.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+        titleLabel.textColor = UIColor.lccolor_c40()
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.snp.makeConstraints { make in
@@ -90,8 +90,8 @@ public class LCAlertView: UIView {
         }
         let detailLab = UILabel()
         self.addSubview(detailLab)
-        detailLab.text = self.detail
-        detailLab.textColor = UIColor(red: 44.0/255.0, green: 44.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+//        detailLab.text = self.detail
+        detailLab.textColor = UIColor.lccolor_c40()
         detailLab.numberOfLines = 0
         detailLab.font = UIFont.systemFont(ofSize: 16)
         let width = self.detail?.lc_width(font: UIFont.boldSystemFont(ofSize: 16)) ?? 0.0
@@ -100,6 +100,11 @@ public class LCAlertView: UIView {
         } else {
             detailLab.textAlignment = .center
         }
+        let  paraph =  NSMutableParagraphStyle ()
+        paraph.lineSpacing = 10
+        let  attributes = [ NSAttributedStringKey.font : UIFont .systemFont(ofSize: 16),
+                            NSAttributedStringKey.paragraphStyle : paraph]
+        detailLab.attributedText =  NSAttributedString (string: self.detail ?? "", attributes: attributes)
         detailLab.lineBreakMode = .byWordWrapping
         detailLab.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(horizontalMargin)
@@ -110,7 +115,7 @@ public class LCAlertView: UIView {
         let cancleBtn = LCButton.createButton(with: LCButtonTypeCustom)
         cancleBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         cancleBtn.setTitle(cancleTitle, for: .normal)
-        cancleBtn.setTitleColor(UIColor(red: 143.0/255.0, green: 143.0/255.0, blue: 143.0/255.0, alpha: 1.0), for: .normal)
+        cancleBtn.setTitleColor(UIColor.lccolor_c40(), for: .normal)
         cancleBtn.layer.cornerRadius = 22.5
         cancleBtn.layer.masksToBounds = true
         cancleBtn.layer.borderWidth = 0.5
@@ -125,7 +130,7 @@ public class LCAlertView: UIView {
         }
         
         let confirmBtn = LCButton.createButton(with: LCButtonTypeCustom)
-        confirmBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        confirmBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         confirmBtn.setTitle(confirmTitle, for: .normal)
         confirmBtn.setTitleColor(.white, for: .normal)
         confirmBtn.backgroundColor = UIColor.lccolor_c0()

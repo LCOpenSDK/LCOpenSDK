@@ -94,7 +94,10 @@
             window.hidden = YES;
         }
     }
-    
+//    if (self.isFirstIntoVC != YES) {
+//        [self.persenter onFullScreen:nil];
+//    }
+    self.isFirstIntoVC = NO;
     [self.persenter refreshMiddleControlItems];
     [self.persenter refreshBottomControlItems];
     // 开始拉流
@@ -318,6 +321,7 @@
             deviceDetail.presenter = presenter;
             presenter.viewController = deviceDetail;
             [weakself.navigationController pushViewController:deviceDetail animated:YES];
+            self.isFirstIntoVC = YES;
         }
     }];
 }
@@ -340,19 +344,19 @@
 }
 
 - (BOOL)shouldAutorotate {
-    if ([LCNewDeviceVideoManager shareInstance].isFullScreen) {
-        return NO;
-    }
-    if (![LCNewDeviceVideoManager shareInstance].isFullScreen &&
-        ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft ||
-         [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
-        //竖转横
-        [LCNewDeviceVideoManager shareInstance].isFullScreen = ![LCNewDeviceVideoManager shareInstance].isFullScreen;
-    }
-    if ([LCNewDeviceVideoManager shareInstance].isFullScreen && [[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationPortrait) {
-        //横转竖
-        [LCNewDeviceVideoManager shareInstance].isFullScreen = ![LCNewDeviceVideoManager shareInstance].isFullScreen;
-    }
+//    if ([LCNewDeviceVideoManager shareInstance].isFullScreen) {
+//        return NO;
+//    }
+//    if (![LCNewDeviceVideoManager shareInstance].isFullScreen &&
+//        ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft ||
+//         [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
+//        //竖转横
+//        [LCNewDeviceVideoManager shareInstance].isFullScreen = ![LCNewDeviceVideoManager shareInstance].isFullScreen;
+//    }
+//    if ([LCNewDeviceVideoManager shareInstance].isFullScreen && [[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationPortrait) {
+//        //横转竖
+//        [LCNewDeviceVideoManager shareInstance].isFullScreen = ![LCNewDeviceVideoManager shareInstance].isFullScreen;
+//    }
     return YES;
 }
 

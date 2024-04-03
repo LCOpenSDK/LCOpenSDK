@@ -14,7 +14,7 @@
                 success:(void (^)(long loginHandle))success
                 failure:(void (^)(NSString *description))failure {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        unsigned int error = 0;
+        int error = 0;
         long loginHandle = [LCOpenSDK_DeviceInit loginDeviceByIP:devIp port:port username:username password:password highLevelSecurity:NO errorCode:&error];
 		dispatch_async(dispatch_get_main_queue(), ^{
             if (loginHandle) {
@@ -43,7 +43,7 @@
                                failure:(void (^)(NSString *description))failure
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        unsigned int error = 0;
+        int error = 0;
         long loginHandle = [LCOpenSDK_DeviceInit loginDeviceByIP:devIp port:port username:username password:password highLevelSecurity:YES errorCode:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (loginHandle) {

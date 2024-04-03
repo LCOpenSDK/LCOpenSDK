@@ -110,18 +110,4 @@
 /// get last error
 + (unsigned int)getLastError;
 
-//MARK: - DEPRECATED METHOD
-
-/// 开始搜索设备（方法废弃）
-///
-/// @param searchDeviceCallBack 回调信息，id类型
-/// @param localIp ip信息
-///
-/// @return  搜索句柄，用于停止设备搜索
-- (long)startSearchDevices:(void(^)(LCOpenSDK_SearchDeviceInfo *deviceInfo))searchDeviceCallBack byLocalIp:(NSString *)localIp DEPRECATED_MSG_ATTRIBUTE("use startSearchDevicesWithDeviceId:timeOut:callback: instead");
-
-/// 停止搜索设备（方法废弃）
-/// @param handle handle description
-- (void)stopSearchDevices:(long)handle DEPRECATED_MSG_ATTRIBUTE("use stopSearchDevices instead");
-
 @end

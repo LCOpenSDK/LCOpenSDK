@@ -46,7 +46,9 @@
 }
 
 - (void)setupView {
-   
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewTap:)];
+    [self.view addGestureRecognizer:tap];
+    
     weakSelf(self);
     // 背景图片
     UIImageView *bgImageView = [[UIImageView alloc] init];
@@ -149,5 +151,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewTap:(UITapGestureRecognizer *)tap {
+    [self.view endEditing:YES];
+}
 
 @end

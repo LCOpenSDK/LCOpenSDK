@@ -76,7 +76,8 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic, assign) BOOL        isOpenAudio;
 // 是否辅助帧默认关闭
 @property (nonatomic, assign) BOOL        isAssistFrame;
-
+// 是否支持可视对讲
+@property (nonatomic, assign) BOOL        isSupportVideoTalk;
 @end
 
 /// 对讲(设备级对讲，通道为-1,通道级为对应通道号)
@@ -119,5 +120,22 @@ typedef NS_ENUM(NSInteger, LCOpenSDK_EnhanceMode) {
 @property (nonatomic,assign) int duration;
 
 @end
+
+@interface LCOpenSDK_MediaVideoSampleConfigParam : NSObject
+
+@property(nonatomic, assign)NSInteger width;
+@property(nonatomic, assign)NSInteger height;
+@property(nonatomic, assign)NSInteger I_frame_interval;
+@property(nonatomic, assign)NSInteger encodeType;
+@property(nonatomic, assign)NSInteger frameRate;
+@property(nonatomic, assign)BOOL isCameraOpen;
+@property(nonatomic, assign)BOOL softEncodeMode;
+
+/// 生成默认配置
++ (instancetype)initWithParam:(NSInteger)width height:(NSInteger)height I_frame_interval:(NSInteger)I_frame_interval encodeType:(NSInteger)encodeType frameRate:(NSInteger)frameRate isCameraOpen:(BOOL)isCameraOpen softEncodeMode:(BOOL)softEncodeMode;
+-(NSDictionary *)toDictionary;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

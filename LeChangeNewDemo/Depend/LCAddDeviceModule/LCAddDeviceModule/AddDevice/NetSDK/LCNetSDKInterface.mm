@@ -82,7 +82,6 @@
 		return nil;
 	}
     BOOL ret = [LCOpenSDK_DeviceInit initDev:deviceNetInfo.mac byPwdResetWay:deviceNetInfo.byPWDResetWay initStatus:deviceNetInfo.initStatus passWord:password ip:nil];
-//    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:false];
 
 	return [self setupModelData:deviceNetInfo isSuccess:ret];
 }
@@ -101,8 +100,7 @@
 	if(deviceNetInfo.ip.length == 0 || password.length == 0) {
 		return nil;
 	}
-	
-//    BOOL ret = [LCOpenSDK_Netsdk initDevAccountWithDevInfo:[self convertDeviceInfoWithPassword:password devNetInfo:deviceNetInfo] useIp:true];
+
     BOOL ret = [LCOpenSDK_DeviceInit initDev:deviceNetInfo.mac byPwdResetWay:deviceNetInfo.byPWDResetWay initStatus:deviceNetInfo.initStatus passWord:password ip:deviceNetInfo.ip];
     return [self setupModelData:deviceNetInfo isSuccess:ret];
 }

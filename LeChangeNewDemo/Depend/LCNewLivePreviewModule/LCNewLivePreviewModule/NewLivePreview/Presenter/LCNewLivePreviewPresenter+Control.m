@@ -126,11 +126,11 @@
         param.showWindow = NO;
     }
     if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
-        LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
-        if (!resolutions) {
-            resolutions = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
-            [LCNewDeviceVideoManager shareInstance].currentResolution = resolutions;
-        }
+//        LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
+//        if (!resolutions) {
+        LCCIResolutions *resolutions = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
+        [LCNewDeviceVideoManager shareInstance].currentResolution = resolutions;
+//        }
         param.defiMode = [resolutions.streamType integerValue];
         param.imageSize = resolutions.imageSize;
     } else {
@@ -163,11 +163,11 @@
     param.isOpenAudio = [LCNewDeviceVideoManager shareInstance].isSoundOn;
     param.showWindow = NO;
     if ([[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions count] > 0) {
-        LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
-        if (!resolutions) {
-            resolutions = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions firstObject];
-            [LCNewDeviceVideoManager shareInstance].currentResolution = resolutions;
-        }
+//        LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
+//        if (!resolutions) {
+        LCCIResolutions *resolutions = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions firstObject];
+        [LCNewDeviceVideoManager shareInstance].currentResolution = resolutions;
+//        }
         param.defiMode = [resolutions.streamType integerValue];
         param.imageSize = resolutions.imageSize;
     } else {
@@ -186,6 +186,9 @@
     if (!self.qualityView) {
         NSInteger btnCount = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions.count;
         self.qualityView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, btn.superview.frame.origin.y + 30 - 30*btnCount, 30, 30 *btnCount)];
+        self.qualityView.layer.cornerRadius = 5;
+        self.qualityView.backgroundColor = [UIColor lc_colorWithHexString: @"#7F000000"];
+        
         for (int i =0; i<btnCount; i++) {
             LCCIResolutions *NResolution = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions[i];
             LCButton *qualityBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
@@ -207,7 +210,8 @@
         
         NSInteger btnCount = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions.count;
         self.LandScapeQualityView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, btn.superview.frame.origin.y + 30 - 30*btnCount, 30, 30 *btnCount)];
-        
+        self.LandScapeQualityView.layer.cornerRadius = 5;
+        self.LandScapeQualityView.backgroundColor = [UIColor lc_colorWithHexString: @"#7F000000"];
         for (int i =0; i<btnCount; i++) {
             
             LCCIResolutions *NResolution = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions[i];
@@ -424,6 +428,8 @@
     //如果原来就开启声音，此处需要重新开启
     if ([LCNewDeviceVideoManager shareInstance].isSoundOn) {
         [self.playWindow playAudio];
+    } else {
+        [self.playWindow stopAudio];
     }
     [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = ![LCNewDeviceVideoManager shareInstance].isOpenAudioTalk;
 }

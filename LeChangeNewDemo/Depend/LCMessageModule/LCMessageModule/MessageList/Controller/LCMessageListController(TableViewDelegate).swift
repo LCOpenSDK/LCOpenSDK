@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LCNetworkModule
 
 extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
     
@@ -35,7 +36,12 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
         guard let picUrl = messageInfo.picurlArray.first else {
             return
         }
-        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: presenter.deviceInfo.deviceId, playtoken:presenter.deviceInfo.playToken, containView: self.view)
+        let pskKey = LCApplicationDataManager.openId() + (presenter.deviceInfo.deviceId )
+        var key: String = UserDefaults.standard.object(forKey: pskKey) as? String ?? ""
+        if  (key.count < 0 || key == "") {
+            key = presenter.deviceInfo.deviceId
+        }
+        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: key, playtoken:presenter.deviceInfo.playToken, containView: self.view)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

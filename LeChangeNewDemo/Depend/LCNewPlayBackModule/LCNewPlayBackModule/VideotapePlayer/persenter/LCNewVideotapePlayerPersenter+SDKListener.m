@@ -93,10 +93,13 @@
         [weakself showPlayBtn];
     });
 }
-
-- (void)onPlayFail:(NSString*)code Type:(NSInteger)type Index:(NSInteger)index
-{
+- (void)onPlayFail:(NSString *)errCode errMsg:(NSString *)errMsg Type:(NSInteger)type Index:(NSInteger)index {
     // play
+    if (errMsg.length > 0 || errMsg != nil) {
+        self.errorMsgLab.text = errMsg;
+    } else {
+        self.errorMsgLab.text = @"play_module_video_replay_description".lc_T;
+    }
     weakSelf(self);
     if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
         [weakself onRecording]; //关闭已开启的
@@ -106,12 +109,12 @@
         [self.subPlayWindow stopRecordStream:false];
     }
     [self hideVideoLoadImage];
-    NSLog(@"TEST设备录像回调code = %@, type = %ld", code, (long)type);
+    NSLog(@"TEST设备录像回调code = %@, type = %ld", errCode, (long)type);
     dispatch_async(dispatch_get_main_queue(), ^{
         //几种密钥错误
-        if ((type == RESULT_PROTO_TYPE_LCHTTP && [code integerValue] == STATE_LCHTTP_KEY_ERROR) ||
-            (type == RESULT_PROTO_TYPE_RTSP && [code integerValue] == STATE_RTSP_KEY_MISMATCH) ||
-            (type == RESULT_PROTO_TYPE_HLS && ([code integerValue] == STATE_HLS_KEY_MISMATCH || [code integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH)) ) {
+        if ((type == RESULT_PROTO_TYPE_LCHTTP && [errCode integerValue] == STATE_LCHTTP_KEY_ERROR) ||
+            (type == RESULT_PROTO_TYPE_RTSP && [errCode integerValue] == STATE_RTSP_KEY_MISMATCH) ||
+            (type == RESULT_PROTO_TYPE_HLS && ([errCode integerValue] == STATE_HLS_KEY_MISMATCH || [errCode integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH)) ) {
             //本地录像解密失败
             [weakself showErrorBtn];
             if (![[LCNewDeviceVideotapePlayManager shareInstance].currentPsk isEqualToString:[LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId]) {
@@ -120,7 +123,7 @@
                 [weakself hideErrorBtn];
                 [weakself onPlay:nil];
             }else{
-                [weakself showPSKAlert:[code integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH isPlay:YES];
+                [weakself showPSKAlert:[errCode integerValue] == STATE_HLS_DEVICE_PASSWORD_MISMATCH isPlay:YES];
                 [self.mainPlayWindow stopRecordStream:YES];
                 if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
                     [self.subPlayWindow stopRecordStream:YES];

@@ -47,3 +47,5 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayGroupManager.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DownloadParam.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayRecordParam.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_BuryPoint.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_BleLock.h>

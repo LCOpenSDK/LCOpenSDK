@@ -5,8 +5,10 @@
 #import "LCNewLivePreviewPresenter+LandscapeControlView.h"
 #import <LCBaseModule/LCPermissionHelper.h>
 #import <LCMediaBaseModule/LCMediaBaseDefine.h>
+#import <LCMediaBaseModule/UIDevice+MediaBaseModule.h>
 #import <KVOController/KVOController.h>
 #import <LCBaseModule/NSString+AbilityAnalysis.h>
+#import <LCNewLivePreviewModule/LCNewLivePreviewModule-Swift.h>
 
 @implementation LCNewLivePreviewPresenter (LandscapeControlView)
 
@@ -72,9 +74,9 @@
             if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
 
                 LCCIResolutions *currentRlution = [LCNewDeviceVideoManager shareInstance].currentResolution;
-                if (!currentRlution) {
+//                if (!currentRlution) {
                     currentRlution = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
-                }
+//                }
 
                 [item setTitle:currentRlution.name forState:UIControlStateNormal];
 
@@ -215,7 +217,11 @@
         break;
         case LCNewLivePreviewControlAudio: {
             //对讲
-            [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_off") forState:UIControlStateNormal];
+            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                [item setImage:LC_IMAGENAMED(@"live_video_icon_h_visual_speak_off") forState:UIControlStateNormal];
+            } else {
+                [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_off") forState:UIControlStateNormal];
+            }
             item.enabled = NO;
             if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"NVR"]) {
                 if (![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalk]) {
@@ -231,9 +237,17 @@
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenAudioTalk" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_on") forState:UIControlStateNormal];
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_h_visual_speak_on") forState:UIControlStateNormal];
+                    } else {
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_on") forState:UIControlStateNormal];
+                    }
                 } else {
-                    [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_off") forState:UIControlStateNormal];
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_h_visual_speak_off") forState:UIControlStateNormal];
+                    } else {
+                        [item setImage:LC_IMAGENAMED(@"live_video_icon_h_speak_off") forState:UIControlStateNormal];
+                    }
                 }
             }];
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
@@ -245,7 +259,63 @@
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-                [weakself onAudioTalk:btn];
+                if (![LCNewDeviceVideoManager shareInstance].isOpenAudioTalk) {
+                    //对讲开启
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        LCLandscapeVideoSelectView *view = [[LCLandscapeVideoSelectView alloc]init];
+                        LCLandscapeSelectItem *item1 = [[LCLandscapeSelectItem alloc]init];
+                        item1.normalImage = [UIImage imageNamed:@"video_fullscreen_popup_icon_videocall"];
+                        item1.normalTitle = @"视频通话";
+                        LCLandscapeSelectItem *item2 = [[LCLandscapeSelectItem alloc]init];
+                        item2.normalImage = [UIImage imageNamed:@"video_fullscreen_popup_icon_intercom"];
+                        item2.normalTitle = @"语音通话";
+                        NSArray<LCLandscapeSelectItem *> *itemArray = @[item1, item2];
+                        [view configSelectItems:itemArray selectHandle:^(NSInteger index) {
+                            if (index == 0) {
+                                [LCPermissionHelper requestCameraAndAudioPermission:^(BOOL granted) {
+                                    if (granted == YES) {
+                                        [UIDevice lc_setOrientation:UIInterfaceOrientationPortrait viewController:self.liveContainer];
+                                        //                                [LCNewDeviceVideoManager shareInstance].isFullScreen = 0;
+                                        LCVisualTalkViewController *vc = [[LCVisualTalkViewController alloc]init];
+                                        [vc configIntercomWithStatus:1];
+                                        vc.isNeedSoftEncode = YES;
+                                        vc.dismissCallback = ^{
+                                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                [UIDevice lc_setOrientation:UIInterfaceOrientationLandscapeRight viewController:self.liveContainer.navigationController];
+                                                [UIDevice lc_setOrientation:UIInterfaceOrientationLandscapeRight viewController:self.liveContainer];
+                                            });
+
+                                        };
+                                        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                                        [self.liveContainer.navigationController presentViewController:vc animated:NO completion:nil];
+                                    }
+                                }];
+                            }
+                            if (index == 1) {
+                                //普通对讲
+                                [LCPermissionHelper requestAudioPermission:^(BOOL granted) {
+                                    if (granted == YES) {
+                                        [weakself onAudioTalk:btn];
+                                    }
+                                }];
+                                
+                            }
+                        }];
+                        [view showAlert];
+                    } else {
+                        [LCPermissionHelper requestAudioPermission:^(BOOL granted) {
+                            if (granted == YES) {
+                                [weakself onAudioTalk:btn];
+                            }
+                        }];
+                    }
+                } else {
+                    [LCPermissionHelper requestAudioPermission:^(BOOL granted) {
+                        if (granted == YES) {
+                            [weakself onAudioTalk:btn];
+                        }
+                    }];
+                }
             };
         }
         break;

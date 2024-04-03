@@ -67,7 +67,12 @@ class LCMessageEditCell: UITableViewCell {
     
     //MARK: - Public Func
     public func updateData(_ messageItem:LCMessageItem) {
-        messageImv.lc_setMessageImage(withURL: messageItem.thumbUrl ?? "", placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: messageItem.deviceId ?? "", productId: messageItem.productId ?? "", playtoken: messageItem.playtoken ?? "", key: messageItem.deviceId ?? "")
+        let pskKey = LCApplicationDataManager.openId() + (messageItem.deviceId ?? "")
+        var key: String = UserDefaults.standard.object(forKey: pskKey) as? String ?? ""
+        if  (key.count < 0 || key == "") {
+            key = messageItem.deviceId ?? ""
+        }
+        messageImv.lc_setMessageImage(withURL: messageItem.thumbUrl ?? "", placeholderImage: UIImage(named: "common_defaultcover_big") ?? UIImage(), deviceId: messageItem.deviceId ?? "", productId: messageItem.productId ?? "", playtoken: messageItem.playtoken ?? "", key: key)
         titleLbl.text = messageItem.title
         timeLabel.text = messageItem.timeStr
         selectImv.image = messageItem.isSelected ? UIImage(named: "icon_checkbox2") : UIImage(named: "icon_checkbox1")

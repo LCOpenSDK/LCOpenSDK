@@ -1302,15 +1302,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/ZXingObjC",
 					"$(SRCROOT)/../Frameworks/iOS",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/ObjectMapper",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJExtension",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1345,7 +1340,6 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
 			};
 			name = Debug;
@@ -1364,15 +1358,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/ZXingObjC",
 					"$(SRCROOT)/../Frameworks/iOS",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJRefresh",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/ObjectMapper",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/SDWebImage",
-					"$(POD_SEARCH_FRAMEWORK_PATH)/MJExtension",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1405,7 +1394,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
 			};
 			name = Release;
@@ -1423,6 +1411,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCAddDeviceModuleBundle;
+				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1450,6 +1439,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCAddDeviceModuleBundle;
+				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;

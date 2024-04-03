@@ -31,6 +31,7 @@
 
 #pragma mark Rotate Methods
 - (BOOL)shouldAutorotate {
+    NSLog(@"shouldAutorotate ------> %d", self.visibleViewController.shouldAutorotate);
     return self.visibleViewController.shouldAutorotate;
 }
 

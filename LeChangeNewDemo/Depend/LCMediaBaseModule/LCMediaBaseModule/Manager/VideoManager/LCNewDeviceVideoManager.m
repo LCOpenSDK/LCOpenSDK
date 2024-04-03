@@ -63,6 +63,7 @@ static LCNewDeviceVideoManager * manager = nil;
 }
 
 - (void)setIsFullScreen:(BOOL)isFullScreen {
+    NSLog(@"------> %d", isFullScreen);
     _isFullScreen = isFullScreen;
     self.getCurrentVC.navigationController.interactivePopGestureRecognizer.enabled = !isFullScreen;
 }

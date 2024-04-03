@@ -520,11 +520,17 @@
     heardView.backgroundColor = [UIColor lc_colorWithHexString:@"#FAFAFA"];
     heardView.index = indexPath.section;
     if (collectionView.tag == 1000) {
-        LCCloudVideotapeInfo *info = [self getMainCloudVideos:indexPath.section][0];
-        heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
+        NSArray *videos = [self getMainCloudVideos:indexPath.section];
+        if (videos != nil && videos.count > 0) {
+            LCCloudVideotapeInfo *info = videos[0];
+            heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
+        }
     } else {
-        LCLocalVideotapeInfo *info = self.groupLocalVideos[indexPath.section][0];
-        heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
+        NSArray *videos = self.groupLocalVideos[indexPath.section];
+        if (videos != nil && videos.count > 0) {
+            LCLocalVideotapeInfo *info = videos[0];
+            heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
+        }
     }
     return heardView;
 }

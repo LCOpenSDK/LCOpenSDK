@@ -15,4 +15,6 @@ FOUNDATION_EXPORT const unsigned char LCNewLivePreviewModuleVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <LCNewLivePreviewModule/PublicHeader.h>
 #import <LCNewLivePreviewModule/LCNewLivePreviewViewController.h>
-
+#import <LCNewLivePreviewModule/LCVisualTalkCaptureSession.h>
+#import <LCNewLivePreviewModule/LCH264Encoder.h>
+#import <LCNewLivePreviewModule/LCVisualTalkPreviewView.h>

@@ -38,6 +38,15 @@ import UIKit
         errorView.quitButton.setTitleColor(UIColor.lccolor_c2(), for: .normal)
 		errorView.quitButton.isHidden = isQuitHidden()
         
+        if errorView.quitButton.isHidden == true, errorView.tryAgainButton.isHidden == true {
+            errorView.descTextView.snp.remakeConstraints { make in
+                make.leading.equalToSuperview().offset(25)
+                make.trailing.equalToSuperview().offset(-25)
+                make.top.equalTo(errorView.titleLabel.snp.bottom).offset(30)
+                make.bottom.equalToSuperview().offset(-30)
+            }
+        }
+        
         if lc_screenHeight < 667 {
             errorView.titleLabel.lc_setAttributedText(text: errorContent(), font: UIFont.systemFont(ofSize: 13))
         } else {

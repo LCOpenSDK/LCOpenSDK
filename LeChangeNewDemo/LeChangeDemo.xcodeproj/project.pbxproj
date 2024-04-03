@@ -3,22 +3,46 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0302988328F90E7C0038E6FE /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302988128F90E7C0038E6FE /* UINavigationController+Push.m */; };
 		0311271129E39EB900B333C6 /* LCAddDeviceModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0419D49D2509CE6F00CE4528 /* LCAddDeviceModuleBundle.bundle */; };
+		03125E892AB05AD90063408E /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03125E872AB05AD00063408E /* LCOpenSDKDynamic.framework */; };
+		03125E8A2AB05AD90063408E /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03125E872AB05AD00063408E /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		032664B82903E29C0082EAC9 /* LCDeviceDetailModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */; };
 		0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */; };
-		034504E62A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */; };
-		034504E72A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */; };
 		03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */; };
 		037976D128FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D028FD2BE40073C6A1 /* LCNewPlayBackModuleBundle.bundle */; };
 		037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */; };
 		037ABAE22996373A003EF295 /* Video.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037ABAE12996373A003EF295 /* Video.xcassets */; };
 		03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE03A28F5618B00BCE307 /* LCDeviceDetailModule.framework */; };
+		03FC1A362B108F1900B02794 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A202B108C7600B02794 /* AFNetworking.framework */; };
+		03FC1A372B108F1900B02794 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A202B108C7600B02794 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A382B108F1F00B02794 /* GTMBase64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A242B108C7700B02794 /* GTMBase64.framework */; };
+		03FC1A392B108F2000B02794 /* GTMBase64.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A242B108C7700B02794 /* GTMBase64.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A3A2B108F2100B02794 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A232B108C7700B02794 /* KVOController.framework */; };
+		03FC1A3B2B108F2100B02794 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A232B108C7700B02794 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A3C2B108F3100B02794 /* ZXingObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A1F2B108C7600B02794 /* ZXingObjC.framework */; };
+		03FC1A3D2B108F3100B02794 /* ZXingObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A1F2B108C7600B02794 /* ZXingObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A3E2B108F3300B02794 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A0F2B108C7600B02794 /* SnapKit.framework */; };
+		03FC1A3F2B108F3300B02794 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A0F2B108C7600B02794 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A402B108F3500B02794 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A292B108C7700B02794 /* SDWebImage.framework */; };
+		03FC1A412B108F3500B02794 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A292B108C7700B02794 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A422B108F3800B02794 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A272B108C7700B02794 /* SAMKeychain.framework */; };
+		03FC1A432B108F3800B02794 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A272B108C7700B02794 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A442B108F3C00B02794 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A262B108C7700B02794 /* ObjectMapper.framework */; };
+		03FC1A452B108F3C00B02794 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A262B108C7700B02794 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A462B108F4100B02794 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A212B108C7700B02794 /* MJRefresh.framework */; };
+		03FC1A472B108F4200B02794 /* MJRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A212B108C7700B02794 /* MJRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A482B108F4500B02794 /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A282B108C7700B02794 /* MJExtension.framework */; };
+		03FC1A492B108F4600B02794 /* MJExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A282B108C7700B02794 /* MJExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A4A2B108F4800B02794 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A252B108C7700B02794 /* MBProgressHUD.framework */; };
+		03FC1A4B2B108F4900B02794 /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A252B108C7700B02794 /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03FC1A4C2B108F4B00B02794 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A222B108C7700B02794 /* Masonry.framework */; };
+		03FC1A4D2B108F4C00B02794 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC1A222B108C7700B02794 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0401AF5B250A3D1000F8E1D6 /* LCBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */; };
 		04092ACA28F42061006D861D /* LCMessageModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04092AC928F42061006D861D /* LCMessageModule.xcassets */; };
 		04092B0928F53E29006D861D /* LCMessageModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040929A128F3FFBA006D861D /* LCMessageModule.framework */; };
@@ -185,7 +209,19 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				034504E72A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
+				03FC1A452B108F3C00B02794 /* ObjectMapper.framework in Embed Frameworks */,
+				03FC1A3D2B108F3100B02794 /* ZXingObjC.framework in Embed Frameworks */,
+				03FC1A392B108F2000B02794 /* GTMBase64.framework in Embed Frameworks */,
+				03125E8A2AB05AD90063408E /* LCOpenSDKDynamic.framework in Embed Frameworks */,
+				03FC1A3F2B108F3300B02794 /* SnapKit.framework in Embed Frameworks */,
+				03FC1A472B108F4200B02794 /* MJRefresh.framework in Embed Frameworks */,
+				03FC1A4D2B108F4C00B02794 /* Masonry.framework in Embed Frameworks */,
+				03FC1A412B108F3500B02794 /* SDWebImage.framework in Embed Frameworks */,
+				03FC1A372B108F1900B02794 /* AFNetworking.framework in Embed Frameworks */,
+				03FC1A4B2B108F4900B02794 /* MBProgressHUD.framework in Embed Frameworks */,
+				03FC1A432B108F3800B02794 /* SAMKeychain.framework in Embed Frameworks */,
+				03FC1A492B108F4600B02794 /* MJExtension.framework in Embed Frameworks */,
+				03FC1A3B2B108F2100B02794 /* KVOController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,10 +232,10 @@
 		02B9DA734564122405AA232C /* Pods-LeChangeDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeChangeDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-LeChangeDemoUITests/Pods-LeChangeDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0302988128F90E7C0038E6FE /* UINavigationController+Push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Push.m"; sourceTree = "<group>"; };
 		0302988228F90E7C0038E6FE /* UINavigationController+Push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Push.h"; sourceTree = "<group>"; };
+		03125E872AB05AD00063408E /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		032664B42903E29B0082EAC9 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCDeviceDetailModuleBundle.bundle; path = Depend/Frameworks/iOS/LCDeviceDetailModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		0339E17729A5E30800056106 /* LCOpenApiErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCOpenApiErrorCode.h; sourceTree = "<group>"; };
 		0340706E28DABDBA00703F04 /* DeviceDetail.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DeviceDetail.xcassets; sourceTree = "<group>"; };
-		034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListViewController.swift; sourceTree = "<group>"; };
 		03636CC228DED86400FE1B59 /* LCDeviceListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceListPresenter.swift; sourceTree = "<group>"; };
 		0368EDEF28463E0000DDB53A /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
@@ -208,10 +244,21 @@
 		037976D228FD2BF30073C6A1 /* LCMessageModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCMessageModuleBundle.bundle; path = Depend/Frameworks/iOS/LCMessageModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
 		037ABAE12996373A003EF295 /* Video.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Video.xcassets; sourceTree = "<group>"; };
 		03ABE03528F5618B00BCE307 /* LCDeviceDetailModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCDeviceDetailModule.xcodeproj; path = Depend/LCDeviceDetailModule/LCDeviceDetailModule.xcodeproj; sourceTree = "<group>"; };
+		03FC1A0F2B108C7600B02794 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Depend/Frameworks/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		03FC1A1F2B108C7600B02794 /* ZXingObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZXingObjC.framework; path = Depend/Frameworks/iOS/ZXingObjC.framework; sourceTree = "<group>"; };
+		03FC1A202B108C7600B02794 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Depend/Frameworks/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		03FC1A212B108C7700B02794 /* MJRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJRefresh.framework; path = Depend/Frameworks/iOS/MJRefresh.framework; sourceTree = "<group>"; };
+		03FC1A222B108C7700B02794 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Depend/Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
+		03FC1A232B108C7700B02794 /* KVOController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KVOController.framework; path = Depend/Frameworks/iOS/KVOController.framework; sourceTree = "<group>"; };
+		03FC1A242B108C7700B02794 /* GTMBase64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMBase64.framework; path = Depend/Frameworks/iOS/GTMBase64.framework; sourceTree = "<group>"; };
+		03FC1A252B108C7700B02794 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Depend/Frameworks/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
+		03FC1A262B108C7700B02794 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Depend/Frameworks/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		03FC1A272B108C7700B02794 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Depend/Frameworks/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
+		03FC1A282B108C7700B02794 /* MJExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJExtension.framework; path = Depend/Frameworks/iOS/MJExtension.framework; sourceTree = "<group>"; };
+		03FC1A292B108C7700B02794 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Depend/Frameworks/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCBaseModule.framework; path = Depend/Frameworks/iOS/LCBaseModule.framework; sourceTree = "<group>"; };
 		0409299728F3FFB9006D861D /* LCMessageModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCMessageModule.xcodeproj; path = Depend/LCMessageModule/LCMessageModule.xcodeproj; sourceTree = "<group>"; };
 		04092AC928F42061006D861D /* LCMessageModule.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LCMessageModule.xcassets; sourceTree = "<group>"; };
-		0419D4572508B6D100CE4528 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419D4722508C99200CE4528 /* LCBaseModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCBaseModule.xcodeproj; path = Depend/LCBaseModule/LCBaseModule.xcodeproj; sourceTree = "<group>"; };
 		0419D47B2508C9EA00CE4528 /* LCNetworkModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCNetworkModule.xcodeproj; path = Depend/LCNetworkModule/LCNetworkModule.xcodeproj; sourceTree = "<group>"; };
 		0419D4932509CD5700CE4528 /* LCAddDeviceModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCAddDeviceModule.xcodeproj; path = Depend/LCAddDeviceModule/LCAddDeviceModule.xcodeproj; sourceTree = "<group>"; };
@@ -298,22 +345,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FC1A402B108F3500B02794 /* SDWebImage.framework in Frameworks */,
+				03FC1A362B108F1900B02794 /* AFNetworking.framework in Frameworks */,
 				04092B0928F53E29006D861D /* LCMessageModule.framework in Frameworks */,
 				03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */,
+				03FC1A3C2B108F3100B02794 /* ZXingObjC.framework in Frameworks */,
+				03FC1A462B108F4100B02794 /* MJRefresh.framework in Frameworks */,
 				04871BA728F27640009E0540 /* LCNewPlayBackModule.framework in Frameworks */,
 				04C4B75C28F1635300344C5C /* LCNewLivePreviewModule.framework in Frameworks */,
+				03FC1A4A2B108F4800B02794 /* MBProgressHUD.framework in Frameworks */,
 				04C4B72C28F11C5E00344C5C /* LCMediaBaseModule.framework in Frameworks */,
 				04ADF5ED250F4251004028B1 /* libc++.tbd in Frameworks */,
 				0401AF5B250A3D1000F8E1D6 /* LCBaseModule.framework in Frameworks */,
 				0419D4842508CA2000CE4528 /* LCNetworkModule.framework in Frameworks */,
 				049EC47424F3D6D9008625A1 /* NetworkExtension.framework in Frameworks */,
+				03FC1A3A2B108F2100B02794 /* KVOController.framework in Frameworks */,
 				10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */,
 				1018DC6524114BDC005C1B2B /* AddressBook.framework in Frameworks */,
 				10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */,
 				1018DC6324114BD3005C1B2B /* Contacts.framework in Frameworks */,
 				10520D4C23A3670C00B4564A /* CoreMedia.framework in Frameworks */,
 				10D29E332407FF17008891CC /* CoreLocation.framework in Frameworks */,
+				03FC1A482B108F4500B02794 /* MJExtension.framework in Frameworks */,
+				03FC1A4C2B108F4B00B02794 /* Masonry.framework in Frameworks */,
 				10520D4A23A3670400B4564A /* AVFoundation.framework in Frameworks */,
+				03FC1A442B108F3C00B02794 /* ObjectMapper.framework in Frameworks */,
+				03FC1A422B108F3800B02794 /* SAMKeychain.framework in Frameworks */,
 				10520D4823A366FD00B4564A /* CoreVideo.framework in Frameworks */,
 				10520D4623A366F400B4564A /* MediaAccessibility.framework in Frameworks */,
 				B4DE85D323F913DF006C314A /* ExternalAccessory.framework in Frameworks */,
@@ -323,9 +380,11 @@
 				10520D4023A366D700B4564A /* AudioToolbox.framework in Frameworks */,
 				10520D3E23A366CE00B4564A /* MediaPlayer.framework in Frameworks */,
 				10520D3C23A366C700B4564A /* CoreAudio.framework in Frameworks */,
+				03FC1A382B108F1F00B02794 /* GTMBase64.framework in Frameworks */,
 				AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */,
-				034504E62A9D9849002A8A17 /* LCOpenSDKDynamic.framework in Frameworks */,
+				03125E892AB05AD90063408E /* LCOpenSDKDynamic.framework in Frameworks */,
 				0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */,
+				03FC1A3E2B108F3300B02794 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,13 +718,24 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				034504E42A9D9828002A8A17 /* LCOpenSDKDynamic.framework */,
+				03FC1A202B108C7600B02794 /* AFNetworking.framework */,
+				03FC1A242B108C7700B02794 /* GTMBase64.framework */,
+				03FC1A232B108C7700B02794 /* KVOController.framework */,
+				03FC1A222B108C7700B02794 /* Masonry.framework */,
+				03FC1A252B108C7700B02794 /* MBProgressHUD.framework */,
+				03FC1A282B108C7700B02794 /* MJExtension.framework */,
+				03FC1A212B108C7700B02794 /* MJRefresh.framework */,
+				03FC1A262B108C7700B02794 /* ObjectMapper.framework */,
+				03FC1A272B108C7700B02794 /* SAMKeychain.framework */,
+				03FC1A292B108C7700B02794 /* SDWebImage.framework */,
+				03FC1A0F2B108C7600B02794 /* SnapKit.framework */,
+				03FC1A1F2B108C7600B02794 /* ZXingObjC.framework */,
+				03125E872AB05AD00063408E /* LCOpenSDKDynamic.framework */,
 				0368EDF928463E1C00DDB53A /* MetalKit.framework */,
 				0368EDEF28463E0000DDB53A /* Metal.framework */,
 				04ADF5EC250F4251004028B1 /* libc++.tbd */,
 				0401AF5A250A3D1000F8E1D6 /* LCBaseModule.framework */,
 				0419D49F2509D3BA00CE4528 /* LCAddDeviceModule.framework */,
-				0419D4572508B6D100CE4528 /* LCBaseModule.framework */,
 				049EC47324F3D6D9008625A1 /* NetworkExtension.framework */,
 				1018DC6424114BDC005C1B2B /* AddressBook.framework */,
 				1018DC6224114BD3005C1B2B /* Contacts.framework */,
@@ -719,12 +789,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 101311F52398F6F1000E1FB7 /* Build configuration list for PBXNativeTarget "LeChangeDemo" */;
 			buildPhases = (
-				67CEA06F15F08ACBB9DF191B /* [CP] Check Pods Manifest.lock */,
+				094313A6FA8F2F3EE0E36E51 /* [CP] Check Pods Manifest.lock */,
 				101311C22398F6EE000E1FB7 /* Sources */,
 				101311C32398F6EE000E1FB7 /* Frameworks */,
 				101311C42398F6EE000E1FB7 /* Resources */,
-				8603187026D5E82700FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */,
-				93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */,
 				030ACD5529F7C3B000E7F801 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -940,7 +1008,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67CEA06F15F08ACBB9DF191B /* [CP] Check Pods Manifest.lock */ = {
+		094313A6FA8F2F3EE0E36E51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -960,41 +1028,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8603187026D5E82700FF6B6A /* [CHMOD] Embed Pods Frameworks Shell */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CHMOD] Embed Pods Frameworks Shell";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 解决部分系统下，无权限执行Pods-LeChangeDemo-frameworks.sh的问题\nchmod +x \"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh\"\n";
-		};
-		93D7131CB625324D12AD5E18 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeChangeDemo/Pods-LeChangeDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1101,6 +1134,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1160,6 +1194,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1183,22 +1218,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LeChangeDemo/LeChangeDemo.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huacheng Network Technology Co.,Ltd. (NE9RR4AYQ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huacheng Network Technology Co.,Ltd. (NE9RR4AYQ2)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2023.0805.1747;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Depend",
-					"$(SRCROOT)/Depend",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Resource",
-					"$(PROJECT_DIR)/Depend/Resource",
 					"$(PROJECT_DIR)/Depend/Frameworks/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeChangeDemo/Config/PCH/LCPrefixHeader.pch";
@@ -1207,9 +1239,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
-					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 				);
 				INFOPLIST_FILE = LeChangeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1219,29 +1248,11 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJExtension\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
-					"$(PROJECT_DIR)/Depend",
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0.0;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController/KVOController.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZXingObjC/ZXingObjC.framework/Headers\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZXingObjC\"",
-				);
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1271,8 +1282,6 @@
 					"\"Foundation\"",
 					"-framework",
 					"\"ImageIO\"",
-					"-framework",
-					"\"KVOController\"",
 					"-framework",
 					"\"MobileCoreServices\"",
 					"-framework",
@@ -1292,7 +1301,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1303,23 +1311,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LeChangeDemo/LeChangeDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huacheng Network Technology Co.,Ltd. (NE9RR4AYQ2)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Huacheng Network Technology Co.,Ltd. (NE9RR4AYQ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huacheng Network Technology Co.,Ltd. (NE9RR4AYQ2)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2023.0805.1747;
 				DEVELOPMENT_TEAM = NE9RR4AYQ2;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NE9RR4AYQ2;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = armv7;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Depend",
-					"$(SRCROOT)/Depend",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Resource",
-					"$(PROJECT_DIR)/Depend/Resource",
 					"$(PROJECT_DIR)/Depend/Frameworks/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1329,16 +1334,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
-					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
-				);
-				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
-					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 				);
 				INFOPLIST_FILE = LeChangeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1348,29 +1343,11 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJExtension\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
-					"$(PROJECT_DIR)/Depend",
 					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework\"",
 				);
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0.0;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController/KVOController.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZXingObjC/ZXingObjC.framework/Headers\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KVOController\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZXingObjC\"",
-				);
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1401,8 +1378,6 @@
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
-					"\"KVOController\"",
-					"-framework",
 					"\"MobileCoreServices\"",
 					"-framework",
 					"\"QuartzCore\"",
@@ -1416,12 +1391,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imou.leopen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ImouOpenSDK_AppStore;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_AdHoc;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ImouOpenSDK_AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "LeChangeDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Release;
 		};

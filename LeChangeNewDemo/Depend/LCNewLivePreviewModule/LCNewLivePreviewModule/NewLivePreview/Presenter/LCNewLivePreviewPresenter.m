@@ -20,6 +20,7 @@
 #import <LCNetworkModule/LCApplicationDataManager.h>
 #import <LCMediaBaseModule/UIImageView+MediaCircle.h>
 #import <LCBaseModule/LCModule.h>
+#import <LCNewLivePreviewModule/LCNewLivePreviewModule-Swift.h>
 
 @implementation LCNewLivePreviewControlItem
 
@@ -58,7 +59,7 @@
 
 - (void)ptzControlWith:(NSString *)direction duration:(int)duration {
     // 非pass、iot设备不支持云台长连接接口
-    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"PaaS"]  || ([LCNewDeviceVideoManager shareInstance].currentDevice.productId != nil && [LCNewDeviceVideoManager shareInstance].currentDevice.productId.length > 0)) {
+    if (![[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"PaaS"]  || ([LCNewDeviceVideoManager shareInstance].currentDevice.productId != nil && [LCNewDeviceVideoManager shareInstance].currentDevice.productId.length > 0)) {
         [LCDeviceHandleInterface controlMovePTZWithDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId Channel:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId Operation:direction Duration:duration success:^(NSString * _Nonnull picUrlString) {
         } failure:^(LCError * _Nonnull error) {
         }];
@@ -80,9 +81,9 @@
                 self.qualityView = nil;
                 if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
                     LCCIResolutions *currentRlution = [LCNewDeviceVideoManager shareInstance].currentResolution;
-                    if (!currentRlution) {
+//                    if (!currentRlution) {
                         currentRlution = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
-                    }
+//                    }
                     [btn setTitle:currentRlution.name forState:UIControlStateNormal];
                     [btn setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
                     weakSelf(btn)
@@ -239,9 +240,9 @@
 
             if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
                 LCCIResolutions *currentRlution = [LCNewDeviceVideoManager shareInstance].currentResolution;
-                if (!currentRlution) {
+//                if (!currentRlution) {
                     currentRlution = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
-                }
+//                }
                 [item setTitle:currentRlution.name forState:UIControlStateNormal];
                 [item setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
 
@@ -315,6 +316,7 @@
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
+                
                 [weakself onAudio:btn];
             };
         }
@@ -411,7 +413,12 @@
         break;
         case LCNewLivePreviewControlAudio: {
             //对讲
-            [item setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
+            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                [item setImage:LC_IMAGENAMED(@"video_live_icon_videocall") forState:UIControlStateNormal];
+            } else {
+                [item setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
+            }
+            
             item.enabled = NO;
             if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"]) {
                 item.enabled = YES;
@@ -433,9 +440,17 @@
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenAudioTalk" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] boolValue]) {
                     //是否打开声音
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak_on") forState:UIControlStateNormal];
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        [weakItem setImage:LC_IMAGENAMED(@"video_live_icon_videocall_h") forState:UIControlStateNormal];
+                    } else {
+                        [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak_on") forState:UIControlStateNormal];
+                    }
                 } else {
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        [weakItem setImage:LC_IMAGENAMED(@"video_live_icon_videocall") forState:UIControlStateNormal];
+                    } else {
+                        [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_speak") forState:UIControlStateNormal];
+                    }
                 }
             }];
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
@@ -447,11 +462,42 @@
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
-                [LCPermissionHelper requestAudioPermission:^(BOOL granted) {
-                    if (granted) {
+                if (![LCNewDeviceVideoManager shareInstance].isOpenAudioTalk) {
+                    //对讲开启
+                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability containsString:@"BidirectionalVideoTalk"]) {
+                        LCBottomControlView *view = [[LCBottomControlView alloc]init];
+                        [view showOn:[[UIApplication sharedApplication] keyWindow] clickBlock:^(enum CallType type) {
+                            switch (type) {
+                                case CallTypeVideoCall:{
+                                    [LCPermissionHelper requestCameraAndAudioPermission:^(BOOL granted) {
+                                        if (granted) {
+                                            LCVisualTalkViewController *vc = [[LCVisualTalkViewController alloc]init];
+                                            [vc configIntercomWithStatus:1];
+                                            vc.isNeedSoftEncode = YES;
+                                            [weakself.liveContainer presentViewController:vc animated:YES completion:nil];
+                                        }
+                                    }];
+                                }
+                                    break;
+                                case CallTypeAudioCall: {
+                                    [LCPermissionHelper requestAudioPermission:^(BOOL granted) {
+                                        if (granted) {
+                                            [weakself onAudioTalk:btn];
+                                        }
+                                    }];
+                                }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }];
+                    } else {
                         [weakself onAudioTalk:btn];
                     }
-                }];
+                    
+                } else {
+                    [weakself onAudioTalk:btn];
+                }
             };
         }
         break;
@@ -837,6 +883,10 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert_Title_Notice".lcMedia_T message:@"mobile_common_input_video_password_tip".lcMedia_T preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Alert_Title_Button_Confirm".lcMedia_T style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
         [LCNewDeviceVideoManager shareInstance].currentPsk = alertController.textFields.firstObject.text;
+        NSString *devicePsk = alertController.textFields.firstObject.text;
+        NSString *pskKey = [[LCApplicationDataManager openId] stringByAppendingString: [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId];
+        [[NSUserDefaults standardUserDefaults] setValue:devicePsk forKey:pskKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [weakself onPlay:nil];
     }];
 

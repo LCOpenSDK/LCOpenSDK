@@ -191,7 +191,9 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
 //                if let vc = self?.livePreviewVC {
-                    self?.listContainer?.navigationController?.pushViewController(LCNewLivePreviewViewController(), animated: true)
+                let vc = LCNewLivePreviewViewController()
+                vc.isFirstIntoVC = true
+                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
 //                }
             } else if index == 1 {
                 var channleId = ""
@@ -203,6 +205,22 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
                 let deviceJson = info.transfromToJson()
                 let userInfo = ["deviceJson": deviceJson, "index":channelIndex] as [String : Any]
                 self?.listContainer?.navigationController?.push(toMessagePage: userInfo)
+            } else if index == 3 {
+                NSLog("模拟接听");
+                LCAlertView.lc_ShowAlert(title: "提示", detail: "请先按下设备上的【呼叫】按钮，听到“正在呼叫”提示音后，再在30秒内按App界面上的【模拟接听呼叫】按钮", confirmString: "开始模拟", cancelString: "取消") { isConfirmSelected in
+                    if isConfirmSelected {
+                        //开始模拟呼叫
+                        LCPermissionHelper.requestCameraAndAudioPermission { granted in
+                            if granted {
+                                let vc = LCVisualTalkViewController()
+                                vc.intercomStatus = .ringing
+                                vc.isNeedSoftEncode = false
+                                vc.modalPresentationStyle = .fullScreen
+                                self?.listContainer?.present(vc, animated: true)
+                            }
+                        }
+                    }
+                }
             }
         }
         return cell
