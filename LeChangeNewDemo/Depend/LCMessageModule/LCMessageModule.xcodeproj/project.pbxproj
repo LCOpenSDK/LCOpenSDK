@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03401B362906FBA300F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */; };
 		0409299028F3FFB9006D861D /* LCMessageModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 0409298F28F3FFB9006D861D /* LCMessageModule.docc */; };
 		0409299128F3FFB9006D861D /* LCMessageModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 0409298E28F3FFB9006D861D /* LCMessageModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		040929B028F40422006D861D /* LCMessageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040929AF28F40422006D861D /* LCMessageListController.swift */; };
@@ -72,7 +71,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03FC1AF52B10C3C800B02794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0409298B28F3FFB9006D861D /* LCMessageModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCMessageModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0409298E28F3FFB9006D861D /* LCMessageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageModule.h; sourceTree = "<group>"; };
@@ -127,6 +125,7 @@
 		0420909328F968BE00800D39 /* LCMessageTavEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageTavEmptyView.swift; sourceTree = "<group>"; };
 		0420909528FA59CF00800D39 /* LCMessageTavErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMessageTavErrorView.swift; sourceTree = "<group>"; };
 		0485D7CA28FE4AB500835A7F /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C466172CC6591C004E35AB /* LCMessageModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCMessageModule.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +135,6 @@
 			files = (
 				0485D7CB28FE4AB500835A7F /* LCNetworkModule.framework in Frameworks */,
 				0420903428F6E34E00800D39 /* SDWebImage.framework in Frameworks */,
-				03401B362906FBA300F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +178,7 @@
 				040929AA28F400E2006D861D /* MessageList */,
 				0420907928F9050E00800D39 /* MessageEdit */,
 				0409298F28F3FFB9006D861D /* LCMessageModule.docc */,
+				04C466172CC6591C004E35AB /* LCMessageModule.xcconfig */,
 			);
 			path = LCMessageModule;
 			sourceTree = "<group>";
@@ -313,7 +312,6 @@
 		0420903228F6E34E00800D39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03401B352906FBA300F7CD6F /* LCOpenSDKDynamic.framework */,
 				0485D7CA28FE4AB500835A7F /* LCNetworkModule.framework */,
 				0420903328F6E34E00800D39 /* SDWebImage.framework */,
 			);
@@ -746,6 +744,7 @@
 		};
 		0409299528F3FFB9006D861D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466172CC6591C004E35AB /* LCMessageModule.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
@@ -757,14 +756,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Frameworks/iOS\"",
-					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -788,6 +784,7 @@
 		};
 		0409299628F3FFB9006D861D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466172CC6591C004E35AB /* LCMessageModule.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
@@ -799,15 +796,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit",
-					"\"$(SRCROOT)/../Frameworks/iOS\"",
-					"\"$(SRCROOT)/../../../../../SDKLib/IOS/LCOpenSDK\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

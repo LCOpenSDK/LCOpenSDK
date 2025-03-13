@@ -11,6 +11,8 @@
 #import <LCMediaBaseModule/LCNewDeviceVideoManager.h>
 #import "LCNewVideoHistoryView.h"
 #import <LCBaseModule/LCButton.h>
+#import <LCOpenMediaSDK/LCOpenMediaSDK-Swift.h>
+#import <LCOpenMediaSDK/LCOpenMediaSDK.h>
 
 typedef void (^ItemHandle)(LCButton * btn);
 
@@ -77,10 +79,12 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) LCNewLivePreviewViewController *liveContainer;
 
 /// 播放窗口
-@property (strong, nonatomic) LCOpenSDK_PlayRealWindow * playWindow;
+//@property (strong, nonatomic) LCOpenSDK_PlayRealWindow * playWindow;
+//
+///// 子播放窗口播放器
+//@property (strong, nonatomic) LCOpenSDK_PlayRealWindow * subPlayWindow;
 
-/// 子播放窗口播放器
-@property (strong, nonatomic) LCOpenSDK_PlayRealWindow * subPlayWindow;
+@property (strong, nonatomic) LCOpenMediaLivePlugin *livePlugin;
 
 /// 播放窗口
 @property (strong, nonatomic) UILabel *cameraNameLabel;
@@ -91,7 +95,7 @@ typedef enum : NSUInteger {
 
 
 ///对讲
-@property (strong, nonatomic) LCOpenSDK_AudioTalk *talker;
+@property (strong, nonatomic) LCOpenTalkPlugin *talker;
 
 ///录像文件列表
 @property (strong, nonatomic) NSMutableArray *videotapeList;
@@ -134,6 +138,8 @@ typedef enum : NSUInteger {
 @property (nonatomic) LCPlayWindowDisplayStyle displayStyle;
 
 @property (nonatomic, assign) long groupId;
+/// 是否保存封面图标识
+@property (assign, nonatomic) BOOL isSavingThumbPic;
 
 //MARK: - Public Methods
 

@@ -1,0 +1,22 @@
+//
+//  LCNewPlayBackModule.xcconfig
+//  LCNewPlayBackModule
+//
+//  Created by lei on 2024/10/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+//指定Pods依赖的路径,注意：不要换行
+//1、PODS_CONFIGURATION_BUILD_DIR：代码编译生成后的framework路径
+//2、PODS_ROOT：Pods目录
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/LCOpenMediaSDK" "${PODS_ROOT}/LCOpenSdk/Frameworks"
+
+//Pods编译产物路径
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+
+//Pods路径，根据实际情况修改
+PODS_ROOT = ${SRCROOT}/../../Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates

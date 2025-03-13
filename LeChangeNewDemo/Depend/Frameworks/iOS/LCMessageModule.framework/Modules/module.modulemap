@@ -1,7 +1,7 @@
 framework module LCMessageModule {
   umbrella header "LCMessageModule.h"
-
   export *
+
   module * { export * }
 }
 

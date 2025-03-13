@@ -95,10 +95,7 @@
                     speedTime = 32.0;
                     [weakitem setImage:LC_IMAGENAMED(@"icon_32x") forState:UIControlStateNormal];
                 }
-                [weakself.mainPlayWindow setPlaySpeed:speedTime];
-                if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
-                    [weakself.subPlayWindow setPlaySpeed:speedTime];
-                }
+                [weakself.recordPlugin setPlaySpeed:speedTime];
             }];
             
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {

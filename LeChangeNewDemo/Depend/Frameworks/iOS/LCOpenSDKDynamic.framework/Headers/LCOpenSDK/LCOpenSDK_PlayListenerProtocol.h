@@ -47,6 +47,11 @@
 /// @param index Playback Window Index     zh:播放窗口索引值
 - (void)onStreamCallback:(NSData*)data Index:(NSInteger)index;
 
+/**
+ * 辅助帧json字符串回调
+ */
+- (void)onAssistFrameInfo:(NSDictionary*)jsonDic;
+
 @end
 
 #endif /* LCOpenSDK_PlayListenerProtocol_h */

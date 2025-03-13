@@ -17,6 +17,7 @@
 		04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D8BAFF24E53EC0002F3076 /* DHScanner.framework */; };
 		0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D4632508C0F400CE4528 /* LCNetworkModule.framework */; };
 		0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419D4672508C51500CE4528 /* AddDevice.storyboard */; };
+		04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */; };
 		10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 10026F4E23056F0000F95836 /* LCAddDeviceModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F34728B28FD36B300DB9EB5 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */; };
 		3F34728F28FD382600DB9EB5 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728E28FD382600DB9EB5 /* SDWebImage.framework */; };
@@ -145,6 +146,7 @@
 		0419D4632508C0F400CE4528 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419D4652508C10900CE4528 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419D4672508C51500CE4528 /* AddDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDevice.storyboard; sourceTree = "<group>"; };
+		04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCAddDeviceModule.xcconfig; sourceTree = "<group>"; };
 		04D8BAFF24E53EC0002F3076 /* DHScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DHScanner.framework; path = ../Frameworks/iOS/DHScanner.framework; sourceTree = "<group>"; };
 		10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCAddDeviceModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10026F4E23056F0000F95836 /* LCAddDeviceModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAddDeviceModule.h; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				4E451183242B781500AF8AF6 /* AddDevice */,
 				4E451087242B75EE00AF8AF6 /* Module */,
 				10545D0A230583030082E367 /* Support Files */,
+				04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */,
 			);
 			path = LCAddDeviceModule;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,6 +1294,7 @@
 		};
 		10026F5423056F0000F95836 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1305,8 +1310,8 @@
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../Frameworks/iOS",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(SRCROOT)/../Frameworks/iOS",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",
@@ -1316,7 +1321,7 @@
 				);
 				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1346,6 +1351,7 @@
 		};
 		10026F5523056F0000F95836 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1361,8 +1367,8 @@
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../Frameworks/iOS",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(SRCROOT)/../Frameworks/iOS",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",
@@ -1372,7 +1378,7 @@
 				);
 				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

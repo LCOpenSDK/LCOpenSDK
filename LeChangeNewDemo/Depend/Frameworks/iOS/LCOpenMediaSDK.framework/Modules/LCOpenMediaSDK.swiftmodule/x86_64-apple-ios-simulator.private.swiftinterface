@@ -1,0 +1,401 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name LCOpenMediaSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CoreMedia
+import CoreMotion
+import Foundation
+import GLKit
+@_exported import LCOpenMediaSDK
+import LCOpenSDKDynamic
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc public protocol LCRecordPluginDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onPlaySuccess(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayLoading(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayPaused(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayStop(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, saveLastFrame: Swift.Bool)
+  @objc func onPlayFinished(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onRecordStart(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onRecordFinish(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, paths: [Swift.Int : Swift.String])
+  @objc func onPlayFailure(videoError: Swift.String, type: Swift.String, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onStreamInfo(videoError: Swift.String, type: Swift.String, streamInfo: Swift.String?, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onReceiveData(byteRate byte: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayerTime(_ playTime: Foundation.TimeInterval, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlaySpeedChange(_ speed: CoreFoundation.CGFloat, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func viewForStateLayer(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> UIKit.UIView?
+  @objc func viewForToolLayer(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> UIKit.UIView?
+  @objc func onEZoomChanged(_ scale: CoreFoundation.CGFloat, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onAssistFrameInfo(jsonDic: [Swift.String : Any])
+  @objc func onSoundChanged(_ isAudioOpen: Swift.Bool)
+  @objc func configFilePath(cid: Swift.Int, fileType: LCOpenMediaSDK.LCFilePathType) -> Swift.String
+  @objc func onSnapPicFail()
+  @objc func onSnapPicSuccess(paths: [Swift.Int : Swift.String])
+  @objc func onRecordFail()
+  @objc func processPan(_ dx: CoreFoundation.CGFloat, dy: CoreFoundation.CGFloat, channelId: Swift.Int)
+  @objc func processPanBegin(_ channelId: Swift.Int)
+  @objc func processPanEnd(_ channelId: Swift.Int)
+}
+@objc public protocol LCRecordDoubleCamWindowDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode, littleWindow channelId: Swift.Int)
+  @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, subWindow location: LCOpenMediaSDK.LCCastQuadrant)
+  @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  @objc func videoWindowSpaceConfig(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> LCOpenMediaSDK.LCMediaDoubleCameraSpaceConfig?
+  @objc func recordPlugin(_ livePlugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+}
+@objc public protocol LCRecordThreeCamWindowDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindow isMainWindow: Swift.Bool)
+  @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  @objc func mainWindowIsLargeScreen(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> Swift.Bool
+}
+@objc public protocol LCRecordPluginGestureDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onSingleClick(_ gesture: UIKit.UITapGestureRecognizer, cid: Swift.Int)
+  @objc func onDoubleClick(_ gesture: UIKit.UITapGestureRecognizer, cid: Swift.Int)
+  @objc func onLeftSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc func onRightSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc func onUpSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc func onDownSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc func onLongPress(_ gesture: UIKit.UILongPressGestureRecognizer, cid: Swift.Int)
+}
+@objc public protocol LCRecordPluginLogReportDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func recordCombinLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  @objc func recordCombinLogReport(onStreamLogInfo message: Swift.String?)
+  @objc func recordCombinLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+}
+@objc public protocol LCRecordCombinFishEyeDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func fishEye(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, osdTime: Swift.String)
+}
+public protocol LCFishEyeCamRecordLogReportDelegate : AnyObject {
+  func fishEyeCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  func fishEyeCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  func fishEyeCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class LCMediaDoubleCameraSpaceConfig : ObjectiveC.NSObject {
+  @objc public var backgroundColor: UIKit.UIColor?
+  @objc public var spaceHeight: CoreFoundation.CGFloat
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class LCMediaDoubleCamWindowConfig : ObjectiveC.NSObject {
+  @objc public var surfaceRatio: CoreFoundation.CGFloat
+  @objc public var windowOrder: Swift.Int
+  @objc public var topMargin: CoreFoundation.CGFloat
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class LCMediaWatchPointConfig : ObjectiveC.NSObject {
+  @objc public var normalPointImage: UIKit.UIImage?
+  @objc public var selectPointImage: UIKit.UIImage?
+  @objc public var normalLineColor: UIKit.UIColor?
+  @objc public var selectedLineColor: UIKit.UIColor?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class LCMediaWatchPoint : ObjectiveC.NSObject {
+  public var relativePoint: CoreFoundation.CGPoint?
+  @objc public var channelId: Swift.Int
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum LCRecordVideoType : Swift.Int {
+  case cloud
+  case device
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum LCFilePathType : Swift.Int {
+  case snapShot
+  case record
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class LCOpenMediaLivePlugin : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var decodeType: LCOpenMediaSDK.LCPlayerDecodeType?
+  @_Concurrency.MainActor(unsafe) public var isWindowResizeEnabled: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var isSupportPipMoved: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var isSupportSwitchWindow: Swift.Bool {
+    get
+    set
+  }
+  @objc @_Concurrency.MainActor(unsafe) public var screenMode: LCOpenMediaSDK.LCScreenMode {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @objc deinit
+}
+extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
+  @_Concurrency.MainActor(unsafe) public func configAssistWindowScreenMode(isLargeScreen: Swift.Bool, isFirstScreen: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setAssistWindowEnabed(_ isEnabled: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getAssistWindowEnabled() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startAutoTrack(trackType: LCOpenMediaSDK.LCMediaAutoTrackType, senceType: Swift.Bool) -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopAutoTrack() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func switchAutoTrackStream()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setAutoTrackDefaultArea(center: CoreFoundation.CGPoint, areaSize: CoreFoundation.CGSize)
+}
+extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setPlayerListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setGestureListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveGestureDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setLogReportListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveLogReportDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setAssistWindowListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveAssistWindowDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setMultiviewWindowListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveMultiviewDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setThreeCameraListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveThreeCameraDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playRtspReal(with videoSource: LCOpenMediaSDK.LCOpenLiveSource)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRtspReal(_ saveLastFrame: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func continuePlay()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func snapShot(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func recoverEZoom(cid: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func recoverEZooms()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getEZoomScale(cid: Swift.Int) -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func renderVideo(enable: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func isRecording() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getPlayState() -> LCOpenMediaSDK.LCPlayStatus
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configSupportGesture(_ gestureType: LCOpenMediaSDK.LCPlayerSupportGestureType)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func uninitPlayWindow()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configPlayerType(_ playerType: LCOpenMediaSDK.LCMediaPlayerType)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func supportGestureZoom(_ isSupport: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getCurrentStreamMode() -> LCOpenMediaSDK.LCVideoStreamMode
+  @_Concurrency.MainActor(unsafe) public func setPlayWindowEdge(_ edges: UIKit.UIEdgeInsets)
+}
+extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setQuadrant(_ location: LCOpenMediaSDK.LCCastQuadrant)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func reloadWindowConfig()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func showLittleScreen(show: Swift.Bool, animate: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setMargin(_ edge: UIKit.UIEdgeInsets)
+}
+extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func showSubPlayWindowLargeScreen(_ cid: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func resetSubPlayWindowMode()
+}
+@objc public protocol LCOpenMediaLiveDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onPlaySuccess(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayLoading(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func onPlayStop(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, saveLastFrame: Swift.Bool)
+  @objc func onPlayFailure(videoError: Swift.String, type: Swift.String, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc optional func onStreamInfo(videoError: Swift.String, type: Swift.String, streamInfo: Swift.String?, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc optional func onRecordStart(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc optional func onRecordFinish(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, paths: [Swift.Int : Swift.String])
+  @objc optional func onReceiveData(byteRate byte: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc optional func viewForStateLayer(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> UIKit.UIView?
+  @objc optional func viewForToolLayer(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> UIKit.UIView?
+  @objc optional func onIVSInfo(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, direh lDireh: LCOpenMediaSDK.DHPtzDirection, dires lDires: LCOpenMediaSDK.DHPtzDirection)
+  @objc optional func onEZoomChanged(_ scale: CoreFoundation.CGFloat, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc optional func onPtzAngleChanged(rotationDirection: Swift.Int, horizontalAngle: CoreFoundation.CGFloat, verticalAngle: CoreFoundation.CGFloat)
+  @objc optional func onNetStatus(_ networkStatus: Swift.Int)
+  @objc optional func onAssistFrameInfo(jsonDic: [Swift.String : Any])
+  @objc optional func onSoundChanged(_ isAudioOpen: Swift.Bool)
+  @objc optional func configFilePath(cid: Swift.Int, fileType: LCOpenMediaSDK.LCFilePathType) -> Swift.String
+  @objc optional func onSnapPicFail()
+  @objc optional func onSnapPicSuccess(paths: [Swift.Int : Swift.String])
+  @objc optional func onRecordFail()
+}
+@objc public protocol LCOpenMediaLiveGestureDelegate : ObjectiveC.NSObjectProtocol {
+  @objc optional func onSingleClick(_ gesture: UIKit.UITapGestureRecognizer, cid: Swift.Int)
+  @objc optional func onDoubleClick(_ gesture: UIKit.UITapGestureRecognizer, cid: Swift.Int)
+  @objc optional func onLeftSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc optional func onRightSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc optional func onUpSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+  @objc optional func onDownSwipe(_ gesture: UIKit.UISwipeGestureRecognizer, cid: Swift.Int)
+}
+@objc public protocol LCOpenMediaLiveAssistWindowDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doSingleTapWith gesture: UIKit.UITapGestureRecognizer)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doDoubleTapWith gesture: UIKit.UITapGestureRecognizer)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doLeftSwipe gesture: UIKit.UISwipeGestureRecognizer)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doRightSwipe gesture: UIKit.UISwipeGestureRecognizer)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doUpSwipe isMainWindow: Swift.Bool)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doDownSwipe isMainWindow: Swift.Bool)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isAssistWindowPip: Swift.Bool)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow location: LCOpenMediaSDK.LCCastQuadrant)
+  @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isMainWindow: Swift.Bool) -> UIKit.UIView?
+}
+@objc public protocol LCOpenMediaLiveMultiviewDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode, littleWindowId: Swift.Int)
+  @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, bgViewWith isMainWindow: Swift.Bool) -> UIKit.UIView?
+  @objc func multiviewWindowSpaceConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> LCOpenMediaSDK.LCMediaDoubleCameraSpaceConfig?
+  @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+}
+@objc public protocol LCOpenMediaLiveThreeCameraDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode)
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isMainWindowPip: Swift.Bool)
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  @objc func watchPointConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> LCOpenMediaSDK.LCMediaWatchPointConfig?
+  @objc func watchPointConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, watchPoint touchPoint: CoreFoundation.CGPoint, channelId: Swift.Int)
+  @objc func mainWindowIsLargeScreen(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> Swift.Bool
+}
+@objc public protocol LCOpenMediaLiveLogReportDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func openMediaLiveLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func openMediaLiveLogReport(onStreamLogInfo message: Swift.String?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc func openMediaLiveLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class LCOpenMediaRecordPlugin : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var playStatus: LCOpenMediaSDK.LCPlayStatus {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var isSupportEZoom: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var playerMode: LCOpenMediaSDK.LCMediaPlayerMode
+  @_Concurrency.MainActor(unsafe) public var isWindowResizeEnabled: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var isSupportPipMoved: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var isSupportSwitchWindow: Swift.Bool {
+    get
+    set
+  }
+  @objc @_Concurrency.MainActor(unsafe) public var screenMode: LCOpenMediaSDK.LCScreenMode {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public init()
+  @objc deinit
+}
+extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configFishEyeWindowMode(_ showMode: LCOpenMediaSDK.LCMediaFishEyeWindowShowMode)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configFishEyeMaskColor(_ color: UIKit.UIColor?)
+}
+extension LCOpenMediaSDK.LCOpenMediaRecordPlugin : LCOpenMediaSDK.LCFishEyeCamRecordLogReportDelegate {
+  @_Concurrency.MainActor(unsafe) public func fishEyeCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  @_Concurrency.MainActor(unsafe) public func fishEyeCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  @_Concurrency.MainActor(unsafe) public func fishEyeCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+}
+extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setPlayerListener(_ listener: any LCOpenMediaSDK.LCRecordPluginDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setGestureListener(_ listener: any LCOpenMediaSDK.LCRecordPluginGestureDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setLogReportListener(_ listener: any LCOpenMediaSDK.LCRecordPluginLogReportDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setDoubleCamListener(_ listener: any LCOpenMediaSDK.LCRecordDoubleCamWindowDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setThreeCamListener(_ listener: any LCOpenMediaSDK.LCRecordThreeCamWindowDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setFishEyeListener(_ listener: any LCOpenMediaSDK.LCRecordCombinFishEyeDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playRecordStream(with item: LCOpenMediaSDK.LCBaseVideoItem)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getPlayState() -> LCOpenMediaSDK.LCPlayStatus
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func pauseAsync()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func resumeAsync()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func seek(_ offsetTime: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func continuePlay()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRecordStream(_ saveLastFrame: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func snapShot(isCallback: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func isRecording() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setPlaySpeed(_ speed: CoreFoundation.CGFloat)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func recoverEZoom(cid: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func recoverEZooms()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getEZoomScale(cid: Swift.Int) -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func renderVideo(enable: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getPlaySpeed() -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configEngine(Decode type: LCOpenMediaSDK.LCPlayerDecodeType)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func uninitPlayWindow()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configPlayerType(_ playerType: LCOpenMediaSDK.LCMediaPlayerType)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getCurrentStreamMode() -> LCOpenMediaSDK.LCVideoStreamMode
+  @_Concurrency.MainActor(unsafe) public func setPlayWindowEdge(_ edges: UIKit.UIEdgeInsets)
+}
+extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setQuadrant(_ location: LCOpenMediaSDK.LCCastQuadrant)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func showLittleScreen(show: Swift.Bool, animate: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setMargin(_ edge: UIKit.UIEdgeInsets)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func showSubPlayWindowLargeScreen(_ cid: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func resetSubPlayWindowMode()
+}
+extension LCOpenMediaSDK.LCOpenMediaRecordPlugin : LCOpenMediaSDK.LCSingleCamRecordLogReportDelegate {
+  @_Concurrency.MainActor(unsafe) public func singleCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  @_Concurrency.MainActor(unsafe) public func singleCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  @_Concurrency.MainActor(unsafe) public func singleCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+}
+public protocol LCSingleCamRecordLogReportDelegate : AnyObject {
+  func singleCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  func singleCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  func singleCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+}
+@objc public protocol LCVisualTalkPlayerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onTalkSuccess(_ source: LCOpenMediaSDK.LCOpenTalkSource)
+  @objc func onTalkLoading(_ source: LCOpenMediaSDK.LCOpenTalkSource)
+  @objc func onTalkStop(_ source: LCOpenMediaSDK.LCOpenTalkSource)
+  @objc func onTalkFailure(_ source: LCOpenMediaSDK.LCOpenTalkSource, failureWith error: Swift.String, type: Swift.Int)
+  @objc optional func onSaveSoundDb(_ soundDB: Swift.Int)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class LCVisualTalkPlugin : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var isNeedSoftEncode: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, videoSampleWidth: Swift.Int, videoSampleHeight: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public init(videoSampleWidth: Swift.Int, videoSampleHeight: Swift.Int)
+  @objc deinit
+}
+extension LCOpenMediaSDK.LCVisualTalkPlugin {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setPlayerListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setGestureListener(_ listener: any LCOpenMediaSDK.LCOpenMediaLiveGestureDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setTalkListener(_ listener: any LCOpenMediaSDK.LCVisualTalkPlayerDelegate)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playRtspReal(with videoSource: LCOpenMediaSDK.LCOpenLiveSource)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRtspReal(_ saveLastFrame: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func continuePlay()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopAudio(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func snapShot(isCallback: Swift.Bool = true)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopRecord()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getEZoomScale(cid: Swift.Int) -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func recoverEZooms()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func renderVideo(enable: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func isRecording() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func configSupportGesture(_ gestureType: LCOpenMediaSDK.LCPlayerSupportGestureType)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func uninitPlayWindow()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getPreviewView() -> UIKit.UIView
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func toggleCamera(with devicePosition: LCOpenMediaSDK.LCCaptureDevicePosition)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func isOpenCamera() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startTalk(with talkSource: LCOpenMediaSDK.LCOpenTalkSource)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopTalk()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func changeSpeechMode(_ speechMode: LCOpenMediaSDK.LCTalkbackSpeechMode)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func startAudioCapture()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopAudioCapture()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func openCamera()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func closeCamera()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func playSound()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stopSound()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func supportGestureZoom(_ isSupport: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getPlayState() -> LCOpenMediaSDK.LCPlayStatus
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getCurrentStreamMode() -> LCOpenMediaSDK.LCVideoStreamMode
+}
+extension LCOpenMediaSDK.LCRecordVideoType : Swift.Equatable {}
+extension LCOpenMediaSDK.LCRecordVideoType : Swift.Hashable {}
+extension LCOpenMediaSDK.LCRecordVideoType : Swift.RawRepresentable {}
+extension LCOpenMediaSDK.LCFilePathType : Swift.Equatable {}
+extension LCOpenMediaSDK.LCFilePathType : Swift.Hashable {}
+extension LCOpenMediaSDK.LCFilePathType : Swift.RawRepresentable {}

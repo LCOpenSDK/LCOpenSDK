@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03401B322906F90700F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */; };
 		03ABE0DE28F5B00600BCE307 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */; };
 		041D7523290170A50081443D /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871BAE28F2796C009E0540 /* LCNetworkModule.framework */; };
 		04257C9328E2C9E50062C0F1 /* LCMediaBaseModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04257C9228E2C9E50062C0F1 /* LCMediaBaseModule.docc */; };
@@ -29,6 +28,7 @@
 		04871BC928F29F84009E0540 /* LCMediaRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BC328F29F83009E0540 /* LCMediaRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04871BCC28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */; };
 		04871BCD28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BCB28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C466212CC65A93004E35AB /* LCMediaBaseModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C466202CC65A93004E35AB /* LCMediaBaseModule.xcconfig */; };
 		04C4B72528F119CB00344C5C /* UIDevice+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B72328F119CB00344C5C /* UIDevice+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04C4B72628F119CB00344C5C /* UIDevice+MediaBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4B72428F119CB00344C5C /* UIDevice+MediaBaseModule.m */; };
 		04C4B72928F11AE700344C5C /* UIImage+MediaBaseModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4B72728F11AE700344C5C /* UIImage+MediaBaseModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,7 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04257C8E28E2C9E50062C0F1 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMediaBaseModule.h; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		04871BC328F29F83009E0540 /* LCMediaRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMediaRefreshHeader.h; sourceTree = "<group>"; };
 		04871BCA28F2A0C9009E0540 /* LCMediaActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMediaActivityIndicatorView.m; sourceTree = "<group>"; };
 		04871BCB28F2A0C9009E0540 /* LCMediaActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMediaActivityIndicatorView.h; sourceTree = "<group>"; };
+		04C466202CC65A93004E35AB /* LCMediaBaseModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCMediaBaseModule.xcconfig; sourceTree = "<group>"; };
 		04C4B72328F119CB00344C5C /* UIDevice+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+MediaBaseModule.h"; sourceTree = "<group>"; };
 		04C4B72428F119CB00344C5C /* UIDevice+MediaBaseModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+MediaBaseModule.m"; sourceTree = "<group>"; };
 		04C4B72728F11AE700344C5C /* UIImage+MediaBaseModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+MediaBaseModule.h"; sourceTree = "<group>"; };
@@ -90,7 +90,6 @@
 			files = (
 				041D7523290170A50081443D /* LCNetworkModule.framework in Frameworks */,
 				03ABE0DE28F5B00600BCE307 /* AFNetworking.framework in Frameworks */,
-				03401B322906F90700F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 				04257CC928E2D07D0062C0F1 /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +123,7 @@
 				04257CA028E2CA3C0062C0F1 /* Category */,
 				04257C9128E2C9E50062C0F1 /* LCMediaBaseModule.h */,
 				04257C9228E2C9E50062C0F1 /* LCMediaBaseModule.docc */,
+				04C466202CC65A93004E35AB /* LCMediaBaseModule.xcconfig */,
 			);
 			path = LCMediaBaseModule;
 			sourceTree = "<group>";
@@ -164,7 +164,6 @@
 		04257CC528E2CFC10062C0F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				035DE8DC2906F38D002B6DEC /* LCOpenSDKDynamic.framework */,
 				03ABE0DD28F5B00600BCE307 /* AFNetworking.framework */,
 				04871BAE28F2796C009E0540 /* LCNetworkModule.framework */,
 				04257CC828E2D07D0062C0F1 /* SDWebImage.framework */,
@@ -305,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C466212CC65A93004E35AB /* LCMediaBaseModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +453,7 @@
 		};
 		04257C9828E2C9E50062C0F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466202CC65A93004E35AB /* LCMediaBaseModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -463,6 +464,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
@@ -470,7 +472,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -492,6 +494,7 @@
 		};
 		04257C9928E2C9E50062C0F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466202CC65A93004E35AB /* LCMediaBaseModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -502,6 +505,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
@@ -509,7 +513,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

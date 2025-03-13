@@ -3,12 +3,11 @@
 //
 
 #import "LCNewLivePreviewPresenter.h"
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayRealListener.h>
-#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_TalkerListener.h>
+#import <LCOpenMediaSDK/LCOpenMediaSDK-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCNewLivePreviewPresenter (SDKListener)<LCOpenSDK_PlayRealListener>
+@interface LCNewLivePreviewPresenter (SDKListener)<LCOpenMediaLiveDelegate, LCOpenMediaLiveMultiviewDelegate, LCOpenMediaLiveGestureDelegate>
 
 
 -(void)saveThumbImage;

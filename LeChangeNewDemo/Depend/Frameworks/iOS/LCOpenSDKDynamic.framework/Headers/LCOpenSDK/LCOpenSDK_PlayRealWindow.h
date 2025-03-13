@@ -38,10 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return 0 success, -1 failure
 - (NSInteger)stopRtspReal:(BOOL)isKeepLastFrame;
 
-/// The gimbal controls   zh: 云台控制
-/// @param PTZControllerInfo model
-- (void)controlMovePTZ:(LCOpenSDK_PTZControllerInfo *)PTZControllerInfo;
-
 /// Add the play window to the group    zh:将播放窗口加入到分组中
 /// @param groupId group id    zh:视频播放组Id
 /// @param isGroupBase group base     zh:分组基准

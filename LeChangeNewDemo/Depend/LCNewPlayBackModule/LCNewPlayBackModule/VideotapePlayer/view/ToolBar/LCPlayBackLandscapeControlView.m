@@ -47,16 +47,24 @@
 
 @implementation LCPlayBackLandscapeControlView
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView* hitView = [super hitTest:point withEvent:event];
+    if ([hitView isKindOfClass:LCPlayBackLandscapeControlView.class]) {
+        return nil;
+    }
+    return hitView;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        //添加手势
-        self.clickGesture = [UITapGestureRecognizer new];
-        self.doubleClickGesture = [UITapGestureRecognizer new];
-        self.longPressGesture = [UILongPressGestureRecognizer new];
-        self.panGesture = [UIPanGestureRecognizer new];
-        self.pinchGesture = [UIPinchGestureRecognizer new];
-        [self addTheGestureRecognizer];
-        [self setPinchEnable:YES];
+//        //添加手势
+//        self.clickGesture = [UITapGestureRecognizer new];
+//        self.doubleClickGesture = [UITapGestureRecognizer new];
+//        self.longPressGesture = [UILongPressGestureRecognizer new];
+//        self.panGesture = [UIPanGestureRecognizer new];
+//        self.pinchGesture = [UIPinchGestureRecognizer new];
+//        [self addTheGestureRecognizer];
+//        [self setPinchEnable:YES];
     }
      return self;
 }

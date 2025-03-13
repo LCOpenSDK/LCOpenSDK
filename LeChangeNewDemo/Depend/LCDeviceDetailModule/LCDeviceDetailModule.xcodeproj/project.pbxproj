@@ -59,6 +59,7 @@
 		03CE095C2A723AD900C3C488 /* asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03CE095B2A723AD900C3C488 /* asset.xcassets */; };
 		03CE095E2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE095D2A72408200C3C488 /* LCDeviceDetailCameraNameEditViewController.swift */; };
 		03CE09602A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CE095F2A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib */; };
+		04C466192CC659D6004E35AB /* LCDeviceDetailModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C466182CC659D6004E35AB /* LCDeviceDetailModule.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		03CE095F2A72414B00C3C488 /* LCDeviceDetailCameraNameEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCDeviceDetailCameraNameEditViewController.xib; sourceTree = "<group>"; };
 		03FC1AEE2B10C1E200B02794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03FC1AF02B10C1F200B02794 /* LCDeviceDetailModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCDeviceDetailModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C466182CC659D6004E35AB /* LCDeviceDetailModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCDeviceDetailModule.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				03ABE04528F5639D00BCE307 /* Swift */,
 				03ABE04428F5639200BCE307 /* OC */,
 				03ABE02828F5614C00BCE307 /* LCDeviceDetailModule.h */,
+				04C466182CC659D6004E35AB /* LCDeviceDetailModule.xcconfig */,
 			);
 			path = LCDeviceDetailModule;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C466192CC659D6004E35AB /* LCDeviceDetailModule.xcconfig in Resources */,
 				03ABE07D28F56A0900BCE307 /* LCDeviceSettingArrowCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,6 +717,7 @@
 		};
 		03ABE02D28F5614C00BCE307 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466182CC659D6004E35AB /* LCDeviceDetailModule.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -724,11 +729,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -751,6 +759,7 @@
 		};
 		03ABE02E28F5614C00BCE307 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466182CC659D6004E35AB /* LCDeviceDetailModule.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -762,11 +771,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

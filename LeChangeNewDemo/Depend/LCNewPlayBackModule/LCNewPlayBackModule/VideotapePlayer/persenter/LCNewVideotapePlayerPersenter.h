@@ -12,6 +12,8 @@
 #import "LCNewDeviceVideotapePlayManager.h"
 #import "LCPlayBackLandscapeControlView.h"
 #import "LCNewVideotapePlayerViewController.h"
+#import <LCOpenMediaSDK/LCOpenMediaSDK-Swift.h>
+#import <LCOpenMediaSDK/LCOpenMediaSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,11 +43,9 @@ typedef enum : NSUInteger {
 /// 容器
 @property (weak, nonatomic) LCNewVideotapePlayerViewController *container;
 
-/// 播放器
-@property (strong, nonatomic) LCOpenSDK_PlayBackWindow *mainPlayWindow;
+@property (strong, nonatomic) LCOpenMediaRecordPlugin *recordPlugin;
 
-/// 子播放窗口播放器
-@property (strong, nonatomic) LCOpenSDK_PlayBackWindow *subPlayWindow;
+
 
 /// 播放窗口
 @property (strong, nonatomic) UILabel *cameraNameLabel;
@@ -70,8 +70,18 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UILabel *videoTypeLabel;
 @property (nonatomic, strong) UILabel *subVideoTypeLabel;
 
+/// defaultImageView
+@property (strong, nonatomic) UIImageView *defaultImageView;
+
+@property (strong, nonatomic) UIImageView *subDefaultImageView;
+
 /// displayStyle
 @property (nonatomic) LCPlayWindowDisplayStyle displayStyle;
+
+//小窗id
+@property (nonatomic, assign) NSInteger littleWindowId;
+//双目窗口顺序
+@property (nonatomic, assign) NSInteger windowOrder;
 
 @property (nonatomic, assign) long groupId;
 

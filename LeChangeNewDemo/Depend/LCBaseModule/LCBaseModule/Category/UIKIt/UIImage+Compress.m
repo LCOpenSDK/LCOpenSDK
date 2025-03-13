@@ -26,13 +26,17 @@
             rect.origin.x = 0;
             rect.origin.y = (asize.height - rect.size.height)/2;
         }
-        UIGraphicsBeginImageContext(asize);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
-        UIRectFill(CGRectMake(0, 0, asize.width, asize.height));//clear background
-        [self drawInRect:rect];
-        newimage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        
+        UIGraphicsImageRendererFormat *format = [[UIGraphicsImageRendererFormat alloc] init];
+        format.opaque = NO;
+        format.scale = 1.0;
+        UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:asize format:format];
+        newimage = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+            CGContextRef context = rendererContext.CGContext;
+            CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+            UIRectFill(CGRectMake(0, 0, asize.width, asize.height));//clear background
+            [self drawInRect:rect];
+        }];
     }
     
     return newimage;

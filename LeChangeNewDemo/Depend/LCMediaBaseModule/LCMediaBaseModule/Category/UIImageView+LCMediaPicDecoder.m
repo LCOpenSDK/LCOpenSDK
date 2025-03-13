@@ -47,6 +47,16 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setImage:img];
             });
+        } else {
+            UIImage* img = [UIImage imageWithData:[NSData dataWithBytes:[picData bytes] length:[picData length]]];
+            if (img != nil) {
+                [cache storeImage:img forKey:key_temp toDisk:YES completion:^{
+
+                }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setImage:img];
+                });
+            }
         }
     });
 }

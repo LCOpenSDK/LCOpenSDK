@@ -71,7 +71,7 @@ import LCNetworkModule
                 }
             }
         } else {
-            let show = UserDefaults.standard.object(forKey: "CloseAlamShowAgain") as? Bool
+            let show = UserDefaults.standard.object(forKey: "setting_device_alarm_alert_close".lc_T) as? Bool
             if show == true {
                 self.deviceAlarmRequest(open: open)
             } else {

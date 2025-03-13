@@ -121,11 +121,7 @@
                     speedTime = 32.0;
                     [weakitem setImage:LC_IMAGENAMED(@"video_32x") forState:UIControlStateNormal];
                 }
-                
-                [weakself.mainPlayWindow setPlaySpeed:speedTime];
-                if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
-                    [weakself.subPlayWindow setPlaySpeed:speedTime];
-                }
+                [weakself.recordPlugin setPlaySpeed:speedTime];
             }];
             
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
@@ -283,25 +279,14 @@
 }
 
 //MARK: - Private Methods
-- (LCOpenSDK_PlayBackWindow *)mainPlayWindow {
-    if (!_mainPlayWindow) {
-        _mainPlayWindow = [[LCOpenSDK_PlayBackWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:11];
-        [_mainPlayWindow setSurfaceBGColor:[UIColor blackColor]];
-        [_mainPlayWindow setPlayBackListener:self];
-        [_mainPlayWindow setTouchListener:self];
+-(LCOpenMediaRecordPlugin *)recordPlugin {
+    if (!_recordPlugin) {
+        _recordPlugin = [[LCOpenMediaRecordPlugin alloc] initWithFrame:CGRectMake(50, 50, 30, 30)];
+        [_recordPlugin setPlayerListener:self];
+        [_recordPlugin setGestureListener:self];
+        [_recordPlugin setDoubleCamListener:self];
     }
-    return _mainPlayWindow;
-}
-
-- (LCOpenSDK_PlayBackWindow *)subPlayWindow {
-    if (!_subPlayWindow && [[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
-        _subPlayWindow = [[LCOpenSDK_PlayBackWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:12];
-        [_subPlayWindow setSurfaceBGColor:[UIColor blackColor]];
-        [_subPlayWindow setPlayBackListener:self];
-        [_subPlayWindow setTouchListener:self];
-        [self windowBorder:[_subPlayWindow getWindowView] hidden:NO];
-    }
-    return _subPlayWindow;
+    return _recordPlugin;
 }
 
 - (UILabel *)cameraNameLabel {
@@ -335,16 +320,26 @@
     return _subCameraNameLabel;
 }
 
+- (UIImageView *)defaultImageView {
+    if (!_defaultImageView) {
+        _defaultImageView = [UIImageView new];
+        _defaultImageView.tag = 10000;
+    }
+    return _defaultImageView;
+}
+
+- (UIImageView *)subDefaultImageView {
+    if (!_subDefaultImageView) {
+        _subDefaultImageView = [UIImageView new];
+        _subDefaultImageView.tag = 20000;
+    }
+    return _subDefaultImageView;
+}
+
 - (void)loadStatusView {
-    UIView *player1 = [self.mainPlayWindow getWindowView];
-    UIImageView *player1Default = [UIImageView new];
+    UIImageView *player1Default = self.defaultImageView;
     [player1Default sd_setImageWithURL:[NSURL URLWithString:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.thumbUrl] placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big")];
-    [player1 addSubview:player1Default];
-    weakSelf(player1)
     weakSelf(player1Default)
-    [player1Default mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.leading.bottom.trailing.mas_equalTo(weakplayer1);
-    }];
 
     [player1Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         weakplayer1Default.hidden = NO;
@@ -364,15 +359,9 @@
         });
     }];
     if ([LCNewDeviceVideotapePlayManager shareInstance].existSubWindow) {
-        UIView *player2 = [self.subPlayWindow getWindowView];
-        UIImageView *player2Default = [UIImageView new];
+        UIImageView *player2Default = self.subDefaultImageView;
         [player2Default sd_setImageWithURL:[NSURL URLWithString:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.thumbUrl] placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big")];
-        [player2 addSubview:player2Default];
-        weakSelf(player2)
         weakSelf(player2Default)
-        [player2Default mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.leading.bottom.trailing.mas_equalTo(weakplayer2);
-        }];
 
         [player2Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
             weakplayer2Default.hidden = NO;
@@ -560,10 +549,10 @@
         NSString *displayChannelID = [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID;
         NSString *mainChannelID = [[LCNewDeviceVideotapePlayManager shareInstance] mobileCameraID];
         NSString *subChannelID = [[LCNewDeviceVideotapePlayManager shareInstance] fixedCameraID];
-        if (([displayChannelID isEqualToString:mainChannelID] && index == self.subPlayWindow.index)) {
+        if ([displayChannelID isEqualToString:mainChannelID]) {
             // 切换大窗口展示子通道
             [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = subChannelID;
-        } else if ([displayChannelID isEqualToString:subChannelID] && index == self.mainPlayWindow.index) {
+        } else if ([displayChannelID isEqualToString:subChannelID]) {
             // 切换大窗口展示主通道
             [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = mainChannelID;
         }
@@ -571,39 +560,40 @@
 }
 
 - (void)onWindowDBClick:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index {
-    //双击恢复缩放
-    CGFloat scale = [self.mainPlayWindow getScale];
-    
-    if (scale != 0) {
-        [self.mainPlayWindow doScale:1 / scale];
-    }
+    //TODO: 手势事件移到新手势回调中做:双击恢复缩放
+//    CGFloat scale = [self.recordPlugin getScale];
+//    
+//    if (scale != 0) {
+//        [self.mainPlayWindow doScale:1 / scale];
+//    }
 }
 
 - (void)setVideoType {
     if (![LCApplicationDataManager getDebugFlag]) {
         return;
     }
-    NSObject *currentPlayer = [self.mainPlayWindow valueForKey:@"mPlayer"];
-    id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+    LCVideoStreamMode streamType = [self.recordPlugin getCurrentStreamMode];
     NSString *streamTypeString = @"";
-    
-    if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+    if (streamType == LCVideoStreamModeP2pP2p || streamType == LCVideoStreamModeP2pLocal || streamType == LCVideoStreamModeP2pRelay) {
         streamTypeString = @"P2P";
-    }else{
+    }else if (streamType == LCVideoStreamModeMTS || streamType == LCVideoStreamModeMTSQuic){
         streamTypeString = @"MTS";
+    } else {
+        streamTypeString = @"Unknow";
     }
     
     self.videoTypeLabel.text = [@"拉流模式:" stringByAppendingString:streamTypeString];
     _videoTypeLabel.hidden = NO;
     
-    if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
-        NSObject *currentPlayer = [self.subPlayWindow valueForKey:@"mPlayer"];
-        id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+    if ([LCNewDeviceVideoManager shareInstance].isMulti) {
+        LCVideoStreamMode streamType = [self.recordPlugin getCurrentStreamMode];
         NSString *streamTypeString = @"";
-        if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+        if (streamType == LCVideoStreamModeP2pP2p || streamType == LCVideoStreamModeP2pLocal || streamType == LCVideoStreamModeP2pRelay) {
             streamTypeString = @"P2P";
-        }else{
+        }else if (streamType == LCVideoStreamModeMTS || streamType == LCVideoStreamModeMTSQuic){
             streamTypeString = @"MTS";
+        } else {
+            streamTypeString = @"Unknow";
         }
         
         self.subVideoTypeLabel.text = [@"拉流模式:" stringByAppendingString:streamTypeString];
@@ -617,20 +607,21 @@
         _videoTypeLabel.textColor = [UIColor lccolor_c0];
         _videoTypeLabel.font = [UIFont lcFont_t8];
         _videoTypeLabel.textAlignment = NSTextAlignmentRight;
-        [[self.mainPlayWindow getWindowView] addSubview:_videoTypeLabel];
+        [self.recordPlugin addSubview:_videoTypeLabel];
         _videoTypeLabel.hidden = YES;
         [_videoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(30);
-            make.right.equalTo([self.mainPlayWindow getWindowView]);
+            make.top.right.equalTo(self.recordPlugin);
         }];
     }
     
     _videoTypeLabel.hidden = YES;
+    
     return _videoTypeLabel;
 }
 
 - (UILabel *)subVideoTypeLabel {
-    if (![LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
+    if (![LCNewDeviceVideoManager shareInstance].isMulti) {
         return nil;
     }
     if (!_subVideoTypeLabel) {
@@ -638,12 +629,7 @@
         _subVideoTypeLabel.textColor = [UIColor lccolor_c0];
         _subVideoTypeLabel.font = [UIFont lcFont_t8];
         _subVideoTypeLabel.textAlignment = NSTextAlignmentRight;
-        [[self.subPlayWindow getWindowView] addSubview:_subVideoTypeLabel];
         _subVideoTypeLabel.hidden = YES;
-        [_subVideoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(30);
-            make.top.right.equalTo([self.subPlayWindow getWindowView]);
-        }];
     }
     
     _subVideoTypeLabel.hidden = YES;

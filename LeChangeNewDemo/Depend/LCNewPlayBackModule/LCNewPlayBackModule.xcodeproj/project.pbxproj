@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03401B2F2906F8E600F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */; };
 		03ABE06828F568AE00BCE307 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE06728F568AE00BCE307 /* Masonry.framework */; };
 		03ABE0F628F6535E00BCE307 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */; };
 		04871B3E28F262BF009E0540 /* LCNewPlayBackModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */; };
@@ -50,6 +49,7 @@
 		04871BDA28F2B878009E0540 /* LCNewVideotapeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04871B6428F263C6009E0540 /* LCNewVideotapeListCell.xib */; };
 		04871BE228F2BA64009E0540 /* LCNewPlayBackRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */; };
 		04871BE328F2BA64009E0540 /* LCNewPlayBackRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04C466232CC65AC5004E35AB /* LCNewPlayBackModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		03ABE06728F568AE00BCE307 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FC1AF32B10C36B00B02794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 		04871BD728F2B49C009E0540 /* LCPlayBackVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCPlayBackVideoControlView.h; sourceTree = "<group>"; };
 		04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewPlayBackRouter.m; sourceTree = "<group>"; };
 		04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewPlayBackRouter.h; sourceTree = "<group>"; };
+		04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCNewPlayBackModule.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03401B2F2906F8E600F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 				04871BB628F28021009E0540 /* KVOController.framework in Frameworks */,
 				04871BB428F27B4D009E0540 /* LCNetworkModule.framework in Frameworks */,
 				03ABE06828F568AE00BCE307 /* Masonry.framework in Frameworks */,
@@ -170,6 +169,7 @@
 				04871B6728F263C6009E0540 /* VideotapePlayer */,
 				04871B3C28F262BF009E0540 /* LCNewPlayBackModule.h */,
 				04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */,
+				04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */,
 			);
 			path = LCNewPlayBackModule;
 			sourceTree = "<group>";
@@ -288,7 +288,6 @@
 		04871BB028F27B38009E0540 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03401B2E2906F8E600F7CD6F /* LCOpenSDKDynamic.framework */,
 				03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */,
 				03ABE06728F568AE00BCE307 /* Masonry.framework */,
 				04871BB528F28021009E0540 /* KVOController.framework */,
@@ -418,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C466232CC65AC5004E35AB /* LCNewPlayBackModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +649,7 @@
 		};
 		04871B4328F262BF009E0540 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -660,13 +661,15 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -688,6 +691,7 @@
 		};
 		04871B4428F262BF009E0540 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -699,13 +703,15 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

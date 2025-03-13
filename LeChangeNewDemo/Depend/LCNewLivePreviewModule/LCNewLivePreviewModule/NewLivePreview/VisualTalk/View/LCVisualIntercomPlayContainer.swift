@@ -122,7 +122,7 @@ public class LCVisualIntercomPlayContainer: UIView {
             offsetY = 0
         }
         let destinationCenter = CGPoint(x: targetView.lc_centerX + offsetX, y: targetView.lc_centerY + offsetY)
-//        LCLogDebug("\(#fileID) touchesMoved destinationCenter: x=\(destinationCenter.x) y=\(destinationCenter.y)")
+//        LCPrintLog("\(#fileID) touchesMoved destinationCenter: x=\(destinationCenter.x) y=\(destinationCenter.y)")
         // 移动视图
         targetView.center = destinationCenter
     }
@@ -136,7 +136,7 @@ public class LCVisualIntercomPlayContainer: UIView {
 //        }
         // 计算最终移动位移
 //        let finalCenter = getFinalCenterPoint(for: targetView.center)
-//        LCLogDebug("\(#fileID) touchesEnded finalCenter: x=\(finalCenter.x) y=\(finalCenter.y)")
+//        LCPrintLog("\(#fileID) touchesEnded finalCenter: x=\(finalCenter.x) y=\(finalCenter.y)")
 //        UIView.animate(withDuration: 0.15) {
 //            targetView.center = finalCenter
 //        }

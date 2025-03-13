@@ -4,11 +4,12 @@
 
 #import "LCNewVideotapePlayerPersenter.h"
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayBackListener.h>
-
+#import <LCOpenMediaSDK/LCOpenMediaSDK-Swift.h>
+#import <LCOpenMediaSDK/LCOpenMediaSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCNewVideotapePlayerPersenter (SDKListener)<LCOpenSDK_PlayBackListener>
+@interface LCNewVideotapePlayerPersenter (SDKListener)<LCRecordPluginDelegate, LCRecordDoubleCamWindowDelegate, LCRecordPluginGestureDelegate>
 
 @end
 

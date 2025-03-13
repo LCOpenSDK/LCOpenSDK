@@ -314,7 +314,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
     //recieve为-1表示更新下载状态，status为-1表示更新接受到的数据
     LCNewVideotapeDownloadInfo *info = [self getDownloadInfo:index];
     if (recieve != -1) {
-        info.recieve = recieve;
+        info.recieve += recieve;
     }
     if (status != -1) {
         info.donwloadStatus = status;
@@ -340,7 +340,15 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
             [PHAsset saveVideoAtURL:dowmloadRUL success:^(void) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"保存成功");
-                    [LCProgressHUD showMsg:@"mobile_common_data_download_success".lcMedia_T];
+                    if (self.downloadQueue.allValues.count > 1) {
+                        LCNewVideotapeDownloadInfo *info1 = self.downloadQueue.allValues[0];
+                        LCNewVideotapeDownloadInfo *info2 = self.downloadQueue.allValues[1];
+                        if (info1.donwloadStatus == LCVideotapeDownloadStatusEnd && info2.donwloadStatus == LCVideotapeDownloadStatusEnd ) {
+                            [LCProgressHUD showMsg:@"mobile_common_data_download_success".lcMedia_T];
+                        }
+                    } else {
+                        [LCProgressHUD showMsg:@"mobile_common_data_download_success".lcMedia_T];
+                    }
                 });
             } failure:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{

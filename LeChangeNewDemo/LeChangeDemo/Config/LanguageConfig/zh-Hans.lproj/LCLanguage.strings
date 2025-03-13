@@ -223,3 +223,8 @@
 "common_set" = "设置";
 "Add_Device_Title" = "设备添加";
 "mobile_common_network_config" = "网络配置";
+"open_local_network_to_add_device" = "\"LeChangeDemo\"想要启用本地网络权限以查找和连接设备。请点击设置后确保\"本地网络\"权限已开启。";
+"common_got_it" = "我知道了";
+"device_detail_camera_name_fixed_lens" = "固定镜头";
+"device_detail_camera_name_pt_lens" = "移动镜头";
+

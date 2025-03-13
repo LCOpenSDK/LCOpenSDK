@@ -229,7 +229,7 @@
                     return item;
                 }
             } else if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"IPC"]) {
-                if (![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalk] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportAudioTalkV1]) {
+                if ((![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalk] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportAudioTalkV1]) && ![[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"]) {
                     item.enabled = NO;
                     return item;
                 }
@@ -278,7 +278,7 @@
                                         //                                [LCNewDeviceVideoManager shareInstance].isFullScreen = 0;
                                         LCVisualTalkViewController *vc = [[LCVisualTalkViewController alloc]init];
                                         [vc configIntercomWithStatus:1];
-                                        vc.isNeedSoftEncode = YES;
+//                                        vc.isNeedSoftEncode = YES;
                                         vc.dismissCallback = ^{
                                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                                 [UIDevice lc_setOrientation:UIInterfaceOrientationLandscapeRight viewController:self.liveContainer.navigationController];

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		032664872902DCF90082EAC9 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */; };
-		033732922913B20300556FC4 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */; };
 		04257C1828E2A55B0062C0F1 /* LCNewLivePreviewModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */; };
 		04257C1928E2A55B0062C0F1 /* LCNewLivePreviewModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04257C5828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C2828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,43 +37,20 @@
 		04257C7D28E2A7ED0062C0F1 /* LCNewPTZControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C5428E2A7ED0062C0F1 /* LCNewPTZControlView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04257C7E28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C5528E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04871AFB28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04871AFA28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib */; };
+		04C22B9B2CC10A3400046D84 /* LCVisualTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22B932CC10A3400046D84 /* LCVisualTalkViewController.swift */; };
+		04C22B9D2CC10A3400046D84 /* LCVisualIntercomControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22B962CC10A3400046D84 /* LCVisualIntercomControlBar.swift */; };
+		04C22B9E2CC10A3400046D84 /* LCVisualIntercomPlayContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22B972CC10A3400046D84 /* LCVisualIntercomPlayContainer.swift */; };
+		04C22B9F2CC10A3400046D84 /* LCVisualIntercomTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22B982CC10A3400046D84 /* LCVisualIntercomTopBar.swift */; };
+		04C22BA12CC10A3400046D84 /* LCVisualIntercomClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22B9A2CC10A3400046D84 /* LCVisualIntercomClockView.swift */; };
+		04C466122CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C466112CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig */; };
+		04C466302CC65E74004E35AB /* LCVisualTalkPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4662E2CC65E73004E35AB /* LCVisualTalkPreviewView.m */; };
+		04C466312CC65E74004E35AB /* LCVisualTalkPreviewView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C4662F2CC65E74004E35AB /* LCVisualTalkPreviewView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04C4B74228F12C1700344C5C /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C4B74128F12C1700344C5C /* Masonry.framework */; };
 		04C4B75328F148ED00344C5C /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C4B75228F148ED00344C5C /* KVOController.framework */; };
 		04F8149128F1172800307775 /* LCMediaBaseModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F8149028F1172800307775 /* LCMediaBaseModule.framework */; };
 		04F8149328F1177000307775 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F8149228F1177000307775 /* LCNetworkModule.framework */; };
-		152055C92BAB127800BB710E /* LCVisualIntercomPlayContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152055C82BAB127800BB710E /* LCVisualIntercomPlayContainer.swift */; };
-		152055CC2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055CA2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		152055CD2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 152055CB2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.m */; };
-		152055D02BAB1BF600BB710E /* LCH264Encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055CE2BAB1BF600BB710E /* LCH264Encoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		152055D12BAB1BF600BB710E /* LCH264Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 152055CF2BAB1BF600BB710E /* LCH264Encoder.m */; };
-		152055F72BABD4C200BB710E /* scale_row.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E42BABD4C100BB710E /* scale_row.h */; };
-		152055F82BABD4C200BB710E /* scale.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E52BABD4C100BB710E /* scale.h */; };
-		152055F92BABD4C200BB710E /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E62BABD4C100BB710E /* version.h */; };
-		152055FA2BABD4C200BB710E /* cpu_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E72BABD4C100BB710E /* cpu_id.h */; };
-		152055FB2BABD4C200BB710E /* video_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E82BABD4C100BB710E /* video_common.h */; };
-		152055FC2BABD4C200BB710E /* mjpeg_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055E92BABD4C100BB710E /* mjpeg_decoder.h */; };
-		152055FD2BABD4C200BB710E /* planar_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055EA2BABD4C100BB710E /* planar_functions.h */; };
-		152055FE2BABD4C200BB710E /* scale_argb.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055EB2BABD4C100BB710E /* scale_argb.h */; };
-		152055FF2BABD4C200BB710E /* compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055EC2BABD4C100BB710E /* compare.h */; };
-		152056002BABD4C200BB710E /* convert_argb.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055ED2BABD4C100BB710E /* convert_argb.h */; };
-		152056012BABD4C200BB710E /* rotate.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055EE2BABD4C100BB710E /* rotate.h */; };
-		152056022BABD4C200BB710E /* convert_from_argb.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055EF2BABD4C100BB710E /* convert_from_argb.h */; };
-		152056032BABD4C200BB710E /* basic_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F02BABD4C100BB710E /* basic_types.h */; };
-		152056042BABD4C200BB710E /* convert_from.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F12BABD4C100BB710E /* convert_from.h */; };
-		152056052BABD4C200BB710E /* format_conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F22BABD4C100BB710E /* format_conversion.h */; };
-		152056062BABD4C200BB710E /* convert.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F32BABD4C100BB710E /* convert.h */; };
-		152056072BABD4C200BB710E /* rotate_argb.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F42BABD4C100BB710E /* rotate_argb.h */; };
-		152056082BABD4C200BB710E /* row.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F52BABD4C200BB710E /* row.h */; };
-		152056092BABD4C200BB710E /* libyuv.h in Headers */ = {isa = PBXBuildFile; fileRef = 152055F62BABD4C200BB710E /* libyuv.h */; };
-		1520560A2BABD4DF00BB710E /* libyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152055E12BABD4B400BB710E /* libyuv.a */; };
-		1520560C2BABE2E900BB710E /* LCVisualIntercomClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520560B2BABE2E900BB710E /* LCVisualIntercomClockView.swift */; };
-		1520560E2BABE32300BB710E /* LCVisualIntercomTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520560D2BABE32300BB710E /* LCVisualIntercomTopBar.swift */; };
 		1520563D2BAC68C800BB710E /* LCLandscapeSelectItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520563C2BAC68C800BB710E /* LCLandscapeSelectItemView.swift */; };
 		152350D22BA2A47900D92A88 /* LCBottomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152350D12BA2A47900D92A88 /* LCBottomControlView.swift */; };
-		152351AC2BA9851E00D92A88 /* LCVisualTalkPreviewView.h in Headers */ = {isa = PBXBuildFile; fileRef = 152351AA2BA9851E00D92A88 /* LCVisualTalkPreviewView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		152351AD2BA9851E00D92A88 /* LCVisualTalkPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152351AB2BA9851E00D92A88 /* LCVisualTalkPreviewView.m */; };
-		152351B32BAA81B300D92A88 /* LCVisualIntercomControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152351B22BAA81B300D92A88 /* LCVisualIntercomControlBar.swift */; };
-		152351B52BAA8A2D00D92A88 /* LCVisualTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152351B42BAA8A2D00D92A88 /* LCVisualTalkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +65,6 @@
 
 /* Begin PBXFileReference section */
 		032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCDeviceDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCOpenSDKDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FC1AF12B10C32300B02794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04257C1328E2A55B0062C0F1 /* LCNewLivePreviewModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCNewLivePreviewModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNewLivePreviewModule.h; sourceTree = "<group>"; };
@@ -122,43 +97,21 @@
 		04257C5528E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewLivePreviewViewController.h; sourceTree = "<group>"; };
 		04871AF428F1715F009E0540 /* LCNewLivePreviewModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCNewLivePreviewModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		04871AFA28F1756E009E0540 /* LCNewVideotapeHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCNewVideotapeHistoryCell.xib; sourceTree = "<group>"; };
+		04C22B932CC10A3400046D84 /* LCVisualTalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVisualTalkViewController.swift; sourceTree = "<group>"; };
+		04C22B962CC10A3400046D84 /* LCVisualIntercomControlBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomControlBar.swift; sourceTree = "<group>"; };
+		04C22B972CC10A3400046D84 /* LCVisualIntercomPlayContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomPlayContainer.swift; sourceTree = "<group>"; };
+		04C22B982CC10A3400046D84 /* LCVisualIntercomTopBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomTopBar.swift; sourceTree = "<group>"; };
+		04C22B9A2CC10A3400046D84 /* LCVisualIntercomClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomClockView.swift; sourceTree = "<group>"; };
+		04C465D32CC63B0B004E35AB /* LCMediaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCMediaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C466112CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCNewLivePreviewModule.xcconfig; sourceTree = "<group>"; };
+		04C4662E2CC65E73004E35AB /* LCVisualTalkPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCVisualTalkPreviewView.m; sourceTree = "<group>"; };
+		04C4662F2CC65E74004E35AB /* LCVisualTalkPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCVisualTalkPreviewView.h; sourceTree = "<group>"; };
 		04C4B74128F12C1700344C5C /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Frameworks/iOS/Masonry.framework; sourceTree = "<group>"; };
 		04C4B75228F148ED00344C5C /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F8149028F1172800307775 /* LCMediaBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCMediaBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F8149228F1177000307775 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		152055C82BAB127800BB710E /* LCVisualIntercomPlayContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomPlayContainer.swift; sourceTree = "<group>"; };
-		152055CA2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCVisualTalkCaptureSession.h; sourceTree = "<group>"; };
-		152055CB2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCVisualTalkCaptureSession.m; sourceTree = "<group>"; };
-		152055CE2BAB1BF600BB710E /* LCH264Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCH264Encoder.h; sourceTree = "<group>"; };
-		152055CF2BAB1BF600BB710E /* LCH264Encoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCH264Encoder.m; sourceTree = "<group>"; };
-		152055E12BABD4B400BB710E /* libyuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libyuv.a; sourceTree = "<group>"; };
-		152055E42BABD4C100BB710E /* scale_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_row.h; sourceTree = "<group>"; };
-		152055E52BABD4C100BB710E /* scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale.h; sourceTree = "<group>"; };
-		152055E62BABD4C100BB710E /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		152055E72BABD4C100BB710E /* cpu_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_id.h; sourceTree = "<group>"; };
-		152055E82BABD4C100BB710E /* video_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_common.h; sourceTree = "<group>"; };
-		152055E92BABD4C100BB710E /* mjpeg_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mjpeg_decoder.h; sourceTree = "<group>"; };
-		152055EA2BABD4C100BB710E /* planar_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planar_functions.h; sourceTree = "<group>"; };
-		152055EB2BABD4C100BB710E /* scale_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_argb.h; sourceTree = "<group>"; };
-		152055EC2BABD4C100BB710E /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
-		152055ED2BABD4C100BB710E /* convert_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_argb.h; sourceTree = "<group>"; };
-		152055EE2BABD4C100BB710E /* rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate.h; sourceTree = "<group>"; };
-		152055EF2BABD4C100BB710E /* convert_from_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from_argb.h; sourceTree = "<group>"; };
-		152055F02BABD4C100BB710E /* basic_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basic_types.h; sourceTree = "<group>"; };
-		152055F12BABD4C100BB710E /* convert_from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from.h; sourceTree = "<group>"; };
-		152055F22BABD4C100BB710E /* format_conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format_conversion.h; sourceTree = "<group>"; };
-		152055F32BABD4C100BB710E /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
-		152055F42BABD4C100BB710E /* rotate_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_argb.h; sourceTree = "<group>"; };
-		152055F52BABD4C200BB710E /* row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = row.h; sourceTree = "<group>"; };
-		152055F62BABD4C200BB710E /* libyuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libyuv.h; sourceTree = "<group>"; };
-		1520560B2BABE2E900BB710E /* LCVisualIntercomClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomClockView.swift; sourceTree = "<group>"; };
-		1520560D2BABE32300BB710E /* LCVisualIntercomTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomTopBar.swift; sourceTree = "<group>"; };
 		1520563C2BAC68C800BB710E /* LCLandscapeSelectItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCLandscapeSelectItemView.swift; sourceTree = "<group>"; };
 		152350D12BA2A47900D92A88 /* LCBottomControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBottomControlView.swift; sourceTree = "<group>"; };
-		152351AA2BA9851E00D92A88 /* LCVisualTalkPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCVisualTalkPreviewView.h; sourceTree = "<group>"; };
-		152351AB2BA9851E00D92A88 /* LCVisualTalkPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCVisualTalkPreviewView.m; sourceTree = "<group>"; };
-		152351B22BAA81B300D92A88 /* LCVisualIntercomControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCVisualIntercomControlBar.swift; sourceTree = "<group>"; };
-		152351B42BAA8A2D00D92A88 /* LCVisualTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCVisualTalkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,13 +119,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				033732922913B20300556FC4 /* LCOpenSDKDynamic.framework in Frameworks */,
 				032664872902DCF90082EAC9 /* LCDeviceDetailModule.framework in Frameworks */,
 				04C4B75328F148ED00344C5C /* KVOController.framework in Frameworks */,
 				04F8149328F1177000307775 /* LCNetworkModule.framework in Frameworks */,
 				04C4B74228F12C1700344C5C /* Masonry.framework in Frameworks */,
 				04F8149128F1172800307775 /* LCMediaBaseModule.framework in Frameworks */,
-				1520560A2BABD4DF00BB710E /* libyuv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +162,7 @@
 				04257C2528E2A7ED0062C0F1 /* NewLivePreview */,
 				04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */,
 				04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */,
+				04C466112CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig */,
 			);
 			path = LCNewLivePreviewModule;
 			sourceTree = "<group>";
@@ -218,7 +170,7 @@
 		04257C2528E2A7ED0062C0F1 /* NewLivePreview */ = {
 			isa = PBXGroup;
 			children = (
-				152351AE2BAA7FF600D92A88 /* VisualTalk */,
+				04C22B912CC10A3400046D84 /* VisualTalk */,
 				04257C2728E2A7ED0062C0F1 /* Presenter */,
 				04257C3A28E2A7ED0062C0F1 /* View */,
 			);
@@ -302,7 +254,7 @@
 		04257C8028E2A84A0062C0F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				033732912913B20300556FC4 /* LCOpenSDKDynamic.framework */,
+				04C465D32CC63B0B004E35AB /* LCMediaComponents.framework */,
 				032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */,
 				04C4B75228F148ED00344C5C /* KVOController.framework */,
 				04F8149228F1177000307775 /* LCNetworkModule.framework */,
@@ -321,107 +273,34 @@
 			path = LCNewLivePreviewModuleBundle;
 			sourceTree = "<group>";
 		};
-		152055DF2BABD44300BB710E /* lib */ = {
+		04C22B912CC10A3400046D84 /* VisualTalk */ = {
 			isa = PBXGroup;
 			children = (
-				152055E12BABD4B400BB710E /* libyuv.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		152055E02BABD45000BB710E /* libHeader */ = {
-			isa = PBXGroup;
-			children = (
-				152055E32BABD4C100BB710E /* libyuv */,
-				152055F62BABD4C200BB710E /* libyuv.h */,
-			);
-			path = libHeader;
-			sourceTree = "<group>";
-		};
-		152055E32BABD4C100BB710E /* libyuv */ = {
-			isa = PBXGroup;
-			children = (
-				152055E42BABD4C100BB710E /* scale_row.h */,
-				152055E52BABD4C100BB710E /* scale.h */,
-				152055E62BABD4C100BB710E /* version.h */,
-				152055E72BABD4C100BB710E /* cpu_id.h */,
-				152055E82BABD4C100BB710E /* video_common.h */,
-				152055E92BABD4C100BB710E /* mjpeg_decoder.h */,
-				152055EA2BABD4C100BB710E /* planar_functions.h */,
-				152055EB2BABD4C100BB710E /* scale_argb.h */,
-				152055EC2BABD4C100BB710E /* compare.h */,
-				152055ED2BABD4C100BB710E /* convert_argb.h */,
-				152055EE2BABD4C100BB710E /* rotate.h */,
-				152055EF2BABD4C100BB710E /* convert_from_argb.h */,
-				152055F02BABD4C100BB710E /* basic_types.h */,
-				152055F12BABD4C100BB710E /* convert_from.h */,
-				152055F22BABD4C100BB710E /* format_conversion.h */,
-				152055F32BABD4C100BB710E /* convert.h */,
-				152055F42BABD4C100BB710E /* rotate_argb.h */,
-				152055F52BABD4C200BB710E /* row.h */,
-			);
-			path = libyuv;
-			sourceTree = "<group>";
-		};
-		152351882BA8729A00D92A88 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				152055E02BABD45000BB710E /* libHeader */,
-				152055DF2BABD44300BB710E /* lib */,
-				152351BF2BAA8E2300D92A88 /* CaptureSession */,
-				152351C22BAA8E2300D92A88 /* Encode */,
-			);
-			name = Helper;
-			path = ../Helper;
-			sourceTree = "<group>";
-		};
-		152351AE2BAA7FF600D92A88 /* VisualTalk */ = {
-			isa = PBXGroup;
-			children = (
-				152351882BA8729A00D92A88 /* Helper */,
-				152351B02BAA801900D92A88 /* Controller */,
-				152351AF2BAA800900D92A88 /* View */,
+				04C22B922CC10A3400046D84 /* Controller */,
+				04C22B942CC10A3400046D84 /* View */,
 			);
 			path = VisualTalk;
 			sourceTree = "<group>";
 		};
-		152351AF2BAA800900D92A88 /* View */ = {
+		04C22B922CC10A3400046D84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				152351AA2BA9851E00D92A88 /* LCVisualTalkPreviewView.h */,
-				152351AB2BA9851E00D92A88 /* LCVisualTalkPreviewView.m */,
-				152351B22BAA81B300D92A88 /* LCVisualIntercomControlBar.swift */,
-				152055C82BAB127800BB710E /* LCVisualIntercomPlayContainer.swift */,
-				1520560B2BABE2E900BB710E /* LCVisualIntercomClockView.swift */,
-				1520560D2BABE32300BB710E /* LCVisualIntercomTopBar.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		152351B02BAA801900D92A88 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				152351B42BAA8A2D00D92A88 /* LCVisualTalkViewController.swift */,
+				04C22B932CC10A3400046D84 /* LCVisualTalkViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		152351BF2BAA8E2300D92A88 /* CaptureSession */ = {
+		04C22B942CC10A3400046D84 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				152055CA2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.h */,
-				152055CB2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.m */,
+				04C4662F2CC65E74004E35AB /* LCVisualTalkPreviewView.h */,
+				04C4662E2CC65E73004E35AB /* LCVisualTalkPreviewView.m */,
+				04C22B962CC10A3400046D84 /* LCVisualIntercomControlBar.swift */,
+				04C22B972CC10A3400046D84 /* LCVisualIntercomPlayContainer.swift */,
+				04C22B982CC10A3400046D84 /* LCVisualIntercomTopBar.swift */,
+				04C22B9A2CC10A3400046D84 /* LCVisualIntercomClockView.swift */,
 			);
-			path = CaptureSession;
-			sourceTree = "<group>";
-		};
-		152351C22BAA8E2300D92A88 /* Encode */ = {
-			isa = PBXGroup;
-			children = (
-				152055CE2BAB1BF600BB710E /* LCH264Encoder.h */,
-				152055CF2BAB1BF600BB710E /* LCH264Encoder.m */,
-			);
-			path = Encode;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,40 +310,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C466312CC65E74004E35AB /* LCVisualTalkPreviewView.h in Headers */,
 				04257C7E28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h in Headers */,
 				04257C5E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h in Headers */,
-				152055D02BAB1BF600BB710E /* LCH264Encoder.h in Headers */,
 				04257C6D28E2A7ED0062C0F1 /* LCNewVideoControlView.h in Headers */,
-				152055F72BABD4C200BB710E /* scale_row.h in Headers */,
-				152055F92BABD4C200BB710E /* version.h in Headers */,
 				04257C5828E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.h in Headers */,
-				152056042BABD4C200BB710E /* convert_from.h in Headers */,
 				04257C6E28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.h in Headers */,
-				152056002BABD4C200BB710E /* convert_argb.h in Headers */,
 				04257C7728E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h in Headers */,
 				04257C6C28E2A7ED0062C0F1 /* LCNewLandscapeControlView.h in Headers */,
-				152055FE2BABD4C200BB710E /* scale_argb.h in Headers */,
-				152351AC2BA9851E00D92A88 /* LCVisualTalkPreviewView.h in Headers */,
-				152056022BABD4C200BB710E /* convert_from_argb.h in Headers */,
-				152055FA2BABD4C200BB710E /* cpu_id.h in Headers */,
 				04257C7528E2A7ED0062C0F1 /* LCNewPTZPanel.h in Headers */,
-				152056092BABD4C200BB710E /* libyuv.h in Headers */,
-				152056082BABD4C200BB710E /* row.h in Headers */,
-				152055FB2BABD4C200BB710E /* video_common.h in Headers */,
-				152055FD2BABD4C200BB710E /* planar_functions.h in Headers */,
-				152055FF2BABD4C200BB710E /* compare.h in Headers */,
-				152055CC2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.h in Headers */,
 				04257C6028E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.h in Headers */,
 				04257C1928E2A55B0062C0F1 /* LCNewLivePreviewModule.h in Headers */,
-				152056052BABD4C200BB710E /* format_conversion.h in Headers */,
-				152056012BABD4C200BB710E /* rotate.h in Headers */,
-				152056072BABD4C200BB710E /* rotate_argb.h in Headers */,
-				152055F82BABD4C200BB710E /* scale.h in Headers */,
 				04257C5B28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.h in Headers */,
 				04257C7D28E2A7ED0062C0F1 /* LCNewPTZControlView.h in Headers */,
-				152055FC2BABD4C200BB710E /* mjpeg_decoder.h in Headers */,
-				152056032BABD4C200BB710E /* basic_types.h in Headers */,
-				152056062BABD4C200BB710E /* convert.h in Headers */,
 				04257C5928E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.h in Headers */,
 				04257C7828E2A7ED0062C0F1 /* LCNewVideoHistoryView.h in Headers */,
 			);
@@ -554,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C466122CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,27 +489,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				04257C5C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m in Sources */,
-				152351B52BAA8A2D00D92A88 /* LCVisualTalkViewController.swift in Sources */,
 				04257C7428E2A7ED0062C0F1 /* LCNewPTZPanel.m in Sources */,
-				1520560C2BABE2E900BB710E /* LCVisualIntercomClockView.swift in Sources */,
-				152351B32BAA81B300D92A88 /* LCVisualIntercomControlBar.swift in Sources */,
 				04257C5F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m in Sources */,
+				04C22BA12CC10A3400046D84 /* LCVisualIntercomClockView.swift in Sources */,
+				04C22B9F2CC10A3400046D84 /* LCVisualIntercomTopBar.swift in Sources */,
 				04257C6128E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+SDKListener.m in Sources */,
+				04C22B9B2CC10A3400046D84 /* LCVisualTalkViewController.swift in Sources */,
 				04257C6A28E2A7ED0062C0F1 /* LCNewLandscapeControlView+Gesture.m in Sources */,
+				04C22B9E2CC10A3400046D84 /* LCVisualIntercomPlayContainer.swift in Sources */,
 				04257C1828E2A55B0062C0F1 /* LCNewLivePreviewModule.docc in Sources */,
-				152351AD2BA9851E00D92A88 /* LCVisualTalkPreviewView.m in Sources */,
-				152055D12BAB1BF600BB710E /* LCH264Encoder.m in Sources */,
 				04257C7A28E2A7ED0062C0F1 /* LCNewVideoHistoryView.m in Sources */,
-				152055C92BAB127800BB710E /* LCVisualIntercomPlayContainer.swift in Sources */,
 				04257C5D28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter.m in Sources */,
 				04257C5A28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+Control.m in Sources */,
+				04C22B9D2CC10A3400046D84 /* LCVisualIntercomControlBar.swift in Sources */,
 				04257C6F28E2A7ED0062C0F1 /* LCNewLandscapeControlView.m in Sources */,
-				152055CD2BAB1BEE00BB710E /* LCVisualTalkCaptureSession.m in Sources */,
 				152350D22BA2A47900D92A88 /* LCBottomControlView.swift in Sources */,
 				04257C7928E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m in Sources */,
 				04257C6B28E2A7ED0062C0F1 /* LCNewVideoControlView.m in Sources */,
+				04C466302CC65E74004E35AB /* LCVisualTalkPreviewView.m in Sources */,
 				04257C6928E2A7ED0062C0F1 /* LCNewLivePreviewViewController.m in Sources */,
-				1520560E2BABE32300BB710E /* LCVisualIntercomTopBar.swift in Sources */,
 				1520563D2BAC68C800BB710E /* LCLandscapeSelectItemView.swift in Sources */,
 				04257C7C28E2A7ED0062C0F1 /* LCNewPTZControlView.m in Sources */,
 			);
@@ -792,6 +649,7 @@
 		};
 		04257C1D28E2A55B0062C0F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466112CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -811,7 +669,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -839,6 +697,7 @@
 		};
 		04257C1E28E2A55B0062C0F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C466112CC64E08004E35AB /* LCNewLivePreviewModule.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -858,7 +717,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

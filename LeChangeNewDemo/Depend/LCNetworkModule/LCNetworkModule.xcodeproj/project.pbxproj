@@ -848,7 +848,7 @@
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
 				INFOPLIST_FILE = "LCNetworkModule/Support Files/Info.plist";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -891,7 +891,7 @@
 				GCC_PREFIX_HEADER = "LCNetworkModule/Support Files/LCNetworkModule.pch";
 				INFOPLIST_FILE = "LCNetworkModule/Support Files/Info.plist";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

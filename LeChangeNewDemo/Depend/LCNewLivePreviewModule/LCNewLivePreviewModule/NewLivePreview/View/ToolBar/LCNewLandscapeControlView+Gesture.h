@@ -12,26 +12,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCNewLandscapeControlView (Gesture)
 
-//添加手势
-- (void)addTheGestureRecognizer;
-
-//移除手势
-- (void)removeAllGestureRecognizer;
-
-//滑动手势是否可用
-- (void)setPanEnable:(BOOL)isEnable;
-
-//缩放手势是否可用
-- (void)setPinchEnable:(BOOL)isEnable;
-
-//单击手势是否可用
-- (void)setClickEnable:(BOOL)isEnable;
-
-//双击手势是否可用
-- (void)setDoubleClickEnable:(BOOL)isEnable;
-
-//长按手势是否可用
-- (void)setLongPressEnable:(BOOL)isEnable;
+////添加手势
+//- (void)addTheGestureRecognizer;
+//
+////移除手势
+//- (void)removeAllGestureRecognizer;
+//
+////滑动手势是否可用
+//- (void)setPanEnable:(BOOL)isEnable;
+//
+////缩放手势是否可用
+//- (void)setPinchEnable:(BOOL)isEnable;
+//
+////单击手势是否可用
+//- (void)setClickEnable:(BOOL)isEnable;
+//
+////双击手势是否可用
+//- (void)setDoubleClickEnable:(BOOL)isEnable;
+//
+////长按手势是否可用
+//- (void)setLongPressEnable:(BOOL)isEnable;
 
 @end
 

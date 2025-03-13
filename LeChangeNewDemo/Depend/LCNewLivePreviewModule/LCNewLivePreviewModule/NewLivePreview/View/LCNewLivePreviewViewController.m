@@ -49,12 +49,21 @@
     
     [self setupView];
     
-    UIImageView *defaultImageView = [[self.persenter.playWindow getWindowView] viewWithTag:10000];
+    //配置窗口模式
+    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
+        [self.persenter.livePlugin configPlayerType:LCMediaPlayerTypeDoubleIPC];
+        //默认画中画模式
+        self.persenter.livePlugin.screenMode = LCScreenModeSingleScreen;
+    }else {
+        [self.persenter.livePlugin configPlayerType:LCMediaPlayerTypeSingleIPC];
+    }
+    
+    UIImageView *defaultImageView = self.persenter.defaultImageView;
     defaultImageView.hidden = NO;
     [defaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId];
     
     if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        UIImageView *subDefaultImageView = [[self.persenter.playWindow getWindowView] viewWithTag:20000];
+        UIImageView *subDefaultImageView = self.persenter.subDefaultImageView;
         subDefaultImageView.hidden = NO;
         [subDefaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId];
     }
@@ -79,11 +88,11 @@
     }];
     [self.persenter loadCloudVideotape];
     
-    [self.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"displayChannelID" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self changeDisplayWindow:[LCNewDeviceVideoManager shareInstance].displayChannelID];
-        });
-    }];
+//    [self.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"displayChannelID" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self changeDisplayWindow:[LCNewDeviceVideoManager shareInstance].displayChannelID];
+//        });
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,7 +169,7 @@
     [self setupNavigationBarIsBlack:NO];
     
     //初始化播放窗口
-    UIView * player1 = [self.persenter.playWindow getWindowView];
+    UIView * player1 = self.persenter.livePlugin;
     [self.view addSubview:player1];
     [player1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakself.view);
@@ -169,17 +178,9 @@
         make.height.mas_equalTo(211);
     }];
     
-    UIView * player2 = [weakself.persenter.subPlayWindow getWindowView];
     if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        [self.view addSubview:player2];
-        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(player1.mas_bottom);
-            make.leading.mas_equalTo(player1.mas_leading);
-            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-            make.height.mas_equalTo(70);
-        }];
-        [player1 addSubview:self.persenter.cameraNameLabel];
-        [player2 addSubview:self.persenter.subCameraNameLabel];
+        [self.persenter.defaultImageView addSubview:self.persenter.cameraNameLabel];
+        [self.persenter.subDefaultImageView addSubview:self.persenter.subCameraNameLabel];
         
         [self.persenter.cameraNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(15);
@@ -195,14 +196,14 @@
             make.height.mas_equalTo(26);
         }];
         
-        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
-            self.persenter.subCameraNameLabel.hidden = NO;
-            self.persenter.cameraNameLabel.hidden = YES;
-            [self changeDisplayWindow:[LCNewDeviceVideoManager shareInstance].displayChannelID];
-        } else {
-            self.persenter.subCameraNameLabel.hidden = YES;
-            self.persenter.cameraNameLabel.hidden = NO;
-        }
+//        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
+//            self.persenter.subCameraNameLabel.hidden = NO;
+//            self.persenter.cameraNameLabel.hidden = YES;
+//            [self changeDisplayWindow:[LCNewDeviceVideoManager shareInstance].displayChannelID];
+//        } else {
+//            self.persenter.subCameraNameLabel.hidden = YES;
+//            self.persenter.cameraNameLabel.hidden = NO;
+//        }
         
     }
     
@@ -211,7 +212,7 @@
     self.middleControlView.items = [self.persenter getMiddleControlItems:[[LCNewDeviceVideoManager shareInstance] isMulti]];
     [self.view addSubview:self.middleControlView];
     [self.middleControlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([weakself.persenter.playWindow getWindowView].mas_bottom);
+        make.top.mas_equalTo(self.persenter.livePlugin.mas_bottom);
         make.trailing.leading.mas_equalTo(weakself.view);
     }];
     
@@ -375,48 +376,24 @@
     [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
     self.upDownControlView.hidden = YES;
     weakSelf(self);
-    UIView * player1 =  [self.persenter.playWindow getWindowView];
-    UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
-    [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+    LCOpenMediaLivePlugin * player =  self.persenter.livePlugin;
+    [player mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.mas_equalTo(weakself.view);
         make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
         make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
     }];
+    
+    player.screenMode = LCScreenModeSingleScreen;
 
-    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
-            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.leading.mas_equalTo(weakself.view);
-                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
-            }];
-            
-            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(player2.mas_bottom);
-                make.leading.mas_equalTo(player2.mas_leading);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT*0.333 : SCREEN_WIDTH*0.333);
-                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-            }];
-            self.persenter.subCameraNameLabel.hidden = NO;
-            self.persenter.cameraNameLabel.hidden = YES;
-        } else {
-            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.leading.mas_equalTo(weakself.view);
-                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH : SCREEN_HEIGHT);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT : SCREEN_WIDTH);
-            }];
-            
-            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(player1.mas_bottom);
-                make.leading.mas_equalTo(player1.mas_leading);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_HEIGHT*0.333 : SCREEN_WIDTH*0.333);
-                make.height.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-            }];
-            
-            self.persenter.subCameraNameLabel.hidden = YES;
-            self.persenter.cameraNameLabel.hidden = NO;
-        }
-    }
+//    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
+//        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
+//            self.persenter.subCameraNameLabel.hidden = NO;
+//            self.persenter.cameraNameLabel.hidden = YES;
+//        } else {
+//            self.persenter.subCameraNameLabel.hidden = YES;
+//            self.persenter.cameraNameLabel.hidden = NO;
+//        }
+//    }
     
     [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.bottom.mas_equalTo(self.view);
@@ -446,8 +423,9 @@
     self.view.backgroundColor = [UIColor lccolor_c8];
     [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
     self.upDownControlView.hidden = YES;
-    UIView * player1 =  [self.persenter.playWindow getWindowView];
-    [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+    
+    LCOpenMediaLivePlugin * player =  self.persenter.livePlugin;
+    [player mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view);
         make.leading.mas_equalTo(self.view);
         make.width.mas_equalTo(self.view);
@@ -455,39 +433,14 @@
     }];
 
     if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
-        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
-            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(self.view);
-                make.leading.mas_equalTo(self.view);
-                make.width.mas_equalTo(self.view);
-                make.height.mas_equalTo(211);
-            }];
-            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(player2.mas_bottom);
-                make.leading.mas_equalTo(player2.mas_leading);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-                make.height.mas_equalTo(70);
-            }];
-            self.persenter.subCameraNameLabel.hidden = NO;
-            self.persenter.cameraNameLabel.hidden = YES;
-        } else {
-            [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(self.view);
-                make.leading.mas_equalTo(self.view);
-                make.width.mas_equalTo(self.view);
-                make.height.mas_equalTo(211);
-            }];
-            
-            [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(player1.mas_bottom);
-                make.leading.mas_equalTo(player1.mas_leading);
-                make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-                make.height.mas_equalTo(70);
-            }];
-            self.persenter.subCameraNameLabel.hidden = YES;
-            self.persenter.cameraNameLabel.hidden = NO;
-        }
+        player.screenMode = LCScreenModeSingleScreen; //双目设置画中画模式
+//        if ([[LCNewDeviceVideoManager shareInstance].displayChannelID isEqualToString:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId]) {
+//            self.persenter.subCameraNameLabel.hidden = NO;
+//            self.persenter.cameraNameLabel.hidden = YES;
+//        } else {
+//            self.persenter.subCameraNameLabel.hidden = YES;
+//            self.persenter.cameraNameLabel.hidden = NO;
+//        }
     }
     
     [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -528,30 +481,23 @@
     self.videoHistoryView.hidden = YES;
     self.view.backgroundColor = [UIColor blackColor];
     
+    LCOpenMediaLivePlugin * player =  self.persenter.livePlugin;
     if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
-        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [player mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.view).offset(63);
             make.leading.mas_equalTo(self.view);
             make.width.mas_equalTo(self.view);
-            make.height.mas_equalTo(211);
+            make.height.mas_equalTo(211 + 211);
         }];
-        
-        UIView * player1 =  [self.persenter.playWindow getWindowView];
-        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(player2.mas_bottom).offset(10);
-            make.leading.mas_equalTo(player2.mas_leading);
-            make.width.mas_equalTo(self.view);
-            make.height.mas_equalTo(211);
-        }];
+        player.screenMode = LCScreenModeDoubleScreen;
     } else {
-        UIView * player1 =  [self.persenter.playWindow getWindowView];
-        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [player mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.view).offset(63);
             make.leading.mas_equalTo(self.view);
             make.width.mas_equalTo(self.view);
             make.height.mas_equalTo(211);
         }];
+        player.screenMode = LCScreenModeSingleScreen;
     }
     
     [self.persenter.loadImageview mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -579,54 +525,6 @@
     if ([[LCNewDeviceVideoManager shareInstance] isMulti] == NO) {
         return;
     }
-    UIView * player1 =  [self.persenter.playWindow getWindowView];
-    UIView * player2 =  [self.persenter.subPlayWindow getWindowView];
-    if (player1.superview == nil || player2.superview == nil) {
-        return;
-    }
-    NSUInteger player1Index = [self.view.subviews indexOfObject:player1];
-    NSUInteger player2Index = [self.view.subviews indexOfObject:player2];
-    [self.view exchangeSubviewAtIndex:player1Index withSubviewAtIndex:player2Index];
-    if ([displayWindowId isEqualToString:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId]) {
-//        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.view);
-//            make.leading.mas_equalTo(self.view);
-//            make.width.mas_equalTo(self.view);
-//            make.height.mas_equalTo(211);
-//        }];
-//        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.mas_equalTo(player1.mas_bottom);
-//            make.leading.mas_equalTo(player1.mas_leading);
-//            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-//            make.height.mas_equalTo(70);
-//        }];
-        
-        [self.persenter windowBorder:player2 hidden:NO];
-        [self.persenter windowBorder:player1 hidden:YES];
-        
-//        self.persenter.subCameraNameLabel.hidden = YES;
-//        self.persenter.cameraNameLabel.hidden = NO;
-    } else {
-//        [player2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.view);
-//            make.leading.mas_equalTo(self.view);
-//            make.width.mas_equalTo(self.view);
-//            make.height.mas_equalTo(211);
-//        }];
-//        [player1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.mas_equalTo(player2.mas_bottom);
-//            make.leading.mas_equalTo(player2.mas_leading);
-//            make.width.mas_equalTo(SCREEN_HEIGHT > SCREEN_WIDTH ? SCREEN_WIDTH*0.333 : SCREEN_HEIGHT*0.333);
-//            make.height.mas_equalTo(70);
-//        }];
-        
-        [self.persenter windowBorder:player2 hidden:YES];
-        [self.persenter windowBorder:player1 hidden:NO];
-//
-//        self.persenter.subCameraNameLabel.hidden = NO;
-//        self.persenter.cameraNameLabel.hidden = YES;
-    }
-    
     if (self.persenter.displayStyle == LCPlayWindowDisplayStyleFullScreen) {
         [self configFullScreenUI];
     } else if (self.persenter.displayStyle == LCPlayWindowDisplayStylePictureInScreen) {
@@ -641,10 +539,6 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self.persenter.playWindow setWindowFrame:[self.persenter.playWindow getWindowView].frame];
-    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        [self.persenter.subPlayWindow setWindowFrame:[self.persenter.subPlayWindow getWindowView].frame];
-    }
 }
 
 - (void)dealloc {

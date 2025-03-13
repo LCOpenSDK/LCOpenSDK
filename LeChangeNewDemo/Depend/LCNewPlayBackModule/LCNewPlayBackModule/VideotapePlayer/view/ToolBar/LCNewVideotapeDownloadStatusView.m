@@ -132,11 +132,11 @@
     if (recieve == 0) {
         return;
     }
-    self.totalRevieve += recieve;
+    self.totalRevieve = recieve;
     
-    if (self.totalRevieve >= self.size) {
-        self.totalRevieve = self.size;
-    }
+//    if (self.totalRevieve >= self.size) {
+//        self.totalRevieve = self.size;
+//    }
 }
 
 - (void)changeValue {

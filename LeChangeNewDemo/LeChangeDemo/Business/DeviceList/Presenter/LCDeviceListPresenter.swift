@@ -9,6 +9,7 @@
 import LCOpenSDKDynamic
 import LCNetworkModule
 import LCNewLivePreviewModule
+import LCOpenMediaSDK
 
 @objcMembers class LCDeviceListPresenter : LCBasicPresenter {
     /// 开发平台设备
@@ -193,8 +194,15 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
 //                if let vc = self?.livePreviewVC {
                 let vc = LCNewLivePreviewViewController()
                 vc.isFirstIntoVC = true
-                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
+//                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
 //                }
+//                let vc = LCLivePluginViewController()
+//                let item = LCOpenLiveSource()
+//                item.cid = Int(info.channels[channelIndex].channelId) ?? 0
+//                item.did = info.channels[channelIndex].deviceId
+//                item.pid = info.productId
+//                vc.playItem = item
+                self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
             } else if index == 1 {
                 var channleId = ""
                 if self?.openDevices[indexPath.row].channels.count ?? -1 > channelIndex {
@@ -214,7 +222,7 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
                             if granted {
                                 let vc = LCVisualTalkViewController()
                                 vc.intercomStatus = .ringing
-                                vc.isNeedSoftEncode = false
+//                                vc.isNeedSoftEncode = false
                                 vc.modalPresentationStyle = .fullScreen
                                 self?.listContainer?.present(vc, animated: true)
                             }

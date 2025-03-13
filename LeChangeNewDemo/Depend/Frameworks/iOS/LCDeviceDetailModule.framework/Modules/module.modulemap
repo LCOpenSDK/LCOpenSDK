@@ -1,7 +1,7 @@
 framework module LCDeviceDetailModule {
   umbrella header "LCDeviceDetailModule.h"
-
   export *
+
   module * { export * }
 }
 

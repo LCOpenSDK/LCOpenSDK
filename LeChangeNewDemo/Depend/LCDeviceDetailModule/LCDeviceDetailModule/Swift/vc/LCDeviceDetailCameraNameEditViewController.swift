@@ -71,7 +71,9 @@ public class LCDeviceDetailCameraNameEditViewController : LCBasicViewController 
         })
         self.lc_getRightBtn().lc_enable = false
         
-        self.title = "镜头名称"
+        self.title = "device_manager_defence_setting".lc_T
+        self.fixedTitleLabel.text = "device_detail_camera_name_fixed_lens".lc_T
+        self.mobileTitleLabel.text = "device_detail_camera_name_pt_lens".lc_T
         self.fixedCameraInput.text = cameraName(fixed: true)
         self.fixedCameraInput.delegate = self
         self.mobileCameraInput.text = cameraName(fixed: false)
@@ -132,14 +134,14 @@ extension LCDeviceDetailCameraNameEditViewController : UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var text: NSString? = (textField.text as? NSString)
         text = text?.replacingCharacters(in: range, with: string) as NSString?
-        let rex = "[^\u{4e00}-\u{9fa5}]"
-        let res = text?.filterCharactor(((text ?? "") as String), withRegex:rex)
-        if string != "" && (res?.length ?? 0) > 64 {
-            return false
-        }
-        if string != "" && !string.isVaildDeviceName() {
-            return false
-        }
+//        let rex = "[^\u{4e00}-\u{9fa5}]"
+//        let res = text?.filterCharactor(((text ?? "") as String), withRegex:rex)
+//        if string != "" && (res?.length ?? 0) > 64 {
+//            return false
+//        }
+//            if string != "" && !string.isVaildDeviceName() {
+//            return false
+//        }
         
         return true
     }

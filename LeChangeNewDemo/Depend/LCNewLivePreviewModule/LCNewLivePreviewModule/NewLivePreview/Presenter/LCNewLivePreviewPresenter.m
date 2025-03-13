@@ -26,7 +26,7 @@
 
 @end
 
-@interface LCNewLivePreviewPresenter ()<LCOpenSDK_TouchListener, LCOpenSDK_PlayRealListener, LCOpenSDK_TalkerListener>{
+@interface LCNewLivePreviewPresenter ()<LCOpenTalkPluginDelegate>{
     long _groupId;
 }
 
@@ -67,7 +67,8 @@
         LCOpenSDK_PTZControllerInfo *PTZControllerInfo = [[LCOpenSDK_PTZControllerInfo alloc]init];
         PTZControllerInfo.operation = direction;
         PTZControllerInfo.duration = duration;
-        [self.playWindow controlMovePTZ:PTZControllerInfo];
+        LCOpenSDK_DeviceOperateApi* api = [[LCOpenSDK_DeviceOperateApi alloc]init];
+        [api controlMovePTZ:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].displayChannelID PTZControllerInfo:PTZControllerInfo playToken:[LCNewDeviceVideoManager shareInstance].currentDevice.playToken];
     }
 }
 
@@ -170,18 +171,18 @@
         switch (btn.tag) {
             case LCNewLivePreviewControlPTZ:
                 // easy4ip设备默认可对讲
-                if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"] || [[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"Doorbell"]) {
-                    btn.enabled = NO;
-                }
+//                if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"] || [[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"Doorbell"]) {
+//                    btn.enabled = NO;
+//                }
                 //监听管理者状态，判断云台能力
                 if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"NVR"]) {
-                    if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPTZ] || [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT] || [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT1]) {
-                        btn.enabled = YES;
+                    if (![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPTZ] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT1]) {
+                        btn.enabled = NO;
                     }
                 }
                 if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"IPC"]) {
-                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPTZ] || [[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT] || [[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT1]) {
-                        btn.enabled = YES;
+                    if (![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPTZ] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT1]) {
+                        btn.enabled = NO;
                     }
                 }
 
@@ -349,6 +350,29 @@
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
                 [weakself onPtz:btn];
             };
+            [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                if ([change[@"new"] boolValue]) {
+                    //是否打开云台
+                    [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage_on") forState:UIControlStateNormal];
+                } else {
+                    [item setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
+                }
+            }];
+            //监听管理者状态,判断云台
+            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"NVR"]) {
+                if (![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPTZ] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT1]) {
+                    item.enabled = NO;
+                    return item;
+                }
+            } else if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"IPC"]) {
+                if (![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPTZ] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT1]) {
+                    item.enabled = NO;
+                    return item;
+                }
+            } else if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"Doorbell"]) {
+                item.enabled = NO;
+                return item;
+            }
             [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"]integerValue]) {
                     item.enabled = YES;
@@ -356,41 +380,6 @@
                     item.enabled = NO;
                 }
             }];
-            //监听管理者状态，判断云台能力
-            [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"]integerValue]) {
-                    if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"] || [[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"Doorbell"]) {
-                        weakItem.enabled = NO;
-                    } else {
-                        weakItem.enabled = YES;
-                    }
-                }
-            }];
-            [item.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] boolValue]) {
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage_on") forState:UIControlStateNormal];
-                } else {
-                    [weakItem setImage:LC_IMAGENAMED(@"live_video_icon_cloudstage") forState:UIControlStateNormal];
-                }
-            }];
-            //监听管理者状态，判断云台能力
-            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"NVR"]) {
-                if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPTZ] || [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT] || [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportPT1]) {
-                    item.enabled = YES;
-                    return item;
-                }
-            }
-            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"IPC"]) {
-                if ([[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPTZ] || [[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT] || [[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportPT1]) {
-                    item.enabled = YES;
-                    return item;
-                }
-            }
-
-            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"] || [[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"Doorbell"]) {
-                item.enabled = NO;
-                return item;
-            }
         }
         break;
         case LCNewLivePreviewControlSnap: {
@@ -420,17 +409,17 @@
             }
             
             item.enabled = NO;
-            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"]) {
-                item.enabled = YES;
-                return item;
-            }
+//            if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"]) {
+//                item.enabled = YES;
+//                return item;
+//            }
             if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"NVR"]) {
                 if (![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportAudioTalkV1] && ![[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability isSupportAudioTalk]) {
                     item.enabled = NO;
                     return item;
                 }
             } else if ([[LCNewDeviceVideoManager shareInstance].currentDevice.catalog isEqualToString:@"IPC"]) {
-                if (![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalkV1] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalk]) {
+                if ((![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalkV1] && ![[LCNewDeviceVideoManager shareInstance].currentDevice.ability isSupportAudioTalk]) && ![[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"Easy4IP"]) {
                     item.enabled = NO;
                     return item;
                 }
@@ -473,7 +462,7 @@
                                         if (granted) {
                                             LCVisualTalkViewController *vc = [[LCVisualTalkViewController alloc]init];
                                             [vc configIntercomWithStatus:1];
-                                            vc.isNeedSoftEncode = YES;
+//                                            vc.isNeedSoftEncode = YES;
                                             [weakself.liveContainer presentViewController:vc animated:YES completion:nil];
                                         }
                                     }];
@@ -633,33 +622,42 @@
 //MARK: - Private Methods
 
 ///播放窗口懒加载
-- (LCOpenSDK_PlayRealWindow *)playWindow {
-    if (!_playWindow) {
-        _playWindow = [[LCOpenSDK_PlayRealWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:11];
-        _playWindow.isZoomEnabled = YES;
-        //设置背景色为黑色
-        [_playWindow setSurfaceBGColor:[UIColor blackColor]];
-        [_playWindow setPlayRealListener:self];
-        [_playWindow setTouchListener:self];
-        //开启降噪
-        [_playWindow setSEnhanceMode:LCOpenSDK_EnhanceMode_Level5];
+- (LCOpenMediaLivePlugin *)livePlugin {
+    if (!_livePlugin) {
+        _livePlugin = [[LCOpenMediaLivePlugin alloc] initWithFrame:CGRectMake(50, 50, 30, 30)];
+        [_livePlugin setPlayerListener:self];
+        [_livePlugin setMultiviewWindowListener:self];
+        [_livePlugin setGestureListener:self];
     }
-    return _playWindow;
+    return _livePlugin;
 }
-
-- (LCOpenSDK_PlayRealWindow *)subPlayWindow {
-    if (!_subPlayWindow && [[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        _subPlayWindow = [[LCOpenSDK_PlayRealWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:12];
-        _subPlayWindow.isZoomEnabled = YES;
-        [_subPlayWindow setSurfaceBGColor:[UIColor blackColor]];
-        [_subPlayWindow setPlayRealListener:self];
-        [_subPlayWindow setTouchListener:self];
-        //开启降噪
-        [_subPlayWindow setSEnhanceMode:LCOpenSDK_EnhanceMode_Level5];
-        [self windowBorder:[_subPlayWindow getWindowView] hidden:NO];
-    }
-    return _subPlayWindow;
-}
+//- (LCOpenSDK_PlayRealWindow *)playWindow {
+//    if (!_playWindow) {
+//        _playWindow = [[LCOpenSDK_PlayRealWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:11];
+//        _playWindow.isZoomEnabled = YES;
+//        //设置背景色为黑色
+//        [_playWindow setSurfaceBGColor:[UIColor blackColor]];
+//        [_playWindow setPlayRealListener:self];
+//        [_playWindow setTouchListener:self];
+//        //开启降噪
+//        [_playWindow setSEnhanceMode:LCOpenSDK_EnhanceMode_Level5];
+//    }
+//    return _playWindow;
+//}
+//
+//- (LCOpenSDK_PlayRealWindow *)subPlayWindow {
+//    if (!_subPlayWindow && [[LCNewDeviceVideoManager shareInstance] isMulti]) {
+//        _subPlayWindow = [[LCOpenSDK_PlayRealWindow alloc] initPlayWindow:CGRectMake(50, 50, 30, 30) Index:12];
+//        _subPlayWindow.isZoomEnabled = YES;
+//        [_subPlayWindow setSurfaceBGColor:[UIColor blackColor]];
+//        [_subPlayWindow setPlayRealListener:self];
+//        [_subPlayWindow setTouchListener:self];
+//        //开启降噪
+//        [_subPlayWindow setSEnhanceMode:LCOpenSDK_EnhanceMode_Level5];
+//        [self windowBorder:[_subPlayWindow getWindowView] hidden:NO];
+//    }
+//    return _subPlayWindow;
+//}
 
 - (UILabel *)cameraNameLabel {
     if (!_cameraNameLabel) {
@@ -724,11 +722,11 @@
 
 //加载重放，异常按钮弹窗，默认图等
 - (void)loadStatusView {
-    UIView *player1 = [self.playWindow getWindowView];
-    [player1 addSubview:self.defaultImageView];
-    [self.defaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(player1);
-    }];
+//    UIView *player1 = self.livePlugin;
+//    [player1 addSubview:self.defaultImageView];
+//    [self.defaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.bottom.right.mas_equalTo(player1);
+//    }];
     
     [self.defaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId];
 
@@ -741,11 +739,11 @@
     }];
     
     if ([LCNewDeviceVideoManager shareInstance].isMulti) {
-        UIView *player2 = [self.subPlayWindow getWindowView];
-        [player2 addSubview:self.subDefaultImageView];
-        [self.subDefaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.right.mas_equalTo(player2);
-        }];
+//        UIView *player2 = [self.subPlayWindow getWindowView];
+//        [player2 addSubview:self.subDefaultImageView];
+//        [self.subDefaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.left.bottom.right.mas_equalTo(player2);
+//        }];
         
         [self.subDefaultImageView lc_setThumbImageWithURL:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.picUrl placeholderImage:LC_IMAGENAMED(@"common_defaultcover_big") DeviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId ChannelId:[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId];
         
@@ -853,25 +851,19 @@
     }
 }
 
-- (LCOpenSDK_AudioTalk *)talker {
+- (LCOpenTalkPlugin *)talker {
     if (!_talker) {
-        _talker = [LCOpenSDK_AudioTalk new];
-        [_talker setListener:self];
+        _talker = [LCOpenTalkPlugin shareInstance];
+        _talker.delegate = self;
     }
     return _talker;
 }
 
 - (void)onResignActive:(id)sender {
-    if (self.playWindow) {
-        [self.playWindow stopRtspReal:YES];
+    if (self.livePlugin) {
+        [self.livePlugin stopRtspReal:YES];
         [LCNewDeviceVideoManager shareInstance].isPlay = NO;
-        [self.playWindow stopAudio];
-    }
-    
-    if ([[LCNewDeviceVideoManager shareInstance] isMulti]) {
-        [self.subPlayWindow stopRtspReal:YES];
-        [LCNewDeviceVideoManager shareInstance].isPlay = NO;
-        [self.subPlayWindow stopAudio];
+        [self.livePlugin stopAudioWithIsCallback:YES];
     }
     
     [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
@@ -916,10 +908,10 @@
         NSString *displayChannelID = [LCNewDeviceVideoManager shareInstance].displayChannelID;
         NSString *mainChannelID = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId;
         NSString *subChannelID = [LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId;
-        if (([displayChannelID isEqualToString:mainChannelID] && index == self.subPlayWindow.index)) {
+        if ([displayChannelID isEqualToString:mainChannelID]) {
             // 切换大窗口展示子通道
             [LCNewDeviceVideoManager shareInstance].displayChannelID = subChannelID;
-        } else if ([displayChannelID isEqualToString:subChannelID] && index == self.playWindow.index) {
+        } else if ([displayChannelID isEqualToString:subChannelID]) {
             // 切换大窗口展示主通道
             [LCNewDeviceVideoManager shareInstance].displayChannelID = mainChannelID;
         }
@@ -927,12 +919,12 @@
 }
 
 - (void)onWindowDBClick:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index {
-    //双击恢复缩放
-    CGFloat scale = [self.playWindow getScale];
-    
-    if (scale != 0) {
-        [self.playWindow doScale:1 / scale];
-    }
+//    //双击恢复缩放
+//    CGFloat scale = [self.playWindow getScale];
+//    
+//    if (scale != 0) {
+//        [self.playWindow doScale:1 / scale];
+//    }
 }
 
 - (void)onWindowLongPressBegin:(Direction)dir dx:(CGFloat)dx dy:(CGFloat)dy Index:(NSInteger)index {
@@ -951,26 +943,28 @@
     if (![LCApplicationDataManager getDebugFlag]) {
         return;
     }
-    NSObject *currentPlayer = [self.playWindow valueForKey:@"mPlayer"];
-    id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+    LCVideoStreamMode streamType = [self.livePlugin getCurrentStreamMode];
     NSString *streamTypeString = @"";
-    if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+    if (streamType == LCVideoStreamModeP2pP2p || streamType == LCVideoStreamModeP2pLocal || streamType == LCVideoStreamModeP2pRelay) {
         streamTypeString = @"P2P";
-    }else{
+    }else if (streamType == LCVideoStreamModeMTS || streamType == LCVideoStreamModeMTSQuic){
         streamTypeString = @"MTS";
+    } else {
+        streamTypeString = @"Unknow";
     }
     
     self.videoTypeLabel.text = [@"拉流模式:" stringByAppendingString:streamTypeString];
     _videoTypeLabel.hidden = NO;
     
     if ([LCNewDeviceVideoManager shareInstance].isMulti) {
-        NSObject *currentPlayer = [self.subPlayWindow valueForKey:@"mPlayer"];
-        id streamType = [currentPlayer valueForKeyPath:@"stream.streamType"];
+        LCVideoStreamMode streamType = [self.livePlugin getCurrentStreamMode];
         NSString *streamTypeString = @"";
-        if ([streamType integerValue] == 1 || [streamType integerValue] ==2) {
+        if (streamType == LCVideoStreamModeP2pP2p || streamType == LCVideoStreamModeP2pLocal || streamType == LCVideoStreamModeP2pRelay) {
             streamTypeString = @"P2P";
-        }else{
+        }else if (streamType == LCVideoStreamModeMTS || streamType == LCVideoStreamModeMTSQuic){
             streamTypeString = @"MTS";
+        } else {
+            streamTypeString = @"Unknow";
         }
         
         self.subVideoTypeLabel.text = [@"拉流模式:" stringByAppendingString:streamTypeString];
@@ -985,11 +979,11 @@
         _videoTypeLabel.textColor = [UIColor lccolor_c0];
         _videoTypeLabel.font = [UIFont lcFont_t8];
         _videoTypeLabel.textAlignment = NSTextAlignmentRight;
-        [[self.playWindow getWindowView] addSubview:_videoTypeLabel];
+        [self.livePlugin addSubview:_videoTypeLabel];
         _videoTypeLabel.hidden = YES;
         [_videoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(30);
-            make.top.right.equalTo([self.playWindow getWindowView]);
+            make.top.right.equalTo(self.livePlugin);
         }];
     }
     
@@ -1007,18 +1001,14 @@
         _subVideoTypeLabel.textColor = [UIColor lccolor_c0];
         _subVideoTypeLabel.font = [UIFont lcFont_t8];
         _subVideoTypeLabel.textAlignment = NSTextAlignmentRight;
-        [[self.subPlayWindow getWindowView] addSubview:_subVideoTypeLabel];
         _subVideoTypeLabel.hidden = YES;
-        [_subVideoTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(30);
-            make.top.right.equalTo([self.subPlayWindow getWindowView]);
-        }];
     }
     
     _subVideoTypeLabel.hidden = YES;
     
     return _subVideoTypeLabel;
 }
+
 
 
 - (void)showBorderView:(NewBorderViewDirection)direction {
@@ -1058,9 +1048,9 @@
 - (UIImageView *)borderIVTop {
     if (!_borderIVTop) {
         _borderIVTop = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewTop"]];
-        [[self.playWindow getWindowView] addSubview:_borderIVTop];
+        [self.livePlugin addSubview:_borderIVTop];
         [_borderIVTop mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.top.equalTo([self.playWindow getWindowView]);
+            make.centerX.top.equalTo(self.livePlugin);
         }];
     }
     return _borderIVTop;
@@ -1069,9 +1059,9 @@
 - (UIImageView *)borderIVBottom {
     if (!_borderIVBottom) {
         _borderIVBottom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewBottom"]];
-        [[self.playWindow getWindowView] addSubview:_borderIVBottom];
+        [self.livePlugin addSubview:_borderIVBottom];
         [_borderIVBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.bottom.equalTo([self.playWindow getWindowView]);
+            make.centerX.bottom.equalTo(self.livePlugin);
         }];
     }
     return _borderIVBottom;
@@ -1080,9 +1070,9 @@
 - (UIImageView *)borderIVLeft {
     if (!_borderIVLeft) {
         _borderIVLeft = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewLeft"]];
-        [[self.playWindow getWindowView] addSubview:_borderIVLeft];
+        [self.livePlugin addSubview:_borderIVLeft];
         [_borderIVLeft mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.left.equalTo([self.playWindow getWindowView]);
+            make.centerY.left.equalTo(self.livePlugin);
         }];
     }
     return _borderIVLeft;
@@ -1091,24 +1081,62 @@
 - (UIImageView *)borderIVRight {
     if (!_borderIVRight) {
         _borderIVRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BorderViewRight"]];
-        [[self.playWindow getWindowView] addSubview:_borderIVRight];
+        [self.livePlugin addSubview:_borderIVRight];
         [_borderIVRight mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.right.equalTo([self.playWindow getWindowView]);
+            make.centerY.right.equalTo(self.livePlugin);
         }];
     }
     return _borderIVRight;
 }
 
-- (void)onAudioReceive:(Byte *)pData dataLen:(int)dataLen audioFormat:(int)audioFormat sampleRate:(int)sampleRate sampleDepth:(int)sampleDepth {
-    
+- (void)onTalkSuccess:(LCOpenTalkSource *)source
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //开启对讲成功
+        [LCProgressHUD hideAllHuds:nil];
+        //对讲连接成功建立
+        [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = YES;
+        [LCProgressHUD showMsg:@"device_mid_open_talk_success".lcMedia_T];
+    });
 }
 
-- (void)onAudioRecord:(Byte *)pData dataLen:(int)dataLen audioFormat:(int)audioFormat sampleRate:(int)sampleRate sampleDepth:(int)sampleDepth {
-    
+- (void)onTalkLoading:(LCOpenTalkSource *)source
+{
+    //对讲loading
 }
 
-- (void)onTalkResult:(NSString *)error TYPE:(NSInteger)type {
-    
+- (void)onTalkStop:(LCOpenTalkSource *)source
+{
+    //停止对讲
+    NSLog(@"onTalkStoped");
+}
+- (void)onTalkFailure:(LCOpenTalkSource *)source talkError:(NSString *)error type:(int)type {
+    //对讲失败
+    NSLog(@"onTalkFailure:%ld", (long)error);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.talker setDelegate:nil];
+        self.talker = nil;
+        NSLog(@"开启对讲回调error = %@, type = %ld", error, (long)type);
+        weakSelf(self);
+        [LCProgressHUD hideAllHuds:nil];
+        if (99 == type) {   //网络请求失败
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
+                [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
+            });
+            return;
+        } else if (nil != error && [error intValue] == STATE_LCHTTP_HUNG_UP) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LCProgressHUD showMsg:@"对讲挂断".lcMedia_T];
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LCProgressHUD showMsg:@"play_module_video_preview_talk_failed".lcMedia_T];
+                [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = NO;
+            });
+        }
+    });
 }
 
 @end

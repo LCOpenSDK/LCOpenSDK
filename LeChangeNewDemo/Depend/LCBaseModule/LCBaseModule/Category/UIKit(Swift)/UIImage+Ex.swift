@@ -11,15 +11,18 @@ public extension UIImage {
         
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         
-        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = UIScreen.main.scale;
+        format.opaque = false;
+        let renderer = UIGraphicsImageRenderer.init(size: rect.size, format: format)
+        let image = renderer.image { rendererContext in
+            let context = rendererContext.cgContext
+            context.addPath(UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath)
+            context.clip()
+            self.draw(in: rect)
+        }
         
-        let context = UIGraphicsGetCurrentContext()
-        context?.addPath(UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath)
-        context?.clip()
-        
-        self.draw(in: rect)
-        
-        return UIGraphicsGetImageFromCurrentImageContext() ?? self
+        return image
         
     }
 	
@@ -150,10 +153,13 @@ public extension UIImage {
     }
     
     func rebuildImageSize(rect: CGRect) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 1.0)
-        self.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
-        UIGraphicsEndImageContext()
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1.0;
+        format.opaque = false;
+        let renderer = UIGraphicsImageRenderer.init(size: rect.size, format: format)
+        let newImage = renderer.image { rendererContext in
+            self.draw(in: rect)
+        }
         
         return newImage
     }
@@ -171,18 +177,24 @@ public extension UIImage {
             scaleTransform = CGAffineTransform(scaleX: scaleRatio, y: scaleRatio)
             originPoint = CGPoint(x: 0, y: -(self.size.height - self.size.width) / 2.0)
         }
-        
+        var renderer: UIGraphicsImageRenderer!
         if UIScreen.main.responds(to: #selector(getter: scale)) {
-            UIGraphicsBeginImageContextWithOptions(scaledToSize, true, 0)
+            let format = UIGraphicsImageRendererFormat()
+            format.scale = 0.0;
+            format.opaque = false;
+            renderer = UIGraphicsImageRenderer.init(size: scaledToSize, format: format)
         } else {
-            UIGraphicsBeginImageContext(scaledToSize)
+            let format = UIGraphicsImageRendererFormat()
+            format.scale = 1.0;
+            format.opaque = false;
+            renderer = UIGraphicsImageRenderer.init(size: scaledToSize, format: format)
         }
         
-        guard let context = UIGraphicsGetCurrentContext() else { return self }
-        context.concatenate(scaleTransform)
-        self.draw(at: originPoint)
-        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return self }
-        UIGraphicsEndImageContext()
+        let image = renderer.image { rendererContext in
+            let context = rendererContext.cgContext
+            context.concatenate(scaleTransform)
+            self.draw(at: originPoint)
+        }
         return image
     }
 }

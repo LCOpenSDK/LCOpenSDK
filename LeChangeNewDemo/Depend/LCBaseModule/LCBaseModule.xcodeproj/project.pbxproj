@@ -10,7 +10,6 @@
 		0302986D28F90B360038E6FE /* UINavigationController+Pop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302986B28F90B360038E6FE /* UINavigationController+Pop.m */; };
 		0302986E28F90B360038E6FE /* UINavigationController+Pop.h in Headers */ = {isa = PBXBuildFile; fileRef = 0302986C28F90B360038E6FE /* UINavigationController+Pop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03287CC328F19E5E00FFD051 /* LCAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03287CC228F19E5E00FFD051 /* LCAlertView.swift */; };
-		03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */; };
 		034E6B16299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */; };
 		0360251729090F3100E5475B /* UIViewController+LCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */; };
 		0360251829090F3100E5475B /* UIViewController+LCNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,6 +58,7 @@
 		04B098292515AAED001CFB1A /* LCLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B098272515AAED001CFB1A /* LCLogManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04B0982D2515AB4F001CFB1A /* LCUDIDTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B0982B2515AB4E001CFB1A /* LCUDIDTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04B0982E2515AB4F001CFB1A /* LCUDIDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0982C2515AB4E001CFB1A /* LCUDIDTool.m */; };
+		04C4661F2CC65A5C004E35AB /* LCBaseModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C4661E2CC65A5C004E35AB /* LCBaseModule.xcconfig */; };
 		04CC84152518860B009EB27E /* UIAlertController+SupportedInterfaceOrientations.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CC840725188609009EB27E /* UIAlertController+SupportedInterfaceOrientations.m */; };
 		04CC84162518860B009EB27E /* UILabel+LeChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 04CC840825188609009EB27E /* UILabel+LeChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04CC84172518860B009EB27E /* UIApplication+LeChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 04CC840925188609009EB27E /* UIApplication+LeChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -250,7 +250,6 @@
 		0302986B28F90B360038E6FE /* UINavigationController+Pop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Pop.m"; sourceTree = "<group>"; };
 		0302986C28F90B360038E6FE /* UINavigationController+Pop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Pop.h"; sourceTree = "<group>"; };
 		03287CC228F19E5E00FFD051 /* LCAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAlertView.swift; sourceTree = "<group>"; };
-		03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = ../../../../../SDKLib/IOS/LCOpenSDK/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebViewJavascriptBridge_WK_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0360251529090F3100E5475B /* UIViewController+LCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LCNavigationBar.m"; sourceTree = "<group>"; };
 		0360251629090F3100E5475B /* UIViewController+LCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LCNavigationBar.h"; sourceTree = "<group>"; };
@@ -299,6 +298,7 @@
 		04B098272515AAED001CFB1A /* LCLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLogManager.h; sourceTree = "<group>"; };
 		04B0982B2515AB4E001CFB1A /* LCUDIDTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUDIDTool.h; sourceTree = "<group>"; };
 		04B0982C2515AB4E001CFB1A /* LCUDIDTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUDIDTool.m; sourceTree = "<group>"; };
+		04C4661E2CC65A5C004E35AB /* LCBaseModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCBaseModule.xcconfig; sourceTree = "<group>"; };
 		04CC840725188609009EB27E /* UIAlertController+SupportedInterfaceOrientations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+SupportedInterfaceOrientations.m"; sourceTree = "<group>"; };
 		04CC840825188609009EB27E /* UILabel+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LeChange.h"; sourceTree = "<group>"; };
 		04CC840925188609009EB27E /* UIApplication+LeChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LeChange.h"; sourceTree = "<group>"; };
@@ -497,7 +497,6 @@
 				034E6B16299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework in Frameworks */,
 				03ABE0EA28F5B8B300BCE307 /* MBProgressHUD.framework in Frameworks */,
 				04424FCC24EFC31E00BFCA2B /* Masonry.framework in Frameworks */,
-				03401B2D2906F86F00F7CD6F /* LCOpenSDKDynamic.framework in Frameworks */,
 				03ABE05828F565C300BCE307 /* Masonry.framework in Frameworks */,
 				0469A4E124E2824E00B3EBA5 /* GTMBase64.framework in Frameworks */,
 				03E8BF27286420E400C91BA5 /* SnapKit.framework in Frameworks */,
@@ -673,7 +672,6 @@
 			isa = PBXGroup;
 			children = (
 				034E6B15299A5A39003A88F8 /* WebViewJavascriptBridge_WK_.framework */,
-				03401B2C2906F86F00F7CD6F /* LCOpenSDKDynamic.framework */,
 				3FFFDECE29013FD100CB48EC /* KVOController.framework */,
 				03ABE0E928F5B8B300BCE307 /* MBProgressHUD.framework */,
 				03ABE05728F565C000BCE307 /* Masonry.framework */,
@@ -927,6 +925,7 @@
 				4E9B4A6F2123C08300A1D322 /* Module */,
 				4E9B4A552123B47E00A1D322 /* Support Files */,
 				4E50D9032125A89D00F37EFC /* View */,
+				04C4661E2CC65A5C004E35AB /* LCBaseModule.xcconfig */,
 			);
 			path = LCBaseModule;
 			sourceTree = "<group>";
@@ -1212,6 +1211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C4661F2CC65A5C004E35AB /* LCBaseModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1587,6 +1587,7 @@
 		};
 		4E9B4A532123B47200A1D322 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661E2CC65A5C004E35AB /* LCBaseModule.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1611,7 +1612,7 @@
 				GCC_PREFIX_HEADER = "LCBaseModule/Support Files/LCBaseModule.pch";
 				INFOPLIST_FILE = "LCBaseModule/Support Files/Info.plist";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1634,6 +1635,7 @@
 		};
 		4E9B4A542123B47200A1D322 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661E2CC65A5C004E35AB /* LCBaseModule.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1658,7 +1660,7 @@
 				GCC_PREFIX_HEADER = "LCBaseModule/Support Files/LCBaseModule.pch";
 				INFOPLIST_FILE = "LCBaseModule/Support Files/Info.plist";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

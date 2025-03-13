@@ -5,3 +5,4 @@
 #import <LCNetworkModule/LCDeviceInfo.h>
 #import "LCRefreshHeader.h"
 #import "LCDeviceListCell.h"
+#import "HistoryVideoListView.h"

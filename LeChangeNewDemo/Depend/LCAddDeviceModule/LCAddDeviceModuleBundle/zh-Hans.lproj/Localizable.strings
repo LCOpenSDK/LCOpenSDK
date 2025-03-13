@@ -153,8 +153,8 @@
 "add_devices_smartconfig_restart" = "重新开始";
 "add_device_will_hear_volume" = "即将听到声波";
 "add_device_confirm_to_connect_correct_wifi" = "请确认手机已连上设备所要连接的WiFi";
-"add_device_wait_to_connect_wifi_failed" = "自动连接失败，请进入手机的WiFi设置，连接上名为\"%@\"的热点，然后返回此页面";
-"add_device_wait_to_connect_wifi_failed_sc" = "自动连接失败，进入手机的WiFi设置，连接上名为\"%@\"的热点，然后返回此页面，热点密码为";
+"add_device_wait_to_connect_wifi_failed" = "自动连接失败，请进入手机的WiFi设置，连接上名为\"%@\"的热点(或以Camera开头)，然后返回此页面";
+"add_device_wait_to_connect_wifi_failed_sc" = "自动连接失败，进入手机的WiFi设置，连接上名为\"%@\"的热点(或以Camera开头)，然后返回此页面，热点密码为";
 "add_device_scanning_error_tip" = "未检测到二维码信息";
 "add_devices_device_unsupport" = "抱歉，暂不支持添加该型号设备";
 "add_devices_scan_code_failed" = "扫描失败！";
@@ -209,3 +209,5 @@
 "add_device_connect_ap_hotpot_and_back" = "进入手机的WiFi设置，连接上名为\"%@\"的热点，然后返回此页面";
 "add_device_enter_wifi_password" = "请输入网络名称";
 "add_device_no_device" = "无该型号设备,请根据页面提示确定型号";
+"common_set" = "设置";
+"common_got_it" = "我知道了";

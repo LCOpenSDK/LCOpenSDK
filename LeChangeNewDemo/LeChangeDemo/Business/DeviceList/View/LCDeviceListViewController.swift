@@ -57,7 +57,9 @@ import UIKit
         self.navigationController?.navigationBar.setBarBackgroundColor(color: .white)
         self.lcCreatNavigationBar(with: LCNAVIGATION_STYLE_DEVICELIST) {[weak self] index in
             if index == 1 {
-                self?.navigationController?.pushToAddDeviceScanPage()
+                self?.showGuideAlert {
+                    self?.navigationController?.pushToAddDeviceScanPage()
+                }
             } else {
                 self?.navigationController?.popViewController(animated: true)
             }
@@ -78,6 +80,34 @@ import UIKit
 
     deinit {
         
+    }
+    
+    func showGuideAlert(action: @escaping () -> ()) {
+        LCAlertView.lc_ShowAlert(title: "Alert_Title_Notice2".lc_T, detail: "open_local_network_to_add_device".lc_T, confirmString: "common_set".lc_T, cancelString: "common_got_it".lc_T) { isConfirmSelected in
+            if isConfirmSelected == true {
+                self.goToConfigLocalNetWork()
+            } else {
+                action()
+            }
+        }
+    }
+    
+    /// 跳转设置wifi
+    private func goToConfigLocalNetWork() {
+        guard let url = URL.init(string: UIApplicationOpenSettingsURLString) else {
+            return
+        }
+        if #available(iOS 10.0, *) {
+            //先判断是否有iOS10SDK的方法，如果有，则实现iOS10的跳转
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        } else {
+            // Fallback on earlier versions
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     
 }

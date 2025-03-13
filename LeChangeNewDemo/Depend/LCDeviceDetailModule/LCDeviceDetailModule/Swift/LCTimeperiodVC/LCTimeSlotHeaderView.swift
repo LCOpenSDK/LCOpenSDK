@@ -208,14 +208,17 @@ extension UIImage {
     class func imageWithColor(_ color: UIColor) -> UIImage {
         
         let rect = CGRect(x: 0, y: 0, width: 1.0, height: 1.0)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        context?.setFillColor(color.cgColor)
-        context?.fill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1.0;
+        format.opaque = false;
+        let renderer = UIGraphicsImageRenderer.init(size: rect.size, format: format)
+        let image = renderer.image { rendererContext in
+            let context = rendererContext.cgContext
+            context.setFillColor(color.cgColor)
+            context.fill(rect)
+        }
         
-        return image!
+        return image
     }
 }
 // 圆点

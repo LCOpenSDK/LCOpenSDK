@@ -1,7 +1,7 @@
 framework module LCAddDeviceModule {
   umbrella header "LCAddDeviceModule.h"
-
   export *
+
   module * { export * }
 }
 

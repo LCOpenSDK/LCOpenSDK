@@ -32,7 +32,7 @@ import SnapKit
         bt1.frame = CGRect(x: 5, y: 5, width: 120, height: 40)
         bt1.isSelected = true
         bt1.tag = 100
-        bt1.setTitle("移动镜头", for: .normal)
+        bt1.setTitle("device_detail_camera_name_pt_lens".lc_T, for: .normal)
         bt1.titleLabel?.font = .systemFont(ofSize: 14)
         bt1.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         
@@ -43,7 +43,7 @@ import SnapKit
         bt2.setTitleColor(.lccolor_c41(), for: .normal)
         bt2.setTitleColor(.white, for: .selected)
         bt2.frame = CGRect(x: 125, y: 5, width: 120, height: 40)
-        bt2.setTitle("固定镜头", for: .normal)
+        bt2.setTitle("device_detail_camera_name_fixed_lens".lc_T, for: .normal)
         bt2.titleLabel?.font = .systemFont(ofSize: 14)
         bt2.tag = 101
         bt2.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)

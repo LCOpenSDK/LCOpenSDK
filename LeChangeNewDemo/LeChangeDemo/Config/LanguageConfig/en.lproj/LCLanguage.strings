@@ -221,3 +221,7 @@
 "common_set" = "Set";
 "Add_Device_Title" = "Device Adding";
 "mobile_common_network_config" = "Network";
+"open_local_network_to_add_device" = "\"LeChangeDemo\"would like to access local network permission to find and connect to devices on the networks you use. Tap Settings to allow the access.";
+"common_got_it" = "OK";
+"device_detail_camera_name_fixed_lens" = "Fixed Lens";
+"device_detail_camera_name_pt_lens" = "PT Lens";

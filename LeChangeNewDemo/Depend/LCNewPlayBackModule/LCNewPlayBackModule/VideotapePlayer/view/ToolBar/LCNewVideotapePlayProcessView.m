@@ -91,7 +91,7 @@
     //结束拖动调用
     NSTimeInterval offest = [self.endDate timeIntervalSinceDate:self.startDate];
     if (self.silder.value == offest) {//如果拖到末尾，减3秒播放
-        [self.silder setValue:(offest-3)];
+        [self.silder setValue:(offest-5)];
     }
     if (self.valueChangeEndBlock) {
         self.valueChangeEndBlock(self.silder.value, [self.startDate dateByAddingSeconds:self.silder.value]);

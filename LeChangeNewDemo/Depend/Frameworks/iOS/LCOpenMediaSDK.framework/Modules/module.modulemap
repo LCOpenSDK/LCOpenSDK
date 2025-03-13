@@ -1,0 +1,11 @@
+framework module LCOpenMediaSDK {
+  umbrella header "LCOpenMediaSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module LCOpenMediaSDK.Swift {
+  header "LCOpenMediaSDK-Swift.h"
+  requires objc
+}
