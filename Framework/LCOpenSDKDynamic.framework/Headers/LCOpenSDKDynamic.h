@@ -49,3 +49,10 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_PlayRecordParam.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_BuryPoint.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_BleLock.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenMediaSource.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenMediaApiManager.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Device.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Record.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Stream.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_StreamInfo.h>
+#import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DeviceOperateApi.h>

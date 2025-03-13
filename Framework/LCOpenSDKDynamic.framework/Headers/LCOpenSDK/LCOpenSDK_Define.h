@@ -302,4 +302,11 @@ typedef NS_ENUM(NSUInteger, BleLockErrorCode) {
     BleLockErrorCodeAccessRemoteUnlockErrorSix = 3006     //其他错误
 };
 
+#pragma mark - 密钥模式
+typedef NS_ENUM(NSInteger, EncryptMode)
+{
+    ENCRYPT_DEFAULT = 0,    // 默认
+    ENCRYPT_USER_DEFINE     // 用户自定义
+};
+
 #endif /* LCOpenSDK_Define_h */
