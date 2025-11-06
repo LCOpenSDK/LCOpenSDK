@@ -56,3 +56,4 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_Stream.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_StreamInfo.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DeviceOperateApi.h>
+#import <LCOpenSDKDynamic/CommonSDK_Include/CryptComponent/CryptComponent.h>
