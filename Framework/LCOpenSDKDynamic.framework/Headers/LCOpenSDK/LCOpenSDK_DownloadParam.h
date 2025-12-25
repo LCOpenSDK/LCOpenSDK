@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger cloudType;
 /// device video name   zh:设备录像名
 @property (nonatomic,   copy) NSString *fileId;
+/// device video name   zh:帧率
+@property(nonatomic, assign)NSInteger frameRate;
 @end
 
 /// device video download model by time    zh:设备录像按时间下载模型

@@ -41,7 +41,7 @@ public:
 
     int findHandleEx(const std::string &key, int iStatus);
 
-    int startPlay(const std::string &key);
+    int startPlay(const std::string &key, int imageSize);
 
     int startTalk(const std::string &key, const std::string &talkType);
 
@@ -55,7 +55,8 @@ public:
 
     int setCustomSampleCfg(const std::string &key, const std::string& cfg);
 
-    void setPlayCallback(frame_proc_func frameFunc, state_proc_func stateFunc, msgcallback_proc_func msgFunc, void* user, const std::string &key);
+    void setPlayCallback(frame_proc_func frameFunc, state_proc_func stateFunc, msgcallback_proc_func msgFunc, stream_info_proc_func streamInfoFunc, 
+        void* user, const std::string &key);
 
     void setTalkCallback(frame_proc_func frameFunc, state_proc_func stateFunc, msgcallback_proc_func msgFunc, stream_info_proc_func streamInfoFunc,
         void* user, const std::string &key);

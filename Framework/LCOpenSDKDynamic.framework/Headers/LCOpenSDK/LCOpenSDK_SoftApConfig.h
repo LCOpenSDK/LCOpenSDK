@@ -66,14 +66,5 @@
 /// Query whether the device supports the third generation scanning capability    zh:查询设备是否支持第三代扫描能力
 + (BOOL)querySupportWlanConfigV3:(long)loginHandle;
 
-//MARK: - DEPRECATED METHOD
-/// 老的配网API，已弃用，后续删除
-/// The old distribution network API has been discarded and will be deleted later
-- (NSInteger)startSoftAPConfig:(NSString * _Nonnull)wifiName
-                       wifiPwd:(NSString * _Nonnull)wifiPwd
-                      deviceId:(NSString * _Nonnull)deviceId
-                     devicePwd:(NSString * _Nullable)devicePwd
-                          isSC:(BOOL)isSC DEPRECATED_MSG_ATTRIBUTE("use startSoftAPConfig:wifiPwd:wifiEncry:(int)wifiEncrydeviceIp:devicePwd:isSC:handler:timeout: instead");
-
 @end
 #endif /* LCOpenSDK_SoftApConfig_h */

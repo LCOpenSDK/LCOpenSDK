@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
     PROCOTOL_TYPE_HTTP = 0,
     PROCOTOL_TYPE_HTTPS
 };
-
+@class LCOpenSDK_Err;
 @interface LCOpenSDK_ApiParam: NSObject
 
 @property (nonatomic, assign)        ProcotolType  procotol; /** 协议类型 */
@@ -39,6 +39,8 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
 /// De initialize LCOpenSDK_Api Interface   zh:反初始化LCOpenSDK_Api接口
 - (void)uninitOpenApi;
 
+- (NSInteger)openapiRequest:(NSString *_Nullable)host req:(void *_Nonnull)req resp:(void *_Nonnull)resp timeout:(NSInteger)timeout;
+- (nullable NSDictionary *)lcopen_request_with_url:(NSString *_Nullable)host uri:(NSString *_Nonnull)uri body:(NSString *_Nonnull)body isKeepAlive:(int)isKeepAlive timeout:(int)timeout error:(LCOpenSDK_Err **_Nullable)error;
 /// Get SDK version number information  zh:获取SDK版本号信息
 - ( NSString * _Nonnull)sdkVersion;
 

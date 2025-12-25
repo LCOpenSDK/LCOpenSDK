@@ -536,4 +536,32 @@ typedef NS_ENUM(NSInteger, FISHEYE_CALIBRATMODE)
 */
 - (bool)setfishEyeEptzPos:(long)posX PosY:(long)posY;
 
+
+
+/**
+ * @brief 播放器配置选项枚举 配置项类型:bool
+ * 
+ */
+typedef NS_ENUM(NSInteger, LCPlayConfigOption)
+{
+	LC_PlayConfig_FileSeek  = 0,    ///< 是否支持跨媒体文件跳转定位
+	LC_PlayConfig_Max               ///< 配置选项上限标记（非实际可用选项）
+};
+
+/*
+* @desc 获取bool类型的能力配置
+* @param configType 配置类型 见PlayConfigOption枚举
+* @return true-成功  false-失败
+*/
+- (bool)getBoolConfig:(LCPlayConfigOption) configType;
+
+
+/*
+* @desc seek播放优化接口，支持跨文件seek
+* @param starttime 开始时间 秒级 时间格式：yyyy_MM_dd_HH_mm_ss
+* @param endtime 结束时间  秒级 时间格式：yyyy_MM_dd_HH_mm_ss
+* @return true-成功  false-失败
+*/
+- (bool)corssfileSeekPlay:(NSString *)starttime endtime:(NSString*)endtime;
+
 @end

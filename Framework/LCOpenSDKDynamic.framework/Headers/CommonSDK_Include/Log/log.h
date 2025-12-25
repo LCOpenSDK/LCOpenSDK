@@ -78,44 +78,15 @@ LCLOG_API void setMobileLogLevel(int level, const char *tag);
 LCLOG_API void setExtendLogLevel(int level);
 #endif
 
-///\brief           日志打印接口, 不建议直接调用
-#if defined(WIN32) || defined(WIN64)
+///\brief           日志打印函数, 内部函数，外部调用使用下面的日志实现宏(MOBILE_LOG_PRINT)
 LCLOG_API void MobileLogPrintFull(const char *file, int line, const char *func, ImouLogLevel level, const char *tag, const char *format, ...);
-#else
-LCLOG_API ImouLogLevel getLevel(const char *tag);
-LCLOG_API unsigned int countSubString(const char *str, const char *subStr);
-LCLOG_API void LogPrint(const char *file, int line, const char *func, ImouLogLevel level, const char *tag, char *logContent);
-template<class... T> void MobileLogPrintFull(const char *file, int line, const char *func, ImouLogLevel level, const char *tag, const char *format, T... args)
-{
-    if (!format)
-    {
-        return;
-    }
-
-    if (level >= getLevel(tag))
-    {
-        return;
-    }
-
-    char logBuf[1536] = { 0 };
-    if (countSubString(format, "%") > sizeof...(args))
-    {
-        strncpy(logBuf, format, sizeof(logBuf) - 1);
-    }
-    else
-    {
-        snprintf(logBuf, sizeof(logBuf) - 1, format, args...);
-    }
-
-    LogPrint(file, line, func, level, tag, logBuf);
-}
-#endif
 
 ///\brief           获取当前线程ID
 LCLOG_API int getCurrentThreadId();
 
 ///\brief           日志实现宏
-#define MOBILE_LOG_PRINT(level, tag, format, ...) MobileLogPrintFull(__FILE__, __LINE__, __FUNCTION__, level, tag, format, ##__VA_ARGS__)
+///\param[in] 'NULL'   保证以'NULL'结尾，内部结算可变参数个数使用  
+#define MOBILE_LOG_PRINT(level, tag, format, ...) MobileLogPrintFull(__FILE__, __LINE__, __FUNCTION__, level, tag, format, ##__VA_ARGS__, NULL)
 
 ///\brief           日志宏调用
 #define DEBUGF(TAG, FMT, ...)                                                       \

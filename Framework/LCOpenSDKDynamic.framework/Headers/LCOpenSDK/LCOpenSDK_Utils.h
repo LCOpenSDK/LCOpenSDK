@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// @param deviceID Device ID    zh:设备ID
 /// @param productId Product ID    zh:产品ID
 /// @param key decryption key    zh:解密密钥
+/// @param accessToken accessToken
 /// @param playtoken playtoken
 /// @param pDestBufOut decrypted data content    zh:解密后数据内容
 /// @return Decryption result    zh:解密结果
@@ -80,7 +81,7 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 5.Insufficient buffer length    zh:5, 缓冲区长度不够
 /// 6.device key error   zh:5, 设备密码错误
 /// 99.internal error    zh:99,内部错误
-- (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
+- (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key accessToken:(NSString *)accessToken playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
 
 /// mts streaming establishes a long connection in advance to increase the streaming speed    zh:mts拉流提前建立长连接，提高拉流速度
 /// @param deviceDatas device data that needs to establish a long connection    zh:需要建立长连接的设备数据

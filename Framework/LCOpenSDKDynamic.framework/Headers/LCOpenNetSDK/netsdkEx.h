@@ -10,7 +10,7 @@
 #ifndef DHNETSDKEX_H
 #define DHNETSDKEX_H
 
-#include "dhnetsdk.h"
+#include "netsdk.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -327,7 +327,7 @@ typedef struct tagNET_OUT_SET_UEKY
 ///@param[in] scType:         码流转换类型,0-DAV码流(默认); 1-PS流
 ///@param[in] pReserved:      保留字段,后续扩展
 ///@return  	：	LLONG 下载录像句柄
-//其他说明	：	特殊接口,SDK默认不支持转PS流,需定制SDK
+//其他说明	：	特殊接口,SDK默认不支持转PS流
 
 CLIENT_NET_API LLONG CALL_METHOD CLIENT_DownloadByRecordFileEx2(LLONG lLoginID, LPNET_RECORDFILE_INFO lpRecordFile, char *sSavedFileName, 
                                                     fDownLoadPosCallBack cbDownLoadPos, LDWORD dwUserData, 
@@ -361,7 +361,7 @@ CLIENT_NET_API LLONG CALL_METHOD CLIENT_DownloadByRecordFileEx2(LLONG lLoginID, 
 ///@param[in]     scType:         码流转换类型,0-DAV码流(默认); 1-PS流,3-MP4
 ///@param[in]     pReserved:      保留参数,后续扩展
 ///@return 	：	LLONG 下载录像句柄
-//其他说明	：	特殊接口,SDK默认不支持转PS流,需定制SDK
+//其他说明	：	特殊接口,SDK默认不支持转PS流
 /******************************************************************************/
 CLIENT_NET_API LLONG CALL_METHOD CLIENT_DownloadByTimeEx2(LLONG lLoginID, int nChannelId, int nRecordFileType, 
                                                     LPNET_TIME tmStart, LPNET_TIME tmEnd, char *sSavedFileName, 
@@ -454,7 +454,7 @@ CLIENT_NET_API BOOL  CALL_METHOD CLIENT_GetHCDZCaps(LLONG lLoginID, const NET_IN
 CLIENT_NET_API void CALL_METHOD CLIENT_PTZCmdSendIntervalTime(DWORD dwIntervalTime);
 
 
-///@brief  功能描述:获取HADT(山东金鲁班宏安电梯)运行状态
+///@brief  功能描述:获取HADT运行状态
 ///@param[in]    lLoginID:登录接口返回的句柄
 ///@param[in]    pInBuf  :输入参数,需初始化dwSize
 ///@param[in]    pOutBuf :输出参数,需初始化dwSize
@@ -463,7 +463,7 @@ CLIENT_NET_API void CALL_METHOD CLIENT_PTZCmdSendIntervalTime(DWORD dwIntervalTi
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetHADTStatus(LLONG lLoginID, const NET_IN_HADT_STATUS* pInBuf, NET_OUT_HADT_STATUS* pOutBuf,int nWaitTime = 3000);
 
 
-///@brief  功能描述:控制报警输出（车载定制）
+///@brief  功能描述:控制报警输出
 ///@param[in]    lLoginID:登录接口返回的句柄
 ///@param[in]    pInBuf  :输入参数,需初始化dwSize
 ///@param[in]    pOutBuf :输出参数,需初始化dwSize
@@ -474,7 +474,7 @@ CLIENT_NET_API BOOL CALL_METHOD CLIENT_SetAlarmOut(LLONG lLoginID, const NET_IN_
 ///@brief 开启EVS定时录像
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_StartLinkRecord(LLONG lLoginID, const NET_IN_LINK_RECORD_CTRL *pstIn, NET_OUT_LINK_RECORD_CTRL *pstOut, int nWaitTime);
 
-/// 北京公交定制接口，传入Ukey值
+///传入Ukey值
 ///@brief  功能描述:设备此次登陆的Ukey值
 ///@param[in]    lLoginID:登录接口返回的句柄
 ///@param[in]    pInBuf  :输入参数,需初始化dwSize
@@ -716,7 +716,7 @@ CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetLicenseAssistInfo(LLONG lLoginID, cons
 
 
 
-///@brief  制作Licenced的厂家入参
+///@brief  制作Licenced的入参
 typedef struct tagNET_IN_GETVENDOR
 {
 	DWORD				dwSize;						// 此结构体大小
@@ -725,13 +725,13 @@ typedef struct tagNET_IN_GETVENDOR
 ///@brief  Licence的对应信息
 typedef struct tagNET_VENDOR_INFO
 {
-	char				szVendorId[32];				// 第三方厂商名称id
-	int					nClassNum;					// 厂商算法个数
-	char				szClass[32][8];				// 第三方厂商算法大类
+	char				szVendorId[32];				
+	int					nClassNum;					// 算法个数
+	char				szClass[32][8];				// 算法大类
 	BYTE				bReserved[512];				// 预留字节
 }NET_VENDOR_INFO;
 
-///@brief  制作Licence的厂家出参
+///@brief  制作Licence的出参
 typedef struct tagNET_OUT_GETVENDOR
 {
 	DWORD				dwSize;						// 此结构体大小
@@ -740,11 +740,11 @@ typedef struct tagNET_OUT_GETVENDOR
 }NET_OUT_GETVENDOR;
 
 
-///@brief  第三方厂商制作License的辅助信息入参
+///@brief  制作License的辅助信息入参
 typedef struct tagNET_IN_GETTHIRDASSISTED_INFO
 {
 	DWORD				dwSize;						// 此结构体大小
-	NET_VENDOR_INFO		stuVendorInfo;				// 第三方厂商制作license的辅助信息
+	NET_VENDOR_INFO		stuVendorInfo;				// 商作license的辅助信息
 }NET_IN_GETTHIRDASSISTED_INFO;
 
 ///@brief  需要制作授权的第三方的采用信息
@@ -760,14 +760,14 @@ typedef struct tagNET_DEVICE_INFO
 ///@brief  需要制作授权的第三方的采用信息
 typedef struct tagNET_THIRD_INFO
 {
-	char				szVendor[32];				// 第三厂商名称
-	int					nClassNum;					// 厂商算法个数
-	char				szClass[32][8];				// 第三方厂商算法大类
+	char				szVendor[32];				
+	int					nClassNum;					// 算法个数
+	char				szClass[32][8];				// 算法大类
 	char				szData[4096];				// 集成的第三方库采集的信息。为防止有特殊字符需要进行base64编码。针对不同的三方公司其对应的data内容也不相同， 
 	BYTE				bReserved[4392];			// 预留字节
 }NET_THIRD_INFO;
 
-///@brief  第三方厂商制作License的辅助信息出参
+///@brief  制作License的辅助信息出参
 typedef struct tagNET_OUT_GETTHIRDASSISTED_INFO
 {
 	DWORD				dwSize;						// 此结构体大小
@@ -779,10 +779,10 @@ typedef struct tagNET_OUT_GETTHIRDASSISTED_INFO
 typedef struct tagNET_IN_SETTHIRD_LICENSE
 {
 	DWORD				dwSize;						// 此结构体大小
-	char				szVendorId[32];				// 第三方厂家名称ID
-	int					nClassNum;					// 厂商算法个数
-	char				szClass[32][8];				// 第三方厂商算法大类
-	char				szLicense[8192];			// 第三方license数据 base64编码，具体数据格式由第三方厂家定义
+	char				szVendorId[32];				// 名称ID
+	int					nClassNum;					// 算法个数
+	char				szClass[32][8];				// 算法大类
+	char				szLicense[8192];			// 第三方license数据 base64编码，具体数据格式由第三方定义
 }NET_IN_SETTHIRD_LICENSE;
 
 ///@brief  导入第三方制作的license的出参
@@ -925,8 +925,8 @@ typedef struct tagNET_OUT_GET_REAL_LICENSE_INFO
 typedef enum tagEM_LICENCE_OPERATE_TYPE
 {
 	NET_EM_LICENCE_OPERATE_UNKNOWN = -1,				// 未知
-	NET_EM_LICENCE_OPERATE_GETVENDOR,					// 获取用于需要制作License的厂家 pInParam = NET_IN_GETVENDOR, pOutParam = NET_OUT_GETVENDOR
-	NET_EM_LICENCE_OPERATE_GETTHIRDINFO,				// 获取用于第三方厂商制作License的辅助信息   pInParam = NET_IN_GETTHIRDASSISTED_INFO, pOutParam = NET_OUT_GETTHIRDASSISTED_INFO
+	NET_EM_LICENCE_OPERATE_GETVENDOR,					// 获取用于需要制作License pInParam = NET_IN_GETVENDOR, pOutParam = NET_OUT_GETVENDOR
+	NET_EM_LICENCE_OPERATE_GETTHIRDINFO,				// 获取用于第三方制作License的辅助信息   pInParam = NET_IN_GETTHIRDASSISTED_INFO, pOutParam = NET_OUT_GETTHIRDASSISTED_INFO
 	NET_EM_LICENCE_OPERATE_SETTHIRDLICENCE,				// 导入第三方制作的License pInParam = NET_IN_SETTHIRDLICENCE, pOutParam = NET_OUT_SETTHIRDLICENCE
 	NET_EM_LICENCE_OPERATE_GET_AUTH_BOX_INFO,			// 获取授权盒信息, pInParam = NET_IN_GET_AUTH_BOX_INFO, pOutParam = NET_OUT_GET_AUTH_BOX_INFO
 	NET_EM_LICENCE_OPERATE_SET_AUTH_BOX_INFO,			// 设置授权盒信息, pInParam = NET_IN_SET_AUTH_BOX_INFO, pOutParam = NET_OUT_SET_AUTH_BOX_INFO
@@ -1171,7 +1171,7 @@ typedef struct tagNET_OUT_GET_LOGIN_AUTH_PATCH_INFO
 	BOOL							bSupportHighLevelSecurity;	// 是否支持高等级安全登录
 }NET_OUT_GET_LOGIN_AUTH_PATCH_INFO;
 
-///@brief  获取设备登录兼容补丁信息（定制，VTO设备使用）
+///@brief  获取设备登录兼容补丁信息
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetLoginAuthPatchInfo(LLONG lLoginID, const NET_IN_GET_LOGIN_AUTH_PATCH_INFO* pInParam, NET_OUT_GET_LOGIN_AUTH_PATCH_INFO* pOutParam);
 
 ///@brief  秘钥长度
@@ -1345,7 +1345,7 @@ typedef struct tagNET_INTERNAL_CONTROL_PARAM
 	UINT							nSemaphoreSleepTimePerLoop;					// 等待信号量时，内部线程睡眠间隔，范围[10, 100]，unit:ms，默认10
 }NET_INTERNAL_CONTROL_PARAM;
 
-///@brief  设置内部控制参数（定制）
+///@brief  设置内部控制参数
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_SetInternalControlParam(const NET_INTERNAL_CONTROL_PARAM *pInParam);
 
 
@@ -1378,13 +1378,13 @@ typedef struct tagDEV_EVENT_FACERECOGNITION_INFO_V1
     NET_GPS_INFO        stuGPSInfo;                                 // GPS信息(与 stuCustomProjects下的 stuGPSInfo信息一致)
     char                szCameraID[64];                             // 国标编码
     DH_RESOLUTION_INFO  stuResolution;                              // 对应图片的分辨率
-    int					nPerFlag;									// ICC人脸子系统定制, 人脸标签标志位, -1:未知, 0:授权人脸, 1:未授权人脸, 2:陌生人
+    int					nPerFlag;									// ICC子系统, 标签标志位, -1:未知, 0:授权, 1:未授权, 2:陌生人
     BYTE                bReserved[360];                             // 保留字节,留待扩展.
     char				szSerialUUID[22];							// 级联物体ID唯一标识
     // 格式如下：前2位%d%d:01-视频片段,02-图片,03-文件,99-其他;
     // 中间14位YYYYMMDDhhmmss:年月日时分秒;后5位%u%u%u%u%u：物体ID，如00001
     BYTE                byReserved[2];                              // 对齐
-    NET_CUSTOM_PROJECTS_INFO stuCustomProjects;						// 项目定制信息
+    NET_CUSTOM_PROJECTS_INFO stuCustomProjects;						// 项目信息
     BOOL				bIsDuplicateRemove;							// 智慧零售，是否符合去重策略（TRUE：符合 FALSE：不符合）
     BYTE				byReserved2[4];								// 字节对齐
     NET_IMAGE_INFO_EX2  stuImageInfo[32];							// 图片信息数组    
@@ -1478,11 +1478,21 @@ typedef struct tagNET_IN_SET_IVSEVENT_PARSE_INFO
 ///@return TRUE表示成功 FALSE表示失败
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_SetIVSEventParseType(const NET_IN_SET_IVSEVENT_PARSE_INFO* pInParam);
 
+///@brief 需要订阅的事件
+typedef enum tagEM_ATTACH_SECOND_ALARM_PROTOCOL
+{
+	EM_ATTACH_SECOND_ALARM_PROTOCOL_UNKNOWN,		// 未知
+	EM_DH_ALARM_SPEED_LIMIT = 1,					// 对应二代报警中的 DH_ALARM_SPEED_LIMIT, 限速报警
+	EM_DH_ALARM_ENCLOSURE,							// 对应二代报警中的 DH_ALARM_ENCLOSURE, 电子围栏报警
+}EM_ATTACH_SECOND_ALARM_PROTOCOL;
 
 ///@brief  CLIENT_ProbeAlarm入参
 typedef struct tagNET_IN_PROBE_ALARM
 {
-    DWORD               dwSize;
+    DWORD               							dwSize;								// 必填，结构体大小
+	BOOL											bIsUsingAttachEventType;			// 是否使用订阅指定二代报警事件功能，为FLASE则订阅默认支持的二代报警
+	int												nAttachNum;							// 订阅的二代报警事件个数
+	EM_ATTACH_SECOND_ALARM_PROTOCOL					emAttachEventType[64];				// 需要订阅的二代报警，支持的订阅报警类型见EM_ATTACH_SECOND_ALARM_PROTOCOL,目前仅支持两个事件
 }NET_IN_PROBE_ALARM;
 
 ///@brief  CLIENT_ProbeAlarm出参
@@ -1500,6 +1510,43 @@ typedef struct tagNET_OUT_PROBE_ALARM
 ///@return FALSE表示失败 表示不支持三代报警订阅流程,后续再订阅报警订阅接口时,仍然会订阅所有二代报警
 CLIENT_NET_API BOOL CALL_METHOD CLIENT_ProbeAlarm(LLONG lLoginID,const NET_IN_PROBE_ALARM* pstuInParam,NET_OUT_PROBE_ALARM* pstuOutParam,DWORD dwWaittime);
 
+///@brief CLIENT_GetMonitorWallCollectionsV1接口输入参数(获取电视墙预案信息)
+typedef struct tagNET_IN_WM_GET_COLLECTIONS_V1 
+{
+	DWORD                dwSize;
+	int                  nMonitorWallID;                // 电视墙ID
+} NET_IN_WM_GET_COLLECTIONS_V1;
+
+///@brief CLIENT_GetMonitorWallCollectionsV1接口输出参数(获取电视墙预案信息)
+typedef struct tagNET_OUT_WM_GET_COLLECTIONS_V1 
+{
+	DWORD                       dwSize;    
+	char						szReserved[4];
+	char*						pBuff;           // 电视墙预案信息
+	int                         nBuffSize;		 // 电视墙预案申请的大小，由用户申请
+	int                         nRetBuffSize;    // 电视墙预案实际返回的长度
+	int							nNameCount;		 // 电视墙预案名称个数
+	char						szName[128][64]; // 电视墙预案名称
+} NET_OUT_WM_GET_COLLECTIONS_V1;
+
+///@brief 获取电视墙预案,pInParam与pOutParam内存由用户申请释放
+CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetMonitorWallCollectionsV1(LLONG lLoginID, const NET_IN_WM_GET_COLLECTIONS_V1* pInParam, NET_OUT_WM_GET_COLLECTIONS_V1* pOutParam, int nWaitTime = 1000);
+
+
+///@brief CLIENT_GetJsonData接口输入参数
+typedef struct tagNET_GET_JSON_DATA
+{
+	int						nMaxInBufLen;		// pszInBuf申请内存大小
+	int						nRetInBufLen;		// pszInBuf返回内容大小
+	int						nMaxOutBufLen;		// pszOutBuf申请内存大小
+	int						nRetOutBufLen;		// pszOutBuf返回内容大小
+	char					*pszInBuf;			// SDK下发json内容，内存由用户申请释放
+	char					*pszOutBuf;			// 设备返回json内容，内存由用户申请释放
+} NET_IN_GET_JSON_DATA;
+
+
+///@brief 获取SDK下发以及设备回复的json数据
+CLIENT_NET_API BOOL CALL_METHOD CLIENT_GetJsonData(NET_IN_GET_JSON_DATA* pstuParam);
 
 
 #ifdef __cplusplus
