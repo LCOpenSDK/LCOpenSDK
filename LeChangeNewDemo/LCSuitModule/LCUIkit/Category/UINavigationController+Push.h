@@ -41,6 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pushToAddDeviceScanPage;
 
 /**
+ 跳转蓝牙搜索设备页面
+ */
+- (void)pushToBluetoothSearchPage;
+
+/**
  跳转添加设备输入验证码
  */
 - (void)pushToSerialNumberPage;

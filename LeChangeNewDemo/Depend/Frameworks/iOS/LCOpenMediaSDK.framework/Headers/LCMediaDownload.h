@@ -19,6 +19,8 @@
 #import "LCDownloadCloudImageInfo.h"
 #import <LCOpenMediaSDK/LCMediaServerParameter.h>
 
+@class LCRecorderDeviceDownloadInfo;
+
 @interface LCMediaDownload : NSObject
 + (instancetype) shareInstance;
 - (instancetype) init __attribute__((unavailable("Disabled!Use +shareInstance instead.")));
@@ -174,6 +176,26 @@
  */
 - (NSInteger) startDownloadDHDevRecordFile:(NSInteger)index FilePath:(NSString *)filePath LoginHandle:(long)loginHandle channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType startTime:(NSInteger)startTime endTime:(NSInteger)endTime recordType:(NSInteger)recordType;
 
+/// 设备录像按时间私有协议下载（局域网）私有协议
+/// @param index 索引值，用于区分下载
+/// @param deviceSn 设备序列号
+/// @param channelId 通道号
+/// @param startTime 格式化开始时间(格式:yyyy_MM_dd_HH_mm_ss)
+/// @param endTime 格式化结束时间(格式:yyyy_MM_dd_HH_mm_ss)
+/// @param FilePath 本地下载存储路径
+/// @param encryptMode 加密模式
+/// @param encryptKey 加密密钥
+/// @param isTls 是否TLS加密
+/// @param userName 设备用户名
+/// @param passWord 设备密码
+/// @param devicePid 设备pid(ProductId,用于支持IoT设备)
+/// @param p2pIp 下载IP
+/// @param p2pPort 端口
+/// @param bindDeviceId 绑定设备序列号
+/// @param bindChannelId 绑定设备通道号
+/// @param bindProductId 绑定设备产品Id
+- (NSInteger)startDownLoadDHDeviceRecordByTimeV2:(NSInteger)index DeviceSn:(NSString *)deviceSn ChannelId:(NSInteger)channelId startTime:(NSString *)startTime endTime:(NSString *)endTime FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid p2pIp:(NSString *)p2pIp p2pPort:(int)p2pPort bindDeviceId:(NSString *)bindDeviceId bindChannelId:(NSString *)bindChannelId bindProductId:(NSString *)bindProductId;
+
 /// 设备录像下载（局域网）私有协议
 /// @param index 索引值，用于区分下载
 /// @param deviceSn 设备序列号
@@ -266,6 +288,12 @@
 ///   - isTls: 是否使用TLS
 ///   - serverParam: serverParam description
 -(NSInteger)downloadImage:(NSInteger)index fileId:(NSString *)fileId channelId:(NSInteger)channelId devicePid:(NSString *)devicePid userName:(NSString *)userName passWord:(NSString *)passWord deviceSn:(NSString *)deviceSn encryptMode:(NSInteger)encryptMode encryptKey:(NSString *)encryptKey isTls:(BOOL)isTls serverParam:(LCMediaServerParameter*)serverParam;
+
+
+
+/// 行车记录仪录像下载
+/// - Parameter downloadInfo: 下载参数
+-(NSInteger)startDownloadRecorderDeviceFile:(LCRecorderDeviceDownloadInfo *)downloadInfo;
 
 @end
 

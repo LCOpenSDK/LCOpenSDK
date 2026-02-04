@@ -71,7 +71,7 @@
 /**
  跳转添加设备扫描页面
  */
-- (void)pushToAddDeviceScanPage {
+- (void)    pushToAddDeviceScanPage {
     //【*】路由跳转设备添加模块
     NSMutableDictionary *userInfo = [NSMutableDictionary new];
     
@@ -80,6 +80,17 @@
     [LCPermissionHelper requestCameraPermission:^(BOOL granted) {
         
     }];
+}
+
+/**
+ 跳转蓝牙搜索设备页面
+ */
+- (void)pushToBluetoothSearchPage {
+    //【*】路由跳转设备添加模块
+    NSMutableDictionary *userInfo = [NSMutableDictionary new];
+    
+    //【*】跳转蓝牙搜索设备页面
+    [self router:@"/lechange/addDevice/bluetoothSearch" UserInfo:userInfo];
 }
 
 /**

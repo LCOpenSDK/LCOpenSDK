@@ -19,3 +19,6 @@ let RouterUrl_Device_OnlineWifiConfig = "/lechange/adddevice/onlineWifiConfig"
 
 /// 小微首页扫码添加设备， 参数 ["codeStr": "设备二维码"]
 let RouterUrl_AddDevice_SMBDeviceInfo = "/lechange/addDevice/smbDeviceInfo"
+
+/// 蓝牙搜索设备页面， 参数 []
+let RouterUrl_AddDevice_BluetoothSearch = "/lechange/addDevice/bluetoothSearch"

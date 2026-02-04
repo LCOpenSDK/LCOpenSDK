@@ -5,11 +5,11 @@
 //  Created by lei on 2021/1/28.
 //
 
-#import <LCOpenMediaSDK/LCBaseVideoItem.h>
+#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCDhDeviceVideoItem : LCBaseVideoItem
+@interface LCDhDeviceVideoItem : LCMediaBaseVideoItem
 
 @property(nonatomic, assign)LCVideoStreamType streamType;
 

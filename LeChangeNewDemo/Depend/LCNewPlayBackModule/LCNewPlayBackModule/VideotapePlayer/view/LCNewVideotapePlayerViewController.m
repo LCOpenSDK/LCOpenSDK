@@ -166,7 +166,7 @@
     [self configMiddleControlView];
     [self configBottomControlView];
     
-    self.downloadStatusView = [LCNewVideotapeDownloadStatusView showDownloadStatusInView:self.view Size:[self downloadTotalSize]];
+    self.downloadStatusView = [LCNewVideotapeDownloadStatusView showDownloadStatusInView:self.view Size:[self downloadTotalSize] type:self.type];
     self.downloadStatusView.alpha = 0;
     self.downloadStatusView.backgroundColor = [UIColor whiteColor];
     self.downloadStatusView.cancleBlock = ^{
@@ -198,6 +198,7 @@
     }];
 
     self.landscapeControlView = [LCPlayBackLandscapeControlView new];
+    self.landscapeControlView.isCloudPic = self.type == LCNewPlayBackCloudPic;
     self.landscapeControlView.delegate = self.persenter;
     self.landscapeControlView.isNeedProcess = YES;
     [self.view addSubview:self.landscapeControlView];
@@ -206,8 +207,12 @@
     }];
     self.landscapeControlView.hidden = YES;
     self.landscapeControlView.presenter = self.persenter;
-    [self.landscapeControlView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
 
+    if (self.type == LCNewPlayBackCloudPic) {
+        [self.landscapeControlView setStartDate:[NSDate dateWithTimeIntervalSince1970:0] EndDate:[NSDate dateWithTimeIntervalSince1970:[[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.size integerValue]]];
+    } else {
+        [self.landscapeControlView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
+    }
     [self.persenter configBigPlay];
 
     //根据SDK的onPlayerTime改变进度条
@@ -323,12 +328,17 @@
     gradientLayer.startPoint = CGPointMake(0.0, 0);
     gradientLayer.endPoint = CGPointMake(0.0, 1);
     [self.middleView.layer addSublayer:gradientLayer];
-    
+    self.middleView.isCloudPic = self.type == LCNewPlayBackCloudPic;
     self.middleView.items = @[[self.persenter getItemWithType:LCNewVideotapePlayerControlPlay], [self.persenter getItemWithType:LCNewVideotapePlayerControlVoice], [self.persenter getItemWithType:LCNewVideotapePlayerControlFullScreen]];
     if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
         self.middleView.items = @[[self.persenter getItemWithType:LCNewVideotapePlayerControlPlay], [self.persenter getItemWithType:LCNewVideotapePlayerControlVoice], [self.persenter getItemWithType:LCNewVideotapePlayerControlUpDown], [self.persenter getItemWithType:LCNewVideotapePlayerControlFullScreen]];
     }
-    [self.middleView.processView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
+    if (self.type == LCNewPlayBackCloudPic) {
+        [self.middleView.processView setStartDate:[NSDate dateWithTimeIntervalSince1970:0] EndDate:[NSDate dateWithTimeIntervalSince1970:[[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.size integerValue]]];
+    } else {
+        [self.middleView.processView setStartDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.beginDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate EndDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate];
+    }
+
     weakSelf(self);
     self.middleView.processView.valueChangeEndBlock = ^(float offset, NSDate *_Nonnull currentStartTiem) {
         [weakself.persenter onChangeOffset:offset playDate:currentStartTiem];
@@ -379,7 +389,11 @@
             make.top.mas_equalTo(self.pvrBtn);
         }];
     }
-    
+    //云图不需要抓图,录制
+    if (self.type == LCNewPlayBackCloudPic) {
+        [self.pvrBtn setHidden:YES];
+        [self.snapBtn setHidden:YES];
+    }
     self.downBtn = [self.persenter getItemWithType:LCNewVideotapePlayerControlDownload];
     [self.downBtn setTitle:@"videotape_download".lcMedia_T forState:UIControlStateNormal];
     [self.downBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:141.0/255.0 blue:0.0/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -400,9 +414,13 @@
 
 /// 是否可倍速播放
 - (BOOL)isCanChangePlayTimes {
-    if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo != nil) {
-        //云录像都支持倍速
-        return YES;
+    if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo != nil) {//云图没有倍速
+        if (self.type != LCNewPlayBackCloudPic) {
+            //云录像都支持倍速
+            return YES;
+        } else {
+            return NO;
+        }
     } else {
         return [[LCNewDeviceVideotapePlayManager shareInstance].currentDevice.ability containsString:@"LRRF"];
     }

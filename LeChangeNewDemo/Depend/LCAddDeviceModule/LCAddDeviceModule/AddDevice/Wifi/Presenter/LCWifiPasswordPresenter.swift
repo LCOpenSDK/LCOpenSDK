@@ -31,7 +31,9 @@ class LCWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
 		super.init()
         self.container = container
 		self.addNetworkObserver()
-		
+        if(LCAddDeviceManager.sharedInstance.isEntryFromBluetoothDiscovery == true) {
+            self.updateContainerViewByNetwork()
+        }
     }
 	
 	// MARK: - Network Observer
@@ -88,15 +90,56 @@ class LCWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
     }
     
     func nextStepAction(wifiSSID: String, wifiPassword: String?) {
-        // iot设备
-        if let productId = LCAddDeviceManager.sharedInstance.productId, productId.length > 0 {
+        let manager = LCAddDeviceManager.sharedInstance
+        
+        // 如果是通过自发现（蓝牙搜索）进行配网
+        if manager.isEntryFromBluetoothDiscovery {
+            let bleName = manager.bluetoothDeviceName
+            let pid = manager.bluetoothProductId
+            
+            guard !bleName.isEmpty, !pid.isEmpty else {
+                LCProgressHUD.showMsg("add_device_bluetooth_config_error".lc_T())
+                return
+            }
+            
+            // 显示配网提示
             LCProgressHUD.show(on: self.container?.view, tip: "device_bluetooth_distribution_network".lc_T())
-            LCOpenSDK_Bluetooth.startAsyncBLEConfig(wifiSSID, wifiPwd: wifiPassword ?? "", productId: productId, deviceId: LCAddDeviceManager.sharedInstance.deviceId) { success, errorMessage in
+            
+            // 调用蓝牙配网方法
+            LCOpenSDK_Bluetooth.configWifi(wifiSSID, password: wifiPassword, bleName: bleName, pid: pid) { [weak self] success, deviceInfo, errorMessage in
+                DispatchQueue.main.async {
+                    LCProgressHUD.hideAllHuds(self?.container?.view)
+                    if success {
+                        print("LCOpenSDK_Bluetooth.configWifi---> deviceInfo: \(deviceInfo)")
+                        // 配网成功，保存设备信息
+                        if let deviceInfo = deviceInfo as? [String: Any], let deviceId = deviceInfo["sn"] as? String {
+                            manager.deviceId = deviceId
+                        }
+                        if let deviceInfo = deviceInfo as? [String: Any], let token = deviceInfo["token"] as? String {
+                            manager.code = token
+                        }
+                        LCProgressHUD.showMsg("equipment_distribution_network_succeeded".lc_T())
+                        // 跳转到连接云平台页面
+                        let controller = LCConnectCloudViewController.storyboardInstance()
+                        controller.deviceInitialPassword = manager.initialPassword
+                        self?.container?.navigationController?.pushViewController(controller, animated: true)
+                    } else {
+                        LCProgressHUD.showMsg("device_distribution_network_failure_retry".lc_T() + (errorMessage ?? ""), duration: 5)
+                    }
+                }
+            }
+            return
+        }
+        
+        // 原有的iot设备配网逻辑
+        if let productId = manager.productId, productId.length > 0 {
+            LCProgressHUD.show(on: self.container?.view, tip: "device_bluetooth_distribution_network".lc_T())
+            LCOpenSDK_Bluetooth.startAsyncBLEConfig(wifiSSID, wifiPwd: wifiPassword ?? "", productId: productId, deviceId: manager.deviceId) { success, errorMessage in
                 LCProgressHUD.hideAllHuds(self.container?.view)
                 if success {
                     LCProgressHUD.showMsg("equipment_distribution_network_succeeded".lc_T())
                     let controller = LCConnectCloudViewController.storyboardInstance()
-                    controller.deviceInitialPassword = LCAddDeviceManager.sharedInstance.initialPassword
+                    controller.deviceInitialPassword = manager.initialPassword
                     self.container?.navigationController?.pushViewController(controller, animated: true)
                 } else {
                     LCProgressHUD.showMsg("device_distribution_network_failure_retry".lc_T() + (errorMessage ?? ""), duration: 5)

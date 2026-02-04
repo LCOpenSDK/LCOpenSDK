@@ -36,8 +36,9 @@
 
 @implementation LCNewVideotapeDownloadStatusView
 
-+ (instancetype)showDownloadStatusInView:(UIView *)view Size:(NSInteger)size {
++ (instancetype)showDownloadStatusInView:(UIView *)view Size:(NSInteger)size type:(LCNewPlayBackVideoType)type {
     LCNewVideotapeDownloadStatusView *statusView = [LCNewVideotapeDownloadStatusView new];
+    statusView.type = type;
     statusView.size = size;
     [view addSubview:statusView];
     [statusView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,17 +141,32 @@
 }
 
 - (void)changeValue {
-    self.statusLab.text =[NSString stringWithFormat:@"mobile_common_data_downloading".lcMedia_T, self.totalRevieve / (1024.0 * 1024.0), self.size / (1024.0 * 1024.0)];
-    
-    self.closeBtn.enabled = self.totalRevieve >= self.size ? NO : YES;
-    weakSelf(self);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.totalRevieve == self.recieve) {
-            [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:NO];
-        } else {
-            [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:YES];
-        }
-    });
+    //云图下载进度展示的是下载张数
+    if (self.type == LCNewPlayBackCloudPic) {
+        weakSelf(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakself.statusLab.text =[NSString stringWithFormat:@"%d/%d".lcMedia_T, self.totalRevieve, self.size];
+            
+            weakself.closeBtn.enabled = self.totalRevieve >= self.size ? NO : YES;
+            if (self.totalRevieve == self.recieve) {
+                [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:NO];
+            } else {
+                [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:YES];
+            }
+        });
+    } else {
+        weakSelf(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakself.statusLab.text =[NSString stringWithFormat:@"mobile_common_data_downloading".lcMedia_T, self.totalRevieve / (1024.0 * 1024.0), self.size / (1024.0 * 1024.0)];
+            
+            weakself.closeBtn.enabled = self.totalRevieve >= self.size ? NO : YES;
+            if (self.totalRevieve == self.recieve) {
+                [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:NO];
+            } else {
+                [weakself.processView setProgress:weakself.totalRevieve * 1.000 / self.size * 1.000 animated:YES];
+            }
+        });
+    }
 }
 
 - (void)dismiss {

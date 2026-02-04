@@ -52,7 +52,9 @@
 /// Cloud video download    zh:云录像下载
 /// @param paramRecord model
 - (NSInteger)startDownloadCloudRecord:(LCOpenSDK_DownloadByRecordIdParam *)paramRecord;
-
+/// Cloud Picture download    zh:云图下载
+/// @param paramRecord model
+- (NSInteger)startDownloadCloudImages:(LCOpenSDK_DownloadByRecordIdParam *)paramRecord;
 
 /// Device video download    zh:设备录像下载
 /// @param paramRecord model

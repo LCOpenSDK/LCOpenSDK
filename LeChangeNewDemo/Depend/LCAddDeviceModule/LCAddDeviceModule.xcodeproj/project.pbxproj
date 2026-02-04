@@ -17,8 +17,14 @@
 		04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D8BAFF24E53EC0002F3076 /* DHScanner.framework */; };
 		0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D4632508C0F400CE4528 /* LCNetworkModule.framework */; };
 		0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419D4672508C51500CE4528 /* AddDevice.storyboard */; };
-		04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */; };
 		10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 10026F4E23056F0000F95836 /* LCAddDeviceModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15252EF62F22214400D7AF8B /* LCBluetoothDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252EF32F22214400D7AF8B /* LCBluetoothDeviceCell.swift */; };
+		15252EF72F22214400D7AF8B /* LCBluetoothSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252EEF2F22214400D7AF8B /* LCBluetoothSearchViewController.swift */; };
+		15252EF82F22214400D7AF8B /* LCBluetoothDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252EF12F22214400D7AF8B /* LCBluetoothDeviceModel.swift */; };
+		15252EFB2F23206800D7AF8B /* LCBluetoothPermissionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252EF92F23206700D7AF8B /* LCBluetoothPermissionSheetView.swift */; };
+		15252EFC2F23206800D7AF8B /* LCBluetoothToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252EFA2F23206700D7AF8B /* LCBluetoothToastView.swift */; };
+		15252F4F2F275EC800D7AF8B /* LCBluetoothFAQSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252F4E2F275EC800D7AF8B /* LCBluetoothFAQSheetView.swift */; };
+		15252F522F27709100D7AF8B /* LCBluetoothSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252F502F27709000D7AF8B /* LCBluetoothSearchPresenter.swift */; };
 		3F34728B28FD36B300DB9EB5 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */; };
 		3F34728F28FD382600DB9EB5 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728E28FD382600DB9EB5 /* SDWebImage.framework */; };
 		3F34729D28FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34729628FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift */; };
@@ -146,13 +152,19 @@
 		0419D4632508C0F400CE4528 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419D4652508C10900CE4528 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419D4672508C51500CE4528 /* AddDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDevice.storyboard; sourceTree = "<group>"; };
-		04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCAddDeviceModule.xcconfig; sourceTree = "<group>"; };
 		04D8BAFF24E53EC0002F3076 /* DHScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DHScanner.framework; path = ../Frameworks/iOS/DHScanner.framework; sourceTree = "<group>"; };
 		10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCAddDeviceModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10026F4E23056F0000F95836 /* LCAddDeviceModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAddDeviceModule.h; sourceTree = "<group>"; };
 		10026F4F23056F0000F95836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCAddDeviceModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A6613E2306B804004DCB22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15252EEF2F22214400D7AF8B /* LCBluetoothSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothSearchViewController.swift; sourceTree = "<group>"; };
+		15252EF12F22214400D7AF8B /* LCBluetoothDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothDeviceModel.swift; sourceTree = "<group>"; };
+		15252EF32F22214400D7AF8B /* LCBluetoothDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothDeviceCell.swift; sourceTree = "<group>"; };
+		15252EF92F23206700D7AF8B /* LCBluetoothPermissionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothPermissionSheetView.swift; sourceTree = "<group>"; };
+		15252EFA2F23206700D7AF8B /* LCBluetoothToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothToastView.swift; sourceTree = "<group>"; };
+		15252F4E2F275EC800D7AF8B /* LCBluetoothFAQSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothFAQSheetView.swift; sourceTree = "<group>"; };
+		15252F502F27709000D7AF8B /* LCBluetoothSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBluetoothSearchPresenter.swift; sourceTree = "<group>"; };
 		3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F34728E28FD382600DB9EB5 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F34729628FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceAddGuideCell.swift; sourceTree = "<group>"; };
@@ -325,7 +337,6 @@
 				4E451183242B781500AF8AF6 /* AddDevice */,
 				4E451087242B75EE00AF8AF6 /* Module */,
 				10545D0A230583030082E367 /* Support Files */,
-				04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */,
 			);
 			path = LCAddDeviceModule;
 			sourceTree = "<group>";
@@ -368,6 +379,52 @@
 				03B215DB29AD9C7C000E1659 /* asset.xcassets */,
 			);
 			path = LCAddDeviceModuleBundle;
+			sourceTree = "<group>";
+		};
+		15252EF02F22214400D7AF8B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				15252EEF2F22214400D7AF8B /* LCBluetoothSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		15252EF22F22214400D7AF8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15252EF12F22214400D7AF8B /* LCBluetoothDeviceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15252EF42F22214400D7AF8B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15252F4E2F275EC800D7AF8B /* LCBluetoothFAQSheetView.swift */,
+				15252EF92F23206700D7AF8B /* LCBluetoothPermissionSheetView.swift */,
+				15252EFA2F23206700D7AF8B /* LCBluetoothToastView.swift */,
+				15252EF32F22214400D7AF8B /* LCBluetoothDeviceCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		15252EF52F22214400D7AF8B /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				15252F512F27709000D7AF8B /* Presenter */,
+				15252EF02F22214400D7AF8B /* Controller */,
+				15252EF22F22214400D7AF8B /* Model */,
+				15252EF42F22214400D7AF8B /* View */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		15252F512F27709000D7AF8B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				15252F502F27709000D7AF8B /* LCBluetoothSearchPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		3F34729528FD72A600DB9EB5 /* View */ = {
@@ -760,6 +817,7 @@
 		4E451183242B781500AF8AF6 /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
+				15252EF52F22214400D7AF8B /* Bluetooth */,
 				8F6B0036244D677400EAE734 /* WifiConfig */,
 				4E45107C242B75EE00AF8AF6 /* AuthDevicePassword */,
 				4E4510CF242B75F000AF8AF6 /* Base */,
@@ -961,7 +1019,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,6 +1114,7 @@
 				4E451151242B75F000AF8AF6 /* LCConnectCloudTimeoutViewController.swift in Sources */,
 				3FB4BE3D28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift in Sources */,
 				4E451165242B75F000AF8AF6 /* LCAddDeviceManager.swift in Sources */,
+				15252F522F27709100D7AF8B /* LCBluetoothSearchPresenter.swift in Sources */,
 				4E45114B242B75F000AF8AF6 /* LCWifiUnsupportViewController.swift in Sources */,
 				3F3472A328FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift in Sources */,
 				4E45119E242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift in Sources */,
@@ -1078,6 +1136,8 @@
 				8F6B0051244D677400EAE734 /* LCWiFiConfigVC.swift in Sources */,
 				4E451128242B75F000AF8AF6 /* LCAuthPasswordViewController.swift in Sources */,
 				8F6B0067244DA2CE00EAE734 /* LCWiFiConnectOnlineProtocol.swift in Sources */,
+				15252EFB2F23206800D7AF8B /* LCBluetoothPermissionSheetView.swift in Sources */,
+				15252EFC2F23206800D7AF8B /* LCBluetoothToastView.swift in Sources */,
 				4E4510F9242B75F000AF8AF6 /* LCDeviceNetInfo.mm in Sources */,
 				4E451167242B75F000AF8AF6 /* LCIntroductionDefaults.swift in Sources */,
 				4E451146242B75F000AF8AF6 /* LCPhoneVolumeCheckViewController.swift in Sources */,
@@ -1091,6 +1151,10 @@
 				4E45112F242B75F000AF8AF6 /* LCAddDeviceModuleProtocol.swift in Sources */,
 				4E45112B242B75F000AF8AF6 /* LCInitializeSearchViewController.swift in Sources */,
 				4E451141242B75F000AF8AF6 /* LCWifiPasswordPresenter.swift in Sources */,
+				15252EF62F22214400D7AF8B /* LCBluetoothDeviceCell.swift in Sources */,
+				15252EF72F22214400D7AF8B /* LCBluetoothSearchViewController.swift in Sources */,
+				15252F4F2F275EC800D7AF8B /* LCBluetoothFAQSheetView.swift in Sources */,
+				15252EF82F22214400D7AF8B /* LCBluetoothDeviceModel.swift in Sources */,
 				4E451113242B75F000AF8AF6 /* LCBindByOtherViewController.swift in Sources */,
 				4E451154242B75F000AF8AF6 /* LCHotSpotViewController.swift in Sources */,
 				4E451174242B75F000AF8AF6 /* LCAutoKeyboardView.swift in Sources */,
@@ -1294,7 +1358,6 @@
 		};
 		10026F5423056F0000F95836 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1310,8 +1373,8 @@
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 					"$(SRCROOT)/../Frameworks/iOS",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",
@@ -1351,7 +1414,6 @@
 		};
 		10026F5523056F0000F95836 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1367,8 +1429,8 @@
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 					"$(SRCROOT)/../Frameworks/iOS",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Include",

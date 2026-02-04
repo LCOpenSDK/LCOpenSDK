@@ -32,8 +32,6 @@ FOUNDATION_EXPORT const unsigned char LCMediaComponentsVersionString[];
 #import <LCOpenMediaSDK/LCDhTalkbackSource.h>
 #import <LCOpenMediaSDK/LCRtspTalkbackSource.h>
 #import <LCOpenMediaSDK/LCCloudDiskVideoItem.h>
-#import <LCOpenMediaSDK/LCDeviceTimeV2VideoItem.h>
-#import <LCOpenMediaSDK/LCMediaRestApi.h>
 #import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
 #import <LCOpenMediaSDK/NSString+Data.h>
 #import <LCOpenMediaSDK/LCVideoErrorManager.h>
@@ -68,11 +66,6 @@ FOUNDATION_EXPORT const unsigned char LCMediaComponentsVersionString[];
 #import <LCOpenMediaSDK/LCOpenDeviceTimeSource.h>
 #import <LCOpenMediaSDK/LCOpenTalkSource.h>
 #import <LCOpenMediaSDK/LCOpenPlayTokenModel.h>
-
-#ifdef LECHANGE_MEDIA
-#import <LCOpenMediaSDK/LCTalkbackPlayer.h>
-#import <LCOpenMediaSDK/LCMediaConvert.h>
-#import <LCOpenMediaSDK/LCMediaConvertListener.h>
-#else
 #import <LCOpenMediaSDK/LCOpenTalkPlugin.h>
-#endif
+#import <LCOpenMediaSDK/LCBindDeviceInfo.h>
+#import <LCOpenMediaSDK/LCOpenMediaBaseVideoItem.h>

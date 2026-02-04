@@ -46,7 +46,8 @@ static NSString * const pbVideotapePlayer = @"LCNewPlayBackRouter_VideotapePlaye
         NSString *subCloudVideoJson = (NSString *)userInfo[@"subCloudVideoJson"];
         NSString *selectedChannelId = (NSString *)userInfo[@"selectedChannelId"];
         NSString *localVideoJson = (NSString *)userInfo[@"localVideoJson"];
-
+        NSNumber *type = (NSNumber *)userInfo[@"type"];
+        
         if (cloudVideoJson != nil) {
             LCCloudVideotapeInfo *cloudInfo = [LCCloudVideotapeInfo jsonToObject:cloudVideoJson];
             if (cloudInfo != nil) {
@@ -72,6 +73,8 @@ static NSString * const pbVideotapePlayer = @"LCNewPlayBackRouter_VideotapePlaye
         if (selectedChannelId != nil) {
             [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = selectedChannelId;
         }
+        videotapePlayerVC.type = [type integerValue];
+        [LCNewDeviceVideotapePlayManager shareInstance].type = [type integerValue];
         return videotapePlayerVC;
     }];
 }

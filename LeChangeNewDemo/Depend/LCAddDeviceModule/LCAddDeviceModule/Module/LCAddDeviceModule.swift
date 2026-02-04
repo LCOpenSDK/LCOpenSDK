@@ -12,6 +12,7 @@ import LCBaseModule.LCModule
 		registerQRScanVC()
 		registerOfflineWifiConfigByDeviceId()
         registerOnlineWifiConfig()
+        registerBluetoothSearchVC()
 	}
 	
 	public func moduleCustomEvent(_ eventname: String!, userInfo: [AnyHashable: Any]! = [:]) {
@@ -148,5 +149,16 @@ import LCBaseModule.LCModule
             return controller
         }
 	}
+    
+    // MARK: 蓝牙搜索设备
+    private func registerBluetoothSearchVC() {
+        LCRouter.registerURLPattern(RouterUrl_AddDevice_BluetoothSearch) { (routerParameters) -> Any? in
+            //进入前先重置已保存的信息
+            LCAddDeviceManager.sharedInstance.reset()
+            
+            let controller = LCBluetoothSearchViewController()
+            return controller
+        }
+    }
 
 }

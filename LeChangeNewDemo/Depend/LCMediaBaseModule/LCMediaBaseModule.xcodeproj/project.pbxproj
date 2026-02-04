@@ -467,6 +467,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "";
@@ -508,6 +509,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "";

@@ -53,7 +53,11 @@
     }];
     
     [voiceView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(30);
+        if (self.isCloudPic == YES) {
+            make.width.height.mas_equalTo(0);
+        } else {
+            make.width.height.mas_equalTo(30);
+        }
         make.leading.mas_equalTo(playView.mas_trailing).offset(15);
         make.bottom.mas_equalTo(-15);
     }];

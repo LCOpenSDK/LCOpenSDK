@@ -101,7 +101,6 @@
     param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
     param.accessToken = [LCApplicationDataManager token];
     param.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
-    param.isTls = [LCNewDeviceVideoManager shareInstance].currentDevice.tlsEnable;
     param.isAssistFrame = YES;
     if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
         LCCIResolutions *resolutions = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions firstObject];
@@ -131,7 +130,6 @@
         subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
         subParam.accessToken = [LCApplicationDataManager token];
         subParam.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
-        subParam.isTls = [LCNewDeviceVideoManager shareInstance].currentDevice.tlsEnable;
         subParam.isAssistFrame = YES;
         if ([[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions count] > 0) {
             LCCIResolutions *resolutions = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions firstObject];
@@ -250,7 +248,6 @@
     param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
     param.accessToken = [LCApplicationDataManager token];
     param.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
-    param.isTls = [LCNewDeviceVideoManager shareInstance].currentDevice.tlsEnable;
     param.isAssistFrame = YES;
     if ([[LCNewDeviceVideoManager shareInstance].mainChannelInfo.resolutions count] > 0) {
         LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
@@ -279,7 +276,6 @@
         subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
         subParam.accessToken = [LCApplicationDataManager token];
         subParam.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
-        subParam.isTls = [LCNewDeviceVideoManager shareInstance].currentDevice.tlsEnable;
         subParam.isAssistFrame = YES;
         if ([[LCNewDeviceVideoManager shareInstance].subChannelInfo.resolutions count] > 0) {
             LCCIResolutions *resolutions = [LCNewDeviceVideoManager shareInstance].currentResolution;
@@ -326,7 +322,6 @@
         talkSource.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
         talkSource.accessToken = LCApplicationDataManager.token;
         talkSource.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
-        talkSource.isTls = [LCNewDeviceVideoManager shareInstance].currentDevice.tlsEnable;
         talkSource.talkType = @"talk";
         
         __block NSString *tokenKey = @"";

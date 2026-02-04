@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCOpenSDK_DeviceOperateApi : NSObject
 
-- (void)controlMovePTZ: (NSString* )deviceId productId:(NSString* _Nullable)productId channelId:(NSString*) channelId PTZControllerInfo:(LCOpenSDK_PTZControllerInfo *)PTZControllerInfo playToken: (NSString* )playToken;
+- (void)controlMovePTZ: (NSString*)accessToken deviceId:(NSString* )deviceId productId:(NSString* _Nullable)productId channelId:(NSString*) channelId PTZControllerInfo:(LCOpenSDK_PTZControllerInfo *)PTZControllerInfo playToken: (NSString* )playToken;
 
 @end
 

@@ -283,7 +283,6 @@ import LCOpenMediaSDK
         source.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playToken
         source.accessToken = LCApplicationDataManager.token()
         source.psk =      LCNewDeviceVideoManager.shareInstance().currentPsk
-        source.isTls = LCNewDeviceVideoManager.shareInstance().currentDevice.tlsEnable
         source.talkType = isCall == true ? "call" : "talk"
         
         repeat {
@@ -340,7 +339,6 @@ import LCOpenMediaSDK
         playItem.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playToken;
         playItem.accessToken = LCApplicationDataManager.token()
         playItem.psk = LCNewDeviceVideoManager.shareInstance().currentPsk
-        playItem.isTls = false
         if LCNewDeviceVideoManager.shareInstance().mainChannelInfo.resolutions.count > 0  && LCNewDeviceVideoManager.shareInstance().currentDevice.catalog.uppercased() != "NVR"{
             let resolution = LCNewDeviceVideoManager.shareInstance().currentResolution
             LCNewDeviceVideoManager.shareInstance().currentResolution = resolution
@@ -350,7 +348,7 @@ import LCOpenMediaSDK
         } else {
             playItem.isMainStream = true
         }
-        playItem.noiseLevel = .noise4 //降噪等级
+        playItem.noiseLevel = LCMediaPlayNoiseAbility._4 //降噪等级
         playItem.forceMts = true
         repeat {
             LCOpenMediaApiManager.shareInstance().getPlayTokenKey(LCApplicationDataManager.token()) { playTokenkey in

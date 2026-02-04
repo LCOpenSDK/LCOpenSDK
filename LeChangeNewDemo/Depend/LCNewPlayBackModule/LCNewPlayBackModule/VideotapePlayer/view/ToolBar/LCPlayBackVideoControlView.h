@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否需要进度条
 @property (nonatomic) BOOL isNeedProcess;
 
+/// 是否云图
+@property (nonatomic) BOOL isCloudPic;
+
 /// processView
 @property (strong, nonatomic) LCNewVideotapePlayProcessView *processView;
 

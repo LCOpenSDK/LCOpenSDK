@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param success 成功回调录像条数
  @param failure 失败回调
  */
-+(void)getCloudRecordsForDevice:(NSString *)deviceId productId:(nullable NSString *)productId channelId:(NSString *)channelId beginTime:(NSTimeInterval)beginTime endTime:(NSTimeInterval)endTime Count:(long)count isMultiple:(BOOL)isMultiple success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure;
++(void)getCloudRecordsForDevice:(NSString *)deviceId productId:(nullable NSString *)productId channelId:(NSString *)channelId beginTime:(NSTimeInterval)beginTime endTime:(NSTimeInterval)endTime Count:(long)count isMultiple:(BOOL)isMultiple cloudType:(NSString *)cloudType success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure;
 
 /**
  获取某一天的本地录像列表

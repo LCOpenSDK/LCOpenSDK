@@ -182,6 +182,7 @@
 
 - (void)onPlaySuccess:(LCBaseVideoItem * _Nonnull)videoItem { 
     //播放成功回调
+    weakSelf(self);
     if ([LCNewDeviceVideotapePlayManager shareInstance].isSoundOn) {
         //开启声音
         [self.recordPlugin playAudioWithIsCallback:YES];
@@ -189,11 +190,14 @@
         //关闭声音
         [self.recordPlugin stopAudioWithIsCallback:YES];
     }
-    [self hideVideoLoadImage];
-    [self hideErrorBtn];
-    [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
-    [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
-    [self setVideoType];
+    // 修复：确保UI操作在主线程执行
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself hideVideoLoadImage];
+        [weakself hideErrorBtn];
+        [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
+        [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
+        [weakself setVideoType];
+    });
 }
 
 - (void)onPlayerTime:(NSTimeInterval)playTime videoItem:(LCBaseVideoItem * _Nonnull)videoItem { 
@@ -333,60 +337,62 @@
 - (void)recordPlugin:(LCOpenMediaRecordPlugin *)plugin changed:(LCScreenMode)screenMode littleWindow:(NSInteger)channelId {
     //大小窗切换回调
     self.littleWindowId = channelId;
-    if (screenMode == LCScreenModeDoubleScreen) {
-        [self.subCameraNameLabel setHidden:NO];
-        [self.cameraNameLabel setHidden: NO];
-        if (self.windowOrder == 1) {
-            [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
-            [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8 + 206 + 10);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
-        } else {
-            [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
-            [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8 + 206 + 10);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
-        }
-       
-    } else {
-        if (channelId == 0) {
-            [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (screenMode == LCScreenModeDoubleScreen) {
             [self.subCameraNameLabel setHidden:NO];
-            [self.cameraNameLabel setHidden: YES];
-            [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"1";
-        } else {
-            [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.leading.mas_equalTo(15);
-                make.top.mas_equalTo(8);
-                make.width.mas_equalTo(68);
-                make.height.mas_equalTo(26);
-            }];
             [self.cameraNameLabel setHidden: NO];
-            [self.subCameraNameLabel setHidden:YES];
-            [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"0";
+            if (self.windowOrder == 1) {
+                [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+                [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8 + 206 + 10);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+            } else {
+                [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+                [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8 + 206 + 10);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+            }
+            
+        } else {
+            if (channelId == 0) {
+                [self.subCameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+                [self.subCameraNameLabel setHidden:NO];
+                [self.cameraNameLabel setHidden: YES];
+                [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"1";
+            } else {
+                [self.cameraNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.leading.mas_equalTo(15);
+                    make.top.mas_equalTo(8);
+                    make.width.mas_equalTo(68);
+                    make.height.mas_equalTo(26);
+                }];
+                [self.cameraNameLabel setHidden: NO];
+                [self.subCameraNameLabel setHidden:YES];
+                [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = @"0";
+            }
         }
-    }
+    });
 }
 
 - (UIColor * _Nullable)recordPlugin:(LCOpenMediaRecordPlugin * _Nonnull)plugin littleWindowBorderColor:(id _Nullable)littleWindowBorderColor { 
@@ -417,7 +423,9 @@
     BOOL isEZooming = scale != -1 && scale != 1;
     if (isEZooming == true) {
         //电子放大时，双击结束电子放大
-        [[self recordPlugin] recoverEZooms];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self recordPlugin] recoverEZooms];
+        });
     }
 }
 
@@ -435,7 +443,9 @@
 
 - (void)onSingleClick:(UITapGestureRecognizer * _Nonnull)gesture cid:(NSInteger)cid {
     //单击手势
-    [self.container.landscapeControlView changeAlpha];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.container.landscapeControlView changeAlpha];
+    });
 }
 
 - (void)onUpSwipe:(UISwipeGestureRecognizer * _Nonnull)gesture cid:(NSInteger)cid {

@@ -261,6 +261,9 @@
             make.centerY.mas_equalTo(playButton);
         }];
         timesButton.hidden = ![self isCanChangePlayTimes];
+        voiceButton.hidden = self.isCloudPic;
+        pvrButton.hidden = self.isCloudPic;
+        snapButton.hidden = self.isCloudPic;
     } else {
         LCButton *playButton = self.items[0];
         LCButton *timesButton = self.items[1];
@@ -317,6 +320,9 @@
             make.trailing.mas_equalTo(fullScreenButton.mas_leading).offset(-20);
             make.centerY.mas_equalTo(playButton);
         }];
+        voiceButton.hidden = self.isCloudPic;
+        pvrButton.hidden = self.isCloudPic;
+        snapButton.hidden = self.isCloudPic;
     }
 }
  
@@ -338,8 +344,12 @@
 /// 是否可倍速播放
 - (BOOL)isCanChangePlayTimes {
     if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo != nil) {
-        //云录像都支持倍速
-        return YES;
+        if (self.isCloudPic == NO) {
+            //云录像都支持倍速
+            return YES;
+        } else {
+            return NO;
+        }
     } else {
         return [[LCNewDeviceVideotapePlayManager shareInstance].currentDevice.ability containsString:@"LRRF"];
     }

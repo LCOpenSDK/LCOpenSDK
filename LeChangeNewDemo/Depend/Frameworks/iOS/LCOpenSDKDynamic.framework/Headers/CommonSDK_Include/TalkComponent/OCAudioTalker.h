@@ -58,4 +58,9 @@ typedef NS_ENUM(NSInteger, AVAudio_TYPE)
 
 - (BOOL) enableTalkVideo:(bool)isEnable ;
 
+/*
+ * 对讲是否走的共享链路
+ */
+- (BOOL) isShareLink;
+
 @end

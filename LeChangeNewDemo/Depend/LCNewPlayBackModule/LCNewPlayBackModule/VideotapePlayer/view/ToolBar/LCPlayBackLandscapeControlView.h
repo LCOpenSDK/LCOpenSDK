@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)LCNewVideotapePlayerPersenter * __nullable presenter;
 // 是否需要进度条
 @property (nonatomic) BOOL isNeedProcess;
+//是否云图工具栏
+@property (nonatomic) BOOL isCloudPic;
+
 ///进度条视图
 @property (strong, nonatomic) LCNewVideotapePlayProcessView * processView;
 

@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "LCMediaDefine.h"
-#import "LCMediaRestApi.h"
 #import "LCMediaStreamParam.h"
 #import "LCCloudImagesItem.h"
+#import "LCCloudVideoItem.h"
 #import <LCOpenMediaSDK/LCMediaServerParameter.h>
 
+@class LCRecorderDeviceVideoItem;
+@class LCRecorderLiveVideoItem;
+@class LCLiveSource;
 @class LCOpenCloudSource;
 @class LCLANLiveVideoItem;
 @class LCLANDeviceTimeVideoItem;
@@ -124,9 +127,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  复用handle方式拉流
  *
  *  @param handleKey   handleKey:deviceSN+channelID 即("4F0201CC+0")
+ *  @param liveSource  拉流参数信息
  *  @note  该接口只适合优化拉流设备(即:RTSV1)
  */
-- (NSInteger) playRTStreamByHandleKey:(NSString*)handleKey;
+- (NSInteger)playRTStreamByHandleKey:(NSString*)handleKey liveSource:(LCLiveSource *)liveSource;
 
 /**
  *  判断对应key的handle是否创建成功
@@ -158,6 +162,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param videoItem 视频源信息
 - (NSInteger) playLANPrivateRTStream:(LCLANLiveVideoItem *)videoItem;
 
+/// 行车记录仪实时拉流接口
+/// @param videoItem 拉流参数
+-(NSInteger)playRecorderRTStream:(LCRecorderLiveVideoItem *)videoItem;
+
 #pragma mark - 设备录像
 /**
  *  按时间回放乐橙设备SD卡录像
@@ -181,14 +189,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger) playDevRecordStreamByTime:(LCMediaDevStreamByTimeParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType beginTime:(NSInteger)beginTime endTime:(NSInteger)endTime offsetTime:(NSInteger)offsetTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(CGFloat)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isQuic:(BOOL)isQuic;
 
 /**
- *  按时间回放乐橙设备SD卡录像
+ *  按文件名回放乐橙设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
- *  @param streamType 码流类型(参考E_STREAM_TYPE枚举)
- *  @param beginTime 开始时间(utc公历时间)
- *  @param endTime   结束时间(utc公历时间)
+ *  @param fileId    文件名
  *  @param offsetTime 起始播放时间(单位秒)
+ *  @param endTime    起始播放时间(单位秒)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
  *  @param PSK       秘钥
  *  @param isForceMts  是否强制走mts
  *  @param isOpt      是否开启优化拉流,需要设备同时支持(0:RTSP 1:RTSV1)
@@ -198,8 +206,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return 0表示成功 非0表示失败
  *  @note   该接口为异步接口
  */
-- (NSInteger) playDevRecordStreamByTimeV2:(LCMediaDevStreamByTimeParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType beginTime:(NSString*)beginTime endTime:(NSString*)endTime offsetTime:(NSInteger)offsetTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(CGFloat)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isQuic:(BOOL)isQuic;
-
 - (NSInteger) playDevRecordStreamByFile:(LCMediaDevStreamByFileParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId fileId:(NSString*)fileId offsetTime:(NSInteger)offsetTime endTime:(NSInteger)endTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(CGFloat)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isQuic:(BOOL)isQuic;
 
 /**
@@ -235,6 +241,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param videoItem 视频源
 - (NSInteger)playLANDeviceByFile:(LCLANDeviceFileVideoItem *)videoItem;
 
+// 局域网并行按文件回放拉流
+- (NSInteger)playRecorderDeviceByFile:(LCRecorderDeviceVideoItem *)videoItem;
+
 #pragma mark - 云录像
 /**
  *  云录像回放
@@ -255,24 +264,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger) playCloudRecordStream:(NSString*)deviceSN channelId:(NSInteger)channelId recordId:(int64_t)recordId recordType:(E_CLOUD_RECORD_TYPE)recordType hlsType:(E_HLS_TYPE)hlsType startTime:(NSInteger)startTime timeout:(NSInteger)timeout isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Region:(NSString*) region RecordPath:(NSString *) recordPath Speed:(CGFloat)speed Username:(NSString*) strUserName PSW:(NSString*) strPassWord;
 
 #pragma mark - 云录像(新接口)
-/**
- *  云录像回放
- *
- *  @param param   播放参数
- *  @param deviceSN   设备序列号
- *  @param channelId  通道号
- *  @param recordId   录像ID
- *  @param recordType 云存储录像类型(参考E_CLOUD_RECORD_TYPE)
- *  @param hlsType    hls类型(参考E_HLS_TYPE)
- *  @param startTime  起始播放时间(单位秒)
- *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
- *  @param PSK        秘钥(明文MD5, 32位小写)
- *
- *  @return 0表示成功 非0表示失败
- *  @note   该接口为异步接口
- */
-- (NSInteger) playCloudRecordStream:(LCMediaStreamCloudParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId recordId:(int64_t)recordId recordType:(E_CLOUD_RECORD_TYPE)recordType hlsType:(E_HLS_TYPE)hlsType startTime:(NSInteger)startTime timeout:(NSInteger)timeout isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Region:(NSString*) region RecordPath:(NSString *) recordPath Speed:(CGFloat)speed Username:(NSString*) strUserName PSW:(NSString*) strPassWord;
+/// 云录像回放
+/// @param param 播放参数
+/// @param item  录像对象
+- (void)playCloudRecordStream:(LCMediaStreamCloudParam *)param item:(LCCloudVideoItem *)item;
 
 #pragma mark - 开放平台拉流
 -(NSInteger)playOpenMediaCloudStream:(LCOpenCloudSource *)item;
@@ -441,6 +436,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @note   该接口为异步接口
  */
 - (NSInteger) stopRecord;
+
+/**
+ * 是否正在录制
+ *
+ * @return YES:正在录制;  NO:不在录制状态
+ */
+- (BOOL)isRecording;
 
 #pragma mark - 电子放大缩小控制
 /**
@@ -706,6 +708,21 @@ NS_ASSUME_NONNULL_BEGIN
 * @return true-成功  false-失败
 */
 - (BOOL)setfishEyeEptzPos:(long)posX PosY:(long)posY;
+
+#pragma mark - 卡录像跨片段seek
+/*
+* @desc 获取跨片段seek能力
+* @return true-成功  false-失败
+*/
+- (BOOL)getCorssFileSeekAbility;
+
+/*
+* @desc seek播放优化接口，支持跨文件seek
+* @param starttime 开始时间 秒级
+* @param endtime 结束时间  秒级
+* @return true-成功  false-失败
+*/
+- (BOOL)corssfileSeekPlay:(long)starttime endtime:(long)endtime;
 
 @end
 

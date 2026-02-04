@@ -22,6 +22,9 @@
 /// 本地录像按钮
 @property (strong, nonatomic) LCButton *localBtn;
 
+/// 云图按钮
+@property (strong, nonatomic) LCButton *cloudPicBtn;
+
 ///录像列表
 @property (strong,nonatomic)UICollectionView * videotapeList;
 
@@ -52,34 +55,12 @@
 -(void)setupView{
     weakSelf(self);
     self.backgroundColor = [UIColor lccolor_c43];
-    self.cloudBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
-    [self addSubview:self.cloudBtn];
-    self.cloudBtn.selected = YES;
-    [self.cloudBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(10);
-        make.left.mas_equalTo(self.mas_left).offset(80);
-        make.width.mas_equalTo(SCREEN_WIDTH/2-80);
-    }];
-    [self.cloudBtn setTitle:@"play_module_cloud_record".lcMedia_T forState:UIControlStateNormal];
-    [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_normal") forState:UIControlStateNormal];
-    [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_selected") forState:UIControlStateSelected];
-    [self.cloudBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
-    self.cloudBtn.titleLabel.font = [UIFont lcFont_t4];
-    [self.cloudBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
-    
-    self.isCurrentCloud = YES;
-    self.cloudBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
-        weakself.isCurrentCloud = YES;
-        if (weakself.dataSourceChange) {
-            weakself.dataSourceChange(0);
-        }
-    };
-    
+    //本地录像
     self.localBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
     [self addSubview:self.localBtn];
     [self.localBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(10);
-        make.right.mas_equalTo(self.mas_right).offset(-80);
+        make.centerX.mas_equalTo(self.mas_centerX);
         make.width.mas_equalTo(SCREEN_WIDTH/2-80);
     }];
     self.localBtn.titleLabel.font = [UIFont lcFont_t4];
@@ -90,9 +71,53 @@
     [self.localBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
     
     self.localBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
-        weakself.isCurrentCloud = NO;
+        weakself.type = LCNewPlayBackDevice;
         if (weakself.dataSourceChange) {
             weakself.dataSourceChange(1);
+        }
+    };
+    //云录像
+    self.cloudBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
+    [self addSubview:self.cloudBtn];
+    self.cloudBtn.selected = YES;
+    [self.cloudBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(10);
+        make.right.mas_equalTo(self.localBtn.mas_left).offset(-10);
+        make.width.mas_equalTo(SCREEN_WIDTH/2-80);
+    }];
+    [self.cloudBtn setTitle:@"play_module_cloud_record".lcMedia_T forState:UIControlStateNormal];
+    [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_normal") forState:UIControlStateNormal];
+    [self.cloudBtn setImage:LC_IMAGENAMED(@"timeline_icon_cloudvideo_selected") forState:UIControlStateSelected];
+    [self.cloudBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
+    self.cloudBtn.titleLabel.font = [UIFont lcFont_t4];
+    [self.cloudBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
+    
+    self.type = LCNewPlayBackCloud;
+    self.cloudBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
+        weakself.type = LCNewPlayBackCloud;
+        if (weakself.dataSourceChange) {
+            weakself.dataSourceChange(0);
+        }
+    };
+    //云图
+    self.cloudPicBtn = [LCButton createButtonWithType:LCButtonTypeCustom];
+    [self addSubview:self.cloudPicBtn];
+    [self.cloudPicBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(10);
+        make.left.mas_equalTo(self.localBtn.mas_right).offset(10);
+        make.width.mas_equalTo(SCREEN_WIDTH/2-80);
+    }];
+    self.cloudPicBtn.titleLabel.font = [UIFont lcFont_t4];
+    [self.cloudPicBtn setTitle:@"play_module_snap_shot".lcMedia_T forState:UIControlStateNormal];
+    [self.cloudPicBtn setImage:LC_IMAGENAMED(@"timeline_icon_snapshot_normal") forState:UIControlStateNormal];
+    [self.cloudPicBtn setImage:LC_IMAGENAMED(@"timeline_icon_snapshot_selected") forState:UIControlStateSelected];
+    [self.cloudPicBtn setTitleColor:[UIColor lccolor_c10] forState:UIControlStateSelected];
+    [self.cloudPicBtn setTitleColor:[UIColor lccolor_c40] forState:UIControlStateNormal];
+    
+    self.cloudPicBtn.touchUpInsideblock = ^(LCButton * _Nonnull btn) {
+        weakself.type = LCNewPlayBackCloudPic;
+        if (weakself.dataSourceChange) {
+            weakself.dataSourceChange(2);
         }
     };
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
@@ -155,7 +180,7 @@
         info = self.dataArray[indexPath.item];
     }
     
-    NSInteger index = self.isCurrentCloud == YES ? 0 : 1;
+    NSInteger index = self.type;
     if (self.historyClickBlock) {
         self.historyClickBlock(info, index);
     }
@@ -224,10 +249,27 @@
 }
 
 #pragma mark - Properties
-- (void)setIsCurrentCloud:(BOOL)isCurrentCloud {
-    _isCurrentCloud = isCurrentCloud;
-    self.cloudBtn.selected = isCurrentCloud;
-    self.localBtn.selected  = !isCurrentCloud;
+- (void)setType:(LCNewPlayBackVideoType)type {
+    _type = type;
+    switch (type) {
+        case 0://云录像
+            self.cloudBtn.selected = YES;
+            self.localBtn.selected  = NO;
+            self.cloudPicBtn.selected = NO;
+            break;
+        case 1://设备录像
+            self.cloudBtn.selected = NO;
+            self.localBtn.selected  = YES;
+            self.cloudPicBtn.selected = NO;
+            break;
+        case 2://云录像
+            self.cloudBtn.selected = NO;
+            self.localBtn.selected  = NO;
+            self.cloudPicBtn.selected = YES;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)dealloc {

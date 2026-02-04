@@ -92,6 +92,15 @@ NS_ASSUME_NONNULL_BEGIN
 ///@param failure 失败回调
 + (void)timeZoneConfigByDateWithDevice:(nonnull NSString *)deviceId AreaIndex:(NSInteger)areaIndex TimeZone:(NSInteger)timeZone BeginSunTime:(NSString *)beginSunTime EndSunTime:(NSString *)endSunTime success:(void (^)(void))success failure:(void (^)(LCError *error))failure;
 
+/**
+ 查询产品信息
+
+ @param pid     需要查询的产品ID
+ @param success 成功回调（isSupportWeakBind为是否支持弱绑定，isSelfDiscover为是否支持自发现）
+ @param failure 失败回调
+ */
++ (void)getProductModel:(nonnull NSString *)pid success:(void (^)(BOOL isSupportWeakBind, BOOL isSelfDiscover))success
+                failure:(void (^)(LCError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

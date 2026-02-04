@@ -228,9 +228,11 @@ extension LCConnectCloudViewController {
 		if self.isInBinding {
 			return
 		}
-		
+        var code = LCAddDeviceManager.sharedInstance.regCode ?? ""
+        if LCAddDeviceManager.sharedInstance.isSupportWeakBind {
+            code = LCAddDeviceManager.sharedInstance.code ?? ""
+        }
 		self.isInBinding = true
-		let code = LCAddDeviceManager.sharedInstance.regCode ?? ""
 		LCAddDeviceManager.sharedInstance.bindDevice(devicePassword: password, code: code, deviceKey: "", success: {
             LCAddDeviceManager.sharedInstance.addPlicy { [weak self] in
                 LCAddDeviceManager.sharedInstance.getDeviceInfoAfterBind(success: { (successInfo) in

@@ -191,17 +191,8 @@ extension LCDeviceListPresenter: UITableViewDelegate, UITableViewDataSource {
                 if info.catalog.uppercased() == "IPC" && info.status != "online" {
                     return
                 }
-//                if let vc = self?.livePreviewVC {
                 let vc = LCNewLivePreviewViewController()
                 vc.isFirstIntoVC = true
-//                    self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
-//                }
-//                let vc = LCLivePluginViewController()
-//                let item = LCOpenLiveSource()
-//                item.cid = Int(info.channels[channelIndex].channelId) ?? 0
-//                item.did = info.channels[channelIndex].deviceId
-//                item.pid = info.productId
-//                vc.playItem = item
                 self?.listContainer?.navigationController?.pushViewController(vc, animated: true)
             } else if index == 1 {
                 var channleId = ""

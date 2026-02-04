@@ -82,8 +82,7 @@
         }
     }];
 }
-
-+(void)getCloudRecordsForDevice:(NSString *)deviceId productId:(nullable NSString *)productId channelId:(NSString *)channelId beginTime:(NSTimeInterval)beginTime endTime:(NSTimeInterval)endTime Count:(long)count isMultiple:(BOOL)isMultiple success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure {
++ (void)getCloudRecordsForDevice:(NSString *)deviceId productId:(NSString *)productId channelId:(NSString *)channelId beginTime:(NSTimeInterval)beginTime endTime:(NSTimeInterval)endTime Count:(long)count isMultiple:(BOOL)isMultiple cloudType:(NSString *)cloudType success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure {
     //起始条数
     NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -98,6 +97,8 @@
     if (isMultiple) {
         [params setObject:@(NO) forKey:@"filterByChannel"];
     }
+    [params setObject:cloudType forKey:@"cloudType"];
+    
     [[LCNetworkRequestManager manager] lc_POST:@"/getCloudRecords" parameters:params success:^(id  _Nonnull objc) {
            NSMutableArray <LCCloudVideotapeInfo *> *infos = [LCCloudVideotapeInfo mj_objectArrayWithKeyValuesArray:[objc objectForKey:@"records"]];
           if (success) {

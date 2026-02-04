@@ -56,12 +56,14 @@
                 [weakself onPlay:btn];
             };
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] boolValue]) {
-                    //暂停
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_pause") forState:UIControlStateNormal];
-                } else {
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_play") forState:UIControlStateNormal];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([change[@"new"] boolValue]) {
+                        //暂停
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_pause") forState:UIControlStateNormal];
+                    } else {
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_play") forState:UIControlStateNormal];
+                    }
+                });
             }];
         };
             break;
@@ -78,32 +80,45 @@
                 CGFloat speedTime = 1.0;
                 if (speed == 1) {
                     speedTime = 1.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_1x") forState:UIControlStateNormal];
                 } else if (speed == 2) {
                     speedTime = 2.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_2x") forState:UIControlStateNormal];
                 } else if (speed == 3) {
                     speedTime = 4.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_4x") forState:UIControlStateNormal];
                 } else if (speed == 4) {
                     speedTime = 8.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_8x") forState:UIControlStateNormal];
                 } else if (speed == 5) {
                     speedTime = 16.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_16x") forState:UIControlStateNormal];
                 } else if (speed == 6) {
                     speedTime = 32.0;
-                    [weakitem setImage:LC_IMAGENAMED(@"icon_32x") forState:UIControlStateNormal];
                 }
-                [weakself.recordPlugin setPlaySpeed:speedTime];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (speed == 1) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_1x") forState:UIControlStateNormal];
+                    } else if (speed == 2) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_2x") forState:UIControlStateNormal];
+                    } else if (speed == 3) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_4x") forState:UIControlStateNormal];
+                    } else if (speed == 4) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_8x") forState:UIControlStateNormal];
+                    } else if (speed == 5) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_16x") forState:UIControlStateNormal];
+                    } else if (speed == 6) {
+                        [weakitem setImage:LC_IMAGENAMED(@"icon_32x") forState:UIControlStateNormal];
+                    }
+                    [weakself.recordPlugin setPlaySpeed:speedTime];
+                });
             }];
             
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                weakitem.enabled = NO;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakitem.enabled = NO;
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    weakitem.enabled = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakitem.enabled = YES;
+                    });
                 }
             }];
         };
@@ -113,28 +128,36 @@
             [item setImage:LC_IMAGENAMED(@"live_video_icon_h_sound_on") forState:UIControlStateNormal];
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isSoundOn" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] boolValue]) {
-                    //是否打开声音
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_sound_on") forState:UIControlStateNormal];
-                } else {
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_sound_off") forState:UIControlStateNormal];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([change[@"new"] boolValue]) {
+                        //是否打开声音
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_sound_on") forState:UIControlStateNormal];
+                    } else {
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_sound_off") forState:UIControlStateNormal];
+                    }
+                });
             }];
             //监听是否开启对讲，开启对讲后声音为disable
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isOpenAudioTalk" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] boolValue]) {
-                    //对讲开启
-                    weakitem.enabled = NO;
-                } else {
-                    weakitem.enabled = YES;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([change[@"new"] boolValue]) {
+                        //对讲开启
+                        weakitem.enabled = NO;
+                    } else {
+                        weakitem.enabled = YES;
+                    }
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                weakitem.enabled = NO;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakitem.enabled = NO;
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    weakitem.enabled = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakitem.enabled = YES;
+                    });
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -148,11 +171,15 @@
             item.enabled = NO;
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                weakitem.enabled = NO;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakitem.enabled = NO;
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    weakitem.enabled = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakitem.enabled = YES;
+                    });
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
@@ -166,18 +193,24 @@
             item.enabled = NO;
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isOpenRecoding" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] boolValue]) {
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_video_on") forState:UIControlStateNormal];
-                } else {
-                    [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_video_off") forState:UIControlStateNormal];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([change[@"new"] boolValue]) {
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_video_on") forState:UIControlStateNormal];
+                    } else {
+                        [weakitem setImage:LC_IMAGENAMED(@"live_video_icon_h_video_off") forState:UIControlStateNormal];
+                    }
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                weakitem.enabled = NO;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakitem.enabled = NO;
+                });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 if ([change[@"new"] integerValue] == 1001) {
-                    weakitem.enabled = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakitem.enabled = YES;
+                    });
                 }
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {

@@ -3,8 +3,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <LCMediaBaseModule/VPVideoDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef void(^LCNewVideoHistoryViewDatasourceChange)(NSInteger datatType);//切换源回调
 
@@ -18,10 +21,8 @@ typedef void(^LCNewVideoHistoryViewClickBlock)(id userInfo,NSInteger index);//�
 ///录像点击
 @property (copy,nonatomic)LCNewVideoHistoryViewClickBlock historyClickBlock;
 
-/// 当前是否云录像
-@property (nonatomic) BOOL isCurrentCloud;
-
-
+/// type
+@property (nonatomic) LCNewPlayBackVideoType type;
 /**
  刷新数据
 

@@ -168,7 +168,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
     [self.downloadQueue removeAllObjects];
     [[LCOpenSDK_Download shareMyInstance] setListener:self];
     //开始下载进程
-    if (self.cloudVideotapeInfo) {
+    if (self.cloudVideotapeInfo && self.type == LCNewPlayBackCloud) {
         //开始下载云
             if (self.isMulti) {
                 LCNewVideotapeDownloadInfo *mainInfo = [self getCloudVideotapeDownloadInfo:self.cloudVideotapeInfo];
@@ -223,7 +223,77 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                     NSLog(@"下载云录像返回码：%ld",(long)result);
                 }
             }
-    } else {
+    } else if (self.cloudVideotapeInfo && self.type == LCNewPlayBackCloudPic) {
+        //开始下载云图
+            if (self.isMulti) {
+                LCNewVideotapeDownloadInfo *mainInfo = [self getCloudVideotapeDownloadInfo:self.cloudVideotapeInfo];
+                [self.downloadQueue setObject:mainInfo forKey:[NSString stringWithFormat:@"%ld", (long)mainInfo.index]];
+                LCOpenSDK_DownloadByRecordIdParam *mainDownloadRecord = [[LCOpenSDK_DownloadByRecordIdParam alloc] init];
+                mainDownloadRecord.index = mainInfo.index;
+                mainDownloadRecord.savePath = mainInfo.localPath;
+                mainDownloadRecord.accessToken = [LCApplicationDataManager token];
+                mainDownloadRecord.deviceId = self.currentDevice.deviceId;
+                mainDownloadRecord.psk = self.currentPsk;
+                mainDownloadRecord.productId = self.currentDevice.productId;
+                mainDownloadRecord.playToken = self.currentDevice.playToken;
+                mainDownloadRecord.useTLS = [self currentDevice].tlsEnable;
+                mainDownloadRecord.channelId = [mainInfo.channelId intValue];
+                mainDownloadRecord.recordRegionId = self.cloudVideotapeInfo.recordRegionId;
+                mainDownloadRecord.cloudType = self.cloudVideotapeInfo.type;
+                mainDownloadRecord.frameRate = 1;
+                NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownloadCloudImages:mainDownloadRecord];
+                if (result != 0) {
+                    NSLog(@"下载云录像返回码：%ld  index:%ld",(long)result, mainInfo.index);
+                } else {
+                    NSLog(@"下载云录像返信息：%@", mainDownloadRecord.description);
+                }
+                
+                LCNewVideotapeDownloadInfo *subInfo = [self getCloudVideotapeDownloadInfo:self.subCloudVideotapeInfo];
+                subInfo.index = subInfo.index+1;
+                [self.downloadQueue setObject:subInfo forKey:[NSString stringWithFormat:@"%ld", (long)subInfo.index]];
+                LCOpenSDK_DownloadByRecordIdParam *subDownloadRecord = [[LCOpenSDK_DownloadByRecordIdParam alloc] init];
+                subDownloadRecord.index = subInfo.index;
+                subDownloadRecord.savePath = subInfo.localPath;
+                subDownloadRecord.accessToken = [LCApplicationDataManager token];
+                subDownloadRecord.deviceId = self.currentDevice.deviceId;
+                subDownloadRecord.psk = self.currentPsk;
+                subDownloadRecord.productId = self.currentDevice.productId;
+                subDownloadRecord.playToken = self.currentDevice.playToken;
+                subDownloadRecord.useTLS = [self currentDevice].tlsEnable;
+                subDownloadRecord.channelId = [subInfo.channelId intValue];
+                subDownloadRecord.recordRegionId = self.subCloudVideotapeInfo.recordRegionId;
+                subDownloadRecord.cloudType = self.subCloudVideotapeInfo.type;
+                subDownloadRecord.frameRate = 1;
+                result = [[LCOpenSDK_Download shareMyInstance] startDownloadCloudImages:subDownloadRecord];
+                if (result != 0) {
+                    NSLog(@"下载云图返回码：%ld  index:%ld",(long)result, subDownloadRecord.index);
+                } else {
+                    NSLog(@"下载云图返信息：%@", subDownloadRecord.description);
+                }
+            } else {
+                LCNewVideotapeDownloadInfo *mainInfo = [self getCloudVideotapeDownloadInfo:self.cloudVideotapeInfo];
+                [self.downloadQueue setObject:mainInfo forKey:[NSString stringWithFormat:@"%ld", (long)mainInfo.index]];
+                LCOpenSDK_DownloadByRecordIdParam *mainDownloadRecord = [[LCOpenSDK_DownloadByRecordIdParam alloc] init];
+                mainDownloadRecord.index = mainInfo.index;
+                mainDownloadRecord.savePath = mainInfo.localPath;
+                mainDownloadRecord.accessToken = [LCApplicationDataManager token];
+                mainDownloadRecord.deviceId = self.currentDevice.deviceId;
+                mainDownloadRecord.psk = self.currentPsk;
+                mainDownloadRecord.productId = self.currentDevice.productId;
+                mainDownloadRecord.playToken = self.currentDevice.playToken;
+                mainDownloadRecord.useTLS = [self currentDevice].tlsEnable;
+                mainDownloadRecord.channelId = [mainInfo.channelId intValue];
+                mainDownloadRecord.recordRegionId = self.cloudVideotapeInfo.recordRegionId;
+                mainDownloadRecord.cloudType = self.cloudVideotapeInfo.type;
+                mainDownloadRecord.frameRate = 1;
+                NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownloadCloudImages:mainDownloadRecord];
+                if (result != 0) {
+                    NSLog(@"下载云录像返回码：%ld  index:%ld",(long)result, mainInfo.index);
+                } else {
+                    NSLog(@"下载云录像返信息：%@", mainDownloadRecord.description);
+                }
+            }
+    }else {
         //开始下载设备录像
         if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
             // 按照时间下载
@@ -417,7 +487,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
 
 #pragma mark - 下载回调
 - (void)onDownloadReceiveData:(NSInteger)index datalen:(NSInteger)datalen {
-//    NSLog(@"REVIEVE_DOWN===data: %ld  index:%ld", (long)datalen, (long)index);
+    NSLog(@"REVIEVE_DOWN===data: %ld  index:%ld", (long)datalen, (long)index);
     self.recordReceive += datalen;
     //每隔0.5加载数据，避免过快加载导致UI卡顿
     if (self.recordTime == nil || [[NSDate date] timeIntervalSinceDate:self.recordTime] >= 0.5) {

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign)NSInteger I_frame_interval;
 @property(nonatomic, assign)NSInteger encodeType;
 @property(nonatomic, assign)NSInteger frameRate;
-@property(nonatomic, assign)BOOL isCameraOpen;
+@property(nonatomic, assign)BOOL cameraStatus;
 @property(nonatomic, assign)BOOL softEncodeMode;
 
 /// 生成默认配置

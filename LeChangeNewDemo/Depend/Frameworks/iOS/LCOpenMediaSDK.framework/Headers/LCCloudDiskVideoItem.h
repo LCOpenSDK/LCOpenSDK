@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCCloudDiskVideoItem : LCBaseVideoItem
+@interface LCCloudDiskVideoItem : LCMediaBaseVideoItem
 
 @property(nonatomic, assign)int64_t recordId; /**< 录像id */
 

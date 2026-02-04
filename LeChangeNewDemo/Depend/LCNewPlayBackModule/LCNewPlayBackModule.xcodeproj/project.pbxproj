@@ -665,6 +665,9 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenMediaSDK/Framework\"",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
+					"\"$(SRCROOT)/../SDK/LCOpenMediaSDK/LCOpenMediaSDK/Frameworks\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -707,6 +710,9 @@
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
 					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
 					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenMediaSDK/Framework\"",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
+					"\"$(SRCROOT)/../SDK/LCOpenMediaSDK/LCOpenMediaSDK/Frameworks\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

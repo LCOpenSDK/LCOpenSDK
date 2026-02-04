@@ -5,11 +5,11 @@
 //  Created by lei on 2021/1/28.
 //
 #import <UIKit/UIKit.h>
-#import <LCOpenMediaSDK/LCBaseVideoItem.h>
+#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCDeviceTimeVideoItem : LCBaseVideoItem
+@interface LCDeviceTimeVideoItem : LCMediaBaseVideoItem
 
 // 主加密模式
 @property(nonatomic, assign)int encrypt;

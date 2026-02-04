@@ -695,9 +695,6 @@
 
 @end
 
-@implementation LCBindDeviceInfo
-
-@end
 
 @implementation LCBindDeviceSuccess
 

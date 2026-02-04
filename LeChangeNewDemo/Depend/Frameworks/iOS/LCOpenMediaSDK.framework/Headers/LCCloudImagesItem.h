@@ -5,12 +5,12 @@
 //  Created by lei on 2023/9/15.
 //
 
-#import <LCOpenMediaSDK/LCBaseVideoItem.h>
+#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCCloudImagesItem : LCBaseVideoItem
+@interface LCCloudImagesItem : LCMediaBaseVideoItem
 
 @property(nonatomic, assign)int64_t recordId; /**< 录像id */
 

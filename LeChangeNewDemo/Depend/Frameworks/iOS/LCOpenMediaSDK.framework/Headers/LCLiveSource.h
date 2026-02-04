@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCLiveSource : LCBaseVideoItem
+@interface LCLiveSource : LCMediaBaseVideoItem
 
 // 加密模式
 @property(nonatomic, assign)int encryptMode;
@@ -34,8 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)int imageSize;
 // 码流地址：用于MQTT获取拉流地址
 @property (nonatomic, copy)NSString *streamUrlV4;
-//是否展示辅助帧
-@property (nonatomic, assign) BOOL isSupportBoundingBox;
 //是否支持Quic协议
 @property(nonatomic, assign)BOOL isQuic;
 

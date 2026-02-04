@@ -119,6 +119,13 @@ typedef NS_ENUM(NSInteger, E_LOG_LEVEL)
  @note 典型使用场景是app退出(包括被强杀)时调用，用以主动清理资源
  */
 + (void)cleanUp;
+
+/**
+ * 获取公共组件初始化ID
+ * @return 初始化ID字符串
+ */
++ (NSString*)getInitId;
+
 @end
 
 #endif //LCSDK_LCSDK_Utils_h

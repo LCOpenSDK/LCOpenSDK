@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void)loadLocalVideotape;
 
+/**
+ 加载云图
+ */
+- (void)loadCloudPicturetape;
+
 @end
 
 NS_ASSUME_NONNULL_END

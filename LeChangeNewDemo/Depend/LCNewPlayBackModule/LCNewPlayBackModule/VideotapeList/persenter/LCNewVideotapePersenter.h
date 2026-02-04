@@ -20,14 +20,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前是否在全选状态
 @property (nonatomic) BOOL isSelectAll;
 
-/// 当前是否在云录像模式
-@property (nonatomic) BOOL isCloudMode;
+///// 当前选中录像类型
+@property (nonatomic) LCNewPlayBackVideoType currentSelectedType;
 
 ///云录像列表
 @property (nonatomic,strong)NSMutableArray <LCCloudVideotapeInfo *> * cloudVideoArray;
 
 ///本地录像列表
 @property (nonatomic,strong)NSMutableArray<LCLocalVideotapeInfo *> * localVideoArray;
+
+///本地录像列表
+@property (nonatomic,strong)NSMutableArray<LCCloudVideotapeInfo *> * cloudPictureArray;
 
 ///视频播放管理者
 @property (nonatomic,strong)LCNewDeviceVideoManager * videoManager;
@@ -50,6 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)refreshLocalVideoListWithDate:(nullable NSDate *)date;
 
 /**
+ 刷新云图
+ */
+- (void)refreshCloudPictureListWithDate:(nullable NSDate *)date;
+
+/**
  加载更多云录像
  */
 -(void)loadMoreCloudVideoListWithDate:(nonnull NSDate *)date;
@@ -59,6 +67,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void)loadMoreLocalVideoListWithDate:(nonnull NSDate *)date;
 
+/**
+ 加载更多云录像
+ */
+-(void)loadMoreCloudPictureListWithDate:(nonnull NSDate *)date;
 /**
  删除云录像
  */

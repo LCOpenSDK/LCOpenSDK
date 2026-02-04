@@ -142,9 +142,6 @@
             make.width.mas_equalTo(weakself.view);
             make.height.mas_equalTo(weakself.backgroundScrlooView.mas_height);
         }];
-        [self.backgroundScrlooView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(weakself.localVideoList.mas_right);
-        }];
         _localVideoList.backgroundColor = [UIColor lc_colorWithHexString:@"#FAFAFA"];
         [_localVideoList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lcMedia_T];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"LCNewPlayBackModuleBundle" ofType:@"bundle"];
@@ -160,15 +157,54 @@
     return _localVideoList;
 }
 
+- (UICollectionView *)cloudPictureList {
+    if (!_cloudPictureList) {
+        weakSelf(self);
+        _cloudPictureList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:[self getCollectionViewFlow]];
+        _cloudPictureList.tag = 1002;
+        _cloudPictureList.dataSource = self.persenter;
+        _cloudPictureList.delegate = self.persenter;
+        [_cloudPictureList registerClass:NSClassFromString(@"LCNewVideotapeListHeardView") forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LCNewVideotapeListHeardView"];
+        [self.backgroundScrlooView addSubview:_cloudPictureList];
+        [_cloudPictureList mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(weakself.localVideoList.mas_right);
+            make.top.bottom.mas_equalTo(weakself.backgroundScrlooView);
+            make.width.mas_equalTo(weakself.view);
+            make.height.mas_equalTo(weakself.backgroundScrlooView.mas_height);
+        }];
+        [self.backgroundScrlooView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(weakself.cloudPictureList.mas_right);
+        }];
+        [_cloudPictureList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lcMedia_T];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LCNewPlayBackModuleBundle" ofType:@"bundle"];
+        NSBundle *mediaBundle = [NSBundle bundleWithPath:path];
+        [_cloudPictureList registerNib:[UINib nibWithNibName:@"LCNewVideotapeListCell" bundle:mediaBundle] forCellWithReuseIdentifier:@"LCNewVideotapeListCell"];
+        _cloudPictureList.mj_header = [LCMediaRefreshHeader headerWithRefreshingBlock:^{
+            [weakself.persenter refreshCloudPictureListWithDate:weakself.dateControl.nowDate];
+        }];
+        _cloudPictureList.mj_footer = [LCMediaRefreshFooter footerWithRefreshingBlock:^{
+            [weakself.persenter loadMoreCloudPictureListWithDate:weakself.dateControl.nowDate];
+        }];
+        
+        _cloudPictureList.backgroundColor = [UIColor lc_colorWithHexString:@"#FAFAFA"];
+    }
+    return _cloudPictureList;
+}
+
 - (void)changeLoadSourceWithSelect:(NSInteger)select {
     CGPoint point = CGPointMake(0, 0);
-    if (select != 0) {
-        point.x = SCREEN_WIDTH;       //选择本地录像
-        self.persenter.isCloudMode = NO;
-        [self.persenter refreshLocalVideoListWithDate:nil];
-    }else{
-        self.persenter.isCloudMode = YES;
+    if (select == 0) {
+        point.x = SCREEN_WIDTH * 0;       //选择云录像
+        self.persenter.currentSelectedType = LCNewPlayBackCloud;
         [self.persenter refreshCloudVideoListWithDate:nil];
+    }else if (select == 1){
+        point.x = SCREEN_WIDTH * 1;       //选择本地录像
+        self.persenter.currentSelectedType = LCNewPlayBackDevice;
+        [self.persenter refreshLocalVideoListWithDate:nil];
+    }else if (select == 2){
+        point.x = SCREEN_WIDTH * 2;       //选择云图
+        self.persenter.currentSelectedType = LCNewPlayBackCloudPic;
+        [self.persenter refreshCloudPictureListWithDate:nil];
     }
     [self.backgroundScrlooView layoutIfNeeded];
     [self.backgroundScrlooView setContentOffset:point animated:YES];
@@ -177,7 +213,7 @@
 
 - (void)drawNavi {
     weakSelf(self);
-    LCSegmentController *segment = [LCSegmentController segmentWithFrame:CGRectMake(0, kStatusBarHeight, 150, 30) DefaultSelect:self.defaultType Items:@[@"play_module_cloud_record".lcMedia_T, @"play_module_device_record".lcMedia_T] SelectedBlock:^(NSUInteger index) {
+    LCSegmentController *segment = [LCSegmentController segmentWithFrame:CGRectMake(0, kStatusBarHeight, 240, 30) DefaultSelect:self.defaultType Items:@[@"play_module_cloud_record".lcMedia_T, @"play_module_device_record".lcMedia_T,@"play_module_snap_shot".lcMedia_T] SelectedBlock:^(NSUInteger index) {
         [weakself changeLoadSourceWithSelect:index];
     }];
     self.segment = segment;
@@ -276,8 +312,10 @@
         if (weakself.backgroundScrlooView.contentOffset.x == 0) {
             //当前在云视频
             [weakself.persenter refreshCloudVideoListWithDate:date];
-        } else {
+        } else if (weakself.backgroundScrlooView.contentOffset.x == SCREEN_WIDTH) {
             [weakself.persenter refreshLocalVideoListWithDate:date];
+        } else {
+            [weakself.persenter refreshCloudPictureListWithDate:date];
         }
     };
     [self.localVideoList.KVOController observe:self.persenter keyPath:@"localVideoArray" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
@@ -285,6 +323,9 @@
     }];
     [self.cloudVideoList.KVOController observe:self.persenter keyPath:@"cloudVideoArray" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         [weakself.cloudVideoList reloadData];
+    }];
+    [self.cloudPictureList.KVOController observe:self.persenter keyPath:@"cloudPictureArray" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+        [weakself.cloudPictureList reloadData];
     }];
     [self.KVOController observe:self.persenter keyPath:@"isEdit" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         weakself.backgroundScrlooView.scrollEnabled = !weakself.backgroundScrlooView.scrollEnabled;

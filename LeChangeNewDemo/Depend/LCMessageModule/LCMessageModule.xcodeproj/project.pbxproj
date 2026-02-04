@@ -756,7 +756,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -796,7 +800,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks/iOS\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Frameworks/iOS\"",
+					"\"$(SRCROOT)/../../Pods/LCOpenSDK/Framework\"",
+					"\"$(SRCROOT)/../SDK/LCOpenSDK/LCOpenSDK/Frameworks\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

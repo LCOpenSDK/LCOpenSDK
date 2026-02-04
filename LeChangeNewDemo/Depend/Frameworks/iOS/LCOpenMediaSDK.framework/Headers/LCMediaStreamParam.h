@@ -13,17 +13,23 @@
 
 @class LCMediaServerParameter;
 @class LCMediaVideoSampleConfigParam;
+@class LCBindDeviceInfo;
 
 /* 拉流参数基类 */
 @interface LCMediaStreamParam : NSObject
+@property (nonatomic, copy) NSString *devicePid;  /* 设备pid */
+@property (nonatomic, copy) NSString *did; /* 设备序列号 */
 @property (nonatomic) NSInteger encryptMode_1;   /* 主加密模式 */
 @property (nonatomic) NSInteger encryptMode_2;   /* 次加密模式 */
-@property (nonatomic, copy) NSString *devicePid;  /* 设备pid */
 @property(nonatomic, assign) BOOL isQuic;    /* 是否支持Quic协议 */
-/// 绑定设备序列号
-@property(nonatomic, nullable, copy)NSString *bindProductId;
-@property(nonatomic, nullable, copy)NSString *bindDeviceId;
-@property(nonatomic, nullable, copy)NSString *bindChannelId;
+/// 混流参数
+@property(nonatomic, assign)BOOL isMixStream; //是否混流
+@property(nonatomic, assign)NSInteger mixStreamNum; //目数
+//混流方案：是否跳过获取拉流地址流程(默认不跳过)
+@property(nonatomic, assign)BOOL isSkipGetStreamUrl;
+
+/// 绑定设备
+@property(nonatomic, nullable, strong)LCBindDeviceInfo *bindDevice;
 @end
 
 /* 实时预览拉流参数 */
@@ -53,6 +59,9 @@
 
 /* 按时间回放设备本地录像参数 */
 @interface LCMediaTalkStreamParam : LCMediaStreamParam
+
+/// 终端ID
+@property(nonatomic, nullable, copy)NSString *terminalId;
 
 @end
 

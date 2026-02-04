@@ -50,17 +50,6 @@
 		04871B1528F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04871B1428F17B74009E0540 /* LCNewLivePreviewModuleBundle.bundle */; };
 		049EC47424F3D6D9008625A1 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049EC47324F3D6D9008625A1 /* NetworkExtension.framework */; };
 		04ADF5ED250F4251004028B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADF5EC250F4251004028B1 /* libc++.tbd */; };
-		04C22A332CBA7D6D00046D84 /* LCSingleLivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A202CBA7D6D00046D84 /* LCSingleLivePlayer.swift */; };
-		04C22A352CBA7D6D00046D84 /* LiveToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A232CBA7D6D00046D84 /* LiveToolBar.swift */; };
-		04C22A362CBA7D6D00046D84 /* VideoOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A242CBA7D6D00046D84 /* VideoOptionBar.swift */; };
-		04C22A372CBA7D6D00046D84 /* VideoToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A252CBA7D6D00046D84 /* VideoToolBar.swift */; };
-		04C22A382CBA7D6D00046D84 /* VideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A272CBA7D6D00046D84 /* VideoNode.swift */; };
-		04C22A3A2CBA7D6D00046D84 /* LCLivePluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A2C2CBA7D6D00046D84 /* LCLivePluginViewController.swift */; };
-		04C22A3B2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C22A2E2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.xib */; };
-		04C22A3C2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A2F2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.m */; };
-		04C22A3D2CBA7D6D00046D84 /* HistoryVideoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C22A302CBA7D6D00046D84 /* HistoryVideoListView.m */; };
-		04C22AFB2CBF50B000046D84 /* LCPluginRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22AFA2CBF50B000046D84 /* LCPluginRecordViewController.swift */; };
-		04C22AFD2CBF517900046D84 /* LCVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C22AFC2CBF517900046D84 /* LCVideoPlayer.swift */; };
 		04C465C42CC63A01004E35AB /* LCNewLivePreviewModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C22BBA2CC10DEE00046D84 /* LCNewLivePreviewModule.framework */; };
 		04C465C52CC63A01004E35AB /* LCNewLivePreviewModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C22BBA2CC10DEE00046D84 /* LCNewLivePreviewModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04C4667A2CC8DB69004E35AB /* LCNewPlayBackModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04871B5328F262BF009E0540 /* LCNewPlayBackModule.framework */; };
@@ -95,10 +84,11 @@
 		10912CA223B33DF90058403C /* account.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10912CA123B33DF90058403C /* account.xcassets */; };
 		10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BFCE4A23CC0DCE00B49003 /* QuartzCore.framework */; };
 		10D29E332407FF17008891CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D29E322407FF17008891CC /* CoreLocation.framework */; };
-		15CDA9182CD35E5F00A8072D /* LCOpenMediaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CDA9072CD35E5E00A8072D /* LCOpenMediaSDK.framework */; };
-		15CDA9192CD35E5F00A8072D /* LCOpenMediaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15CDA9072CD35E5E00A8072D /* LCOpenMediaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15CDA91A2CD35E5F00A8072D /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CDA9172CD35E5F00A8072D /* LCOpenSDKDynamic.framework */; };
-		15CDA91B2CD35E5F00A8072D /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15CDA9172CD35E5F00A8072D /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		150C06672F32E53B002D2FC2 /* LCAddDeviceChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C06662F32E53B002D2FC2 /* LCAddDeviceChooseView.swift */; };
+		15C36AA52EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C36AA42EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework */; };
+		15C36ABE2EFCE3A400DAB6C1 /* LCOpenMediaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C36AA32EFCE2D200DAB6C1 /* LCOpenMediaSDK.framework */; };
+		15C36AC22EFCE40900DAB6C1 /* LCOpenMediaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15C36AA32EFCE2D200DAB6C1 /* LCOpenMediaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15C36AC32EFCE40A00DAB6C1 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15C36AA42EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F1F6473290FC2F900FF03FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F6475290FC2F900FF03FF /* InfoPlist.strings */; };
 		4EF54C2B2536F9CE002F960D /* LCBaseModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EF54C2A2536F9CE002F960D /* LCBaseModuleBundle.bundle */; };
 		AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5737C04E6B040B6DEF489321 /* Pods_LeChangeDemo.framework */; };
@@ -226,14 +216,14 @@
 				03FC1A452B108F3C00B02794 /* ObjectMapper.framework in Embed Frameworks */,
 				03FC1A3D2B108F3100B02794 /* ZXingObjC.framework in Embed Frameworks */,
 				04C465C52CC63A01004E35AB /* LCNewLivePreviewModule.framework in Embed Frameworks */,
-				15CDA91B2CD35E5F00A8072D /* LCOpenSDKDynamic.framework in Embed Frameworks */,
+				15C36AC32EFCE40A00DAB6C1 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 				03FC1A392B108F2000B02794 /* GTMBase64.framework in Embed Frameworks */,
 				03FC1A3F2B108F3300B02794 /* SnapKit.framework in Embed Frameworks */,
 				03FC1A472B108F4200B02794 /* MJRefresh.framework in Embed Frameworks */,
 				03FC1A4D2B108F4C00B02794 /* Masonry.framework in Embed Frameworks */,
 				03FC1A412B108F3500B02794 /* SDWebImage.framework in Embed Frameworks */,
 				03FC1A372B108F1900B02794 /* AFNetworking.framework in Embed Frameworks */,
-				15CDA9192CD35E5F00A8072D /* LCOpenMediaSDK.framework in Embed Frameworks */,
+				15C36AC22EFCE40900DAB6C1 /* LCOpenMediaSDK.framework in Embed Frameworks */,
 				03FC1A4B2B108F4900B02794 /* MBProgressHUD.framework in Embed Frameworks */,
 				03FC1A432B108F3800B02794 /* SAMKeychain.framework in Embed Frameworks */,
 				03FC1A492B108F4600B02794 /* MJExtension.framework in Embed Frameworks */,
@@ -285,19 +275,6 @@
 		04871B4528F262BF009E0540 /* LCNewPlayBackModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCNewPlayBackModule.xcodeproj; path = Depend/LCNewPlayBackModule/LCNewPlayBackModule.xcodeproj; sourceTree = "<group>"; };
 		049EC47324F3D6D9008625A1 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		04ADF5EC250F4251004028B1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		04C22A202CBA7D6D00046D84 /* LCSingleLivePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSingleLivePlayer.swift; sourceTree = "<group>"; };
-		04C22A232CBA7D6D00046D84 /* LiveToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveToolBar.swift; sourceTree = "<group>"; };
-		04C22A242CBA7D6D00046D84 /* VideoOptionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOptionBar.swift; sourceTree = "<group>"; };
-		04C22A252CBA7D6D00046D84 /* VideoToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoToolBar.swift; sourceTree = "<group>"; };
-		04C22A272CBA7D6D00046D84 /* VideoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNode.swift; sourceTree = "<group>"; };
-		04C22A2C2CBA7D6D00046D84 /* LCLivePluginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCLivePluginViewController.swift; sourceTree = "<group>"; };
-		04C22A2E2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginVideotapeHistoryCell.xib; sourceTree = "<group>"; };
-		04C22A2F2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginVideotapeHistoryCell.m; sourceTree = "<group>"; };
-		04C22A302CBA7D6D00046D84 /* HistoryVideoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryVideoListView.m; sourceTree = "<group>"; };
-		04C22A312CBA7D6D00046D84 /* PluginVideotapeHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginVideotapeHistoryCell.h; sourceTree = "<group>"; };
-		04C22A322CBA7D6D00046D84 /* HistoryVideoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryVideoListView.h; sourceTree = "<group>"; };
-		04C22AFA2CBF50B000046D84 /* LCPluginRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCPluginRecordViewController.swift; sourceTree = "<group>"; };
-		04C22AFC2CBF517900046D84 /* LCVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCVideoPlayer.swift; sourceTree = "<group>"; };
 		04C22BA92CC10DEE00046D84 /* LCNewLivePreviewModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LCNewLivePreviewModule.xcodeproj; path = Depend/LCNewLivePreviewModule/LCNewLivePreviewModule.xcodeproj; sourceTree = "<group>"; };
 		10040A5D2398FC5500F8BF9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LCLanguage.strings; sourceTree = "<group>"; };
 		10040A5F2398FC7000F8BF9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -349,8 +326,9 @@
 		10D29E322407FF17008891CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10F36D6123B5D2C40010D966 /* LCToolKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCToolKit.h; sourceTree = "<group>"; };
 		1317C10F9FF76B4FE615F1D9 /* libPods-LeChangeDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeChangeDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15CDA9072CD35E5E00A8072D /* LCOpenMediaSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenMediaSDK.framework; path = Depend/Frameworks/iOS/LCOpenMediaSDK.framework; sourceTree = "<group>"; };
-		15CDA9172CD35E5F00A8072D /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		150C06662F32E53B002D2FC2 /* LCAddDeviceChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAddDeviceChooseView.swift; sourceTree = "<group>"; };
+		15C36AA32EFCE2D200DAB6C1 /* LCOpenMediaSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenMediaSDK.framework; path = Depend/Frameworks/iOS/LCOpenMediaSDK.framework; sourceTree = "<group>"; };
+		15C36AA42EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		3F1F6474290FC2F900FF03FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F1F6476290FC2FB00FF03FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		4EF54C2A2536F9CE002F960D /* LCBaseModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCBaseModuleBundle.bundle; path = Depend/Frameworks/iOS/LCBaseModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
@@ -378,7 +356,6 @@
 				03FC1A402B108F3500B02794 /* SDWebImage.framework in Frameworks */,
 				03FC1A362B108F1900B02794 /* AFNetworking.framework in Frameworks */,
 				04092B0928F53E29006D861D /* LCMessageModule.framework in Frameworks */,
-				15CDA91A2CD35E5F00A8072D /* LCOpenSDKDynamic.framework in Frameworks */,
 				03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */,
 				03FC1A3C2B108F3100B02794 /* ZXingObjC.framework in Frameworks */,
 				04C4667A2CC8DB69004E35AB /* LCNewPlayBackModule.framework in Frameworks */,
@@ -391,7 +368,6 @@
 				049EC47424F3D6D9008625A1 /* NetworkExtension.framework in Frameworks */,
 				03FC1A3A2B108F2100B02794 /* KVOController.framework in Frameworks */,
 				10520D4E23A3671B00B4564A /* libz.tbd in Frameworks */,
-				15CDA9182CD35E5F00A8072D /* LCOpenMediaSDK.framework in Frameworks */,
 				1018DC6524114BDC005C1B2B /* AddressBook.framework in Frameworks */,
 				10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */,
 				1018DC6324114BD3005C1B2B /* Contacts.framework in Frameworks */,
@@ -406,12 +382,14 @@
 				10520D4623A366F400B4564A /* MediaAccessibility.framework in Frameworks */,
 				B4DE85D323F913DF006C314A /* ExternalAccessory.framework in Frameworks */,
 				04C465C42CC63A01004E35AB /* LCNewLivePreviewModule.framework in Frameworks */,
+				15C36AA52EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework in Frameworks */,
 				10520D4423A366EA00B4564A /* OpenGLES.framework in Frameworks */,
 				B4DE85D023F913B1006C314A /* SystemConfiguration.framework in Frameworks */,
 				10520D4223A366E100B4564A /* VideoToolbox.framework in Frameworks */,
 				10520D4023A366D700B4564A /* AudioToolbox.framework in Frameworks */,
 				10520D3E23A366CE00B4564A /* MediaPlayer.framework in Frameworks */,
 				10520D3C23A366C700B4564A /* CoreAudio.framework in Frameworks */,
+				15C36ABE2EFCE3A400DAB6C1 /* LCOpenMediaSDK.framework in Frameworks */,
 				03FC1A382B108F1F00B02794 /* GTMBase64.framework in Frameworks */,
 				AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */,
 				0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */,
@@ -499,82 +477,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		04C22A1E2CBA7D6D00046D84 /* LCLivePluginModule */ = {
-			isa = PBXGroup;
-			children = (
-				04C22A1F2CBA7D6D00046D84 /* Players */,
-				04C22A222CBA7D6D00046D84 /* ToolBar */,
-				04C22A262CBA7D6D00046D84 /* Model */,
-				04C22A282CBA7D6D00046D84 /* ViewController */,
-				04C22A2D2CBA7D6D00046D84 /* HistoryVideoListView */,
-			);
-			path = LCLivePluginModule;
-			sourceTree = "<group>";
-		};
-		04C22A1F2CBA7D6D00046D84 /* Players */ = {
-			isa = PBXGroup;
-			children = (
-				04C22AFC2CBF517900046D84 /* LCVideoPlayer.swift */,
-				04C22A202CBA7D6D00046D84 /* LCSingleLivePlayer.swift */,
-			);
-			path = Players;
-			sourceTree = "<group>";
-		};
-		04C22A222CBA7D6D00046D84 /* ToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				04C22A232CBA7D6D00046D84 /* LiveToolBar.swift */,
-				04C22A242CBA7D6D00046D84 /* VideoOptionBar.swift */,
-				04C22A252CBA7D6D00046D84 /* VideoToolBar.swift */,
-			);
-			path = ToolBar;
-			sourceTree = "<group>";
-		};
-		04C22A262CBA7D6D00046D84 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				04C22A272CBA7D6D00046D84 /* VideoNode.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		04C22A282CBA7D6D00046D84 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				04C22AF92CBF50B000046D84 /* 回放 */,
-				04C22A2B2CBA7D6D00046D84 /* 预览 */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		04C22A2B2CBA7D6D00046D84 /* 预览 */ = {
-			isa = PBXGroup;
-			children = (
-				04C22A2C2CBA7D6D00046D84 /* LCLivePluginViewController.swift */,
-			);
-			path = "预览";
-			sourceTree = "<group>";
-		};
-		04C22A2D2CBA7D6D00046D84 /* HistoryVideoListView */ = {
-			isa = PBXGroup;
-			children = (
-				04C22A2E2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.xib */,
-				04C22A2F2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.m */,
-				04C22A302CBA7D6D00046D84 /* HistoryVideoListView.m */,
-				04C22A312CBA7D6D00046D84 /* PluginVideotapeHistoryCell.h */,
-				04C22A322CBA7D6D00046D84 /* HistoryVideoListView.h */,
-			);
-			path = HistoryVideoListView;
-			sourceTree = "<group>";
-		};
-		04C22AF92CBF50B000046D84 /* 回放 */ = {
-			isa = PBXGroup;
-			children = (
-				04C22AFA2CBF50B000046D84 /* LCPluginRecordViewController.swift */,
-			);
-			path = "回放";
-			sourceTree = "<group>";
-		};
 		04C22BAA2CC10DEE00046D84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,7 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				B4DE85D123F913DF006C314A /* LeChangeDemo.entitlements */,
-				04C22A1E2CBA7D6D00046D84 /* LCLivePluginModule */,
 				10520D0F23A32B9000B4564A /* Business */,
 				10040A532398FA7D00F8BF9A /* Config */,
 				101311C92398F6EE000E1FB7 /* AppDelegate.h */,
@@ -682,6 +583,7 @@
 		1025A5FC23A7828300249C2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				150C06662F32E53B002D2FC2 /* LCAddDeviceChooseView.swift */,
 				1025A5FE23A782A400249C2F /* Cell */,
 				03636CC028DED78200FE1B59 /* LCDeviceListViewController.swift */,
 			);
@@ -826,8 +728,8 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				15CDA9072CD35E5E00A8072D /* LCOpenMediaSDK.framework */,
-				15CDA9172CD35E5F00A8072D /* LCOpenSDKDynamic.framework */,
+				15C36AA32EFCE2D200DAB6C1 /* LCOpenMediaSDK.framework */,
+				15C36AA42EFCE2D200DAB6C1 /* LCOpenSDKDynamic.framework */,
 				03FC1A202B108C7600B02794 /* AFNetworking.framework */,
 				03FC1A242B108C7700B02794 /* GTMBase64.framework */,
 				03FC1A232B108C7700B02794 /* KVOController.framework */,
@@ -1101,7 +1003,6 @@
 				4EF54C2B2536F9CE002F960D /* LCBaseModuleBundle.bundle in Resources */,
 				0340706F28DABDBA00703F04 /* DeviceDetail.xcassets in Resources */,
 				037976D328FD2BF30073C6A1 /* LCMessageModuleBundle.bundle in Resources */,
-				04C22A3B2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.xib in Resources */,
 				3F1F6473290FC2F900FF03FF /* InfoPlist.strings in Resources */,
 				1069F7C4240F38BC00BD2383 /* InvalidPasswordList.plist in Resources */,
 				032664B82903E29C0082EAC9 /* LCDeviceDetailModuleBundle.bundle in Resources */,
@@ -1147,29 +1048,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C22A3A2CBA7D6D00046D84 /* LCLivePluginViewController.swift in Sources */,
 				10337AB5240DEE38001EE960 /* LCNetTool.m in Sources */,
-				04C22A332CBA7D6D00046D84 /* LCSingleLivePlayer.swift in Sources */,
 				0302988328F90E7C0038E6FE /* UINavigationController+Push.m in Sources */,
-				04C22A382CBA7D6D00046D84 /* VideoNode.swift in Sources */,
-				04C22AFB2CBF50B000046D84 /* LCPluginRecordViewController.swift in Sources */,
-				04C22A352CBA7D6D00046D84 /* LiveToolBar.swift in Sources */,
 				102257AF23BB38DF00AF451B /* LCRefreshHeader.m in Sources */,
-				04C22AFD2CBF517900046D84 /* LCVideoPlayer.swift in Sources */,
 				101311CB2398F6EE000E1FB7 /* AppDelegate.m in Sources */,
 				C95EBCEA269BD44800E5326E /* LCSubAccountViewController.m in Sources */,
-				04C22A3C2CBA7D6D00046D84 /* PluginVideotapeHistoryCell.m in Sources */,
 				10520D1E23A32D1000B4564A /* LCAccountJointViewController.m in Sources */,
 				10520D2123A32D5600B4564A /* LCAccountPresenter.m in Sources */,
 				03636CC128DED78200FE1B59 /* LCDeviceListViewController.swift in Sources */,
 				102257A623BADFEF00AF451B /* LCDeviceListCell.m in Sources */,
 				B4369AE323FCC59B00B98CBD /* UIImageView+Circle.m in Sources */,
+				150C06672F32E53B002D2FC2 /* LCAddDeviceChooseView.swift in Sources */,
 				03636CC328DED86400FE1B59 /* LCDeviceListPresenter.swift in Sources */,
 				10520D2B23A3540700B4564A /* LCInputTextField.m in Sources */,
-				04C22A3D2CBA7D6D00046D84 /* HistoryVideoListView.m in Sources */,
-				04C22A372CBA7D6D00046D84 /* VideoToolBar.swift in Sources */,
 				102257A923BAE0CD00AF451B /* LCDeviceListChannelCell.m in Sources */,
-				04C22A362CBA7D6D00046D84 /* VideoOptionBar.swift in Sources */,
 				102257B023BB38DF00AF451B /* LCRefreshFooter.m in Sources */,
 				101311DC2398F6F0000E1FB7 /* main.m in Sources */,
 			);

@@ -4,7 +4,7 @@
 
 #import <LCMediaBaseModule/LCNewDeviceVideoManager.h>
 #import <LCNetworkModule/LCCloudVideotapeInfo.h>
-
+#import <LCMediaBaseModule/VPVideoDefines.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LCNewVideotapeDownloadInfo : NSObject
@@ -87,6 +87,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前解密密钥
 @property (strong, nonatomic) NSString * currentPsk;
+
+@property (nonatomic) LCNewPlayBackVideoType type;
 
 
 /**

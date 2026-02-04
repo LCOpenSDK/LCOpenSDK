@@ -198,3 +198,8 @@ typedef NS_ENUM (NSInteger, HLSResultCode) {
     HLS_KEY_ERROR = 11, // 密钥错误
     HLS_PASSWORD_ERROR = 14  // 密码错误
 };
+typedef enum : NSUInteger {
+    LCNewPlayBackCloud,///云录像
+    LCNewPlayBackDevice,///设备录像
+    LCNewPlayBackCloudPic///snapshot云图
+} LCNewPlayBackVideoType;

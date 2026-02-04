@@ -16,18 +16,24 @@
 @implementation LCNewVideotapePlayerPersenter (Control)
 
 - (void)onUpDownScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
-    [self.container configUpDownScreenUI];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
+        [self.container configUpDownScreenUI];
+    });
 }
 
 - (void)onPortraitScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
-    [self.container configPortraitScreenUI];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
+        [self.container configPortraitScreenUI];
+    });
 }
 
 - (void)onFullScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
-    [UIDevice lc_setRotateToSatusBarOrientation:self.container.navigationController];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
+        [UIDevice lc_setRotateToSatusBarOrientation:self.container.navigationController];
+    });
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -109,91 +115,117 @@
     [self showVideoLoadImage];
     [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES;
     [LCNewDeviceVideotapePlayManager shareInstance].pausePlay = NO;
-    
-    __block NSString *tokenKey = @"";
-    do {
-        [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey) {
-            tokenKey = playTokenKey;
-        } failure:^(NSString * _Nonnull errorCode) {
-            //
-        }];
-    } while (NO);
-    
-    if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo) {
-        //播放云录像
-        LCOpenCloudSource *source = [LCOpenCloudSource new];
-        source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
-        source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
-        source.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
-        source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
-        source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
-        source.accessToken = LCApplicationDataManager.token;
-        source.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.recordRegionId;
-        source.timeout = 3 * 60;
-        source.recordType = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.type;
-        source.speed = [self getPlayWindowsSpeed];
-        source.offsetTime = offsetTime;
-        source.playTokenKey = tokenKey;
-        
-        if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
-            LCOpenCloudSource *subSource = [LCOpenCloudSource new];
-            subSource.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
-            subSource.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
-            subSource.cid = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId integerValue];
-            subSource.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
-            subSource.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
-            subSource.accessToken = LCApplicationDataManager.token;
-            subSource.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.recordRegionId;
-            subSource.timeout = 3 * 60;
-            subSource.recordType = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.type;
-            subSource.speed = [self getPlayWindowsSpeed];
-            subSource.offsetTime = offsetTime;
-            subSource.playTokenKey = tokenKey;
-            source.associcatChannels = @[subSource];
-        }
-        [self.recordPlugin playRecordStreamWith:source];
-
-    } else {
-        if ([LCNewDeviceVideotapePlayManager shareInstance].currentDevice.multiFlag) {
-            //播放本地录像
-            NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
-            tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSTimeInterval beginTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginTime] timeIntervalSince1970];
-            NSTimeInterval endTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endTime] timeIntervalSince1970];
-            LCOpenDeviceTimeSource *source = [LCOpenDeviceTimeSource new];
-            source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
-            source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
-            source.cid = 0;
-            source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
-            source.playTokenKey = tokenKey;
-            source.accessToken = LCApplicationDataManager.token;
-            source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
-            source.startTime = beginTime + offsetTime;
-            source.endTime = endTime;
-            source.isTls = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.tlsEnable;
-            source.speed = [self getPlayWindowsSpeed];
-            
-            LCOpenDeviceTimeSource *subSource = [source copy];
-            subSource.cid = 1;
-            source.associcatChannels = @[subSource];
-            [self.recordPlugin playRecordStreamWith:source];
-        } else {
-            //播放本地录像
-            LCOpenDeviceFileSource *source = [LCOpenDeviceFileSource new];
+    [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString * _Nonnull tokenKey) {
+        if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo && [LCNewDeviceVideotapePlayManager shareInstance].type == LCNewPlayBackCloud) {
+            //播放云录像
+            LCOpenCloudSource *source = [LCOpenCloudSource new];
             source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
             source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
             source.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
-            source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
-            source.playTokenKey = tokenKey;
-            source.accessToken = LCApplicationDataManager.token;
             source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
-            source.fileId = [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.recordId;
-            source.offsetTime = offsetTime;
-            source.isTls = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.tlsEnable;
+            source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+            source.accessToken = LCApplicationDataManager.token;
+            source.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.recordRegionId;
+            source.timeout = 3 * 60;
+            source.recordType = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.type;
             source.speed = [self getPlayWindowsSpeed];
+            source.offsetTime = offsetTime;
+            source.playTokenKey = tokenKey;
+            if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+                LCOpenCloudSource *subSource = [LCOpenCloudSource new];
+                subSource.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
+                subSource.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
+                subSource.cid = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId integerValue];
+                subSource.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
+                subSource.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+                subSource.accessToken = LCApplicationDataManager.token;
+                subSource.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.recordRegionId;
+                subSource.timeout = 3 * 60;
+                subSource.recordType = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.type;
+                subSource.speed = [self getPlayWindowsSpeed];
+                subSource.offsetTime = offsetTime;
+                subSource.playTokenKey = tokenKey;
+                source.associcatChannels = @[subSource];
+            }
             [self.recordPlugin playRecordStreamWith:source];
+
+        } else if ([LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo && [LCNewDeviceVideotapePlayManager shareInstance].type == LCNewPlayBackCloudPic) {
+            LCOpenCloudSource *source = [LCOpenCloudSource new];
+            source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
+            source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
+            source.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
+            source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
+            source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+            source.accessToken = LCApplicationDataManager.token;
+            source.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.recordRegionId;
+            source.timeout = 3 * 60;
+            source.recordType = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.type;
+            source.speed = [self getPlayWindowsSpeed];
+            source.offsetTime = offsetTime;
+            source.playTokenKey = tokenKey;
+            source.playframeRate = 1;
+            source.hlsType = 0;
+            if ([[LCNewDeviceVideotapePlayManager shareInstance] existSubWindow]) {
+                LCOpenCloudSource *subSource = [LCOpenCloudSource new];
+                subSource.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
+                subSource.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
+                subSource.cid = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId integerValue];
+                subSource.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
+                subSource.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+                subSource.accessToken = LCApplicationDataManager.token;
+                subSource.recordRegionId = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.recordRegionId;
+                subSource.timeout = 3 * 60;
+                subSource.recordType = [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo.type;
+                subSource.speed = [self getPlayWindowsSpeed];
+                subSource.offsetTime = offsetTime;
+                subSource.playTokenKey = tokenKey;
+                source.associcatChannels = @[subSource];
+            }
+            [self.recordPlugin playRecordStreamWith:source];
+
+        } else {
+            if ([LCNewDeviceVideotapePlayManager shareInstance].currentDevice.multiFlag) {
+                //播放本地录像
+                NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+                tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                NSTimeInterval beginTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginTime] timeIntervalSince1970];
+                NSTimeInterval endTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endTime] timeIntervalSince1970];
+                LCOpenDeviceTimeSource *source = [LCOpenDeviceTimeSource new];
+                source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
+                source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
+                source.cid = 0;
+                source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+                source.playTokenKey = tokenKey;
+                source.accessToken = LCApplicationDataManager.token;
+                source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
+                source.startTime = beginTime + offsetTime;
+                source.endTime = endTime;
+                source.speed = [self getPlayWindowsSpeed];
+                
+                LCOpenDeviceTimeSource *subSource = [source copy];
+                subSource.cid = 1;
+                source.associcatChannels = @[subSource];
+                [self.recordPlugin playRecordStreamWith:source];
+            } else {
+                //播放本地录像
+                LCOpenDeviceFileSource *source = [LCOpenDeviceFileSource new];
+                source.pid = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId;
+                source.did = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.deviceId;
+                source.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
+                source.playToken = [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.playToken;
+                source.playTokenKey = tokenKey;
+                source.accessToken = LCApplicationDataManager.token;
+                source.psk = [LCNewDeviceVideotapePlayManager shareInstance].currentPsk;
+                source.fileId = [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.recordId;
+                source.offsetTime = offsetTime;
+                source.speed = [self getPlayWindowsSpeed];
+                [self.recordPlugin playRecordStreamWith:source];
+            }
         }
-    }
+
+    } failure:^(NSString * _Nonnull errorCode) {
+        //
+    }];
 }
 
 //暂停播放
@@ -237,7 +269,9 @@ NSString *rSavePath2 = nil;
     } else {
         [self.recordPlugin stopRecord];
     }
-    [LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding = ![LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding = ![LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding;
+    });
 }
 
 - (void)loadPlaySpeed {

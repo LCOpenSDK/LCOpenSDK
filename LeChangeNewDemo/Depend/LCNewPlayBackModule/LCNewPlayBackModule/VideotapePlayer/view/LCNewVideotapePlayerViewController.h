@@ -5,6 +5,7 @@
 #import <UIKit/UIKit.h>
 #import <LCBaseModule/LCBaseModule.h>
 #import "LCPlayBackLandscapeControlView.h"
+#import <LCMediaBaseModule/VPVideoDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 横屏控制器
 @property (strong, nonatomic) LCPlayBackLandscapeControlView *landscapeControlView;
-
+@property (nonatomic) LCNewPlayBackVideoType type;
 - (void)configUpDownScreenUI;
 
 - (void)configPortraitScreenUI;

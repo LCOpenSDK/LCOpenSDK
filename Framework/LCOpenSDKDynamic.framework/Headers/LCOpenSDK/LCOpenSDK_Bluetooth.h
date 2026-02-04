@@ -23,6 +23,15 @@ NS_ASSUME_NONNULL_BEGIN
                    deviceId:(NSString *)deviceId
                     finshed:(void(^_Nullable)(BOOL success, NSString *_Nullable errorMessage))finshed;
 
+
+/// 搜索设备
++ (void)startSearchDevice:(NSInteger)timeOut callback:(void(^)(NSString *bleName, NSString *pid))callback finished:(void(^)(BOOL success, NSString *message))finished;
+// 停止搜索
++ (void)stopSearchDevice;
+// 配网
++ (void)configWifi:(NSString *)name password:(NSString * __nullable)password bleName:(NSString *)bleName pid:(NSString *)pid finished:(nullable void(^)(BOOL success, NSDictionary * __nullable deviceInfo, NSString * __nullable errorMessage))finished;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

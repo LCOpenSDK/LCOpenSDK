@@ -242,8 +242,23 @@ public struct LCAddConfigTimeout {
     
     /// 是否是手动输入的SC码
     var isManualInputSC: Bool = false
+    
+    /// 是否通过自发现（蓝牙搜索）进行配网
+    @objc public var isEntryFromBluetoothDiscovery: Bool = false
+    
+    /// 蓝牙设备名称（用于自发现配网）
+    @objc public var bluetoothDeviceName: String = ""
+    
+    /// 蓝牙设备产品ID（用于自发现配网）
+    @objc public var bluetoothProductId: String = ""
 	
-	
+    ///是否支持弱绑定
+    @objc public var isSupportWeakBind: Bool = false
+    
+    ///设备验证码,弱绑定从设备获取
+    @objc public var code: String?
+    
+    
 	//MARK: - Private
 	
 	/// 线程队列
@@ -298,6 +313,11 @@ public struct LCAddConfigTimeout {
         isManualInputSC = false
         softAPModeWifiVersion = ""
         softAPModeWifiName = ""
+        isEntryFromBluetoothDiscovery = false
+        bluetoothDeviceName = ""
+        bluetoothProductId = ""
+        isSupportWeakBind = false
+        code = nil
 	}
 	
     public func getUnBindDeviceInfo(deviceId: String, productId: String?, qrModel: String?, ncCode: String?, marketModel: String?, imeiCode: String?, success: @escaping (LCUserDeviceBindInfo, Bool) -> (), failure:@escaping (LCError) -> ()) {

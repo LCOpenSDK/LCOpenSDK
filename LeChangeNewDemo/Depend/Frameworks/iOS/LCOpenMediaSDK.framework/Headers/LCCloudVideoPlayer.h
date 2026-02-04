@@ -6,11 +6,11 @@
 //
 
 #import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
+#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LCCloudVideoPlayer;
-@class LCBaseVideoItem;
 
 @protocol LCCloudVideoPlayerDelegate <NSObject>
 
@@ -34,7 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)cloudVideoPlayerRecordStart:(LCCloudVideoPlayer *)videoPlayer;
 
-- (void)cloudVideoPlayerRecordStoped:(LCCloudVideoPlayer *)videoPlayer;
+- (void)cloudVideoPlayerRecordStoped:(LCCloudVideoPlayer *)videoPlayer fileInfo:(LCMediaRecordFileInfo *)fileInfo;
+
+- (void)cloudVideoPlayerRecordFailure:(LCCloudVideoPlayer *)videoPlayer errorCode:(NSInteger)error;
 
 - (void)cloudVideoPlayer:(LCCloudVideoPlayer *)videoPlayer speedChanged:(CGFloat)changeSpeed;
 
@@ -98,6 +100,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 继续播放
 - (void)resume;
+
+/// 即将休眠时继续播放
+- (void)continuePlay;
 
 /// 倍速设置
 - (void)setPlaySpeed:(CGFloat)playSpeed;

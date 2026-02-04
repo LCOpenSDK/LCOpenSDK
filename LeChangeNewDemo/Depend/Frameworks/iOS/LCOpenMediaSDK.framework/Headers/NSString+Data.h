@@ -20,8 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)lc_MD5String;
 
 - (NSString *)hlsDecodeWith:(RULE_VERSION)ruleVersion;
+/// json转字段
+- (NSDictionary *)openMedia_jsonDictionary;
 
 + (NSString*)transformTimeFromLong:(long)time;
+/// 字段转json
++ (NSString *)openMedia_dictionaryToJson:(NSDictionary *)dictionary;
 
 @end
 

@@ -11,7 +11,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "LCMediaDefine.h"
-#import "LCMediaRestApi.h"
 #import "LCMediaStreamParam.h"
 #import <LCOpenMediaSDK/LCMediaServerParameter.h>
 

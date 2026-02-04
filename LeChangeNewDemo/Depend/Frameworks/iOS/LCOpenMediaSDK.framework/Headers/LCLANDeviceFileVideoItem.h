@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCLANDeviceFileVideoItem : LCBaseVideoItem
+@interface LCLANDeviceFileVideoItem : LCMediaBaseVideoItem
 
 @property(nonatomic, copy)NSString *deviceIP; //设备在局域网中的IP
 

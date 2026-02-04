@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <LCMediaBaseModule/VPVideoDefines.h>
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -20,9 +20,10 @@ typedef void(^NewDownloadStatusViewClickBlock)(void);
 ///取消下载
 @property (copy,nonatomic) NewDownloadStatusViewClickBlock cancleBlock;
 
+@property (nonatomic) LCNewPlayBackVideoType type;
 
 
-+(instancetype)showDownloadStatusInView:(UIView *)view Size:(NSInteger)size;
++ (instancetype)showDownloadStatusInView:(UIView *)view Size:(NSInteger)size type:(LCNewPlayBackVideoType)type;
 
 - (void)dismiss;
 

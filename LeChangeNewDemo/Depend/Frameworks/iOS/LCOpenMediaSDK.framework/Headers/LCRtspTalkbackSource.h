@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)NSString *username;
 //设备密码
 @property(nonatomic, copy)NSString *password;
-//是否开启了安恒加密
-@property(nonatomic, assign)BOOL isOpenAHEncrypt;
 
 // 是否强制MTS
 @property(nonatomic, assign)BOOL isForceMts;
@@ -53,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 //是否请求辅助帧
 @property(nonatomic, assign)BOOL isAssistInfo;
 
+
 // 拉流优化新增字段(获取实时流url的入口地址参数)
 @property (nonatomic, copy) NSString *serverParamHost;
 
@@ -68,6 +67,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///是否支持Quic协议
 @property (nonatomic, assign) BOOL isQuic;
+
+/// 终端ID
+@property(nonatomic, nullable, copy)NSString *terminalId;
 
 @end
 

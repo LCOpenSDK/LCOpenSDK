@@ -6,6 +6,7 @@
 //
 
 #import <LCOpenMediaSDK/LCOpenMediaSDK.h>
+#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)liveVideoPlayerRecordStart:(LCLiveVideoPlayer *)videoPlayer;
 
-- (void)liveVideoPlayerRecordStoped:(LCLiveVideoPlayer *)videoPlayer;
+- (void)liveVideoPlayerRecordStoped:(LCLiveVideoPlayer *)videoPlayer fileInfo:(LCMediaRecordFileInfo *)fileInfo;
+
+- (void)liveVideoPlayerRecordFailure:(LCLiveVideoPlayer *)videoPlayer errorCode:(NSInteger)error;
 
 - (void)liveVideoPlayerError:(LCLiveVideoPlayer *)videoPlayer videoError:(LCVideoPlayError)videoError errorInfo:(nullable NSDictionary *)info;
 

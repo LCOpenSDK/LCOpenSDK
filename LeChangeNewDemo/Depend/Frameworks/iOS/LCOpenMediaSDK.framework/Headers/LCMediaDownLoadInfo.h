@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "LCMediaDefine.h"
-#import "LCMediaRestApi.h"
 #import <LCOpenMediaSDK/LCMediaServerParameter.h>
 
 NS_ASSUME_NONNULL_BEGIN

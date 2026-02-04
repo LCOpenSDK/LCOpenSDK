@@ -57,3 +57,7 @@ FOUNDATION_EXPORT const unsigned char LCOpenSDKDynamicVersionString[];
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_StreamInfo.h>
 #import <LCOpenSDKDynamic/LCOpenSDK/LCOpenSDK_DeviceOperateApi.h>
 #import <LCOpenSDKDynamic/CommonSDK_Include/CryptComponent/CryptComponent.h>
+#import <LCOpenSDKDynamic/CommonSDK_Include/IoTClientComponent/OCDevBindAuth.h>
+#import <LCOpenSDKDynamic/CommonSDK_Include/IoTClientComponent/OCDevDirectConnManager.h>
+#import <LCOpenSDKDynamic/CommonSDK_Include/IoTClientComponent/OCDevDiscoveryManager.h>
+

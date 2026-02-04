@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 
+// PSS上报老代码, 业务代码已注掉, IOS上层接口仍有依赖, 保留符号
 namespace Dahua
 {
 namespace LCCommon
@@ -48,10 +49,19 @@ namespace LCCommon
         const char     *clientNATIp;        /* 客户端公网IP */
         int             clientNATPort;      /* 客户端公网端口 */
         TRAVERSAL_INFO  traversalState;     /* 穿透状态 */
+        
         overseasP2pTraversalInfo()
+            : deviceSN(NULL)
+            , punchCount(0)
+            , punchTime(0)
+            , deviceNATIp(0)
+            , deviceNATPort(0)
+            , clientNATIp(0)
+            , clientNATPort(0)
+            , traversalState(STATUS_LAN)
         {
-            memset(this, 0, sizeof(overseasP2pTraversalInfo));
         }
+
     } OVERSEAS_P2PTRAVERSAL_INFO;
 } //LCCommon
 } //Dahua

@@ -19,6 +19,9 @@
 #import <LCMediaBaseModule/UIColor+MediaBaseModule.h>
 #import "LCNewVideotapePlayerViewController.h"
 
+#define SHEET_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+
+
 @interface LCNewVideotapePersenter ()
 
 ///进行分组后的云录像数组
@@ -26,13 +29,16 @@
 
 ///进行分组后的本地录像数组
 @property (nonatomic, strong) NSMutableArray<NSMutableArray *> *groupLocalVideos;
-
+///进行分组后的云图数组
+@property (nonatomic, strong) NSMutableArray<NSMutableArray *> *groupCloudPics;
 ///选中的云录像数组
 @property (nonatomic, strong) NSMutableSet *selectedCloudVideoSet;
 
 ///选中的本地录像数组
 @property (nonatomic, strong) NSMutableSet *selectedLocalVideoSet;
 
+///选中的云图数组
+@property (nonatomic, strong) NSMutableSet *selectedCloudPicSet;
 
 @end
 
@@ -62,7 +68,7 @@
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
     NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
-    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
+    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag cloudType: @"video" success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
         [weakself willChangeValueForKey:@"cloudVideoArray"];
         [weakself.cloudVideoArray removeAllObjects];
         [weakself addNewCloudVideos:videos];
@@ -86,6 +92,54 @@
         [weakself.videoListPage.cloudVideoList.mj_header endRefreshing];
     }];
 }
+
+- (void)refreshCloudPictureListWithDate:(NSDate *)date {
+    [LCProgressHUD showHudOnLowerView:self.container.view];
+    weakSelf(self);
+    if (date) {
+        self.currentDate = date;
+    }
+    
+    [self willChangeValueForKey:@"cloudVideoArray"];
+    [self.cloudPictureArray removeAllObjects];
+    [self.groupCloudPics removeAllObjects];
+    [self didChangeValueForKey:@"cloudVideoArray"];
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
+    //结束时间
+    NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
+    
+    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
+    NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
+    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag cloudType: @"snapshot" success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
+        [weakself willChangeValueForKey:@"cloudPictureArray"];
+        [weakself.cloudPictureArray removeAllObjects];
+        [weakself addNewCloudPics:videos];
+        weakself.groupCloudPics = [self groupVideoListWith:weakself.cloudPictureArray];
+
+        if (videos.count == 0) {
+            [weakself.videoListPage.cloudPictureList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@"video_module_none_record".lcMedia_T];
+        } else {
+            [weakself.videoListPage.cloudPictureList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:@""];
+        }
+
+        [weakself didChangeValueForKey:@"cloudPictureArray"];
+
+        [LCProgressHUD hideAllHuds:weakself.container.view];
+        [weakself.videoListPage.cloudPictureList.mj_header endRefreshing];
+        [weakself.videoListPage.cloudPictureList.mj_footer resetNoMoreData];
+    } failure:^(LCError * _Nonnull error) {
+        [LCProgressHUD hideAllHuds:weakself.container.view];
+        [LCProgressHUD showMsg:error.errorMessage];
+        [weakself.videoListPage.cloudPictureList lc_setEmyptImageName:@"common_pic_novideotape" andDescription:error.errorMessage];
+        [weakself.videoListPage.cloudPictureList.mj_header endRefreshing];
+    }];
+}
+
 
 - (void)refreshLocalVideoListWithDate:(NSDate *)date {
     [LCProgressHUD showHudOnLowerView:self.container.view];
@@ -154,7 +208,7 @@
     }
     
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
-    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
+    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag cloudType: @"video" success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
         [weakself willChangeValueForKey:@"cloudVideoArray"];
         [weakself addNewCloudVideos:videos];
         self.groupCloudVideos = [self groupVideoListWith:weakself.cloudVideoArray];
@@ -170,6 +224,61 @@
         [LCProgressHUD hideAllHuds:weakself.container.view];
         [LCProgressHUD showMsg:error.errorMessage];
         [weakself.videoListPage.cloudVideoList.mj_footer endRefreshing];
+    }];
+}
+
+- (void)loadMoreCloudPictureListWithDate:(NSDate *)date {
+    [LCProgressHUD showHudOnLowerView:self.container.view];
+    weakSelf(self);
+    if (date) {
+        self.currentDate = date;
+    }
+
+    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    dataFormatter.dateFormat = @"yyyy-MM-dd";
+    //开始时间
+    NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
+    
+    NSString *lastCloudEndStr = self.cloudPictureArray.lastObject.beginTime;
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
+        for (int i = (self.cloudPictureArray.count - 1); i-- ; i >= 0) {
+            if ([self.cloudPictureArray[i].channelId isEqualToString:@"0"]) {
+                lastCloudEndStr = self.cloudPictureArray[i].beginTime;
+                break;
+            }
+        }
+    }
+    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeInterval endTime = 0.0;
+    if (lastCloudEndStr != nil) {
+        endTime = [[tDataFormatter dateFromString:lastCloudEndStr] timeIntervalSince1970];
+    }
+    if (endTime == 0.0) {
+        //结束时间
+        NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
+        endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
+    }else {
+        endTime = endTime - 1;
+    }
+    
+    NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
+    [LCVideotapeInterface getCloudRecordsForDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId beginTime:beginTime endTime:endTime Count:30 isMultiple:[LCNewDeviceVideoManager shareInstance].currentDevice.multiFlag cloudType: @"snapshot" success:^(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull videos) {
+        [weakself willChangeValueForKey:@"cloudPictureArray"];
+        [weakself addNewCloudPics:videos];
+        self.groupCloudPics = [self groupVideoListWith:weakself.cloudPictureArray];
+        [weakself didChangeValueForKey:@"cloudPictureArray"];
+
+        [LCProgressHUD hideAllHuds:weakself.container.view];
+        if (videos.count < 30) {
+            [weakself.videoListPage.cloudPictureList.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [weakself.videoListPage.cloudPictureList.mj_footer endRefreshing];
+        }
+    } failure:^(LCError * _Nonnull error) {
+        [LCProgressHUD hideAllHuds:weakself.container.view];
+        [LCProgressHUD showMsg:error.errorMessage];
+        [weakself.videoListPage.cloudPictureList.mj_footer endRefreshing];
     }];
 }
 
@@ -245,6 +354,13 @@
     return _localVideoArray;
 }
 
+- (NSMutableArray *)cloudPictureArray {
+    if (!_cloudPictureArray) {
+        _cloudPictureArray = [NSMutableArray array];
+    }
+    return _cloudPictureArray;
+}
+
 - (LCNewDeviceVideoManager *)videoManager {
     if (!_videoManager) {
         _videoManager = [LCNewDeviceVideoManager shareInstance];
@@ -273,6 +389,14 @@
     return _groupLocalVideos;
 }
 
+- (NSMutableArray<NSMutableArray *> *)groupCloudPics {
+    if (!_groupCloudPics) {
+        _groupCloudPics = [NSMutableArray array];
+    }
+    return _groupCloudPics;
+}
+
+
 - (NSMutableSet *)selectedCloudVideoSet {
     if (!_selectedCloudVideoSet) {
         _selectedCloudVideoSet = [NSMutableSet set];
@@ -285,6 +409,12 @@
         _selectedLocalVideoSet = [NSMutableSet set];
     }
     return _selectedLocalVideoSet;
+}
+- (NSMutableSet *)selectedCloudPicSet {
+    if (!_selectedCloudPicSet) {
+        _selectedCloudPicSet = [NSMutableSet set];
+    }
+    return _selectedCloudPicSet;
 }
 
 //将获取的数据进行分组。结果为按照时间倒序排列的二维数组
@@ -342,12 +472,16 @@
     }
     if (scrollView.contentOffset.x == 0) {
         //滚动到云视频
-        self.isCloudMode = YES;
+        self.currentSelectedType = LCNewPlayBackCloud;
         [self.videoListPage.segment setSelectIndex:0];
         [self refreshCloudVideoListWithDate:nil];
-    } else {
-        self.isCloudMode = NO;
+    } else if (scrollView.contentOffset.x == SHEET_SCREEN_WIDTH) {
+        self.currentSelectedType = LCNewPlayBackDevice;
         [self.videoListPage.segment setSelectIndex:1];
+        [self refreshLocalVideoListWithDate:nil];
+    } else {
+        self.currentSelectedType = LCNewPlayBackCloudPic;
+        [self.videoListPage.segment setSelectIndex:2];
         [self refreshLocalVideoListWithDate:nil];
     }
 }
@@ -376,6 +510,32 @@
     }
     [self.cloudVideoArray addObjectsFromArray:newVideos];
 }
+
+- (void)addNewCloudPics:(NSArray<LCCloudVideotapeInfo *> *)videos
+{
+    NSMutableArray<LCCloudVideotapeInfo *> *newVideos = @[].mutableCopy;
+    LCCloudVideotapeInfo *firstCloud;
+    if (self.cloudPictureArray.count > 0) {
+        firstCloud = [self.cloudPictureArray lastObject];
+    }
+    for (int i = 0; i < videos.count; i++) {
+        LCCloudVideotapeInfo *current = videos[i];
+        if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti == NO) {
+            if (firstCloud != nil && [firstCloud.beginTime isEqualToString: current.beginTime]) {
+                [self.cloudPictureArray removeLastObject];
+            }
+            if (i < videos.count - 1) {
+                LCCloudVideotapeInfo *next = videos[i + 1];
+                if ([current.beginTime isEqualToString: next.beginTime]) {
+                    continue;
+                }
+            }
+        }
+        [newVideos addObject:current];
+    }
+    [self.cloudPictureArray addObjectsFromArray:newVideos];
+}
+
 
 - (void)addNewLocalVideos:(NSArray<LCLocalVideotapeInfo *> *)videos
 {
@@ -450,14 +610,26 @@
     }
 }
 
+- (NSArray *)getMainCloudPics:(NSInteger)section {
+    if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
+        NSArray *arr = [self.groupCloudPics[section] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.channelId == '0'"]];
+        return arr;
+    } else {
+        return self.groupCloudPics[section];
+    }
+}
+
 #pragma mark - collection代理相关
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView.tag == 1000) {
         //云录像
         return [self getMainCloudVideos:section].count;
-    } else {
+    } else if (collectionView.tag == 1001) {
         //本地录像
         return self.groupLocalVideos[section].count;
+    } else {
+        //云图
+        return self.groupCloudPics[section].count;
     }
 }
 
@@ -465,9 +637,12 @@
     if (collectionView.tag == 1000) {
         //云录像
         return self.groupCloudVideos.count;
-    } else {
+    } else if (collectionView.tag == 1001) {
         //本地录像
         return self.groupLocalVideos.count;
+    } else {
+        //云图
+        return self.groupCloudPics.count;
     }
 }
 
@@ -479,9 +654,14 @@
         LCCloudVideotapeInfo *info = [self getMainCloudVideos:indexPath.section][indexPath.item];
         info.index = indexPath;
         cell.model = info;
-    } else {
+    } else if (collectionView.tag == 1001) {
         //本地录像
         LCLocalVideotapeInfo *info = self.groupLocalVideos[indexPath.section][indexPath.item];
+        cell.model = info;
+    } else {
+        //云图
+        LCCloudVideotapeInfo *info = [self getMainCloudPics:indexPath.section][indexPath.item];
+        info.index = indexPath;
         cell.model = info;
     }
     
@@ -492,15 +672,19 @@
             cell.selectImg.hidden = NO;
             if (collectionView.tag == 1000) {
                 [self.selectedCloudVideoSet addObject:cell.model];
-            } else {
+            } else if(collectionView.tag == 1001) {
                 [self.selectedLocalVideoSet addObject:cell.model];
+            } else {
+                [self.selectedCloudPicSet addObject:cell.model];
             }
         } else {
             cell.selectImg.hidden = YES;
             if (collectionView.tag == 1000) {
                 [self.selectedCloudVideoSet removeAllObjects];
-            } else {
+            } else if (collectionView.tag == 1001) {
                 [self.selectedLocalVideoSet removeAllObjects];
+            } else {
+                [self.selectedCloudPicSet addObject:cell.model];
             }
         }
     }];
@@ -525,10 +709,16 @@
             LCCloudVideotapeInfo *info = videos[0];
             heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
         }
-    } else {
+    } else if (collectionView.tag == 1001) {
         NSArray *videos = self.groupLocalVideos[indexPath.section];
         if (videos != nil && videos.count > 0) {
             LCLocalVideotapeInfo *info = videos[0];
+            heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
+        }
+    } else {
+        NSArray *videos = [self getMainCloudPics:indexPath.section];
+        if (videos != nil && videos.count > 0) {
+            LCCloudVideotapeInfo *info = videos[0];
             heardView.time = [NSString stringWithFormat:@"%02ld:00", info.beginDate.hour];
         }
     }
@@ -584,11 +774,38 @@
             }
             LCNewVideotapePlayerViewController *videotapePlayerVC = [[LCNewVideotapePlayerViewController alloc] init];
             [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = ((LCCloudVideotapeInfo *)cell.model).channelId;
+            videotapePlayerVC.type = LCNewPlayBackCloud;
+            [LCNewDeviceVideotapePlayManager shareInstance].type = LCNewPlayBackCloud;
             [self.videoListPage.navigationController pushViewController:videotapePlayerVC animated:YES];
-        } else {
+        } else if (collectionView.tag == 1001) {
             [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo = (LCLocalVideotapeInfo *)cell.model;
             [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = ((LCLocalVideotapeInfo *)cell.model).channelID;
             LCNewVideotapePlayerViewController *videotapePlayerVC = [[LCNewVideotapePlayerViewController alloc] init];
+            videotapePlayerVC.type = LCNewPlayBackDevice;
+            [LCNewDeviceVideotapePlayManager shareInstance].type = LCNewPlayBackDevice;
+            [self.videoListPage.navigationController pushViewController:videotapePlayerVC animated:YES];
+        } else {
+            if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
+                NSArray<LCCloudVideotapeInfo*>* videos = self.groupCloudVideos[indexPath.section];
+                for (LCCloudVideotapeInfo *info in videos) {
+                    if (![info.recordId isEqualToString:((LCCloudVideotapeInfo*)cell.model).recordId] && [info.deviceId isEqualToString:((LCCloudVideotapeInfo*)cell.model).deviceId] && [info.pairKey isEqualToString:((LCCloudVideotapeInfo*)cell.model).pairKey] && ![info.channelId isEqualToString:((LCCloudVideotapeInfo*)cell.model).channelId]) {
+                        if ([info.channelId isEqualToString:@"0"]) {
+                            [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo = (LCCloudVideotapeInfo *)cell.model;
+                            [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo = info;
+                        } else {
+                            [LCNewDeviceVideotapePlayManager shareInstance].subCloudVideotapeInfo = info;
+                            [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo = (LCCloudVideotapeInfo *)cell.model;
+                        }
+                        break;
+                    }
+                }
+            } else {
+                [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo = (LCCloudVideotapeInfo *)cell.model;
+            }
+            LCNewVideotapePlayerViewController *videotapePlayerVC = [[LCNewVideotapePlayerViewController alloc] init];
+            videotapePlayerVC.type = LCNewPlayBackCloudPic;
+            [LCNewDeviceVideotapePlayManager shareInstance].displayChannelID = ((LCCloudVideotapeInfo *)cell.model).channelId;
+            [LCNewDeviceVideotapePlayManager shareInstance].type = LCNewPlayBackCloudPic;
             [self.videoListPage.navigationController pushViewController:videotapePlayerVC animated:YES];
         }
     }

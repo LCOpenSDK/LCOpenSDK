@@ -33,7 +33,7 @@
             return;
         }
         NSData* dataOut = [[NSData alloc] init];
-        NSInteger iret = [[LCOpenSDK_Utils new] decryptPic:picData deviceID:deviceId productId:productId key:key playtoken:playtoken bufOut:&dataOut];
+        NSInteger iret = [[LCOpenSDK_Utils new] decryptPic:picData deviceID:deviceId productId:productId key:key accessToken: [LCApplicationDataManager token] playtoken:playtoken bufOut:&dataOut];
         NSLog(@"decrypt iret[%ld]", (long)iret);
         if (0 == iret) {
             UIImage* img = [UIImage imageWithData:[NSData dataWithBytes:[dataOut bytes] length:[dataOut length]]];

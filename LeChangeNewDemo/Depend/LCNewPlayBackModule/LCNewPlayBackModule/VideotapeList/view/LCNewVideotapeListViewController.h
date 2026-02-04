@@ -3,6 +3,7 @@
 // 全部录像列表
 
 #import <LCMediaBaseModule/LCSegmentController.h>
+#import <LCMediaBaseModule/VPVideoDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,11 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///本地录像列表
 @property (nonatomic,strong)UICollectionView * localVideoList;
 
+///云图列表
+@property (nonatomic,strong)UICollectionView * cloudPictureList;
+
 ///本地录像/云录像切换
 @property (nonatomic,strong)LCSegmentController * segment;
 
-///0:云录像 1:本地录像
-@property (nonatomic)NSInteger defaultType;
+///0:云录像 1:本地录像 2:云图
+@property (nonatomic)LCNewPlayBackVideoType defaultType;
 
 
 @end

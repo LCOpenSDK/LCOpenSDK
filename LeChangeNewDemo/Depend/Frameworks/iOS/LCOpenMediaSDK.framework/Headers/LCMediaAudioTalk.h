@@ -12,11 +12,11 @@
 #import <Foundation/Foundation.h>
 #import "LCMediaTalkerListener.h"
 #import "LCMediaDefine.h"
-#import "LCMediaRestApi.h"
 #import "LCMediaStreamParam.h"
 #import "LCMediaSampleConfigParam.h"
 #import <LCOpenMediaSDK/LCMediaServerParameter.h>
 
+@class LCRtspTalkbackSource;
 @interface LCMediaAudioTalk: NSObject
 + (instancetype) shareInstance;
 - (instancetype) init __attribute__((unavailable("Disabled!Use +shareInstance instead.")));
@@ -68,15 +68,16 @@
  */
 - (NSInteger) startTalk:(NSString*)deviceSn isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts channelId:(NSInteger)channelId subType:(NSInteger)subType talkType:(NSString*)talkType deviceType:(NSString*)deviceType isOpt:(NSInteger) isOpt isReuse:(NSInteger)isReuse isTls:(BOOL)isTls AECtrlV2:(BOOL)AECtrlV2 ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isAssistInfo:(BOOL)isAssistInfo;
 
-- (NSInteger) startMediaTalk:(LCMediaTalkStreamParam*)param DeviceSn:(NSString*)deviceSn PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts channelId:(NSInteger)channelId subType:(NSInteger)subType talkType:(NSString*)talkType deviceType:(NSString*)deviceType isOpt:(NSInteger) isOpt isReuse:(NSInteger)isReuse isTls:(BOOL)isTls AECtrlV2:(BOOL)AECtrlV2 ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isAssistInfo:(BOOL)isAssistInfo;
+- (NSInteger) startMediaTalk:(LCMediaTalkStreamParam*)param DeviceSn:(NSString*)deviceSn PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts channelId:(NSInteger)channelId subType:(NSInteger)subType talkType:(NSString*)talkType deviceType:(NSString*)deviceType isOpt:(NSInteger) isOpt isReuse:(NSInteger)isReuse isTls:(BOOL)isTls AECtrlV2:(BOOL)AECtrlV2 ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isAssistInfo:(BOOL)isAssistInfo videoSampleCfg:(LCMediaVideoSampleConfigParam *)videoSampleCfg;
 
 /**
  *  复用handle方式拉流
  *
- *  @param handleKey   handleKey:deviceSN+channelID 即("4F0201CC+0")
+ *  @param talkSource  媒体参数
+ *  @param videoSampleCfg 视频采集配置
  *  @note   该接口只适合优化拉流设备(即:RTSV1)
  */
-- (NSInteger) startTalkByHandleKey:(NSString*)handleKey talkType:(NSString*)talkType videoSampleCfg:(LCMediaVideoSampleConfigParam * _Nullable)videoSampleCfg;
+- (NSInteger) startHandleTalkByTalkParam:(LCRtspTalkbackSource *)talkSource videoSampleCfg:(LCMediaVideoSampleConfigParam * _Nullable)videoSampleCfg;
 
 /**
  *  判断对应key的handle是否创建成功
@@ -191,6 +192,21 @@
 /// 可视对讲过程中，视频的开关功能
 /// - Parameter isEnable: true:重新打开当前视频数据的封装和发送; false:关闭当前可视对讲视频数据封装和发送
 - (BOOL)enableTalkVideo:(BOOL)isEnable;
+
+/// 当前是否是对讲状态
+-(BOOL)isTalkingState;
+
+/// 用来获取当前开启的对讲是否共享链路(仅当对讲中生效)
+-(BOOL)isShareLink;
+
+#pragma mark - 老接口，基线中间页对讲有直接调用，接口与媒体插件层调用接口分开，内部做聚合
+/**
+ *  复用handle方式拉流
+ *
+ *  @param handleKey   handleKey:deviceSN+channelID 即("4F0201CC+0")
+ *  @note   该接口只适合优化拉流设备(即:RTSV1)
+ */
+- (NSInteger) startTalkByHandleKey:(NSString*)handleKey talkType:(NSString*)talkType videoSampleCfg:(LCMediaVideoSampleConfigParam * _Nullable)videoSampleCfg;
 
 @end
 #endif //LCMedia_LCMedia_AudioTalk_h

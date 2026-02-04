@@ -59,17 +59,17 @@
 
 - (void)ptzControlWith:(NSString *)direction duration:(int)duration {
     // 非pass、iot设备不支持云台长连接接口
-    if (![[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"PaaS"]  || ([LCNewDeviceVideoManager shareInstance].currentDevice.productId != nil && [LCNewDeviceVideoManager shareInstance].currentDevice.productId.length > 0)) {
+//    if (![[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"PaaS"]  || ([LCNewDeviceVideoManager shareInstance].currentDevice.productId != nil && [LCNewDeviceVideoManager shareInstance].currentDevice.productId.length > 0)) {
         [LCDeviceHandleInterface controlMovePTZWithDevice:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId Channel:[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId Operation:direction Duration:duration success:^(NSString * _Nonnull picUrlString) {
         } failure:^(LCError * _Nonnull error) {
         }];
-    } else {
-        LCOpenSDK_PTZControllerInfo *PTZControllerInfo = [[LCOpenSDK_PTZControllerInfo alloc]init];
-        PTZControllerInfo.operation = direction;
-        PTZControllerInfo.duration = duration;
-        LCOpenSDK_DeviceOperateApi* api = [[LCOpenSDK_DeviceOperateApi alloc]init];
-        [api controlMovePTZ:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].displayChannelID PTZControllerInfo:PTZControllerInfo playToken:[LCNewDeviceVideoManager shareInstance].currentDevice.playToken];
-    }
+//    } else {
+//        LCOpenSDK_PTZControllerInfo *PTZControllerInfo = [[LCOpenSDK_PTZControllerInfo alloc]init];
+//        PTZControllerInfo.operation = direction;
+//        PTZControllerInfo.duration = duration;
+//        LCOpenSDK_DeviceOperateApi* api = [[LCOpenSDK_DeviceOperateApi alloc]init];
+//        [api controlMovePTZ:[LCApplicationDataManager token] deviceId:[LCNewDeviceVideoManager shareInstance].currentDevice.deviceId productId:[LCNewDeviceVideoManager shareInstance].currentDevice.productId channelId:[LCNewDeviceVideoManager shareInstance].displayChannelID PTZControllerInfo:PTZControllerInfo playToken:[LCNewDeviceVideoManager shareInstance].currentDevice.playToken];
+//    }
 }
 
 - (void)refreshMiddleControlItems {
@@ -531,8 +531,10 @@
         //切换数据源
         if (datatType == 0) {
             [weakself loadCloudVideotape];
-        } else {
+        } else if (datatType == 1){
             [weakself loadLocalVideotape];
+        } else if (datatType == 2) {
+            [weakself loadCloudPicturetape];
         }
     };
     videoHistoryView.historyClickBlock = ^(id _Nonnull userInfo, NSInteger index) {
@@ -582,7 +584,7 @@
             } else {
                 NSString *cloudVideoJson = [cloudVideoInfo transfromToJson];
                 if (cloudVideoJson != nil) {
-                    NSDictionary *userInfo = @{@"cloudVideoJson":cloudVideoJson};
+                    NSDictionary *userInfo = @{@"cloudVideoJson":cloudVideoJson, @"type": @(index)};
                     UIViewController *videotapePlayerVC = [LCRouter objectForURL:@"LCNewPlayBackRouter_VideotapePlayer" withUserInfo:userInfo];
                     if (videotapePlayerVC != nil) {
                         [weakself.liveContainer.navigationController pushViewController:videotapePlayerVC animated:YES];
@@ -599,6 +601,7 @@
                 if ([LCNewDeviceVideoManager shareInstance].isMulti) {
                     [transmitUserInfo setValue:[LCNewDeviceVideoManager shareInstance].displayChannelID forKey:@"selectedChannelId"];
                 }
+                [transmitUserInfo setValue:@(index) forKey:@"type"];
                 UIViewController *videotapePlayerVC = [LCRouter objectForURL:@"LCNewPlayBackRouter_VideotapePlayer" withUserInfo:transmitUserInfo];
                 if (videotapePlayerVC != nil) {
                     [weakself.liveContainer.navigationController pushViewController:videotapePlayerVC animated:YES];

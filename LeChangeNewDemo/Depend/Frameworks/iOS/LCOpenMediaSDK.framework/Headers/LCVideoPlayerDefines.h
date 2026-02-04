@@ -92,6 +92,7 @@ typedef NS_ENUM(NSInteger, LCVideoError) {
 #define MEDIA_COMPONENT_ERROR_CODE 100000
 #define MULTI_ERROR_CODE 600000
 #define MTSTOP2P_CODE    700000
+#define HTTP_ERROR_CODE  800000
 
 typedef NS_ENUM(NSInteger, LCVideoPlayError)
 {
@@ -156,6 +157,8 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorDhhttpMultiplayerLimit               = DHHTTP_ERROR_CODE + 27,   //多终端登录限流(废弃,播放库不会回调)
     LCVideoPlayErrorDhhttpSleepCount                     = DHHTTP_ERROR_CODE + 28,   //休眠倒计时
     LCVideoPlayErrorDhhttpDeviceHungUp                   = DHHTTP_ERROR_CODE + 29,   //呼叫对讲已被接听挂断
+    LCVideoPlayErrorDhhttpTalkTimeout                    = DHHTTP_ERROR_CODE + 30,
+    LCVideoPlayErrorDhhttpDeviceUpgrading                = DHHTTP_ERROR_CODE + 31,
     LCVideoPlayErrorDhhttpUnknown                        = DHHTTP_ERROR_CODE + 999,  //私有协议未知错误(媒体组件层定义)
     
     //HLS错误类型
@@ -339,7 +342,8 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorMultiSendDataTimeout = MULTI_ERROR_CODE + 10005,//210005    发送数据超时, 指长时间内数据无法发送出去导致断开
     LCVideoPlayErrorMultiStreamFail = MULTI_ERROR_CODE + 11000,//211000    码流异常
     LCVideoPlayErrorMultiEncrtpyFail = MULTI_ERROR_CODE + 11023,//211023    客户端或服务端码流加解密失败
-    LCVideoPlayErrorMTSToP2PSuccess       = MTSTOP2P_CODE + 101 //type 7, code 101
+    LCVideoPlayErrorMTSToP2PSuccess       = MTSTOP2P_CODE + 101, //type 7, code 101
+    LCVideoPlayErrorHTTPError = HTTP_ERROR_CODE //标准HTTP错误
 };
 
 #pragma mark - 获取登录句柄失败错误码
@@ -446,6 +450,7 @@ typedef NS_OPTIONS(NSUInteger, LCPlayerSupportGestureType) {
     LCPlayerSupportGestureTypeRightSwipe   = 1 << 4,   //右滑手势
     LCPlayerSupportGestureTypeUpSwipe      = 1 << 5,  //上滑手势
     LCPlayerSupportGestureTypeDownSwipe    = 1 << 6,  //下滑手势
+    LCPlayerSupportGestureTypeLongPress    = 1 << 7,  //长按手势
 };
 
 //解码方式
@@ -483,6 +488,15 @@ typedef NS_ENUM(NSInteger, LCCastQuadrant) {
     LCCastQuadrantRightDown
 };
 
+//双目小窗位置偏移枚举
+typedef NS_ENUM(NSInteger, LCMultiviewSubWindowOffset) {
+    LCMultiviewSubWindowOffsetTop = 0,
+    LCMultiviewSubWindowOffsetLeft,
+    LCMultiviewSubWindowOffsetBottom,
+    LCMultiviewSubWindowOffsetRight
+};
+
+
 //自动跟踪类型
 typedef NS_ENUM(NSInteger, LCMediaAutoTrackType) {
     LCMediaAutoTrackTypeAll = 0,
@@ -513,23 +527,26 @@ typedef NS_ENUM(NSInteger, AVAudioTYPE)
     AVAudioTypeOutOverrideNone,        // 外部控制IOS AVAudioSession输出到听筒
     AVAudioTypeOutOverrideSpeaker,     // 外部控制IOS AVAudioSession输出到扬声器
 };
-
+// 绑定设备类型
+typedef NS_ENUM(NSInteger, LCMediaBindDeviceType) {
+    LCMediaBindDeviceTypeMainSubDevice = 0, //主子设备:天地宽视,门铃基站...
+    LCMediaBindDeviceTypeBindDevice //绑定设备: iot类NVR
+};
 //降噪等级
-typedef NS_ENUM(NSInteger, LCPlayNoiseAbility) {
-    LCPlayNoiseAbilityClose = -1,
-    LCPlayNoiseAbilityNoise0 = 0,
-    LCPlayNoiseAbilityNoise1,
-    LCPlayNoiseAbilityNoise2,
-    LCPlayNoiseAbilityNoise3,
-    LCPlayNoiseAbilityNoise4
+typedef NS_ENUM(NSInteger, LCMediaPlayNoiseAbility) {
+    LCMediaPlayNoiseAbilityClose = -1, //关闭
+    LCMediaPlayNoiseAbility_0 = 0,
+    LCMediaPlayNoiseAbility_1 = 1,
+    LCMediaPlayNoiseAbility_2 = 2,
+    LCMediaPlayNoiseAbility_3 = 3,
+    LCMediaPlayNoiseAbility_4 = 4
 };
 
-//双目小窗位置偏移枚举
-typedef NS_ENUM(NSInteger, LCMultiviewSubWindowOffset) {
-    LCMultiviewSubWindowOffsetTop = 0,
-    LCMultiviewSubWindowOffsetLeft,
-    LCMultiviewSubWindowOffsetBottom,
-    LCMultiviewSubWindowOffsetRight
+
+//OpenMedia枚举定义
+typedef NS_ENUM(NSInteger, LCOpenMediaRecordType) {
+    LCOpenMediaRecordTypeSD = 0, //SD卡录像
+    LCOpenMediaRecordTypeNVR = 1 //NVR录像
 };
 
 

@@ -8,6 +8,31 @@
 
 @implementation LCAddDeviceInterface
 
++ (void)getProductModel:(NSString *)pid success:(void (^)(BOOL isSupportWeakBind, BOOL isSelfDiscover))success
+                      failure:(void (^)(LCError *error))failure {
+    [[LCNetworkRequestManager manager] lc_POST:@"/getProductModel" parameters:@{KEY_TOKEN:[LCApplicationDataManager managerToken], @"productId":pid} success:^(id  _Nonnull objc) {
+        NSString* bindType = objc[@"profile"][@"bindType"];
+        NSArray* cloudModels = objc[@"cloudModel"];
+        
+        BOOL isSupportWeakBind = [bindType isEqualToString:@"0"];
+        BOOL isSelfDiscover = NO;
+        for (NSString* ref in cloudModels) {
+            if ([ref isEqualToString:@"800500"]) {
+                isSelfDiscover = YES;
+                break;
+            }
+        }
+        if (success) {
+            success(isSupportWeakBind, isSelfDiscover);
+        }
+    } failure:^(LCError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
 + (void)checkDeviceBindOrNotWithDevice:(NSString *)deviceId success:(void (^)(LCCheckDeviceBindOrNotInfo *))success failure:(void (^)(LCError *_Nonnull))failure
 {
     [[LCNetworkRequestManager manager] lc_POST:@"/checkDeviceBindOrNot" parameters:@{ KEY_TOKEN: [LCApplicationDataManager managerToken], KEY_DEVICE_ID: deviceId } success:^(id _Nonnull objc) {

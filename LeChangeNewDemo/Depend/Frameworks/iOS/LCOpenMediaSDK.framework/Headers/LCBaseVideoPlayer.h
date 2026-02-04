@@ -7,12 +7,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <LCOpenMediaSDK/LCBaseVideoItem.h>
 #import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 //@class LCSDK_Player;
 @class LCMediaPlayer;
+@protocol LCMediaNetProtocol;
+
 @interface LCBaseVideoPlayer : NSObject
 
 #pragma mark - 类方法
@@ -24,9 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)LCMediaPlayer *player;
 
 @property(nonatomic, assign)LCPlayStatus playStatus;
+//0或1：不混流  2：两个通道混流  3：三个通道混流
+@property(nonatomic, assign)NSInteger mixStreamNum; //目数(混流使用)
+//混流方案：是否跳过获取拉流地址流程(默认不跳过)
+@property(nonatomic, assign)BOOL isSkipGetStreamUrl;
 
 //是否正在录制
-@property(nonatomic, assign)BOOL isRecording;
+@property(nonatomic, assign, readonly)BOOL isRecording;
 //音频是否开启
 @property(nonatomic, assign)BOOL isPlayingAudio;
 //设置是否支持调整窗口显示比例
@@ -34,7 +41,18 @@ NS_ASSUME_NONNULL_BEGIN
 //回调
 @property (nonatomic, strong) dispatch_queue_t callBackQueue;
 
+@property (nonatomic, strong) dispatch_queue_t logReportQueue;
+
+/// 是否在播放成功之后需要重置放大比例
+@property (nonatomic, assign)BOOL isNeedResetEZoom;
+
 #pragma mark - 实例方法
+
+-(instancetype)init;
+
+/// 初始化播放器
+-(void)initPlayer;
+
 /// 设置渲染View
 /// @param view 视频流渲染的view
 -(void)setSurfaceView:(UIView *)view;
@@ -107,6 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setVideoViewOffX:(CGFloat)x offY:(CGFloat)y;
 
+/// 结束电子放大移动
 - (void)doTranslateEnd;
 
 /// 获取句柄
@@ -178,6 +197,10 @@ NS_ASSUME_NONNULL_BEGIN
 * @return true-成功  false-失败
 */
 - (BOOL)setfishEyeEptzPos:(long)posX PosY:(long)posY;
+
+/// 拉流前统一配置(拉流前调用)
+/// - Parameter item: 媒体数据源
+-(void)configBeforePlay:(LCBaseVideoItem *)item;
 
 @end
 

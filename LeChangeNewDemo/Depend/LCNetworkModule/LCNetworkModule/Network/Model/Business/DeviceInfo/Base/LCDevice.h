@@ -876,19 +876,6 @@ typedef NS_ENUM(NSInteger, LCOnlineStatus) {
 
 @end
 
-
-@interface LCBindDeviceInfo: NSObject
-@property (nonatomic, copy) NSString *deviceId; /**< 必须 设备ID */
-@property (nonatomic, copy) NSString *code; /**< 可选 设备验证码，在设备能力集支持时填写 */
-@property (nonatomic, copy) NSString *deviceKey; /**< String 可选 从设备拿到的一串随机字符串（随机密码），用于后续平台对设备的认证,国内使用  */
-@property (nonatomic, copy) NSString *longitude; /**< 可选 经度，东经0~180度，西经-180~0度,转成double最多保留6位 */
-@property (nonatomic, copy) NSString *latitude; /**< String 可选 纬度，北纬0~90度, 南纬-90~0度，转成double最多保留6位 */
-@property (nonatomic, copy) NSString *deviceUsername; /**< String 可选 设备用户名（Base64(AES256加密)）,海外必须，国内设备有Auth能力集的带 */
-@property (nonatomic, copy) NSString *devicePassword; /**< String 可选 设备密码（Base64(AES256加密)）,海外必须，国内设备有Auth能力集的带*/
-@property (nonatomic, copy) NSString *imeiCode;     /**< String 可选 NB*/
-@end
-
-
 @interface LCBindDeviceSuccess: NSObject
 @property (nonatomic, copy) NSString *deviceName; /**< 可选，返回的设备名称 */
 @property (nonatomic, copy) NSString *bindStatus; /**< 可选，绑定状态，bindByMe、bindByOther */

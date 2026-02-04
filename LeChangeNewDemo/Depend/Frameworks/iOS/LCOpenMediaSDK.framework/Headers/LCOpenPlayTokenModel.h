@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LCOpenBindDeviceInfo.h"
 
 @class LCOpenStreamInfo;
 
@@ -68,6 +69,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString  *streamAddr;
 // 设备加密模式：0-设备默认加密 1-用户自定义加密
 @property (nonatomic, assign) NSInteger encryptMode;
+// tls开关
+@property (nonatomic, assign) BOOL tlsEnable;
+
+// 新版NVR使用，NVR加密方式
+@property (nonatomic, copy) NSString *nvrEncrypt;
+// 新版NVR使用，NVR码流类型
+@property (nonatomic, copy) NSString *nvrType;
+// 若设备接入新版本NVR，响应该NVR信息
+@property (nonatomic, strong) LCOpenBindDeviceInfo *nvrDeviceInfo;
+//（新版NVR使用）NVR/IPC 表示实时预览走的链路
+@property (nonatomic, copy) NSString *realLink;
+//（新版NVR使用）NVR/IPC 表示语音对讲走的链路
+@property (nonatomic, copy) NSString *talkLink;
+//（新版NVR使用）NVR/IPC 表示云台控制走的链路
+@property (nonatomic, copy) NSString *ptzLink;
 
 //初始化函数
 -(instancetype)initWithPlayToken:(NSString *)playToken playTokenKey:(NSString *)playTokenKey deviceId:(NSString *)deviceId channelId:(NSInteger)channelId productId:(nullable NSString *)productId;
@@ -96,6 +112,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// easy4ip设备
 -(BOOL)isEasy4ipPlatform;
+
+/// 实时是否支持走NVR拉流
+-(BOOL)isSupportNVRRealStream;
+
+/// 对讲是否支持走NVR拉流
+-(BOOL)isSupportNVRTalkStream;
+
 
 @end
 

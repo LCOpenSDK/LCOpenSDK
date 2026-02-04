@@ -164,6 +164,7 @@ typedef NS_ENUM(NSUInteger, OC_PROTO_TYPE)
     OC_RESULT_PROTO_TYPE_DHHTTP,    //HTTP优化拉流业务(包括大华Meeting)
     OC_RESULT_PROTO_TYPE_MULTI,     //并行拉流业务
     OC_RESULT_PROTO_TYPE_MTSToP2P,  //MTS切P2P
+    OC_RESULT_PROTO_TYPE_HTTP,      //标准HTTP协议
     OC_RESULT_PROTO_TYPE_REST = 99, //REST业务(涉及以上RTSP、HLS、SIP业务)
 };
 
@@ -223,10 +224,22 @@ typedef NS_ENUM(NSInteger, OC_DHHTTP_STATE)
     
     OC_STATE_DHHTTP_REQ_TIMEOUT_RETRY     =    408100,
     OC_STATE_DHHTTP_SOCK_TIMEOUT        =    504015,
+    OC_STATE_DHHTTP_DEVICE_UPGRADING      = 550037,   //设备升级中
     OC_STATE_DHHTTP_AH_DECRYPT_FAIL          =    130000,  //安恒解密失败
     OC_STATE_DHHTTP_STREAM_MODIFY_ERROR      =    602017,   //码流加解密失败
     OC_STATE_DHHTTP_LIVE_FINISH              =    16390,    //live结束消息
     OC_STATE_DHHTTP_LIVE_COUNT_DOWN          =    16392,    //休眠倒计时通知消息code
+};
+
+typedef NS_ENUM(NSInteger, OC_HTTP_STATE)
+{
+    OC_HTTP_STATE_DOWNLOAD_BEGIN    = 1 * 1000,
+    OC_HTTP_STATE_DOWNLOAD_END     = 2 * 1000,
+    OC_HTTP_STATE_PAUSE_DONE      = 3 * 1000,
+    OC_HTTP_STATE_RESUME_DONE      = 4 * 1000,
+    OC_HTTP_STATE_SEEK_SUCCESS     = 5 * 1000,
+    OC_HTTP_STATE_SEEK_FAIL       = 6 * 1000,
+    OC_HTTP_STATE_REQUEST_FAIL     = 7 * 1000,
 };
 
 #pragma mark -  when type == OC_RESULT_PROTO_TYPE_HLS, code enum

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LCDhLiveVideoItem : LCBaseVideoItem
+@interface LCDhLiveVideoItem : LCMediaBaseVideoItem
 
 // 码流类型
 @property(nonatomic, assign)LCVideoStreamType streamType;

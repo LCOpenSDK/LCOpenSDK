@@ -6,6 +6,7 @@
 //
 
 #import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
+#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deviceVideoPlayerRecordStart:(LCDeviceVideoPlayer *)videoPlayer;
 
-- (void)deviceVideoPlayerRecordStoped:(LCDeviceVideoPlayer *)videoPlayer;
+- (void)deviceVideoPlayerRecordStoped:(LCDeviceVideoPlayer *)videoPlayer fileInfo:(LCMediaRecordFileInfo *)fileInfo;
+
+- (void)deviceVideoPlayerRecordFailure:(LCDeviceVideoPlayer *)videoPlayer errorCode:(NSInteger)error;
 
 - (void)deviceVideoPlayer:(LCDeviceVideoPlayer *)videoPlayer speedChanged:(CGFloat)changeSpeed;
 
@@ -71,6 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deviceVideoPlayerBeginGetPasswordBack:(LCDeviceVideoPlayer *)videoPlayer;
 //找回密码成功
 - (void)deviceVideoPlayer:(LCDeviceVideoPlayer *)videoPlayer getPasswordSuccess:(NSString *)password;
+//跨片段seek成功回调
+- (void)deviceVideoPlayerOnSeekSuccess:(LCDeviceVideoPlayer *)videoPlayer;
 
 @optional
 
@@ -86,11 +91,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)playWithItem:(LCBaseVideoItem *)item;
 
+- (void)seekWithOffsetTime:(NSInteger)offsetTime;
+
+/// 跨片段seek接口
+/// - Parameters:
+///   - startTime: seek点时间(单位:ms)
+///   - endTime: 结束时间(单位:ms)
+-(BOOL)corssSeek:(NSInteger)startTime endTime:(NSInteger)endTime prepareHandle:(void(^)(void))prepareHandle;
+
 /// 暂停
 - (void)pause;
 
 /// 继续播放
 - (void)resume;
+
+/// 即将休眠时继续播放
+- (void)continuePlay;
 
 - (void)seekWithOffsetTime:(NSInteger)offsetTime;
 

@@ -16,7 +16,10 @@
 @interface LCOpenSDK_LoginManager : NSObject
 
 + (LCOpenSDK_LoginManager * _Nonnull) shareMyInstance;
-
+/// P2P pre hole interface    zh:p2p预打洞接口
+/// @param token account token
+/// @param devices
+- (NSInteger)addDevices: (NSDictionary<NSString *, NSArray <LCOpenSDK_P2PDeviceInfo *>*>*_Nonnull)data;
 /// P2P pre hole interface    zh:p2p预打洞接口
 /// @param token account token
 /// @param devices

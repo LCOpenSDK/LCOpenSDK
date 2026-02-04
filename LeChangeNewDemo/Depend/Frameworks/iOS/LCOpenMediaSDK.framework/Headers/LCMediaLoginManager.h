@@ -356,6 +356,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param pids 产品id
 -(void)configCustomPlayPids:(NSString *)pids;
 
+/// 配置云录像播放优化类型
+/// @param type “cloudplay_conntype”，0 - 短连接，1-长连接，2-quic
+- (void)configCloudplayConntype:(NSInteger)type;
+
 @end
 
 NS_ASSUME_NONNULL_END
