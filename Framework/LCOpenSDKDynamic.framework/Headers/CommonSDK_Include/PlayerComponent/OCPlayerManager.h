@@ -436,7 +436,7 @@ typedef NS_ENUM(NSInteger, FISHEYE_CALIBRATMODE)
  * @param width  [in] 窗口改变后的宽度
  * @param height [in] 窗口改变后的高度
  */
-- (void) onViewSizeChange:(int)width Height:(int)height;
+- (void) onViewSizeChange:(float)width Height:(float)height;
 
 /**
  * 关闭/打开窗口渲染
@@ -507,7 +507,7 @@ typedef NS_ENUM(NSInteger, FISHEYE_CALIBRATMODE)
  * @param width         [in]  窗口改变后的宽度
  * @param height       [in]  窗口改变后的高度
  */
-- (void) onChildViewSizeChange:(int) width Height:(int) height;
+- (void) onChildViewSizeChange:(float) width Height:(float) height;
 
 - (void) setPickRegion:(int)centerX CenterY:(int)centerY XSize:(int)xSize YSize:(int)ySize;
 
@@ -563,5 +563,10 @@ typedef NS_ENUM(NSInteger, LCPlayConfigOption)
 * @return true-成功  false-失败
 */
 - (bool)corssfileSeekPlay:(NSString *)starttime endtime:(NSString*)endtime;
+
+- (void)showThumbFrameBegin:(UIView *)view Width:(int)width Height:(int)height PlayRate:(int)playRate;
+- (bool)showThumbFrameByTime:(long)frameTime;
+- (bool)showThumbFrameEnd;
+- (void)getThumbFrameDuation:(long*)start End:(long*)end;
 
 @end

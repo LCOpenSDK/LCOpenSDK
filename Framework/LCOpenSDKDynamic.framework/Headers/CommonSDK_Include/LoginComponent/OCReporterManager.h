@@ -26,7 +26,7 @@
  *
  *  @return void
  */
-- (void)initReporterSvr:(NSString*)svrHost SvrPort:(ushort)svrPort ProtocolType:(Dahua::LCCommon::PROTOCOL_TYPE)protocolType SignalTimeout:(NSInteger)signalTimeout;
+- (void)initReporterSvr:(NSString*)svrHost SvrPort:(ushort)svrPort ProtocolType:(Basic::LCCommon::PROTOCOL_TYPE)protocolType SignalTimeout:(NSInteger)signalTimeout;
 
 - (void)uninit;
 
@@ -59,7 +59,7 @@
  *
  *  @return 拉流方式，枚举体，参考OC_STREAM_MODE定义
  */
-- (Dahua::LCCommon::STREAM_MODE)getStreamMode:(NSString*)deviceId ChannelId:(NSInteger)channelId StreamId:(NSInteger)streamId;
+- (Basic::LCCommon::STREAM_MODE)getStreamMode:(NSString*)deviceId ChannelId:(NSInteger)channelId StreamId:(NSInteger)streamId;
 
 /**
  *  拉流实时上报
@@ -74,7 +74,7 @@
  *
  *  @note 该方法在整个拉流过程中每间隔指定时间调用一次
  */
-- (BOOL)reportPullStream:(NSString*)clientId DeviceId:(NSString*)deviceId ChannelId:(NSInteger)channelId StreamId:(NSInteger)streamId StreamMode:(Dahua::LCCommon::STREAM_MODE)streamMode;
+- (BOOL)reportPullStream:(NSString*)clientId DeviceId:(NSString*)deviceId ChannelId:(NSInteger)channelId StreamId:(NSInteger)streamId StreamMode:(Basic::LCCommon::STREAM_MODE)streamMode;
 
 /**
  *  停止拉流实时上报
@@ -103,7 +103,7 @@
  *
  *  @return NO/YES 失败/成功
  */
-- (BOOL)reportP2PTraversalInfo:(NSString*)deviceId DeviceNATIp:(NSString*)deviceNATIp DeviceNATPort:(ushort)deviceNATPort ClientNATIp:(NSString*)clientNATIp ClientNATPort:(ushort)clientNATPort TraversalInfo:(Dahua::LCCommon::TRAVERSAL_INFO)traversalInfo DeviceType:(Dahua::LCCommon::DH_DEVICE_TYPE)deviceType;
+- (BOOL)reportP2PTraversalInfo:(NSString*)deviceId DeviceNATIp:(NSString*)deviceNATIp DeviceNATPort:(ushort)deviceNATPort ClientNATIp:(NSString*)clientNATIp ClientNATPort:(ushort)clientNATPort TraversalInfo:(Basic::LCCommon::TRAVERSAL_INFO)traversalInfo DeviceType:(Basic::LCCommon::DH_DEVICE_TYPE)deviceType;
 
 
 @end

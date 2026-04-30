@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace Dahua {
+namespace Basic {
 namespace LCCommon {
 
 class ClientInterface

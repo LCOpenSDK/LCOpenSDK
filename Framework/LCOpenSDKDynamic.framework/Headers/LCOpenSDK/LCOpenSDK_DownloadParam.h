@@ -36,6 +36,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float speed;
 @end
 
+@interface LCOpenSDK_CloudExtraInfo : NSObject
+
+@property(nonatomic, strong)NSArray<NSString *> *pswArray; //密码组
+
+@property(nonatomic, assign)NSInteger businessType; //业务类型: 1-降本影集
+
+@property(nonatomic, assign)BOOL preciseSeek; //YES：精准seek  NO：非精准seek（与以前效果一致）;默认NO
+
+//下载优化参数
+@property(nonatomic, copy)NSString *uid;
+@property(nonatomic, copy)NSString *ak;
+@property(nonatomic, copy)NSString *expireTime;
+@property(nonatomic, copy)NSString *fileToken;
+@property(nonatomic, copy)NSString *m3uPath;
+@property(nonatomic, copy)NSString *regionId;
+@property(nonatomic, copy)NSString *streamAddr;  //下载文件的地址
+
+-(NSString *)toJsonString;
+@end
+
 /// cloud video download model    zh:录像下载模型
 @interface LCOpenSDK_DownloadByRecordIdParam : NSObject <LCOpenSDK_DownloadParam, NSCopying>
 /// cloud video name   zh:云录像使用
@@ -46,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,   copy) NSString *fileId;
 /// device video name   zh:帧率
 @property(nonatomic, assign)NSInteger frameRate;
+
+@property(nonatomic, strong)LCOpenSDK_CloudExtraInfo *extraInfo;
 @end
 
 /// device video download model by time    zh:设备录像按时间下载模型

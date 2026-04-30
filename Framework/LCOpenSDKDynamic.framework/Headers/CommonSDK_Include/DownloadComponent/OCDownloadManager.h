@@ -261,4 +261,10 @@
                      HttpUrl:(NSString*)httpUrl
                   IsUseCache:(BOOL)isUseCache;
 
+/**
+ * 标准HTTP协议下载
+ * @param index   [in]任务索引
+ */
+- (int) getQutaExceedTime:(NSInteger)index;
+
 @end

@@ -1,13 +1,13 @@
-#import <Foundation/Foundation.h>
+﻿#import <Foundation/Foundation.h>
 
 
 @protocol IOCDevDirectConnListener <NSObject>
-//DevUid = sn+pid
--(void) onError:(NSString*)uuid DevUid : (int) err;
+//uuid = sn+pid
+-(void) onError:(NSString*)uuid Err:(int) err;
 	
--(int) reportEvent:(NSString*)uuid DevUid : (NSString*)eventref EventData: (NSString*)data;
+-(int) reportEvent:(NSString*)uuid EventRef:(NSString*)eventref EventData:(NSString*)data;
 	
--(int) onNotifyProperty:(NSString*)uuid DevUid : (NSString*) JsonProperty;
+-(int) onNotifyProperty:(NSString*)uuid  Property:(NSString*)JsonProperty;
 
 @end
 
@@ -32,9 +32,9 @@
 -(int) destroyDirectDev:(long)devHandle;
 
 /// @brief 设置监听器
-/// @param devHandle 设备句柄
+
 /// @param listener 监听器
--(void) setlistener:Listener:(id<IOCDevDirectConnListener>) listener;
+-(void) setlistener:(id<IOCDevDirectConnListener>) listener;
      
 /// @brief 登录设备
 /// @param devHandle 设备句柄

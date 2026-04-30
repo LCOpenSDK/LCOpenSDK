@@ -43,5 +43,13 @@
  */	
 -(void) Stop;
 
+ /**
+ * 设置终端标志
+ *
+ * @param  terminalId [in] terminalId终端id标志
+ * 成功 true 失败 false
+ */	
+-(bool) SetTerminalId:(NSString*) terminalId;
+
 @end
 
