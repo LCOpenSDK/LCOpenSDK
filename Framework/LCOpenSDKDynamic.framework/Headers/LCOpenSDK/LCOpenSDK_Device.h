@@ -37,6 +37,8 @@
 
 @property (nonatomic, copy) NSString *productId;     /** iot设备产品ID，iot设备必传 */
 @property (nonatomic, copy) NSString *wssekey;     /** 设备密码摘要盐值P2P */
+/** 设备接入类型，playToken 下发；GB28181 表示国标设备 */
+@property (nonatomic, copy) NSString *accessType;
 
 @end
 

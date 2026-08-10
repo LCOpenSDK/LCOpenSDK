@@ -160,6 +160,32 @@
                 IsUseCache:(BOOL)isUseCache
                   FileID:(NSString *)fileID;
 				  
+/**
+ * [AIHUB需求新增]从设备下载图片帧，支持url中指定文件名方式、请求头文件列表方式
+ * @param index       int      任务编号
+ * @param httpUrl     string   下载地址：首次调用须传有效url；二次追加下载时传空串
+ * @param quicUrl     string   Quic下载地址（保留用，暂传空串）
+ * @param username    string   设备账户名
+ * @param psw         string   设备密码
+ * @param deviceSn    string   设备序列号
+ * @param encryptMode int      加密模式
+ * @param decryptkey  string   解密密钥
+ * @param isTls       bool     是否使用TLS
+ * @param speed       float    下载速度
+ * @param fileList    string   文件列表，json格式：例 { "pic_id":[10001,10002,...], "face_id":[20001,20002,...], "body_id":[30001,30002,...] }
+*/
+- (bool) DownLoadDevicePics:(NSInteger)index
+                  HttpUrl:(NSString *)httpUrl
+                  QuicUrl:(NSString *)quicUrl
+                  UserName:(NSString *)username
+                  PassWord:(NSString *)psw
+                  DeviceSn:(NSString *)deviceSn
+               EncryptMode:(NSInteger)encryptMode
+                EncryptKey:(NSString *)decryptkey
+                     IsTls:(BOOL)isTls
+                     Speed:(float)speed
+                  FileList:(NSString *)fileList;
+
 /** 取消下载 */
 - (bool) stopDownload:(NSInteger)index;
 

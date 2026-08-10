@@ -99,4 +99,20 @@
  */
 - (void)onFishEyeInfo:(NSString*)context Info:(NSString*)info;
 
+/**
+ * 播放通用格式json信息回调
+ * @param context 
+ * @param jsonStr json格式字符串
+ * @note jsonStr format:
+ *{
+ *  "type": PlayInfoType_FileInfo,           // 类型：PlayInfoType_FileInfo (0): 录像文件信息
+ *  "data": {
+ *    "sn": "xxx",                           // 设备序列号 [string]
+ *    "channel": 0,                          // 通道号 [int] 0/1/2..
+ *    "start_time": "yyyyMMddHHmmss",        // 开始时间 yyyyMMddHHmmss
+ *    "end_time": "yyyyMMddHHmmss"           // 结束时间 yyyyMMddHHmmss
+ *  }
+ *}
+ */
+- (void)onPlayInfo:(NSString*)context JsonStr:(NSString*)jsonStr;
 @end

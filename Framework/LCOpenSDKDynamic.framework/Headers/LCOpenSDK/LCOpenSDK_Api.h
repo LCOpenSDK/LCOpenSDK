@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, ProcotolType) {
 /// Initialize LCOpenSDK_Api         zh:初始化LCOpenSDK_Api
 /// @param apiParam parameter model   zh:参数模型
 /// @return LCOpenSDK_ Api pointer
+/// @note When token is provided, getServerConfig runs synchronously (up to ~10s). Do not call on the main thread.
 - (id _Nonnull)initOpenApi:(LCOpenSDK_ApiParam *_Nonnull)apiParam;
 
 /// De initialize LCOpenSDK_Api Interface   zh:反初始化LCOpenSDK_Api接口

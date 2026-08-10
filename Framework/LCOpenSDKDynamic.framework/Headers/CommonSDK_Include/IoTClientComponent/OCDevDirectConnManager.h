@@ -22,7 +22,9 @@
 ///     "sn": "xxxxxx",          // 设备序列号，大写字母加数字组合，唯一，不可重复
 ///     "devIP": "xxxxxx",       // 设备ip
 ///     "devPort": 554,          // 设备端口
-///     "tls":false              // 是否使用tls，无该字符时，则sdk内部自动尝试
+///     "tls":false,             // 是否使用tls，无该字符时，则sdk内部自动尝试
+///     "encType":1              // 加密类型，不填默认0，支持0和1 0-AES256-CBC 1-AES256-GCM, 
+///                              // 根据设备发现上报的encType字段，或者loginDeviceWithRsp\getDeviceInfo返回的abitity字段 bit1 == 1时设置 
 /// }
 /// @return 设备句柄
 -(long) createDirectDev:(NSString*)jsonStr;
@@ -38,12 +40,23 @@
      
 /// @brief 登录设备
 /// @param devHandle 设备句柄
-/// @param username 设备用户名
+/// @param username 设备用户名（设备若无账号体系，用户名和密码非空即可）
 /// @param password 设备密码
 /// @param timeout_ms 超时时间
 /// @return 0 成功;其他失败，错误码见'DevDirectConnErrorCode'
- 
--(int) loginDevice:(long)devHandle userName:(NSString *)username passWord:(NSString *) password timeOut:(int)timeout_ms;
+-(int) loginDevice:(long)devHandle userName:(NSString *)username passWord:(NSString *)password timeOut:(int)timeout_ms;
+
+/// @brief 登录设备
+/// @param devHandle 设备句柄
+/// @param username 设备用户名（设备若无账号体系，用户名和密码非空即可）
+/// @param password 设备密码
+/// @param rspOut 写入登录应答 JSON 字符串, body中ability按位取值
+/// |bit0==1|采用了密码单独加密方式(密码采用 AES256-CBC-PKCS7Padding)
+/// |bit1==1|confRegServer配网时需要去除IMOU敏感信息
+/// |bit2==1|使用AES256-GCM加密算法
+/// @param timeout_ms 超时时间
+/// @return 0 成功;其他失败，错误码见'DevDirectConnErrorCode'
+-(int) loginDeviceWithRsp:(long)devHandle userName:(NSString *)username passWord:(NSString *)password rspBody:(NSString **)rspBody timeOut:(int)timeout_ms;
 
 /// @brief 登出设备，断开连接
 /// @param devHandle 设备句柄
@@ -55,6 +68,10 @@
 /// {
 ///     "addr": "xxxxxx",         //云平台注册地址, 如:"iotaccess.easy4ipcloud.com"
 ///     "port":  xxxxxx,          //云平台注册端口, 如:10001
+///     "regImouAddr": "xxxxx",   //imou的单向认证的注册地址(废弃，安全要求字段不允许存在imou) 
+///     "regImouPorts" : {},      //imou的单向认证的注册端口列表(废弃，安全要求字段不允许存在imou) 
+///     "regOneWayAddr" : "xxxxx",//imou的单向认证的注册地址 getDeviceInfo返回的ability bit1 == 1时 使用该字段，废除regImouAddr和regImouPorts
+///     "regOneWayPorts" : {},    //imou的单向认证的注册端口列表
 /// }
 /// @param timeout_ms 超时时间
 /// @return 0成功; 其他失败，错误码见'DevDirectConnErrorCode'
@@ -103,6 +120,9 @@
 ///     "pid": "xxxxxx",         //产品型号: 在物联云平台上注册的型号
 ///     "sn": "xxxxxx",          //设备序列号，大写字母加数字组合，唯一，不可重复
 ///     "sc": "xxxxxx",          //信任标识/SC码
+///     "ability":1,             //|bit0==1|设备具备单独对密码解密的能力(密码采用 AES256-CBC-PKCS7Padding)
+///                              //|bit1==1|配置注册地址时去除imou字段
+///							     //|bit2==1|采用AES256-GCM算法
 /// }
 -(NSString *) getDeviceInfo:(long) devHandle timeOut:(int)timeout_ms;
 

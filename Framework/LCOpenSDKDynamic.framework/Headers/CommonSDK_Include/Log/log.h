@@ -14,7 +14,7 @@
 
 #include <string>
 
-#if defined(ANDROID) || defined(__android__) || defined(WIN32) || defined(WIN64)
+#if defined(ANDROID) || defined(__android__) || defined(WIN32) || defined(WIN64) || defined(__harmony__) || defined(__HARMONY__)
 typedef int ImouLogLevel;
 #else
 typedef enum _LogLevel
@@ -31,7 +31,7 @@ typedef LogLevel ImouLogLevel;
 #endif
 
 
-#if defined(ANDROID) || defined(__android__)
+#if defined(ANDROID) || defined(__android__) || defined(__harmony__) || defined(__HARMONY__)
 #define LCLOG_API __attribute__((visibility("default")))
 #else
 #define LCLOG_API
@@ -72,7 +72,7 @@ LCLOG_API void setExtendLogLevel(ImouLogLevel level);
 ///\param[in]       buffSize      缓存长度
 LCLOG_API void getUtilsComSdkVersion(char *buff, int buffSize);
 
-#if defined(ANDROID) || defined(__android__) || defined(WIN32) || defined(WIN64)
+#if defined(ANDROID) || defined(__android__) || defined(WIN32) || defined(WIN64) || defined(__harmony__) || defined(__HARMONY__)
 #else
 LCLOG_API void setMobileLogLevel(int level, const char *tag);
 LCLOG_API void setExtendLogLevel(int level);

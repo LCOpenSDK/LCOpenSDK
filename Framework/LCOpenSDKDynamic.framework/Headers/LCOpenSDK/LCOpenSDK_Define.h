@@ -309,4 +309,31 @@ typedef NS_ENUM(NSInteger, EncryptMode)
     ENCRYPT_USER_DEFINE     // 用户自定义
 };
 
+#pragma mark - 码流加密类型
+/** 码流加密类型，与 isEncrypt / streamInfo.encrypt / transferStream.encrypt 对齐（按能力集判断，不取 playToken 平台字段） */
+typedef NS_ENUM(NSInteger, LCOpenSDKStreamEncryptType) {
+    LCOpenSDKStreamEncryptNone = 0,       // 不加密
+    LCOpenSDKStreamEncryptDefault = 1,     // 默认加密/自定义
+    LCOpenSDKStreamEncryptPrivate = 2,     // 私有协议扩展头加密（RTSV/PBSV/TSV）
+    LCOpenSDKStreamEncryptTCM = 3,     // TCM三码合一加密
+    LCOpenSDKStreamEncryptTCMChipNew = 5,    // 新芯片码流加密
+};
+
+/** 能力集：新芯片设备，isEncrypt / streamInfo.encrypt 取 LCOpenSDKStreamEncryptTCMChipNew */
+#define kLCOpenSDKAbilityStdNewChip @"std_newChip"
+
+/** playToken.accessType：国标设备标识 */
+#define kLCOpenSDKAccessTypeGB28181 @"GB28181"
+
+/** 私有协议拉流类型字面量，用于 streamInfo.type */
+#define kLCOpenSDKStreamTypeRTSV1 @"RTSV1"
+#define kLCOpenSDKStreamTypePBSV1 @"PBSV1"
+
+/** 拉流场景，用于按能力集解析 streamInfo.type / encrypt */
+typedef NS_ENUM(NSInteger, LCOpenSDKStreamScene) {
+    LCOpenSDKStreamSceneLive = 0,       // 实时预览
+    LCOpenSDKStreamSceneTalk,           // 对讲
+    LCOpenSDKStreamScenePlayback,       // 本地录像播放/下载
+};
+
 #endif /* LCOpenSDK_Define_h */

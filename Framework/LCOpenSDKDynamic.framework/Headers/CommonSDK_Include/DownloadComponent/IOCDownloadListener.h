@@ -16,9 +16,16 @@
 - (void) onDownloadState:(NSInteger)index code:(NSString *)code type:(NSInteger)type;
 
 /**
- * 图片数据回调：注意一次回调只会返回一张图片
- * info: json格式 
-*/
+ * 图片帧数据回调：一次回调只返回一张图片
+ * index 下载任务的编号
+ * data  图片数据
+ * info  json格式的图片信息：
+ *      {"frameTime":"20240129T120807", "frameID":"xxx", "frameType":123}  
+ *      frameTime - 帧时间  
+ *      frameID   - 图片ID
+ *      frameType - 图片类型
+ *      
+ */
 - (void) onRecvImageFrame:(NSInteger)index Data:(NSData*)data Info:(NSString*)info;
 
 @end

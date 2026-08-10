@@ -60,6 +60,15 @@ NS_ASSUME_NONNULL_BEGIN
                 success:(void(^)(NSString *playTokenKey))success
                 failure:(void(^)(NSString *errorCode))failure;
 
+/// 获取playToken解析秘钥V2
+/// - Parameters:
+///   - token: 管理员token
+///   - success: 成功回调
+///   - failure: 失败回调
+- (void)getPlayTokenKeyV2:(NSString *)token
+                success:(void(^)(NSString *playTokenKey, NSString *playTokenKeyV2))success
+                  failure:(void(^)(NSString *errorCode))failure;
+
 
 /// 获取云录像拉流地址
 /// - Parameters:

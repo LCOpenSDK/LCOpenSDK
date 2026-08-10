@@ -26,12 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) bool    timeLimit;
 // 请求拉流分类，real：实时预览；playbackByTime：按时间回放；playbackByRecordId：按文件id回放；talk：对讲
 @property (nonatomic, copy) NSString  *requestType;
-/* 所要请求码流的加密类型
- * [TCM] 取值:TCM 该字段存在时，encrypt加密方式默认3:AES256加密，且优先级最高
- * [type] 取值:PBSV1/PBSV2 该字段存在时，encrypt加密方式默认2:0x95扩展头加密
- * [encrypt] 取值:encrypt 该字段存在时，encrypt加密方式默认1:I帧全加密，该字段不存在时，表明普通码流不加密0 */
+/* 所要请求码流的加密类型（按能力集解析，不取 playToken 平台字段）
+ * HSEncrypt → 1；RTSV/PBSV/TSV 私有协议 → 2；TCM → 3；std_newChip → 5；国标 GB28181 → 0
+ * transferStream 新加密通过 encrypt 入参传 5，不再在 appendUrl 追加 /encrypt */
 @property (nonatomic, copy) NSString  *encrypt;
-// RTSV1:支持私有协议拉流,RTSP:RTSP拉流 参数空默认为RTSP拉流
+// RTSV1:支持私有协议拉流；PBSV1:私有协议回放；参数空默认为 RTSP。国标设备实时/对讲固定 RTSV1，录像固定 PBSV1
 @property (nonatomic, copy) NSString  *type;
 // 回放开始时间，requestType为playbackByTime时有值返回，其他为空字符串
 @property (nonatomic, copy) NSString  *startTime;

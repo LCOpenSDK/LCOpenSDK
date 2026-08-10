@@ -69,4 +69,9 @@
 /// @return YES succeeded,  NO failed
 - (BOOL)stopDownload:(NSInteger)index;
 
+/// Finish downloading    zh:完成下载（主动结束下载并触发下载结束回调）
+/// @param index download index value    zh:下载索引值
+/// @return YES succeeded,  NO failed
+- (BOOL)finishDownload:(NSInteger)index;
+
 @end

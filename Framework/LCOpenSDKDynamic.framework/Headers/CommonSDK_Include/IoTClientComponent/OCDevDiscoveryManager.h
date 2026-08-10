@@ -3,11 +3,11 @@
 
 @protocol IOCDirectDevDiscoveryListener <NSObject>
 
--(bool) enableDahuaSearch;
+-(bool) enableThirdPartySearch;
 	
 -(void) onIoTDev:(NSString*)JsonDevinfo;
 	
--(void) onDahuaDev:(NSString*)JsonDevinfo;
+-(void) onThirdPartyDev:(NSString*)JsonDevinfo;
 
 -(void) onError:(int) err;
 

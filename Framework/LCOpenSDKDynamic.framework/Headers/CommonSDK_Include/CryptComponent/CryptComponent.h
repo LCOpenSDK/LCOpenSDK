@@ -31,9 +31,9 @@ typedef NS_ENUM(NSInteger, DECRYPT_RESULT)
 
 typedef NS_ENUM(NSInteger, RULE_VERSION)
 {
-    OC_RULE_EASY4IP = 0,        //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))+"EASY4IP"), 取前16位
-    OC_RULE_LECHANGE,           //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))), 取前16位
-    OC_RULE_DAHUAPASS,          //Base64(MD5_UPPER("HS:"+MD5_UPPER(keyseed))), 取前16位
+    OC_RULE_IMS = 0,        //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))+"EASY4IP"), 取前16位
+    OC_RULE_LC,             //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))), 取前16位
+    OC_RULE_IMSPASS,        //Base64(MD5_UPPER("HS:"+MD5_UPPER(keyseed))), 取前16位
 };
 
 @interface CryptComponent : NSObject
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, RULE_VERSION)
 /**
  使用key加密数据
 
- @param in 待加密数据
+ @param in 待加密数据, 包含帧头和帧尾
  @param key 秘钥
  @param encryptPos 需要加密的数据起始点
  @param encryptLen 需要加密的数据长度
@@ -53,6 +53,22 @@ typedef NS_ENUM(NSInteger, RULE_VERSION)
  @return 加密结果(see ENCRYPT_RESULT)
  */
 - (ENCRYPT_RESULT)encryptData:(NSData*)in key:(NSString*)key encryptPos:(NSUInteger)encryptPos encryptLen:(NSUInteger)encryptLen out:(NSData**)out;
+
+
+/**
+ 使用key加密数据
+
+ @param in 待加密数据,不包含帧头和帧尾
+ @param inLen 待加密数据长度
+ @param x95EncryptKey 0x95加密密钥, 0x95时输入, 0xB5, 0xC5时传NULL
+ @param x95KeyLen 0x95加密密钥长度, 0x95时输入, 0xB5, 0xC5时传0
+ @param did 设备序列号, 0xB5, 0xC5时输入, 0x95时传NULL
+ @param devPwd 设备密码, 0xB5, 0xC5时输入, 0x95时传0
+ @param encryptType 加密类型, 见EncryptType枚举, 0x95时为1, 0xB5时为3, 0xC5时为4
+ @param out 加密后输出数据, 包含帧头和帧尾
+ @return 加密结果(see ENCRYPT_RESULT)
+ */
+- (ENCRYPT_RESULT)encryptWholeNoHeadData:(NSData*)in inLen:(NSUInteger)inLen x95EncryptKey:(NSString*)x95EncryptKey x95KeyLen:(NSUInteger)x95KeyLen did:(NSString*)did devPwd:(NSString*)devPwd encryptType:(NSUInteger)encryptType out:(NSData**)out;
 
 /**
  AES秘钥计算
@@ -119,6 +135,16 @@ typedef NS_ENUM(NSInteger, RULE_VERSION)
 @return 解密结果(see DECRYPT_RESULT)
 */
 - (DECRYPT_RESULT)decryptDeviceInfoData:(NSString *)source deviceID:(NSString *)sDevId sPlayCode:(NSString*)sPlayCode out:(NSString**)out;
+
+/**
+解密设备信息播放数据(playTokenV2, 升级加密方式)
+
+@param source 待解密数据
+@param sPlayCode[in] playTokenKey 十六进制(64字符)
+@param out 解密后输出数据
+@return 解密结果(see DECRYPT_RESULT)
+*/
+- (DECRYPT_RESULT)decryptDeviceInfoDataV2:(NSString *)source sPlayCode:(NSString*)sPlayCode out:(NSString**)out;
 
 /**
  @brief  计算码流加解密校验信息：目前暂只针对云录像

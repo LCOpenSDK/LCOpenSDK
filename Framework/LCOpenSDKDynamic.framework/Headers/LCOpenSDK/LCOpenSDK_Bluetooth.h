@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 停止搜索
 + (void)stopSearchDevice;
 // 配网
+/// @param finished callback on completion.
+///   On success, `deviceInfo` contains `pid`, `sn`, `token`, and `encType`.
+///   `encType` is the normalized app-layer encryption type after ECDH (ObjectIDL 0x04):
+///   - `0` (`LCBLEEncTypeCBC`): AES-256-CBC, pid as IV (legacy devices).
+///   - `2` (`LCBLEEncTypeGCM`): AES-256-GCM, nonce[12] || ciphertext || tag[16].
+///   Protocol wire value `1` (GCM on the link) is normalized to `2` before callback.
 + (void)configWifi:(NSString *)name password:(NSString * __nullable)password bleName:(NSString *)bleName pid:(NSString *)pid finished:(nullable void(^)(BOOL success, NSDictionary * __nullable deviceInfo, NSString * __nullable errorMessage))finished;
 
 

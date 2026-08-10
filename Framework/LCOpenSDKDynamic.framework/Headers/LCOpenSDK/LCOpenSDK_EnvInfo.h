@@ -25,6 +25,9 @@
 @property (nonatomic, copy)   NSString *authId;
 @property (nonatomic, strong) NSArray<LCOpenSDK_Sevice*> *services;
 @property (nonatomic, assign) bool isP2PRelay;
+
+/// 按 type 查找 server 配置（如 p2p / p2p_ipv6 / p2p_nat64）
+- (nullable LCOpenSDK_Sevice *)serviceForType:(NSString *)type;
 @end
 
 @interface LCOpenSDK_CloudPrefix : NSObject
