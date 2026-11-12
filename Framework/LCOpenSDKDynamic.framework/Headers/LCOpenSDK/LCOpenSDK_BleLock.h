@@ -56,6 +56,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 断开当前连接的蓝牙外设
 + (void)disConnect;
+
+/// token 由调用方从云端取到后传入。空 token 直接结束，不扫描。timeout <= 0 时使用 30 秒。不回调连接结果，调用方用 isConnectedBle 查询。
++ (void)connectBleLockWithToken:(NSString *)deviceId
+                      productId:(NSString *)productId
+                        bleName:(NSString *)bleName
+                          token:(NSString *)token
+                        timeout:(NSTimeInterval)timeout;
+
+/// 页面离开或不打算继续用这条链路时调用。不走 disConnect。
++ (void)closeBleLockDevice:(NSString *)deviceId;
+
+/// 仅会话已登录时加密写入 message。message 由调用方传入，例如 {"inputData":{},"service":"26600"}。未就绪直接失败，不写蓝牙。
+/// 成功时 response 为设备回包解密后的 JSON，例如 {"service":"26600","outputData":{"26621":0}}；失败时 response 为 nil。
++ (void)sendMessage:(NSString *)deviceId
+          productId:(NSString *)productId
+            message:(NSString *)message
+           finished:(void (^)(BOOL success, NSInteger errorCode, NSString * _Nullable response))finished;
+
+/// 该设备是否已登录且可以发送蓝牙报文。true 走 sendMessage，false 只能走云端开锁。
++ (BOOL)isConnectedBle:(NSString *)deviceId;
+
 @end
 
 NS_ASSUME_NONNULL_END

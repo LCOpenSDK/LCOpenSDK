@@ -83,6 +83,18 @@ typedef NS_ENUM(NSInteger, LC_ENCRYPT_CODE)
 /// 99.internal error    zh:99,内部错误
 - (NSInteger)decryptPic:(NSData *)pSrcBufIn deviceID:(NSString*)deviceID productId:(NSString *)productId key:(NSString*)key accessToken:(NSString *)accessToken playtoken:(NSString *)playtoken bufOut:(NSData**)pDestBufOut;
 
+/// Encrypt image binary data (0xC5, RTAV + ExtC5), aligned with Android LCOpenSDK_Utils.encryptPic    zh:图片二进制数据加密
+/// @param imageData Raw image data to encrypt    zh:待加密图片二进制数据
+/// @param encryptKey Device serial or userId (used as sn and devPwd for 0xC5 KDF)    zh:0xC5 设备序列号或 userId（sn 与 devPwd 相同，与 uploadjpg 一致）
+/// @param bufOut encrypted binary data (RTAV + ExtC5 payload)    zh:加密后数据内容，与 decryptPic 的 bufOut 一致
+/// @return Encryption result (see ENCRYPT_RESULT in CryptComponent)    zh:加密结果
+/// 0.encrypt success    zh:0, 加密成功
+/// 1.not a whole frame    zh:1, 非完整帧
+/// 2.already encrypted    zh:2, 已加密
+/// 3.buffer not enough    zh:3, 缓冲区不足
+/// 99.internal error    zh:99, 内部错误
+- (NSInteger)encryptPic:(NSData *)imageData encryptKey:(NSString *)encryptKey bufOut:(NSData **)bufOut;
+
 /// mts streaming establishes a long connection in advance to increase the streaming speed    zh:mts拉流提前建立长连接，提高拉流速度
 /// @param deviceDatas device data that needs to establish a long connection    zh:需要建立长连接的设备数据
 /// @param token user token
