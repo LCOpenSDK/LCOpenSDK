@@ -38,7 +38,11 @@
 
 - (TalkerParam *)initWithLoginHandle:(void*)loginHandle TalkWithChannel:(BOOL)isTalkWithChannel Channel:(NSInteger)channel AutoDecideparam:(BOOL)isAutoDecideParam;
 
-- (TalkerParam *)initWithUrl:(NSString *)url UrlV6:(NSString*)urlV6 QuicUrl:(NSString *)quicUrl Encrypt:(NSInteger)isEncrypt PSK:(NSString *)psk DeviceSn:(NSString*) deviceSn ShareMode:(NSInteger) shareMode HandleKey:(NSString*)HandleKey userName:(NSString*)userName psw:(NSString*)psw talkType:(NSString*)talkType TLS:(BOOL)isTls wssekey:(NSString *)wssekey isvideoSampleEnable:(BOOL)isVideoSampleEnable TID:(NSString*)tid;
+- (TalkerParam *)initWithUrl:(NSString *)url UrlV6:(NSString*)urlV6 QuicUrl:(NSString *)quicUrl \
+                            Encrypt:(NSInteger)isEncrypt PSK:(NSString *)psk DeviceSn:(NSString*) deviceSn \
+                            ShareMode:(NSInteger) shareMode HandleKey:(NSString*)HandleKey userName:(NSString*)userName psw:(NSString*)psw \
+                            talkType:(NSString*)talkType TLS:(BOOL)isTls wssekey:(NSString *)wssekey isvideoSampleEnable:(BOOL)isVideoSampleEnable \
+                            TID:(NSString*)tid isPrelinkMode:(BOOL)prelinkMode;
 
 - (instancetype)setSaveStreamFlag:(BOOL)isOpen;
 

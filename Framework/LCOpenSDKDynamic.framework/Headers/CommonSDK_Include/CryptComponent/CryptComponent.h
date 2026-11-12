@@ -157,4 +157,11 @@ typedef NS_ENUM(NSInteger, RULE_VERSION)
 
 + (NSString*)getVerfier:(NSString*)deviceSN Key:(NSString*)key;
 
+/**
+ @brief 输入数据是否需要解密
+ @param in 待解密数据
+ @return true:需要解密   false:无需解密
+ */
+- (BOOL)isNeedDecrypt:(NSData*)in;
+
 @end

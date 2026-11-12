@@ -26,7 +26,8 @@
                  Token:(NSString *)token
               DeviceSn:(NSString *)deviceSn
               UserName:(NSString *)userName
-              PassWord:(NSString *)passWord;
+              PassWord:(NSString *)passWord
+               JsonStr:(NSString*)jsonStr;
 
 - (bool) startDownload:(NSInteger)index
               Filepath:(NSString *)filepath
@@ -35,7 +36,8 @@
             Decryptkey:(NSString *)decryptkey
          StartMillSecs:(NSInteger)startMillSecs
           RecorderType:(NSInteger)recorderType
-                 Speed:(float)speed;
+                 Speed:(float)speed
+               JsonStr:(NSString*)jsonStr;
 
 - (bool) startDownLoadRtsp:(NSInteger)index
                   FilePath:(NSString *)filePath
@@ -48,7 +50,8 @@
                 RecordType:(NSInteger)recordType
                   DeviceSn:(NSString *)deviceSn
                      IsTls:(BOOL)isTls
-                     Speed:(float)speed;
+                     Speed:(float)speed
+                   JsonStr:(NSString*)jsonStr;
 /**
  支持断点续传接口
  */
@@ -64,7 +67,8 @@
                   DeviceSn:(NSString *)deviceSn
                      IsTls:(BOOL)isTls
                      Speed:(float)speed
-                IsUseCache:(BOOL)isUsecache;
+                IsUseCache:(BOOL)isUsecache
+                   JsonStr:(NSString*)jsonStr;
 
 
 - (bool) startDownLoadHttp:(NSInteger)index
@@ -79,7 +83,8 @@
                 RecordType:(NSInteger)recordType
                      IsTls:(BOOL)isTls
                      Speed:(float)speed
-                   isLocal:(BOOL)isLocal;
+                   isLocal:(BOOL)isLocal
+                   JsonStr:(NSString*)jsonStr;
 
 /**
 支持断点续传接口
@@ -98,7 +103,8 @@
                      IsTls:(BOOL)isTls
                      Speed:(float)speed
                 IsUseCache:(BOOL)isUseCache
-                   isLocal:(BOOL)isLocal;
+                   isLocal:(BOOL)isLocal
+                   JsonStr:(NSString*)jsonStr;
 
 /**
  局域网本地录像下载
@@ -111,7 +117,8 @@
                           startTime:(NSInteger)startTime
                             endTime:(NSInteger)endTime
                          recordType:(NSInteger)recordType
-                       downloadType:(NSInteger)downLoadType;
+                       downloadType:(NSInteger)downLoadType
+                            JsonStr:(NSString*)jsonStr;
 
 
 
@@ -130,7 +137,8 @@
                   Subtype:(NSInteger)subtype
                   RecordType:(NSInteger)recordType
                   FileID:(NSString *)fileID
-                  IsTls:(BOOL)isTls;
+                  IsTls:(BOOL)isTls
+                JsonStr:(NSString*)jsonStr;
 
 /**
  * 下载卡录像封面图
@@ -292,5 +300,12 @@
  * @param index   [in]任务索引
  */
 - (int) getQutaExceedTime:(NSInteger)index;
+
+/**
+ * 下载任务的媒体链路是否维持有效状态
+ * @param index   [in] 下载任务编号
+ */
+
+- (bool) downloadSessionLinkExist:(NSInteger)index;
 
 @end
